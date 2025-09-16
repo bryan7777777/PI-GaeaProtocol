@@ -71,11 +71,24 @@ body {
 }
 
 #playerBarra {
-  height: 40px;
+  height: 65px;
   width: 100%;
   background-color: #292929;
-  margin-top: -100px;
-  margin-bottom: 100px;
+  border: solid 1px black;
+  margin-bottom: -20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+}
+
+#itens {
+  display: flex;
+  gap: 20px;
+}
+
+#playerBarra img{
+  width: 30px;
 }
 
 #finalTurno {

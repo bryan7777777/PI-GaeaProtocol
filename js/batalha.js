@@ -120,7 +120,7 @@ const allCards = [
     basePower: 3,
     rarity: "rare",
     img: "../img/jogo/cards/def/arpao.png",
-    desc: "3 dano no último inimigo e +3 armadura (x3 o dano c/ armadura)."
+    desc: "Ataca o alvo mais distante em 3 e ganhe armadura (x3 o dano c/ armadura)."
   },
   {
     name: "Indestrutivel",
@@ -341,7 +341,7 @@ const allCards = [
     name: "Restos de meca",
     cost: 0,
     basePower: 0,
-    rarity: "common",
+    rarity: "epic",
     img: "../img/jogo/cards/lixo/mecaLixo.png",
     desc: "Adiciona 5 cartas de Entulho à sua mão.",
     type: "lixo"
@@ -350,7 +350,7 @@ const allCards = [
     name: "Chamado do Alfa",
     cost: 0,
     basePower: 0,
-    rarity: "rare",
+    rarity: "epic",
     img: "../img/jogo/cards/lixo/alfa.png",
     desc: "Adiciona 2 cartas de Alcateia à sua mão.",
     type: "lixo"
@@ -359,7 +359,7 @@ const allCards = [
     name: "Alcateia",
     cost: 0,
     basePower: 0,
-    rarity: "common",
+    rarity: "rare",
     img: "../img/jogo/cards/lixo/alcateia.png",
     desc: "Adiciona 2 cartas de Lobo à sua mão.",
     type: "lixo"
@@ -515,7 +515,7 @@ function spawnEnemies() {
     // cria barra de status individual
     const lifeBar = document.createElement("p");
     lifeBar.className = "enemy-bar";
-    lifeBar.innerHTML = `( <strong>${enemy.name} ) <br> | ❤️ <span class="enemy-hp">${enemy.hp}</span> - </strong> ${enemy.tipoDano} <strong>${enemy.dano} | </strong>`;
+    lifeBar.innerHTML = ` <strong> ⟪ ${enemy.name} ⟫ <br> ⟪ ❤️ <span class="enemy-hp">${enemy.hp}</span> - </strong> ${enemy.tipoDano} <strong>${enemy.dano} ⟫ </strong>`;
     document.getElementById("lifeBarsContainer").appendChild(lifeBar);
 
     // linka a barra ao inimigo
