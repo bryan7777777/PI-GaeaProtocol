@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./../css/batalha.css">
+  <script src="./../js/batalha.js" defer></script>
+  <title>Jogo de Cartas</title>
+</head>
+<body>
+  <div id="overlay"></div>
+  <div id="popup">
+    <p>Escolha sua recompensa!</p>
+    <div id="recompensa"></div>
+    <button onclick="fecharPopup()">Escolher</button>
+  </div>
+
+  <header id="playerBarra"></header>
+  <div id="jogo">
+    <div id="log"></div>
+    <div id="battlefield">
+      <div id="player-area">
+        <img id="player" src="./../img/jogo/player/autoridadeDoPorto.png" alt="Jogador">
+        <p id="lifeBar">❤️ <strong><span id="hp"></span></strong></p>
+      </div>
+      <div id="inimigo-area">
+        <div id="enemies"></div>
+        <div id="lifeBarsContainer"></div>
+      </div>
+    </div>
+
+    <div id="hud">
+      <div><span id="icon-energy">🔷</span><strong><span id="energy">3</span></strong></div>
+      <button onclick="enemyTurn()" id="finalTurno">FINALIZAR TURNO</button>
+    </div>
+
+    <div id="cards"></div>
+  </div>
+</body>
+
+</html>

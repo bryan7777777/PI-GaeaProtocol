@@ -1,0 +1,342 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+#game {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tela {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: translateY(100%);
+  transition: transform 0.6s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+}
+
+#div1 { 
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/jogo/background/selecaoPersonagem.png); 
+  transform: translateY(0); 
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  gap: 40px;
+  padding: 10px; 
+  z-index: 1; }
+
+#div2 { 
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/jogo/background/mapa.png); 
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 2; 
+}
+
+#div3 { 
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/jogo/background/imagem.png);
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 10px; 
+  z-index: 3
+}
+
+#div4 {
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/jogo/background/loja1.png);
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 10px;  
+  z-index: 4;
+}
+
+#div5 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 21, 27, 0.956);
+  background-image: url(../img/jogo/background/hospital.png);
+  background-size: 80% 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 10px;
+  z-index: 5;
+}
+
+button {
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+  padding: 10px 20px;
+}
+
+/* mão e cartas */
+
+.hand {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: -20px;
+  justify-content: center;
+  align-items: flex-end;
+  height: 220px;
+}
+
+.card {
+  width: 120px;
+  height: 180px;
+  background: linear-gradient(#ffd58a, #e49e34);
+  border: 2px solid #000;
+  border-radius: 12px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #333;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform-origin: bottom center;
+  opacity: 0;
+  animation: enterCard 0.5s ease forwards;
+}
+
+.card:hover:not(.focused) {
+  transform: scale(1.1) translateY(-20px) rotate(var(--angle));
+  z-index: 5;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 80px blue;
+  scale: 1.2;
+}
+
+.card.focused {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 300px;
+  transform: translate(-50%, -50%) scale(1.3);
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.card.exit {
+  animation: exitCard 0.4s ease forwards;
+}
+
+@keyframes enterCard {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes exitCard {
+  to {
+    transform: translateY(-300px) rotate(20deg);
+    opacity: 0;
+  }
+}
+/* SELECAO */
+#div1 h1{
+  text-align: center;
+  color: rgb(108, 223, 133);
+}
+
+#selecaoPlayer{
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.personagens img{
+  height: auto;
+  width: 80%;
+}
+
+.personagens{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0px 80% 0px 80%;
+  border: solid 4px rgb(108, 223, 133);
+  box-shadow: 2px 2px 75px 2px rgb(108, 223, 133);
+  transition: 0.5s;
+  background-color: rgba(108, 223, 133, 0.3);
+}
+
+#azul:hover, #azul.ativo{
+  border: solid 4px rgb(16, 175, 219);
+  box-shadow: 2px 2px 75px 2px rgb(12, 137, 171);
+  background-color: rgba(0, 149, 255, 0.3);
+}
+
+#amarelo:hover, #amarelo.ativo{
+  border: solid 4px rgb(231, 201, 7);
+  box-shadow: 2px 2px 75px 2px rgb(231, 201, 7);
+  background-color: rgba(238, 255, 0, 0.3);
+}
+
+#laranja:hover, #laranja.ativo{
+  border: solid 4px orange;
+  box-shadow: 2px 2px 75px 2px orange;
+  background-color: rgba(255, 145, 0, 0.3);
+}
+
+#fimSelecao{
+  width: 20%;
+  height:10%;
+  font-size: 50%;
+  background-color: rgba(0, 255, 255, 0.521);
+  border-radius: 0px 25px;
+  border: solid 2px rgba(0, 255, 255, 0.521);
+  color: aliceblue;
+  padding: 10px;  
+  transition: 1s;
+}
+
+#fimSelecao:hover{
+  background-color: rgb(0, 214, 53);
+  box-shadow: 2px 2px 50px 2px rgba(0, 255, 106, 0.521);
+  width: 22%;
+  border: solid 2px rgba(5, 129, 57, 0.644);
+}
+
+/* MAPA */
+#conexoes{
+  width: 100%;
+}
+
+/* INVENTARIO */
+#div5{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#box--menu{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.menu--imagens img{
+  height: 500px;
+  width: 700px;
+}
+
+/* LUTA */
+#div3{
+  display: flex;
+  justify-content: end;
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 10px;
+}
+
+#lutaUm{
+  display: none;
+}
+
+#player img{
+  height: 250px;
+  width: 250px;
+  transform: scaleX(-1);
+}
+
+.inimigos img{
+  height: 250px;
+  width: 190px;
+  transform: scaleX(-1);
+  margin-bottom: -40px;
+}
+
+#centro{
+  display: flex;
+  gap: 700px;
+}
+
+.inimigosBlocos{
+  display: flex;
+  gap: 50px;
+}
+
+#base{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 100px;
+  width: 100vw;
+  background-color: #333;
+  margin-bottom: -10px;
+}
+
+.cartas{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 275px;
+  width: 200px;
+  border-radius: 25px;
+}
+
+.versoCarta{
+  height: 110%;
+  width: 110%;
+}
+
+#energia{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+
+#energia p{
+  color: rgb(9, 0, 139);
+}
