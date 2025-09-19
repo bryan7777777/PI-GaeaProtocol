@@ -21,10 +21,10 @@ const allCards = [
   {
     name: "Impacto Bruto",
     cost: 3,
-    basePower: 25,
+    basePower: 20,
     rarity: "epic",
     img: "../img/jogo/cards/atk/Impacto.png",
-    desc: "Causa 25 de dano ao inimigo."
+    desc: "Causa 20 de dano ao inimigo."
   },
   {
     name: "Ataque",
@@ -37,16 +37,16 @@ const allCards = [
   {
     name: "Liderança",
     cost: 1,
-    basePower: 8,
-    rarity: "common",
+    basePower: 6,
+    rarity: "rare",
     img: "../img/jogo/cards/atk/lideranca.jpeg",
-    desc: "Causa 8 de dano e compre 2 cartas."
+    desc: "Causa 6 de dano e compre 2 cartas."
   },
   {
     name: "Vingativo",
     cost: 3,
     basePower: 0,
-    rarity: "epic",
+    rarity: "legend",
     img: "../img/jogo/cards/atk/vinganca.jpeg",
     desc: "Causa dano baseado na vida perdida."
   },
@@ -62,7 +62,7 @@ const allCards = [
     name: "Drenagem",
     cost: 1,
     basePower: 10,
-    rarity: "legend",
+    rarity: "epic",
     img: "../img/jogo/cards/atk/drenoDeVida.png",
     desc: "Causa 10 de dano ao inimigo e cure-se em 10."
   },
@@ -76,19 +76,19 @@ const allCards = [
   },
   {
     name: "Explosão",
-    cost: 1,
-    basePower: 6,
-    rarity: "common",
-    img: "../img/jogo/cards/atk/ExplosaoDeEnergia.png",
-    desc: "Causa 6 de dano em área a todos os inimigos."
-  },
-  {
-    name: "Chuva De Fragmentos",
     cost: 2,
     basePower: 12,
     rarity: "rare",
-    img: "../img/jogo/cards/atk/ChuvaDeFragmento.png",
+    img: "../img/jogo/cards/atk/ExplosaoDeEnergia.png",
     desc: "Causa 12 de dano em área a todos os inimigos."
+  },
+  {
+    name: "Chuva De Fragmentos",
+    cost: 1,
+    basePower: 6,
+    rarity: "common",
+    img: "../img/jogo/cards/atk/ChuvaDeFragmento.png",
+    desc: "Causa 6 de dano em área a todos os inimigos."
   },
   {
     name: "Beserck",
@@ -108,11 +108,11 @@ const allCards = [
   },
   {
     name: "Defesa",
-    cost: 0,
-    basePower: 4,
+    cost: 1,
+    basePower: 6,
     rarity: "common",
     img: "../img/jogo/cards/def/Blindagem.png",
-    desc: "Ganha 4 de escudo."
+    desc: "Ganha 6 de escudo."
   },
   {
     name: "Arpão",
@@ -141,14 +141,14 @@ const allCards = [
   {
     name: "PROTOCOL-Campo De Força",
     cost: 1,
-    basePower: 45,
+    basePower: 40,
     rarity: "epic",
     img: "../img/jogo/cards/def/campoDeForca.png",
-    desc: "Se sua vida for 30 ou menos ganhe 45 de escudo"
+    desc: "Se sua vida for 30 ou menos ganhe 40 de escudo"
   },
   {
     name: "Brilhando",
-    cost: 2,
+    cost: 1,
     basePower: 60,
     rarity: "legend",
     img: "../img/jogo/cards/def/escudoDeVidro.png",
@@ -165,42 +165,42 @@ const allCards = [
   {
     name: "Escudo",
     cost: 1,
-    basePower: 8,
+    basePower: 10,
     rarity: "common",
     img: "../img/jogo/cards/def/escudoHolo.png",
-    desc: "Cria um escudo de 8 pontos."
+    desc: "Cria um escudo de 10 pontos."
   },
   {
     name: "Sistema de reflexão",
-    cost: 2,
-    basePower: 5,
-    rarity: "epic",
+    cost: 1,
+    basePower: 4,
+    rarity: "rare",
     img: "../img/jogo/cards/def/sisReflexao.png",
-    desc: "Cria um escudo de 10 pontos e cause 5 de dano."
+    desc: "Cria um escudo de 8 pontos e cause 4 de dano."
   },
   {
     name: "Escudo Retaliante",
     cost: 1,
     basePower: 0,
-    rarity: "rare",
+    rarity: "epic",
     img: "../img/jogo/cards/def/escudoRetaliante.png",
     desc: "Causa dano igual à sua armadura atual."
   },
   {
     name: "Cura",
     cost: 1,
-    basePower: 6,
+    basePower: 8,
     rarity: "common",
     img: "../img/jogo/cards/buff/Cura.png",
-    desc: "Recupera 6 de vida."
+    desc: "Recupera 8 de vida."
   },
   {
     name: "Sob-Vigia",
     cost: 0,
-    basePower: 30,
+    basePower: 25,
     rarity: "rare",
     img: "../img/jogo/cards/buff/vigia.png",
-    desc: "Ajuste sua vida para 30, se essa carta tirar vida ganhe 2 de energia."
+    desc: "Ajuste sua vida para 25, se essa carta tirar vida ganhe 1 de energia."
   },
   {
     name: "Mineração",
@@ -208,13 +208,13 @@ const allCards = [
     basePower: 3,
     rarity: "legend",
     img: "../img/jogo/cards/buff/mineracao.png",
-    desc: "Minerção sustentavel, fornesce 3 de energia, viva a sustentabilidade!"
+    desc: "Mineração sustentavel, fornece 3 de energia, viva a sustentabilidade!"
   },
   {
     name: "PROTOCOL-Reforço Estrutural",
     cost: 1,
     basePower: 20,
-    rarity: "epic",
+    rarity: "rare",
     img: "../img/jogo/cards/buff/reforcoDeEstrutura.png",
     desc: "Cure 20 de vida se sua vida estiver em 30 ou menos."
   },
@@ -232,15 +232,15 @@ const allCards = [
     basePower: playerHP,
     rarity: "epic",
     img: "../img/jogo/cards/buff/neural.png",
-    desc: "Cause dano igual sua vida atual, perca 25 da vida atual"
+    desc: "Cause dano igual sua vida atual, perca 20 da vida atual"
   },
   {
     name: "Sobre Carga",
     cost: 1,
-    basePower: 6,
+    basePower: 4,
     rarity: "rare",
     img: "../img/jogo/cards/buff/sobreCarga.png",
-    desc: "Perca 6 de vida e cause 12 de dano."
+    desc: "Perca 4 de vida e cause 12 de dano."
   },
   {
     name: "Compra Dupla",
@@ -253,13 +253,13 @@ const allCards = [
   {
     name: "Recicladora",
     cost: 1,
-    basePower: 5,
+    basePower: 8,
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/reciclagem.png",
-    desc: "Cause 5 de dano, se não tiver nenhuma carta na mão cause 55 de dano."
+    desc: "Cause 8 de dano, se não tiver nenhuma carta na mão cause 50 de dano."
   },
   {
-    name: "TerroCritico",
+    name: "Terror Critico",
     cost: 2,
     basePower: 7,
     rarity: "legend",
@@ -296,7 +296,7 @@ const allCards = [
     name: "Xenofluxo Reciclável",
     cost: 0,
     basePower: 0,
-    rarity: "rare",
+    rarity: "epic",
     img: "../img/jogo/cards/reciclagem/ganhoDeEnergia.png",
     desc: "Remove cartas de lixo da mão e ganhe 1 de energia por cada carta removida.",
     type: "attack"
@@ -338,7 +338,7 @@ const allCards = [
     type: "lixo"
   },
   {
-    name: "Restos de meca",
+    name: "Restos de mecha",
     cost: 0,
     basePower: 0,
     rarity: "epic",
@@ -611,7 +611,7 @@ function drawCards() {
   cards.innerHTML = "";
   deck.forEach((card, i) => {
     const div = document.createElement("div");
-    let tipo = card.name === "Ataque" || card.name === "Liderança" || card.name === "Vingativo" || card.name === "Rebeldia" || card.name === "Impacto Bruto" || card.name === "Fogo Amigo" || card.name === "Drenagem" || card.name === "Beserck" || card.name === "Explosão" || card.name === "Chuva De Fragmentos" || card.name === "Rajada Dupla" ? "attack" : card.name === "Recicladora" || card.name === "Ataque Reciclável" || card.name === "TerroCritico" || card.name === "Defesa Reciclável" || card.name === "Xenofluxo Reciclável" || card.name === "Destruir Carta" ? "reciclagem" : card.name === "Entulho" || card.name === "Lixo quimico" || card.name === "Lobo" || card.name === "Alcateia" || card.name === "Chamado do Alfa" || card.name === "Arma Quebrada" || card.name === "Escudo quebrado" || card.name === "Restos de meca" || card.name === "Ferro Velho" ? "lixo" :
+    let tipo = card.name === "Ataque" || card.name === "Liderança" || card.name === "Vingativo" || card.name === "Rebeldia" || card.name === "Impacto Bruto" || card.name === "Fogo Amigo" || card.name === "Drenagem" || card.name === "Beserck" || card.name === "Explosão" || card.name === "Chuva De Fragmentos" || card.name === "Rajada Dupla" ? "attack" : card.name === "Recicladora" || card.name === "Ataque Reciclável" || card.name === "Terror Critico" || card.name === "Defesa Reciclável" || card.name === "Xenofluxo Reciclável" || card.name === "Destruir Carta" ? "reciclagem" : card.name === "Entulho" || card.name === "Lixo quimico" || card.name === "Lobo" || card.name === "Alcateia" || card.name === "Chamado do Alfa" || card.name === "Arma Quebrada" || card.name === "Escudo quebrado" || card.name === "Restos de mecha" || card.name === "Ferro Velho" ? "lixo" :
       card.name === "Defesa" || card.name === "Arpão" || card.name === "Em guarda" || card.name === "Indestrutivel" || card.name === "Sistema de reflexão" || card.name === "Escudo Retaliante" || card.name === "Impulso Defensivo" || card.name === "PROTOCOL-Campo De Força" || card.name === "Brilhando" || card.name === "Escudo" ? "defense" : card.name === "GÆPROTOCOL" || card.name === "Guardião" ? "cintilante" :
         card.name === "Cura" || card.name === "Sob-Vigia" || card.name === "Mineração" || card.name === "PROTOCOL-Reforço Estrutural" || card.name === "Impulso" || card.name === "Golpe Neural Retaliante" || card.name === "Compra Dupla" || card.name === "Sobre Carga" ? "heal" : "";
     div.className = `card ${card.rarity} ${tipo}`;
@@ -706,15 +706,15 @@ function drawCards() {
         floatText(document.getElementById("player"), `+${card.power}`, "lime");
         log("Usou Cura!");
       } else if (card.name === "Sob-Vigia") {
-        if (playerHP > 30) {
-          dano = playerHP - 30;
-          playerHP = 30;
-          energy += 2;
+        if (playerHP > 25) {
+          dano = playerHP - 25;
+          playerHP = 25;
+          energy += 1;
           animateDamage(document.getElementById("player"));
           floatText(document.getElementById("player"), `-${dano}`, "red");
         } else {
-          dano = 30 - playerHP;
-          playerHP = 30;
+          dano = 25 - playerHP;
+          playerHP = 25;
           glowPlayer("green");
           floatText(document.getElementById("player"), `+${dano}`, "lime");
         }
@@ -773,8 +773,8 @@ function drawCards() {
         animateDamage(enemies[0].el);
         animateDamage(document.getElementById("player"));
         playerHP = Math.min(playerHP - card.power, playerMaxHP);
-        enemies[0].hp -= card.power * 2;
-        floatText(enemies[0].el, `-${card.power * 2}`, "red");
+        enemies[0].hp -= card.power * 3;
+        floatText(enemies[0].el, `-${card.power * 3}`, "red");
         log("Usou Sobre Carga!");
         floatText(document.getElementById("player"), `-${card.power}`, "red");
       } else if (card.name === "Sistema de reflexão") {
@@ -790,7 +790,7 @@ function drawCards() {
         animateDamage(document.getElementById("player"));
         enemies[0].hp -= playerHP;
         floatText(enemies[0].el, `-${playerHP}`, "red");
-        playerHP -= 25;
+        playerHP -= 20;
         log("Usou Golpe Neural Retaliante!");
         floatText(document.getElementById("player"), `${"-25"}`, "red");
       } else if (card.name === "Beserck") {
@@ -911,7 +911,7 @@ function drawCards() {
       } else if (card.name === "Recicladora") {
         let dano = card.power;
         if (deck.length <= 1) {
-          dano = 55;
+          dano = 50;
         }
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
@@ -1228,7 +1228,7 @@ function drawCards() {
 // buff em itens aumenta esse
 let maoInicio = 7;
 // buff em cards aumenta esse
-let limiteMao = 7;
+let limiteMao = 40;
 
 function drawNewCards() {
   deck.length = 0;
