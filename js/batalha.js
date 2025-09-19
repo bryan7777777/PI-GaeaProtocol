@@ -93,10 +93,10 @@ const allCards = [
   {
     name: "Beserck",
     cost: 2,
-    basePower: 10,
+    basePower: 12,
     rarity: "epic",
     img: "../img/jogo/cards/atk/beserck.png",
-    desc: "Perca 10 de vida e toda sua armadura, cause dano baseado na armadura perdida +10."
+    desc: "Cause 12 de dano, se houver 3 ou ou menos cartas na mão aumente em X3"
   },
   {
     name: "Fogo Amigo",
@@ -794,17 +794,13 @@ function drawCards() {
         log("Usou Golpe Neural Retaliante!");
         floatText(document.getElementById("player"), `${"-25"}`, "red");
       } else if (card.name === "Beserck") {
-        if (playerShield > 0) {
-          enemies[0].hp -= playerShield;
-          floatText(document.getElementById("player"), `-${playerShield}`, "red");
-          playerShield = 0;
-          animateDamage(enemies[0].el);
+        let dano = card.power;
+        if (deck.length <= 3) {
+          dano = card.power*3;
         }
         animateDamage(enemies[0].el);
-        animateDamage(document.getElementById("player"));
-        enemies[0].hp -= card.power;
-        playerHP -= card.power;
-        floatText(enemies[0].el, `-${card.power}`, "red");
+        enemies[0].hp -= dano;
+        floatText(enemies[0].el, `-${dano}`, "red");
         log("Beserck!");
         floatText(document.getElementById("player"), `-${card.power}`, "red");
       } else if (card.name === "Impulso") {
