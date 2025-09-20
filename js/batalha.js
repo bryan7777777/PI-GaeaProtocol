@@ -1,5 +1,6 @@
 let playerHP = 100, energy = 3, playerShield = 0;
 let playerMaxHP = 100;
+
 const deck = [];
 const allCards = [
   {

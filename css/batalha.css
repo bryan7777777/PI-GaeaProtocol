@@ -101,6 +101,7 @@ body {
   color: aliceblue;
   padding: 10px;
   transition: 0.5s;
+  z-index: 0;
 }
 
 #finalTurno:hover {

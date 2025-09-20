@@ -479,7 +479,7 @@ function criarPlayerNaDiv3() {
   // Escolhe src baseado no personagem
   switch (personagemSelecionado) {
     case "laranja":
-      playerImg.src = "./../img/jogo/player/laranja.png";
+      playerImg.src = "./../img/jogo/player/corredor.png";
       break;
     case "azul":
       playerImg.src = "./../img/jogo/player/tank.png";
@@ -494,13 +494,16 @@ function criarPlayerNaDiv3() {
       playerImg.src = "./../img/jogo/player/sal2.png";
       break;
     case "tomoeh":
-      playerImg.src = "./../img/jogo/player/tomoeh.png";
+      playerImg.src = "./../img/jogo/extra/prototipo.png";
       break;
     case "x":
-      playerImg.src = "./../img/jogo/player/x.png";
+      playerImg.src = "./../img/jogo/extra/prototipo.png";
       break;
     case "wallace":
-      playerImg.src = "./../img/jogo/player/wallace.png";
+      playerImg.src = "./../img/jogo/extra/prototipo.png";
+      break;
+    default:
+      playerImg.src = "./../img/jogo/extra/prototipo.png";
       break;
   }
 
@@ -509,6 +512,7 @@ function criarPlayerNaDiv3() {
   // Insere como primeiro elemento da div3
   div3.insertBefore(playerImg, div3.firstChild);
 }
+
 
 
 
