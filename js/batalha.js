@@ -1,6 +1,57 @@
 let playerHP = 100, energy = 3, playerShield = 0;
 let playerMaxHP = 100;
 
+function criarPlayerNaDiv3() {
+  if (!personagemSelecionado) return; // nenhum personagem selecionado
+
+  const div3 = document.getElementById("player-area");
+
+  // Remove a imagem antiga, se existir
+  const imgExistente = document.getElementById("player");
+  if (imgExistente) div3.removeChild(imgExistente);
+
+  // Cria nova imagem
+  const playerImg = document.createElement("img");
+  playerImg.id = "player";
+
+  // Escolhe src baseado no personagem
+  switch (personagemSelecionado) {
+    case "laranja":
+      playerImg.src = "./../img/jogo/player/corredor.png";
+      break;
+    case "azul":
+      playerImg.src = "./../img/jogo/player/tank.png";
+      break;
+    case "amarelo":
+      playerImg.src = "./../img/jogo/player/mineiro.png";
+      break;
+    case "porto":
+      playerImg.src = "./../img/jogo/player/autoridadeDoPorto.png";
+      break;
+    case "ferrus":
+      playerImg.src = "./../img/jogo/player/sal2.png";
+      break;
+    case "tomoeh":
+      playerImg.src = "./../img/jogo/extra/prototipo.png";
+      break;
+    case "x":
+      playerImg.src = "./../img/jogo/extra/prototipo.png";
+      break;
+    case "wallace":
+      playerImg.src = "./../img/jogo/extra/prototipo.png";
+      break;
+    default:
+      playerImg.src = "./../img/jogo/extra/prototipo.png";
+      break;
+  }
+
+  playerImg.alt = "Jogador";
+
+  // Insere como primeiro elemento da div3
+  div3.insertBefore(playerImg, div3.firstChild);
+}
+
+
 const deck = [];
 const allCards = [
   {
@@ -386,98 +437,195 @@ const allCards = [
 ];
 
 const enemyModels = [
-  {
-    name: "Tartaruga",
-    hp: 54,
-    dano: 6,
-    behavior: () => [{ type: "attack", value: 6 }],
-    img: "../img/jogo/inimigos/minion.png",
-    tipoDano: "⚔️"
-  },
-  {
-    name: "Tatu corrompido",
-    hp: 60,
-    dano: 8,
-    behavior: () => [{ type: "attack", value: 8 }],
-    img: "../img/jogo/inimigos/tatu.png",
-    tipoDano: "⚔️"
-  },
-  {
-    name: "Furungrolumelo",
-    hp: 10,
-    dano: 24,
-    behavior: () => [{ type: "attack", value: 24 }],
-    img: "../img/jogo/inimigos/inimigo2.png",
-    tipoDano: "⚔️"
-  },
-  {
-    name: "Abelha corrompida",
-    hp: 6,
-    dano: 6,
-    behavior: () => [{ type: "attack", value: 6 }],
-    img: "../img/jogo/inimigos/abelha.png",
-    tipoDano: "⚔️"
-  },
-  {
-    name: "Ferrujão",
-    hp: 40,
-    dano: 12,
-    behavior: () => [{ type: "attack", value: 12 }],
-    img: "../img/jogo/inimigos/inimigo1.png",
-    tipoDano: "⚔️"
-  },
-  {
-    name: "Drone agricola",
-    hp: 8,
-    dano: 6,
-    behavior: () => [{ type: "attackVida", value: 6 }],
-    img: "../img/jogo/inimigos/inimigo5.png",
-    tipoDano: "💀"
-  },
-  {
-    name: "Boss Valquiria",
-    hp: 150,
-    dano: 20,
-    behavior: () => [
-      { type: "attack", value: Math.random() < 0.5 ? 20 : 40 }
-    ],
-    img: "../img/jogo/inimigos/bossValquiria.png",
-    tipoDano: "⚔️✨"
-  },
-  {
-    name: "Valquiria",
-    hp: 40,
-    dano: 7,
-    behavior: () => [{ type: "attackVida", value: 7 }],
-    img: "../img/jogo/inimigos/valquiria.png",
-    tipoDano: "💀"
-  },
-  {
-    name: "IA sacerdotisa",
-    hp: 24,
-    dano: 2,
-    behavior: () => [{ type: "heal", value: Math.random() < 0.5 ? 2 : 4 }],
-    img: "../img/jogo/inimigos/sacerdotisa.png",
-    tipoDano: "💚✨"
-  },
-  {
-    name: "Boss Alfa",
-    hp: 100,
-    dano: 10,
-    behavior: () => [{ type: "attackVida", value: 10 }],
-    img: "../img/jogo/inimigos/bossLobo.png",
-    tipoDano: "💀"
-  },
-  {
-    name: "Lobo",
-    hp: 20,
-    dano: 5,
-    behavior: () => [
-      { type: "attack", value: Math.random() < 0.5 ? 5 : 10 }
-    ],
-    img: "../img/jogo/inimigos/lobo.png",
-    tipoDano: "⚔️✨"
-  }
+  // BOSS
+  [
+    {
+      name: "Valquiria",
+      hp: 40,
+      dano: 7,
+      behavior: () => [{ type: "attackVida", value: 7 }],
+      img: "../img/jogo/inimigos/valquiria.png",
+      tipoDano: "💀"
+    },
+    {
+      name: "Boss Valquiria",
+      hp: 150,
+      dano: 20,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.3 ? 20 : 40 }
+      ],
+      img: "../img/jogo/inimigos/bossValquiria.png",
+      tipoDano: "⚔️✨"
+    },
+    {
+      name: "IA sacerdotisa",
+      hp: 24,
+      dano: 2,
+      behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 2 : 4 }],
+      img: "../img/jogo/inimigos/sacerdotisa.png",
+      tipoDano: "💚✨"
+    },
+  ],
+  [
+    {
+      name: "Lobo",
+      hp: 20,
+      dano: 5,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.4 ? 5 : 10 }
+      ],
+      img: "../img/jogo/inimigos/lobo.png",
+      tipoDano: "⚔️✨"
+    },
+    {
+      name: "Boss Alfa",
+      hp: 100,
+      dano: 10,
+      behavior: () => [{ type: "attackVida", value: 10 }],
+      img: "../img/jogo/inimigos/bossLobo.png",
+      tipoDano: "💀"
+    },
+    {
+      name: "Lobo",
+      hp: 20,
+      dano: 5,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.4 ? 5 : 10 }
+      ],
+      img: "../img/jogo/inimigos/lobo.png",
+      tipoDano: "⚔️✨"
+    }
+  ],
+  // ELITE
+  [
+    {
+      name: "Soldado do porto",
+      hp: 120,
+      dano: 10,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.3 ? 10 : 40 }
+      ],
+      img: "../img/jogo/inimigos/soldadoDoPorto.png",
+      tipoDano: "⚔️✨"
+    }
+  ],
+  [
+    {
+      name: "Amalgama",
+      hp: 120,
+      dano: 5,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
+      ],
+      img: "../img/jogo/inimigos/coisa.webp",
+      tipoDano: "💀✨"
+    }
+  ],
+  // NORMAL
+  [
+    {
+      name: "Abelha corrompida",
+      hp: 6,
+      dano: 6,
+      behavior: () => [{ type: "attack", value: 6 }],
+      img: "../img/jogo/inimigos/abelha.png",
+      tipoDano: "⚔️"
+    },
+    {
+      name: "Abelha corrompida",
+      hp: 6,
+      dano: 6,
+      behavior: () => [{ type: "attack", value: 6 }],
+      img: "../img/jogo/inimigos/abelha.png",
+      tipoDano: "⚔️"
+    },
+    {
+      name: "Abelha corrompida",
+      hp: 6,
+      dano: 6,
+      behavior: () => [{ type: "attack", value: 6 }],
+      img: "../img/jogo/inimigos/abelha.png",
+      tipoDano: "⚔️"
+    }
+  ],
+  [
+    {
+      name: "Drone agricola",
+      hp: 8,
+      dano: 6,
+      behavior: () => [{ type: "attackVida", value: 6 }],
+      img: "../img/jogo/inimigos/inimigo5.png",
+      tipoDano: "💀"
+    },
+    {
+      name: "Drone agricola",
+      hp: 8,
+      dano: 6,
+      behavior: () => [{ type: "attackVida", value: 6 }],
+      img: "../img/jogo/inimigos/inimigo5.png",
+      tipoDano: "💀"
+    },
+    {
+      name: "Drone agricola",
+      hp: 8,
+      dano: 6,
+      behavior: () => [{ type: "attackVida", value: 6 }],
+      img: "../img/jogo/inimigos/inimigo5.png",
+      tipoDano: "💀"
+    }
+  ],
+  [
+    {
+      name: "Tartaruga",
+      hp: 54,
+      dano: 6,
+      behavior: () => [{ type: "attack", value: 6 }],
+      img: "../img/jogo/inimigos/minion.png",
+      tipoDano: "⚔️"
+    },
+    {
+      name: "Tatu corrompido",
+      hp: 60,
+      dano: 8,
+      behavior: () => [{ type: "attack", value: 8 }],
+      img: "../img/jogo/inimigos/tatu.png",
+      tipoDano: "⚔️"
+    },
+    {
+      name: "Abelha corrompida",
+      hp: 6,
+      dano: 6,
+      behavior: () => [{ type: "attack", value: 6 }],
+      img: "../img/jogo/inimigos/abelha.png",
+      tipoDano: "⚔️"
+    }
+  ],
+  [
+    {
+      name: "Ferrujão",
+      hp: 40,
+      dano: 12,
+      behavior: () => [{ type: "attack", value: 12 }],
+      img: "../img/jogo/inimigos/inimigo1.png",
+      tipoDano: "⚔️"
+    },
+    {
+      name: "Ferrujão",
+      hp: 40,
+      dano: 12,
+      behavior: () => [{ type: "attack", value: 12 }],
+      img: "../img/jogo/inimigos/inimigo1.png",
+      tipoDano: "⚔️"
+    },
+    {
+      name: "IA sacerdotisa",
+      hp: 24,
+      dano: 2,
+      behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 2 : 4 }],
+      img: "../img/jogo/inimigos/sacerdotisa.png",
+      tipoDano: "💚✨"
+    },
+  ]
 ];
 
 function createEnemy(imgSrc) {
@@ -496,12 +644,11 @@ function spawnEnemies() {
   enemiesContainer.innerHTML = ""; // limpa inimigos
   document.getElementById("lifeBarsContainer").innerHTML = ""; // limpa barras de status
 
-  const qtd = Math.floor(Math.random() * 3) + 1; // 1 a 3 inimigos
+  // escolhe um bloco aleatório
+  const block = enemyModels[Math.floor(Math.random() * enemyModels.length)];
 
-  for (let i = 0; i < qtd; i++) {
-    const base = enemyModels[Math.floor(Math.random() * enemyModels.length)];
-
-    // cria inimigo
+  // percorre cada inimigo do bloco
+  block.forEach(base => {
     const enemy = {
       name: base.name,
       hp: base.hp,
@@ -521,7 +668,7 @@ function spawnEnemies() {
 
     // linka a barra ao inimigo
     enemy.barEl = lifeBar.querySelector(".enemy-hp");
-  }
+  });
 }
 
 function updateHUD() {
@@ -633,10 +780,10 @@ function drawCards() {
       } else if (card.name === "Rebeldia") {
         dano = card.power;
         if (playerShield <= 0) {
-          dano+=card.power;
+          dano += card.power;
         }
         if (playerHP <= 30) {
-          dano+=card.power;
+          dano += card.power;
         }
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
@@ -797,7 +944,7 @@ function drawCards() {
       } else if (card.name === "Beserck") {
         let dano = card.power;
         if (deck.length <= 3) {
-          dano = card.power*3;
+          dano = card.power * 3;
         }
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
@@ -850,7 +997,7 @@ function drawCards() {
           glowPlayer("cintilante");
         }
         log("Usou Guardião!");
-      } else if (card.name === "TerroCritico") {
+      } else if (card.name === "Terror Critico") {
         // marca as cartas a remover (identidade)
         const toRemove = new Set();
         toRemove.add(card); // também remover a própria carta usada
@@ -886,7 +1033,7 @@ function drawCards() {
           enemies[0].hp -= totalDamage;
           floatText(enemies[0].el, `-${totalDamage}`, "red");
         }
-        log(`Usou TerroCritico! Removeu ${lixoRemovido} lixo e causou ${totalDamage} de dano.`);
+        log(`Usou Terror Critico! Removeu ${lixoRemovido} lixo e causou ${totalDamage} de dano.`);
         // anima a carta usada e, após a animação, remova todas as cartas marcadas
         div.classList.add("card-remove");
         setTimeout(() => {

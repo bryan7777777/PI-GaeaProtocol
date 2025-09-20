@@ -441,6 +441,7 @@ shadow.innerHTML = `
     case 'boss':
       telaAnterior = 2;
       mostrarTela(3); // Tela de luta (div3)
+      // window.location.href = "batalha.html";
       break;
 
     case 'loja':
@@ -458,60 +459,10 @@ shadow.innerHTML = `
   }
 }
 
-
   gerarMapa();
   desenharMapa();
 })();
 
-function criarPlayerNaDiv3() {
-  if (!personagemSelecionado) return; // nenhum personagem selecionado
-
-  const div3 = document.getElementById("player-area");
-
-  // Remove a imagem antiga, se existir
-  const imgExistente = document.getElementById("player");
-  if (imgExistente) div3.removeChild(imgExistente);
-
-  // Cria nova imagem
-  const playerImg = document.createElement("img");
-  playerImg.id = "player";
-
-  // Escolhe src baseado no personagem
-  switch (personagemSelecionado) {
-    case "laranja":
-      playerImg.src = "./../img/jogo/player/corredor.png";
-      break;
-    case "azul":
-      playerImg.src = "./../img/jogo/player/tank.png";
-      break;
-    case "amarelo":
-      playerImg.src = "./../img/jogo/player/mineiro.png";
-      break;
-    case "porto":
-      playerImg.src = "./../img/jogo/player/autoridadeDoPorto.png";
-      break;
-    case "ferrus":
-      playerImg.src = "./../img/jogo/player/sal2.png";
-      break;
-    case "tomoeh":
-      playerImg.src = "./../img/jogo/extra/prototipo.png";
-      break;
-    case "x":
-      playerImg.src = "./../img/jogo/extra/prototipo.png";
-      break;
-    case "wallace":
-      playerImg.src = "./../img/jogo/extra/prototipo.png";
-      break;
-    default:
-      playerImg.src = "./../img/jogo/extra/prototipo.png";
-      break;
-  }
-
-  playerImg.alt = "Jogador";
-
-  // Insere como primeiro elemento da div3
-  div3.insertBefore(playerImg, div3.firstChild);
-}
 
 
 
