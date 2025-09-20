@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="./../css/reset.css" />
   <link rel="stylesheet" href="./../css/mapa.css" />
   <script src="./../js/mapaDois.js" defer></script>
+    <link rel="stylesheet" href="./../css/batalha.css">
+  <script src="./../js/batalha.js" defer></script>
 </head>
 <body>
   <div id="game">
@@ -17,7 +19,7 @@
         <div class="personagens"><img id="amarelo" src="./../img/jogo/pilotos/capaceteamarelo.png" alt=""></div>
         <div class="personagens"><img id="azul" src="./../img/jogo/pilotos/capaceteazul.png" alt=""></div>
         <div class="personagens"><img id="porto" src="./../img/jogo/pilotos/autoridadeDoPorto.jpg" alt=""></div>
-        <div class="personagens"><img id="ferrus" src="./../img/jogo/pilotos/magnusFerrus2.jpg" alt=""></div>
+        <div class="personagens"><img id="ferrus" src="./../img/jogo/pilotos/magnus.jpeg" alt=""></div>
         <div class="personagens"><img id="tomoeh" src="./../img/jogo/pilotos/sombraDaMorte.jpeg" alt=""></div>
         <div class="personagens"><img id="x" src="./../img/jogo/pilotos/gemea.jpeg" alt=""></div>
         <div class="personagens"><img id="wallace" src="./../img/jogo/pilotos/espectroDaFloresta.jpeg" alt=""></div>
@@ -31,8 +33,43 @@
       <audio src="./../audio/artblock.ogg" id="audio" loop></audio>
     </div>
     <div class="tela luta" id="div3">
+      <div id="overlay"></div>
+  <div id="popup">
+    <p>Escolha sua recompensa!</p>
+    <div id="recompensa"></div>
+    <button onclick="fecharPopup()" id="lutaUm">Escolher</button>
+  </div>
 
-      <button id="lutaUm">voltar para mapa</button>
+  <header id="playerBarra">
+    <!-- itens e deck -->
+     <div id="itens">
+       <img src="./../img/jogo/itens/Vida2.png" alt="">
+       <img src="./../img/jogo/itens/Algas.png" alt="">
+       <img src="./../img/jogo/itens/Picareta2.png" alt="">
+       <img src="./../img/jogo/itens/auraLaranja.png" alt="">
+     </div>
+  </header>
+  <div id="jogo">
+    <div id="log"></div>
+    <div id="battlefield">
+      <div id="player-area">
+
+        <p id="lifeBar">❤️ <strong><span id="hp"></span></strong></p>
+      </div>
+      <div id="inimigo-area">
+        <div id="enemies"></div>
+        <div id="lifeBarsContainer"></div>
+      </div>
+    </div>
+
+    <div id="hud">
+      <div><span id="icon-energy">🔷</span><strong><span id="energy">3</span></strong></div>
+      <button onclick="enemyTurn()" id="finalTurno">FINALIZAR TURNO</button>
+    </div>
+
+    <div id="cards"></div>
+  </div>
+      <button id="lutaUm" class="nada">voltar para mapa</button>
     </div>
     <div class="tela loja" id="div4">
       <h1>LOJA</h1>

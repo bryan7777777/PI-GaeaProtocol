@@ -1224,7 +1224,7 @@ function drawCards() {
 // buff em itens aumenta esse
 let maoInicio = 7;
 // buff em cards aumenta esse
-let limiteMao = 40;
+let limiteMao = 7;
 
 function drawNewCards() {
   deck.length = 0;

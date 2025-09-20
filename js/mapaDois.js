@@ -54,41 +54,32 @@ function voltarAnterior() {
   }
 }
 // SELECAO
-document.getElementById('laranja').addEventListener('click', selecao);
-document.getElementById('amarelo').addEventListener('click', selecao);
-document.getElementById('azul').addEventListener('click', selecao);
-document.getElementById('porto').addEventListener('click', selecao);
-document.getElementById('ferrus').addEventListener('click', selecao);
-document.getElementById('tomoeh').addEventListener('click', selecao);
-document.getElementById('x').addEventListener('click', selecao);
-document.getElementById('wallace').addEventListener('click', selecao);
+// --- SELEÇÃO DE PERSONAGEM (um por vez) ---
+const personagens = document.querySelectorAll("#selecaoPlayer img");
+let personagemSelecionado = null;
 
-function selecao(event) {
-  document.querySelectorAll('.personagens').forEach(el => {
-    el.classList.remove('ativo');
+personagens.forEach(img => {
+  img.addEventListener("click", () => {
+    // Remove seleção anterior
+    personagens.forEach(p => p.classList.remove("selecionado"));
+
+    // Marca o atual
+    img.classList.add("selecionado");
+    personagemSelecionado = img.id;
+  });
 });
-event.currentTarget.classList.add('ativo');
 
-const id = event.currentTarget.id;
-
-let usuario;
-
-  switch (id) {
-    case 'azul':
-      usuario = 3;
-      break;
-    case 'amarelo':
-      usuario = 2;
-      break;
-    case 'laranja':
-      usuario = 1;
-      break;
-    default:
-      usuario = null;
-
-    luta(usuario); // funçao que retorna o personagem do player
-}
-};
+// Botão confirmar seleção
+document.getElementById("fimSelecao").addEventListener("click", () => {
+  if (!personagemSelecionado) {
+    alert("Selecione um personagem primeiro!");
+    return;
+  }
+  criarPlayerNaDiv3(); // cria o player na tela de batalha
+  mostrarTela(2);      // vai para o mapa, por exemplo
+  console.log("Selecionado:", personagemSelecionado);
+  // Aqui você coloca a lógica de troca de tela (div1 → div2)
+});
 
 // MAPA
 const container = document.getElementById("div2");
@@ -96,19 +87,19 @@ const shadow = container.attachShadow({ mode: "open" });
 
 // Define CSS isolado
 const style = `
-  body {
-    margin: 0;
-    background-image: url(../img/background/mapa.png);
-    background-size: cover;
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    padding: 10px;
-    overflow-x: auto;
-    color: white;
-    font-family: sans-serif;
-    width:100%;
-  }
+  // body {
+  //   margin: 0;
+  //   background-image: url(../img/background/mapa.png);
+  //   background-size: cover;
+  //   background-position: bottom;
+  //   background-repeat: no-repeat;
+  //   background-attachment: fixed;
+  //   padding: 10px;
+  //   overflow-x: auto;
+  //   color: white;
+  //   font-family: sans-serif;
+  //   width:100%;
+  // }
 
   canvas {
     margin-left: 16.8%;
@@ -176,6 +167,59 @@ const style = `
     pointer-events: none;
     z-index: 5;
   }
+
+  /* =================== DESKTOP / NOTEBOOK =================== */
+@media (min-width: 1025px) {
+  #mapa {
+    max-width: 1000px;
+    height: 180vh;
+    margin-right: 306px;
+    margin-top:92px;
+  }
+  .coluna {
+    gap: 50px;
+  }
+  .nodo {
+    width: 6vw;
+    height: 6vw;
+    max-width: 50px;
+    max-height: 50px;
+  }
+}
+
+/* =================== TABLET =================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+  #mapa {
+    max-width: 700px;
+    height: 160vh;
+  }
+  .coluna {
+    gap: 40px;
+  }
+  .nodo {
+    width: 8vw;
+    height: 8vw;
+    max-width: 45px;
+    max-height: 45px;
+  }
+}
+
+/* =================== CELULAR =================== */
+@media (max-width: 767px) {
+  #mapa {
+    max-width: 100%;
+    height: 200vh;
+  }
+  .coluna {
+    gap: 30px;
+  }
+  .nodo {
+    width: 10vw;
+    height: 10vw;
+    max-width: 40px;
+    max-height: 40px;
+  }
+}
 `;
 
 // Define HTML da interface
@@ -419,11 +463,55 @@ shadow.innerHTML = `
   desenharMapa();
 })();
 
+function criarPlayerNaDiv3() {
+  if (!personagemSelecionado) return; // nenhum personagem selecionado
+
+  const div3 = document.getElementById("player-area");
+
+  // Remove a imagem antiga, se existir
+  const imgExistente = document.getElementById("player");
+  if (imgExistente) div3.removeChild(imgExistente);
+
+  // Cria nova imagem
+  const playerImg = document.createElement("img");
+  playerImg.id = "player";
+
+  // Escolhe src baseado no personagem
+  switch (personagemSelecionado) {
+    case "laranja":
+      playerImg.src = "./../img/jogo/player/laranja.png";
+      break;
+    case "azul":
+      playerImg.src = "./../img/jogo/player/tank.png";
+      break;
+    case "amarelo":
+      playerImg.src = "./../img/jogo/player/mineiro.png";
+      break;
+    case "porto":
+      playerImg.src = "./../img/jogo/player/autoridadeDoPorto.png";
+      break;
+    case "ferrus":
+      playerImg.src = "./../img/jogo/player/sal2.png";
+      break;
+    case "tomoeh":
+      playerImg.src = "./../img/jogo/player/tomoeh.png";
+      break;
+    case "x":
+      playerImg.src = "./../img/jogo/player/x.png";
+      break;
+    case "wallace":
+      playerImg.src = "./../img/jogo/player/wallace.png";
+      break;
+  }
+
+  playerImg.alt = "Jogador";
+
+  // Insere como primeiro elemento da div3
+  div3.insertBefore(playerImg, div3.firstChild);
+}
 
 
 
 var myMusic = new Audio("./../audio/artblock.ogg");
 myMusic.loop = true;
 myMusic.play();
-
-// LUTA
