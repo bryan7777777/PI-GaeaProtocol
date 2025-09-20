@@ -281,7 +281,7 @@ const allCards = [
   {
     name: "Golpe Neural Retaliante",
     cost: 3,
-    basePower: playerHP,
+    basePower: 20,
     rarity: "epic",
     img: "../img/jogo/cards/buff/neural.png",
     desc: "Cause dano igual sua vida atual, perca 20 da vida atual"
@@ -948,9 +948,9 @@ function drawCards() {
         animateDamage(document.getElementById("player"));
         enemies[0].hp -= playerHP;
         floatText(enemies[0].el, `-${playerHP}⚔️`, "red");
-        playerHP -= 20;
+        playerHP -= card.power;
         log("Usou Golpe Neural Retaliante!");
-        floatText(document.getElementById("player"), `${"-25"}💔`, "red");
+        floatText(document.getElementById("player"), `-${card.power}💔`, "red");
       } else if (card.name === "Beserck") {
         let dano = card.power;
         if (deck.length <= 3) {
@@ -1096,11 +1096,11 @@ function drawCards() {
         floatText(enemies[0].el, `-${playerShield}⚔️`, "red");
         log("Usou Escudo Retaliante!");
         glowPlayer("blue");
-      } else if (card.name === "Restos de meca") {
+      } else if (card.name === "Restos de mecha") {
         if (energy < card.cost) return;
         energy -= card.cost;
         // Adiciona 2 cartas de Entulho na mão
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 3; i++) {
           deck.push({ ...allCards.find(c => c.name === "Entulho"), power: 0 });
         }
         log("Usou Restos de meca! 4 cartas de Entulho adicionadas.");
