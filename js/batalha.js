@@ -437,6 +437,16 @@ const allCards = [
 ];
 
 const enemyModels = [
+  // ⚔️ atk normal
+  // 🔱 ignora armadura
+  // 💚 prioriza curar aliados
+  // 💊 auto cura
+  // (⚔️)💥 chance de (30%) crit X2 (apenas ações dentro do parenteses)
+  // (⚔️)🧨 chance de (15%) crit X4 (apenas ações dentro do parenteses)
+  // (⚔️)💣 chance de (10%) crit X5 (apenas ações dentro do parenteses)
+  // ⚔️❓💚 pode executar 2 ações, ou uma ou outra que esta adjacente (50% de chance)
+  // ⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
+  // 🩸💫⚜️✨💤🤢🥶🎭💀 n criado
   // BOSS
   [
     {
@@ -445,25 +455,25 @@ const enemyModels = [
       dano: 7,
       behavior: () => [{ type: "attackVida", value: 7 }],
       img: "../img/jogo/inimigos/valquiria.png",
-      tipoDano: "💀"
+      tipoDano: "🔱"
     },
     {
       name: "Boss Valquiria",
       hp: 150,
       dano: 20,
       behavior: () => [
-        { type: "attack", value: Math.random() < 0.3 ? 20 : 40 }
+        { type: "attack", value: Math.random() < 0.7 ? 20 : 40 }
       ],
       img: "../img/jogo/inimigos/bossValquiria.png",
-      tipoDano: "⚔️✨"
+      tipoDano: "(⚔️)💥"
     },
     {
       name: "IA sacerdotisa",
       hp: 24,
       dano: 2,
-      behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 2 : 4 }],
+      behavior: () => [{ type: "heal", value: Math.random() < 0.3 ? 2 : 4 }],
       img: "../img/jogo/inimigos/sacerdotisa.png",
-      tipoDano: "💚✨"
+      tipoDano: "(💚)💥"
     },
   ],
   [
@@ -472,10 +482,10 @@ const enemyModels = [
       hp: 20,
       dano: 5,
       behavior: () => [
-        { type: "attack", value: Math.random() < 0.4 ? 5 : 10 }
+        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
       ],
       img: "../img/jogo/inimigos/lobo.png",
-      tipoDano: "⚔️✨"
+      tipoDano: "(⚔️)💥"
     },
     {
       name: "Boss Alfa",
@@ -483,17 +493,17 @@ const enemyModels = [
       dano: 10,
       behavior: () => [{ type: "attackVida", value: 10 }],
       img: "../img/jogo/inimigos/bossLobo.png",
-      tipoDano: "💀"
+      tipoDano: "🔱"
     },
     {
       name: "Lobo",
       hp: 20,
       dano: 5,
       behavior: () => [
-        { type: "attack", value: Math.random() < 0.4 ? 5 : 10 }
+        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
       ],
       img: "../img/jogo/inimigos/lobo.png",
-      tipoDano: "⚔️✨"
+      tipoDano: "(⚔️)💥"
     }
   ],
   // ELITE
@@ -503,10 +513,10 @@ const enemyModels = [
       hp: 120,
       dano: 10,
       behavior: () => [
-        { type: "attack", value: Math.random() < 0.3 ? 10 : 40 }
+        { type: Math.random() < 0.7 ? "attack" : "attackVida", value: Math.random() < 0.9 ? 10 : 50 }
       ],
       img: "../img/jogo/inimigos/soldadoDoPorto.png",
-      tipoDano: "⚔️✨"
+      tipoDano: "(⚔️❔🔱)💣"
     }
   ],
   [
@@ -515,10 +525,10 @@ const enemyModels = [
       hp: 120,
       dano: 5,
       behavior: () => [
-        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
+        { type: Math.random() < 0.5 ? "attackVida" : "heal", value: Math.random() < 0.7 ? 5 : 10 }
       ],
       img: "../img/jogo/inimigos/coisa.webp",
-      tipoDano: "💀✨"
+      tipoDano: "(🔱❓💊)💥"
     }
   ],
   // NORMAL
@@ -555,7 +565,7 @@ const enemyModels = [
       dano: 6,
       behavior: () => [{ type: "attackVida", value: 6 }],
       img: "../img/jogo/inimigos/inimigo5.png",
-      tipoDano: "💀"
+      tipoDano: "🔱"
     },
     {
       name: "Drone agricola",
@@ -563,7 +573,7 @@ const enemyModels = [
       dano: 6,
       behavior: () => [{ type: "attackVida", value: 6 }],
       img: "../img/jogo/inimigos/inimigo5.png",
-      tipoDano: "💀"
+      tipoDano: "🔱"
     },
     {
       name: "Drone agricola",
@@ -571,7 +581,7 @@ const enemyModels = [
       dano: 6,
       behavior: () => [{ type: "attackVida", value: 6 }],
       img: "../img/jogo/inimigos/inimigo5.png",
-      tipoDano: "💀"
+      tipoDano: "🔱"
     }
   ],
   [
@@ -623,7 +633,7 @@ const enemyModels = [
       dano: 2,
       behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 2 : 4 }],
       img: "../img/jogo/inimigos/sacerdotisa.png",
-      tipoDano: "💚✨"
+      tipoDano: "(💚)💥"
     },
   ]
 ];
@@ -775,7 +785,7 @@ function drawCards() {
       if (card.name === "Ataque") {
         animateDamage(enemies[0].el);
         enemies[0].hp -= card.power;
-        floatText(enemies[0].el, `-${card.power}`, "red");
+        floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         log("Usou Ataque!");
       } else if (card.name === "Rebeldia") {
         dano = card.power;
@@ -787,18 +797,18 @@ function drawCards() {
         }
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
-        floatText(enemies[0].el, `-${dano}`, "red");
+        floatText(enemies[0].el, `-${dano}⚔️`, "red");
         log("Usou Rebeldia!");
       } else if (card.name === "Vingativo") {
         animateDamage(enemies[0].el);
         dano = playerMaxHP - playerHP;
         enemies[0].hp -= dano;
-        floatText(enemies[0].el, `-${dano}`, "red");
+        floatText(enemies[0].el, `-${dano}⚔️`, "red");
         log("Usou Vingativo!");
       } else if (card.name === "Liderança") {
         animateDamage(enemies[0].el);
         enemies[0].hp -= card.power;
-        floatText(enemies[0].el, `-${card.power}`, "red");
+        floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         for (let i = 0; i < 2; i++) {
           const newCard = {
             ...allCards[Math.floor(Math.random() * allCards.length)],
@@ -810,13 +820,13 @@ function drawCards() {
       } else if (card.name === "Defesa") {
         playerShield += card.power;
         glowPlayer("blue");
-        floatText(document.getElementById("player"), `+${card.power}`, "cyan");
+        floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         log("Usou Defesa!");
       } else if (card.name === "Em guarda") {
         if (playerShield > 0) {
           playerShield += card.power;
           glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${card.power}`, "cyan");
+          floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         }
         log("Usou Em guarda!");
       } else if (card.name === "Arpão") {
@@ -829,29 +839,29 @@ function drawCards() {
         if (alvo) {
           animateDamage(alvo.el);
           alvo.hp -= dano;
-          floatText(alvo.el, `-${dano}`, "red");
+          floatText(alvo.el, `-${dano}⚔️`, "red");
         }
         playerShield += 3;
-        floatText(document.getElementById("player"), `+3`, "blue");
+        floatText(document.getElementById("player"), `+3🛡️`, "blue");
         log("Usou Arpão!");
       } else if (card.name === "Indestrutivel") {
         escudo = playerShield * 2;
         playerShield = playerShield * card.power;
         glowPlayer("blue");
-        floatText(document.getElementById("player"), `+${escudo}`, "cyan");
+        floatText(document.getElementById("player"), `+${escudo}🛡️`, "cyan");
         log("Usou Indestrutivel!");
       } else if (card.name === "Drenagem") {
         playerShield += card.power;
         glowPlayer("green");
         playerHP = Math.min(playerHP + card.power, playerMaxHP);
         enemies[0].hp -= card.power;
-        floatText(enemies[0].el, `-${card.power}`, "red");
-        floatText(document.getElementById("player"), `+${card.power}`, "lime");
+        floatText(enemies[0].el, `-${card.power}⚔️`, "red");
+        floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
         log("Usou Drenagem!");
       } else if (card.name === "Cura") {
         playerHP = Math.min(playerHP + card.power, playerMaxHP);
         glowPlayer("green");
-        floatText(document.getElementById("player"), `+${card.power}`, "lime");
+        floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
         log("Usou Cura!");
       } else if (card.name === "Sob-Vigia") {
         if (playerHP > 25) {
@@ -859,35 +869,35 @@ function drawCards() {
           playerHP = 25;
           energy += 1;
           animateDamage(document.getElementById("player"));
-          floatText(document.getElementById("player"), `-${dano}`, "red");
+          floatText(document.getElementById("player"), `-${dano}💔`, "red");
         } else {
           dano = 25 - playerHP;
           playerHP = 25;
           glowPlayer("green");
-          floatText(document.getElementById("player"), `+${dano}`, "lime");
+          floatText(document.getElementById("player"), `+${dano}💚`, "lime");
         }
         log("Usou Sob-Vigia!");
       } else if (card.name === "Explosão") {
         enemies.forEach(e => {
           animateDamage(e.el);
           e.hp -= card.power;
-          floatText(e.el, `-${card.power}`, "red");
+          floatText(e.el, `-${card.power}⚔️`, "red");
         });
         log("Usou Explosão!");
       } else if (card.name === "Chuva De Fragmentos") {
         enemies.forEach(e => {
           animateDamage(e.el);
           e.hp -= card.power;
-          floatText(e.el, `-${card.power}`, "red");
+          floatText(e.el, `-${card.power}⚔️`, "red");
         });
         log("Usou Chuva De Fragmentos!");
       } else if (card.name === "Fogo Amigo") {
         enemies.forEach(e => {
           animateDamage(e.el);
           e.hp -= card.power;
-          floatText(e.el, `-${card.power}`, "red");
+          floatText(e.el, `-${card.power}⚔️`, "red");
           let dano = 15;
-          floatText(document.getElementById("player"), `-${dano}`, "red");
+          floatText(document.getElementById("player"), `-${dano}⚔️`, "red");
 
           if (playerShield > 0) {
             let absorbed = Math.min(dano, playerShield);
@@ -903,44 +913,44 @@ function drawCards() {
       } else if (card.name === "Escudo") {
         playerShield += card.power;
         glowPlayer("blue");
-        floatText(document.getElementById("player"), `+${card.power}`, "cyan");
+        floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         log("Usou Escudo!");
       } else if (card.name === "Rajada Dupla") {
         animateDamage(enemies[0].el);
         enemies[0].hp -= card.power;
         enemies[0].hp -= card.power;
-        floatText(enemies[0].el, `-${card.power}`, "red");
-        floatText(enemies[0].el, `-${card.power}`, "red");
+        floatText(enemies[0].el, `-${card.power}⚔️`, "red");
+        floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         log("Usou Rajada Dupla!");
       } else if (card.name === "Impacto Bruto") {
         animateDamage(enemies[0].el);
         enemies[0].hp -= card.power;
-        floatText(enemies[0].el, `-${card.power}`, "red");
+        floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         log("Usou Impacto Bruto!");
       } else if (card.name === "Sobre Carga") {
         animateDamage(enemies[0].el);
         animateDamage(document.getElementById("player"));
         playerHP = Math.min(playerHP - card.power, playerMaxHP);
         enemies[0].hp -= card.power * 3;
-        floatText(enemies[0].el, `-${card.power * 3}`, "red");
+        floatText(enemies[0].el, `-${card.power * 3}⚔️`, "red");
         log("Usou Sobre Carga!");
-        floatText(document.getElementById("player"), `-${card.power}`, "red");
+        floatText(document.getElementById("player"), `-${card.power}💔`, "red");
       } else if (card.name === "Sistema de reflexão") {
         animateDamage(enemies[0].el);
         glowPlayer("blue");
         playerShield += (card.power * 2);
         enemies[0].hp -= card.power;
-        floatText(enemies[0].el, `-${card.power}`, "red");
+        floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         log("Usou Sistema de reflexão!");
-        floatText(document.getElementById("player"), `+${(card.power * 2)}`, "cyan");
+        floatText(document.getElementById("player"), `+${(card.power * 2)}🛡️`, "cyan");
       } else if (card.name === "Golpe Neural Retaliante") {
         animateDamage(enemies[0].el);
         animateDamage(document.getElementById("player"));
         enemies[0].hp -= playerHP;
-        floatText(enemies[0].el, `-${playerHP}`, "red");
+        floatText(enemies[0].el, `-${playerHP}⚔️`, "red");
         playerHP -= 20;
         log("Usou Golpe Neural Retaliante!");
-        floatText(document.getElementById("player"), `${"-25"}`, "red");
+        floatText(document.getElementById("player"), `${"-25"}💔`, "red");
       } else if (card.name === "Beserck") {
         let dano = card.power;
         if (deck.length <= 3) {
@@ -948,39 +958,38 @@ function drawCards() {
         }
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
-        floatText(enemies[0].el, `-${dano}`, "red");
+        floatText(enemies[0].el, `-${dano}⚔️`, "red");
         log("Beserck!");
-        floatText(document.getElementById("player"), `-${card.power}`, "red");
       } else if (card.name === "Impulso") {
         if (limiteMao < 10) {
           limiteMao += 1;
         }
         glowPlayer("green");
-        floatText(document.getElementById("player"), `+${card.power}`, "lime");
+        floatText(document.getElementById("player"), `+${card.power}➕`, "lime");
         log("Usou Impulso!");
       } else if (card.name === "Mineração") {
         energy += card.power;
         glowPlayer("green");
-        floatText(document.getElementById("player"), `+${card.power}`, "lime");
+        floatText(document.getElementById("player"), `+${card.power}🔷`, "lime");
         log("Usou Impulso!");
       } else if (card.name === "PROTOCOL-Reforço Estrutural") {
         if (playerHP <= 30) {
           playerHP = Math.min(playerHP + card.power, playerMaxHP);
-          floatText(document.getElementById("player"), `+${card.power}`, "lime");
+          floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
           glowPlayer("green");
         }
         log("Usou PROTOCOL-Reforço De Força!");
       } else if (card.name === "PROTOCOL-Campo De Força") {
         if (playerHP <= 30) {
           playerShield += card.power;
-          floatText(document.getElementById("player"), `+${card.power}`, "cyan");
+          floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
           glowPlayer("blue");
         }
         log("Usou PROTOCOL-Campo De Força!");
       } else if (card.name === "Brilhando") {
         if (playerHP == playerMaxHP) {
           playerShield += card.power;
-          floatText(document.getElementById("player"), `+${card.power}`, "cyan");
+          floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
           glowPlayer("blue");
         }
         log("Usou Brilhando!");
@@ -988,12 +997,12 @@ function drawCards() {
         if (playerHP <= 30) {
           playerShield += card.power;
           energy += 2;
-          floatText(document.getElementById("player"), `+${card.power}`, "cyan");
-          floatText(document.getElementById("player"), `+${2}`, "lime");
+          floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+          floatText(document.getElementById("player"), `+${2}🔷`, "lime");
           glowPlayer("cintilante");
         } else {
           energy += 1;
-          floatText(document.getElementById("player"), `+${1}`, "lime");
+          floatText(document.getElementById("player"), `+${1}🔷`, "lime");
           glowPlayer("cintilante");
         }
         log("Usou Guardião!");
@@ -1024,14 +1033,14 @@ function drawCards() {
           return;
         }
         // calcula dano agregado
-        const base = (typeof card.power === "number") ? card.power : (card.basePower ?? 7);
+        const base = card.power;
         let totalDamage = lixoRemovido * base;
         if (playerHP <= 30) totalDamage *= 2;
         // aplica dano (no primeiro inimigo) com animação
         if (enemies.length > 0) {
           animateDamage(enemies[0].el);
           enemies[0].hp -= totalDamage;
-          floatText(enemies[0].el, `-${totalDamage}`, "red");
+          floatText(enemies[0].el, `-${totalDamage}⚔️`, "red");
         }
         log(`Usou Terror Critico! Removeu ${lixoRemovido} lixo e causou ${totalDamage} de dano.`);
         // anima a carta usada e, após a animação, remova todas as cartas marcadas
@@ -1049,8 +1058,8 @@ function drawCards() {
         energy += card.power;
         playerShield += card.power * 3;
         glowPlayer("blue");
-        floatText(document.getElementById("player"), `+${card.power}`, "cyan");
-        floatText(document.getElementById("player"), `+${card.power + 2}`, "cyan");
+        floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
+        floatText(document.getElementById("player"), `+${card.power + 2}🛡️`, "cyan");
         log("Usou Impulso Defensivo!");
       } else if (card.name === "Recicladora") {
         let dano = card.power;
@@ -1059,17 +1068,17 @@ function drawCards() {
         }
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
-        floatText(enemies[0].el, `-${dano}`, "red");
+        floatText(enemies[0].el, `-${dano}⚔️`, "red");
         log("Usou Recicladora!");
       } else if (card.name === "Entulho") {
         log("Usou Entulho!");
       } else if (card.name === "Lixo quimico") {
         log("Usou Lixo quimico!");
       } else if (card.name === "Escudo quebrado") {
-        floatText(document.getElementById("player"), `+${"0"}`, "cyan");
+        floatText(document.getElementById("player"), `+${"0"}🛡️`, "cyan");
         log("Usou Escudo quebrado!");
       } else if (card.name === "Arma Quebrada") {
-        floatText(enemies[0].el, `-${"0"}`, "red");
+        floatText(enemies[0].el, `-${"0"}⚔️`, "red");
         log("Usou Arma Quebrada!");
       } else if (card.name === "Compra Dupla") {
         for (let i = 0; i < 2; i++) {
@@ -1084,7 +1093,7 @@ function drawCards() {
       } else if (card.name === "Escudo Retaliante") {
         animateDamage(enemies[0].el);
         enemies[0].hp -= playerShield;
-        floatText(enemies[0].el, `-${playerShield}`, "red");
+        floatText(enemies[0].el, `-${playerShield}⚔️`, "red");
         log("Usou Escudo Retaliante!");
         glowPlayer("blue");
       } else if (card.name === "Restos de meca") {
@@ -1121,7 +1130,7 @@ function drawCards() {
         animateDamage(document.getElementById("player"));
         playerHP -= 2;
         log("Carta Lobo atacou você!");
-        floatText(document.getElementById("player"), `${"-2"}`, "red");
+        floatText(document.getElementById("player"), `${"-2"}⚔️`, "red");
       } else if (card.name === "Destruir Carta") {
         const toRemove = new Set();
         toRemove.add(card); // também remover a própria carta usada
@@ -1197,7 +1206,7 @@ function drawCards() {
         if (enemies.length > 0) {
           enemies[0].hp -= dano;
           animateDamage(enemies[0].el);
-          floatText(enemies[0].el, `-${dano}`, "red");
+          floatText(enemies[0].el, `-${dano}⚔️`, "red");
         }
         updateHUD();
 
@@ -1242,7 +1251,7 @@ function drawCards() {
         const defesa = lixoRemovido * 5;
         playerShield += defesa;
         glowPlayer("blue");
-        floatText(document.getElementById("player"), `+${defesa}`, "cyan");
+        floatText(document.getElementById("player"), `+${defesa}🛡️`, "cyan");
         updateHUD();
 
         div.classList.add("card-remove");
@@ -1283,7 +1292,7 @@ function drawCards() {
 
         energy += lixoRemovido;
         glowPlayer("green");
-        floatText(document.getElementById("player"), `+${lixoRemovido}`, "cyan");
+        floatText(document.getElementById("player"), `+${lixoRemovido}🔷`, "cyan");
         updateHUD();
 
         div.classList.add("card-remove");
@@ -1332,13 +1341,13 @@ function drawCards() {
         if (enemies.length > 0) {
           animateDamage(enemies[0].el);
           enemies[0].hp -= totalDamage;
-          floatText(enemies[0].el, `-${totalDamage}`, "red");
+          floatText(enemies[0].el, `-${totalDamage}⚔️`, "red");
         }
         glowPlayer("cintilante");
         playerShield += totalShield;
         playerHP = Math.min(playerHP + totalHeal, playerMaxHP);
-        floatText(document.getElementById("player"), `+${totalShield}`, "cyan");
-        floatText(document.getElementById("player"), `+${totalHeal}`, "green");
+        floatText(document.getElementById("player"), `+${totalShield}🛡️`, "cyan");
+        floatText(document.getElementById("player"), `+${totalHeal}💚`, "green");
 
         // anima a carta usada
         div.classList.add("card-remove");
@@ -1426,12 +1435,12 @@ function enemyTurn() {
           }
 
           animateDamage(document.getElementById("player"));
-          floatText(document.getElementById("player"), `-${act.value}`, "orange");
+          floatText(document.getElementById("player"), `-${act.value}⚔️`, "orange");
           log(`${e.name} atacou!`);
         } else if (act.type === "attackVida") {
           playerHP -= act.value;
           animateDamage(document.getElementById("player"));
-          floatText(document.getElementById("player"), `-${act.value}`, "orange");
+          floatText(document.getElementById("player"), `-${act.value}🔱`, "orange");
           log(`${e.name} atacou!`);
         } else if (act.type === "heal") {
           // seleciona o inimigo "mais à frente" (preferência: enemies[0], se não for ele)
@@ -1454,7 +1463,7 @@ function enemyTurn() {
             const max = target.maxHp ?? target.hp;
             const healed = act.value;
             target.hp = Math.min(target.hp + healed, max);
-            floatText(target.el, `+${healed}`, "green");
+            floatText(target.el, `+${healed}💚`, "green");
             log(`${e.name} curou ${target.name} em ${healed} de HP!`);
             // opcional: breve efeito visual
             target.el.classList.add("healed");
