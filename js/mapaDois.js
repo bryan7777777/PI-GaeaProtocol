@@ -57,6 +57,11 @@ function voltarAnterior() {
 document.getElementById('laranja').addEventListener('click', selecao);
 document.getElementById('amarelo').addEventListener('click', selecao);
 document.getElementById('azul').addEventListener('click', selecao);
+document.getElementById('porto').addEventListener('click', selecao);
+document.getElementById('ferrus').addEventListener('click', selecao);
+document.getElementById('tomoeh').addEventListener('click', selecao);
+document.getElementById('x').addEventListener('click', selecao);
+document.getElementById('wallace').addEventListener('click', selecao);
 
 function selecao(event) {
   document.querySelectorAll('.personagens').forEach(el => {
