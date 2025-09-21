@@ -66,8 +66,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 80px;
-  margin-left: 300px;
+  gap: 60px;
+  margin-left: 220px;
 }
 
 #playerBarra {
@@ -135,7 +135,8 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   gap: 500px;
-  margin-bottom: -25px;
+  margin-bottom: -10px;
+  margin-top: 40px;
 }
 
 #player-area,
@@ -147,7 +148,7 @@ body {
 
 #enemies {
   gap: 15px;
-  margin-left: 320px;
+  margin-left: 220px;
   display: flex;
   align-items: end;
 }
@@ -161,6 +162,10 @@ body {
 
 .enemy img {
   margin-bottom: 2px;
+}
+
+.enemy-bar{
+  min-width: 215px;
 }
 
 
