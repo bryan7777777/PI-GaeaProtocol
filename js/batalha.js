@@ -441,10 +441,11 @@ const enemyModels = [
   // 🔱 ignora armadura
   // 💚 prioriza curar aliados
   // 💊 auto cura
+  // 💞 inicio da batalha aumenta a vida maxima dos aliados adjacentes em 15 (dura até apos a morte)
   // (⚔️)💥 chance de (30%) crit X2 (apenas ações dentro do parenteses)
   // (⚔️)🧨 chance de (15%) crit X4 (apenas ações dentro do parenteses)
   // (⚔️)💣 chance de (10%) crit X5 (apenas ações dentro do parenteses)
-  // ⚔️🎭💚 se não puder executar a primeira ação executa a outra
+  // ⚔️🎭💚 se não puder executar a primeira ação executa a segunda
   // ⚔️❓💚 pode executar 2 ações, ou uma ou outra que esta adjacente (50% de chance)
   // ⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
   // 🩸💫⚜️✨💤🤢🥶💀 n criado
@@ -452,22 +453,55 @@ const enemyModels = [
   // BOSS
   [
     {
+      name: "Mão do Paladium",
+      hp: 65,
+      dano: 10,
+      behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "heal", value: 8 }],
+      img: "../img/jogo/inimigos/paladiumMaoDireita.png",
+      tipoDano: "⚔️❓💚🎭💊",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Boss Paladium",
+      hp: 100,
+      dano: 8,
+      behavior: () => [
+        { type: Math.random() < 0.7 ? "attack" : "heal", value: Math.random() < 0.7 ? 8 : 16 }
+      ],
+      img: "../img/jogo/inimigos/bossPaladium.png",
+      tipoDano: "(⚔️❔💚🎭💊)💥",
+      tipoVida: "💞"
+    },
+    {
+      name: "Mão do Paladium",
+      hp: 35,
+      dano: 5,
+      behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "attackVida", value: Math.random() < 0.85 ? 5 : 20 }],
+      img: "../img/jogo/inimigos/paladiumMaoEsquerda.png",
+      tipoDano: "(⚔️❓🔱)🧨",
+      tipoVida: "❤️"
+    },
+  ],
+  [
+    {
       name: "Valquiria",
       hp: 40,
       dano: 7,
       behavior: () => [{ type: "attackVida", value: 7 }],
       img: "../img/jogo/inimigos/valquiria.png",
-      tipoDano: "🔱"
+      tipoDano: "🔱",
+      tipoVida: "❤️"
     },
     {
       name: "Boss Valquiria",
-      hp: 150,
-      dano: 20,
+      hp: 125,
+      dano: 18,
       behavior: () => [
-        { type: "attack", value: Math.random() < 0.7 ? 20 : 40 }
+        { type: "attack", value: Math.random() < 0.7 ? 18 : 36 }
       ],
       img: "../img/jogo/inimigos/bossValquiria.png",
-      tipoDano: "(⚔️)💥"
+      tipoDano: "(⚔️)💥",
+      tipoVida: "❤️"
     },
     {
       name: "IA sacerdotisa",
@@ -475,7 +509,8 @@ const enemyModels = [
       dano: 2,
       behavior: () => [{ type: "heal", value: Math.random() < 0.3 ? 2 : 4 }],
       img: "../img/jogo/inimigos/sacerdotisa.png",
-      tipoDano: "(💚🎭💊)💥"
+      tipoDano: "(💚🎭💊)💥",
+      tipoVida: "❤️"
     },
   ],
   [
@@ -487,7 +522,8 @@ const enemyModels = [
         { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
       ],
       img: "../img/jogo/inimigos/lobo.png",
-      tipoDano: "(⚔️)💥"
+      tipoDano: "(⚔️)💥",
+      tipoVida: "❤️"
     },
     {
       name: "Boss Alfa",
@@ -495,7 +531,8 @@ const enemyModels = [
       dano: 10,
       behavior: () => [{ type: "attackVida", value: 10 }],
       img: "../img/jogo/inimigos/bossLobo.png",
-      tipoDano: "🔱"
+      tipoDano: "🔱",
+      tipoVida: "❤️"
     },
     {
       name: "Lobo",
@@ -505,7 +542,8 @@ const enemyModels = [
         { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
       ],
       img: "../img/jogo/inimigos/lobo.png",
-      tipoDano: "(⚔️)💥"
+      tipoDano: "(⚔️)💥",
+      tipoVida: "❤️"
     }
   ],
   // ELITE
@@ -518,7 +556,8 @@ const enemyModels = [
         { type: Math.random() < 0.7 ? "attack" : "attackVida", value: Math.random() < 0.9 ? 10 : 50 }
       ],
       img: "../img/jogo/inimigos/soldadoDoPorto.png",
-      tipoDano: "(⚔️❔🔱)💣"
+      tipoDano: "(⚔️❔🔱)💣",
+      tipoVida: "❤️"
     }
   ],
   [
@@ -530,10 +569,199 @@ const enemyModels = [
         { type: Math.random() < 0.5 ? "attackVida" : "heal", value: Math.random() < 0.7 ? 5 : 10 }
       ],
       img: "../img/jogo/inimigos/coisa.webp",
-      tipoDano: "(🔱❓💊)💥"
+      tipoDano: "(🔱❓💊)💥",
+      tipoVida: "❤️"
     }
   ],
+  [
+    {
+      name: "Sacerdote Guerreiro",
+      hp: 55,
+      dano: 8,
+      behavior: () => [
+        { type: "attack", value: 8 }
+      ],
+      img: "../img/jogo/inimigos/sacerdoteGuerreiro.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Sacerdote Elite",
+      hp: 40,
+      dano: 10,
+      behavior: () => [
+        { type: Math.random() < 0.3 ? "attack" : "heal", value: 10 }
+      ],
+      img: "../img/jogo/inimigos/sacerdoteGuerreiroElite.png",
+      tipoDano: "⚔️❔💚🎭💊",
+      tipoVida: "💞"
+    },
+    {
+      name: "IA sacerdotisa",
+      hp: 39,
+      dano: 2,
+      behavior: () => [{ type: "heal", value: Math.random() < 0.3 ? 2 : 4 }],
+      img: "../img/jogo/inimigos/sacerdotisa.png",
+      tipoDano: "(💚🎭💊)💥",
+      tipoVida: "❤️"
+    },
+  ],
   // NORMAL
+  [
+    {
+      name: "Sacerdote Guerreiro",
+      hp: 40,
+      dano: 8,
+      behavior: () => [
+        { type: "attack", value: 8 }
+      ],
+      img: "../img/jogo/inimigos/sacerdoteGuerreiro.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Sacerdote Guerreiro",
+      hp: 40,
+      dano: 8,
+      behavior: () => [
+        { type: "attack", value: 8 }
+      ],
+      img: "../img/jogo/inimigos/sacerdoteGuerreiro.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    },
+  ],
+  [
+    {
+      name: "Rinoceronte corrompido",
+      hp: 65,
+      dano: 10,
+      behavior: () => [
+        { type: "attackVida", value: 10 }
+      ],
+      img: "../img/jogo/inimigos/rino.png",
+      tipoDano: "🔱",
+      tipoVida: "💞"
+    },
+    {
+      name: "formiga sentinela",
+      hp: 45,
+      dano: 6,
+      behavior: () => [
+        { type: "attack", value: 6 }
+      ],
+      img: "../img/jogo/inimigos/formiga.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    }
+  ],
+  [
+    {
+      name: "formiga sentinela",
+      hp: 30,
+      dano: 6,
+      behavior: () => [
+        { type: "attack", value: 6 }
+      ],
+      img: "../img/jogo/inimigos/formiga.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    },
+    {
+      name: "formiga sentinela",
+      hp: 30,
+      dano: 6,
+      behavior: () => [
+        { type: "attack", value: 6 }
+      ],
+      img: "../img/jogo/inimigos/formiga.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    },
+    {
+      name: "formiga sentinela",
+      hp: 30,
+      dano: 6,
+      behavior: () => [
+        { type: "attack", value: 6 }
+      ],
+      img: "../img/jogo/inimigos/formiga.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    }
+  ],
+  [
+    {
+      name: "FuradorKiwi",
+      hp: 16,
+      dano: 24,
+      behavior: () => [
+        { type: "attack", value: 24 }
+      ],
+      img: "../img/jogo/inimigos/kiwi.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    },
+    {
+      name: "FuradorKiwi",
+      hp: 16,
+      dano: 24,
+      behavior: () => [
+        { type: "attack", value: 24 }
+      ],
+      img: "../img/jogo/inimigos/kiwi.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    },
+    {
+      name: "FuradorKiwi",
+      hp: 16,
+      dano: 24,
+      behavior: () => [
+        { type: "attack", value: 24 }
+      ],
+      img: "../img/jogo/inimigos/kiwi.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    }
+  ],
+  [
+    {
+      name: "BrocadorToper",
+      hp: 40,
+      dano: 12,
+      behavior: () => [
+        { type: Math.random() < 0.5 ? "attack" : "attackVida" , value: 12 }
+      ],
+      img: "../img/jogo/inimigos/topeira.png",
+      tipoDano: "⚔️❓🔱",
+      tipoVida: "❤️"
+    },
+    {
+      name: "BrocadorToper",
+      hp: 40,
+      dano: 12,
+      behavior: () => [
+        { type: Math.random() < 0.5 ? "attack" : "attackVida" , value: 12 }
+      ],
+      img: "../img/jogo/inimigos/topeira.png",
+      tipoDano: "⚔️❓🔱",
+      tipoVida: "❤️"
+    }
+  ],
+  [
+    {
+      name: "Lenhador corrompido",
+      hp: 80,
+      dano: 15,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.7 ? 15 : 30 }
+      ],
+      img: "../img/jogo/inimigos/lenhador.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "❤️"
+    }
+  ],
   [
     {
       name: "Tartaruga",
@@ -541,7 +769,8 @@ const enemyModels = [
       dano: 6,
       behavior: () => [{ type: "attack", value: 6 }],
       img: "../img/jogo/inimigos/minion.png",
-      tipoDano: "⚔️"
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
     },
     {
       name: "Abelha corrompida",
@@ -549,7 +778,8 @@ const enemyModels = [
       dano: 6,
       behavior: () => [{ type: "attack", value: 6 }],
       img: "../img/jogo/inimigos/abelha.png",
-      tipoDano: "⚔️"
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
     },
     {
       name: "Abelha corrompida",
@@ -557,7 +787,8 @@ const enemyModels = [
       dano: 6,
       behavior: () => [{ type: "attack", value: 6 }],
       img: "../img/jogo/inimigos/abelha.png",
-      tipoDano: "⚔️"
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
     }
   ],
   [
@@ -567,7 +798,8 @@ const enemyModels = [
       dano: 12,
       behavior: () => [{ type: "attack", value: 12 }],
       img: "../img/jogo/inimigos/inimigo1.png",
-      tipoDano: "⚔️"
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
     },
     {
       name: "Drone agricola",
@@ -575,7 +807,8 @@ const enemyModels = [
       dano: 6,
       behavior: () => [{ type: "attackVida", value: 6 }],
       img: "../img/jogo/inimigos/inimigo5.png",
-      tipoDano: "🔱"
+      tipoDano: "🔱",
+      tipoVida: "❤️"
     },
     {
       name: "Drone agricola",
@@ -583,7 +816,8 @@ const enemyModels = [
       dano: 6,
       behavior: () => [{ type: "attackVida", value: 6 }],
       img: "../img/jogo/inimigos/inimigo5.png",
-      tipoDano: "🔱"
+      tipoDano: "🔱",
+      tipoVida: "❤️"
     }
   ],
   [
@@ -593,7 +827,8 @@ const enemyModels = [
       dano: 6,
       behavior: () => [{ type: "attack", value: 6 }],
       img: "../img/jogo/inimigos/minion.png",
-      tipoDano: "⚔️"
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
     },
     {
       name: "Tatu corrompido",
@@ -601,7 +836,8 @@ const enemyModels = [
       dano: 8,
       behavior: () => [{ type: "attack", value: 8 }],
       img: "../img/jogo/inimigos/tatu.png",
-      tipoDano: "⚔️"
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
     },
     {
       name: "Abelha corrompida",
@@ -609,7 +845,8 @@ const enemyModels = [
       dano: 6,
       behavior: () => [{ type: "attack", value: 6 }],
       img: "../img/jogo/inimigos/abelha.png",
-      tipoDano: "⚔️"
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
     }
   ],
   [
@@ -619,7 +856,8 @@ const enemyModels = [
       dano: 12,
       behavior: () => [{ type: "attack", value: 12 }],
       img: "../img/jogo/inimigos/inimigo1.png",
-      tipoDano: "⚔️"
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
     },
     {
       name: "Ferrujão",
@@ -627,7 +865,8 @@ const enemyModels = [
       dano: 12,
       behavior: () => [{ type: "attack", value: 12 }],
       img: "../img/jogo/inimigos/inimigo1.png",
-      tipoDano: "⚔️"
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
     },
     {
       name: "IA sacerdotisa",
@@ -635,7 +874,8 @@ const enemyModels = [
       dano: 2,
       behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 2 : 4 }],
       img: "../img/jogo/inimigos/sacerdotisa.png",
-      tipoDano: "(💚🎭💊)💥"
+      tipoDano: "(💚🎭💊)💥",
+      tipoVida: "❤️"
     },
   ]
 ];
@@ -668,14 +908,15 @@ function spawnEnemies() {
       dano: base.dano,
       behavior: base.behavior,
       el: createEnemy(base.img),
-      tipoDano: base.tipoDano
+      tipoDano: base.tipoDano,
+      tipoVida: base.tipoVida
     };
     enemies.push(enemy);
 
     // cria barra de status individual
     const lifeBar = document.createElement("p");
     lifeBar.className = "enemy-bar";
-    lifeBar.innerHTML = ` <strong> ⟪ ${enemy.name} ⟫ <br> ⟪ ❤️ <span class="enemy-hp">${enemy.hp}</span> - </strong> ${enemy.tipoDano} <strong>${enemy.dano} ⟫ </strong>`;
+    lifeBar.innerHTML = ` <strong> ⟪ ${enemy.name} ⟫ <br> ⟪ ${enemy.tipoVida} <span class="enemy-hp">${enemy.hp}</span> - </strong> ${enemy.tipoDano} <strong>${enemy.dano} ⟫ </strong>`;
     document.getElementById("lifeBarsContainer").appendChild(lifeBar);
 
     // linka a barra ao inimigo
