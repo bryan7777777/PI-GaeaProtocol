@@ -32,13 +32,13 @@ function criarPlayerNaDiv3() {
       playerImg.src = "./../img/jogo/player/sal2.png";
       break;
     case "tomoeh":
-      playerImg.src = "./../img/jogo/extra/prototipo.png";
+      playerImg.src = "./../img/jogo/player/sombra.png";
       break;
     case "x":
-      playerImg.src = "./../img/jogo/extra/prototipo.png";
+      playerImg.src = "./../img/jogo/player/x.png";
       break;
     case "wallace":
-      playerImg.src = "./../img/jogo/extra/prototipo.png";
+      playerImg.src = "./../img/jogo/player/wallace.png";
       break;
     default:
       playerImg.src = "./../img/jogo/extra/prototipo.png";
@@ -444,9 +444,11 @@ const enemyModels = [
   // (⚔️)💥 chance de (30%) crit X2 (apenas ações dentro do parenteses)
   // (⚔️)🧨 chance de (15%) crit X4 (apenas ações dentro do parenteses)
   // (⚔️)💣 chance de (10%) crit X5 (apenas ações dentro do parenteses)
+  // ⚔️🎭💚 se não puder executar a primeira ação executa a outra
   // ⚔️❓💚 pode executar 2 ações, ou uma ou outra que esta adjacente (50% de chance)
   // ⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
-  // 🩸💫⚜️✨💤🤢🥶🎭💀 n criado
+  // 🩸💫⚜️✨💤🤢🥶💀 n criado
+
   // BOSS
   [
     {
@@ -473,7 +475,7 @@ const enemyModels = [
       dano: 2,
       behavior: () => [{ type: "heal", value: Math.random() < 0.3 ? 2 : 4 }],
       img: "../img/jogo/inimigos/sacerdotisa.png",
-      tipoDano: "(💚)💥"
+      tipoDano: "(💚🎭💊)💥"
     },
   ],
   [
@@ -534,11 +536,11 @@ const enemyModels = [
   // NORMAL
   [
     {
-      name: "Abelha corrompida",
-      hp: 6,
+      name: "Tartaruga",
+      hp: 54,
       dano: 6,
       behavior: () => [{ type: "attack", value: 6 }],
-      img: "../img/jogo/inimigos/abelha.png",
+      img: "../img/jogo/inimigos/minion.png",
       tipoDano: "⚔️"
     },
     {
@@ -560,12 +562,12 @@ const enemyModels = [
   ],
   [
     {
-      name: "Drone agricola",
-      hp: 8,
-      dano: 6,
-      behavior: () => [{ type: "attackVida", value: 6 }],
-      img: "../img/jogo/inimigos/inimigo5.png",
-      tipoDano: "🔱"
+      name: "Ferrujão",
+      hp: 40,
+      dano: 12,
+      behavior: () => [{ type: "attack", value: 12 }],
+      img: "../img/jogo/inimigos/inimigo1.png",
+      tipoDano: "⚔️"
     },
     {
       name: "Drone agricola",
@@ -633,7 +635,7 @@ const enemyModels = [
       dano: 2,
       behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 2 : 4 }],
       img: "../img/jogo/inimigos/sacerdotisa.png",
-      tipoDano: "(💚)💥"
+      tipoDano: "(💚🎭💊)💥"
     },
   ]
 ];
@@ -1055,8 +1057,8 @@ function drawCards() {
         }, 300);
         return; // evita que o handler genérico remova outra vez
       } else if (card.name === "Impulso Defensivo") {
-        energy += card.power;
-        playerShield += card.power * 3;
+        energy += 1;
+        playerShield += 3;
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
         floatText(document.getElementById("player"), `+${card.power + 2}🛡️`, "cyan");
