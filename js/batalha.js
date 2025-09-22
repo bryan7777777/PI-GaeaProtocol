@@ -568,7 +568,7 @@ const enemyModels = [
       behavior: () => [
         { type: Math.random() < 0.5 ? "attackVida" : "heal", value: Math.random() < 0.7 ? 5 : 10 }
       ],
-      img: "../img/jogo/inimigos/coisa.webp",
+      img: "../img/jogo/inimigos/amalgama.png",
       tipoDano: "(🔱❓💊)💥",
       tipoVida: "❤️"
     }
