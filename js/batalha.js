@@ -437,18 +437,19 @@ const allCards = [
 ];
 
 const enemyModels = [
+  // 💞 inicio da batalha aumenta a vida maxima dos aliados adjacentes em 15 (dura até apos a morte)
+  // ❣️ eu morro apos 3 turnos
   // ⚔️ atk normal
   // 🔱 ignora armadura
   // 💚 prioriza curar aliados
   // 💊 auto cura
-  // 💞 inicio da batalha aumenta a vida maxima dos aliados adjacentes em 15 (dura até apos a morte)
   // (⚔️)💥 chance de (30%) crit X2 (apenas ações dentro do parenteses)
   // (⚔️)🧨 chance de (15%) crit X4 (apenas ações dentro do parenteses)
   // (⚔️)💣 chance de (10%) crit X5 (apenas ações dentro do parenteses)
   // ⚔️🎭💚 se não puder executar a primeira ação executa a segunda
   // ⚔️❓💚 pode executar 2 ações, ou uma ou outra que esta adjacente (50% de chance)
   // ⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
-  // 🩸💫⚜️✨💤🤢🥶💀 n criado
+  // 🩸💫⚜️✨💤🤢🥶💀👾☠️👻🧿🪬🌟🔥💧❄️⚡ n criado
 
   // BOSS
   [
@@ -481,6 +482,17 @@ const enemyModels = [
       tipoDano: "(⚔️❓🔱)🧨",
       tipoVida: "❤️"
     },
+  ],
+  [
+    {
+      name: "Solice a Traida",
+      hp: 200,
+      dano: 40,
+      behavior: () => [{ type: "morrer", value: 40 }],
+      img: "../img/jogo/inimigos/solice.png",
+      tipoDano: "⚔️",
+      tipoVida: "❣️"
+    }
   ],
   [
     {
@@ -709,7 +721,7 @@ const enemyModels = [
       hp: 40,
       dano: 12,
       behavior: () => [
-        { type: Math.random() < 0.5 ? "attack" : "attackVida" , value: 12 }
+        { type: Math.random() < 0.5 ? "attack" : "attackVida", value: 12 }
       ],
       img: "../img/jogo/inimigos/topeira.png",
       tipoDano: "⚔️❓🔱",
@@ -720,7 +732,7 @@ const enemyModels = [
       hp: 40,
       dano: 12,
       behavior: () => [
-        { type: Math.random() < 0.5 ? "attack" : "attackVida" , value: 12 }
+        { type: Math.random() < 0.5 ? "attack" : "attackVida", value: 12 }
       ],
       img: "../img/jogo/inimigos/topeira.png",
       tipoDano: "⚔️❓🔱",
@@ -1592,8 +1604,9 @@ function takeDamage(dmg) {
 
 function enemyTurn() {
   setTimeout(() => {
-    enemies.forEach(e => {
+    [...enemies].forEach(e => {
       const actions = e.behavior();
+
       actions.forEach(act => {
         if (act.type === "attack") {
           let dano = act.value;
@@ -1610,24 +1623,23 @@ function enemyTurn() {
 
           animateDamage(document.getElementById("player"));
           floatText(document.getElementById("player"), `-${act.value}⚔️`, "orange");
+
         } else if (act.type === "attackVida") {
           playerHP -= act.value;
           animateDamage(document.getElementById("player"));
           floatText(document.getElementById("player"), `-${act.value}🔱`, "orange");
+
         } else if (act.type === "heal") {
-          // seleciona o inimigo "mais à frente" (preferência: enemies[0], se não for ele)
           let target = null;
           if (enemies.length > 0) {
             if (enemies[0] !== e && enemies[0].hp > 0) {
               target = enemies[0];
             } else {
-              // procura o primeiro vivo que não seja o curandeiro
               for (let t of enemies) {
                 if (t !== e && t.hp > 0) { target = t; break; }
               }
             }
           }
-          // se não achar outro alvo, opcional: cura a si mesmo
           if (!target) {
             if (e.hp > 0) target = e;
           }
@@ -1636,14 +1648,43 @@ function enemyTurn() {
             const healed = act.value;
             target.hp = Math.min(target.hp + healed, max);
             floatText(target.el, `+${healed}💚`, "green");
-            // opcional: breve efeito visual
             target.el.classList.add("healed");
             setTimeout(() => target.el.classList.remove("healed"), 600);
+          }
+
+        } else if (act.type === "morrer") {
+          // garante contador por inimigo
+          if (e.turnosRestantes === undefined) {
+            e.turnosRestantes = 3; // começa com 3 turnos de vida
+          }
+
+          // ataca normalmente
+          let dano = e.dano;
+          if (playerShield > 0) {
+            let absorbed = Math.min(dano, playerShield);
+            playerShield -= absorbed;
+            dano -= absorbed;
+          }
+          if (dano > 0) {
+            playerHP -= dano;
+          }
+          animateDamage(document.getElementById("player"));
+          floatText(document.getElementById("player"), `-${e.dano}⚔️`, "orange");
+
+          // reduz turnos restantes
+          e.turnosRestantes--;
+
+          // quando acabar, mata de vez
+          if (e.turnosRestantes <= 0) {
+            floatText(e.el, `💀`, "red");
+            e.hp = 0;
+            checkEnemies(); // deixa a rotina normal cuidar de remover animações/UI
           }
         }
       });
     });
 
+    // fim de turno do jogador
     energy = 3;
     playerShield = 0;
     drawNewCards();
