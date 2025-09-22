@@ -487,8 +487,8 @@ const enemyModels = [
     {
       name: "Solice a Traida",
       hp: 200,
-      dano: 40,
-      behavior: () => [{ type: "morrer", value: 40 }],
+      dano: 35,
+      behavior: () => [{ type: "morrer", value: 35 }],
       img: "../img/jogo/inimigos/solice.png",
       tipoDano: "⚔️",
       tipoVida: "❣️"
