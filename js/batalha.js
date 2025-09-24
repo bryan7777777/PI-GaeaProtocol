@@ -1,5 +1,5 @@
 let playerHP = 100, energy = 3, playerShield = 0;
-let playerMaxHP = 100;
+let playerMaxHP = 100, energyMax = 3, playerShieldInit = 0 ;
 
 function criarPlayerNaDiv3() {
   if (!personagemSelecionado) return; // nenhum personagem selecionado
@@ -1858,8 +1858,8 @@ function enemyTurn() {
     });
 
     // fim de turno do jogador
-    energy = 3;
-    playerShield = 0;
+    energy = energyMax;
+    playerShield = playerShieldInit;
     drawNewCards();
     drawCards();
     updateHUD();
