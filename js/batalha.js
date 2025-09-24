@@ -395,34 +395,16 @@ const allCards = [
     basePower: 0,
     rarity: "epic",
     img: "../img/jogo/cards/lixo/mecaLixo.png",
-    desc: "Adiciona 5 cartas de Entulho à sua mão.",
+    desc: "Adiciona 3 cartas de Entulho à sua mão.",
     type: "lixo"
   },
   {
-    name: "Chamado do Alfa",
-    cost: 0,
-    basePower: 0,
-    rarity: "epic",
-    img: "../img/jogo/cards/lixo/alfa.png",
-    desc: "Adiciona 2 cartas de Alcateia à sua mão.",
-    type: "lixo"
-  },
-  {
-    name: "Alcateia",
-    cost: 0,
-    basePower: 0,
-    rarity: "rare",
-    img: "../img/jogo/cards/lixo/alcateia.png",
-    desc: "Adiciona 2 cartas de Lobo à sua mão.",
-    type: "lixo"
-  },
-  {
-    name: "Lobo",
+    name: "Cura Quebrada",
     cost: 0,
     basePower: 0,
     rarity: "common",
-    img: "../img/jogo/cards/lixo/lobo.png",
-    desc: "Cause 2 de dano a você.",
+    img: "../img/jogo/cards/lixo/agulhaQuebrada.png",
+    desc: "Restos de esperança de sobrevivencia, cura 0.",
     type: "lixo"
   },
   {
@@ -1061,9 +1043,7 @@ function drawCards() {
       //  🗑️🗑️🗑️🗑️🗑️ LIXO 9 🗑️🗑️🗑️🗑️🗑️
       case "Entulho":
       case "Lixo quimico":
-      case "Lobo":
-      case "Alcateia":
-      case "Chamado do Alfa":
+      case "Cura Quebrada":
       case "Arma Quebrada":
       case "Escudo quebrado":
       case "Restos de mecha":
@@ -1086,6 +1066,7 @@ function drawCards() {
       if (card.name === "Ataque") {
         animateDamage(enemies[0].el);
         enemies[0].hp -= card.power;
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
       }
       //⚔️
@@ -1100,6 +1081,7 @@ function drawCards() {
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}⚔️`, "red");
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
       }
       //⚔️
       else if (card.name === "Vingativo") {
@@ -1107,6 +1089,7 @@ function drawCards() {
         dano = playerMaxHP - playerHP;
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}⚔️`, "red");
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
       }
       //⚔️
       else if (card.name === "Liderança") {
@@ -1120,6 +1103,7 @@ function drawCards() {
           };
           deck.push(newCard); // adiciona diretamente, ignorando limite
         }
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
       }
       //⚔️
       else if (card.name === "Drenagem") {
@@ -1128,7 +1112,8 @@ function drawCards() {
         playerHP = Math.min(playerHP + card.power, playerMaxHP);
         enemies[0].hp -= card.power;
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
-        floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
+        floatText(document.getElementById("player"), `+${card.power}💚`, "lime")
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });;
       }
 
       else if (card.name === "Explosão") {
@@ -1137,6 +1122,7 @@ function drawCards() {
           e.hp -= card.power;
           floatText(e.el, `-${card.power}⚔️`, "red");
         });
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
       }
       //⚔️
       else if (card.name === "Chuva De Fragmentos") {
@@ -1145,6 +1131,7 @@ function drawCards() {
           e.hp -= card.power;
           floatText(e.el, `-${card.power}⚔️`, "red");
         });
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
       }
       //⚔️
       else if (card.name === "Fogo Amigo") {
@@ -1165,6 +1152,7 @@ function drawCards() {
           }
         });
         animateDamage(document.getElementById("player"));
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
       }
       //⚔️
       else if (card.name === "Rajada Dupla") {
@@ -1173,12 +1161,14 @@ function drawCards() {
         enemies[0].hp -= card.power;
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
       }
       //⚔️
       else if (card.name === "Impacto Bruto") {
         animateDamage(enemies[0].el);
         enemies[0].hp -= card.power;
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
       }
       //⚔️
       else if (card.name === "Beserck") {
@@ -1189,6 +1179,7 @@ function drawCards() {
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}⚔️`, "red");
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
       }
 
       //  🛡️🛡️🛡️🛡️🛡️ DEFESA 🛡️🛡️🛡️🛡️🛡️
@@ -1196,6 +1187,7 @@ function drawCards() {
         playerShield += card.power;
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
       //🛡️
       else if (card.name === "Em guarda") {
@@ -1204,6 +1196,7 @@ function drawCards() {
           glowPlayer("blue");
           floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         }
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
       //🛡️
       else if (card.name === "Impulso Defensivo") {
@@ -1212,6 +1205,7 @@ function drawCards() {
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
         floatText(document.getElementById("player"), `+${card.power + 2}🛡️`, "cyan");
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
       //🛡️
       else if (card.name === "Arpão") {
@@ -1228,12 +1222,14 @@ function drawCards() {
         }
         playerShield += 3;
         floatText(document.getElementById("player"), `+3🛡️`, "blue");
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
       }
       //🛡️
       else if (card.name === "Escudo") {
         playerShield += card.power;
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
       //🛡️
       else if (card.name === "Indestrutivel") {
@@ -1241,6 +1237,7 @@ function drawCards() {
         playerShield = playerShield * card.power;
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${escudo}🛡️`, "cyan");
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
       //🛡️
       else if (card.name === "Sistema de reflexão") {
@@ -1250,6 +1247,7 @@ function drawCards() {
         enemies[0].hp -= card.power;
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         floatText(document.getElementById("player"), `+${(card.power * 2)}🛡️`, "cyan");
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
       //🛡️
       else if (card.name === "PROTOCOL-Campo De Força") {
@@ -1258,6 +1256,7 @@ function drawCards() {
           floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
           glowPlayer("blue");
         }
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
       //🛡️
       else if (card.name === "Brilhando") {
@@ -1266,6 +1265,7 @@ function drawCards() {
           floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
           glowPlayer("blue");
         }
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
 
       //  💚💚💚💚💚 BUFF 💚💚💚💚💚
@@ -1273,6 +1273,7 @@ function drawCards() {
         playerHP = Math.min(playerHP + card.power, playerMaxHP);
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
       else if (card.name === "Sob-Vigia") {
@@ -1288,6 +1289,7 @@ function drawCards() {
           glowPlayer("green");
           floatText(document.getElementById("player"), `+${dano}💚`, "lime");
         }
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
       else if (card.name === "Sobre Carga") {
@@ -1297,6 +1299,7 @@ function drawCards() {
         enemies[0].hp -= card.power * 3;
         floatText(enemies[0].el, `-${card.power * 3}⚔️`, "red");
         floatText(document.getElementById("player"), `-${card.power}💔`, "red");
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
       else if (card.name === "Golpe Neural Retaliante") {
@@ -1306,6 +1309,7 @@ function drawCards() {
         floatText(enemies[0].el, `-${playerHP}⚔️`, "red");
         playerHP -= card.power;
         floatText(document.getElementById("player"), `-${card.power}💔`, "red");
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
       else if (card.name === "Impulso") {
@@ -1314,12 +1318,14 @@ function drawCards() {
         }
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${card.power}➕`, "lime");
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
       else if (card.name === "Mineração") {
         energy += 3;
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${3}🔷`, "lime");
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
       else if (card.name === "PROTOCOL-Reforço Estrutural") {
@@ -1327,6 +1333,7 @@ function drawCards() {
           playerHP = Math.min(playerHP + card.power, playerMaxHP);
           floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
           glowPlayer("green");
+          deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
       }
       //💚
@@ -1339,6 +1346,7 @@ function drawCards() {
           deck.push(newCard); // adiciona diretamente, ignorando limite
         }
         glowPlayer("green");
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
 
       //  ♻️♻️♻️♻️♻️ RECICLAGEM ♻️♻️♻️♻️♻️
@@ -1588,6 +1596,10 @@ function drawCards() {
         floatText(document.getElementById("player"), `+${"0"}🛡️`, "cyan");
       }
       //🗑️
+      else if (card.name === "Cura Quebrada") {
+        floatText(document.getElementById("player"), `+${"0"}💚`, "lime");
+      }
+      //🗑️
       else if (card.name === "Arma Quebrada") {
         floatText(enemies[0].el, `-${"0"}⚔️`, "red");
       }
@@ -1602,7 +1614,6 @@ function drawCards() {
       else if (card.name === "Restos de mecha") {
         if (energy < card.cost) return;
         energy -= card.cost;
-        // Adiciona 2 cartas de Entulho na mão
         for (let i = 0; i < 3; i++) {
           deck.push({ ...allCards.find(c => c.name === "Entulho"), power: 0 });
         }
