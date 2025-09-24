@@ -584,7 +584,7 @@ const enemyModels = [
       hp: 40,
       dano: 10,
       behavior: () => [
-        { type: Math.random() < 0.3 ? "attack" : "heal", value: 10 }
+        { type: Math.random() < 0.8 ? "attack" : "heal", value: 10 }
       ],
       img: "../img/jogo/inimigos/sacerdoteGuerreiroElite.png",
       tipoDano: "⚔️❔💚🎭💊",
