@@ -872,7 +872,6 @@ const bossModels = [
       tipoVida: "❤️"
     }
   ]
-  // ... os outros bosses
 ];
 
 function createEnemy(imgSrc) {
@@ -2425,6 +2424,8 @@ shadow.innerHTML = `
     mapaContainer.scrollTo({ left: scrollX, behavior: "smooth" });
   }
 
+  let mapaBatalha = 0;
+
   function executarAcao(tipo) {
   switch (tipo) {
     case 'inimigo':
@@ -2451,6 +2452,14 @@ shadow.innerHTML = `
 
     default:
       alert('Tipo de sala não reconhecido.');
+  }
+
+  mapaBatalha++
+  if (mapaBatalha === 6) {
+    const div = document.getElementById("jogo");
+
+  // mudar a imagem
+  div.style.backgroundImage = "url('../img/jogo/background/luta3.png')";
   }
 }
 
