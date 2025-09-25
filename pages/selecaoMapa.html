@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./../css/mapa.css" />
   <script src="./../js/mapaDois.js" defer></script>
     <link rel="stylesheet" href="./../css/batalha.css">
-  <script src="./../js/batalha.js" defer></script>
+  <!-- <script src="./../js/batalha.js" defer></script> -->
 </head>
 <body>
   <div id="game">
@@ -37,7 +37,7 @@
   <div id="popup">
     <p>Escolha sua recompensa!</p>
     <div id="recompensa"></div>
-    <button onclick="fecharPopup()" id="lutaUm">Escolher</button>
+    <button onclick="fecharPopup(), displayInimigos()" id="lutaUm">Escolher</button>
   </div>
 
   <header id="playerBarra">
