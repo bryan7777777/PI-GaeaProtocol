@@ -434,8 +434,7 @@ const allCards = [
   }
 ];
 
-const enemyModels = [
-  // 💞 inicio da batalha aumenta a vida maxima dos aliados adjacentes em 15 (dura até apos a morte)
+// 💞 inicio da batalha aumenta a vida maxima dos aliados adjacentes em 15 (dura até apos a morte)
   // ❣️ eu morro apos 3 turnos
   // ⚔️ atk normal
   // 🔱 ignora armadura
@@ -449,174 +448,8 @@ const enemyModels = [
   // ⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
   // 🩸💫⚜️✨💤🤢🥶💀👾☠️👻🧿🪬🌟🔥💧❄️⚡ n criado
 
-  // BOSS
-  [
-    {
-      name: "Mão do Paladium",
-      hp: 65,
-      dano: 10,
-      behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "heal", value: 8 }],
-      img: "../img/jogo/inimigos/paladiumMaoDireita.png",
-      tipoDano: "⚔️❓💚🎭💊",
-      tipoVida: "❤️"
-    },
-    {
-      name: "Boss Paladium",
-      hp: 100,
-      dano: 8,
-      behavior: () => [
-        { type: Math.random() < 0.7 ? "attack" : "heal", value: Math.random() < 0.7 ? 8 : 16 }
-      ],
-      img: "../img/jogo/inimigos/bossPaladium.png",
-      tipoDano: "(⚔️❔💚🎭💊)💥",
-      tipoVida: "💞"
-    },
-    {
-      name: "Mão do Paladium",
-      hp: 35,
-      dano: 5,
-      behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "attackVida", value: Math.random() < 0.85 ? 5 : 20 }],
-      img: "../img/jogo/inimigos/paladiumMaoEsquerda.png",
-      tipoDano: "(⚔️❓🔱)🧨",
-      tipoVida: "❤️"
-    },
-  ],
-  [
-    {
-      name: "Solice a Esquecida",
-      hp: 150,
-      dano: 40,
-      behavior: () => [{ type: "morrer", value: 40 }],
-      img: "../img/jogo/inimigos/solice.png",
-      tipoDano: "⚔️",
-      tipoVida: "❣️"
-    }
-  ],
-  [
-    {
-      name: "Valquiria",
-      hp: 40,
-      dano: 7,
-      behavior: () => [{ type: "attackVida", value: 7 }],
-      img: "../img/jogo/inimigos/valquiria.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️"
-    },
-    {
-      name: "Boss Valquiria",
-      hp: 125,
-      dano: 18,
-      behavior: () => [
-        { type: "attack", value: Math.random() < 0.7 ? 18 : 36 }
-      ],
-      img: "../img/jogo/inimigos/bossValquiria.png",
-      tipoDano: "(⚔️)💥",
-      tipoVida: "❤️"
-    },
-    {
-      name: "IA sacerdotisa",
-      hp: 24,
-      dano: 2,
-      behavior: () => [{ type: "heal", value: Math.random() < 0.3 ? 2 : 4 }],
-      img: "../img/jogo/inimigos/sacerdotisa.png",
-      tipoDano: "(💚🎭💊)💥",
-      tipoVida: "❤️"
-    },
-  ],
-  [
-    {
-      name: "Lobo",
-      hp: 20,
-      dano: 5,
-      behavior: () => [
-        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
-      ],
-      img: "../img/jogo/inimigos/lobo.png",
-      tipoDano: "(⚔️)💥",
-      tipoVida: "❤️"
-    },
-    {
-      name: "Boss Alfa",
-      hp: 100,
-      dano: 10,
-      behavior: () => [{ type: "attackVida", value: 10 }],
-      img: "../img/jogo/inimigos/bossLobo.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️"
-    },
-    {
-      name: "Lobo",
-      hp: 20,
-      dano: 5,
-      behavior: () => [
-        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
-      ],
-      img: "../img/jogo/inimigos/lobo.png",
-      tipoDano: "(⚔️)💥",
-      tipoVida: "❤️"
-    }
-  ],
-  // ELITE
-  [
-    {
-      name: "Soldado do porto",
-      hp: 120,
-      dano: 10,
-      behavior: () => [
-        { type: Math.random() < 0.7 ? "attack" : "attackVida", value: Math.random() < 0.9 ? 10 : 50 }
-      ],
-      img: "../img/jogo/inimigos/soldadoDoPorto.png",
-      tipoDano: "(⚔️❔🔱)💣",
-      tipoVida: "❤️"
-    }
-  ],
-  [
-    {
-      name: "Amalgama",
-      hp: 120,
-      dano: 5,
-      behavior: () => [
-        { type: Math.random() < 0.5 ? "attackVida" : "heal", value: Math.random() < 0.7 ? 5 : 10 }
-      ],
-      img: "../img/jogo/inimigos/amalgama.png",
-      tipoDano: "(🔱❓💊)💥",
-      tipoVida: "❤️"
-    }
-  ],
-  [
-    {
-      name: "Sacerdote Guerreiro",
-      hp: 55,
-      dano: 8,
-      behavior: () => [
-        { type: "attack", value: 8 }
-      ],
-      img: "../img/jogo/inimigos/sacerdoteGuerreiro.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    },
-    {
-      name: "Sacerdote Elite",
-      hp: 40,
-      dano: 10,
-      behavior: () => [
-        { type: Math.random() < 0.8 ? "attack" : "heal", value: 10 }
-      ],
-      img: "../img/jogo/inimigos/sacerdoteGuerreiroElite.png",
-      tipoDano: "⚔️❔💚🎭💊",
-      tipoVida: "💞"
-    },
-    {
-      name: "IA sacerdotisa",
-      hp: 39,
-      dano: 2,
-      behavior: () => [{ type: "heal", value: Math.random() < 0.3 ? 2 : 4 }],
-      img: "../img/jogo/inimigos/sacerdotisa.png",
-      tipoDano: "(💚🎭💊)💥",
-      tipoVida: "❤️"
-    },
-  ],
-  // NORMAL
+// NORMAL
+const normalModels = [
   [
     {
       name: "Sacerdote Guerreiro",
@@ -868,6 +701,180 @@ const enemyModels = [
   ]
 ];
 
+// ELITE
+const eliteModels = [
+  [
+    {
+      name: "Soldado do porto",
+      hp: 120,
+      dano: 10,
+      behavior: () => [
+        { type: Math.random() < 0.7 ? "attack" : "attackVida", value: Math.random() < 0.9 ? 10 : 50 }
+      ],
+      img: "../img/jogo/inimigos/soldadoDoPorto.png",
+      tipoDano: "(⚔️❔🔱)💣",
+      tipoVida: "❤️"
+    }
+  ],
+  [
+    {
+      name: "Amalgama",
+      hp: 120,
+      dano: 5,
+      behavior: () => [
+        { type: Math.random() < 0.5 ? "attackVida" : "heal", value: Math.random() < 0.7 ? 5 : 10 }
+      ],
+      img: "../img/jogo/inimigos/amalgama.png",
+      tipoDano: "(🔱❓💊)💥",
+      tipoVida: "❤️"
+    }
+  ],
+  [
+    {
+      name: "Sacerdote Guerreiro",
+      hp: 55,
+      dano: 8,
+      behavior: () => [
+        { type: "attack", value: 8 }
+      ],
+      img: "../img/jogo/inimigos/sacerdoteGuerreiro.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Sacerdote Elite",
+      hp: 40,
+      dano: 10,
+      behavior: () => [
+        { type: Math.random() < 0.8 ? "attack" : "heal", value: 10 }
+      ],
+      img: "../img/jogo/inimigos/sacerdoteGuerreiroElite.png",
+      tipoDano: "⚔️❔💚🎭💊",
+      tipoVida: "💞"
+    },
+    {
+      name: "IA sacerdotisa",
+      hp: 39,
+      dano: 2,
+      behavior: () => [{ type: "heal", value: Math.random() < 0.3 ? 2 : 4 }],
+      img: "../img/jogo/inimigos/sacerdotisa.png",
+      tipoDano: "(💚🎭💊)💥",
+      tipoVida: "❤️"
+    },
+  ]
+];
+
+// BOSS
+const bossModels = [
+  [
+    {
+      name: "Mão do Paladium",
+      hp: 65,
+      dano: 10,
+      behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "heal", value: 8 }],
+      img: "../img/jogo/inimigos/paladiumMaoDireita.png",
+      tipoDano: "⚔️❓💚🎭💊",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Boss Paladium",
+      hp: 100,
+      dano: 8,
+      behavior: () => [
+        { type: Math.random() < 0.7 ? "attack" : "heal", value: Math.random() < 0.7 ? 8 : 16 }
+      ],
+      img: "../img/jogo/inimigos/bossPaladium.png",
+      tipoDano: "(⚔️❔💚🎭💊)💥",
+      tipoVida: "💞"
+    },
+    {
+      name: "Mão do Paladium",
+      hp: 35,
+      dano: 5,
+      behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "attackVida", value: Math.random() < 0.85 ? 5 : 20 }],
+      img: "../img/jogo/inimigos/paladiumMaoEsquerda.png",
+      tipoDano: "(⚔️❓🔱)🧨",
+      tipoVida: "❤️"
+    }
+  ],
+  [
+    {
+      name: "Solice a Esquecida",
+      hp: 150,
+      dano: 40,
+      behavior: () => [{ type: "morrer", value: 40 }],
+      img: "../img/jogo/inimigos/solice.png",
+      tipoDano: "⚔️",
+      tipoVida: "❣️"
+    }
+  ],
+  [
+    {
+      name: "Valquiria",
+      hp: 40,
+      dano: 7,
+      behavior: () => [{ type: "attackVida", value: 7 }],
+      img: "../img/jogo/inimigos/valquiria.png",
+      tipoDano: "🔱",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Boss Valquiria",
+      hp: 125,
+      dano: 18,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.7 ? 18 : 36 }
+      ],
+      img: "../img/jogo/inimigos/bossValquiria.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "❤️"
+    },
+    {
+      name: "IA sacerdotisa",
+      hp: 24,
+      dano: 2,
+      behavior: () => [{ type: "heal", value: Math.random() < 0.3 ? 2 : 4 }],
+      img: "../img/jogo/inimigos/sacerdotisa.png",
+      tipoDano: "(💚🎭💊)💥",
+      tipoVida: "❤️"
+    },
+  ],
+  [
+    {
+      name: "Lobo",
+      hp: 20,
+      dano: 5,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
+      ],
+      img: "../img/jogo/inimigos/lobo.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Boss Alfa",
+      hp: 100,
+      dano: 10,
+      behavior: () => [{ type: "attackVida", value: 10 }],
+      img: "../img/jogo/inimigos/bossLobo.png",
+      tipoDano: "🔱",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Lobo",
+      hp: 20,
+      dano: 5,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
+      ],
+      img: "../img/jogo/inimigos/lobo.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "❤️"
+    }
+  ]
+  // ... os outros bosses
+];
+
 function createEnemy(imgSrc) {
   const div = document.createElement("div");
   div.className = "enemy";
@@ -878,14 +885,23 @@ function createEnemy(imgSrc) {
 
 let enemies = [];
 
-function spawnEnemies() {
+function spawnEnemies(tipo) {
   enemies = [];
   const enemiesContainer = document.getElementById("enemies");
-  enemiesContainer.innerHTML = ""; // limpa inimigos da tela anterior
-  document.getElementById("lifeBarsContainer").innerHTML = ""; // limpa barras da tela anterior
+  enemiesContainer.innerHTML = "";
+  document.getElementById("lifeBarsContainer").innerHTML = "";
 
-  // escolhe um bloco aleatório de inimigos
-  const block = enemyModels[Math.floor(Math.random() * enemyModels.length)];
+  let pool;
+  switch (tipo) {
+    case "inimigo": pool = normalModels; break;
+    case "elite":   pool = eliteModels;  break;
+    case "boss":    pool = bossModels;   break;
+    default:
+      console.warn("Tipo desconhecido:", tipo);
+      return;
+  }
+
+  const block = pool[Math.floor(Math.random() * pool.length)];
 
   block.forEach(base => {
     const enemy = {
@@ -899,8 +915,8 @@ function spawnEnemies() {
       tipoVida: base.tipoVida
     };
     enemies.push(enemy);
+    enemy.el.style.display = "inline-block";
 
-    // cria barra de status individual
     const lifeBar = document.createElement("p");
     lifeBar.className = "enemy-bar";
     lifeBar.innerHTML = `
@@ -910,10 +926,11 @@ function spawnEnemies() {
     `;
     document.getElementById("lifeBarsContainer").appendChild(lifeBar);
 
-    // linka a barra ao inimigo (pra poder atualizar depois)
     enemy.barEl = lifeBar.querySelector(".enemy-hp");
   });
 }
+
+
 
 function updateEnemyBars() {
   enemies.forEach(enemy => {
@@ -2416,7 +2433,7 @@ shadow.innerHTML = `
       telaAnterior = 2;
       mostrarTela(3); // Tela de luta (div3)
       // window.location.href = "batalha.html";
-      spawnEnemies();
+      spawnEnemies(tipo);
       drawNewCards();
       drawCards();
       updateHUD();
