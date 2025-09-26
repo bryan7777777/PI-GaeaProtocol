@@ -190,7 +190,7 @@ button {
   background-color: rgb(0, 0, 0);
 }
 
-#fimSelecao{
+#fimSelecao, .inventario button{
   width: 20%;
   height:10%;
   font-size: 50%;
@@ -202,7 +202,7 @@ button {
   transition: 1s;
 }
 
-#fimSelecao:hover{
+#fimSelecao:hover, .inventario button:hover{
   background-color: rgb(0, 214, 53);
   box-shadow: 2px 2px 50px 2px rgba(0, 255, 106, 0.521);
   width: 22%;
@@ -214,12 +214,68 @@ button {
   width: 100%;
 }
 
-/* INVENTARIO */
-#div5{
+/* HOSPITAL */
+#medico h1, #acolito h1{
+  width: 80%;
+  text-align: center;
+  color: rgb(160, 255, 180);
+  font-size: 70px;
+  background-color: rgba(0, 255, 255, 0.521);
+  border-radius: 0 25px 0 25px;
+  padding: 20px;
+  border: solid rgb(108, 223, 133);
+}
+
+#medico, #acolito{
+  gap: 10px;
+  height: 40%;
+  width: 40%;
+}
+
+#medico button, #acolito button{
+  width: 80%;
+  height: 80%;
+}
+
+#acolito h1{
+  color: rgb(255, 160, 160);
+  background-color: rgba(255, 0, 0, 0.521);
+  border: solid rgb(223, 108, 108);
+}
+
+#medico, #acolito{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.inventario .curaSacre, .inventario .aumentaSacre{
+  width: 20%;
+  height:10%;
+  font-size: 50%;
+  background-color: rgba(255, 0, 0, 0.521);
+  border-radius: 0px 25px;
+  border: solid 2px rgba(255, 0, 0, 0.521);
+  color: aliceblue;
+  padding: 10px;  
+  transition: 1s;
+}
+
+.inventario .curaSacre:hover, .inventario .aumentaSacre:hover{
+  background-color: rgb(214, 0, 185);
+  box-shadow: 2px 2px 50px 2px rgba(255, 0, 255, 0.521);
+  width: 22%;
+  border: solid 2px rgba(129, 5, 129, 0.644);
+}
+
+#div5{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 20px;
 }
 
 #box--menu{

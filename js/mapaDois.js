@@ -8,7 +8,22 @@ document.getElementById('lutaUm').addEventListener('click', irParaDiv2);
 document.getElementById('lojaUm').addEventListener('click', irParaDiv2);
 document.getElementById('lojaDois').addEventListener('click', irParaDiv5);
 
-document.getElementById('inventario').addEventListener('click', voltarAnterior);
+document.querySelectorAll('.inventario').forEach(el => {
+  el.addEventListener('click', irParaDiv2);
+});
+
+document.querySelectorAll('.curaVida').forEach(el => {
+  el.addEventListener('click', curaVida);
+});
+document.querySelectorAll('.aumentaVida').forEach(el => {
+  el.addEventListener('click', aumentaVida);
+});
+document.querySelectorAll('.aumentaSacre').forEach(el => {
+  el.addEventListener('click', aumentaSacre);
+});
+document.querySelectorAll('.curaSacre').forEach(el => {
+  el.addEventListener('click', curaSacre);
+});
 
 let playerHP = 100, energy = 3, playerShield = 0;
 let playerMaxHP = 100, energyMax = 3, playerShieldInit = 0 ;
@@ -16,6 +31,32 @@ let playerMaxHP = 100, energyMax = 3, playerShieldInit = 0 ;
 let maoInicio = 7;
 // buff em cards aumenta esse
 let limiteMao = 7;
+
+function curaVida() {
+  playerHP = Math.min(playerHP + 25, playerMaxHP);
+}
+
+function curaSacre() {
+  if (playerMaxHP<= 10) {
+    playerMaxHP = 10;
+  } else {
+    playerMaxHP -= 10;
+  }
+  playerHP = Math.min(playerHP + playerMaxHP, playerMaxHP);
+}
+
+function aumentaVida() {
+  playerMaxHP += 10;
+}
+
+function aumentaSacre() {
+  playerMaxHP += 30;
+  if (playerHP<= 50) {
+    playerHP = 1;
+  } else {
+    playerHP -= 50;
+  }
+}
 
 function criarPlayerNaDiv3() {
   if (!personagemSelecionado) return; // nenhum personagem selecionado
