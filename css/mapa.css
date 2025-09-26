@@ -302,3 +302,26 @@ button {
 #energia p{
   color: rgb(9, 0, 139);
 }
+
+/* =================== TABLET =================== */
+@media (min-width: 768px) {
+  .personagens img{
+  height: 75px;
+  width: 75px;
+}
+#fimSelecao{
+  width: 70%;
+  height:20%;
+}
+}
+/* =================== CELULAR =================== */
+@media (max-width: 767px) {
+.personagens img{
+  height: 75px;
+  width: 75px;
+}
+#fimSelecao{
+  width: 70%;
+  height:20%;
+}
+}

@@ -2196,6 +2196,10 @@ const style = `
 
 /* =================== TABLET =================== */
 @media (min-width: 768px) {
+#div1 {
+  overflow-y: auto;  /* gera scroll só na vertical quando precisar */
+  overflow-x: hidden;
+}
   #mapa {
     max-width: 700px;
     height: 100vh;
