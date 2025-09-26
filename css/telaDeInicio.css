@@ -225,3 +225,33 @@
       transform: translate(0, 0);
     }
   }
+/* =================== TABLET =================== */
+@media (max-width: 1024px) {
+  .glitch-btn {
+    background: transparent;
+    color: #f5c542;
+    border: 2px solid #f5c542;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    font-family: 'Megrim', cursive;
+    position: relative;
+    overflow: hidden;
+    width: 200px;
+  }
+}
+/* =================== CELULAR =================== */
+@media (max-width: 768px) {
+  .glitch-btn {
+    background: transparent;
+    color: #f5c542;
+    border: 2px solid #f5c542;
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: 'Megrim', cursive;
+    position: relative;
+    overflow: hidden;
+    width: 170px;
+}
+}
