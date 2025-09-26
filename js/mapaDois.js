@@ -2159,7 +2159,7 @@ const style = `
   }
 
 /* =================== DESKTOP =================== */
-@media (min-width: 1700px) {
+@media (min-width: 1941px) {
   #mapa {
     max-width: 700px;
     height: 160vh;
@@ -2176,7 +2176,7 @@ const style = `
 }
 
   /* =================== NOTEBOOK =================== */
-@media (min-width: 1025px) {
+@media (min-width: 1025px) and (max-width: 1940px) {
   #mapa {
     max-width: 1000px;
     height: 180vh;
@@ -2195,17 +2195,16 @@ const style = `
 }
 
 /* =================== TABLET =================== */
-@media (min-width: 768px) {
+@media (min-width: 769px) and (max-width: 1024px) {
 #div1 {
   overflow-y: auto;  /* gera scroll só na vertical quando precisar */
   overflow-x: hidden;
 }
   #mapa {
-    max-width: 700px;
     height: 100vh;
     width: 100vw;
     gap: 10px;
-    margin-right: -226px;
+    margin-right: -276px;
     margin-top:10px;
   }
   canvas{
@@ -2223,13 +2222,12 @@ const style = `
 }
 
 /* =================== CELULAR =================== */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   #mapa {
-    max-width: 700px;
     height: 100vh;
     width: 100vw;
     gap: 10px;
-    margin-right: -226px;
+    margin-right: -276px;
     margin-top:10px;
   }
   canvas{
