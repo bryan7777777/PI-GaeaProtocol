@@ -2158,8 +2158,25 @@ const style = `
     z-index: 5;
   }
 
-  /* =================== DESKTOP / NOTEBOOK =================== */
-@media (min-width: 1025px) and (max-width: 1600px) {
+/* =================== DESKTOP =================== */
+@media (min-width: 1700px) {
+  #mapa {
+    max-width: 700px;
+    height: 160vh;
+  }
+  .coluna {
+    gap: 40px;
+  }
+  .nodo {
+    width: 8vw;
+    height: 8vw;
+    max-width: 45px;
+    max-height: 45px;
+  }
+}
+
+  /* =================== NOTEBOOK =================== */
+@media (min-width: 1025px) {
   #mapa {
     max-width: 1000px;
     height: 180vh;
@@ -2178,13 +2195,20 @@ const style = `
 }
 
 /* =================== TABLET =================== */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) {
   #mapa {
     max-width: 700px;
-    height: 160vh;
+    height: 100vh;
+    width: 100vw;
+    gap: 10px;
+    margin-right: -226px;
+    margin-top:10px;
   }
+  canvas{
+  margin-top: -50px;
+  }  
   .coluna {
-    gap: 40px;
+    gap: 10px;
   }
   .nodo {
     width: 8vw;
@@ -2197,17 +2221,24 @@ const style = `
 /* =================== CELULAR =================== */
 @media (max-width: 767px) {
   #mapa {
-    max-width: 100%;
-    height: 200vh;
+    max-width: 700px;
+    height: 100vh;
+    width: 100vw;
+    gap: 10px;
+    margin-right: -226px;
+    margin-top:10px;
   }
+  canvas{
+  margin-top: -50px;
+  }  
   .coluna {
-    gap: 30px;
+    gap: 10px;
   }
   .nodo {
-    width: 10vw;
-    height: 10vw;
-    max-width: 40px;
-    max-height: 40px;
+    width: 8vw;
+    height: 8vw;
+    max-width: 45px;
+    max-height: 45px;
   }
 }
 `;
