@@ -2227,20 +2227,20 @@ const style = `
     height: 100vh;
     width: 100vw;
     gap: 10px;
-    margin-right: -276px;
-    margin-top:10px;
+    margin-right: -248px;
+    margin-top:-20px;
   }
   canvas{
-  margin-top: -50px;
+  margin-top: -78px;
   }  
   .coluna {
     gap: 10px;
   }
   .nodo {
-    width: 8vw;
-    height: 8vw;
-    max-width: 45px;
-    max-height: 45px;
+    width: 5vw;
+    height: 5vw;
+    max-width: 25px;
+    max-height: 25px;
   }
 }
 `;
