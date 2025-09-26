@@ -101,6 +101,20 @@ html, body {
   z-index: 5;
 }
 
+#div6 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 21, 27, 0.956);
+  background-image: url(../img/jogo/background/ferreiro.png);
+  background-size: 80% 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  gap: 5px;
+  padding: 10px;
+  z-index: 6;
+}
+
 button {
   top: 10px;
   left: 10px;
@@ -190,7 +204,7 @@ button {
   background-color: rgb(0, 0, 0);
 }
 
-#fimSelecao, .inventario button{
+#fimSelecao, .inventario button, .ferreiro button{
   width: 20%;
   height:10%;
   font-size: 50%;
@@ -202,7 +216,7 @@ button {
   transition: 1s;
 }
 
-#fimSelecao:hover, .inventario button:hover{
+#fimSelecao:hover, .inventario button:hover, .ferreiro button:hover{
   background-color: rgb(0, 214, 53);
   box-shadow: 2px 2px 50px 2px rgba(0, 255, 106, 0.521);
   width: 22%;
@@ -215,7 +229,7 @@ button {
 }
 
 /* HOSPITAL */
-#medico h1, #acolito h1{
+#medico h1, #acolito h1, .ferreiro h1{
   width: 80%;
   text-align: center;
   color: rgb(160, 255, 180);
@@ -226,13 +240,17 @@ button {
   border: solid rgb(108, 223, 133);
 }
 
-#medico, #acolito{
+.ferreiro h1{
+  width: 20%;
+}
+
+#medico, #acolito, #ferreiro{
   gap: 10px;
   height: 40%;
   width: 40%;
 }
 
-#medico button, #acolito button{
+#medico button, #acolito button, #ferreiro button{
   width: 80%;
   height: 80%;
 }

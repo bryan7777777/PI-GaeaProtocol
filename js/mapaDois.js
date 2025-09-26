@@ -6,7 +6,10 @@ document.getElementById('fimSelecao').addEventListener('click', proximaTela);
 document.getElementById('lutaUm').addEventListener('click', irParaDiv2);
 
 document.getElementById('lojaUm').addEventListener('click', irParaDiv2);
-document.getElementById('lojaDois').addEventListener('click', irParaDiv5);
+
+document.querySelectorAll('.ferreiro').forEach(el => {
+  el.addEventListener('click', irParaDiv2);
+});
 
 document.querySelectorAll('.inventario').forEach(el => {
   el.addEventListener('click', irParaDiv2);
@@ -25,8 +28,15 @@ document.querySelectorAll('.curaSacre').forEach(el => {
   el.addEventListener('click', curaSacre);
 });
 
-let playerHP = 100, energy = 3, playerShield = 0;
+document.querySelectorAll('.armaduraUp').forEach(el => {
+  el.addEventListener('click', armaduraUp);
+});
+document.querySelectorAll('.armaduraSacre').forEach(el => {
+  el.addEventListener('click', armaduraSacre);
+});
+
 let playerMaxHP = 100, energyMax = 3, playerShieldInit = 0 ;
+let playerHP = 100, energy = 3, playerShield = playerShieldInit;
 // buff em itens aumenta esse
 let maoInicio = 7;
 // buff em cards aumenta esse
@@ -39,14 +49,17 @@ function curaVida() {
 function curaSacre() {
   if (playerMaxHP<= 10) {
     playerMaxHP = 10;
+    updateHUD();
   } else {
     playerMaxHP -= 10;
   }
   playerHP = Math.min(playerHP + playerMaxHP, playerMaxHP);
+  updateHUD();
 }
 
 function aumentaVida() {
   playerMaxHP += 10;
+  updateHUD();
 }
 
 function aumentaSacre() {
@@ -56,6 +69,25 @@ function aumentaSacre() {
   } else {
     playerHP -= 50;
   }
+  updateHUD();
+}
+
+function armaduraUp() {
+  playerShieldInit += 2;
+  updateHUD();
+}
+
+function armaduraSacre() {
+  playerShieldInit += 15;
+  if (playerMaxHP<= 10) {
+    playerMaxHP = 10;
+  } else if (playerHP>50){
+    playerHP = 50;
+    playerMaxHP -= 50;
+  } else {
+    playerMaxHP -= 50;
+  }
+  updateHUD();
 }
 
 function criarPlayerNaDiv3() {
@@ -926,6 +958,7 @@ function createEnemy(imgSrc) {
 let enemies = [];
 
 function spawnEnemies(tipo) {
+  playerShield = playerShieldInit;
   enemies = [];
   const enemiesContainer = document.getElementById("enemies");
   enemiesContainer.innerHTML = "";
@@ -1347,13 +1380,21 @@ function drawCards() {
         }
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
-      //🛡️
+      
       else if (card.name === "Brilhando") {
         if (playerHP == playerMaxHP) {
           playerShield += card.power;
           floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
           glowPlayer("blue");
         }
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+      }
+      //🛡️
+      else if (card.name === "Escudo Retaliante") {
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= playerShield;
+        floatText(enemies[0].el, `-${playerShield}⚔️`, "red");
+        glowPlayer("blue");
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
 
@@ -1691,14 +1732,7 @@ function drawCards() {
       //🗑️
       else if (card.name === "Arma Quebrada") {
         floatText(enemies[0].el, `-${"0"}⚔️`, "red");
-      }
-      //🗑️
-      else if (card.name === "Escudo Retaliante") {
-        animateDamage(enemies[0].el);
-        enemies[0].hp -= playerShield;
-        floatText(enemies[0].el, `-${playerShield}⚔️`, "red");
-        glowPlayer("blue");
-      }
+      }      
       //🗑️
       else if (card.name === "Restos de mecha") {
         if (energy < card.cost) return;
@@ -1856,7 +1890,7 @@ function takeDamage(dmg) {
 
   if (playerHP < 0) playerHP = 0;
 
-  playerShield = 0;
+  playerShield = playerShieldInit;
   updateHUD();
 }
 
@@ -2042,7 +2076,7 @@ function checkGameOver() {
  // gera inimigos aleatórios no início
 
 function mostrarTela(n) {
-  for(let i = 1; i <= 5; i++) {
+  for(let i = 1; i <= 6; i++) {
     const tela = document.getElementById(`div${i}`);
     if(tela) {
       if(i === n) {
@@ -2074,6 +2108,11 @@ function irParaDiv4() {
 function irParaDiv5() {
   telaAnterior = telaAtual;
   mostrarTela(5);
+}
+
+function irParaDiv6() {
+  telaAnterior = telaAtual;
+  mostrarTela(6);
 }
 
 function voltarAnterior() {
@@ -2174,8 +2213,9 @@ const style = `
   }
   .nodo:hover { transform: scale(1.1); }
   .inimigo  { background: #d33; }
-  .loot     { background: #fd0; color: black; }
+  .loot     { background: #fd0; }
   .loja     { background: #0d8; }
+  .ferreiro { background: rgba(99, 78, 49, 1); }
   .elite    { background: #a3f; }
   .hospital { background: #4cf; }
   .boss     { background: #000; border: 2px solid white; }
@@ -2296,7 +2336,7 @@ shadow.innerHTML = `
 
 // Começa o código JavaScript isolado no Shadow DOM
 (() => {
-  const tipos = ['inimigo', 'hospital', 'elite'];
+  const tipos = ['inimigo', 'hospital','ferreiro' ,'elite'];
   const mapa = [];
   const numFases = 10;
   const caminhosPorFase = 5;
@@ -2383,10 +2423,11 @@ shadow.innerHTML = `
         el.dataset.pos = `${i}-${j}`;
         el.textContent = {
         boss: '👑',
-        inimigo: '⚔',
+        inimigo: '💀',
         loja: '🛒',
-        elite: '💀',
-        hospital: '❤️',
+        elite: '☠️',
+        ferreiro: '⚒️',
+        hospital: '💚',
         }[nodo.tipo] || '';
 
         el.addEventListener('click', () => clicarNodo(i, j));
@@ -2519,6 +2560,11 @@ shadow.innerHTML = `
       mostrarTela(4); // Tela da loja (div4)
       break;
 
+    case 'ferreiro':
+      telaAnterior = 2;
+      mostrarTela(6);
+      break;
+
     case 'hospital':
       telaAnterior = 2;
       mostrarTela(5); // Tela do hospital (div5)
@@ -2531,8 +2577,7 @@ shadow.innerHTML = `
   mapaBatalha++
   if (mapaBatalha === 6) {
     const div = document.getElementById("jogo");
-
-  // mudar a imagem
+  // mudar img
   div.style.backgroundImage = "url('../img/jogo/background/luta3.png')";
   }
 }
