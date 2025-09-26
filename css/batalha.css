@@ -701,11 +701,11 @@ color: aqua;
 .energia {
   color: rgb(0, 0, 0);
   width: 80%;
-  margin-top: -96px;
-  margin-bottom: 72px;
+  margin-top: -44px;
+  margin-bottom: 35px;
   text-align: left;
   border-radius: 100%;
-  font-size: 25px;
+  font-size: 10px;
 }
 
 .card {
@@ -920,11 +920,11 @@ color: aqua;
 .energia {
   color: rgb(0, 0, 0);
   width: 80%;
-  margin-top: -96px;
-  margin-bottom: 72px;
+  margin-top: -26px;
+  margin-bottom: 20px;
   text-align: left;
   border-radius: 100%;
-  font-size: 25px;
+  font-size: 8px;
 }
 
 .card {
