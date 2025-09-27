@@ -21,7 +21,7 @@ em{
   font-size: 12px;
 }
 
-#popup {
+#popup, #popupFinal {
   height: 80vh;
   width: 80vw;
   display: none;
@@ -740,7 +740,7 @@ color: aqua;
   font-size: 7px;
 }
 
-#lutaUm{
+#lutaUm, #fimDeJogo{
   font-size: 7px;
 }
 }

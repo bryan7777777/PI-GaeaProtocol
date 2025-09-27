@@ -37,6 +37,7 @@ document.querySelectorAll('.armaduraSacre').forEach(el => {
 
 let playerMaxHP = 100, energyMax = 3, playerShieldInit = 0 ;
 let playerHP = 100, energy = 3, playerShield = playerShieldInit;
+let mapaBatalha = 0;
 // buff em itens aumenta esse
 let maoInicio = 7;
 // buff em cards aumenta esse
@@ -2027,7 +2028,19 @@ function checkEnemies() {
             enemies.splice(index, 1);
 
             // se não houver mais inimigos, abre popup
-            if (enemies.length === 0 && playerHP > 0) {
+            if (mapaBatalha === 10 && enemies.length === 0 && playerHP > 0) {
+              document.getElementById("overlay").style.display = "block";
+              document.getElementById("popupFinal").style.display = "block";
+              gerarItens();
+              limiteMao = maoInicio;
+              document.getElementById("enemies").style.display = "none";
+              document.getElementById("lifeBarsContainer").style.display = "none";
+              energy = energyMax;
+              drawNewCards();
+              drawCards();
+              updateHUD();
+              playerShield = playerShieldInit;
+            } else if (enemies.length === 0 && playerHP > 0) {
               document.getElementById("overlay").style.display = "block";
               document.getElementById("popup").style.display = "block";
               gerarItens();
@@ -2547,8 +2560,6 @@ shadow.innerHTML = `
     const scrollX = rect.left - contRect.left + mapaContainer.scrollLeft - contRect.width / 2 + rect.width / 2;
     mapaContainer.scrollTo({ left: scrollX, behavior: "smooth" });
   }
-
-  let mapaBatalha = 0;
 
   function executarAcao(tipo) {
   switch (tipo) {
