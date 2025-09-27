@@ -155,6 +155,22 @@ button {
   transform: scale(1.1);
 }
 
+#verde.selecionado, #verde:hover {
+  border: 4px solid rgb(0, 97, 45);
+  box-shadow: 2px 2px 75px 2px rgb(0, 91, 44);
+  transform: scale(1.1);
+}
+#vermelho.selecionado, #vermelho:hover {
+  border: 4px solid rgb(172, 0, 0);
+  box-shadow: 2px 2px 75px 2px rgb(156, 0, 0);
+  transform: scale(1.1);
+}
+#roxo.selecionado, #roxo:hover {
+  border: 4px solid rgb(141, 7, 231);
+  box-shadow: 2px 2px 75px 2px rgb(134, 7, 231);
+  transform: scale(1.1);
+}
+
 #porto.selecionado, #porto:hover {
   border: 4px solid rgb(9, 28, 154);
   box-shadow: 2px 2px 75px 2px rgb(3, 13, 96);
@@ -168,8 +184,8 @@ button {
 }
 
 #tomoeh.selecionado, #tomoeh:hover {
-  border: 4px solid rgb(103, 0, 0);
-  box-shadow: 2px 2px 75px 2px rgb(101, 0, 0);
+  border: 4px solid rgb(255, 147, 250);
+  box-shadow: 2px 2px 75px 2px rgb(253, 140, 240);
   transform: scale(1.1);
 }
 

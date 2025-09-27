@@ -114,6 +114,15 @@ function criarPlayerNaDiv3() {
     case "amarelo":
       playerImg.src = "./../img/jogo/player/mineiro.png";
       break;
+    case "verde":
+      playerImg.src = "./../img/jogo/player/jao.png";
+      break;
+    case "vermelho":
+      playerImg.src = "./../img/jogo/player/matadorDeJao.png";
+      break;
+    case "roxo":
+      playerImg.src = "./../img/jogo/player/cacadorDeJao.png";
+      break;
     case "porto":
       playerImg.src = "./../img/jogo/player/autoridadeDoPorto.png";
       break;
