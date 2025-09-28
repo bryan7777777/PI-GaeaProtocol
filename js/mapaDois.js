@@ -393,7 +393,8 @@ const allCards = [
     basePower: 20,
     rarity: "epic",
     img: "../img/jogo/cards/atk/Impacto.png",
-    desc: "Causa 20 de dano ao inimigo."
+    desc: "Causa 20 de dano ao inimigo.",
+    type: "ataque"
   },
   {
     name: "Ataque",
@@ -401,7 +402,8 @@ const allCards = [
     basePower: 6,
     rarity: "common",
     img: "../img/jogo/cards/atk/LancaGranadas.png",
-    desc: "Causa 6 de dano ao inimigo."
+    desc: "Causa 6 de dano ao inimigo.",
+    type: "ataque"
   },
   {
     name: "Liderança",
@@ -409,7 +411,8 @@ const allCards = [
     basePower: 6,
     rarity: "rare",
     img: "../img/jogo/cards/atk/lideranca.jpeg",
-    desc: "Causa 6 de dano e compre 2 cartas."
+    desc: "Causa 6 de dano e compre 2 cartas.",
+    type: "ataque"
   },
   {
     name: "Vingativo",
@@ -417,7 +420,8 @@ const allCards = [
     basePower: 0,
     rarity: "legend",
     img: "../img/jogo/cards/atk/vinganca.jpeg",
-    desc: "Causa dano baseado na vida perdida."
+    desc: "Causa dano baseado na vida perdida.",
+    type: "ataque"
   },
   {
     name: "Rebeldia",
@@ -425,7 +429,8 @@ const allCards = [
     basePower: 7,
     rarity: "epic",
     img: "../img/jogo/cards/atk/rebeldia.jpeg",
-    desc: "Cause 7 de dano, +7 sem sem escudo, +7 com 30 ou menos de vida."
+    desc: "Cause 7 de dano, +7 sem sem escudo, +7 com 30 ou menos de vida.",
+    type: "ataque"
   },
   {
     name: "Drenagem",
@@ -433,7 +438,8 @@ const allCards = [
     basePower: 10,
     rarity: "epic",
     img: "../img/jogo/cards/atk/drenoDeVida.png",
-    desc: "Causa 10 de dano ao inimigo e cure-se em 10."
+    desc: "Causa 10 de dano ao inimigo e cure-se em 10.",
+    type: "ataque"
   },
   {
     name: "Rajada Dupla",
@@ -441,7 +447,8 @@ const allCards = [
     basePower: 6,
     rarity: "rare",
     img: "../img/jogo/cards/atk/tiroCarregado.png",
-    desc: "Ataca 2 vezes com 6 de dano cada."
+    desc: "Ataca 2 vezes com 6 de dano cada.",
+    type: "ataque"
   },
   {
     name: "Explosão",
@@ -449,7 +456,8 @@ const allCards = [
     basePower: 12,
     rarity: "rare",
     img: "../img/jogo/cards/atk/ExplosaoDeEnergia.png",
-    desc: "Causa 12 de dano em área a todos os inimigos."
+    desc: "Causa 12 de dano em área a todos os inimigos.",
+    type: "ataque"
   },
   {
     name: "Chuva De Fragmentos",
@@ -457,7 +465,8 @@ const allCards = [
     basePower: 6,
     rarity: "common",
     img: "../img/jogo/cards/atk/ChuvaDeFragmento.png",
-    desc: "Causa 6 de dano em área a todos os inimigos."
+    desc: "Causa 6 de dano em área a todos os inimigos.",
+    type: "ataque"
   },
   {
     name: "Beserck",
@@ -465,7 +474,8 @@ const allCards = [
     basePower: 12,
     rarity: "epic",
     img: "../img/jogo/cards/atk/beserck.png",
-    desc: "Cause 12 de dano, se houver 3 ou ou menos cartas na mão aumente em X3"
+    desc: "Cause 12 de dano, se houver 3 ou ou menos cartas na mão aumente em X3",
+    type: "ataque"
   },
   {
     name: "Fogo Amigo",
@@ -473,7 +483,8 @@ const allCards = [
     basePower: 30,
     rarity: "epic",
     img: "../img/jogo/cards/atk/bombardeio.png",
-    desc: "Cause 30 de dano em area, a cada inimigo no campo receba 15 de dano (max 45)."
+    desc: "Cause 30 de dano em area, a cada inimigo no campo receba 15 de dano (max 45).",
+    type: "ataque"
   },
   {
     name: "Defesa",
@@ -481,7 +492,8 @@ const allCards = [
     basePower: 6,
     rarity: "common",
     img: "../img/jogo/cards/def/Blindagem.png",
-    desc: "Ganha 6 de escudo."
+    desc: "Ganha 6 de escudo.",
+    type: "defesa"
   },
   {
     name: "Arpão",
@@ -489,7 +501,8 @@ const allCards = [
     basePower: 3,
     rarity: "rare",
     img: "../img/jogo/cards/def/arpao.png",
-    desc: "Ataca o alvo mais distante em 3 e ganhe armadura (x3 o dano c/ armadura)."
+    desc: "Ataca o alvo mais distante em 3 e ganhe armadura (x3 o dano c/ armadura).",
+    type: "defesa"
   },
   {
     name: "Indestrutivel",
@@ -497,7 +510,8 @@ const allCards = [
     basePower: 3,
     rarity: "epic",
     img: "../img/jogo/cards/def/indestrutivel.png",
-    desc: "Multiplique sua armadura em X3."
+    desc: "Multiplique sua armadura em X3.",
+    type: "defesa"
   },
   {
     name: "Em guarda",
@@ -505,7 +519,8 @@ const allCards = [
     basePower: 10,
     rarity: "rare",
     img: "../img/jogo/cards/def/emGuarda.png",
-    desc: "Se possuir escudo ganhe 10 de escudo."
+    desc: "Se possuir escudo ganhe 10 de escudo.",
+    type: "defesa"
   },
   {
     name: "PROTOCOL-Campo De Força",
@@ -513,7 +528,8 @@ const allCards = [
     basePower: 40,
     rarity: "epic",
     img: "../img/jogo/cards/def/campoDeForca.png",
-    desc: "Se sua vida for 30 ou menos ganhe 40 de escudo"
+    desc: "Se sua vida for 30 ou menos ganhe 40 de escudo",
+    type: "defesa"
   },
   {
     name: "Brilhando",
@@ -521,7 +537,8 @@ const allCards = [
     basePower: 60,
     rarity: "legend",
     img: "../img/jogo/cards/def/escudoDeVidro.png",
-    desc: "Se sua vida estiver cheia ganhe 60 de escudo"
+    desc: "Se sua vida estiver cheia ganhe 60 de escudo",
+    type: "defesa"
   },
   {
     name: "Impulso Defensivo",
@@ -529,7 +546,8 @@ const allCards = [
     basePower: 1,
     rarity: "rare",
     img: "../img/jogo/cards/def/impulsoAzul.png",
-    desc: "Ganha 3 de escudo e receba 1 de energia"
+    desc: "Ganha 3 de escudo e receba 1 de energia",
+    type: "defesa"
   },
   {
     name: "Escudo",
@@ -537,7 +555,8 @@ const allCards = [
     basePower: 10,
     rarity: "common",
     img: "../img/jogo/cards/def/escudoHolo.png",
-    desc: "Cria um escudo de 10 pontos."
+    desc: "Cria um escudo de 10 pontos.",
+    type: "defesa"
   },
   {
     name: "Sistema de reflexão",
@@ -545,7 +564,8 @@ const allCards = [
     basePower: 4,
     rarity: "rare",
     img: "../img/jogo/cards/def/sisReflexao.png",
-    desc: "Cria um escudo de 8 pontos e cause 4 de dano."
+    desc: "Cria um escudo de 8 pontos e cause 4 de dano.",
+    type: "defesa"
   },
   {
     name: "Escudo Retaliante",
@@ -553,7 +573,8 @@ const allCards = [
     basePower: 0,
     rarity: "epic",
     img: "../img/jogo/cards/def/escudoRetaliante.png",
-    desc: "Causa dano igual à sua armadura atual."
+    desc: "Causa dano igual à sua armadura atual.",
+    type: "defesa"
   },
   {
     name: "Cura",
@@ -561,7 +582,8 @@ const allCards = [
     basePower: 3,
     rarity: "common",
     img: "../img/jogo/cards/buff/Cura.png",
-    desc: "Recupera 3 de vida."
+    desc: "Recupera 3 de vida.",
+    type: "suporte"
   },
   {
     name: "Sob-Vigia",
@@ -569,7 +591,8 @@ const allCards = [
     basePower: 25,
     rarity: "rare",
     img: "../img/jogo/cards/buff/vigia.png",
-    desc: "Ajuste sua vida para 25, se essa carta tirar vida ganhe 1 de energia."
+    desc: "Ajuste sua vida para 25, se essa carta tirar vida ganhe 1 de energia.",
+    type: "suporte"
   },
   {
     name: "Mineração",
@@ -577,7 +600,8 @@ const allCards = [
     basePower: 3,
     rarity: "legend",
     img: "../img/jogo/cards/buff/mineracao.png",
-    desc: "Mineração sustentavel, fornece 3 de energia, viva a sustentabilidade!"
+    desc: "Mineração sustentavel, fornece 3 de energia, viva a sustentabilidade!",
+    type: "suporte"
   },
   {
     name: "PROTOCOL-Reforço Estrutural",
@@ -585,7 +609,8 @@ const allCards = [
     basePower: 20,
     rarity: "rare",
     img: "../img/jogo/cards/buff/reforcoDeEstrutura.png",
-    desc: "Cure 20 de vida se sua vida estiver em 30 ou menos."
+    desc: "Cure 20 de vida se sua vida estiver em 30 ou menos.",
+    type: "suporte"
   },
   {
     name: "Impulso",
@@ -593,7 +618,8 @@ const allCards = [
     basePower: 1,
     rarity: "epic",
     img: "../img/jogo/cards/buff/impulsoVerd.png",
-    desc: "Aumenta a mão em 1 até o final da luta (limite da mão 10)"
+    desc: "Aumenta a mão em 1 até o final da luta (limite da mão 10)",
+    type: "suporte"
   },
   {
     name: "Golpe Neural Retaliante",
@@ -601,7 +627,8 @@ const allCards = [
     basePower: 20,
     rarity: "epic",
     img: "../img/jogo/cards/buff/neural.png",
-    desc: "Cause dano igual sua vida atual, perca 20 da vida atual"
+    desc: "Cause dano igual sua vida atual, perca 20 da vida atual",
+    type: "suporte"
   },
   {
     name: "Sobre Carga",
@@ -609,7 +636,8 @@ const allCards = [
     basePower: 4,
     rarity: "rare",
     img: "../img/jogo/cards/buff/sobreCarga.png",
-    desc: "Perca 4 de vida e cause 12 de dano."
+    desc: "Perca 4 de vida e cause 12 de dano.",
+    type: "suporte"
   },
   {
     name: "Compra Dupla",
@@ -617,7 +645,8 @@ const allCards = [
     basePower: 0,
     rarity: "rare",
     img: "../img/jogo/cards/buff/comprarCarta.png",
-    desc: "Compra 2 cartas aleatórias."
+    desc: "Compra 2 cartas aleatórias.",
+    type: "suporte"
   },
   {
     name: "Recicladora",
@@ -625,7 +654,8 @@ const allCards = [
     basePower: 8,
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/reciclagem.png",
-    desc: "Cause 8 de dano, se não tiver nenhuma carta na mão cause 50 de dano."
+    desc: "Cause 8 de dano, se não tiver nenhuma carta na mão cause 50 de dano.",
+    type: "reciclagem"
   },
   {
     name: "Terror Critico",
@@ -633,7 +663,8 @@ const allCards = [
     basePower: 7,
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/terror.png",
-    desc: "Cause 7 de dano por cada lixo reciclado, se sua vida estiver em 30 ou menos cause X2."
+    desc: "Cause 7 de dano por cada lixo reciclado, se sua vida estiver em 30 ou menos cause X2.",
+    type: "reciclagem"
   },
   {
     name: "Destruir Carta",
@@ -642,6 +673,7 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/reciclagem/destruirCarta.png",
     desc: "Destroi todas as cartas do tipo 'lixo' na sua mão.",
+    type: "reciclagem"
   },
   {
     name: "Ataque Reciclável",
@@ -650,7 +682,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/reciclagem/atkReciclavel.png",
     desc: "Remove cartas de lixo da mão e causa 5 de dano por cada carta removida.",
-    type: "attack"
+    type: "reciclagem"
   },
   {
     name: "Defesa Reciclável",
@@ -659,7 +691,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/reciclagem/defesaReciclavel.png",
     desc: "Remove cartas de lixo da mão e ganhe 5 de escudo por cada carta removida.",
-    type: "attack"
+    type: "reciclagem"
   },
   {
     name: "Xenofluxo Reciclável",
@@ -668,7 +700,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/reciclagem/ganhoDeEnergia.png",
     desc: "Remove cartas de lixo da mão e ganhe 1 de energia por cada carta removida.",
-    type: "attack"
+    type: "reciclagem"
   },
   {
     name: "Entulho",
@@ -2205,7 +2237,7 @@ function enemyTurn() {
         }
         if (playerHP <= 0) {
             document.getElementById("overlay").style.display = "block";
-              document.getElementById("popupOver").style.display = "block";
+              document.getElementById("popupOver").style.display = "flex";
               gerarItens();
               limiteMao = maoInicio;
               document.getElementById("enemies").style.display = "none";
@@ -2263,7 +2295,7 @@ function checkEnemies() {
             // se não houver mais inimigos, abre popup
             if (mapaBatalha === 10 && enemies.length === 0 && playerHP > 0) {
               document.getElementById("overlay").style.display = "block";
-              document.getElementById("popupFinal").style.display = "block";
+              document.getElementById("popupFinal").style.display = "flex";
               gerarItens();
               limiteMao = maoInicio;
               document.getElementById("enemies").style.display = "none";
@@ -2275,7 +2307,7 @@ function checkEnemies() {
               playerShield = playerShieldInit;
             } else if (enemies.length === 0 && playerHP > 0) {
               document.getElementById("overlay").style.display = "block";
-              document.getElementById("popup").style.display = "block";
+              document.getElementById("popup").style.display = "flex";
               gerarItens();
               limiteMao = maoInicio;
               document.getElementById("enemies").style.display = "none";
@@ -2295,27 +2327,77 @@ function checkEnemies() {
 
 function gerarItens() {
   const container = document.getElementById("recompensa");
+  container.innerHTML = ""; // limpa itens antigos
 
-  // Limpa itens antigos
-  container.innerHTML = "";
+  container.style.display = "flex";
+  container.style.flexDirection = "row";
+  container.style.justifyContent = "center";
+  container.style.alignItems = "center";
+  container.style.gap = "15px";
+  container.style.flexWrap = "wrap";
+  container.style.width = "100%";
 
-  for (let i = 1; i <= 3; i++) {
-    // Cria um novo elemento
-    const item = document.createElement("div");
-
-    // Define conteúdo do item
-    item.textContent = "Item " + i;
-
-    // Adiciona estilo opcional
-    item.style.padding = "10px";
-    item.style.margin = "5px";
-    item.style.backgroundColor = "#444";
-    item.style.borderRadius = "5px";
-
-    // Adiciona o item dentro do container
-    container.appendChild(item);
+  // Seleciona 3 cartas aleatórias do deck geral
+  const opcoes = [];
+  while (opcoes.length < 3 && opcoes.length < allCards.length) {
+    const carta = allCards[Math.floor(Math.random() * allCards.length)];
+    if (!opcoes.includes(carta)) opcoes.push(carta);
   }
+
+  opcoes.forEach(carta => {
+    const cardDiv = document.createElement("div");
+    cardDiv.classList.add("card");
+    cardDiv.classList.add(carta.rarity ?? "common"); // adiciona raridade
+    cardDiv.style.cursor = "pointer";
+
+    // tipo de carta para imagem de fundo
+    switch(carta.type) {
+      case "ataque": cardDiv.classList.add("attack"); break;
+      case "defesa": cardDiv.classList.add("defense"); break;
+      case "suporte": cardDiv.classList.add("heal"); break;
+      case "reciclagem": cardDiv.classList.add("reciclagem"); break;
+      case "lixo": cardDiv.classList.add("lixo"); break;
+      case "cintilante": cardDiv.classList.add("cintilante"); break;
+    }
+
+    // Imagem da carta
+    if (carta.img) {
+      const img = document.createElement("img");
+      img.src = carta.img;
+      cardDiv.appendChild(img);
+    }
+
+    // Nome da carta
+    const nome = document.createElement("div");
+    nome.classList.add("titulo");
+    nome.textContent = carta.name;
+    nome.style.font.size = "20px";
+    cardDiv.appendChild(nome);
+
+    // Custo da carta
+    const custo = document.createElement("div");
+    custo.classList.add("energia");
+    custo.textContent = carta.cost ?? 0;
+    cardDiv.appendChild(custo);
+
+    // Descrição
+    const desc = document.createElement("div");
+    desc.classList.add("desc");
+    desc.innerHTML = carta.desc ?? "";
+    cardDiv.appendChild(desc);
+
+    // Clique: adiciona ao deck do jogador e fecha popup
+    cardDiv.addEventListener("click", () => {
+      playerDeck.push({ ...carta, power: carta.basePower ?? carta.power ?? 0 });
+      fecharPopup();     // fecha popup
+      mostrarTela(2);   // volta para o mapa
+      updateHUD();      // atualiza HUD
+    });
+
+    container.appendChild(cardDiv);
+  });
 }
+
 
 function fecharPopup() {
   document.getElementById("overlay").style.display = "none";
@@ -2800,6 +2882,8 @@ shadow.innerHTML = `
     case 'elite':
     case 'boss':
       telaAnterior = 2;
+      document.getElementById("enemies").style.display = "flex";
+      document.getElementById("lifeBarsContainer").style.display = "flex";
       mostrarTela(3); // Tela de luta (div3)
       // window.location.href = "batalha.html";
       spawnEnemies(tipo);
