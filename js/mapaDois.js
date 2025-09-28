@@ -108,9 +108,13 @@ function criarPlayerNaDiv3() {
   switch (personagemSelecionado) {
     case "laranja":
       playerImg.src = "./../img/jogo/player/corredor.png";
+      playerMaxHP = 70, energyMax = 3, playerShieldInit = 0 ;
+      playerHP = 70, energy = 3, playerShield = playerShieldInit;
       break;
     case "azul":
       playerImg.src = "./../img/jogo/player/tank.png";
+      playerMaxHP = 130, energyMax = 3, playerShieldInit = 5 ;
+      playerHP = 130, energy = 3, playerShield = playerShieldInit;
       break;
     case "amarelo":
       playerImg.src = "./../img/jogo/player/mineiro.png";
@@ -120,24 +124,41 @@ function criarPlayerNaDiv3() {
       break;
     case "vermelho":
       playerImg.src = "./../img/jogo/player/matadorDeJao.png";
+      playerMaxHP = 50, energyMax = 4, playerShieldInit = 0 ;
+      playerHP = 50, energy = 4, playerShield = playerShieldInit;
       break;
     case "roxo":
       playerImg.src = "./../img/jogo/player/cacadorDeJao.png";
+      playerMaxHP = 70, energyMax = 5, playerShieldInit = 0 ;
+      playerHP = 70, energy = 5, playerShield = playerShieldInit;
       break;
     case "porto":
       playerImg.src = "./../img/jogo/player/autoridadeDoPorto.png";
+      playerMaxHP = 110, energyMax = 3, playerShieldInit = 5 ;
+      playerHP = 110, energy = 3, playerShield = playerShieldInit;
       break;
     case "ferrus":
       playerImg.src = "./../img/jogo/player/sal2.png";
+      playerMaxHP = 160, energyMax = 3, playerShieldInit = 0 ;
+      playerHP = 80, energy = 3, playerShield = playerShieldInit;
       break;
     case "tomoeh":
       playerImg.src = "./../img/jogo/player/sombra.png";
+      playerMaxHP = 30, energyMax = 6, playerShieldInit = 0 ;
+      playerHP = 30, energy = 6, playerShield = playerShieldInit;
       break;
     case "x":
       playerImg.src = "./../img/jogo/player/x.png";
+      playerMaxHP = 200, energyMax = 2, playerShieldInit = 2 ;
+      playerHP = 100, energy = 2, playerShield = playerShieldInit;
       break;
     case "wallace":
       playerImg.src = "./../img/jogo/player/wallace.png";
+      playerMaxHP = 100, energyMax = 4, playerShieldInit = 0 ;
+      playerHP = 100, energy = 4, playerShield = playerShieldInit;
+      break;
+    case "gaeaReen":
+      playerImg.src = "./../img/jogo/extra/prototipo.png";
       break;
     default:
       playerImg.src = "./../img/jogo/extra/prototipo.png";
@@ -339,11 +360,11 @@ const allCards = [
   },
   {
     name: "Cura",
-    cost: 1,
-    basePower: 8,
+    cost: 0,
+    basePower: 3,
     rarity: "common",
     img: "../img/jogo/cards/buff/Cura.png",
-    desc: "Recupera 8 de vida."
+    desc: "Recupera 3 de vida."
   },
   {
     name: "Sob-Vigia",
