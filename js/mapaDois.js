@@ -1983,6 +1983,19 @@ function enemyTurn() {
             checkEnemies(); // deixa a rotina normal cuidar de remover animações/UI
           }
         }
+        if (playerHP <= 0) {
+            document.getElementById("overlay").style.display = "block";
+              document.getElementById("popupOver").style.display = "block";
+              gerarItens();
+              limiteMao = maoInicio;
+              document.getElementById("enemies").style.display = "none";
+              document.getElementById("lifeBarsContainer").style.display = "none";
+              energy = energyMax;
+              drawNewCards();
+              drawCards();
+              updateHUD();
+              playerShield = playerShieldInit;
+          }
       });
     });
 

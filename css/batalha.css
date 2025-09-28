@@ -21,7 +21,7 @@ em{
   font-size: 12px;
 }
 
-#popup, #popupFinal {
+#popup, #popupFinal, #popupOver {
   height: 80vh;
   width: 80vw;
   display: none;
