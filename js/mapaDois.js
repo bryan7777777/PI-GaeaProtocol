@@ -39,9 +39,9 @@ let playerMaxHP = 100, energyMax = 3, playerShieldInit = 0 ;
 let playerHP = 100, energy = 3, playerShield = playerShieldInit;
 let mapaBatalha = 0;
 // buff em itens aumenta esse
-let maoInicio = 7;
+let maoInicio = 5;
 // buff em cards aumenta esse
-let limiteMao = 7;
+let limiteMao = 5;
 
 function curaVida() {
   playerHP = Math.min(playerHP + 25, playerMaxHP);
@@ -104,64 +104,262 @@ function criarPlayerNaDiv3() {
   const playerImg = document.createElement("img");
   playerImg.id = "player";
 
-  // Escolhe src baseado no personagem
+  const characterDecks = {
+  laranja: [
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Impulso Defensivo"),
+    allCards.find(c => c.name === "Impulso Defensivo"),
+    allCards.find(c => c.name === "Rajada Dupla"),
+    allCards.find(c => c.name === "Rajada Dupla"),
+    allCards.find(c => c.name === "Rajada Dupla"),
+    allCards.find(c => c.name === "Rajada Dupla"),
+    allCards.find(c => c.name === "Rajada Dupla"),
+  ],
+  azul: [
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Sistema de reflexão"),
+    allCards.find(c => c.name === "Sistema de reflexão"),
+    allCards.find(c => c.name === "Sistema de reflexão"),
+    allCards.find(c => c.name === "Escudo Retaliante"),
+    allCards.find(c => c.name === "Em guarda"),
+    allCards.find(c => c.name === "Em guarda"),
+    allCards.find(c => c.name === "Em guarda"),
+    allCards.find(c => c.name === "Indestrutivel"),
+    allCards.find(c => c.name === "Defesa"),
+  ],
+  amarelo: [
+    allCards.find(c => c.name === "Cura"),
+    allCards.find(c => c.name === "Mineração"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+  ],
+  verde: [
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === ""),
+    allCards.find(c => c.name === ""),
+  ],
+  vermelho: [
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === ""),
+    allCards.find(c => c.name === ""),
+  ],
+  roxo: [
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === ""),
+    allCards.find(c => c.name === ""),
+  ],
+  porto: [
+    allCards.find(c => c.name === "Arpão"),
+    allCards.find(c => c.name === "Arpão"),
+    allCards.find(c => c.name === "Arpão"),
+    allCards.find(c => c.name === "Arpão"),
+    allCards.find(c => c.name === "Arpão"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === ""),
+    allCards.find(c => c.name === ""),
+  ],
+  ferrus: [
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === ""),
+    allCards.find(c => c.name === ""),
+  ],
+  tomoeh: [
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === ""),
+    allCards.find(c => c.name === ""),
+  ],
+  x: [
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === ""),
+    allCards.find(c => c.name === ""),
+  ],
+  wallace: [
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === ""),
+    allCards.find(c => c.name === ""),
+  ],
+  gaeaReen: [
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Ataque"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === "Defesa"),
+    allCards.find(c => c.name === ""),
+    allCards.find(c => c.name === ""),
+  ]
+};
+
+  // Escolhe status baseado no personagem
   switch (personagemSelecionado) {
     case "laranja":
       playerImg.src = "./../img/jogo/player/corredor.png";
       playerMaxHP = 70, energyMax = 3, playerShieldInit = 0 ;
       playerHP = 70, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.laranja];
+      maoInicio = 6;
+      limiteMao = 6;
       break;
     case "azul":
       playerImg.src = "./../img/jogo/player/tank.png";
       playerMaxHP = 130, energyMax = 3, playerShieldInit = 5 ;
       playerHP = 130, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.azul];
       break;
     case "amarelo":
       playerImg.src = "./../img/jogo/player/mineiro.png";
+      playerDeck = [...characterDecks.amarelo];
       break;
     case "verde":
       playerImg.src = "./../img/jogo/player/jao.png";
+      playerDeck = [...characterDecks.verde];
+      maoInicio = 6;
+      limiteMao = 6;
       break;
     case "vermelho":
       playerImg.src = "./../img/jogo/player/matadorDeJao.png";
       playerMaxHP = 50, energyMax = 4, playerShieldInit = 0 ;
       playerHP = 50, energy = 4, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.vermelho];
+      maoInicio = 6;
+      limiteMao = 6;
       break;
     case "roxo":
       playerImg.src = "./../img/jogo/player/cacadorDeJao.png";
-      playerMaxHP = 70, energyMax = 5, playerShieldInit = 0 ;
-      playerHP = 70, energy = 5, playerShield = playerShieldInit;
+      playerMaxHP = 60, energyMax = 5, playerShieldInit = 0 ;
+      playerHP = 60, energy = 5, playerShield = playerShieldInit;
+      maoInicio = 7;
+      limiteMao = 7;
+      playerDeck = [...characterDecks.roxo];
       break;
     case "porto":
       playerImg.src = "./../img/jogo/player/autoridadeDoPorto.png";
       playerMaxHP = 110, energyMax = 3, playerShieldInit = 5 ;
       playerHP = 110, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.porto];
+      maoInicio = 4;
+      limiteMao = 4;
       break;
     case "ferrus":
       playerImg.src = "./../img/jogo/player/sal2.png";
       playerMaxHP = 160, energyMax = 3, playerShieldInit = 0 ;
       playerHP = 80, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.ferrus];
       break;
     case "tomoeh":
       playerImg.src = "./../img/jogo/player/sombra.png";
       playerMaxHP = 30, energyMax = 6, playerShieldInit = 0 ;
       playerHP = 30, energy = 6, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.tomoeh];
+      maoInicio = 9;
+      limiteMao = 9;
       break;
     case "x":
       playerImg.src = "./../img/jogo/player/x.png";
       playerMaxHP = 200, energyMax = 2, playerShieldInit = 2 ;
       playerHP = 100, energy = 2, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.x];
+      maoInicio = 4;
+      limiteMao = 4;
       break;
     case "wallace":
       playerImg.src = "./../img/jogo/player/wallace.png";
       playerMaxHP = 100, energyMax = 4, playerShieldInit = 0 ;
       playerHP = 100, energy = 4, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.wallace];
       break;
     case "gaeaReen":
       playerImg.src = "./../img/jogo/extra/prototipo.png";
+      playerDeck = [...characterDecks.gaeaReen];
       break;
     default:
       playerImg.src = "./../img/jogo/extra/prototipo.png";
+      playerDeck = [...characterDecks.amarelo];
       break;
   }
 
@@ -1894,12 +2092,14 @@ function drawCards() {
 
 function drawNewCards() {
   deck.length = 0;
-  const maxCopies = 1;
 
   while (deck.length < limiteMao) {
-    const base = { ...allCards[Math.floor(Math.random() * allCards.length)] };
+    const base = { ...playerDeck[Math.floor(Math.random() * playerDeck.length)] };
 
-    // conta quantas vezes tal carta já foi adicionada
+    // conta quantas vezes a carta existe no deck do player
+    const maxCopies = playerDeck.filter(card => card.name === base.name).length;
+
+    // conta quantas vezes essa carta já foi adicionada à mão
     const count = deck.filter(card => card.name === base.name).length;
 
     if (count < maxCopies) {
