@@ -2604,7 +2604,7 @@ const style = `
 }
 
   /* =================== NOTEBOOK =================== */
-@media (min-width: 1025px) and (max-width: 1940px) {
+@media (min-width: 1025px) and (max-width: 1840px) {
   #mapa {
     max-width: 1000px;
     height: 180vh;
