@@ -353,7 +353,7 @@ function criarPlayerNaDiv3() {
       playerDeck = [...characterDecks.wallace];
       break;
     case "gaeaReen":
-      playerImg.src = "./../img/jogo/extra/prototipo.png";
+      playerImg.src = "./../img/jogo/player/kalenart.png";
       playerDeck = [...characterDecks.gaeaReen];
       break;
     default:
