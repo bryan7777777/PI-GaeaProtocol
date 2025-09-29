@@ -35,7 +35,7 @@ document.querySelectorAll('.armaduraSacre').forEach(el => {
   el.addEventListener('click', armaduraSacre);
 });
 
-let playerMaxHP = 100, energyMax = 3, playerShieldInit = 0 ;
+let playerMaxHP = 100, energyMax = 3, playerShieldInit = 0;
 let playerHP = 100, energy = 3, playerShield = playerShieldInit;
 let mapaBatalha = 0;
 // buff em itens aumenta esse
@@ -48,7 +48,7 @@ function curaVida() {
 }
 
 function curaSacre() {
-  if (playerMaxHP<= 10) {
+  if (playerMaxHP <= 10) {
     playerMaxHP = 10;
     updateHUD();
   } else {
@@ -65,7 +65,7 @@ function aumentaVida() {
 
 function aumentaSacre() {
   playerMaxHP += 30;
-  if (playerHP<= 50) {
+  if (playerHP <= 50) {
     playerHP = 1;
   } else {
     playerHP -= 50;
@@ -80,9 +80,9 @@ function armaduraUp() {
 
 function armaduraSacre() {
   playerShieldInit += 15;
-  if (playerMaxHP<= 10) {
+  if (playerMaxHP <= 10) {
     playerMaxHP = 10;
-  } else if (playerHP>50){
+  } else if (playerHP > 50) {
     playerHP = 50;
     playerMaxHP -= 50;
   } else {
@@ -105,180 +105,180 @@ function criarPlayerNaDiv3() {
   playerImg.id = "player";
 
   const characterDecks = {
-  laranja: [
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Destruir Carta"),
-    allCards.find(c => c.name === "Chuva De Fragmentos"),
-    allCards.find(c => c.name === "Chuva De Fragmentos"),
-    allCards.find(c => c.name === "Impulso Defensivo"),
-    allCards.find(c => c.name === "Impulso Defensivo"),
-    allCards.find(c => c.name === "Rajada Dupla"),
-    allCards.find(c => c.name === "Rajada Dupla"),
-    allCards.find(c => c.name === "Rajada Dupla"),
-    allCards.find(c => c.name === "Rajada Dupla"),
-    allCards.find(c => c.name === "Rajada Dupla"),
-  ],
-  azul: [
-    allCards.find(c => c.name === "Sistema de reflexão"),
-    allCards.find(c => c.name === "Sistema de reflexão"),
-    allCards.find(c => c.name === "Sistema de reflexão"),
-    allCards.find(c => c.name === "Escudo Retaliante"),
-    allCards.find(c => c.name === "Escudo Retaliante"),
-    allCards.find(c => c.name === "Escudo Retaliante"),
-    allCards.find(c => c.name === "Em guarda"),
-    allCards.find(c => c.name === "Em guarda"),
-    allCards.find(c => c.name === "Em guarda"),
-    allCards.find(c => c.name === "Indestrutivel"),
-    allCards.find(c => c.name === "Destruir Carta"),
-  ],
-  amarelo: [
-    allCards.find(c => c.name === "Destruir Carta"),
-    allCards.find(c => c.name === "Mineração"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-  ],
-  verde: [
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Liderança"),
-    allCards.find(c => c.name === "Liderança"),
-    allCards.find(c => c.name === "Chuva De Fragmentos"),
-    allCards.find(c => c.name === "Cura"),
-    allCards.find(c => c.name === "Escudo"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Ataque Reciclável"),
-    allCards.find(c => c.name === "Destruir Carta"),
-  ],
-  vermelho: [
-    allCards.find(c => c.name === "Sobre Carga"),
-    allCards.find(c => c.name === "Sobre Carga"),
-    allCards.find(c => c.name === "Rebeldia"),
-    allCards.find(c => c.name === "Rebeldia"),
-    allCards.find(c => c.name === "Rebeldia"),
-    allCards.find(c => c.name === "Explosão"),
-    allCards.find(c => c.name === "Chuva De Fragmentos"),
-    allCards.find(c => c.name === "Chuva De Fragmentos"),
-    allCards.find(c => c.name === "Fogo Amigo"),
-    allCards.find(c => c.name === "Fogo Amigo"),
-    allCards.find(c => c.name === "Beserck"),
-    allCards.find(c => c.name === "Destruir Carta"),
-  ],
-  roxo: [
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Impacto Bruto"),
-    allCards.find(c => c.name === "Ataque Reciclável"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "PROTOCOL-Campo De Força"),
-    allCards.find(c => c.name === "Defesa Reciclável"),
-    allCards.find(c => c.name === "Impulso"),
-    allCards.find(c => c.name === "Destruir Carta"),
-  ],
-  porto: [
-    allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Impulso Defensivo"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Sistema de reflexão"),
-    allCards.find(c => c.name === "Sistema de reflexão"),
-    allCards.find(c => c.name === "Destruir Carta"),
-  ],
-  ferrus: [
-    allCards.find(c => c.name === "Terror Critico"),
-    allCards.find(c => c.name === "Ataque Reciclável"),
-    allCards.find(c => c.name === "Ataque Reciclável"),
-    allCards.find(c => c.name === "Defesa Reciclável"),
-    allCards.find(c => c.name === "Defesa Reciclável"),
-    allCards.find(c => c.name === "Defesa Reciclável"),
-    allCards.find(c => c.name === "Xenofluxo Reciclável"),
-    allCards.find(c => c.name === "Entulho"),
-    allCards.find(c => c.name === "Entulho"),
-    allCards.find(c => c.name === "Ferro Velho"),
-    allCards.find(c => c.name === "Ferro Velho"),
-    allCards.find(c => c.name === "Ferro Velho"),
-  ],
-  tomoeh: [
-    allCards.find(c => c.name === "Beserck"),
-    allCards.find(c => c.name === "Rebeldia"),
-    allCards.find(c => c.name === "Rebeldia"),
-    allCards.find(c => c.name === "Rebeldia"),
-    allCards.find(c => c.name === "Chuva De Fragmentos"),
-    allCards.find(c => c.name === "Chuva De Fragmentos"),
-    allCards.find(c => c.name === "Impacto Bruto"),
-    allCards.find(c => c.name === "Fogo Amigo"),
-    allCards.find(c => c.name === "Liderança"),
-    allCards.find(c => c.name === "Liderança"),
-    allCards.find(c => c.name === "Guardião"),
-    allCards.find(c => c.name === "Destruir Carta"),
-  ],
-  x: [
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Beserck"),
-    allCards.find(c => c.name === "Chuva De Fragmentos"),
-    allCards.find(c => c.name === "Chuva De Fragmentos"),
-    allCards.find(c => c.name === "Vingativo"),
-    allCards.find(c => c.name === "Fogo Amigo"),
-    allCards.find(c => c.name === "Fogo Amigo"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Guardião"),
-    allCards.find(c => c.name === "Destruir Carta"),
-  ],
-  wallace: [
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "GÆPROTOCOL"),
-    allCards.find(c => c.name === "Destruir Carta"),
-  ],
-  gaeaReen: [
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Ataque"),
-    allCards.find(c => c.name === "Entulho"),
-    allCards.find(c => c.name === "Xenofluxo Reciclável"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Ferro Velho"),
-    allCards.find(c => c.name === "Ferro Velho"),
-    allCards.find(c => c.name === "GÆPROTOCOL"),
-    allCards.find(c => c.name === "Destruir Carta"),
-  ]
-};
+    laranja: [
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+    ],
+    azul: [
+      allCards.find(c => c.name === "Sistema de reflexão"),
+      allCards.find(c => c.name === "Sistema de reflexão"),
+      allCards.find(c => c.name === "Sistema de reflexão"),
+      allCards.find(c => c.name === "Escudo Retaliante"),
+      allCards.find(c => c.name === "Escudo Retaliante"),
+      allCards.find(c => c.name === "Escudo Retaliante"),
+      allCards.find(c => c.name === "Em guarda"),
+      allCards.find(c => c.name === "Em guarda"),
+      allCards.find(c => c.name === "Em guarda"),
+      allCards.find(c => c.name === "Indestrutivel"),
+      allCards.find(c => c.name === "Destruir Carta"),
+    ],
+    amarelo: [
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Mineração"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+    ],
+    verde: [
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Liderança"),
+      allCards.find(c => c.name === "Liderança"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Cura"),
+      allCards.find(c => c.name === "Escudo"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Ataque Reciclável"),
+      allCards.find(c => c.name === "Destruir Carta"),
+    ],
+    vermelho: [
+      allCards.find(c => c.name === "Sobre Carga"),
+      allCards.find(c => c.name === "Sobre Carga"),
+      allCards.find(c => c.name === "Rebeldia"),
+      allCards.find(c => c.name === "Rebeldia"),
+      allCards.find(c => c.name === "Rebeldia"),
+      allCards.find(c => c.name === "Explosão"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Beserck"),
+      allCards.find(c => c.name === "Destruir Carta"),
+    ],
+    roxo: [
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Impacto Bruto"),
+      allCards.find(c => c.name === "Ataque Reciclável"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "PROTOCOL-Campo De Força"),
+      allCards.find(c => c.name === "Defesa Reciclável"),
+      allCards.find(c => c.name === "Impulso"),
+      allCards.find(c => c.name === "Destruir Carta"),
+    ],
+    porto: [
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Sistema de reflexão"),
+      allCards.find(c => c.name === "Sistema de reflexão"),
+      allCards.find(c => c.name === "Destruir Carta"),
+    ],
+    ferrus: [
+      allCards.find(c => c.name === "Terror Critico"),
+      allCards.find(c => c.name === "Ataque Reciclável"),
+      allCards.find(c => c.name === "Ataque Reciclável"),
+      allCards.find(c => c.name === "Defesa Reciclável"),
+      allCards.find(c => c.name === "Defesa Reciclável"),
+      allCards.find(c => c.name === "Defesa Reciclável"),
+      allCards.find(c => c.name === "Xenofluxo Reciclável"),
+      allCards.find(c => c.name === "Entulho"),
+      allCards.find(c => c.name === "Entulho"),
+      allCards.find(c => c.name === "Ferro Velho"),
+      allCards.find(c => c.name === "Ferro Velho"),
+      allCards.find(c => c.name === "Ferro Velho"),
+    ],
+    tomoeh: [
+      allCards.find(c => c.name === "Beserck"),
+      allCards.find(c => c.name === "Rebeldia"),
+      allCards.find(c => c.name === "Rebeldia"),
+      allCards.find(c => c.name === "Rebeldia"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Impacto Bruto"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Liderança"),
+      allCards.find(c => c.name === "Liderança"),
+      allCards.find(c => c.name === "Guardião"),
+      allCards.find(c => c.name === "Destruir Carta"),
+    ],
+    x: [
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Beserck"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Vingativo"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Guardião"),
+      allCards.find(c => c.name === "Destruir Carta"),
+    ],
+    wallace: [
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "GÆPROTOCOL"),
+      allCards.find(c => c.name === "Destruir Carta"),
+    ],
+    gaeaReen: [
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Entulho"),
+      allCards.find(c => c.name === "Xenofluxo Reciclável"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Ferro Velho"),
+      allCards.find(c => c.name === "Ferro Velho"),
+      allCards.find(c => c.name === "GÆPROTOCOL"),
+      allCards.find(c => c.name === "Destruir Carta"),
+    ]
+  };
 
   // Escolhe status baseado no personagem
   switch (personagemSelecionado) {
     case "laranja":
       playerImg.src = "./../img/jogo/player/corredor.png";
-      playerMaxHP = 70, energyMax = 3, playerShieldInit = 0 ;
+      playerMaxHP = 70, energyMax = 3, playerShieldInit = 0;
       playerHP = 70, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.laranja];
       maoInicio = 6;
@@ -286,7 +286,7 @@ function criarPlayerNaDiv3() {
       break;
     case "azul":
       playerImg.src = "./../img/jogo/player/tank.png";
-      playerMaxHP = 130, energyMax = 3, playerShieldInit = 5 ;
+      playerMaxHP = 130, energyMax = 3, playerShieldInit = 5;
       playerHP = 130, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.azul];
       break;
@@ -302,7 +302,7 @@ function criarPlayerNaDiv3() {
       break;
     case "vermelho":
       playerImg.src = "./../img/jogo/player/matadorDeJao.png";
-      playerMaxHP = 50, energyMax = 4, playerShieldInit = 0 ;
+      playerMaxHP = 50, energyMax = 4, playerShieldInit = 0;
       playerHP = 50, energy = 4, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.vermelho];
       maoInicio = 6;
@@ -310,7 +310,7 @@ function criarPlayerNaDiv3() {
       break;
     case "roxo":
       playerImg.src = "./../img/jogo/player/cacadorDeJao.png";
-      playerMaxHP = 60, energyMax = 5, playerShieldInit = 0 ;
+      playerMaxHP = 60, energyMax = 5, playerShieldInit = 0;
       playerHP = 60, energy = 5, playerShield = playerShieldInit;
       maoInicio = 7;
       limiteMao = 7;
@@ -318,7 +318,7 @@ function criarPlayerNaDiv3() {
       break;
     case "porto":
       playerImg.src = "./../img/jogo/player/autoridadeDoPorto.png";
-      playerMaxHP = 110, energyMax = 3, playerShieldInit = 5 ;
+      playerMaxHP = 110, energyMax = 3, playerShieldInit = 5;
       playerHP = 110, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.porto];
       maoInicio = 4;
@@ -326,13 +326,13 @@ function criarPlayerNaDiv3() {
       break;
     case "ferrus":
       playerImg.src = "./../img/jogo/player/sal2.png";
-      playerMaxHP = 160, energyMax = 3, playerShieldInit = 0 ;
+      playerMaxHP = 160, energyMax = 3, playerShieldInit = 0;
       playerHP = 80, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.ferrus];
       break;
     case "tomoeh":
       playerImg.src = "./../img/jogo/player/sombra.png";
-      playerMaxHP = 30, energyMax = 6, playerShieldInit = 0 ;
+      playerMaxHP = 30, energyMax = 6, playerShieldInit = 0;
       playerHP = 30, energy = 6, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.tomoeh];
       maoInicio = 9;
@@ -340,7 +340,7 @@ function criarPlayerNaDiv3() {
       break;
     case "x":
       playerImg.src = "./../img/jogo/player/x.png";
-      playerMaxHP = 200, energyMax = 2, playerShieldInit = 2 ;
+      playerMaxHP = 200, energyMax = 2, playerShieldInit = 2;
       playerHP = 100, energy = 2, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.x];
       maoInicio = 4;
@@ -348,7 +348,7 @@ function criarPlayerNaDiv3() {
       break;
     case "wallace":
       playerImg.src = "./../img/jogo/player/wallace.png";
-      playerMaxHP = 100, energyMax = 4, playerShieldInit = 0 ;
+      playerMaxHP = 100, energyMax = 4, playerShieldInit = 0;
       playerHP = 100, energy = 4, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.wallace];
       break;
@@ -411,7 +411,7 @@ const allCards = [
     basePower: 6,
     rarity: "rare",
     img: "../img/jogo/cards/atk/lideranca.jpeg",
-    desc: "Causa 6 de dano e compre 2 cartas.",
+    desc: "Causa 6 de dano e clone 2 cartas aleatorias do seu deck para a mão (Exceto ela mesma).",
     type: "ataque"
   },
   {
@@ -768,18 +768,18 @@ const allCards = [
 ];
 
 // 💞 inicio da batalha aumenta a vida maxima dos aliados adjacentes em 15 (dura até apos a morte)
-  // ❣️ eu morro apos 3 turnos
-  // ⚔️ atk normal
-  // 🔱 ignora armadura
-  // 💚 prioriza curar aliados
-  // 💊 auto cura
-  // (⚔️)💥 chance de (30%) crit X2 (apenas ações dentro do parenteses)
-  // (⚔️)🧨 chance de (15%) crit X4 (apenas ações dentro do parenteses)
-  // (⚔️)💣 chance de (10%) crit X5 (apenas ações dentro do parenteses)
-  // ⚔️🎭💚 se não puder executar a primeira ação executa a segunda
-  // ⚔️❓💚 pode executar 2 ações, ou uma ou outra que esta adjacente (50% de chance)
-  // ⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
-  // 🩸💫⚜️✨💤🤢🥶💀👾☠️👻🧿🪬🌟🔥💧❄️⚡ n criado
+// ❣️ eu morro apos 3 turnos
+// ⚔️ atk normal
+// 🔱 ignora armadura
+// 💚 prioriza curar aliados
+// 💊 auto cura
+// (⚔️)💥 chance de (30%) crit X2 (apenas ações dentro do parenteses)
+// (⚔️)🧨 chance de (15%) crit X4 (apenas ações dentro do parenteses)
+// (⚔️)💣 chance de (10%) crit X5 (apenas ações dentro do parenteses)
+// ⚔️🎭💚 se não puder executar a primeira ação executa a segunda
+// ⚔️❓💚 pode executar 2 ações, ou uma ou outra que esta adjacente (50% de chance)
+// ⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
+// 🩸💫⚜️✨💤🤢🥶💀👾☠️👻🧿🪬🌟🔥💧❄️⚡ n criado
 
 // NORMAL
 const normalModels = [
@@ -906,7 +906,7 @@ const normalModels = [
   [
     {
       name: "Lenhador corrompido",
-      hp: 80,
+      hp: 90,
       dano: 15,
       behavior: () => [
         { type: "attack", value: Math.random() < 0.7 ? 15 : 30 }
@@ -1227,8 +1227,8 @@ function spawnEnemies(tipo) {
   let pool;
   switch (tipo) {
     case "inimigo": pool = normalModels; break;
-    case "elite":   pool = eliteModels;  break;
-    case "boss":    pool = bossModels;   break;
+    case "elite": pool = eliteModels; break;
+    case "boss": pool = bossModels; break;
     default:
       console.warn("Tipo desconhecido:", tipo);
       return;
@@ -1475,17 +1475,27 @@ function drawCards() {
       }
       //⚔️
       else if (card.name === "Liderança") {
-        animateDamage(enemies[0].el);
-        enemies[0].hp -= card.power;
-        floatText(enemies[0].el, `-${card.power}⚔️`, "red");
-        for (let i = 0; i < 2; i++) {
-          const newCard = {
-            ...allCards[Math.floor(Math.random() * allCards.length)],
-            power: allCards[Math.floor(Math.random() * allCards.length)].basePower
-          };
-          deck.push(newCard); // adiciona diretamente, ignorando limite
+        if (enemies.length > 0) {
+          animateDamage(enemies[0].el);
+          enemies[0].hp -= card.power;
+          floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         }
-        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        // filtra cartas que NÃO sejam Liderança
+        const clonePool = playerDeck.filter(c => c.name !== "Liderança");
+        for (let i = 0; i < 2; i++) {
+          if (clonePool.length > 0) {
+            const base = clonePool[Math.floor(Math.random() * clonePool.length)];
+            const newCard = {
+              ...base,
+              power: base.basePower ?? base.power ?? 0
+            };
+            deck.push(newCard); // adiciona diretamente
+          }
+        }
+        const brokenWeapon = allCards.find(c => c.name === "Arma Quebrada");
+        if (brokenWeapon) {
+          deck.push({ ...brokenWeapon, power: 0 });
+        }
       }
       //⚔️
       else if (card.name === "Drenagem") {
@@ -1640,7 +1650,7 @@ function drawCards() {
         }
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
-      
+
       else if (card.name === "Brilhando") {
         if (playerHP == playerMaxHP) {
           playerShield += card.power;
@@ -1992,7 +2002,7 @@ function drawCards() {
       //🗑️
       else if (card.name === "Arma Quebrada") {
         floatText(enemies[0].el, `-${"0"}⚔️`, "red");
-      }      
+      }
       //🗑️
       else if (card.name === "Restos de mecha") {
         if (energy < card.cost) return;
@@ -2236,18 +2246,18 @@ function enemyTurn() {
           }
         }
         if (playerHP <= 0) {
-            document.getElementById("overlay").style.display = "block";
-              document.getElementById("popupOver").style.display = "flex";
-              gerarItens();
-              limiteMao = maoInicio;
-              document.getElementById("enemies").style.display = "none";
-              document.getElementById("lifeBarsContainer").style.display = "none";
-              energy = energyMax;
-              drawNewCards();
-              drawCards();
-              updateHUD();
-              playerShield = playerShieldInit;
-          }
+          document.getElementById("overlay").style.display = "block";
+          document.getElementById("popupOver").style.display = "flex";
+          gerarItens();
+          limiteMao = maoInicio;
+          document.getElementById("enemies").style.display = "none";
+          document.getElementById("lifeBarsContainer").style.display = "none";
+          energy = energyMax;
+          drawNewCards();
+          drawCards();
+          updateHUD();
+          playerShield = playerShieldInit;
+        }
       });
     });
 
@@ -2351,7 +2361,7 @@ function gerarItens() {
     cardDiv.style.cursor = "pointer";
 
     // tipo de carta para imagem de fundo
-    switch(carta.type) {
+    switch (carta.type) {
       case "ataque": cardDiv.classList.add("attack"); break;
       case "defesa": cardDiv.classList.add("defense"); break;
       case "suporte": cardDiv.classList.add("heal"); break;
@@ -2410,13 +2420,13 @@ function checkGameOver() {
   }
 }
 
- // gera inimigos aleatórios no início
+// gera inimigos aleatórios no início
 
 function mostrarTela(n) {
-  for(let i = 1; i <= 6; i++) {
+  for (let i = 1; i <= 6; i++) {
     const tela = document.getElementById(`div${i}`);
-    if(tela) {
-      if(i === n) {
+    if (tela) {
+      if (i === n) {
         tela.style.transform = "translateY(0)";
         tela.style.zIndex = 10;
       } else {
@@ -2453,7 +2463,7 @@ function irParaDiv6() {
 }
 
 function voltarAnterior() {
-  if(telaAnterior) {
+  if (telaAnterior) {
     mostrarTela(telaAnterior);
     telaAnterior = null;
   } else {
@@ -2673,7 +2683,7 @@ shadow.innerHTML = `
 
 // Começa o código JavaScript isolado no Shadow DOM
 (() => {
-  const tipos = ['inimigo', 'hospital','ferreiro' ,'elite'];
+  const tipos = ['inimigo', 'hospital', 'ferreiro', 'elite'];
   const mapa = [];
   const numFases = 10;
   const caminhosPorFase = 5;
@@ -2759,12 +2769,12 @@ shadow.innerHTML = `
         el.classList.add('nodo', nodo.tipo);
         el.dataset.pos = `${i}-${j}`;
         el.textContent = {
-        boss: '👑',
-        inimigo: '💀',
-        loja: '🛒',
-        elite: '☠️',
-        ferreiro: '⚒️',
-        hospital: '💚',
+          boss: '👑',
+          inimigo: '💀',
+          loja: '🛒',
+          elite: '☠️',
+          ferreiro: '⚒️',
+          hospital: '💚',
         }[nodo.tipo] || '';
 
         el.addEventListener('click', () => clicarNodo(i, j));
@@ -2808,32 +2818,32 @@ shadow.innerHTML = `
   }
 
   function clicarNodo(i, j) {
-  const tipo = mapa[i][j].tipo;
+    const tipo = mapa[i][j].tipo;
 
-  if (!iniciado) {
-    if (i === 0 && j === Math.floor(caminhosPorFase / 2)) {
-      iniciado = true;
+    if (!iniciado) {
+      if (i === 0 && j === Math.floor(caminhosPorFase / 2)) {
+        iniciado = true;
+        nodoAtual = { i, j };
+        executarAcao(tipo);
+        atualizarAcessibilidade();
+        marcarSelecionado();
+        centralizarNodo(mapa[i][j].element);
+      } else {
+        alert('Clique no ponto inicial para começar.');
+      }
+      return;
+    }
+
+    if (i === nodoAtual.i + 1 && mapa[nodoAtual.i][nodoAtual.j].conexoes.includes(j)) {
       nodoAtual = { i, j };
       executarAcao(tipo);
       atualizarAcessibilidade();
       marcarSelecionado();
       centralizarNodo(mapa[i][j].element);
     } else {
-      alert('Clique no ponto inicial para começar.');
+      alert('Você só pode avançar para os pontos conectados na próxima fase.');
     }
-    return;
   }
-
-  if (i === nodoAtual.i + 1 && mapa[nodoAtual.i][nodoAtual.j].conexoes.includes(j)) {
-    nodoAtual = { i, j };
-    executarAcao(tipo);
-    atualizarAcessibilidade();
-    marcarSelecionado();
-    centralizarNodo(mapa[i][j].element);
-  } else {
-    alert('Você só pode avançar para os pontos conectados na próxima fase.');
-  }
-}
 
   function atualizarAcessibilidade() {
     mapa.forEach((coluna, i) => {
@@ -2877,47 +2887,47 @@ shadow.innerHTML = `
   }
 
   function executarAcao(tipo) {
-  switch (tipo) {
-    case 'inimigo':
-    case 'elite':
-    case 'boss':
-      telaAnterior = 2;
-      document.getElementById("enemies").style.display = "flex";
-      document.getElementById("lifeBarsContainer").style.display = "flex";
-      mostrarTela(3); // Tela de luta (div3)
-      // window.location.href = "batalha.html";
-      spawnEnemies(tipo);
-      drawNewCards();
-      drawCards();
-      updateHUD();
-      break;
+    switch (tipo) {
+      case 'inimigo':
+      case 'elite':
+      case 'boss':
+        telaAnterior = 2;
+        document.getElementById("enemies").style.display = "flex";
+        document.getElementById("lifeBarsContainer").style.display = "flex";
+        mostrarTela(3); // Tela de luta (div3)
+        // window.location.href = "batalha.html";
+        spawnEnemies(tipo);
+        drawNewCards();
+        drawCards();
+        updateHUD();
+        break;
 
-    case 'loja':
-      telaAnterior = 2;
-      mostrarTela(4); // Tela da loja (div4)
-      break;
+      case 'loja':
+        telaAnterior = 2;
+        mostrarTela(4); // Tela da loja (div4)
+        break;
 
-    case 'ferreiro':
-      telaAnterior = 2;
-      mostrarTela(6);
-      break;
+      case 'ferreiro':
+        telaAnterior = 2;
+        mostrarTela(6);
+        break;
 
-    case 'hospital':
-      telaAnterior = 2;
-      mostrarTela(5); // Tela do hospital (div5)
-      break;
+      case 'hospital':
+        telaAnterior = 2;
+        mostrarTela(5); // Tela do hospital (div5)
+        break;
 
-    default:
-      alert('Tipo de sala não reconhecido.');
+      default:
+        alert('Tipo de sala não reconhecido.');
+    }
+
+    mapaBatalha++
+    if (mapaBatalha === 6) {
+      const div = document.getElementById("jogo");
+      // mudar img
+      div.style.backgroundImage = "url('../img/jogo/background/luta3.png')";
+    }
   }
-
-  mapaBatalha++
-  if (mapaBatalha === 6) {
-    const div = document.getElementById("jogo");
-  // mudar img
-  div.style.backgroundImage = "url('../img/jogo/background/luta3.png')";
-  }
-}
 
   gerarMapa();
   desenharMapa();

@@ -245,8 +245,13 @@ color: aqua;
 }
 
 #recompensa .energia{
-  margin-top: -110px;
-  margin-bottom: 91px;
+  margin-top: -125px;
+  margin-bottom: 111px;
+}
+
+#recompensa .card{
+  width: 185px;
+  height: 267px;
 }
 
 .card {
