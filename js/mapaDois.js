@@ -388,6 +388,14 @@ const allCards = [
     desc: "Ganhe 1 de energia, se sua vida for 30 ou menos ganhe 30 de escudo e +1 de energia",
   },
   {
+    name: "Armamento Pesado",
+    cost: 3,
+    basePower: 0,
+    rarity: "cintilante",
+    img: "../img/jogo/cards/cintilante/armamentoForte.jpg",
+    desc: "Compre Impacto Bruto, Ataque e Rajada Dupla com custo 0",
+  },
+  {
     name: "Impacto Bruto",
     cost: 3,
     basePower: 20,
@@ -1373,6 +1381,7 @@ function drawCards() {
       //✨✨✨✨✨ CINTILANTE 2 ✨✨✨✨✨
       case "GÆPROTOCOL":
       case "Guardião":
+      case "Armamento Pesado":
         tipo = "cintilante";
         break;
       // ⚔️⚔️⚔️⚔️⚔️ ATAQUE 11 ⚔️⚔️⚔️⚔️⚔️
@@ -2056,6 +2065,12 @@ function drawCards() {
           floatText(document.getElementById("player"), `+${1}🔷`, "lime");
           glowPlayer("cintilante");
         }
+      }
+      //✨
+      else if (card.name === "Armamento Pesado") {
+        deck.push({ ...allCards.find(c => c.name === "Impacto Bruto"), power: 20, cost: 0 });
+        deck.push({ ...allCards.find(c => c.name === "Ataque"), power: 6, cost: 0 });
+        deck.push({ ...allCards.find(c => c.name === "Rajada Dupla"), power: 6, cost: 0 });
       }
       //✨
       else if (card.name === "GÆPROTOCOL") {
