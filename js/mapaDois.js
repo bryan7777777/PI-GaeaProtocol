@@ -261,7 +261,14 @@ function criarPlayerNaDiv3() {
     gaeaReen: [
       allCards.find(c => c.name === "Ataque"),
       allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Entulho"),
       allCards.find(c => c.name === "Xenofluxo Reciclável"),
       allCards.find(c => c.name === "Defesa"),
@@ -394,6 +401,14 @@ const allCards = [
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/armamentoForte.jpg",
     desc: "Compre Impacto Bruto, Ataque e Rajada Dupla com custo 0",
+  },
+  {
+    name: "Chuva de Laminas",
+    cost: 0,
+    basePower: 5,
+    rarity: "cintilante",
+    img: "../img/jogo/cards/cintilante/chuvadeLaminas.jpg",
+    desc: "Cause dano em area respectivamente 5/10/15/20/30/40 de acordo com a energia 0/1/2/3/4/5",
   },
   {
     name: "Impacto Bruto",
@@ -1382,6 +1397,7 @@ function drawCards() {
       case "GÆPROTOCOL":
       case "Guardião":
       case "Armamento Pesado":
+      case "Chuva de Laminas":
         tipo = "cintilante";
         break;
       // ⚔️⚔️⚔️⚔️⚔️ ATAQUE 11 ⚔️⚔️⚔️⚔️⚔️
@@ -2071,6 +2087,33 @@ function drawCards() {
         deck.push({ ...allCards.find(c => c.name === "Impacto Bruto"), power: 20, cost: 0 });
         deck.push({ ...allCards.find(c => c.name === "Ataque"), power: 6, cost: 0 });
         deck.push({ ...allCards.find(c => c.name === "Rajada Dupla"), power: 6, cost: 0 });
+      }
+      //✨
+      else if (card.name === "Chuva de Laminas") {
+        if (energy >= 5) {
+          power1 = 40;
+          energy-=5;
+        } else if (energy === 4){
+          power1 = 30;
+          energy-=4;
+        } else if (energy === 3){
+          power1 = 20;
+          energy-=3;
+        } else if (energy === 2){
+          power1 = 15;
+          energy-=2;
+        } else if (energy === 1){
+          power1 = 10;
+          energy-=1;
+        } else if (energy === 0){
+          power1 = 5;
+        }
+
+        enemies.forEach(e => {
+          animateDamage(e.el);
+          e.hp -= power1;
+          floatText(e.el, `-${power1}⚔️`, "red");
+        });
       }
       //✨
       else if (card.name === "GÆPROTOCOL") {
