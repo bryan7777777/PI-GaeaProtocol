@@ -401,7 +401,7 @@ const allCards = [
     cost: 1,
     basePower: 6,
     rarity: "common",
-    img: "../img/jogo/cards/atk/LancaGranadas.png",
+    img: "../img/jogo/cards/atk/ataque.png",
     desc: "Causa 6 de dano ao inimigo.",
     type: "ataque"
   },
