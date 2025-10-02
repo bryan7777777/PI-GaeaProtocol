@@ -260,10 +260,10 @@ function criarPlayerNaDiv3() {
     ],
     gaeaReen: [
       allCards.find(c => c.name === "Furia"),
-      allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Ataque Preciso"),
+      allCards.find(c => c.name === "Ataque Preciso"),
+      allCards.find(c => c.name === "Ataque Preciso"),
+      allCards.find(c => c.name === "Ataque Preciso"),
     ]
   };
 
@@ -412,6 +412,15 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/atk/ataque.png",
     desc: "Causa 6 de dano ao inimigo.",
+    type: "ataque"
+  },
+  {
+    name: "Ataque Preciso",
+    cost: 1,
+    basePower: 6,
+    rarity: "epic",
+    img: "../img/jogo/cards/atk/precisao.png",
+    desc: "Causa 6 de dano ao inimigo, se a vida dele for menor que 30 cause 20 de dano.",
     type: "ataque"
   },
   {
@@ -1407,6 +1416,7 @@ function drawCards() {
       // ⚔️⚔️⚔️⚔️⚔️ ATAQUE 11 ⚔️⚔️⚔️⚔️⚔️
       case "Ataque":
       case "Ataque Rapido":
+      case "Ataque Preciso":
       case "Liderança":
       case "Furia":
       case "Vingativo":
@@ -1486,6 +1496,17 @@ function drawCards() {
       if (card.name === "Ataque Rapido") {
         animateDamage(enemies[0].el);
         enemies[0].hp -= card.power;
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        floatText(enemies[0].el, `-${card.power}⚔️`, "red");
+      }
+      //⚔️
+      if (card.name === "Ataque Preciso") {
+        animateDamage(enemies[0].el);
+        if (enemies[0].hp <= 30) {
+          enemies[0].hp -= 20;
+        } else {
+          enemies[0].hp -= card.power;
+        }
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
       }
