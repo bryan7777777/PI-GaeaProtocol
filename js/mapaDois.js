@@ -259,24 +259,10 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Destruir Carta"),
     ],
     gaeaReen: [
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Entulho"),
-      allCards.find(c => c.name === "Xenofluxo Reciclável"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Ferro Velho"),
-      allCards.find(c => c.name === "Ferro Velho"),
-      allCards.find(c => c.name === "GÆPROTOCOL"),
+      allCards.find(c => c.name === "Furia"),
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Destruir Carta"),
       allCards.find(c => c.name === "Destruir Carta"),
     ]
   };
@@ -426,6 +412,24 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/atk/ataque.png",
     desc: "Causa 6 de dano ao inimigo.",
+    type: "ataque"
+  },
+  {
+    name: "Furia",
+    cost: 2,
+    basePower: 4,
+    rarity: "epic",
+    img: "../img/jogo/cards/atk/furia.png",
+    desc: "Compre 4 Ataque Rapido, se for a unica carta na mão compre X2.",
+    type: "ataque"
+  },
+  {
+    name: "Ataque Rapido",
+    cost: 0,
+    basePower: 5,
+    rarity: "rare",
+    img: "../img/jogo/cards/atk/golpeRapido.png",
+    desc: "Causa 5 de dano ao inimigo.",
     type: "ataque"
   },
   {
@@ -1402,7 +1406,9 @@ function drawCards() {
         break;
       // ⚔️⚔️⚔️⚔️⚔️ ATAQUE 11 ⚔️⚔️⚔️⚔️⚔️
       case "Ataque":
+      case "Ataque Rapido":
       case "Liderança":
+      case "Furia":
       case "Vingativo":
       case "Rebeldia":
       case "Impacto Bruto":
@@ -1477,6 +1483,13 @@ function drawCards() {
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
       }
       //⚔️
+      if (card.name === "Ataque Rapido") {
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= card.power;
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        floatText(enemies[0].el, `-${card.power}⚔️`, "red");
+      }
+      //⚔️
       else if (card.name === "Rebeldia") {
         dano = card.power;
         if (playerShield <= 0) {
@@ -1520,6 +1533,17 @@ function drawCards() {
         const brokenWeapon = allCards.find(c => c.name === "Arma Quebrada");
         if (brokenWeapon) {
           deck.push({ ...brokenWeapon, power: 0 });
+        }
+      }
+      //⚔️
+      else if (card.name === "Furia") {
+        if (deck.length <= 1) {
+          j = card.power * 2
+        } else {
+          j = card.power
+        }
+        for (let i = 0; i < j; i++) {
+          deck.push({ ...allCards.find(c => c.name === "Ataque Rapido"), power: 5, cost: 0 });
         }
       }
       //⚔️
