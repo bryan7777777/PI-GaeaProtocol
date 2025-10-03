@@ -177,6 +177,8 @@ function criarPlayerNaDiv3() {
     roxo: [
       allCards.find(c => c.name === "Drone de Ataque"),
       allCards.find(c => c.name === "Drone de Ataque"),
+      allCards.find(c => c.name === "Drone de Ataque"),
+      allCards.find(c => c.name === "Drone Defensivo"),
       allCards.find(c => c.name === "Drone Defensivo"),
       allCards.find(c => c.name === "Drone Defensivo"),
       allCards.find(c => c.name === "Drone de Coleta"),
