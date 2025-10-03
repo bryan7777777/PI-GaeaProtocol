@@ -175,17 +175,15 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Destruir Carta"),
     ],
     roxo: [
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Impacto Bruto"),
-      allCards.find(c => c.name === "Ataque Reciclável"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Drone de Ataque"),
+      allCards.find(c => c.name === "Drone de Ataque"),
+      allCards.find(c => c.name === "Drone Defensivo"),
+      allCards.find(c => c.name === "Drone Defensivo"),
+      allCards.find(c => c.name === "Drone de Coleta"),
+      allCards.find(c => c.name === "Drone de Coleta"),
+      allCards.find(c => c.name === "Drone Médico"),
+      allCards.find(c => c.name === "Drone Médico"),
       allCards.find(c => c.name === "PROTOCOL-Campo De Força"),
-      allCards.find(c => c.name === "Defesa Reciclável"),
-      allCards.find(c => c.name === "Impulso"),
       allCards.find(c => c.name === "Destruir Carta"),
     ],
     porto: [
@@ -259,11 +257,11 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Destruir Carta"),
     ],
     gaeaReen: [
-      allCards.find(c => c.name === "Furia"),
-      allCards.find(c => c.name === "Armamento Pesado"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Ataque Preciso"),
-      allCards.find(c => c.name === "Ataque Preciso"),
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Defesa Lunar"),
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Destruir Carta"),
     ]
   };
 
@@ -386,7 +384,7 @@ const allCards = [
     basePower: 0,
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/armamentoForte.jpg",
-    desc: "Compre Impacto Bruto, Ataque e Rajada Dupla com custo 0",
+    desc: "Compre <strong>Impacto Bruto</strong>, <strong>Ataque</strong> e <strong>Rajada Dupla</strong> com custo 0",
   },
   {
     name: "Chuva de Laminas",
@@ -394,7 +392,7 @@ const allCards = [
     basePower: 5,
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/chuvadeLaminas.jpg",
-    desc: "Cause dano em area e gaste energia respectivamente 5/10/15/20/30/40 de dano, 0/1/2/3/4/5 energia",
+    desc: "Cause dano em area 5/10/15/20/30/40, e gaste energia respectivamente  0/1/2/3/4/5",
   },
   {
     name: "Impacto Bruto",
@@ -415,6 +413,15 @@ const allCards = [
     type: "ataque"
   },
   {
+    name: "Drone de Ataque",
+    cost: 2,
+    basePower: 6,
+    rarity: "epic",
+    img: "../img/jogo/cards/atk/droneCombate.jpg",
+    desc: "Compre 1 carta <strong>Ataque Preciso</strong> para cada inimigo em campo e causa 6 de dano todos os inimigos.",
+    type: "ataque"
+  },
+  {
     name: "Ataque Preciso",
     cost: 1,
     basePower: 6,
@@ -429,7 +436,7 @@ const allCards = [
     basePower: 4,
     rarity: "epic",
     img: "../img/jogo/cards/atk/furia.png",
-    desc: "Compre 4 Ataque Rapido, se for a unica carta na mão compre X2.",
+    desc: "Compre 4 <strong>Ataque Rapido</strong>, se for a unica carta na mão compre X2.",
     type: "ataque"
   },
   {
@@ -532,6 +539,42 @@ const allCards = [
     type: "defesa"
   },
   {
+    name: "Campo Presurizado",
+    cost: 1,
+    basePower: 20,
+    rarity: "rare",
+    img: "../img/jogo/cards/def/campoPresurizado.png",
+    desc: "Se só tiver 1 carta na mão ganhe 20 de escudo.",
+    type: "defesa"
+  },
+  {
+    name: "Escudo Triangular",
+    cost: 1,
+    basePower: 10,
+    rarity: "rare",
+    img: "../img/jogo/cards/def/escudoTriangular.png",
+    desc: "Ganhe 10 de escudo, se tiver 3 ou menos cartas na mão X3 o valor.",
+    type: "defesa"
+  },
+  {
+    name: "Defesa Lunar",
+    cost: 3,
+    basePower: 30,
+    rarity: "rare",
+    img: "../img/jogo/cards/def/lua.png",
+    desc: "Ganhe 30 de escudo se tiver 3 ou menos cartas, se não cause dano.",
+    type: "defesa"
+  },
+  {
+    name: "Drone Defensivo",
+    cost: 1,
+    basePower: 0,
+    rarity: "epic",
+    img: "../img/jogo/cards/def/droneDef.jpg",
+    desc: "Compre uma carta de <strong>Defesa</strong> para cada inimigo em campo, se ouver 3 ganhe <strong>Escudo</strong> no lugar.",
+    type: "defesa"
+  },
+  {
     name: "Arpão",
     cost: 1,
     basePower: 3,
@@ -622,6 +665,15 @@ const allCards = [
     type: "suporte"
   },
   {
+    name: "Drone Médico",
+    cost: 1,
+    basePower: 5,
+    rarity: "rare",
+    img: "../img/jogo/cards/buff/droneVerd.png",
+    desc: "Recupera 5 de vida por cada inimigo em campo.",
+    type: "suporte"
+  },
+  {
     name: "Sob-Vigia",
     cost: 0,
     basePower: 25,
@@ -694,6 +746,15 @@ const allCards = [
     type: "reciclagem"
   },
   {
+    name: "Drone de Coleta",
+    cost: 0,
+    basePower: 0,
+    rarity: "epic",
+    img: "../img/jogo/cards/reciclagem/droneColeta.jpg",
+    desc: "Transforme os lixos em carta de <strong>Ataque</strong> , se sua vida for menor que 30, transforme em <strong>Cura</strong> no lugar.",
+    type: "reciclagem"
+  },
+  {
     name: "Terror Critico",
     cost: 2,
     basePower: 7,
@@ -745,6 +806,15 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/lixo/entulho.png",
     desc: "Um monte de entulho que não faz nada, quem sabe você ache uma utilidade para ele.",
+    type: "lixo"
+  },
+  {
+    name: "Drone Quebrado",
+    cost: 1,
+    basePower: 0,
+    rarity: "common",
+    img: "../img/jogo/cards/lixo/droneLixo.png",
+    desc: "Um drone danificado que não faz nada, quem sabe você ache uma utilidade para ele.",
     type: "lixo"
   },
   {
@@ -1419,6 +1489,7 @@ function drawCards() {
       case "Ataque Preciso":
       case "Liderança":
       case "Furia":
+      case "Drone de Ataque":
       case "Vingativo":
       case "Rebeldia":
       case "Impacto Bruto":
@@ -1432,7 +1503,11 @@ function drawCards() {
         break;
       // 🛡️🛡️🛡️🛡️🛡️ DEFESA 10 🛡️🛡️🛡️🛡️🛡️
       case "Defesa":
+      case "Drone Defensivo":
+      case "Escudo Triangular":
       case "Arpão":
+      case "Defesa Lunar":
+      case "Campo Presurizado":
       case "Em guarda":
       case "Indestrutivel":
       case "Sistema de reflexão":
@@ -1445,6 +1520,7 @@ function drawCards() {
         break;
       // 💚💚💚💚💚 SUPORTE 8 💚💚💚💚💚
       case "Cura":
+      case "Drone Médico":
       case "Sob-Vigia":
       case "Mineração":
       case "PROTOCOL-Reforço Estrutural":
@@ -1456,6 +1532,7 @@ function drawCards() {
         break;
       //  ♻️♻️♻️♻️♻️ RECICLAGEM 6 ♻️♻️♻️♻️♻️
       case "Recicladora":
+      case "Drone de Coleta":
       case "Ataque Reciclável":
       case "Terror Critico":
       case "Defesa Reciclável":
@@ -1465,6 +1542,7 @@ function drawCards() {
         break;
       //  🗑️🗑️🗑️🗑️🗑️ LIXO 9 🗑️🗑️🗑️🗑️🗑️
       case "Entulho":
+      case "Drone Quebrado":
       case "Lixo quimico":
       case "Cura Quebrada":
       case "Arma Quebrada":
@@ -1568,6 +1646,19 @@ function drawCards() {
         }
       }
       //⚔️
+      else if (card.name === "Drone de Ataque") {
+        enemies.forEach(e => {
+          animateDamage(e.el);
+          e.hp -= card.power;
+          floatText(e.el, `-${card.power}⚔️`, "red");
+        });
+
+        for (let i = 0; i < enemies.length; i++) {
+          deck.push({ ...allCards.find(c => c.name === "Ataque Preciso"), power: 6});
+        }
+        deck.push({ ...allCards.find(c => c.name === "Drone Quebrado"), power: 0 });
+      }
+      //⚔️
       else if (card.name === "Drenagem") {
         playerShield += card.power;
         glowPlayer("green");
@@ -1652,6 +1743,41 @@ function drawCards() {
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
       //🛡️
+      else if (card.name === "Campo Presurizado") {
+        if (deck.length == 1) {
+          playerShield += card.power;
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        }
+      }
+      //🛡️
+      else if (card.name === "Escudo Triangular") {
+        if (deck.length <= 3) {
+        def = card.power*3;
+        } else {
+          def = card.power;
+        }
+        playerShield += def;
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+      }
+      //🛡️
+      else if (card.name === "Defesa Lunar") {
+        if (deck.length <= 3) {
+        playerShield += card.power;
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        } else {
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= card.power;
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        floatText(enemies[0].el, `-${card.power}⚔️`, "red");
+        }
+      }
+      //🛡️
       else if (card.name === "Em guarda") {
         if (playerShield > 0) {
           playerShield += card.power;
@@ -1659,6 +1785,19 @@ function drawCards() {
           floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         }
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+      }
+      //🛡️
+      else if (card.name === "Drone Defensivo") {
+        if (enemies.length >= 3) {
+          for (let i = 0; i < enemies.length; i++) {
+          deck.push({ ...allCards.find(c => c.name === "Escudo"), power: 10});
+        }
+        } else {
+          for (let i = 0; i < enemies.length; i++) {
+          deck.push({ ...allCards.find(c => c.name === "Defesa"), power: 6});
+        }
+        }
+        deck.push({ ...allCards.find(c => c.name === "Drone Quebrado"), power: 0 });
       }
       //🛡️
       else if (card.name === "Impulso Defensivo") {
@@ -1744,6 +1883,16 @@ function drawCards() {
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+      }
+      //💚
+      else if (card.name === "Drone Médico") {
+        glowPlayer("green");
+        floatText(document.getElementById("player"), `+${card.power*enemies.length}💚`, "lime");
+        deck.push({ ...allCards.find(c => c.name === "Drone Quebrado"), power: 0 });
+
+        for (let i = 0; i < enemies.length; i++) {
+          playerHP = Math.min(playerHP + card.power, playerMaxHP);
+        }
       }
       //💚
       else if (card.name === "Sob-Vigia") {
@@ -1923,6 +2072,54 @@ function drawCards() {
         return; // importante: impede que o handler padrão remova outra carta
       }
       //♻️
+      else if (card.name === "Drone de Coleta") {
+        // marca as cartas a remover (por identidade)
+        const toRemove = new Set();
+        toRemove.add(card); // também remover a própria carta usada
+        let lixoRemovido = 0;
+
+        for (let j = 0; j < deck.length; j++) {
+          const c = deck[j];
+          if (c !== card && c.type === "lixo") {
+            toRemove.add(c);
+            lixoRemovido++;
+            if (playerHP<=30) {
+              deck.push({ ...allCards.find(c => c.name === "Cura"), power: 3});
+            } else {
+              deck.push({ ...allCards.find(c => c.name === "Ataque"), power: 6});
+            }
+          }
+        }
+
+        if (lixoRemovido === 0) {
+          // anima só a carta usada e remova-a normalmente
+          div.classList.add("card-remove");
+          setTimeout(() => {
+            for (let k = deck.length - 1; k >= 0; k--) {
+              if (deck[k] === card) { deck.splice(k, 1); break; }
+            }
+            drawCards();
+            updateHUD();
+          }, 300);
+          return;
+        }
+
+        updateHUD();
+
+        // anima e depois remove todas as cartas marcadas
+        div.classList.add("card-remove");
+        setTimeout(() => {
+          for (let k = deck.length - 1; k >= 0; k--) {
+            if (toRemove.has(deck[k])) deck.splice(k, 1);
+          }
+          drawCards();
+          checkEnemies();
+          updateHUD();
+        }, 300);
+
+        return; // importante: impede que o handler padrão remova outra carta
+      }
+      //♻️
       else if (card.name === "Defesa Reciclável") {
         const toRemove = new Set();
         toRemove.add(card);
@@ -2057,6 +2254,8 @@ function drawCards() {
 
       //  🗑️🗑️🗑️🗑️🗑️ LIXO 🗑️🗑️🗑️🗑️🗑️
       else if (card.name === "Entulho") {
+      }
+      else if (card.name === "Drone Quebrado") {
       }
       //🗑️
       else if (card.name === "Lixo quimico") {

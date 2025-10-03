@@ -223,6 +223,10 @@ em{
 color: aqua;
 }
 
+.desc em strong{
+color: rgb(227, 90, 255);
+}
+
 .energia {
   color: rgb(0, 0, 0);
   width: 80%;
