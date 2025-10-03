@@ -260,8 +260,8 @@ function criarPlayerNaDiv3() {
     ],
     gaeaReen: [
       allCards.find(c => c.name === "Furia"),
-      allCards.find(c => c.name === "Ataque Preciso"),
-      allCards.find(c => c.name === "Ataque Preciso"),
+      allCards.find(c => c.name === "Armamento Pesado"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Ataque Preciso"),
       allCards.find(c => c.name === "Ataque Preciso"),
     ]
@@ -394,7 +394,7 @@ const allCards = [
     basePower: 5,
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/chuvadeLaminas.jpg",
-    desc: "Cause dano em area respectivamente 5/10/15/20/30/40 de acordo com a energia 0/1/2/3/4/5",
+    desc: "Cause dano em area e gaste energia respectivamente 5/10/15/20/30/40 de dano, 0/1/2/3/4/5 energia",
   },
   {
     name: "Impacto Bruto",
