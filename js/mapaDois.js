@@ -1984,8 +1984,8 @@ function drawCards() {
           playerHP = Math.min(playerHP + card.power, playerMaxHP);
           floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
           glowPlayer("green");
-          deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
       else if (card.name === "Compra Dupla") {
@@ -2515,7 +2515,6 @@ function enemyTurn() {
             dano -= absorbed;
             animateDamage(document.getElementById("player"));
           floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
-          redScreenGlow(300, 30);
           }
 
           if (dano > 0) {
