@@ -2515,19 +2515,21 @@ function enemyTurn() {
             dano -= absorbed;
             animateDamage(document.getElementById("player"));
           floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
+          redScreenGlow(300, 30);
           }
 
           if (dano > 0) {
             playerHP -= dano;
             animateDamage(document.getElementById("player"));
           floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
+          redScreenGlow(300, 30);
           }
 
         } else if (act.type === "attackVida") {
           playerHP -= act.value;
           animateDamage(document.getElementById("player"));
           floatText(document.getElementById("player"), `-${act.value}🔱`, "orange");
-
+          redScreenGlow(300, 30);
         } else if (act.type === "heal") {
           let target = null;
           if (enemies.length > 0) {
@@ -2569,7 +2571,7 @@ function enemyTurn() {
           }
           animateDamage(document.getElementById("player"));
           floatText(document.getElementById("player"), `-${e.dano}⚔️`, "orange");
-
+          redScreenGlow(300, 30);
           // reduz turnos restantes
           e.turnosRestantes--;
 
@@ -2765,6 +2767,31 @@ function checkEnemies() {
       })(i);
     }
   }
+}
+
+function redScreenGlow(duration = 500, intensity = 30) {
+  const overlay = document.createElement("div");
+  overlay.style.position = "fixed";
+  overlay.style.top = "0";
+  overlay.style.left = "0";
+  overlay.style.width = "100%";
+  overlay.style.height = "100%";
+  overlay.style.pointerEvents = "none"; // não bloqueia cliques
+  overlay.style.boxSizing = "border-box";
+  overlay.style.zIndex = "9999";
+
+  // cria o glow vermelho para dentro
+  overlay.style.boxShadow = `0 0 ${intensity}px ${intensity/2}px rgba(214, 77, 77, 1) inset`;
+  overlay.style.opacity = "1";
+  overlay.style.transition = `opacity 0.3s ease-out`;
+
+  document.body.appendChild(overlay);
+
+  // desaparece suavemente
+  setTimeout(() => {
+    overlay.style.opacity = "0";
+    setTimeout(() => overlay.remove(), 300);
+  }, duration);
 }
 
 function shakeScreenNatural(maxIntensity = 20, duration = 600) {
