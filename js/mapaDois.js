@@ -877,6 +877,7 @@ const allCards = [
 
 // 💞 inicio da batalha aumenta a vida maxima dos aliados adjacentes em 15 (dura até apos a morte)
 // ❣️ eu morro apos 3 turnos
+// 💤 eu disperto e revivo mais forte
 // ⚔️ atk normal
 // 🔱 ignora armadura
 // 💚 prioriza curar aliados
@@ -891,252 +892,281 @@ const allCards = [
 
 // NORMAL
 const normalModels = [
+  // [
+  //   {
+  //     name: "Sacerdote Guerreiro",
+  //     hp: 40,
+  //     dano: 8,
+  //     behavior: () => [
+  //       { type: "attack", value: 8 }
+  //     ],
+  //     img: "../img/jogo/inimigos/sacerdoteGuerreiro.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   },
+  //   {
+  //     name: "Sacerdote Guerreiro",
+  //     hp: 40,
+  //     dano: 8,
+  //     behavior: () => [
+  //       { type: "attack", value: 8 }
+  //     ],
+  //     img: "../img/jogo/inimigos/sacerdoteGuerreiro.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   },
+  // ],
+  // [
+  //   {
+  //     name: "Rinoceronte corrompido",
+  //     hp: 65,
+  //     dano: 10,
+  //     behavior: () => [
+  //       { type: "attackVida", value: 10 }
+  //     ],
+  //     img: "../img/jogo/inimigos/rino.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "💞"
+  //   },
+  //   {
+  //     name: "formiga sentinela",
+  //     hp: 45,
+  //     dano: 6,
+  //     behavior: () => [
+  //       { type: "attack", value: 6 }
+  //     ],
+  //     img: "../img/jogo/inimigos/formiga.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "formiga sentinela",
+  //     hp: 30,
+  //     dano: 6,
+  //     behavior: () => [
+  //       { type: "attack", value: 6 }
+  //     ],
+  //     img: "../img/jogo/inimigos/formiga.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   },
+  //   {
+  //     name: "formiga sentinela",
+  //     hp: 30,
+  //     dano: 6,
+  //     behavior: () => [
+  //       { type: "attack", value: 6 }
+  //     ],
+  //     img: "../img/jogo/inimigos/formiga.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "FuradorKiwi",
+  //     hp: 16,
+  //     dano: 24,
+  //     behavior: () => [
+  //       { type: "attack", value: 24 }
+  //     ],
+  //     img: "../img/jogo/inimigos/kiwi.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   },
+  //   {
+  //     name: "FuradorKiwi",
+  //     hp: 16,
+  //     dano: 24,
+  //     behavior: () => [
+  //       { type: "attack", value: 24 }
+  //     ],
+  //     img: "../img/jogo/inimigos/kiwi.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "BrocadorToper",
+  //     hp: 40,
+  //     dano: 12,
+  //     behavior: () => [
+  //       { type: Math.random() < 0.5 ? "attack" : "attackVida", value: 12 }
+  //     ],
+  //     img: "../img/jogo/inimigos/topeira.png",
+  //     tipoDano: "⚔️❓🔱",
+  //     tipoVida: "❤️"
+  //   },
+  //   {
+  //     name: "BrocadorToper",
+  //     hp: 40,
+  //     dano: 12,
+  //     behavior: () => [
+  //       { type: Math.random() < 0.5 ? "attack" : "attackVida", value: 12 }
+  //     ],
+  //     img: "../img/jogo/inimigos/topeira.png",
+  //     tipoDano: "⚔️❓🔱",
+  //     tipoVida: "❤️"
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Lenhador corrompido",
+  //     hp: 90,
+  //     dano: 15,
+  //     behavior: () => [
+  //       { type: "attack", value: Math.random() < 0.7 ? 15 : 30 }
+  //     ],
+  //     img: "../img/jogo/inimigos/lenhador.png",
+  //     tipoDano: "(⚔️)💥",
+  //     tipoVida: "❤️"
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Tartaruga",
+  //     hp: 54,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attack", value: 6 }],
+  //     img: "../img/jogo/inimigos/minion.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   },
+  //   {
+  //     name: "Abelha corrompida",
+  //     hp: 6,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attack", value: 6 }],
+  //     img: "../img/jogo/inimigos/abelha.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   },
+  //   {
+  //     name: "Abelha corrompida",
+  //     hp: 6,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attack", value: 6 }],
+  //     img: "../img/jogo/inimigos/abelha.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Ferrujão",
+  //     hp: 40,
+  //     dano: 12,
+  //     behavior: () => [{ type: "attack", value: 12 }],
+  //     img: "../img/jogo/inimigos/inimigo1.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   },
+  //   {
+  //     name: "Drone agricola",
+  //     hp: 8,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attackVida", value: 6 }],
+  //     img: "../img/jogo/inimigos/inimigo5.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "❤️"
+  //   },
+  //   {
+  //     name: "Drone agricola",
+  //     hp: 8,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attackVida", value: 6 }],
+  //     img: "../img/jogo/inimigos/inimigo5.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "❤️"
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Tartaruga",
+  //     hp: 54,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attack", value: 6 }],
+  //     img: "../img/jogo/inimigos/minion.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   },
+  //   {
+  //     name: "Tatu corrompido",
+  //     hp: 60,
+  //     dano: 8,
+  //     behavior: () => [{ type: "attack", value: 8 }],
+  //     img: "../img/jogo/inimigos/tatu.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   },
+  //   {
+  //     name: "Abelha corrompida",
+  //     hp: 6,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attack", value: 6 }],
+  //     img: "../img/jogo/inimigos/abelha.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Ferrujão",
+  //     hp: 40,
+  //     dano: 12,
+  //     behavior: () => [{ type: "attack", value: 12 }],
+  //     img: "../img/jogo/inimigos/inimigo1.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   },
+  //   {
+  //     name: "Ferrujão",
+  //     hp: 40,
+  //     dano: 12,
+  //     behavior: () => [{ type: "attack", value: 12 }],
+  //     img: "../img/jogo/inimigos/inimigo1.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️"
+  //   },
+  //   {
+  //     name: "IA sacerdotisa",
+  //     hp: 24,
+  //     dano: 2,
+  //     behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 2 : 4 }],
+  //     img: "../img/jogo/inimigos/sacerdotisa.png",
+  //     tipoDano: "(💚🎭💊)💥",
+  //     tipoVida: "❤️"
+  //   },
+  // ]
   [
     {
-      name: "Sacerdote Guerreiro",
-      hp: 40,
-      dano: 8,
-      behavior: () => [
-        { type: "attack", value: 8 }
-      ],
-      img: "../img/jogo/inimigos/sacerdoteGuerreiro.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    },
-    {
-      name: "Sacerdote Guerreiro",
-      hp: 40,
-      dano: 8,
-      behavior: () => [
-        { type: "attack", value: 8 }
-      ],
-      img: "../img/jogo/inimigos/sacerdoteGuerreiro.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    },
-  ],
-  [
-    {
-      name: "Rinoceronte corrompido",
-      hp: 65,
-      dano: 10,
-      behavior: () => [
-        { type: "attackVida", value: 10 }
-      ],
-      img: "../img/jogo/inimigos/rino.png",
-      tipoDano: "🔱",
-      tipoVida: "💞"
-    },
-    {
-      name: "formiga sentinela",
-      hp: 45,
-      dano: 6,
-      behavior: () => [
-        { type: "attack", value: 6 }
-      ],
-      img: "../img/jogo/inimigos/formiga.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    }
-  ],
-  [
-    {
-      name: "formiga sentinela",
+      name: "Vigia de Irislidriz",
       hp: 30,
-      dano: 6,
-      behavior: () => [
-        { type: "attack", value: 6 }
-      ],
-      img: "../img/jogo/inimigos/formiga.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    },
-    {
-      name: "formiga sentinela",
-      hp: 30,
-      dano: 6,
-      behavior: () => [
-        { type: "attack", value: 6 }
-      ],
-      img: "../img/jogo/inimigos/formiga.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    }
-  ],
-  [
-    {
-      name: "FuradorKiwi",
-      hp: 16,
-      dano: 24,
-      behavior: () => [
-        { type: "attack", value: 24 }
-      ],
-      img: "../img/jogo/inimigos/kiwi.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    },
-    {
-      name: "FuradorKiwi",
-      hp: 16,
-      dano: 24,
-      behavior: () => [
-        { type: "attack", value: 24 }
-      ],
-      img: "../img/jogo/inimigos/kiwi.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    }
-  ],
-  [
-    {
-      name: "BrocadorToper",
-      hp: 40,
-      dano: 12,
-      behavior: () => [
-        { type: Math.random() < 0.5 ? "attack" : "attackVida", value: 12 }
-      ],
-      img: "../img/jogo/inimigos/topeira.png",
-      tipoDano: "⚔️❓🔱",
-      tipoVida: "❤️"
-    },
-    {
-      name: "BrocadorToper",
-      hp: 40,
-      dano: 12,
-      behavior: () => [
-        { type: Math.random() < 0.5 ? "attack" : "attackVida", value: 12 }
-      ],
-      img: "../img/jogo/inimigos/topeira.png",
-      tipoDano: "⚔️❓🔱",
-      tipoVida: "❤️"
-    }
-  ],
-  [
-    {
-      name: "Lenhador corrompido",
-      hp: 90,
-      dano: 15,
-      behavior: () => [
-        { type: "attack", value: Math.random() < 0.7 ? 15 : 30 }
-      ],
-      img: "../img/jogo/inimigos/lenhador.png",
+      dano: 5,
+      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 5 : 10 }],
+      img: "../img/jogo/inimigos/olho2.png",
       tipoDano: "(⚔️)💥",
       tipoVida: "❤️"
-    }
-  ],
-  [
-    {
-      name: "Tartaruga",
-      hp: 54,
-      dano: 6,
-      behavior: () => [{ type: "attack", value: 6 }],
-      img: "../img/jogo/inimigos/minion.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
     },
     {
-      name: "Abelha corrompida",
-      hp: 6,
-      dano: 6,
-      behavior: () => [{ type: "attack", value: 6 }],
-      img: "../img/jogo/inimigos/abelha.png",
+      name: "Boss Irislidriz",
+      hp: 150,
+      dano: 5,
+      behavior: () => [{ type: "attack", value: 5 }],
+      img: "../img/jogo/inimigos/bossValkFantasma.png",
       tipoDano: "⚔️",
-      tipoVida: "❤️"
+      tipoVida: "💤"
     },
     {
-      name: "Abelha corrompida",
-      hp: 6,
-      dano: 6,
-      behavior: () => [{ type: "attack", value: 6 }],
-      img: "../img/jogo/inimigos/abelha.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    }
-  ],
-  [
-    {
-      name: "Ferrujão",
-      hp: 40,
-      dano: 12,
-      behavior: () => [{ type: "attack", value: 12 }],
-      img: "../img/jogo/inimigos/inimigo1.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    },
-    {
-      name: "Drone agricola",
-      hp: 8,
-      dano: 6,
-      behavior: () => [{ type: "attackVida", value: 6 }],
-      img: "../img/jogo/inimigos/inimigo5.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️"
-    },
-    {
-      name: "Drone agricola",
-      hp: 8,
-      dano: 6,
-      behavior: () => [{ type: "attackVida", value: 6 }],
-      img: "../img/jogo/inimigos/inimigo5.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️"
-    }
-  ],
-  [
-    {
-      name: "Tartaruga",
-      hp: 54,
-      dano: 6,
-      behavior: () => [{ type: "attack", value: 6 }],
-      img: "../img/jogo/inimigos/minion.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    },
-    {
-      name: "Tatu corrompido",
-      hp: 60,
-      dano: 8,
-      behavior: () => [{ type: "attack", value: 8 }],
-      img: "../img/jogo/inimigos/tatu.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    },
-    {
-      name: "Abelha corrompida",
-      hp: 6,
-      dano: 6,
-      behavior: () => [{ type: "attack", value: 6 }],
-      img: "../img/jogo/inimigos/abelha.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    }
-  ],
-  [
-    {
-      name: "Ferrujão",
-      hp: 40,
-      dano: 12,
-      behavior: () => [{ type: "attack", value: 12 }],
-      img: "../img/jogo/inimigos/inimigo1.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    },
-    {
-      name: "Ferrujão",
-      hp: 40,
-      dano: 12,
-      behavior: () => [{ type: "attack", value: 12 }],
-      img: "../img/jogo/inimigos/inimigo1.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️"
-    },
-    {
-      name: "IA sacerdotisa",
-      hp: 24,
-      dano: 2,
-      behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 2 : 4 }],
-      img: "../img/jogo/inimigos/sacerdotisa.png",
-      tipoDano: "(💚🎭💊)💥",
+      name: "Observador de Irislidriz",
+      hp: 30,
+      dano: 5,
+      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 5 : 10 }],
+      img: "../img/jogo/inimigos/olho.png",
+      tipoDano: "(⚔️)💥",
       tipoVida: "❤️"
     },
   ]
@@ -1441,7 +1471,7 @@ function processFloatQueue() {
 
   // 🔹 Animação (subir e desaparecer)
   setTimeout(() => {
-    div.style.transition = "all 0.8s ease-out";
+    div.style.transition = "all 0.35s ease-out";
     div.style.opacity = "0";
     div.style.top = (y - 40) + "px";
   }, 50);
@@ -1450,7 +1480,7 @@ function processFloatQueue() {
   setTimeout(() => {
     div.remove();
     processFloatQueue();
-  }, 900);
+  }, 450);
 }
 
 function glowPlayer(color) {
@@ -1656,7 +1686,7 @@ function drawCards() {
         });
 
         for (let i = 0; i < enemies.length; i++) {
-          deck.push({ ...allCards.find(c => c.name === "Ataque Preciso"), power: 6});
+          deck.push({ ...allCards.find(c => c.name === "Ataque Preciso"), power: 6 });
         }
         deck.push({ ...allCards.find(c => c.name === "Drone Quebrado"), power: 0 });
       }
@@ -1748,15 +1778,15 @@ function drawCards() {
       else if (card.name === "Campo Presurizado") {
         if (deck.length == 1) {
           playerShield += card.power;
-        glowPlayer("blue");
-        floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
-        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+          glowPlayer("blue");
+          floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+          deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
       }
       //🛡️
       else if (card.name === "Escudo Triangular") {
         if (deck.length <= 3) {
-        def = card.power*3;
+          def = card.power * 3;
         } else {
           def = card.power;
         }
@@ -1768,15 +1798,15 @@ function drawCards() {
       //🛡️
       else if (card.name === "Defesa Lunar") {
         if (deck.length <= 3) {
-        playerShield += card.power;
-        glowPlayer("blue");
-        floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
-        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+          playerShield += card.power;
+          glowPlayer("blue");
+          floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+          deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         } else {
-        animateDamage(enemies[0].el);
-        enemies[0].hp -= card.power;
-        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
-        floatText(enemies[0].el, `-${card.power}⚔️`, "red");
+          animateDamage(enemies[0].el);
+          enemies[0].hp -= card.power;
+          deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+          floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         }
       }
       //🛡️
@@ -1792,12 +1822,12 @@ function drawCards() {
       else if (card.name === "Drone Defensivo") {
         if (enemies.length >= 3) {
           for (let i = 0; i < enemies.length; i++) {
-          deck.push({ ...allCards.find(c => c.name === "Escudo"), power: 10});
-        }
+            deck.push({ ...allCards.find(c => c.name === "Escudo"), power: 10 });
+          }
         } else {
           for (let i = 0; i < enemies.length; i++) {
-          deck.push({ ...allCards.find(c => c.name === "Defesa"), power: 6});
-        }
+            deck.push({ ...allCards.find(c => c.name === "Defesa"), power: 6 });
+          }
         }
         deck.push({ ...allCards.find(c => c.name === "Drone Quebrado"), power: 0 });
       }
@@ -1889,7 +1919,7 @@ function drawCards() {
       //💚
       else if (card.name === "Drone Médico") {
         glowPlayer("green");
-        floatText(document.getElementById("player"), `+${card.power*enemies.length}💚`, "lime");
+        floatText(document.getElementById("player"), `+${card.power * enemies.length}💚`, "lime");
         deck.push({ ...allCards.find(c => c.name === "Drone Quebrado"), power: 0 });
 
         for (let i = 0; i < enemies.length; i++) {
@@ -2085,10 +2115,10 @@ function drawCards() {
           if (c !== card && c.type === "lixo") {
             toRemove.add(c);
             lixoRemovido++;
-            if (playerHP<=30) {
-              deck.push({ ...allCards.find(c => c.name === "Cura"), power: 3});
+            if (playerHP <= 30) {
+              deck.push({ ...allCards.find(c => c.name === "Cura"), power: 3 });
             } else {
-              deck.push({ ...allCards.find(c => c.name === "Ataque"), power: 6});
+              deck.push({ ...allCards.find(c => c.name === "Ataque"), power: 6 });
             }
           }
         }
@@ -2338,20 +2368,20 @@ function drawCards() {
       else if (card.name === "Chuva de Laminas") {
         if (energy >= 5) {
           power1 = 40;
-          energy-=5;
-        } else if (energy === 4){
+          energy -= 5;
+        } else if (energy === 4) {
           power1 = 30;
-          energy-=4;
-        } else if (energy === 3){
+          energy -= 4;
+        } else if (energy === 3) {
           power1 = 20;
-          energy-=3;
-        } else if (energy === 2){
+          energy -= 3;
+        } else if (energy === 2) {
           power1 = 15;
-          energy-=2;
-        } else if (energy === 1){
+          energy -= 2;
+        } else if (energy === 1) {
           power1 = 10;
-          energy-=1;
-        } else if (energy === 0){
+          energy -= 1;
+        } else if (energy === 0) {
           power1 = 5;
         }
 
@@ -2483,14 +2513,15 @@ function enemyTurn() {
             let absorbed = Math.min(dano, playerShield);
             playerShield -= absorbed;
             dano -= absorbed;
+            animateDamage(document.getElementById("player"));
+          floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
           }
 
           if (dano > 0) {
             playerHP -= dano;
+            animateDamage(document.getElementById("player"));
+          floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
           }
-
-          animateDamage(document.getElementById("player"));
-          floatText(document.getElementById("player"), `-${act.value}⚔️`, "orange");
 
         } else if (act.type === "attackVida") {
           playerHP -= act.value;
@@ -2575,68 +2606,190 @@ function enemyTurn() {
   }, 600);
 }
 
+reviver = 0;
+
 function checkEnemies() {
   for (let i = enemies.length - 1; i >= 0; i--) {
     if (enemies[i].hp <= 0) {
 
-      // anima inimigo
-      if (enemies[i].el) {
-        enemies[i].el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-        enemies[i].el.style.opacity = "0";
-        enemies[i].el.style.transform = "scale(0.8)";
+      const morto = enemies[i];
+      const parentEnemies = document.getElementById("enemies");
+      const parentBars = document.getElementById("lifeBarsContainer");
+
+      // animação de morte do inimigo
+      if (morto.el) {
+        morto.el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+        morto.el.style.opacity = "0";
+        morto.el.style.transform = "scale(0.8)";
       }
 
-      // anima barra de vida
-      if (enemies[i].barEl) {
-        const barP = enemies[i].barEl.closest("p");
+      if (morto.barEl) {
+        const barP = morto.barEl.closest("p");
         if (barP) {
           barP.style.transition = "opacity 0.5s ease";
           barP.style.opacity = "0";
         }
       }
 
-      // remove após animação
       ((index) => {
         setTimeout(() => {
-          if (enemies[index]) {
-            if (enemies[index].el) enemies[index].el.remove();
-            if (enemies[index].barEl) {
-              const barP = enemies[index].barEl.closest("p");
-              if (barP) barP.remove();
-            }
-            enemies.splice(index, 1);
+          if (!enemies[index]) return;
 
-            // se não houver mais inimigos, abre popup
-            if (mapaBatalha === 10 && enemies.length === 0 && playerHP > 0) {
-              document.getElementById("overlay").style.display = "block";
-              document.getElementById("popupFinal").style.display = "flex";
-              gerarItens();
-              limiteMao = maoInicio;
-              document.getElementById("enemies").style.display = "none";
-              document.getElementById("lifeBarsContainer").style.display = "none";
-              energy = energyMax;
-              drawNewCards();
-              drawCards();
-              updateHUD();
-              playerShield = playerShieldInit;
-            } else if (enemies.length === 0 && playerHP > 0) {
-              document.getElementById("overlay").style.display = "block";
-              document.getElementById("popup").style.display = "flex";
-              gerarItens();
-              limiteMao = maoInicio;
-              document.getElementById("enemies").style.display = "none";
-              document.getElementById("lifeBarsContainer").style.display = "none";
-              energy = energyMax;
-              drawNewCards();
-              drawCards();
-              updateHUD();
-              playerShield = playerShieldInit;
+          // guarda referências do DOM antigo
+          const oldEl = morto.el;
+          const oldBar = morto.barEl.closest("p");
+
+          // remove do DOM
+          if (oldEl) oldEl.remove();
+          if (oldBar) oldBar.remove();
+
+          // remove do array
+          enemies.splice(index, 1);
+
+          // 🔥 Se o boss morreu e ainda pode reviver
+          if (morto.name === "Boss Irislidriz" || morto.name === "Vigia de Irislidriz" || morto.name === "Observador de Irislidriz") {
+            let novo;
+            if (morto.name === "Boss Irislidriz" && reviver === 0) {
+              shakeScreenNatural(10, 400);
+              document.getElementById("jogo").style.backgroundImage = "url('../img/jogo/background/cidadeAsustadora.png')";
+              novo = {
+                name: "Boss Irislidriz",
+                hp: 80,
+                maxHp: 80,
+                dano: 20,
+                behavior: () => [{ type: "attack", value: 20 }],
+                img: "../img/jogo/inimigos/valkFantasmaElite.png",
+                tipoDano: "⚔️",
+                tipoVida: "💤",
+              };
+              reviver++;
+            } else if (morto.name === "Boss Irislidriz" && reviver === 1) {
+              shakeScreenNatural(30, 800);
+              document.getElementById("jogo").style.backgroundImage = "url('../img/jogo/background/cidadeFantasma.png')";
+              novo = {
+                name: "Boss Irislidriz",
+                hp: 50,
+                maxHp: 50,
+                dano: 30,
+                behavior: () => [{ type: "attackVida", value: 30 }],
+                img: "../img/jogo/inimigos/valkFantasma.png",
+                tipoDano: "🔱",
+                tipoVida: "❤️",
+              };
+              reviver++;
+            }
+
+            if (morto.name === "Vigia de Irislidriz") {
+              novo = {
+                name: "Protetor de Irislidriz",
+                hp: 100,
+                maxHp: 100,
+                dano: 5,
+                behavior: () => [{ type: "attack", value: 5 }],
+                img: "../img/jogo/inimigos/olhoIra.png",
+                tipoDano: "⚔️",
+                tipoVida: "❤️",
+              };
+            }
+
+            if (morto.name === "Observador de Irislidriz") {
+              novo = {
+                name: "Guardião de Irislidriz",
+                hp: 35,
+                maxHp: 35,
+                dano: 10,
+                behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 10 : 20 }],
+                img: "../img/jogo/inimigos/olhoRedencao.png",
+                tipoDano: "(💚🎭💊)💥",
+                tipoVida: "❤️",
+              };
+            }
+
+            
+
+            if (novo) {
+              // adiciona no array na mesma posição
+              enemies.splice(index, 0, novo);
+
+              // cria elemento do inimigo
+              novo.el = createEnemy(novo.img);
+              novo.el.style.display = "inline-block";
+
+              // insere no mesmo slot visual
+              parentEnemies.insertBefore(novo.el, parentEnemies.children[index] || null);
+
+              // cria barra de vida e insere no mesmo slot
+              const lifeBar = document.createElement("p");
+              lifeBar.className = "enemy-bar";
+              lifeBar.innerHTML = `
+                <strong> ⟪ ${novo.name} ⟫ </strong><br>
+                ⟪ ${novo.tipoVida} <span class="enemy-hp">${novo.hp}</span> - </strong>
+                ${novo.tipoDano} <strong>${novo.dano} ⟫ </strong>
+              `;
+              parentBars.insertBefore(lifeBar, parentBars.children[index] || null);
+              novo.barEl = lifeBar.querySelector(".enemy-hp");
+
+              // garante containers visíveis
+              displayInimigos();
             }
           }
+
+          // Se não houver mais inimigos, abre popup
+          if (mapaBatalha === 10 && enemies.length === 0 && playerHP > 0) {
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("popupFinal").style.display = "flex";
+            gerarItens();
+            limiteMao = maoInicio;
+            document.getElementById("enemies").style.display = "none";
+            document.getElementById("lifeBarsContainer").style.display = "none";
+            energy = energyMax;
+            drawNewCards();
+            drawCards();
+            updateHUD();
+            playerShield = playerShieldInit;
+          } else if (enemies.length === 0 && playerHP > 0) {
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("popup").style.display = "flex";
+            gerarItens();
+            limiteMao = maoInicio;
+            document.getElementById("enemies").style.display = "none";
+            document.getElementById("lifeBarsContainer").style.display = "none";
+            energy = energyMax;
+            drawNewCards();
+            drawCards();
+            updateHUD();
+            playerShield = playerShieldInit;
+          }
+
         }, 500);
-      })(i); // captura o valor de i
+      })(i);
     }
   }
+}
+
+function shakeScreenNatural(maxIntensity = 20, duration = 600) {
+  const container = document.body; // ou outro container principal
+  const start = Date.now();
+
+  function step() {
+    const elapsed = Date.now() - start;
+    const progress = elapsed / duration;
+
+    if (progress < 1) {
+      // intensidade diminui com o tempo (ease out)
+      const intensity = maxIntensity * (1 - progress);
+      const x = (Math.random() * 2 - 1) * intensity;
+      const y = (Math.random() * 2 - 1) * intensity;
+
+      container.style.transform = `translate(${x}px, ${y}px)`;
+      requestAnimationFrame(step);
+    } else {
+      // reseta posição
+      container.style.transform = '';
+    }
+  }
+
+  step();
 }
 
 function gerarItens() {
