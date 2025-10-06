@@ -260,7 +260,7 @@ function criarPlayerNaDiv3() {
     ],
     gaeaReen: [
       allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Defesa Lunar"),
+      allCards.find(c => c.name === "Tsunami"),
       allCards.find(c => c.name === "Destruir Carta"),
       allCards.find(c => c.name === "Destruir Carta"),
       allCards.find(c => c.name === "Destruir Carta"),
@@ -294,7 +294,7 @@ function criarPlayerNaDiv3() {
       limiteMao = 6;
       break;
     case "vermelho":
-      playerImg.src = "./../img/jogo/player/matadorDeJao.png";
+      playerImg.src = "./../img/jogo/player/mechaBeserck.png";
       playerMaxHP = 50, energyMax = 4, playerShieldInit = 0;
       playerHP = 50, energy = 4, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.vermelho];
@@ -302,7 +302,7 @@ function criarPlayerNaDiv3() {
       limiteMao = 6;
       break;
     case "roxo":
-      playerImg.src = "./../img/jogo/player/cacadorDeJao.png";
+      playerImg.src = "./../img/jogo/player/cabaDosDrones.png";
       playerMaxHP = 60, energyMax = 5, playerShieldInit = 0;
       playerHP = 60, energy = 5, playerShield = playerShieldInit;
       maoInicio = 7;
@@ -541,6 +541,69 @@ const allCards = [
     type: "defesa"
   },
   {
+    name: "Tsunami",
+    cost: 2,
+    basePower: 6,
+    rarity: "legend",
+    img: "../img/jogo/cards/def/tsunami.png",
+    desc: "Ganha 6 de escudo, ganhe X1 para cada carta na mão (Incluindo eu mesma) e para cada inimigo em campo.",
+    type: "defesa"
+  },
+  {
+    name: "Campo de Força Fraco",
+    cost: 0,
+    basePower: 3,
+    rarity: "common",
+    img: "../img/jogo/cards/def/campoFraco.png",
+    desc: "Ganha 3 de escudo.",
+    type: "defesa"
+  },
+  {
+    name: "Campo de Força Instavel",
+    cost: 2,
+    basePower: 44,
+    rarity: "rare",
+    img: "../img/jogo/cards/def/campoInstavel.png",
+    desc: "Ganhe 44 de escudo se tiver exatamente 4 cartas na mão.",
+    type: "defesa"
+  },
+  {
+    name: "Campo Presurizado",
+    cost: 2,
+    basePower: 30,
+    rarity: "rare",
+    img: "../img/jogo/cards/def/campoPresurizado.png",
+    desc: "Ganha 30 de escudo se eu for a unica carta na mão.",
+    type: "defesa"
+  },
+  {
+    name: "Blindagem Vital",
+    cost: 3,
+    basePower: 0,
+    rarity: "legend",
+    img: "../img/jogo/cards/def/blindagemMotivadora.png",
+    desc: "Ganha escudo igual a vida atual, x2 se eu for a unica carta na mão.",
+    type: "defesa"
+  },
+  {
+    name: "Defesa Salvadora",
+    cost: 1,
+    basePower: 6,
+    rarity: "legend",
+    img: "../img/jogo/cards/def/umaVida.png",
+    desc: "Ganha 6 de escudo, se tiver 3 ou menos cartas na mão cure tambem, se eu for a unica na mão X3.",
+    type: "defesa"
+  },
+  {
+    name: "Ultima Defesa",
+    cost: 3,
+    basePower: 80,
+    rarity: "legend",
+    img: "../img/jogo/cards/def/ultimaDef.png",
+    desc: "Ganha 80 de escudo se eu for a unica carta na mão.",
+    type: "defesa"
+  },
+  {
     name: "Campo Presurizado",
     cost: 1,
     basePower: 20,
@@ -664,6 +727,51 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/buff/Cura.png",
     desc: "Recupera 3 de vida.",
+    type: "suporte"
+  },
+  {
+    name: "Ritual",
+    cost: 2,
+    basePower: 20,
+    rarity: "common",
+    img: "../img/jogo/cards/buff/ritual.png",
+    desc: "Recupera 20 de vida se eu for a unica carta na mão, caso contrario perca vida.",
+    type: "suporte"
+  },
+  {
+    name: "Cura Forte",
+    cost: 2,
+    basePower: 30,
+    rarity: "rare",
+    img: "../img/jogo/cards/buff/coracaoForte.png",
+    desc: "Recupera 30 de vida se eu for a unica carta na mão.",
+    type: "suporte"
+  },
+  {
+    name: "Estratégia Antiga",
+    cost: 0,
+    basePower: 2,
+    rarity: "legend",
+    img: "../img/jogo/cards/buff/cerebro.png",
+    desc: "Se você tiver 3 cartas ou menos na mão compre 2 cartas (Exceto ela mesma), se tiver mais ganhe 2 de energia.",
+    type: "suporte"
+  },
+  {
+    name: "Limite da Vida",
+    cost: 1,
+    basePower: 10,
+    rarity: "rare",
+    img: "../img/jogo/cards/buff/limiteDaVida.png",
+    desc: "Se você tiver 3 cartas ou menos na mão recupere 10 de vida, X3 se tiver 30 ou menos de vida.",
+    type: "suporte"
+  },
+  {
+    name: "Xenofluxo",
+    cost: 0,
+    basePower: 1,
+    rarity: "epic",
+    img: "../img/jogo/cards/buff/xenofluxo.jpg",
+    desc: "Ganhe 1 de energia.",
     type: "suporte"
   },
   {
@@ -1535,6 +1643,13 @@ function drawCards() {
         break;
       // 🛡️🛡️🛡️🛡️🛡️ DEFESA 10 🛡️🛡️🛡️🛡️🛡️
       case "Defesa":
+      case "Tsunami":
+      case "Campo de Força Instavel":
+      case "Campo de Força Fraco":
+      case "Campo Presurizado":
+      case "Blindagem Vital":
+      case "Defesa Salvadora":
+      case "Ultima Defesa":
       case "Drone Defensivo":
       case "Escudo Triangular":
       case "Arpão":
@@ -1552,6 +1667,11 @@ function drawCards() {
         break;
       // 💚💚💚💚💚 SUPORTE 8 💚💚💚💚💚
       case "Cura":
+      case "Ritual":
+      case "Cura Forte":
+      case "Estratégia Antiga":
+      case "Limite da Vida":
+      case "Xenofluxo":
       case "Drone Médico":
       case "Sob-Vigia":
       case "Mineração":
@@ -1775,6 +1895,80 @@ function drawCards() {
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
       //🛡️
+      else if (card.name === "Campo de Força Fraco") {
+        playerShield += card.power;
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+      }
+      //🛡️
+      else if (card.name === "Tsunami") {
+        def=card.power*(deck.length+enemies.length);
+        playerShield += def;
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+      }
+      //🛡️
+      else if (card.name === "Defesa Salvadora") {
+        def = card.power;
+        if (deck.length <=1) {
+        def*=3
+        playerShield += def;
+        playerHP = Math.min(playerHP + def, playerMaxHP);
+        glowPlayer("green");
+        floatText(document.getElementById("player"), `+${def}💚`, "lime");
+        } else if (deck.length <=3) {
+        playerShield += def;
+        playerHP = Math.min(playerHP + def, playerMaxHP);
+        glowPlayer("green");
+        floatText(document.getElementById("player"), `+${def}💚`, "lime"); 
+        } else{
+        playerShield += def;
+        }
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+      }
+      //🛡️
+      else if (card.name === "Ultima Defesa") {
+        if (deck.length <=1) {
+        playerShield += card.power;
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+        }
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+      }
+      //🛡️
+      else if (card.name === "Campo de Força Instavel") {
+        if (deck.length == 4) {
+        playerShield += card.power;
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+        }
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+      }
+      //🛡️
+      else if (card.name === "Campo Presurizado") {
+        if (deck.length <=1) {
+        playerShield += card.power;
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+        }
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+      }
+      //🛡️
+      else if (card.name === "Blindagem Vital") {
+        def=playerHP;
+        if (deck.length <=1) {
+        def*=2;
+        }
+        playerShield += def;
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
+        deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+      }
+      //🛡️
       else if (card.name === "Campo Presurizado") {
         if (deck.length == 1) {
           playerShield += card.power;
@@ -1914,6 +2108,69 @@ function drawCards() {
         playerHP = Math.min(playerHP + card.power, playerMaxHP);
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+      }
+      //💚
+      else if (card.name === "Ritual") {
+        if (deck.length<=1) {
+        playerHP = Math.min(playerHP + card.power, playerMaxHP);
+        glowPlayer("green");
+        floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
+        } else{
+        animateDamage(document.getElementById("player"));
+        floatText(document.getElementById("player"), `-${card.power}⚔️`, "red");
+        playerHP-=card.power;
+        }
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+      }
+      //💚
+      else if (card.name === "Cura Forte") {
+        if (deck.length<=1) {
+        playerHP = Math.min(playerHP + card.power, playerMaxHP);
+        glowPlayer("green");
+        floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
+        }
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+      }
+      //💚
+      else if (card.name === "Limite da Vida") {
+        cura = card.power;
+        if (playerHP<=30) {
+          cura = card.power*3;
+        }
+        if (deck.length<=3) {
+        playerHP = Math.min(playerHP + cura, playerMaxHP);
+        glowPlayer("green");
+        floatText(document.getElementById("player"), `+${cura}💚`, "lime");
+        }
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+      }
+      //💚
+      else if (card.name === "Estratégia Antiga") {
+        if (deck.length<=3) {
+        const clonePool = playerDeck.filter(c => c.name !== "Estratégia Antiga");
+        for (let i = 0; i < 2; i++) {
+          if (clonePool.length > 0) {
+            const base = clonePool[Math.floor(Math.random() * clonePool.length)];
+            const newCard = {
+              ...base,
+              power: base.basePower ?? base.power ?? 0
+            };
+            deck.push(newCard); // adiciona diretamente
+          }
+        }
+        } else {
+        energy += card.power;
+        floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
+        }
+        glowPlayer("green");
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+      }
+      //💚
+      else if (card.name === "Xenofluxo") {
+        energy += 1;
+        glowPlayer("green");
+        floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
