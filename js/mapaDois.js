@@ -1430,7 +1430,7 @@ const bossModels = [
       behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 5 : 10 }],
       img: "../img/jogo/inimigos/olho2.png",
       tipoDano: "(⚔️)💥",
-      tipoVida: "❤️"
+      tipoVida: "💤"
     },
     {
       name: "Boss Irislidriz",
@@ -1448,7 +1448,7 @@ const bossModels = [
       behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 5 : 10 }],
       img: "../img/jogo/inimigos/olho.png",
       tipoDano: "(⚔️)💥",
-      tipoVida: "❤️"
+      tipoVida: "💤"
     },
   ]
 ];
