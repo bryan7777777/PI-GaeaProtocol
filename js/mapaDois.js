@@ -260,7 +260,7 @@ function criarPlayerNaDiv3() {
     ],
     gaeaReen: [
       allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Tsunami"),
+      allCards.find(c => c.name === "Estratégia"),
       allCards.find(c => c.name === "Destruir Carta"),
       allCards.find(c => c.name === "Destruir Carta"),
       allCards.find(c => c.name === "Destruir Carta"),
@@ -748,12 +748,12 @@ const allCards = [
     type: "suporte"
   },
   {
-    name: "Estratégia Antiga",
+    name: "Estratégia",
     cost: 0,
     basePower: 2,
     rarity: "legend",
     img: "../img/jogo/cards/buff/cerebro.png",
-    desc: "Se você tiver 3 cartas ou menos na mão compre 2 cartas (Exceto ela mesma), se tiver mais ganhe 2 de energia.",
+    desc: "Se você tiver 3 cartas ou menos na mão clone 2 cartas (Exceto ela mesma), se tiver mais ganhe 2 de energia.",
     type: "suporte"
   },
   {
@@ -1669,7 +1669,7 @@ function drawCards() {
       case "Cura":
       case "Ritual":
       case "Cura Forte":
-      case "Estratégia Antiga":
+      case "Estratégia":
       case "Limite da Vida":
       case "Xenofluxo":
       case "Drone Médico":
@@ -2146,9 +2146,9 @@ function drawCards() {
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
-      else if (card.name === "Estratégia Antiga") {
+      else if (card.name === "Estratégia") {
         if (deck.length<=3) {
-        const clonePool = playerDeck.filter(c => c.name !== "Estratégia Antiga");
+        const clonePool = playerDeck.filter(c => c.name !== "Estratégia");
         for (let i = 0; i < 2; i++) {
           if (clonePool.length > 0) {
             const base = clonePool[Math.floor(Math.random() * clonePool.length)];
@@ -2162,8 +2162,8 @@ function drawCards() {
         } else {
         energy += card.power;
         floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
-        }
         glowPlayer("green");
+        }
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
