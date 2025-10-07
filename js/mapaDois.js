@@ -260,7 +260,7 @@ function criarPlayerNaDiv3() {
     ],
     gaeaReen: [
       allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Estratégia"),
+      allCards.find(c => c.name === "Drone de Ataque"),
       allCards.find(c => c.name === "Destruir Carta"),
       allCards.find(c => c.name === "Destruir Carta"),
       allCards.find(c => c.name === "Destruir Carta"),
@@ -1733,12 +1733,13 @@ function drawCards() {
       if (card.name === "Ataque Preciso") {
         animateDamage(enemies[0].el);
         if (enemies[0].hp <= 30) {
-          enemies[0].hp -= 20;
+          dano= 20;
         } else {
-          enemies[0].hp -= card.power;
+          dano= card.power;
         }
+        enemies[0].hp -= dano;
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
-        floatText(enemies[0].el, `-${card.power}⚔️`, "red");
+        floatText(enemies[0].el, `-${dano}⚔️`, "red");
       }
       //⚔️
       else if (card.name === "Rebeldia") {
