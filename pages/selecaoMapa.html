@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,82 +8,91 @@
   <link rel="stylesheet" href="./../css/reset.css" />
   <link rel="stylesheet" href="./../css/mapa.css" />
   <script src="./../js/mapaDois.js" defer></script>
-    <link rel="stylesheet" href="./../css/batalha.css">
+  <link rel="stylesheet" href="./../css/batalha.css">
   <!-- <script src="./../js/batalha.js" defer></script> -->
 </head>
+
 <body>
   <div id="game">
     <div class="tela selecaoPlayer" id="div1">
-      <h1>SELEÇÃO DE PERSONAGEM:</h1>
-      <div id="selecaoPlayer">
-        <div class="personagens"><img id="vermelho" src="./../img/jogo/pilotos/capacetevermelho.png" alt=""></div>
-        <div class="personagens"><img  id="laranja" src="./../img/jogo/pilotos/capacetelaranja.png" alt=""></div>
-        <div class="personagens"><img id="amarelo" src="./../img/jogo/pilotos/capaceteamarelo.png" alt=""></div>
-        <div class="personagens"><img id="verde" src="./../img/jogo/pilotos/capaceteverde.png" alt=""></div>
-        <div class="personagens"><img id="azul" src="./../img/jogo/pilotos/capaceteazul.png" alt=""></div>
-        <div class="personagens"><img id="roxo" src="./../img/jogo/pilotos/capaceteroxo.png" alt=""></div>
-        <div class="personagens"><img id="ferrus" src="./../img/jogo/pilotos/magnusFerrus.png" alt=""></div>
-        <div class="personagens"><img id="wallace" src="./../img/jogo/pilotos/espectroDaFloresta.jpeg" alt=""></div>
-        <div class="personagens"><img id="porto" src="./../img/jogo/pilotos/autoridadeDoPorto.jpg" alt=""></div>
-        <div class="personagens"><img id="tomoeh" src="./../img/jogo/pilotos/sombraDaMorte.jpeg" alt=""></div>
-        <div class="personagens"><img id="gaeaReen" src="./../img/jogo/pilotos/gaeaReen.png" alt=""></div>
-        <div class="personagens"><img id="x" src="./../img/jogo/pilotos/gemea.jpeg" alt=""></div>
+      <div id="blocoSeleção">
+        <h1>SELEÇÃO DE PERSONAGEM:</h1>
+        <div id="selecaoPlayer">
+          <div class="personagens"><img id="vermelho" src="./../img/jogo/pilotos/capacetevermelho.png" alt=""></div>
+          <div class="personagens"><img id="laranja" src="./../img/jogo/pilotos/capacetelaranja.png" alt=""></div>
+          <div class="personagens"><img id="amarelo" src="./../img/jogo/pilotos/capaceteamarelo.png" alt=""></div>
+          <div class="personagens"><img id="verde" src="./../img/jogo/pilotos/capaceteverde.png" alt=""></div>
+          <div class="personagens"><img id="azul" src="./../img/jogo/pilotos/capaceteazul.png" alt=""></div>
+          <div class="personagens"><img id="roxo" src="./../img/jogo/pilotos/capaceteroxo.png" alt=""></div>
+          <div class="personagens"><img id="ferrus" src="./../img/jogo/pilotos/magnusFerrus.png" alt=""></div>
+          <div class="personagens"><img id="wallace" src="./../img/jogo/pilotos/espectroDaFloresta.jpeg" alt=""></div>
+          <div class="personagens"><img id="porto" src="./../img/jogo/pilotos/autoridadeDoPorto.jpg" alt=""></div>
+          <div class="personagens"><img id="tomoeh" src="./../img/jogo/pilotos/sombraDaMorte.jpeg" alt=""></div>
+          <div class="personagens"><img id="gaeaReen" src="./../img/jogo/pilotos/gaeaReen.png" alt=""></div>
+          <div class="personagens"><img id="x" src="./../img/jogo/pilotos/gemea.jpeg" alt=""></div>
+        </div>
+        <button id="fimSelecao">CONFIRMAR SELEÇÃO DE PERSONAGEM</button>
       </div>
-      <button id="fimSelecao">CONFIRMAR SELEÇÃO DE PERSONAGEM</button>
+      <div id="descPersonagem">
+        <h1>SELECIONE UM PERSONAGEM PARA VER SUA DESCRIÇÃO:</h1><br><br>
+        <p>DIFICULDADE</p><br>
+        <p>STATUS BASE</p><br>
+        <p>DESCRIÇÃO DELE</p>
+      </div>
     </div>
     <div class="tela mapa" id="div2">
       <div id="mapa"></div>
       <canvas id="conexoes"></canvas>
-      
+
       <audio src="./../audio/artblock.ogg" id="audio" loop></audio>
     </div>
     <div class="tela luta" id="div3">
       <div id="overlay"></div>
-  <div id="popup">
-    <p>Escolha sua recompensa!</p>
-    <div id="recompensa"></div>
-    <button onclick="fecharPopup(), displayInimigos()" id="lutaUm">PULAR</button>
-  </div>
-  <!-- FIM DE GAME -->
-  <div id="popupFinal">
-    <p>PARABENS VOCÊ GANHOU!</p>
-    <a href="./../index.html"><button id="fimDeJogo">Voltar para o site</button></a>
-    <a href="./telaDeInicioJogo.html"><button id="fimDeJogo">Voltar para o menu</button></a>
-  </div>
-  <div id="popupOver">
-    <p>GAME OVER!</p>
-    <a href="./../index.html"><button id="fimDeJogo">Voltar para o site</button></a>
-    <a href="./telaDeInicioJogo.html"><button id="fimDeJogo">Voltar para o menu</button></a>
-  </div>
-
-  <header id="playerBarra">
-    <!-- itens e deck -->
-     <div id="itens">
-       <img src="./../img/jogo/itens/Vida2.png" alt="">
-       <img src="./../img/jogo/itens/Algas.png" alt="">
-       <img src="./../img/jogo/itens/Picareta2.png" alt="">
-       <img src="./../img/jogo/itens/auraLaranja.png" alt="">
-     </div>
-  </header>
-  <div id="jogo">
-    <div id="battlefield">
-      <div id="player-area">
-
-        <p id="lifeBar">❤️ <strong><span id="hp"></span></strong></p>
+      <div id="popup">
+        <p>Escolha sua recompensa!</p>
+        <div id="recompensa"></div>
+        <button onclick="fecharPopup(), displayInimigos()" id="lutaUm">PULAR</button>
       </div>
-      <div id="inimigo-area">
-        <div id="enemies"></div>
-        <div id="lifeBarsContainer"></div>
+      <!-- FIM DE GAME -->
+      <div id="popupFinal">
+        <p>PARABENS VOCÊ GANHOU!</p>
+        <a href="./../index.html"><button id="fimDeJogo">Voltar para o site</button></a>
+        <a href="./telaDeInicioJogo.html"><button id="fimDeJogo">Voltar para o menu</button></a>
       </div>
-    </div>
+      <div id="popupOver">
+        <p>GAME OVER!</p>
+        <a href="./../index.html"><button id="fimDeJogo">Voltar para o site</button></a>
+        <a href="./telaDeInicioJogo.html"><button id="fimDeJogo">Voltar para o menu</button></a>
+      </div>
 
-    <div id="hud">
-      <div><span id="icon-energy">🔷</span><strong><span id="energy">3</span></strong></div>
-      <button onclick="enemyTurn()" id="finalTurno">FINALIZAR TURNO</button>
-    </div>
+      <header id="playerBarra">
+        <!-- itens e deck -->
+        <div id="itens">
+          <img src="./../img/jogo/itens/Vida2.png" alt="">
+          <img src="./../img/jogo/itens/Algas.png" alt="">
+          <img src="./../img/jogo/itens/Picareta2.png" alt="">
+          <img src="./../img/jogo/itens/auraLaranja.png" alt="">
+        </div>
+      </header>
+      <div id="jogo">
+        <div id="battlefield">
+          <div id="player-area">
 
-    <div id="cards"></div>
-  </div>
+            <p id="lifeBar">❤️ <strong><span id="hp"></span></strong></p>
+          </div>
+          <div id="inimigo-area">
+            <div id="enemies"></div>
+            <div id="lifeBarsContainer"></div>
+          </div>
+        </div>
+
+        <div id="hud">
+          <div><span id="icon-energy">🔷</span><strong><span id="energy">3</span></strong></div>
+          <button onclick="enemyTurn()" id="finalTurno">FINALIZAR TURNO</button>
+        </div>
+
+        <div id="cards"></div>
+      </div>
       <button id="lutaUm" class="nada">voltar para mapa</button>
     </div>
     <div class="tela loja" id="div4">
@@ -91,21 +101,25 @@
     </div>
     <div class="tela inventario" id="div5">
       <div id="medico">
-      <h1>MÉDICO</h1>
-      <button class="inventario curaVida">Cure 25 de vida</button>
-      <button class="inventario aumentaVida">Aumente sua vida maxima em 10</button>
+        <h1>MÉDICO</h1>
+        <button class="inventario curaVida">Cure 25 de vida</button>
+        <button class="inventario aumentaVida">Aumente sua vida maxima em 10</button>
       </div>
       <div id="acolito">
-      <h1>ACÓLITO</h1>
-      <button class="inventario curaSacre">Cura sua vida inteira porem perca 10 de vida maxima (Sua vida não fica a baixo de 10)</button>
-      <button class="inventario aumentaSacre">Aumente sua vida maxima em 30 porem perca 50 de vida (Sua vida não fica a baixo de 1)</button>
+        <h1>ACÓLITO</h1>
+        <button class="inventario curaSacre">Cura sua vida inteira porem perca 10 de vida maxima (Sua vida não fica a
+          baixo de 10)</button>
+        <button class="inventario aumentaSacre">Aumente sua vida maxima em 30 porem perca 50 de vida (Sua vida não fica
+          a baixo de 1)</button>
       </div>
     </div>
     <div class="tela ferreiro" id="div6">
       <h1>FERREIRO</h1>
       <button class="ferreiro armaduraUp">Inicie sempre com +2 de armadura ao inves de 0</button>
-      <button class="ferreiro armaduraSacre">Sacrefique 50 de vida maxima em troca inicie sempre com +15 de armadura (Sua vida não fica a baixo de 10)</button>
+      <button class="ferreiro armaduraSacre">Sacrefique 50 de vida maxima em troca inicie sempre com +15 de armadura
+        (Sua vida não fica a baixo de 10)</button>
     </div>
   </div>
 </body>
+
 </html>

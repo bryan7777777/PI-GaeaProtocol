@@ -1,5 +1,6 @@
 let telaAtual = 1;
 let telaAnterior = null;
+configurarSelecaoPersonagem();
 
 document.getElementById('fimSelecao').addEventListener('click', proximaTela);
 
@@ -361,6 +362,176 @@ function criarPlayerNaDiv3() {
   div3.insertBefore(playerImg, div3.firstChild);
 }
 
+function configurarSelecaoPersonagem() {
+  const personagensInfo = {
+    vermelho: {
+      nome: "⚔️VIKLAV, A VIOLÊNCIA REENCARNADA⚔️",
+      dificuldade: "⚔️NÍVEL DE DIFICULDADE: 💀💀💀⚔️",
+      cor: "rgb(172, 0, 0)",
+      descricao: "Focado em causar muito dano em área, ele pode ser letal para ambos os lados.",
+      hp: 50,
+      maxHp: 50,
+      energia: 4,
+      escudo: 0,
+      mao: 6
+    },
+    laranja: {
+      nome: "🔥GABRIEL, O INABALÁVEL🔥",
+      dificuldade: "🔥NÍVEL DE DIFICULDADE: 💀🔥",
+      cor: "rgb(255, 128, 0)",
+      descricao: "Agressivo e ágil, perfeito para combates rápidos, causa múltiplos danos em um único alvo.",
+      hp: 70,
+      maxHp: 70,
+      energia: 3,
+      escudo: 0,
+      mao: 6
+    },
+    azul: {
+      nome: "🛡️REINOR, O ESCUDO DA HUMANIDADE🛡️",
+      dificuldade: "🛡️NÍVEL DE DIFICULDADE: 💀🛡️",
+      cor: "rgb(10, 142, 179)",
+      descricao: "Focado em defesa, extremamente defensivo, utiliza de seus escudos para se proteger e causar dano.",
+      hp: 130,
+      maxHp: 130,
+      energia: 3,
+      escudo: 5,
+      mao: 5
+    },
+    amarelo: {
+      nome: "⛏️BRUNO, O MINEIRO CHEFE⛏️",
+      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀⛏️",
+      cor: "rgb(231, 201, 7)",
+      descricao: "Nem muito forte nem fraco, versátil e sabe como conseguir xenofluxo.",
+      hp: 100,
+      maxHp: 100,
+      energia: 3,
+      escudo: 0,
+      mao: 5
+    },
+    verde: {
+      nome: "🍃JÃO, O CARA🍃",
+      dificuldade: "🍃NÍVEL DE DIFICULDADE: 💀🍃",
+      cor: "rgb(91, 146, 115)",
+      descricao: "Deck versátil, com um pouco de tudo e status balanceados.",
+      hp: 100,
+      maxHp: 100,
+      energia: 3,
+      escudo: 0,
+      mao: 6
+    },
+    roxo: {
+      nome: "⚙️MALAQUIAS, A INTERFACE CAÓTICA⚙️",
+      dificuldade: "⚙️NÍVEL DE DIFICULDADE: 💀💀⚙️",
+      cor: "rgb(141, 7, 231)",
+      descricao: "Um engenheiro estratégico, utiliza de seus drones para tudo, saber como usar sua energia é algo vital.",
+      hp: 60,
+      maxHp: 60,
+      energia: 5,
+      escudo: 0,
+      mao: 7
+    },
+    ferrus: {
+      nome: "⚒️MAGNUS FERRUS, O PRODÍGIO⚒️",
+      dificuldade: "⚒️NÍVEL DE DIFICULDADE: 💀💀💀⚒️",
+      cor: "rgb(103, 67, 0)",
+      descricao: "Deck focado inteiramente em reciclagem, quem diria que reciclar seria bom para todos os lados.",
+      hp: 80,
+      maxHp: 160,
+      energia: 3,
+      escudo: 0,
+      mao: 6
+    },
+    wallace: {
+      nome: "🌲WALLACE, O ESPECTRO DA FLORESTA🌲",
+      dificuldade: "🌲NÍVEL DE DIFICULDADE: NULL🌲",
+      cor: "rgb(0, 188, 16)",
+      descricao: "NULL",
+      hp: 100,
+      maxHp: 100,
+      energia: 4,
+      escudo: 0,
+      mao: 5
+    },
+    porto: {
+      nome: "⚓CLARICE, A AUTORIDADE DO PORTO⚓",
+      dificuldade: "⚓NÍVEL DE DIFICULDADE: 💀💀⚓",
+      cor: "rgba(69, 89, 222, 1)",
+      descricao: "Estrategista em causar dano na linha de trás, sabe se defender bem e usa isso a seu favor.",
+      hp: 110,
+      maxHp: 110,
+      energia: 3,
+      escudo: 5,
+      mao: 4
+    },
+    tomoeh: {
+      nome: "🩸TOMOEH, A SOMBRA🩸",
+      dificuldade: "🩸NÍVEL DE DIFICULDADE: 💀💀💀🩸",
+      cor: "rgb(255, 147, 250)",
+      descricao: "Uma assassina ágil e mortal, porém frágil. Tente finalizar a batalha rapidamente antes que o pior aconteça...",
+      hp: 30,
+      maxHp: 30,
+      energia: 6,
+      escudo: 0,
+      mao: 9
+    },
+    gaeaReen: {
+      nome: "🌿ELIZE, A ESPERANÇA🌿",
+      dificuldade: "🌿NÍVEL DE DIFICULDADE: NULL🌿",
+      cor: "rgb(255, 255, 255)",
+      descricao: "NULL",
+      hp: 100,
+      maxHp: 100,
+      energia: 3,
+      escudo: 0,
+      mao: 5
+    },
+    x: {
+      nome: "🔮#####, A ESQUECIDA🔮",
+      dificuldade: "🔮NÍVEL DE DIFICULDADE: NULL🔮",
+      cor: "rgb(0, 114, 129)",
+      descricao: "NULL",
+      hp: 100,
+      maxHp: 200,
+      energia: 2,
+      escudo: 2,
+      mao: 4
+    }
+  };
+
+  const descBox = document.getElementById("descPersonagem");
+  const imagens = document.querySelectorAll("#selecaoPlayer img");
+
+  imagens.forEach(img => {
+    img.addEventListener("click", () => {
+      const info = personagensInfo[img.id];
+      if (!info) return;
+
+      // Atualiza borda e sombra
+      descBox.style.border = `3px solid ${info.cor}`;
+      descBox.style.boxShadow = `0 0 25px ${info.cor}`;
+      descBox.style.padding = "15px";
+      descBox.style.borderRadius = "12px";
+      descBox.style.background = "rgba(0, 0, 0, 0.7)";
+      descBox.style.color = "#fff";
+      descBox.style.transition = "all 0.3s ease";
+
+      // Exibe nome, dificuldade, descrição e status
+      descBox.innerHTML = `
+        <strong style=" margin: 5px 0; color:${info.cor};">${info.nome}</strong>
+        <em style="display:block; margin: 5px 0; color:${info.cor}; font-weight:bold;">${info.dificuldade}</em>
+        <em style="display:block; margin: 5px 0; color:${info.cor}; font-weight:bold;">❤️${info.hp} / ${info.maxHp}, 🔷${info.energia}, 🛡️${info.escudo}, 🤚${info.mao}</em><br><br><br>
+        <span>${info.descricao}</span>
+      `;
+
+      // Atualiza a seleção visual
+      imagens.forEach(el => el.classList.remove("selecionado"));
+      img.classList.add("selecionado");
+
+      // Guarda globalmente o personagem selecionado
+      window.personagemSelecionado = img.id;
+    });
+  });
+}
 
 const deck = [];
 const allCards = [
@@ -1422,7 +1593,7 @@ const bossModels = [
       tipoVida: "❤️"
     }
   ],
-   [
+  [
     {
       name: "Vigia de Irislidriz",
       hp: 30,
@@ -1733,9 +1904,9 @@ function drawCards() {
       if (card.name === "Ataque Preciso") {
         animateDamage(enemies[0].el);
         if (enemies[0].hp <= 30) {
-          dano= 20;
+          dano = 20;
         } else {
-          dano= card.power;
+          dano = card.power;
         }
         enemies[0].hp -= dano;
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
@@ -1904,7 +2075,7 @@ function drawCards() {
       }
       //🛡️
       else if (card.name === "Tsunami") {
-        def=card.power*(deck.length+enemies.length);
+        def = card.power * (deck.length + enemies.length);
         playerShield += def;
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
@@ -1913,19 +2084,19 @@ function drawCards() {
       //🛡️
       else if (card.name === "Defesa Salvadora") {
         def = card.power;
-        if (deck.length <=1) {
-        def*=3
-        playerShield += def;
-        playerHP = Math.min(playerHP + def, playerMaxHP);
-        glowPlayer("green");
-        floatText(document.getElementById("player"), `+${def}💚`, "lime");
-        } else if (deck.length <=3) {
-        playerShield += def;
-        playerHP = Math.min(playerHP + def, playerMaxHP);
-        glowPlayer("green");
-        floatText(document.getElementById("player"), `+${def}💚`, "lime"); 
-        } else{
-        playerShield += def;
+        if (deck.length <= 1) {
+          def *= 3
+          playerShield += def;
+          playerHP = Math.min(playerHP + def, playerMaxHP);
+          glowPlayer("green");
+          floatText(document.getElementById("player"), `+${def}💚`, "lime");
+        } else if (deck.length <= 3) {
+          playerShield += def;
+          playerHP = Math.min(playerHP + def, playerMaxHP);
+          glowPlayer("green");
+          floatText(document.getElementById("player"), `+${def}💚`, "lime");
+        } else {
+          playerShield += def;
         }
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
@@ -1933,36 +2104,36 @@ function drawCards() {
       }
       //🛡️
       else if (card.name === "Ultima Defesa") {
-        if (deck.length <=1) {
-        playerShield += card.power;
-        glowPlayer("blue");
-        floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+        if (deck.length <= 1) {
+          playerShield += card.power;
+          glowPlayer("blue");
+          floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         }
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
       //🛡️
       else if (card.name === "Campo de Força Instavel") {
         if (deck.length == 4) {
-        playerShield += card.power;
-        glowPlayer("blue");
-        floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+          playerShield += card.power;
+          glowPlayer("blue");
+          floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         }
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
       //🛡️
       else if (card.name === "Campo Presurizado") {
-        if (deck.length <=1) {
-        playerShield += card.power;
-        glowPlayer("blue");
-        floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+        if (deck.length <= 1) {
+          playerShield += card.power;
+          glowPlayer("blue");
+          floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         }
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
       }
       //🛡️
       else if (card.name === "Blindagem Vital") {
-        def=playerHP;
-        if (deck.length <=1) {
-        def*=2;
+        def = playerHP;
+        if (deck.length <= 1) {
+          def *= 2;
         }
         playerShield += def;
         glowPlayer("blue");
@@ -2113,57 +2284,57 @@ function drawCards() {
       }
       //💚
       else if (card.name === "Ritual") {
-        if (deck.length<=1) {
-        playerHP = Math.min(playerHP + card.power, playerMaxHP);
-        glowPlayer("green");
-        floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
-        } else{
-        animateDamage(document.getElementById("player"));
-        floatText(document.getElementById("player"), `-${card.power}⚔️`, "red");
-        playerHP-=card.power;
+        if (deck.length <= 1) {
+          playerHP = Math.min(playerHP + card.power, playerMaxHP);
+          glowPlayer("green");
+          floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
+        } else {
+          animateDamage(document.getElementById("player"));
+          floatText(document.getElementById("player"), `-${card.power}⚔️`, "red");
+          playerHP -= card.power;
         }
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
       else if (card.name === "Cura Forte") {
-        if (deck.length<=1) {
-        playerHP = Math.min(playerHP + card.power, playerMaxHP);
-        glowPlayer("green");
-        floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
+        if (deck.length <= 1) {
+          playerHP = Math.min(playerHP + card.power, playerMaxHP);
+          glowPlayer("green");
+          floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
         }
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
       else if (card.name === "Limite da Vida") {
         cura = card.power;
-        if (playerHP<=30) {
-          cura = card.power*3;
+        if (playerHP <= 30) {
+          cura = card.power * 3;
         }
-        if (deck.length<=3) {
-        playerHP = Math.min(playerHP + cura, playerMaxHP);
-        glowPlayer("green");
-        floatText(document.getElementById("player"), `+${cura}💚`, "lime");
+        if (deck.length <= 3) {
+          playerHP = Math.min(playerHP + cura, playerMaxHP);
+          glowPlayer("green");
+          floatText(document.getElementById("player"), `+${cura}💚`, "lime");
         }
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
       else if (card.name === "Estratégia") {
-        if (deck.length<=3) {
-        const clonePool = playerDeck.filter(c => c.name !== "Estratégia");
-        for (let i = 0; i < 2; i++) {
-          if (clonePool.length > 0) {
-            const base = clonePool[Math.floor(Math.random() * clonePool.length)];
-            const newCard = {
-              ...base,
-              power: base.basePower ?? base.power ?? 0
-            };
-            deck.push(newCard); // adiciona diretamente
+        if (deck.length <= 3) {
+          const clonePool = playerDeck.filter(c => c.name !== "Estratégia");
+          for (let i = 0; i < 2; i++) {
+            if (clonePool.length > 0) {
+              const base = clonePool[Math.floor(Math.random() * clonePool.length)];
+              const newCard = {
+                ...base,
+                power: base.basePower ?? base.power ?? 0
+              };
+              deck.push(newCard); // adiciona diretamente
+            }
           }
-        }
         } else {
-        energy += card.power;
-        floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
-        glowPlayer("green");
+          energy += card.power;
+          floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
+          glowPlayer("green");
         }
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
@@ -2477,7 +2648,7 @@ function drawCards() {
           return;
         }
 
-        energy += Math.floor(lixoRemovido/2);
+        energy += Math.floor(lixoRemovido / 2);
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${lixoRemovido}🔷`, "cyan");
         updateHUD();
@@ -2772,14 +2943,14 @@ function enemyTurn() {
             playerShield -= absorbed;
             dano -= absorbed;
             animateDamage(document.getElementById("player"));
-          floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
+            floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
           }
 
           if (dano > 0) {
             playerHP -= dano;
             animateDamage(document.getElementById("player"));
-          floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
-          redScreenGlow(300, 30);
+            floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
+            redScreenGlow(300, 30);
           }
 
         } else if (act.type === "attackVida") {
@@ -2964,7 +3135,7 @@ function checkEnemies() {
               };
             }
 
-            
+
 
             if (novo) {
               // adiciona no array na mesma posição
@@ -3038,7 +3209,7 @@ function redScreenGlow(duration = 500, intensity = 30) {
   overlay.style.zIndex = "9999";
 
   // cria o glow vermelho para dentro
-  overlay.style.boxShadow = `0 0 ${intensity}px ${intensity/2}px rgba(214, 77, 77, 1) inset`;
+  overlay.style.boxShadow = `0 0 ${intensity}px ${intensity / 2}px rgba(214, 77, 77, 1) inset`;
   overlay.style.opacity = "1";
   overlay.style.transition = `opacity 0.3s ease-out`;
 
