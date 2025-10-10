@@ -41,6 +41,8 @@ let mapaBatalha = 0;
 let maoInicio = 5;
 // buff em cards aumenta esse
 let limiteMao = 5;
+// nenhuma mão pode exceder 10, evitar scrol
+let maxMao = 10;
 
 function curaVida() {
   playerHP = Math.min(playerHP + 25, playerMaxHP);
@@ -258,11 +260,11 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Destruir Carta"),
     ],
     gaeaReen: [
-      allCards.find(c => c.name === "Ferro Velho"),
-      allCards.find(c => c.name === "Xenofluxo Reciclável"),
-      allCards.find(c => c.name === "Ferro Velho"),
-      allCards.find(c => c.name === "Ferro Velho"),
-      allCards.find(c => c.name === "Ferro Velho"),
+      allCards.find(c => c.name === "Restos de mecha"),
+      allCards.find(c => c.name === "Restos de mecha"),
+      allCards.find(c => c.name === "Armamento Pesado"),
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Compra Dupla"),
     ]
   };
 
@@ -551,11 +553,11 @@ const allCards = [
   },
   {
     name: "Armamento Pesado",
-    cost: 3,
+    cost: 2,
     basePower: 0,
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/armamentoForte.jpg",
-    desc: "Compre <strong>Impacto Bruto</strong>, <strong>Ataque</strong> e <strong>Rajada Dupla</strong> com custo 0",
+    desc: "Compre <strong>Impacto Bruto</strong>, <strong>Ataque</strong> e <strong>Rajada Dupla</strong> com custo 0 se sua mão for 3 ou menos",
   },
   {
     name: "Chuva de Laminas",
@@ -796,13 +798,13 @@ const allCards = [
     basePower: 30,
     rarity: "rare",
     img: "../img/jogo/cards/def/lua.png",
-    desc: "Ganhe 30 de escudo se tiver 3 ou menos cartas, se não cause dano.",
+    desc: "Ganhe 30 de escudo se tiver 3 ou menos cartas, se não cause 30 de dano.",
     type: "defesa"
   },
   {
     name: "Drone Defensivo",
     cost: 1,
-    basePower: 0,
+    basePower: 2,
     rarity: "epic",
     img: "../img/jogo/cards/def/droneDef.jpg",
     desc: "Compre uma carta de <strong>Defesa</strong> para cada inimigo em campo, se ouver 3 ganhe <strong>Escudo</strong> no lugar.",
@@ -1009,7 +1011,7 @@ const allCards = [
   {
     name: "Compra Dupla",
     cost: 1,
-    basePower: 0,
+    basePower: 1,
     rarity: "rare",
     img: "../img/jogo/cards/buff/comprarCarta.png",
     desc: "Compra 2 cartas aleatórias.",
@@ -1126,10 +1128,10 @@ const allCards = [
   {
     name: "Restos de mecha",
     cost: 0,
-    basePower: 0,
+    basePower: 2,
     rarity: "epic",
     img: "../img/jogo/cards/lixo/mecaLixo.png",
-    desc: "Adiciona 3 cartas de Entulho à sua mão.",
+    desc: "Adiciona 3 cartas de <strong>Entulho</strong> à sua mão.",
     type: "lixo"
   },
   {
@@ -1144,10 +1146,10 @@ const allCards = [
   {
     name: "Ferro Velho",
     cost: 0,
-    basePower: 0,
+    basePower: 1,
     rarity: "common",
     img: "../img/jogo/cards/lixo/ferroVelho.png",
-    desc: "Adiciona 2 cartas de Entulho à sua mão.",
+    desc: "Adiciona 2 cartas de <strong>Entulho</strong> à sua mão.",
     type: "lixo"
   }
 ];
@@ -1939,9 +1941,13 @@ function drawCards() {
           enemies[0].hp -= card.power;
           floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         }
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         // filtra cartas que NÃO sejam Liderança
         const clonePool = playerDeck.filter(c => c.name !== "Liderança");
-        for (let i = 0; i < 2; i++) {
+        const cartasParaAdicionar = 1;
+        const espaco = maxMao - deck.length;
+        const total = Math.min(cartasParaAdicionar, espaco);
+        for (let i = 0; i <= total; i++) {
           if (clonePool.length > 0) {
             const base = clonePool[Math.floor(Math.random() * clonePool.length)];
             const newCard = {
@@ -1951,10 +1957,6 @@ function drawCards() {
             deck.push(newCard); // adiciona diretamente
           }
         }
-        const brokenWeapon = allCards.find(c => c.name === "Arma Quebrada");
-        if (brokenWeapon) {
-          deck.push({ ...brokenWeapon, power: 0 });
-        }
       }
       //⚔️
       else if (card.name === "Furia") {
@@ -1963,7 +1965,11 @@ function drawCards() {
         } else {
           j = card.power
         }
-        for (let i = 0; i < j; i++) {
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        const cartasParaAdicionar = j;
+        const espaco = maxMao - deck.length;
+        const total = Math.min(cartasParaAdicionar, espaco);
+        for (let i = 0; i <= total; i++) {
           deck.push({ ...allCards.find(c => c.name === "Ataque Rapido"), power: 5, cost: 0 });
         }
       }
@@ -1975,10 +1981,13 @@ function drawCards() {
           floatText(e.el, `-${card.power}⚔️`, "red");
         });
 
-        for (let i = 0; i < enemies.length; i++) {
+        deck.push({ ...allCards.find(c => c.name === "Drone Quebrado"), power: 0 });
+        const cartasParaAdicionar = enemies.length-1;
+        const espaco = maxMao - deck.length;
+        const total = Math.min(cartasParaAdicionar, espaco);
+        for (let i = 0; i <= total; i++) {
           deck.push({ ...allCards.find(c => c.name === "Ataque Preciso"), power: 6 });
         }
-        deck.push({ ...allCards.find(c => c.name === "Drone Quebrado"), power: 0 });
       }
       //⚔️
       else if (card.name === "Drenagem") {
@@ -2185,15 +2194,17 @@ function drawCards() {
       //🛡️
       else if (card.name === "Drone Defensivo") {
         if (enemies.length >= 3) {
-          for (let i = 0; i < enemies.length; i++) {
-            deck.push({ ...allCards.find(c => c.name === "Escudo"), power: 10 });
-          }
+            oq = { ...allCards.find(c => c.name === "Escudo"), power: 10 };
         } else {
-          for (let i = 0; i < enemies.length; i++) {
-            deck.push({ ...allCards.find(c => c.name === "Defesa"), power: 6 });
-          }
+            oq = { ...allCards.find(c => c.name === "Defesa"), power: 6 };
         }
         deck.push({ ...allCards.find(c => c.name === "Drone Quebrado"), power: 0 });
+        const cartasParaAdicionar = enemies.length-1;
+        const espaco = maxMao - deck.length;
+        const total = Math.min(cartasParaAdicionar, espaco);
+        for (let i = 0; i <= total; i++) {
+        deck.push(oq);
+        }
       }
       //🛡️
       else if (card.name === "Impulso Defensivo") {
@@ -2318,8 +2329,12 @@ function drawCards() {
       //💚
       else if (card.name === "Estratégia") {
         if (deck.length <= 3) {
+          deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
           const clonePool = playerDeck.filter(c => c.name !== "Estratégia");
-          for (let i = 0; i < 2; i++) {
+          const cartasParaAdicionar = 1;
+          const espaco = maxMao - deck.length;
+          const total = Math.min(cartasParaAdicionar, espaco);
+          for (let i = 0; i <= total; i++) {
             if (clonePool.length > 0) {
               const base = clonePool[Math.floor(Math.random() * clonePool.length)];
               const newCard = {
@@ -2333,8 +2348,8 @@ function drawCards() {
           energy += card.power;
           floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
           glowPlayer("green");
+          deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
-        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
       else if (card.name === "Xenofluxo") {
@@ -2416,7 +2431,11 @@ function drawCards() {
       }
       //💚
       else if (card.name === "Compra Dupla") {
-        for (let i = 0; i < 2; i++) {
+        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        const cartasParaAdicionar = card.power;
+        const espaco = maxMao - deck.length;
+        const total = Math.min(cartasParaAdicionar, espaco);
+        for (let i = 0; i <= total; i++) {
           const newCard = {
             ...allCards[Math.floor(Math.random() * allCards.length)],
             power: allCards[Math.floor(Math.random() * allCards.length)].basePower
@@ -2424,7 +2443,6 @@ function drawCards() {
           deck.push(newCard); // adiciona diretamente, ignorando limite
         }
         glowPlayer("green");
-        deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
 
       //  ♻️♻️♻️♻️♻️ RECICLAGEM ♻️♻️♻️♻️♻️
@@ -2735,7 +2753,10 @@ function drawCards() {
       else if (card.name === "Restos de mecha") {
         if (energy < card.cost) return;
         energy -= card.cost;
-        for (let i = 0; i < 3; i++) {
+        const cartasParaAdicionar = card.power;
+        const espaco = maxMao - deck.length;
+        const total = Math.min(cartasParaAdicionar, espaco);
+        for (let i = 0; i <= total; i++) {
           deck.push({ ...allCards.find(c => c.name === "Entulho"), power: 0 });
         }
       }
@@ -2743,32 +2764,13 @@ function drawCards() {
       else if (card.name === "Ferro Velho") {
         if (energy < card.cost) return;
         energy -= card.cost;
-        // Adiciona 2 cartas de Entulho na mão
-        for (let i = 0; i < 2; i++) {
+
+        const cartasParaAdicionar = card.power;
+        const espaco = maxMao - deck.length;
+        const total = Math.min(cartasParaAdicionar, espaco);
+        for (let i = 0; i <= total; i++) {
           deck.push({ ...allCards.find(c => c.name === "Entulho"), power: 0 });
         }
-      }
-      //🗑️
-      else if (card.name === "Chamado do Alfa") {
-        if (energy < card.cost) return;
-        energy -= card.cost;
-        for (let i = 0; i < 2; i++) {
-          deck.push({ ...allCards.find(c => c.name === "Alcateia"), power: 0 });
-        }
-      }
-      //🗑️
-      else if (card.name === "Alcateia") {
-        if (energy < card.cost) return;
-        energy -= card.cost;
-        for (let i = 0; i < 2; i++) {
-          deck.push({ ...allCards.find(c => c.name === "Lobo"), power: 0 });
-        }
-      }
-      //🗑️
-      else if (card.name === "Lobo") {
-        animateDamage(document.getElementById("player"));
-        playerHP -= 2;
-        floatText(document.getElementById("player"), `${"-2"}⚔️`, "red");
       }
 
       //  ✨✨✨✨✨ CINTILANTE ✨✨✨✨✨
@@ -2787,9 +2789,11 @@ function drawCards() {
       }
       //✨
       else if (card.name === "Armamento Pesado") {
+        if (deck.length <=3) {
         deck.push({ ...allCards.find(c => c.name === "Impacto Bruto"), power: 20, cost: 0 });
         deck.push({ ...allCards.find(c => c.name === "Ataque"), power: 6, cost: 0 });
         deck.push({ ...allCards.find(c => c.name === "Rajada Dupla"), power: 6, cost: 0 });
+        }
       }
       //✨
       else if (card.name === "Chuva de Laminas") {
