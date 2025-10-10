@@ -507,7 +507,7 @@ function configurarSelecaoPersonagem() {
       if (!info) return;
 
       // Atualiza borda e sombra
-      descBox.style.border = `3px solid ${info.cor}`;
+      descBox.style.border = `5px solid ${info.cor}`;
       descBox.style.boxShadow = `0 0 25px ${info.cor}`;
       descBox.style.padding = "15px";
       descBox.style.borderRadius = "12px";
