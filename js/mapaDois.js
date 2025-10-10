@@ -519,7 +519,7 @@ function configurarSelecaoPersonagem() {
       descBox.innerHTML = `
         <strong style=" margin: 5px 0; color:${info.cor};">${info.nome}</strong>
         <em style="display:block; margin: 5px 0; color:${info.cor}; font-weight:bold;">${info.dificuldade}</em>
-        <em style="display:block; margin: 5px 0; color:${info.cor}; font-weight:bold;">❤️${info.hp} / ${info.maxHp}, 🔷${info.energia}, 🛡️${info.escudo}, 🤚${info.mao}</em><br><br><br>
+        <em style="display:block; margin: 5px 0; color:${info.cor}; font-weight:bold;">❤️${info.hp} / ${info.maxHp}, 🛡️${info.escudo}, 🤚${info.mao}, 🔷${info.energia}</em><br><br><br>
         <span>${info.descricao}</span>
       `;
 
