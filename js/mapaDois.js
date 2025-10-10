@@ -259,11 +259,11 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Destruir Carta"),
     ],
     gaeaReen: [
-      allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Drone de Ataque"),
-      allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Ferro Velho"),
+      allCards.find(c => c.name === "Xenofluxo Reciclável"),
+      allCards.find(c => c.name === "Ferro Velho"),
+      allCards.find(c => c.name === "Ferro Velho"),
+      allCards.find(c => c.name === "Ferro Velho"),
     ]
   };
 
@@ -906,7 +906,7 @@ const allCards = [
     basePower: 0,
     rarity: "epic",
     img: "../img/jogo/cards/reciclagem/ganhoDeEnergia.png",
-    desc: "Remove cartas de lixo da mão e ganhe 1 de energia por cada carta removida.",
+    desc: "Recicla lixo, ganhe 1 de energia a cada 2 lixos reciclados (Arredondado para baixo).",
     type: "reciclagem"
   },
   {
@@ -2477,7 +2477,7 @@ function drawCards() {
           return;
         }
 
-        energy += lixoRemovido;
+        energy += Math.floor(lixoRemovido/2);
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${lixoRemovido}🔷`, "cyan");
         updateHUD();
