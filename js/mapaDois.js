@@ -439,7 +439,7 @@ function configurarSelecaoPersonagem() {
       maxHp: 160,
       energia: 3,
       escudo: 0,
-      mao: 6
+      mao: 5
     },
     wallace: {
       nome: "🌲WALLACE, O ESPECTRO DA FLORESTA🌲",
