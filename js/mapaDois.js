@@ -2,8 +2,6 @@ let telaAtual = 1;
 let telaAnterior = null;
 configurarSelecaoPersonagem();
 
-document.getElementById('fimSelecao').addEventListener('click', proximaTela);
-
 document.getElementById('lutaUm').addEventListener('click', irParaDiv2);
 
 document.getElementById('lojaUm').addEventListener('click', irParaDiv2);
@@ -3401,13 +3399,20 @@ personagens.forEach(img => {
 // Botão confirmar seleção
 document.getElementById("fimSelecao").addEventListener("click", () => {
   if (!personagemSelecionado) {
-    alert("Selecione um personagem primeiro!");
-    return;
+    // Opcional: destacar os personagens para indicar que precisam ser selecionados
+    const personagens = document.querySelectorAll(".personagem");
+    personagens.forEach(p => {
+      p.classList.add("destacar"); // você pode criar no CSS um efeito de borda ou brilho
+      setTimeout(() => p.classList.remove("destacar"), 1000);
+    });
+
+    return; // impede que saia da tela
   }
+
+  // Se houver seleção
   criarPlayerNaDiv3(); // cria o player na tela de batalha
-  mostrarTela(2);      // vai para o mapa, por exemplo
+  mostrarTela(2);      // vai para o mapa ou próxima tela
   console.log("Selecionado:", personagemSelecionado);
-  // Aqui você coloca a lógica de troca de tela (div1 → div2)
 });
 
 // MAPA
