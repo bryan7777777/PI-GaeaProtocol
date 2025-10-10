@@ -365,7 +365,7 @@ function criarPlayerNaDiv3() {
 function configurarSelecaoPersonagem() {
   const personagensInfo = {
     vermelho: {
-      nome: "⚔️VIKLAV, A VIOLÊNCIA REENCARNADA⚔️",
+      nome: "⚔️VIKLAV, O GENERAL SANGUINARIO⚔️",
       dificuldade: "⚔️NÍVEL DE DIFICULDADE: 💀💀💀⚔️",
       cor: "rgb(172, 0, 0)",
       descricao: "Focado em causar muito dano em área, ele pode ser letal para ambos os lados.",
