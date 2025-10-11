@@ -169,6 +169,8 @@ html, body {
   background-position: bottom;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   z-index: 5;
 }
@@ -300,23 +302,34 @@ button {
   background-color: rgb(0, 0, 0);
 }
 
-#fimSelecao, .inventario button, .ferreiro button, #lutaUm{
+#fimSelecao, .inventario button, .ferreiro button, #lutaUm, .pular{
   width: 100%;
   height:100px;
-  font-size: 100%;
+  font-size: 80%;
   background-color: rgba(0, 188, 188, 0.521);
-  border-radius: 0px 25px;
+  border-radius: 12px;
   border: solid 5px rgba(0, 255, 255, 0.521);
   color: aliceblue;
   padding: 10px;  
   transition: 1s;
 }
 
-#fimSelecao:hover, .inventario button:hover, .ferreiro button:hover, #lutaUm:hover{
+#fimSelecao:hover, .inventario button:hover, .ferreiro button:hover, #lutaUm:hover, .pular:hover{
   width: 100%;
+  font-size: 100%;
   background-color: rgba(2, 114, 0, 0.6);
   box-shadow: 2px 2px 50px 2px rgba(0, 255, 106, 0.521);
   border: solid 5px rgb(108, 223, 133);
+}
+
+.ferreiro button, .ferreiro button:hover{
+  max-width: 375px;
+  min-height: 140px;
+  font-size: 70%;
+}
+
+.ferreiro button:hover{
+  font-size: 75%;
 }
 
 /* MAPA */
@@ -367,20 +380,21 @@ button {
 .inventario .curaSacre, .inventario .aumentaSacre{
   width: 20%;
   height:10%;
-  font-size: 50%;
-  background-color: rgba(255, 0, 0, 0.521);
-  border-radius: 0px 25px;
-  border: solid 2px rgba(255, 0, 0, 0.521);
+  font-size: 80%;
+  background-color: rgba(255, 0, 0, 0.5);
+  border-radius: 12px;
+  border: solid 5px rgba(255, 0, 0, 0.521);
   color: aliceblue;
   padding: 10px;  
   transition: 1s;
 }
 
 .inventario .curaSacre:hover, .inventario .aumentaSacre:hover{
-  background-color: rgb(214, 0, 185);
+  font-size: 85%;
+  background-color: rgba(214, 0, 185, 0.5);
   box-shadow: 2px 2px 50px 2px rgba(255, 0, 255, 0.521);
   width: 22%;
-  border: solid 2px rgba(129, 5, 129, 0.644);
+  border: solid 5px rgba(129, 5, 129, 0.644);
 }
 
 #div5{

@@ -14,6 +14,10 @@ document.querySelectorAll('.inventario').forEach(el => {
   el.addEventListener('click', irParaDiv2);
 });
 
+document.querySelectorAll('.pular').forEach(el => {
+  el.addEventListener('click', irParaDiv2);
+});
+
 document.querySelectorAll('.curaVida').forEach(el => {
   el.addEventListener('click', curaVida);
 });
@@ -262,9 +266,9 @@ function criarPlayerNaDiv3() {
     gaeaReen: [
       allCards.find(c => c.name === "Restos de mecha"),
       allCards.find(c => c.name === "Restos de mecha"),
-      allCards.find(c => c.name === "Armamento Pesado"),
+      allCards.find(c => c.name === "Restos de mecha"),
       allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Compra Dupla"),
+      allCards.find(c => c.name === "Furia"),
     ]
   };
 
@@ -1966,7 +1970,7 @@ function drawCards() {
           j = card.power
         }
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
-        const cartasParaAdicionar = j;
+        const cartasParaAdicionar = j-1;
         const espaco = maxMao - deck.length;
         const total = Math.min(cartasParaAdicionar, espaco);
         for (let i = 0; i <= total; i++) {
