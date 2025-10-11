@@ -268,7 +268,7 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Restos de mecha"),
       allCards.find(c => c.name === "Restos de mecha"),
       allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Furia"),
+      allCards.find(c => c.name === "Golpe Neural Retaliante"),
     ]
   };
 
@@ -1000,7 +1000,7 @@ const allCards = [
     basePower: 20,
     rarity: "epic",
     img: "../img/jogo/cards/buff/neural.png",
-    desc: "Cause dano igual sua vida atual, perca 20 da vida atual",
+    desc: "Cause dano igual sua vida atual, perca 20 da vida atual (não pode ser letal a você)",
     type: "suporte"
   },
   {
@@ -2400,12 +2400,18 @@ function drawCards() {
       }
       //💚
       else if (card.name === "Golpe Neural Retaliante") {
+        if (playerHP<20) {
+          dano = playerHP-1;
+          playerHP = 1;
+        } else {
+          dano = card.power;
+          playerHP -= card.power;
+        }
         animateDamage(enemies[0].el);
         animateDamage(document.getElementById("player"));
         enemies[0].hp -= playerHP;
         floatText(enemies[0].el, `-${playerHP}⚔️`, "red");
-        playerHP -= card.power;
-        floatText(document.getElementById("player"), `-${card.power}💔`, "red");
+        floatText(document.getElementById("player"), `-${dano}💔`, "red");
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
       }
       //💚
@@ -3171,7 +3177,7 @@ function checkEnemies() {
           }
 
           // Se não houver mais inimigos, abre popup
-          if (mapaBatalha === 20 && enemies.length === 0 && playerHP > 0) {
+          if (mapaBatalha === 40 && enemies.length === 0 && playerHP > 0) {
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popupFinal").style.display = "flex";
             gerarItens();
@@ -3195,8 +3201,8 @@ function checkEnemies() {
             drawCards();
             updateHUD();
             playerShield = playerShieldInit;
+            reviver = 0;
           }
-
         }, 500);
       })(i);
     }
@@ -3318,7 +3324,7 @@ function gerarItens() {
     cardDiv.addEventListener("click", () => {
       playerDeck.push({ ...carta, power: carta.basePower ?? carta.power ?? 0 });
       fecharPopup();     // fecha popup
-      mostrarTela(2);   // volta para o mapa
+      irParaDiv2();   // volta para o mapa
       updateHUD();      // atualiza HUD
     });
 
@@ -3362,10 +3368,12 @@ function proximaTela() {
 }
 
 function irParaDiv2() {
-  mostrarTela(2);
-  if (mapaBatalha >= 10) {
-    mostrarTela(7);
-  }
+  const mb = mapaBatalha;
+  if (mb >= 40) return mostrarTela(10);
+  if (mb >= 30) return mostrarTela(9);
+  if (mb >= 20) return mostrarTela(8);
+  if (mb >= 10) return mostrarTela(7);
+  return mostrarTela(2);
 }
 
 function irParaDiv4() {
@@ -3422,7 +3430,7 @@ document.getElementById("fimSelecao").addEventListener("click", () => {
 
   // Se houver seleção
   criarPlayerNaDiv3(); // cria o player na tela de batalha
-  mostrarTela(2);      // vai para o mapa ou próxima tela
+  irParaDiv2();      // vai para o mapa ou próxima tela
   console.log("Selecionado:", personagemSelecionado);
 });
 
@@ -3820,7 +3828,6 @@ shadow.innerHTML = `
       case 'inimigo':
       case 'elite':
       case 'boss':
-        telaAnterior = 2;
         document.getElementById("enemies").style.display = "flex";
         document.getElementById("lifeBarsContainer").style.display = "flex";
         mostrarTela(3); // Tela de luta (div3)
@@ -3862,6 +3869,9 @@ shadow.innerHTML = `
 
 mapaCanvas("div2");
 mapaCanvas("div7");
+mapaCanvas("div8");
+mapaCanvas("div9");
+mapaCanvas("div10");
 var myMusic = new Audio("./../audio/artblock.ogg");
 myMusic.loop = true;
 myMusic.play();
