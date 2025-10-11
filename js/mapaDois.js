@@ -3171,7 +3171,7 @@ function checkEnemies() {
           }
 
           // Se não houver mais inimigos, abre popup
-          if (mapaBatalha === 10 && enemies.length === 0 && playerHP > 0) {
+          if (mapaBatalha === 20 && enemies.length === 0 && playerHP > 0) {
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popupFinal").style.display = "flex";
             gerarItens();
@@ -3341,7 +3341,7 @@ function checkGameOver() {
 // gera inimigos aleatórios no início
 
 function mostrarTela(n) {
-  for (let i = 1; i <= 6; i++) {
+  for (let i = 1; i <= 10; i++) {
     const tela = document.getElementById(`div${i}`);
     if (tela) {
       if (i === n) {
@@ -3363,6 +3363,9 @@ function proximaTela() {
 
 function irParaDiv2() {
   mostrarTela(2);
+  if (mapaBatalha >= 10) {
+    mostrarTela(7);
+  }
 }
 
 function irParaDiv4() {
@@ -3424,7 +3427,8 @@ document.getElementById("fimSelecao").addEventListener("click", () => {
 });
 
 // MAPA
-const container = document.getElementById("div2");
+function mapaCanvas(dv) {
+const container = document.getElementById(dv);
 const shadow = container.attachShadow({ mode: "open" });
 
 // Define CSS isolado
@@ -3828,17 +3832,14 @@ shadow.innerHTML = `
         break;
 
       case 'loja':
-        telaAnterior = 2;
         mostrarTela(4); // Tela da loja (div4)
         break;
 
       case 'ferreiro':
-        telaAnterior = 2;
         mostrarTela(6);
         break;
 
       case 'hospital':
-        telaAnterior = 2;
         mostrarTela(5); // Tela do hospital (div5)
         break;
 
@@ -3857,7 +3858,10 @@ shadow.innerHTML = `
   gerarMapa();
   desenharMapa();
 })();
+}
 
+mapaCanvas("div2");
+mapaCanvas("div7");
 var myMusic = new Audio("./../audio/artblock.ogg");
 myMusic.loop = true;
 myMusic.play();
