@@ -268,7 +268,7 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Restos de mecha"),
       allCards.find(c => c.name === "Restos de mecha"),
       allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Golpe Neural Retaliante"),
+      allCards.find(c => c.name === "Explosão"),
     ]
   };
 
@@ -1970,7 +1970,7 @@ function drawCards() {
           j = card.power
         }
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
-        const cartasParaAdicionar = j-1;
+        const cartasParaAdicionar = j - 1;
         const espaco = maxMao - deck.length;
         const total = Math.min(cartasParaAdicionar, espaco);
         for (let i = 0; i <= total; i++) {
@@ -1986,7 +1986,7 @@ function drawCards() {
         });
 
         deck.push({ ...allCards.find(c => c.name === "Drone Quebrado"), power: 0 });
-        const cartasParaAdicionar = enemies.length-1;
+        const cartasParaAdicionar = enemies.length - 1;
         const espaco = maxMao - deck.length;
         const total = Math.min(cartasParaAdicionar, espaco);
         for (let i = 0; i <= total; i++) {
@@ -2198,16 +2198,16 @@ function drawCards() {
       //🛡️
       else if (card.name === "Drone Defensivo") {
         if (enemies.length >= 3) {
-            oq = { ...allCards.find(c => c.name === "Escudo"), power: 10 };
+          oq = { ...allCards.find(c => c.name === "Escudo"), power: 10 };
         } else {
-            oq = { ...allCards.find(c => c.name === "Defesa"), power: 6 };
+          oq = { ...allCards.find(c => c.name === "Defesa"), power: 6 };
         }
         deck.push({ ...allCards.find(c => c.name === "Drone Quebrado"), power: 0 });
-        const cartasParaAdicionar = enemies.length-1;
+        const cartasParaAdicionar = enemies.length - 1;
         const espaco = maxMao - deck.length;
         const total = Math.min(cartasParaAdicionar, espaco);
         for (let i = 0; i <= total; i++) {
-        deck.push(oq);
+          deck.push(oq);
         }
       }
       //🛡️
@@ -2400,8 +2400,8 @@ function drawCards() {
       }
       //💚
       else if (card.name === "Golpe Neural Retaliante") {
-        if (playerHP<20) {
-          dano = playerHP-1;
+        if (playerHP < 20) {
+          dano = playerHP - 1;
           playerHP = 1;
         } else {
           dano = card.power;
@@ -2799,10 +2799,10 @@ function drawCards() {
       }
       //✨
       else if (card.name === "Armamento Pesado") {
-        if (deck.length <=3) {
-        deck.push({ ...allCards.find(c => c.name === "Impacto Bruto"), power: 20, cost: 0 });
-        deck.push({ ...allCards.find(c => c.name === "Ataque"), power: 6, cost: 0 });
-        deck.push({ ...allCards.find(c => c.name === "Rajada Dupla"), power: 6, cost: 0 });
+        if (deck.length <= 3) {
+          deck.push({ ...allCards.find(c => c.name === "Impacto Bruto"), power: 20, cost: 0 });
+          deck.push({ ...allCards.find(c => c.name === "Ataque"), power: 6, cost: 0 });
+          deck.push({ ...allCards.find(c => c.name === "Rajada Dupla"), power: 6, cost: 0 });
         }
       }
       //✨
@@ -3177,7 +3177,7 @@ function checkEnemies() {
           }
 
           // Se não houver mais inimigos, abre popup
-          if (mapaBatalha === 40 && enemies.length === 0 && playerHP > 0) {
+          if (mapaBatalha === 50 && enemies.length === 0 && playerHP > 0) {
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popupFinal").style.display = "flex";
             gerarItens();
@@ -3436,11 +3436,11 @@ document.getElementById("fimSelecao").addEventListener("click", () => {
 
 // MAPA
 function mapaCanvas(dv) {
-const container = document.getElementById(dv);
-const shadow = container.attachShadow({ mode: "open" });
+  const container = document.getElementById(dv);
+  const shadow = container.attachShadow({ mode: "open" });
 
-// Define CSS isolado
-const style = `
+  // Define CSS isolado
+  const style = `
   // body {
   //   margin: 0;
   //   background-image: url(../img/background/mapa.png);
@@ -3610,261 +3610,272 @@ const style = `
 }
 `;
 
-// Define HTML da interface
-shadow.innerHTML = `
+  // Define HTML da interface
+  shadow.innerHTML = `
   <style>${style}</style>
   <canvas id="conexoes"></canvas>
   <div id="mapa"></div>
 `;
 
 
-// Começa o código JavaScript isolado no Shadow DOM
-(() => {
-  const tipos = ['inimigo', 'hospital', 'ferreiro', 'elite'];
-  const mapa = [];
-  const numFases = 10;
-  const caminhosPorFase = 5;
-  const mapaContainer = shadow.getElementById("mapa");
-  const canvas = shadow.getElementById("conexoes");
-  const ctx = canvas.getContext("2d");
-  let nodoAtual = null;
-  let iniciado = false;
+  // Começa o código JavaScript isolado no Shadow DOM
+  (() => {
+    const tipos = ['inimigo', 'hospital', 'ferreiro', 'elite'];
+    const mapa = [];
+    const numFases = 10;
+    const caminhosPorFase = 5;
+    const mapaContainer = shadow.getElementById("mapa");
+    const canvas = shadow.getElementById("conexoes");
+    const ctx = canvas.getContext("2d");
+    let nodoAtual = null;
+    let iniciado = false;
 
-  function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
-
-  function gerarMapa() {
-    for (let i = 0; i < numFases; i++) {
-      const coluna = [];
-      for (let j = 0; j < caminhosPorFase; j++) {
-        let tipo = tipos[Math.floor(Math.random() * tipos.length)];
-        if (i === 0) tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
-        else if (i === numFases - 1) tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'boss' : 'invalido';
-        coluna.push({ tipo, conexoes: [] });
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
       }
-      mapa.push(coluna);
+      return array;
     }
 
-    for (let i = 0; i < numFases - 1; i++) {
-      for (let j = 0; j < caminhosPorFase; j++) {
-        if (mapa[i][j].tipo === 'invalido') continue;
+    function gerarMapa() {
+      for (let i = 0; i < numFases; i++) {
+        const coluna = [];
+        for (let j = 0; j < caminhosPorFase; j++) {
+          let tipo = tipos[Math.floor(Math.random() * tipos.length)];
+          if (i === 0) tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
+          else if (i === numFases - 1) tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'boss' : 'invalido';
+          coluna.push({ tipo, conexoes: [] });
+        }
+        mapa.push(coluna);
+      }
 
-        if (i === 0) {
-          mapa[i][j].conexoes = [];
-          for (let k = 0; k < caminhosPorFase; k++) {
-            if (mapa[i + 1][k].tipo !== 'invalido') {
-              mapa[i][j].conexoes.push(k);
+      for (let i = 0; i < numFases - 1; i++) {
+        for (let j = 0; j < caminhosPorFase; j++) {
+          if (mapa[i][j].tipo === 'invalido') continue;
+
+          if (i === 0) {
+            mapa[i][j].conexoes = [];
+            for (let k = 0; k < caminhosPorFase; k++) {
+              if (mapa[i + 1][k].tipo !== 'invalido') {
+                mapa[i][j].conexoes.push(k);
+              }
+            }
+            continue;
+          }
+
+          if (i === numFases - 2) {
+            mapa[i][j].conexoes.push(Math.floor(caminhosPorFase / 2));
+            continue;
+          }
+
+          let possiveis = [];
+          if (j > 0 && mapa[i + 1][j - 1].tipo !== 'invalido') possiveis.push(j - 1);
+          if (mapa[i + 1][j].tipo !== 'invalido') possiveis.push(j);
+          if (j < caminhosPorFase - 1 && mapa[i + 1][j + 1].tipo !== 'invalido') possiveis.push(j + 1);
+          mapa[i][j].conexoes = shuffle(possiveis).slice(0, Math.floor(Math.random() * 2) + 1);
+        }
+      }
+
+      for (let i = 1; i < numFases; i++) {
+        for (let j = 0; j < caminhosPorFase; j++) {
+          if (mapa[i][j].tipo === 'invalido') continue;
+          let temEntrada = mapa[i - 1].some(n => n.conexoes.includes(j));
+          if (!temEntrada) {
+            let vizinhos = [j, j - 1, j + 1].filter(x => x >= 0 && x < caminhosPorFase);
+            shuffle(vizinhos);
+            for (let v of vizinhos) {
+              if (mapa[i - 1][v].tipo !== 'invalido') {
+                mapa[i - 1][v].conexoes.push(j);
+                break;
+              }
             }
           }
-          continue;
-        }
-
-        if (i === numFases - 2) {
-          mapa[i][j].conexoes.push(Math.floor(caminhosPorFase / 2));
-          continue;
-        }
-
-        let possiveis = [];
-        if (j > 0 && mapa[i + 1][j - 1].tipo !== 'invalido') possiveis.push(j - 1);
-        if (mapa[i + 1][j].tipo !== 'invalido') possiveis.push(j);
-        if (j < caminhosPorFase - 1 && mapa[i + 1][j + 1].tipo !== 'invalido') possiveis.push(j + 1);
-        mapa[i][j].conexoes = shuffle(possiveis).slice(0, Math.floor(Math.random() * 2) + 1);
-      }
-    }
-
-    for (let i = 1; i < numFases; i++) {
-      for (let j = 0; j < caminhosPorFase; j++) {
-        if (mapa[i][j].tipo === 'invalido') continue;
-        let temEntrada = mapa[i - 1].some(n => n.conexoes.includes(j));
-        if (!temEntrada) {
-          let vizinhos = [j, j - 1, j + 1].filter(x => x >= 0 && x < caminhosPorFase);
-          shuffle(vizinhos);
-          for (let v of vizinhos) {
-            if (mapa[i - 1][v].tipo !== 'invalido') {
-              mapa[i - 1][v].conexoes.push(j);
-              break;
-            }
-          }
         }
       }
     }
-  }
 
-  function desenharMapa() {
-    mapaContainer.innerHTML = '';
-    mapa.forEach((coluna, i) => {
-      const colDiv = document.createElement('div');
-      colDiv.classList.add('coluna');
+    function desenharMapa() {
+      mapaContainer.innerHTML = '';
+      mapa.forEach((coluna, i) => {
+        const colDiv = document.createElement('div');
+        colDiv.classList.add('coluna');
 
-      coluna.forEach((nodo, j) => {
-        const el = document.createElement('div');
-        el.classList.add('nodo', nodo.tipo);
-        el.dataset.pos = `${i}-${j}`;
-        el.textContent = {
-          boss: '👑',
-          inimigo: '💀',
-          loja: '🛒',
-          elite: '☠️',
-          ferreiro: '⚒️',
-          hospital: '💚',
-        }[nodo.tipo] || '';
+        coluna.forEach((nodo, j) => {
+          const el = document.createElement('div');
+          el.classList.add('nodo', nodo.tipo);
+          el.dataset.pos = `${i}-${j}`;
+          el.textContent = {
+            boss: '👑',
+            inimigo: '💀',
+            loja: '🛒',
+            elite: '☠️',
+            ferreiro: '⚒️',
+            hospital: '💚',
+          }[nodo.tipo] || '';
 
-        el.addEventListener('click', () => clicarNodo(i, j));
-        colDiv.appendChild(el);
-        nodo.element = el;
-      });
-      mapaContainer.appendChild(colDiv);
-    });
-
-    atualizarAcessibilidade();
-    desenharConexoes();
-  }
-
-  function desenharConexoes() {
-    const rect = mapaContainer.getBoundingClientRect();
-    canvas.width = mapaContainer.scrollWidth;
-    canvas.height = mapaContainer.scrollHeight;
-    canvas.style.width = canvas.width + 'px';
-    canvas.style.height = canvas.height + 'px';
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = "#fff";
-    ctx.lineWidth = 3;
-    ctx.lineCap = 'round';
-
-    for (let i = 0; i < mapa.length - 1; i++) {
-      mapa[i].forEach((nodo, j) => {
-        const de = nodo.element.getBoundingClientRect();
-        nodo.conexoes.forEach(k => {
-          const para = mapa[i + 1][k].element.getBoundingClientRect();
-          const x1 = de.left - rect.left + 20;
-          const y1 = de.top - rect.top + 20;
-          const x2 = para.left - rect.left + 20;
-          const y2 = para.top - rect.top + 20;
-          ctx.beginPath();
-          ctx.moveTo(x1, y1);
-          ctx.lineTo(x2, y2);
-          ctx.stroke();
+          el.addEventListener('click', () => clicarNodo(i, j));
+          colDiv.appendChild(el);
+          nodo.element = el;
         });
+        mapaContainer.appendChild(colDiv);
       });
+
+      atualizarAcessibilidade();
+      desenharConexoes();
     }
-  }
 
-  function clicarNodo(i, j) {
-    const tipo = mapa[i][j].tipo;
+    function desenharConexoes() {
+      const rect = mapaContainer.getBoundingClientRect();
+      canvas.width = mapaContainer.scrollWidth;
+      canvas.height = mapaContainer.scrollHeight;
+      canvas.style.width = canvas.width + 'px';
+      canvas.style.height = canvas.height + 'px';
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 3;
+      ctx.lineCap = 'round';
 
-    if (!iniciado) {
-      if (i === 0 && j === Math.floor(caminhosPorFase / 2)) {
-        iniciado = true;
+      for (let i = 0; i < mapa.length - 1; i++) {
+        mapa[i].forEach((nodo, j) => {
+          const de = nodo.element.getBoundingClientRect();
+          nodo.conexoes.forEach(k => {
+            const para = mapa[i + 1][k].element.getBoundingClientRect();
+            const x1 = de.left - rect.left + 20;
+            const y1 = de.top - rect.top + 20;
+            const x2 = para.left - rect.left + 20;
+            const y2 = para.top - rect.top + 20;
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+          });
+        });
+      }
+    }
+
+    function clicarNodo(i, j) {
+      const tipo = mapa[i][j].tipo;
+
+      if (!iniciado) {
+        if (i === 0 && j === Math.floor(caminhosPorFase / 2)) {
+          iniciado = true;
+          nodoAtual = { i, j };
+          executarAcao(tipo);
+          atualizarAcessibilidade();
+          marcarSelecionado();
+          centralizarNodo(mapa[i][j].element);
+        } else {
+          alert('Clique no ponto inicial para começar.');
+        }
+        return;
+      }
+
+      if (i === nodoAtual.i + 1 && mapa[nodoAtual.i][nodoAtual.j].conexoes.includes(j)) {
         nodoAtual = { i, j };
         executarAcao(tipo);
         atualizarAcessibilidade();
         marcarSelecionado();
         centralizarNodo(mapa[i][j].element);
       } else {
-        alert('Clique no ponto inicial para começar.');
+        alert('Você só pode avançar para os pontos conectados na próxima fase.');
       }
-      return;
     }
 
-    if (i === nodoAtual.i + 1 && mapa[nodoAtual.i][nodoAtual.j].conexoes.includes(j)) {
-      nodoAtual = { i, j };
-      executarAcao(tipo);
-      atualizarAcessibilidade();
-      marcarSelecionado();
-      centralizarNodo(mapa[i][j].element);
-    } else {
-      alert('Você só pode avançar para os pontos conectados na próxima fase.');
-    }
-  }
+    function atualizarAcessibilidade() {
+      mapa.forEach((coluna, i) => {
+        coluna.forEach((nodo, j) => {
+          if (nodo.tipo === 'invalido') return;
+          let podeClicar = false;
+          if (!iniciado) {
+            if (i === 0 && j === Math.floor(caminhosPorFase / 2)) podeClicar = true;
+          } else {
+            if (i === nodoAtual.i && j === nodoAtual.j) podeClicar = true;
+            if (i === nodoAtual.i + 1 && mapa[nodoAtual.i][nodoAtual.j].conexoes.includes(j)) podeClicar = true;
+          }
 
-  function atualizarAcessibilidade() {
-    mapa.forEach((coluna, i) => {
-      coluna.forEach((nodo, j) => {
-        if (nodo.tipo === 'invalido') return;
-        let podeClicar = false;
-        if (!iniciado) {
-          if (i === 0 && j === Math.floor(caminhosPorFase / 2)) podeClicar = true;
-        } else {
-          if (i === nodoAtual.i && j === nodoAtual.j) podeClicar = true;
-          if (i === nodoAtual.i + 1 && mapa[nodoAtual.i][nodoAtual.j].conexoes.includes(j)) podeClicar = true;
-        }
-
-        if (podeClicar) {
-          nodo.element.classList.remove('inacessivel');
-          nodo.element.style.pointerEvents = "auto";
-          nodo.element.style.opacity = "1";
-        } else {
-          nodo.element.classList.add('inacessivel');
-          nodo.element.style.pointerEvents = "none";
-          nodo.element.style.opacity = "0.85";
-        }
+          if (podeClicar) {
+            nodo.element.classList.remove('inacessivel');
+            nodo.element.style.pointerEvents = "auto";
+            nodo.element.style.opacity = "1";
+          } else {
+            nodo.element.classList.add('inacessivel');
+            nodo.element.style.pointerEvents = "none";
+            nodo.element.style.opacity = "0.85";
+          }
+        });
       });
-    });
-  }
-
-  function marcarSelecionado() {
-    mapa.forEach(coluna => {
-      coluna.forEach(nodo => nodo.element.classList.remove('selecionado'));
-    });
-    if (nodoAtual) {
-      mapa[nodoAtual.i][nodoAtual.j].element.classList.add('selecionado');
-    }
-  }
-
-  function centralizarNodo(el) {
-    const rect = el.getBoundingClientRect();
-    const contRect = mapaContainer.getBoundingClientRect();
-    const scrollX = rect.left - contRect.left + mapaContainer.scrollLeft - contRect.width / 2 + rect.width / 2;
-    mapaContainer.scrollTo({ left: scrollX, behavior: "smooth" });
-  }
-
-  function executarAcao(tipo) {
-    switch (tipo) {
-      case 'inimigo':
-      case 'elite':
-      case 'boss':
-        document.getElementById("enemies").style.display = "flex";
-        document.getElementById("lifeBarsContainer").style.display = "flex";
-        mostrarTela(3); // Tela de luta (div3)
-        // window.location.href = "batalha.html";
-        spawnEnemies(tipo);
-        drawNewCards();
-        drawCards();
-        updateHUD();
-        break;
-
-      case 'loja':
-        mostrarTela(4); // Tela da loja (div4)
-        break;
-
-      case 'ferreiro':
-        mostrarTela(6);
-        break;
-
-      case 'hospital':
-        mostrarTela(5); // Tela do hospital (div5)
-        break;
-
-      default:
-        alert('Tipo de sala não reconhecido.');
     }
 
-    mapaBatalha++
-    if (mapaBatalha === 6) {
-      const div = document.getElementById("jogo");
-      // mudar img
-      div.style.backgroundImage = "url('../img/jogo/background/luta3.png')";
+    function marcarSelecionado() {
+      mapa.forEach(coluna => {
+        coluna.forEach(nodo => nodo.element.classList.remove('selecionado'));
+      });
+      if (nodoAtual) {
+        mapa[nodoAtual.i][nodoAtual.j].element.classList.add('selecionado');
+      }
     }
-  }
 
-  gerarMapa();
-  desenharMapa();
-})();
+    function centralizarNodo(el) {
+      const rect = el.getBoundingClientRect();
+      const contRect = mapaContainer.getBoundingClientRect();
+      const scrollX = rect.left - contRect.left + mapaContainer.scrollLeft - contRect.width / 2 + rect.width / 2;
+      mapaContainer.scrollTo({ left: scrollX, behavior: "smooth" });
+    }
+
+    function executarAcao(tipo) {
+      switch (tipo) {
+        case 'inimigo':
+        case 'elite':
+        case 'boss':
+          document.getElementById("enemies").style.display = "flex";
+          document.getElementById("lifeBarsContainer").style.display = "flex";
+          mostrarTela(3); // Tela de luta (div3)
+          // window.location.href = "batalha.html";
+          spawnEnemies(tipo);
+          drawNewCards();
+          drawCards();
+          updateHUD();
+          break;
+
+        case 'loja':
+          mostrarTela(4); // Tela da loja (div4)
+          break;
+
+        case 'ferreiro':
+          mostrarTela(6);
+          break;
+
+        case 'hospital':
+          mostrarTela(5); // Tela do hospital (div5)
+          break;
+
+        default:
+          alert('Tipo de sala não reconhecido.');
+      }
+
+      mapaBatalha++
+      const fundos = {
+        6: "luta3.png",
+        11: "luta.png",
+        16: "luta2.png",
+        21: "hospital.png",
+        26: "ferreiro.png",
+        31: "hospital.png",
+        36: "planoDeFundo2.png",
+        41: "luta3.png",
+        46: "planoDeFundo2.png"
+      };
+
+      const imagem = fundos[mapaBatalha];
+      if (imagem) {
+        document.getElementById("jogo").style.backgroundImage = `url('../img/jogo/background/${imagem}')`;
+      }
+    }
+
+    gerarMapa();
+    desenharMapa();
+  })();
 }
 
 mapaCanvas("div2");
