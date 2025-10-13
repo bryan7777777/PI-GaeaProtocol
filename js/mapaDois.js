@@ -3435,7 +3435,7 @@ document.getElementById("fimSelecao").addEventListener("click", () => {
 });
 
 // MAPA
-function mapaCanvas(dv) {
+function mapaCanvas(dv,fases,caminhos) {
   const container = document.getElementById(dv);
   const shadow = container.attachShadow({ mode: "open" });
 
@@ -3622,8 +3622,8 @@ function mapaCanvas(dv) {
   (() => {
     const tipos = ['inimigo', 'hospital', 'ferreiro', 'elite'];
     const mapa = [];
-    const numFases = 10;
-    const caminhosPorFase = 5;
+    const numFases = fases;
+    const caminhosPorFase = caminhos;
     const mapaContainer = shadow.getElementById("mapa");
     const canvas = shadow.getElementById("conexoes");
     const ctx = canvas.getContext("2d");
@@ -3857,14 +3857,18 @@ function mapaCanvas(dv) {
       mapaBatalha++
       const fundos = {
         6: "luta3.png",
-        11: "luta.png",
-        16: "luta2.png",
-        21: "hospital.png",
-        26: "ferreiro.png",
-        31: "hospital.png",
-        36: "planoDeFundo2.png",
-        41: "luta3.png",
-        46: "planoDeFundo2.png"
+
+        11: "lutaMapa2.png",
+        16: "lutaMapa22.jpg",
+
+        21: "lutaMapa3.png",
+        26: "lutaMapa33.jpg",
+
+        31: "lutaMapa4.jpg",
+        36: "lutaMapa44.jpg",
+
+        41: "lutaMapa5.jpg",
+        46: "lutaMapa55.jpg"
       };
 
       const imagem = fundos[mapaBatalha];
@@ -3878,11 +3882,11 @@ function mapaCanvas(dv) {
   })();
 }
 
-mapaCanvas("div2");
-mapaCanvas("div7");
-mapaCanvas("div8");
-mapaCanvas("div9");
-mapaCanvas("div10");
+mapaCanvas("div2", 10, 5);
+mapaCanvas("div7", 10, 6);
+mapaCanvas("div8", 10, 7);
+mapaCanvas("div9", 10, 8);
+mapaCanvas("div10", 10, 9);
 var myMusic = new Audio("./../audio/artblock.ogg");
 myMusic.loop = true;
 myMusic.play();
