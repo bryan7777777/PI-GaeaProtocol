@@ -21,9 +21,20 @@ em{
   font-size: 12px;
 }
 
+#popup p, #popupFinal p, #popupOver p{
+  color: aqua;
+  font-size: 34px;
+}
+
+#popupFinal .msgParaJogador, #popupOver .msgParaJogador{
+  color: #fff;
+  font-size: 24px;
+  padding-top: 30px;
+}
+
 #popup, #popupFinal, #popupOver {
   height: 80vh;
-  width: 80vw;
+  width: 50vw;
   display: none;
   align-items: center;
   justify-content: center;
@@ -33,12 +44,26 @@ em{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 119, 188, 0.4);
-  border: solid 1px rgba(2, 0, 102, 0.4);
-  box-shadow: 0 0 25px rgba(0, 162, 255);
+  background-image: url(./../img/jogo/background/background.png);
+  background-position: center;
+  background-size: cover;
+  border: solid 5px rgba(0, 102, 22);
+  box-shadow: 0 0 25px rgb(4, 255, 0);
   padding: 20px;
   border-radius: 10px;
   z-index: 5;
+}
+
+#popupFinal{
+  background-image: url(./../img/jogo/background/bgMenu.png);
+  border: solid 5px rgb(229, 198, 0);
+  box-shadow: 0 0 25px rgb(255, 187, 0);
+}
+
+#popupOver{
+  background-image: url(./../img/jogo/background/gameOver.png);
+  border: solid 5px rgb(102, 51, 0);
+  box-shadow: 0 0 25px rgb(86, 39, 1);
 }
 
 #overlay {
