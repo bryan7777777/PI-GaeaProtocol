@@ -3883,9 +3883,9 @@ function mapaCanvas(dv,fases,caminhos) {
 }
 
 mapaCanvas("div2", 10, 5);
-mapaCanvas("div7", 10, 6);
+mapaCanvas("div7", 10, 3);
 mapaCanvas("div8", 10, 7);
-mapaCanvas("div9", 10, 8);
+mapaCanvas("div9", 10, 3);
 mapaCanvas("div10", 10, 9);
 var myMusic = new Audio("./../audio/artblock.ogg");
 myMusic.loop = true;
