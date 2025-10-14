@@ -3435,7 +3435,7 @@ document.getElementById("fimSelecao").addEventListener("click", () => {
 });
 
 // MAPA
-function mapaCanvas(dv,fases,caminhos) {
+function mapaCanvas(dv,fases,caminhos, corMapa1, corMapa2) {
   const container = document.getElementById(dv);
   const shadow = container.attachShadow({ mode: "open" });
 
@@ -3732,7 +3732,12 @@ function mapaCanvas(dv,fases,caminhos) {
       canvas.style.width = canvas.width + 'px';
       canvas.style.height = canvas.height + 'px';
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.strokeStyle = "#fff";
+      gradient = ctx.createLinearGradient(0, 0, 1000, 0);
+      gradient.addColorStop(0, corMapa1);
+      gradient.addColorStop(1, corMapa2);
+
+  // Aplicando o gradiente como a cor do contorno
+  ctx.strokeStyle = gradient;
       ctx.lineWidth = 3;
       ctx.lineCap = 'round';
 
@@ -3882,11 +3887,12 @@ function mapaCanvas(dv,fases,caminhos) {
   })();
 }
 
-mapaCanvas("div2", 10, 5);
-mapaCanvas("div7", 10, 3);
-mapaCanvas("div8", 10, 7);
-mapaCanvas("div9", 10, 3);
-mapaCanvas("div10", 10, 9);
+mapaCanvas("div2", 10, 5, "#45ff45ff", "#ff8834ff");
+mapaCanvas("div7", 10, 3, "#60ff34ff", "#34ffe1ff");
+mapaCanvas("div8", 10, 7, "#fbfbfbff", "#737373ff");
+mapaCanvas("div9", 10, 3, "#f5fd54ff", "#5db0e7ff");
+mapaCanvas("div10", 10, 9, "#5db0e7ff", "#e75d5dff");
+
 var myMusic = new Audio("./../audio/artblock.ogg");
 myMusic.loop = true;
 myMusic.play();
