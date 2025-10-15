@@ -50,6 +50,63 @@ html, body {
   z-index: 1;  
 }
 
+.classePersonagem{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  border-radius: 0 60px 0 60px;
+  padding-top: 10px;
+  padding: 20px;
+}
+
+.mineiros{
+  background-color: rgba(255, 251, 0, 0.2);
+  border: solid 5px rgb(255, 251, 0);
+}
+#selecaoPlayer #mineiros{
+  color: rgb(255, 251, 0);
+}
+
+.porto{
+  background-color: rgba(0, 119, 255, 0.2);
+  border: solid 5px rgb(0, 157, 255);
+}
+#selecaoPlayer #op{
+  color: rgb(0, 157, 255);
+}
+
+.gaea{
+  background-color: rgba(0, 255, 26, 0.2);
+  border: solid 5px rgb(0, 255, 8);
+}
+#selecaoPlayer #gaea{
+  color: rgb(0, 255, 8);
+}
+
+.vermelhos{
+  background-color: rgba(255, 0, 0, 0.2);
+  border: solid 5px rgb(255, 0, 0);
+}
+#selecaoPlayer #index{
+  color: rgb(255, 0, 0);
+}
+
+.semFaccao{
+  background-color: rgba(255, 255, 255, 0.2);
+  border: solid 5px rgb(255, 255, 255);
+}
+#selecaoPlayer #semFaccao{
+  color: rgb(255, 255, 255);
+}
+
+#selecaoPlayer h1{
+  font-size: 50px;
+}
+
+
+
 #blocoSelecao{
   height: 100%;
   width: 60%;
