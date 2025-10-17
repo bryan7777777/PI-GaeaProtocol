@@ -263,12 +263,41 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "GÆPROTOCOL"),
       allCards.find(c => c.name === "Destruir Carta"),
     ],
-    gaeaReen: [
+    olaf: [
+      allCards.find(c => c.name === "Defesa Condensada"),
+      allCards.find(c => c.name === "Defesa Condensada"),
       allCards.find(c => c.name === "Defesa Condensada"),
       allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Nevasca Mortal"),
+      allCards.find(c => c.name === "Gelo Mortal"),
+      allCards.find(c => c.name === "Gelo Mortal"),
       allCards.find(c => c.name === "Gelo Mortal"),
       allCards.find(c => c.name === "Xenofluxo Glacial"),
       allCards.find(c => c.name === "Baralho Glacial"),
+    ],
+    olga: [
+      allCards.find(c => c.name === "Defesa Condensada"),
+      allCards.find(c => c.name === "Defesa Condensada"),
+      allCards.find(c => c.name === "Defesa Condensada"),
+      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Nevasca Mortal"),
+      allCards.find(c => c.name === "Gelo Mortal"),
+      allCards.find(c => c.name === "Gelo Mortal"),
+      allCards.find(c => c.name === "Gelo Mortal"),
+      allCards.find(c => c.name === "Xenofluxo Glacial"),
+      allCards.find(c => c.name === "Baralho Glacial"),
+    ],
+    gaeaReen: [
+      allCards.find(c => c.name === "Defesa Condensada"),
+      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Nevasca Mortal"),
+      allCards.find(c => c.name === "Xenofluxo Glacial"),
+      allCards.find(c => c.name === "Baralho Glacial"),
+      allCards.find(c => c.name === "Gelo Mortal"),
     ]
   };
 
@@ -354,6 +383,14 @@ function criarPlayerNaDiv3() {
       playerImg.src = "./../img/jogo/player/kalenart.png";
       playerDeck = [...characterDecks.gaeaReen];
       break;
+    case "olaf":
+      playerImg.src = "./../img/jogo/player/olaf.png";
+      playerDeck = [...characterDecks.olaf];
+      break;
+    case "olga":
+      playerImg.src = "./../img/jogo/player/olga.png";
+      playerDeck = [...characterDecks.olaf];
+      break;
     default:
       playerImg.src = "./../img/jogo/extra/prototipo.png";
       playerDeck = [...characterDecks.amarelo];
@@ -369,8 +406,8 @@ function criarPlayerNaDiv3() {
 function configurarSelecaoPersonagem() {
   const personagensInfo = {
     vermelho: {
-      nome: "⚔️VIKLAV, O GENERAL SANGUINARIO⚔️",
-      dificuldade: "⚔️NÍVEL DE DIFICULDADE: 💀💀💀⚔️",
+      nome: "🔥VIKLAV, O GENERAL SANGUINARIO🔥",
+      dificuldade: "🔥NÍVEL DE DIFICULDADE: 💀💀💀🔥",
       cor: "rgb(172, 0, 0)",
       descricao: "Focado em causar muito dano em área, ele pode ser letal para ambos os lados.",
       hp: 50,
@@ -379,9 +416,31 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 6
     },
+    olaf: {
+      nome: "❄️OLAF, O GUARDIÃO GELIDO❄️",
+      dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀❄️",
+      cor: "rgb(128, 240, 255)",
+      descricao: "Focado em enfraquecer e marcar o inimigo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis.",
+      hp: 100,
+      maxHp: 100,
+      energia: 3,
+      escudo: 0,
+      mao: 5
+    },
+    olga: {
+      nome: "❄️OLGA, A PESQUISADORA PRODIGIO❄️",
+      dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀❄️",
+      cor: "rgb(128, 240, 255)",
+      descricao: "Focado em enfraquecer e marcar o inimigo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis.",
+      hp: 100,
+      maxHp: 100,
+      energia: 3,
+      escudo: 0,
+      mao: 5
+    },
     laranja: {
-      nome: "🔥GABRIEL, O INABALÁVEL🔥",
-      dificuldade: "🔥NÍVEL DE DIFICULDADE: 💀🔥",
+      nome: "🐦‍🔥GABRIEL, O INABALÁVEL🐦‍🔥",
+      dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀🐦‍🔥",
       cor: "rgb(255, 128, 0)",
       descricao: "Agressivo e ágil, perfeito para combates rápidos, causa múltiplos danos em um único alvo.",
       hp: 70,
@@ -391,9 +450,9 @@ function configurarSelecaoPersonagem() {
       mao: 6
     },
     azul: {
-      nome: "🛡️REINOR, O ESCUDO DA HUMANIDADE🛡️",
-      dificuldade: "🛡️NÍVEL DE DIFICULDADE: 💀🛡️",
-      cor: "rgb(10, 142, 179)",
+      nome: "⚓REINOR, O ESCUDO DA HUMANIDADE⚓",
+      dificuldade: "⚓NÍVEL DE DIFICULDADE: 💀⚓",
+      cor: "rgba(69, 89, 222, 1)",
       descricao: "Focado em defesa, extremamente defensivo, utiliza de seus escudos para se proteger e causar dano.",
       hp: 130,
       maxHp: 130,
@@ -413,9 +472,9 @@ function configurarSelecaoPersonagem() {
       mao: 5
     },
     verde: {
-      nome: "🍃JÃO, O CARA🍃",
-      dificuldade: "🍃NÍVEL DE DIFICULDADE: 💀🍃",
-      cor: "rgb(91, 146, 115)",
+      nome: "🌿JÃO, O CARA🌿",
+      dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀🌿",
+      cor: "rgb(0, 188, 16)",
       descricao: "Deck versátil, com um pouco de tudo e status balanceados.",
       hp: 100,
       maxHp: 100,
@@ -446,8 +505,8 @@ function configurarSelecaoPersonagem() {
       mao: 5
     },
     wallace: {
-      nome: "🌲WALLACE, O ESPECTRO DA FLORESTA🌲",
-      dificuldade: "🌲NÍVEL DE DIFICULDADE: NULL🌲",
+      nome: "🌿WALLACE, O ESPECTRO DA FLORESTA🌿",
+      dificuldade: "🌿NÍVEL DE DIFICULDADE: NULL🌿",
       cor: "rgb(0, 188, 16)",
       descricao: "NULL",
       hp: 100,
@@ -481,7 +540,7 @@ function configurarSelecaoPersonagem() {
     gaeaReen: {
       nome: "🌿ELIZE, A ESPERANÇA🌿",
       dificuldade: "🌿NÍVEL DE DIFICULDADE: NULL🌿",
-      cor: "rgb(255, 255, 255)",
+      cor: "rgb(0, 188, 16)",
       descricao: "NULL",
       hp: 100,
       maxHp: 100,
@@ -578,6 +637,15 @@ const allCards = [
     rarity: "frost",
     img: "../img/jogo/cards/frost/geloMortal.png",
     desc: "Marca e reduz 1 de dano do inimigo (Não fica a baixo de 1) e muda sua ação para ataque normal",
+    type: "frost"
+  },
+  {
+    name: "Nevasca Mortal",
+    cost: 3,
+    basePower: 1,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/nevasca.png",
+    desc: "Marca e reduz 1 de dano de todos os inimigos (Não fica a baixo de 1) e muda sua ação para ataque normal",
     type: "frost"
   },
   {
@@ -1862,6 +1930,7 @@ function drawCards() {
       case "Xenofluxo Glacial":
       case "Coração Frio":
       case "Baralho Glacial":
+      case "Nevasca Mortal":
         tipo = "frost";
         break;
       // ⚔️⚔️⚔️⚔️⚔️ ATAQUE 11 ⚔️⚔️⚔️⚔️⚔️
@@ -2863,11 +2932,27 @@ function drawCards() {
         }
       }
       //❄️
+      else if (card.name === "Nevasca Mortal") {
+        // percorre todos os inimigos vivos
+        enemies.forEach(enemy => {
+          if (!enemy || enemy.hp <= 0) return;
+
+          animateDamage(enemy.el); // animação de impacto no inimigo
+
+          if (enemy.dano > 1) {
+            enemy.tipoDano = "❄️"; // marca o inimigo como "congelado"
+            enemy.dano = Math.max(0, enemy.dano - 1); // reduz o dano em 1
+            enemy.behavior = () => [{ type: "attack", value: enemy.dano }];
+            floatText(enemy.el, `${card.power}❄️`, "blue"); // texto flutuante visual
+          }
+        });
+      }
+      //❄️
       else if (card.name === "Ataque Condensado") {
         if (enemies[0].tipoDano === "❄️") {
-          dano = card.power*3;
+          dano = card.power * 3;
         } else {
-          dano=card.power;
+          dano = card.power;
         }
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
@@ -2880,8 +2965,8 @@ function drawCards() {
         armorGain *= frostCount;
 
         markedCount = enemies.filter(e => e.tipoDano === "❄️").length;
-        if (markedCount>0) {
-          armorGain *= markedCount+1;
+        if (markedCount > 0) {
+          armorGain *= markedCount + 1;
         }
 
         // Aplica armadura
@@ -2896,8 +2981,8 @@ function drawCards() {
         armorGain *= frostCount;
 
         markedCount = enemies.filter(e => e.tipoDano === "❄️").length;
-        if (markedCount>0) {
-          armorGain *= markedCount+1;
+        if (markedCount > 0) {
+          armorGain *= markedCount + 1;
         }
 
         // Aplica armadura
@@ -2908,7 +2993,7 @@ function drawCards() {
       //❄️
       else if (card.name === "Xenofluxo Glacial") {
         energiInimigo = enemies.filter(e => e.tipoDano === "❄️").length;
-        energy+=1*energiInimigo;
+        energy += 1 * energiInimigo;
 
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${energiInimigo}🔷`, "lime");
@@ -2920,7 +3005,7 @@ function drawCards() {
         const clonePool = playerDeck.filter(c => c.name !== "Baralho Glacial");
         const cartasParaAdicionar = energiInimigo;
         const espaco = maxMao - deck.length;
-        const total = Math.min(cartasParaAdicionar, espaco)-1;
+        const total = Math.min(cartasParaAdicionar, espaco) - 1;
         for (let i = 0; i <= total; i++) {
           if (clonePool.length > 0) {
             const base = clonePool[Math.floor(Math.random() * clonePool.length)];
