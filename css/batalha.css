@@ -340,7 +340,7 @@ color: rgb(227, 90, 255);
 .cintilante {background-image: url("../img/jogo/cards/cintilante.png");}
 
 .frost{background-image: url("../img/jogo/cards/frost.png");color: #090058;}
-.frost .desc strong{color: #1e09d7;}
+.frost .titulo {color: #1300ba;}
 
 
 .common {
@@ -371,6 +371,7 @@ color: rgb(227, 90, 255);
   filter: blur(6px); /* deixa a luz mais embaçada */
   transform: skewX(-20deg);
   pointer-events: none;
+  opacity: 0;
 }
 
 /* efeito de escala e brilho */
@@ -382,6 +383,7 @@ color: rgb(227, 90, 255);
 /* animação de uma única passada */
 .common:hover::before, .rare:hover::before{
   animation: shineOneWay 0.5s forwards ease-out;
+  opacity: 1;
 }
 
 /* movimento do reflexo apenas da esquerda para a direita */
@@ -421,6 +423,7 @@ color: rgb(227, 90, 255);
   filter: blur(6px); /* deixa a luz mais embaçada */
   transform: skewX(-20deg);
   pointer-events: none;
+  opacity: 0;
 }
 
 .rare:hover {
