@@ -326,47 +326,22 @@ color: rgb(227, 90, 255);
   }
 }
 
-.attack {
-  background-image: url("../img/jogo/cards/vermelho.jpg");
+.attack, .defense, .heal, .reciclagem,.lixo,.cintilante,.frost {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.defense {
-  background-image: url("../img/jogo/cards/azul.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+.attack{background-image: url("../img/jogo/cards/vermelho.jpg");}
+.defense {background-image: url("../img/jogo/cards/azul.jpg");}
+.heal {background-image: url("../img/jogo/cards/verd.jpg");}
+.reciclagem {background-image: url("../img/jogo/cards/amarelo.jpg");}
+.lixo {background-image: url("../img/jogo/cards/sinza.jpg");}
+.cintilante {background-image: url("../img/jogo/cards/cintilante.png");}
 
-.heal {
-  background-image: url("../img/jogo/cards/verd.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+.frost{background-image: url("../img/jogo/cards/frost.png");color: #090058;}
+.frost .desc strong{color: #1e09d7;}
 
-.reciclagem {
-  background-image: url("../img/jogo/cards/amarelo.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.lixo {
-  background-image: url("../img/jogo/cards/sinza.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.cintilante {
-  background-image: url("../img/jogo/cards/cintilante.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
 .common {
   box-shadow: 0 0 20px rgb(168, 168, 168);
@@ -402,6 +377,125 @@ color: rgb(227, 90, 255);
 
 .legend img {
   border: solid 3px rgb(167, 142, 0);
+}
+
+.frost {
+  box-shadow: 0 0 30px rgb(0, 234, 255);
+  border: 3px solid rgb(186, 245, 255);
+}
+
+.frost img {
+  border: 3px solid rgb(186, 255, 255);
+}
+
+/* 🌨️ Carta de Gelo - Efeito Frost com profundidade e interação */
+.card.frost {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 0 15px rgba(173, 216, 230, 0.35);
+}
+
+/* ❄️ Brilho gélido */
+.card.frost::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(173, 216, 230, 0.45),
+    rgba(224, 255, 255, 0.25),
+    rgba(173, 216, 230, 0.45)
+  );
+  animation: brilhoFrost 10s ease-in-out infinite;
+  z-index: -1;
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+/* ❄️ Camada principal de neve */
+.card.frost::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background-image:
+    radial-gradient(white 2.5px, transparent 2.5px),
+    radial-gradient(white 3px, transparent 3px);
+  background-size: 35px 35px, 50px 50px;
+  background-position: 0 0, 15px 15px;
+  opacity: 0.45;
+  animation: neveFrost 60s linear infinite;
+  z-index: 2;
+  pointer-events: none;
+  transition: background-size 0.8s ease, opacity 0.8s ease;
+}
+
+/* 🌫️ Camada de neve de fundo (mais suave e lenta) */
+.card.frost .neve-fundo {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.6) 2px, transparent 2px),
+    radial-gradient(rgba(255, 255, 255, 0.4) 2px, transparent 2px);
+  background-size: 60px 60px, 80px 80px;
+  background-position: 0 0, 20px 20px;
+  opacity: 0.25;
+  animation: neveFundo 120s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ✨ brilho pulsante */
+@keyframes brilhoFrost {
+  0%, 100% {
+    opacity: 0.6;
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.45);
+  }
+  50% {
+    opacity: 0.9;
+    box-shadow: 0 0 20px rgba(224, 255, 255, 0.75);
+  }
+}
+
+/* ❄️ neve diagonal principal */
+@keyframes neveFrost {
+  0% {
+    background-position: 0 0, 15px 15px;
+  }
+  100% {
+    background-position: -240px 360px, -180px 450px;
+  }
+}
+
+/* 🌫️ neve de fundo, lenta e sutil */
+@keyframes neveFundo {
+  0% {
+    background-position: 0 0, 20px 20px;
+  }
+  100% {
+    background-position: -180px 240px, -140px 300px;
+  }
+}
+
+/* 🧊 Hover — acelera e intensifica a neve */
+.card.frost:hover::after {
+  animation: neveFrost 2.5s linear infinite; /* acelera queda */
+  background-size: 25px 25px, 35px 35px; /* mais flocos */
+  opacity: 0.65; /* mais visível */
+}
+
+.card.frost:hover .neve-fundo {
+  animation: neveFundo 60s linear infinite; /* levemente mais rápida */
+  opacity: 0.35;
+}
+
+.card.frost:hover::before {
+  filter: brightness(1.4);
+  opacity: 1;
+  box-shadow: 0 0 25px rgba(173, 216, 230, 0.8);
 }
 
 .cintilante {

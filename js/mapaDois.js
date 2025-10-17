@@ -264,11 +264,11 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Destruir Carta"),
     ],
     gaeaReen: [
-      allCards.find(c => c.name === "Restos de mecha"),
-      allCards.find(c => c.name === "Restos de mecha"),
-      allCards.find(c => c.name === "Restos de mecha"),
-      allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Explosão"),
+      allCards.find(c => c.name === "Defesa Condensada"),
+      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Gelo Mortal"),
+      allCards.find(c => c.name === "Xenofluxo Glacial"),
+      allCards.find(c => c.name === "Baralho Glacial"),
     ]
   };
 
@@ -570,6 +570,60 @@ const allCards = [
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/chuvadeLaminas.jpg",
     desc: "Cause dano em area 5/10/15/20/30/40, e gaste energia respectivamente  0/1/2/3/4/5",
+  },
+  {
+    name: "Gelo Mortal",
+    cost: 2,
+    basePower: 1,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/geloMortal.png",
+    desc: "Marca e reduz 1 de dano do inimigo (Não fica a baixo de 1) e muda sua ação para ataque normal",
+    type: "frost"
+  },
+  {
+    name: "Ataque Condensado",
+    cost: 1,
+    basePower: 6,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/atkGelido.png",
+    desc: "Cause 6 de dano, se o inimigo estiver marcado cause X3",
+    type: "frost"
+  },
+  {
+    name: "Defesa Condensada",
+    cost: 1,
+    basePower: 6,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/defGelida.png",
+    desc: "Ganhe 6 de armadura por cada carta do tipo frost na mão e X1 por cada inimigo marcado",
+    type: "frost"
+  },
+  {
+    name: "Xenofluxo Glacial",
+    cost: 0,
+    basePower: 1,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/degelo.png",
+    desc: "Ganhe 1 de energia por cada inimigo marcado",
+    type: "frost"
+  },
+  {
+    name: "Coração Frio",
+    cost: 1,
+    basePower: 1,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/vidaGelida.png",
+    desc: "Ganhe 1 de vida por cada carta do tipo frost na mão e X1 por cada inimigo marcado",
+    type: "frost"
+  },
+  {
+    name: "Baralho Glacial",
+    cost: 1,
+    basePower: 1,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/cardGelidas.png",
+    desc: "Compre 1 carta do seu deck (Exceto eu) por cada inimigo marcado",
+    type: "frost"
   },
   {
     name: "Impacto Bruto",
@@ -1161,7 +1215,7 @@ const allCards = [
 // 💞 inicio da batalha aumenta a vida maxima dos aliados adjacentes em 15 (dura até apos a morte)
 // ❣️ eu morro apos 3 turnos
 // 💤 eu disperto e revivo mais forte
-// ⚔️ atk normal
+// ⚔️/❄️ atk normal
 // 🔱 ignora armadura
 // 💚 prioriza curar aliados
 // 💊 auto cura
@@ -1171,7 +1225,7 @@ const allCards = [
 // ⚔️🎭💚 se não puder executar a primeira ação executa a segunda
 // ⚔️❓💚 pode executar 2 ações, ou uma ou outra que esta adjacente (50% de chance)
 // ⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
-// 🩸💫⚜️✨💤🤢🥶💀👾☠️👻🧿🪬🌟🔥💧❄️⚡ n criado
+// 🩸💫⚜️✨💤🤢🥶💀👾☠️👻🧿🪬🌟🔥💧⚡ n criado
 
 // NORMAL
 const normalModels = [
@@ -1664,35 +1718,38 @@ function spawnEnemies(tipo) {
       maxHp: base.hp,
       dano: base.dano,
       behavior: base.behavior,
-      el: createEnemy(base.img),
       tipoDano: base.tipoDano,
-      tipoVida: base.tipoVida
+      tipoVida: base.tipoVida,
+      el: createEnemy(base.img)
     };
+
     enemies.push(enemy);
     enemy.el.style.display = "inline-block";
 
+    // barra de vida com spans separados
     const lifeBar = document.createElement("p");
     lifeBar.className = "enemy-bar";
     lifeBar.innerHTML = `
-      <strong> ⟪ ${enemy.name} ⟫ </strong><br>
-      ⟪ ${enemy.tipoVida} <span class="enemy-hp">${enemy.hp}</span> - </strong>
-      ${enemy.tipoDano} <strong>${enemy.dano} ⟫ </strong>
-    `;
+    <strong> ⟪ ${enemy.name} ⟫ </strong><br>
+    ⟪ <span class="enemy-vida">${enemy.tipoVida}</span> 
+       <span class="enemy-hp">${enemy.hp}</span> - 
+       <span class="enemy-dano">${enemy.tipoDano} ${enemy.dano}</span> ⟫
+  `;
     document.getElementById("lifeBarsContainer").appendChild(lifeBar);
 
+    // salvar referências para atualizações
     enemy.barEl = lifeBar.querySelector(".enemy-hp");
+    enemy.dmgEl = lifeBar.querySelector(".enemy-dano");
   });
 }
-
-
 
 function updateEnemyBars() {
   enemies.forEach(enemy => {
-    if (enemy.barEl) {
-      enemy.barEl.textContent = enemy.hp; // só muda o HP
-    }
+    if (enemy.hpEl) enemy.hpEl.textContent = enemy.hp;                  // HP
+    if (enemy.dmgEl) enemy.dmgEl.textContent = `${enemy.tipoDano} ${enemy.dano}`; // tipo de dano + valor
   });
 }
+
 
 function displayInimigos() {
   document.getElementById("enemies").style.display = "flex";
@@ -1798,6 +1855,15 @@ function drawCards() {
       case "Chuva de Laminas":
         tipo = "cintilante";
         break;
+      //❄️❄️❄️❄️❄️ FROST ❄️❄️❄️❄️❄️
+      case "Gelo Mortal":
+      case "Ataque Condensado":
+      case "Defesa Condensada":
+      case "Xenofluxo Glacial":
+      case "Coração Frio":
+      case "Baralho Glacial":
+        tipo = "frost";
+        break;
       // ⚔️⚔️⚔️⚔️⚔️ ATAQUE 11 ⚔️⚔️⚔️⚔️⚔️
       case "Ataque":
       case "Ataque Rapido":
@@ -1898,14 +1964,14 @@ function drawCards() {
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
       }
       //⚔️
-      if (card.name === "Ataque Rapido") {
+      else if (card.name === "Ataque Rapido") {
         animateDamage(enemies[0].el);
         enemies[0].hp -= card.power;
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
       }
       //⚔️
-      if (card.name === "Ataque Preciso") {
+      else if (card.name === "Ataque Preciso") {
         animateDamage(enemies[0].el);
         if (enemies[0].hp <= 30) {
           dano = 20;
@@ -2783,6 +2849,90 @@ function drawCards() {
         }
       }
 
+      //  ❄️❄️❄️❄️❄️ FROST ❄️❄️❄️❄️❄️
+      else if (card.name === "Gelo Mortal") {
+        animateDamage(enemies[0].el);
+
+        if (enemies[0].dano <= 1) {
+
+        } else {
+          enemies[0].tipoDano = "❄️";
+          enemies[0].dano = Math.max(0, enemies[0].dano - 1);
+          enemies[0].behavior = () => [{ type: "attack", value: enemies[0].dano }];
+          floatText(enemies[0].el, `${card.power}❄️`, "blue");
+        }
+      }
+      //❄️
+      else if (card.name === "Ataque Condensado") {
+        if (enemies[0].tipoDano === "❄️") {
+          dano = card.power*3;
+        } else {
+          dano=card.power;
+        }
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= dano;
+        floatText(enemies[0].el, `-${dano}❄️`, "red");
+      }
+      //❄️
+      else if (card.name === "Defesa Condensada") {
+        armorGain = card.power;
+        frostCount = deck.filter(c => c.type === "frost").length;
+        armorGain *= frostCount;
+
+        markedCount = enemies.filter(e => e.tipoDano === "❄️").length;
+        if (markedCount>0) {
+          armorGain *= markedCount+1;
+        }
+
+        // Aplica armadura
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${armorGain}🛡️`, "cyan");
+        playerShield += armorGain;
+      }
+      //❄️
+      else if (card.name === "Coração Frio") {
+        armorGain = card.power;
+        frostCount = deck.filter(c => c.type === "frost").length;
+        armorGain *= frostCount;
+
+        markedCount = enemies.filter(e => e.tipoDano === "❄️").length;
+        if (markedCount>0) {
+          armorGain *= markedCount+1;
+        }
+
+        // Aplica armadura
+        glowPlayer("green");
+        floatText(document.getElementById("player"), `+${armorGain}💚`, "lime");
+        playerHP = Math.min(playerHP + armorGain, playerMaxHP);
+      }
+      //❄️
+      else if (card.name === "Xenofluxo Glacial") {
+        energiInimigo = enemies.filter(e => e.tipoDano === "❄️").length;
+        energy+=1*energiInimigo;
+
+        glowPlayer("green");
+        floatText(document.getElementById("player"), `+${energiInimigo}🔷`, "lime");
+      }
+      //❄️
+      else if (card.name === "Baralho Glacial") {
+        energiInimigo = enemies.filter(e => e.tipoDano === "❄️").length;
+
+        const clonePool = playerDeck.filter(c => c.name !== "Baralho Glacial");
+        const cartasParaAdicionar = energiInimigo;
+        const espaco = maxMao - deck.length;
+        const total = Math.min(cartasParaAdicionar, espaco)-1;
+        for (let i = 0; i <= total; i++) {
+          if (clonePool.length > 0) {
+            const base = clonePool[Math.floor(Math.random() * clonePool.length)];
+            const newCard = {
+              ...base,
+              power: base.basePower ?? base.power ?? 0
+            };
+            deck.push(newCard);
+            glowPlayer("green");
+          }
+        }
+      }
       //  ✨✨✨✨✨ CINTILANTE ✨✨✨✨✨
       else if (card.name === "Guardião") {
         if (playerHP <= 30) {
@@ -2899,6 +3049,7 @@ function drawCards() {
         checkEnemies();
       }, 300);
       updateHUD();
+      updateEnemyBars();
       // caso a energia seja 0 ele skipa o turno auto
       // if (energy === 0) enemyTurn();
     };
@@ -3435,7 +3586,7 @@ document.getElementById("fimSelecao").addEventListener("click", () => {
 });
 
 // MAPA
-function mapaCanvas(dv,fases,caminhos, corMapa1, corMapa2) {
+function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
   const container = document.getElementById(dv);
   const shadow = container.attachShadow({ mode: "open" });
 
@@ -3736,8 +3887,8 @@ function mapaCanvas(dv,fases,caminhos, corMapa1, corMapa2) {
       gradient.addColorStop(0, corMapa1);
       gradient.addColorStop(1, corMapa2);
 
-  // Aplicando o gradiente como a cor do contorno
-  ctx.strokeStyle = gradient;
+      // Aplicando o gradiente como a cor do contorno
+      ctx.strokeStyle = gradient;
       ctx.lineWidth = 3;
       ctx.lineCap = 'round';
 
