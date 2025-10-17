@@ -292,11 +292,12 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Baralho Glacial"),
     ],
     gaeaReen: [
-      allCards.find(c => c.name === "Defesa Condensada"),
-      allCards.find(c => c.name === "Ataque Condensado"),
-      allCards.find(c => c.name === "Nevasca Mortal"),
-      allCards.find(c => c.name === "Xenofluxo Glacial"),
-      allCards.find(c => c.name === "Baralho Glacial"),
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Entulho"),
+      allCards.find(c => c.name === "Cura"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "GÆPROTOCOL"),
       allCards.find(c => c.name === "Gelo Mortal"),
     ]
   };
@@ -382,6 +383,8 @@ function criarPlayerNaDiv3() {
     case "gaeaReen":
       playerImg.src = "./../img/jogo/player/kalenart.png";
       playerDeck = [...characterDecks.gaeaReen];
+      maoInicio = 7;
+      limiteMao = 7;
       break;
     case "olaf":
       playerImg.src = "./../img/jogo/player/olaf.png";
