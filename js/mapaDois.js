@@ -296,7 +296,7 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Entulho"),
       allCards.find(c => c.name === "Cura"),
       allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Artilharia Anti Sniper"),
       allCards.find(c => c.name === "GÆPROTOCOL"),
       allCards.find(c => c.name === "Gelo Mortal"),
     ]
@@ -712,6 +712,42 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/atk/ataque.png",
     desc: "Causa 6 de dano ao inimigo.",
+    type: "ataque"
+  },
+  {
+    name: "Broca Perfurante",
+    cost: 1,
+    basePower: 8,
+    rarity: "rare",
+    img: "../img/jogo/cards/atk/atkBroca.png",
+    desc: "Causa 8 de dano ao ultimo inimigo, X2 se tiver 3 ou menos cartas na mão.",
+    type: "ataque"
+  },
+  {
+    name: "Ceifa",
+    cost: 2,
+    basePower: 12,
+    rarity: "legend",
+    img: "../img/jogo/cards/atk/fraqueza.png",
+    desc: "Causa 12 de dano ao ultimo inimigo, se ele tiver 30 ou menos de vida X3 o dano.",
+    type: "ataque"
+  },
+  {
+    name: "Desprezo",
+    cost: 2,
+    basePower: 20,
+    rarity: "epic",
+    img: "../img/jogo/cards/atk/caido.png",
+    desc: "Causa 20 de dano ao ultimo inimigo.",
+    type: "ataque"
+  },
+  {
+    name: "Artilharia Anti Sniper",
+    cost: 2,
+    basePower: 1,
+    rarity: "epic",
+    img: "../img/jogo/cards/atk/armamentoPesado.png",
+    desc: "Compre <strong>Broca Perfurante</strong>, <strong>Ceifa</strong> e <strong>Desprezo</strong> com custo -1 se sua mão for 3 ou menos",
     type: "ataque"
   },
   {
@@ -1938,6 +1974,10 @@ function drawCards() {
         break;
       // ⚔️⚔️⚔️⚔️⚔️ ATAQUE 11 ⚔️⚔️⚔️⚔️⚔️
       case "Ataque":
+      case "Ceifa":
+      case "Desprezo":
+      case "Broca Perfurante":
+      case "Artilharia Anti Sniper":
       case "Ataque Rapido":
       case "Ataque Preciso":
       case "Liderança":
@@ -2034,6 +2074,55 @@ function drawCards() {
         enemies[0].hp -= card.power;
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
+      }
+      //⚔️
+      else if (card.name === "Ceifa") {
+        let dano = card.power;
+        const alvo = [...enemies].reverse().find(e => e.hp > 0);
+        if (alvo.hp <= 30) {
+          dano *= 3;
+        }
+        if (alvo) {
+          animateDamage(alvo.el);
+          alvo.hp -= dano;
+          floatText(alvo.el, `-${dano}⚔️`, "red");
+        }
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+      }
+      //⚔️
+      else if (card.name === "Desprezo") {
+        const alvo = [...enemies].reverse().find(e => e.hp > 0);
+        if (alvo) {
+          animateDamage(alvo.el);
+          alvo.hp -= card.power;
+          floatText(alvo.el, `-${card.power}⚔️`, "red");
+        }
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+      }
+      //⚔️
+      else if (card.name === "Broca Perfurante") {
+        let dano = card.power;
+        if (deck.length <= 3) {
+          dano *= 2;
+        }
+        // pega o último inimigo vivo
+        const alvo = [...enemies].reverse().find(e => e.hp > 0);
+        if (alvo) {
+          animateDamage(alvo.el);
+          alvo.hp -= dano;
+          floatText(alvo.el, `-${dano}⚔️`, "red");
+        }
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+      }
+      //⚔️
+      else if (card.name === "Artilharia Anti Sniper") {
+        val = deck.length;
+        deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        if (val <= 3) {
+          deck.push({ ...allCards.find(c => c.name === "Broca Perfurante"), power: 8, cost: 0 });
+          deck.push({ ...allCards.find(c => c.name === "Ceifa"), power: 12, cost: 1 });
+          deck.push({ ...allCards.find(c => c.name === "Desprezo"), power: 20, cost: 1 });
+        }
       }
       //⚔️
       else if (card.name === "Ataque Rapido") {

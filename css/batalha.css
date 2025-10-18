@@ -340,7 +340,7 @@ color: rgb(227, 90, 255);
 .cintilante {background-image: url("../img/jogo/cards/cintilante.png");}
 
 .frost{background-image: url("../img/jogo/cards/frost.png");color: #090058;}
-.frost .titulo {color: #1300ba;}
+.frost .titulo, .frost .desc strong{color: #1300ba;}
 
 
 .common {
@@ -434,55 +434,51 @@ color: rgb(227, 90, 255);
 .epic {
   box-shadow: 0 0 20px rgb(140, 0, 255);
   border: solid 3px rgb(92, 0, 167);
+  transition: transform 0.7s ease, box-shadow 0.4s ease, background 0.4s ease;
 }
 
 .epic img {
   border: solid 3px rgb(92, 0, 167);
 }
 
-/* Ao passar o mouse */
-.epic:hover {
-  transform: scale(1.05); /* aumenta levemente */
-  animation: epic-glow 1s infinite alternate;
-}
-
-/* Brilho roxo pulsante */
-@keyframes epic-glow {
-  0% {
-    box-shadow: 0 0 10px #9370db, 0 0 20px #8a2be2, 0 0 30px #ba55d3;
-  }
-  50% {
-    box-shadow: 0 0 20px #9370db, 0 0 40px #8a2be2, 0 0 60px #ba55d3;
-  }
-  100% {
-    box-shadow: 0 0 10px #9370db, 0 0 20px #8a2be2, 0 0 30px #ba55d3;
-  }
-}
-
-/* Efeito de faísca roxa sobre a carta */
+/* camada de ondas subindo continuamente */
 .epic::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(138, 43, 226, 0.3) 0%, transparent 70%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150%; /* mais que 100% para efeito contínuo */
+  background: repeating-radial-gradient(
+    circle at 50% 50%,
+    rgba(190, 90, 255, 0.35) 0%,
+    rgba(190, 90, 255, 0.35) 4%,
+    transparent 6%,
+    transparent 12%
+  );
+  background-size: 60px 60px;
+  transform: translateY(100%); /* inicia fora da tela */
   opacity: 0;
-  transform: rotate(45deg);
+  z-index: 1;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  will-change: transform, opacity;
+  transition: opacity 1.2s ease;
 }
 
+/* ativa suavemente no hover */
 .epic:hover::before {
-  opacity: 1;
-  animation: epic-spark 1s infinite;
+  opacity: 0.6;
+  animation: waveUpInfinite 5s linear infinite; /* linear para subir contínuo */
 }
 
-@keyframes epic-spark {
-  0% { transform: rotate(45deg) translateX(0); }
-  50% { transform: rotate(45deg) translateX(20px); }
-  100% { transform: rotate(45deg) translateX(0); }
+/* animação subindo continuamente */
+@keyframes waveUpInfinite {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-32%);
+  }
 }
 
 .legend {
