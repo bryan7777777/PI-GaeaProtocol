@@ -499,11 +499,11 @@ function configurarSelecaoPersonagem() {
       dificuldade: "🐼❄️NÍVEL DE DIFICULDADE: 💀💀💀❄️🐼",
       cor: "rgba(255, 128, 251, 1)",
       descricao: "Ela sabe muito bem se adpatar a tudo, ela pode parecer fraca e indefesa como um panda, mas quando ela se adapta... Ela mostra suas imensas garras, com uma força, vitalidade, energia e pensamento incrivel ela possui um deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, combe marcação para turbinar seu dano e def imensuraveis.",
-      hp: "60_+80_+160",
-      maxHp: "60_+80_+160",
-      energia: "2_+4_+7",
-      escudo: "0_0_+15",
-      mao: "4_+6_+10"
+      hp: "60",
+      maxHp: "60",
+      energia: "2",
+      escudo: "0",
+      mao: "4"
     },
     olga: {
       nome: "❄️OLGA, A PESQUISADORA PRODIGIO❄️",
