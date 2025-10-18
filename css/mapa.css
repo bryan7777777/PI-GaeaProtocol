@@ -351,7 +351,7 @@ button {
 }
 
 /* GLACIAL */
-#olaf.selecionado, #olaf:hover, #olga.selecionado, #olga:hover {
+#olaf.selecionado, #olaf:hover, #olga.selecionado, #olga:hover, #glacia.selecionado, #glacia:hover {
   border: 4px solid rgb(128, 240, 255);
   box-shadow: 2px 2px 75px 2px rgb(128, 240, 255);
   transform: scale(1.1);
@@ -376,7 +376,7 @@ button {
   transform: scale(1.1);
 }
 
-#tomoeh.selecionado, #tomoeh:hover {
+#tomoeh.selecionado, #tomoeh:hover, #lilia.selecionado, #lilia:hover {
   border: 4px solid rgb(255, 147, 250);
   box-shadow: 2px 2px 75px 2px rgb(253, 140, 240);
   transform: scale(1.1);

@@ -266,34 +266,62 @@ function criarPlayerNaDiv3() {
     olaf: [
       allCards.find(c => c.name === "Defesa Condensada"),
       allCards.find(c => c.name === "Defesa Condensada"),
-      allCards.find(c => c.name === "Defesa Condensada"),
-      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Coração Frio"),
+      allCards.find(c => c.name === "Coração Frio"),
       allCards.find(c => c.name === "Ataque Condensado"),
       allCards.find(c => c.name === "Ataque Condensado"),
       allCards.find(c => c.name === "Nevasca Mortal"),
       allCards.find(c => c.name === "Gelo Mortal"),
-      allCards.find(c => c.name === "Gelo Mortal"),
-      allCards.find(c => c.name === "Gelo Mortal"),
+      allCards.find(c => c.name === "Marcar"),
+      allCards.find(c => c.name === "Cemiterio Branco"),
       allCards.find(c => c.name === "Xenofluxo Glacial"),
       allCards.find(c => c.name === "Baralho Glacial"),
     ],
     olga: [
       allCards.find(c => c.name === "Defesa Condensada"),
       allCards.find(c => c.name === "Defesa Condensada"),
+      allCards.find(c => c.name === "Coração Frio"),
+      allCards.find(c => c.name === "Coração Frio"),
+      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Nevasca Mortal"),
+      allCards.find(c => c.name === "Gelo Mortal"),
+      allCards.find(c => c.name === "Marcar"),
+      allCards.find(c => c.name === "Cemiterio Branco"),
+      allCards.find(c => c.name === "Xenofluxo Glacial"),
+      allCards.find(c => c.name === "Baralho Glacial"),
+    ],
+    glacia: [
       allCards.find(c => c.name === "Defesa Condensada"),
+      allCards.find(c => c.name === "Defesa Condensada"),
+      allCards.find(c => c.name === "Coração Frio"),
       allCards.find(c => c.name === "Ataque Condensado"),
       allCards.find(c => c.name === "Ataque Condensado"),
       allCards.find(c => c.name === "Ataque Condensado"),
       allCards.find(c => c.name === "Nevasca Mortal"),
       allCards.find(c => c.name === "Gelo Mortal"),
+      allCards.find(c => c.name === "Marcar"),
+      allCards.find(c => c.name === "Cemiterio Branco"),
+      allCards.find(c => c.name === "Xenofluxo Glacial"),
+      allCards.find(c => c.name === "Baralho Glacial"),
+    ],
+    lilia: [
+      allCards.find(c => c.name === "Defesa Condensada"),
+      allCards.find(c => c.name === "Defesa Condensada"),
+      allCards.find(c => c.name === "Coração Frio"),
+      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Nevasca Mortal"),
       allCards.find(c => c.name === "Gelo Mortal"),
-      allCards.find(c => c.name === "Gelo Mortal"),
+      allCards.find(c => c.name === "Marcar"),
+      allCards.find(c => c.name === "Cemiterio Branco"),
       allCards.find(c => c.name === "Xenofluxo Glacial"),
       allCards.find(c => c.name === "Baralho Glacial"),
     ],
     gaeaReen: [
-      allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Entulho"),
+      allCards.find(c => c.name === "Cemiterio Branco"),
+      allCards.find(c => c.name === "Marcar"),
       allCards.find(c => c.name === "Cura"),
       allCards.find(c => c.name === "Defesa"),
       allCards.find(c => c.name === "Artilharia Anti Sniper"),
@@ -352,6 +380,38 @@ function criarPlayerNaDiv3() {
       maoInicio = 4;
       limiteMao = 4;
       break;
+    case "lilia":
+      if (mapaBatalha == 0) {
+        playerDeck = [...characterDecks.lilia];
+        imgLilia = "./../img/jogo/player/lilia1.png"
+        playerMaxHP = 60, energyMax = 2, energy = 2;
+        playerHP = 60;
+        maoInicio = 4;
+        limiteMao = 4;
+      }
+      if (mapaBatalha == 31) {
+        imgLilia = "./../img/jogo/player/lilia3.png";
+        playerMaxHP += 80;
+        energyMax += 3;
+        energy += 3;
+        maoInicio += 4;
+        limiteMao += 4;
+        playerShieldInit+=15;
+        playerShield = playerShieldInit;
+      } else if (mapaBatalha == 6) {
+        imgLilia = "./../img/jogo/player/lilia2.png";
+        playerMaxHP += 20;
+        energyMax += 2;
+        energy += 2;
+        maoInicio += 2;
+        limiteMao += 2;
+      }
+
+      updateHUD();
+      drawNewCards();
+      drawCards();
+      playerImg.src = imgLilia;
+      break;
     case "ferrus":
       playerImg.src = "./../img/jogo/player/sal2.png";
       playerMaxHP = 160, energyMax = 3, playerShieldInit = 0;
@@ -392,7 +452,11 @@ function criarPlayerNaDiv3() {
       break;
     case "olga":
       playerImg.src = "./../img/jogo/player/olga.png";
-      playerDeck = [...characterDecks.olaf];
+      playerDeck = [...characterDecks.olga];
+      break;
+    case "glacia":
+      playerImg.src = "./../img/jogo/player/glacia.png";
+      playerDeck = [...characterDecks.glacia];
       break;
     default:
       playerImg.src = "./../img/jogo/extra/prototipo.png";
@@ -430,8 +494,30 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 5
     },
+    lilia: {
+      nome: "🐼❄️LILIA, AMANTE DE PANDAS E ARMAS❄️🐼",
+      dificuldade: "🐼❄️NÍVEL DE DIFICULDADE: 💀💀💀❄️🐼",
+      cor: "rgba(255, 128, 251, 1)",
+      descricao: "Ela sabe muito bem se adpatar a tudo, ela pode parecer fraca e indefesa como um panda, mas quando ela se adapta... Ela mostra suas imensas garras, com uma força, vitalidade, energia e pensamento incrivel ela possui um deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, combe marcação para turbinar seu dano e def imensuraveis.",
+      hp: "60_+80_+160",
+      maxHp: "60_+80_+160",
+      energia: "2_+4_+7",
+      escudo: "0_0_+15",
+      mao: "4_+6_+10"
+    },
     olga: {
       nome: "❄️OLGA, A PESQUISADORA PRODIGIO❄️",
+      dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀❄️",
+      cor: "rgb(128, 240, 255)",
+      descricao: "Focado em enfraquecer e marcar o inimigo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis.",
+      hp: 100,
+      maxHp: 100,
+      energia: 3,
+      escudo: 0,
+      mao: 5
+    },
+    glacia: {
+      nome: "❄️GLACIA, VICE LIDER DOS PESQUISADORES❄️",
       dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀❄️",
       cor: "rgb(128, 240, 255)",
       descricao: "Focado em enfraquecer e marcar o inimigo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis.",
@@ -652,21 +738,39 @@ const allCards = [
     type: "frost"
   },
   {
+    name: "Marcar",
+    cost: 0,
+    basePower: 0,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/congelar.png",
+    desc: "Marca o inimigo",
+    type: "frost"
+  },
+  {
+    name: "Cemiterio Branco",
+    cost: 2,
+    basePower: 0,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/cemiterioBranco.png",
+    desc: "Marca todos os inimigos",
+    type: "frost"
+  },
+  {
     name: "Ataque Condensado",
     cost: 1,
-    basePower: 6,
+    basePower: 8,
     rarity: "frost",
     img: "../img/jogo/cards/frost/atkGelido.png",
-    desc: "Cause 6 de dano, se o inimigo estiver marcado cause X3",
+    desc: "Cause 8 de dano, se o inimigo estiver marcado cause X3",
     type: "frost"
   },
   {
     name: "Defesa Condensada",
     cost: 1,
-    basePower: 6,
+    basePower: 3,
     rarity: "frost",
     img: "../img/jogo/cards/frost/defGelida.png",
-    desc: "Ganhe 6 de armadura por cada carta do tipo frost na mão e X1 por cada inimigo marcado",
+    desc: "Ganhe 3 de armadura por cada carta do tipo frost na mão e X1 por cada inimigo marcado",
     type: "frost"
   },
   {
@@ -1339,7 +1443,7 @@ const normalModels = [
   [
     {
       name: "Sacerdote Guerreiro",
-      hp: 40,
+      hp: 4,
       dano: 8,
       behavior: () => [
         { type: "attack", value: 8 }
@@ -1350,7 +1454,7 @@ const normalModels = [
     },
     {
       name: "Sacerdote Guerreiro",
-      hp: 40,
+      hp: 4,
       dano: 8,
       behavior: () => [
         { type: "attack", value: 8 }
@@ -1847,13 +1951,15 @@ function spawnEnemies(tipo) {
     // salvar referências para atualizações
     enemy.barEl = lifeBar.querySelector(".enemy-hp");
     enemy.dmgEl = lifeBar.querySelector(".enemy-dano");
+    enemy.tipoVidaEl = lifeBar.querySelector(".enemy-vida");
   });
 }
 
 function updateEnemyBars() {
   enemies.forEach(enemy => {
-    if (enemy.hpEl) enemy.hpEl.textContent = enemy.hp;                  // HP
-    if (enemy.dmgEl) enemy.dmgEl.textContent = `${enemy.tipoDano} ${enemy.dano}`; // tipo de dano + valor
+    if (enemy.barEl) enemy.barEl.textContent = enemy.hp; // HP
+    if (enemy.dmgEl) enemy.dmgEl.textContent = `${enemy.tipoDano} ${enemy.dano}`; // Dano
+    if (enemy.tipoVidaEl) enemy.tipoVidaEl.textContent = enemy.tipoVida; // tipoVida
   });
 }
 
@@ -1964,6 +2070,8 @@ function drawCards() {
         break;
       //❄️❄️❄️❄️❄️ FROST ❄️❄️❄️❄️❄️
       case "Gelo Mortal":
+      case "Marcar":
+      case "Cemiterio Branco":
       case "Ataque Condensado":
       case "Defesa Condensada":
       case "Xenofluxo Glacial":
@@ -3018,6 +3126,7 @@ function drawCards() {
 
         } else {
           enemies[0].tipoDano = "❄️";
+          enemies[0].tipoVida = "❄️";
           enemies[0].dano = Math.max(0, enemies[0].dano - 1);
           enemies[0].behavior = () => [{ type: "attack", value: enemies[0].dano }];
           floatText(enemies[0].el, `${card.power}❄️`, "blue");
@@ -3032,7 +3141,8 @@ function drawCards() {
           animateDamage(enemy.el); // animação de impacto no inimigo
 
           if (enemy.dano > 1) {
-            enemy.tipoDano = "❄️"; // marca o inimigo como "congelado"
+            enemy.tipoDano = "❄️";
+            enemy.tipoVida = "❄️";
             enemy.dano = Math.max(0, enemy.dano - 1); // reduz o dano em 1
             enemy.behavior = () => [{ type: "attack", value: enemy.dano }];
             floatText(enemy.el, `${card.power}❄️`, "blue"); // texto flutuante visual
@@ -3040,8 +3150,20 @@ function drawCards() {
         });
       }
       //❄️
+      else if (card.name === "Marcar") {
+        enemies[0].tipoVida = "❄️";
+        floatText(enemies[0].el, "❄️", "blue"); // texto flutuante visual
+      }
+      //❄️
+      else if (card.name === "Cemiterio Branco") {
+        enemies.forEach(e => {
+          e.tipoVida = "❄️";
+          floatText(e.el, "❄️", "blue"); // texto flutuante visual
+        });
+      }
+      //❄️
       else if (card.name === "Ataque Condensado") {
-        if (enemies[0].tipoDano === "❄️") {
+        if (enemies[0].tipoVida === "❄️") {
           dano = card.power * 3;
         } else {
           dano = card.power;
@@ -3056,7 +3178,7 @@ function drawCards() {
         frostCount = deck.filter(c => c.type === "frost").length;
         armorGain *= frostCount;
 
-        markedCount = enemies.filter(e => e.tipoDano === "❄️").length;
+        markedCount = enemies.filter(e => e.tipoVida === "❄️").length;
         if (markedCount > 0) {
           armorGain *= markedCount + 1;
         }
@@ -3072,7 +3194,7 @@ function drawCards() {
         frostCount = deck.filter(c => c.type === "frost").length;
         armorGain *= frostCount;
 
-        markedCount = enemies.filter(e => e.tipoDano === "❄️").length;
+        markedCount = enemies.filter(e => e.tipoVida === "❄️").length;
         if (markedCount > 0) {
           armorGain *= markedCount + 1;
         }
@@ -3084,7 +3206,7 @@ function drawCards() {
       }
       //❄️
       else if (card.name === "Xenofluxo Glacial") {
-        energiInimigo = enemies.filter(e => e.tipoDano === "❄️").length;
+        energiInimigo = enemies.filter(e => e.tipoVida === "❄️").length;
         energy += 1 * energiInimigo;
 
         glowPlayer("green");
@@ -3092,7 +3214,7 @@ function drawCards() {
       }
       //❄️
       else if (card.name === "Baralho Glacial") {
-        energiInimigo = enemies.filter(e => e.tipoDano === "❄️").length;
+        energiInimigo = enemies.filter(e => e.tipoVida === "❄️").length;
 
         const clonePool = playerDeck.filter(c => c.name !== "Baralho Glacial");
         const cartasParaAdicionar = energiInimigo;
@@ -3475,8 +3597,6 @@ function checkEnemies() {
               };
             }
 
-
-
             if (novo) {
               // adiciona no array na mesma posição
               enemies.splice(index, 0, novo);
@@ -3492,13 +3612,16 @@ function checkEnemies() {
               const lifeBar = document.createElement("p");
               lifeBar.className = "enemy-bar";
               lifeBar.innerHTML = `
-                <strong> ⟪ ${novo.name} ⟫ </strong><br>
-                ⟪ ${novo.tipoVida} <span class="enemy-hp">${novo.hp}</span> - </strong>
-                ${novo.tipoDano} <strong>${novo.dano} ⟫ </strong>
+              <strong> ⟪ ${novo.name} ⟫ </strong><br>
+              ⟪ <span class="enemy-vida">${novo.tipoVida}</span> 
+              <span class="enemy-hp">${novo.hp}</span> - 
+              <span class="enemy-dano">${novo.tipoDano} ${novo.dano}</span> ⟫
               `;
               parentBars.insertBefore(lifeBar, parentBars.children[index] || null);
-              novo.barEl = lifeBar.querySelector(".enemy-hp");
 
+              novo.barEl = lifeBar.querySelector(".enemy-hp");
+              novo.dmgEl = lifeBar.querySelector(".enemy-dano");
+              novo.tipoVidaEl = lifeBar.querySelector(".enemy-vida"); // ✅ referência salva
               // garante containers visíveis
               displayInimigos();
             }
@@ -4203,6 +4326,12 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
         41: "lutaMapa5.jpg",
         46: "lutaMapa55.jpg"
       };
+
+      if (mapaBatalha == 31 && personagemSelecionado == "lilia") {
+        criarPlayerNaDiv3()
+      } else if (mapaBatalha == 6 && personagemSelecionado == "lilia") {
+        criarPlayerNaDiv3()
+      }
 
       const imagem = fundos[mapaBatalha];
       if (imagem) {
