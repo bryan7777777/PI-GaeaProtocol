@@ -320,11 +320,11 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Baralho Glacial"),
     ],
     gaeaReen: [
-      allCards.find(c => c.name === "Cemiterio Branco"),
-      allCards.find(c => c.name === "Marcar"),
+      allCards.find(c => c.name === "Beserck"),
+      allCards.find(c => c.name === "Brilhando"),
       allCards.find(c => c.name === "Cura"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Artilharia Anti Sniper"),
+      allCards.find(c => c.name === "Ataque Reciclável"),
+      allCards.find(c => c.name === "Entulho"),
       allCards.find(c => c.name === "GÆPROTOCOL"),
       allCards.find(c => c.name === "Gelo Mortal"),
     ]
@@ -1424,10 +1424,10 @@ const allCards = [
 ];
 
 // 💞 inicio da batalha aumenta a vida maxima dos aliados adjacentes em 15 (dura até apos a morte)
-// ❣️ eu morro apos 3 turnos
 // 💤 eu disperto e revivo mais forte
 // ⚔️/❄️ atk normal
 // 🔱 ignora armadura
+// 🩸 Eu morro após atacar 3 vezes
 // 💚 prioriza curar aliados
 // 💊 auto cura
 // (⚔️)💥 chance de (30%) crit X2 (apenas ações dentro do parenteses)
@@ -1794,8 +1794,8 @@ const bossModels = [
       dano: 40,
       behavior: () => [{ type: "morrer", value: 40 }],
       img: "../img/jogo/inimigos/solice.png",
-      tipoDano: "⚔️",
-      tipoVida: "❣️"
+      tipoDano: "🩸",
+      tipoVida: "❤️"
     }
   ],
   [
@@ -4353,3 +4353,24 @@ mapaCanvas("div10", 10, 9, "#5db0e7ff", "#e75d5dff");
 var myMusic = new Audio("./../audio/artblock.ogg");
 myMusic.loop = true;
 myMusic.play();
+
+const btnInfo = document.querySelector(".infoEmojis");
+const popupOverlayOpcoes = document.getElementById("popupOverlayOpcoes");
+const closePopupOpcoes = document.getElementById("closePopupOpcoes");
+
+// abrir popup
+btnInfo.addEventListener("click", () => {
+  popupOverlayOpcoes.classList.add("active");
+});
+
+// fechar ao clicar no X
+closePopupOpcoes.addEventListener("click", () => {
+  popupOverlayOpcoes.classList.remove("active");
+});
+
+// fechar ao clicar fora do conteúdo
+popupOverlayOpcoes.addEventListener("click", (e) => {
+  if (e.target === popupOverlayOpcoes) {
+    popupOverlayOpcoes.classList.remove("active");
+  }
+});

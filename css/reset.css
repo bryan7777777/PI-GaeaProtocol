@@ -46,3 +46,41 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* =============================
+   RESET DE CORES DO BOOTSTRAP
+   ============================= */
+
+/* Links e textos */
+a, a:hover, a:focus {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+/* Imagens e carrossel */
+.carousel, .carousel-inner, .carousel-item, .carousel-control-prev, .carousel-control-next {
+  background: none !important;
+  color: inherit !important;
+  border: none !important;
+}
+
+/* Indicadores do carrossel */
+.carousel-indicators [data-bs-target] {
+  background-color: rgb(119, 255, 107) !important;
+  border-color: rgb(119, 255, 107) !important;
+}
+
+/* Remove sombra e foco padrão do Bootstrap */
+.carousel-item img,
+button:focus,
+input:focus,
+textarea:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Texto por cima das imagens */
+.carousel-item .infoTxt, .card{
+  color: white !important;
+  text-shadow: 0 black !important;
+}

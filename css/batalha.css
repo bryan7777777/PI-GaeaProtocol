@@ -113,6 +113,7 @@ em{
   z-index: 1000;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding-left: 40px;
 }
 
@@ -123,6 +124,142 @@ em{
 
 #playerBarra img{
   width: 30px;
+}
+
+/* POPUP inicia invisível */
+#popupOverlayOpcoes {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2000;
+}
+
+#popupOverlayOpcoes.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#popupOpcoes {
+  position: relative;
+  background: #111;
+  border-radius: 12px;
+  padding: 15px;
+  width: 90%;
+  height: 90%;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+#popupOverlayOpcoes.active #popupOpcoes {
+  transform: scale(1);
+}
+
+/* Botão de fechar */
+#closePopupOpcoes {
+  max-width: 100%;
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 62px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#opcoes{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
+}
+
+.opcoesConf{
+  background-color: rgb(119, 255, 107);
+  border-radius: 100%;
+  text-align: center;
+}
+
+.carousel-indicators [data-bs-target] {
+  height: 10px;
+  background-color: rgb(119, 255, 107);
+}
+
+.carousel-item {
+  position: relative; /* permite posicionar o texto dentro */
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Carousel */
+.carousel img {
+  border-radius: 10px;
+  height: 86vh;
+  object-fit: cover;
+}
+
+/* texto por cima da imagem */
+.carousel-item .infoTxt {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: absolute;
+  top: 50%;       /* centraliza verticalmente */
+  left: 50%;      /* centraliza horizontalmente */
+  transform: translate(-50%, -50%);
+  color: white;   /* cor visível sobre o fundo */
+  font-size: 24px;
+  text-shadow: 0 0 10px black; /* melhora a legibilidade */
+  z-index: 2;
+  pointer-events: none; /* evita interferir nos cliques do carrossel */
+}
+
+.infoTxt h1{
+  color: rgb(119, 255, 107);
+  font-size: 30px;
+}
+
+.infoTxtBoxs{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.infoTxtBox, .infoTxtBoxImg{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  height: 65vh;
+  width: 48%;
+  background-color: rgb(119, 255, 107, 0.4);
+  border: solid 3px rgb(119, 255, 107);
+  padding: 10px;
+}
+
+.infoTxtBoxImg{
+  width: 98%;
+}
+
+.opcoesConf:hover{
+  background-color: rgb(107, 255, 255);
 }
 
 #finalTurno {
@@ -339,8 +476,9 @@ color: rgb(227, 90, 255);
 .lixo {background-image: url("../img/jogo/cards/sinza.jpg");}
 .cintilante {background-image: url("../img/jogo/cards/cintilante.png");}
 
-.frost{background-image: url("../img/jogo/cards/frost.png");color: #090058;}
-.frost .titulo, .frost .desc strong{color: #1300ba;}
+.frost{background-image: url("../img/jogo/cards/frost.png");}
+.frost .titulo, .frost .desc strong{color: #1900ff;}
+.frost .desc {color: #000000;}
 
 
 .common {
@@ -487,7 +625,7 @@ color: rgb(227, 90, 255);
   transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
 }
 
-.legend:hover .desc strong{
+.legend:hover .desc strong, .legend:hover .desc{
   color: #000000;
 }
 
