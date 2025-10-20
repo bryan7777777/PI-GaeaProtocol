@@ -1443,7 +1443,7 @@ const normalModels = [
   [
     {
       name: "Sacerdote Guerreiro",
-      hp: 4,
+      hp: 40,
       dano: 8,
       behavior: () => [
         { type: "attack", value: 8 }
@@ -1454,7 +1454,7 @@ const normalModels = [
     },
     {
       name: "Sacerdote Guerreiro",
-      hp: 4,
+      hp: 40,
       dano: 8,
       behavior: () => [
         { type: "attack", value: 8 }
