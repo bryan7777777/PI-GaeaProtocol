@@ -1442,6 +1442,111 @@ const allCards = [
 const normalModels = [
   [
     {
+      name: "Lobo",
+      hp: 20,
+      dano: 5,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
+      ],
+      img: "../img/jogo/inimigos/lobo.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Lobo",
+      hp: 20,
+      dano: 5,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
+      ],
+      img: "../img/jogo/inimigos/lobo.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Lobo",
+      hp: 20,
+      dano: 5,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
+      ],
+      img: "../img/jogo/inimigos/lobo.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "❤️"
+    }
+  ],
+  [
+    {
+      name: "Guarda",
+      hp: 30,
+      dano: 10,
+      behavior: () => [
+        { type: "attackVida", value: Math.random() < 0.7 ? 10 : 20 }
+      ],
+      img: "../img/jogo/inimigos/guardaGreco.png",
+      tipoDano: "(🔱)💥",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Guarda",
+      hp: 30,
+      dano: 10,
+      behavior: () => [
+        { type: "attackVida", value: Math.random() < 0.7 ? 10 : 20 }
+      ],
+      img: "../img/jogo/inimigos/guardaGreco.png",
+      tipoDano: "(🔱)💥",
+      tipoVida: "❤️"
+    },
+  ],
+  [
+    {
+      name: "Sentinela",
+      hp: 85,
+      dano: 10,
+      behavior: () => [
+        { type: "attack", value: 10 }
+      ],
+      img: "../img/jogo/inimigos/sentinelaGreco.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Guarda",
+      hp: 30,
+      dano: 10,
+      behavior: () => [
+        { type: "attackVida", value: Math.random() < 0.7 ? 10 : 20 }
+      ],
+      img: "../img/jogo/inimigos/guardaGreco.png",
+      tipoDano: "(🔱)💥",
+      tipoVida: "❤️"
+    },
+  ],
+  [
+    {
+      name: "Casca Grossa",
+      hp: 80,
+      dano: 10,
+      behavior: () => [
+        { type: "attack", value: 10 }
+      ],
+      img: "../img/jogo/inimigos/cascaGrossa.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    },
+    {
+      name: "IA sacerdotisa",
+      hp: 24,
+      dano: 2,
+      behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 2 : 4 }],
+      img: "../img/jogo/inimigos/sacerdotisa.png",
+      tipoDano: "(💚🎭💊)💥",
+      tipoVida: "❤️"
+    },
+  ],
+  [
+    {
       name: "Sacerdote Guerreiro",
       hp: 40,
       dano: 8,
@@ -1749,6 +1854,41 @@ const eliteModels = [
       behavior: () => [{ type: "heal", value: Math.random() < 0.3 ? 2 : 4 }],
       img: "../img/jogo/inimigos/sacerdotisa.png",
       tipoDano: "(💚🎭💊)💥",
+      tipoVida: "❤️"
+    },
+  ],
+  [
+    {
+      name: "Sentinela",
+      hp: 85,
+      dano: 10,
+      behavior: () => [
+        { type: "attack", value: 10 }
+      ],
+      img: "../img/jogo/inimigos/sentinelaGreco.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Centurião",
+      hp: 50,
+      dano: 15,
+      behavior: () => [
+        { type: Math.random() < 0.6 ? "attack" : "attackVida", value: Math.random() < 0.7 ? 15 : 30 }
+      ],
+      img: "../img/jogo/inimigos/eliteGreco.png",
+      tipoDano: "(⚔️❔🔱)💥",
+      tipoVida: "❤️"
+    },
+    {
+      name: "Guarda",
+      hp: 30,
+      dano: 10,
+      behavior: () => [
+        { type: "attackVida", value: Math.random() < 0.7 ? 10 : 20 }
+      ],
+      img: "../img/jogo/inimigos/guardaGreco.png",
+      tipoDano: "(🔱)💥",
       tipoVida: "❤️"
     },
   ]
