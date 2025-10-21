@@ -716,7 +716,7 @@ const allCards = [
     cost: 0,
     basePower: 5,
     rarity: "cintilante",
-    img: "../img/jogo/cards/cintilante/chuvadeLaminas.jpg",
+    img: "../img/jogo/cards/cintilante/chuvaDeLaminas.jpg",
     desc: "Cause dano em area 5/10/15/20/30/40, e gaste energia respectivamente  0/1/2/3/4/5",
   },
   {
