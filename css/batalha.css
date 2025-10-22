@@ -242,7 +242,7 @@ em{
   gap: 20px;
 }
 
-.infoTxtBox, .infoTxtBoxImg{
+.infoTxtBox, .infoTxtBoxImg, .infoTxtBoxTutorial{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -254,8 +254,27 @@ em{
   padding: 10px;
 }
 
-.infoTxtBoxImg{
+.infoTxtBox{
   width: 98%;
+}
+
+.cardsTutorial{
+  display: flex;
+  flex-direction: row;
+}
+
+#playerBarra .infoTxtBox img{
+  height: 135px;
+  width: 90px;
+  border-radius: none;
+}
+
+.infoTxtBoxImg{
+  background-image: url(./../img/jogo/background/tutorial.jpg);
+  width: 85%;
+  height: 75vh;
+  border-radius: 25px;
+  background-size: cover;
 }
 
 .opcoesConf:hover{
