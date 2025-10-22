@@ -186,9 +186,13 @@ em{
 }
 
 .opcoesConf{
-  background-color: rgb(119, 255, 107);
-  border-radius: 100%;
+  background-color: rgb(8, 100, 0);
+  border-radius: 0 25px 0 25px;
   text-align: center;
+}
+
+.opcoesConf:hover{
+  background-color: rgb(45, 155, 35);
 }
 
 .carousel-indicators [data-bs-target] {
@@ -258,9 +262,26 @@ em{
   width: 98%;
 }
 
+.explicaCard{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  height: 31vh;
+  width: 25%;
+  max-width: 400px;
+  background-color: rgba(39, 88, 33, 0.7);
+  border: solid 3px rgb(39, 134, 30);
+  padding: 10px;
+  border-radius: 0 25px 0 25px;
+}
+
 .cardsTutorial{
   display: flex;
   flex-direction: row;
+  gap: 10px;
+  width: 100%;
 }
 
 #playerBarra .infoTxtBox img{
@@ -275,10 +296,6 @@ em{
   height: 75vh;
   border-radius: 25px;
   background-size: cover;
-}
-
-.opcoesConf:hover{
-  background-color: rgb(107, 255, 255);
 }
 
 #finalTurno {
