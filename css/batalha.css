@@ -198,6 +198,7 @@ em{
 .carousel-indicators [data-bs-target] {
   height: 10px;
   background-color: rgb(119, 255, 107);
+  border-radius: 0 22px 0 22px;
 }
 
 .carousel-item {
@@ -256,6 +257,7 @@ em{
   background-color: rgb(119, 255, 107, 0.4);
   border: solid 3px rgb(119, 255, 107);
   padding: 10px;
+  border-radius: 0 22px 0 22px;
 }
 
 .infoTxtBox{
@@ -294,7 +296,7 @@ em{
   background-image: url(./../img/jogo/background/tutorial.jpg);
   width: 85%;
   height: 75vh;
-  border-radius: 25px;
+  border-radius: 0 22px 0 22px;
   background-size: cover;
 }
 
