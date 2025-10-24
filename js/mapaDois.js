@@ -2,13 +2,13 @@ let telaAtual = 1;
 let telaAnterior = null;
 let lixoReciclado = 0;
 
-    function atualizarLixo() {
-      lixoReciclado++
-      const elementos = document.querySelectorAll(".lixoReciclado");
-      elementos.forEach(el => {
-        el.textContent = `🗑️Lixo Reciclado🗑️: ${lixoReciclado}`;
-      });
-    }
+function atualizarLixo() {
+  lixoReciclado++
+  const elementos = document.querySelectorAll(".lixoReciclado");
+  elementos.forEach(el => {
+    el.textContent = `🗑️Lixo Reciclado🗑️: ${lixoReciclado}`;
+  });
+}
 
 configurarSelecaoPersonagem();
 
@@ -1605,7 +1605,7 @@ const normalModels = [
       zona: 1
     }
   ],
-   [
+  [
     {
       name: "Drone agricola",
       hp: 8,
@@ -1679,7 +1679,7 @@ const normalModels = [
       hp: 35,
       dano: 10,
       behavior: () => [
-        { type: "attackVida", value:10}
+        { type: "attackVida", value: 10 }
       ],
       img: "../img/jogo/inimigos/gaivota.png",
       tipoDano: "🔱",
@@ -1705,7 +1705,7 @@ const normalModels = [
       hp: 65,
       dano: 22,
       behavior: () => [
-        { type: "attack", value:22}
+        { type: "attack", value: 22 }
       ],
       img: "../img/jogo/inimigos/marinheiro.png",
       tipoDano: "⚔️",
@@ -1717,7 +1717,7 @@ const normalModels = [
       hp: 45,
       dano: 12,
       behavior: () => [
-        { type: "attack", value:12}
+        { type: "attack", value: 12 }
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
@@ -1731,7 +1731,7 @@ const normalModels = [
       hp: 35,
       dano: 10,
       behavior: () => [
-        { type: "attackVida", value:10}
+        { type: "attackVida", value: 10 }
       ],
       img: "../img/jogo/inimigos/gaivota.png",
       tipoDano: "🔱",
@@ -1743,7 +1743,7 @@ const normalModels = [
       hp: 45,
       dano: 12,
       behavior: () => [
-        { type: "attack", value:12}
+        { type: "attack", value: 12 }
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
@@ -1757,7 +1757,7 @@ const normalModels = [
       hp: 45,
       dano: 12,
       behavior: () => [
-        { type: "attack", value:12}
+        { type: "attack", value: 12 }
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
@@ -1769,7 +1769,7 @@ const normalModels = [
       hp: 45,
       dano: 12,
       behavior: () => [
-        { type: "attack", value:12}
+        { type: "attack", value: 12 }
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
@@ -1783,7 +1783,7 @@ const normalModels = [
       hp: 35,
       dano: 10,
       behavior: () => [
-        { type: "attackVida", value:10}
+        { type: "attackVida", value: 10 }
       ],
       img: "../img/jogo/inimigos/gaivota.png",
       tipoDano: "🔱",
@@ -1795,7 +1795,7 @@ const normalModels = [
       hp: 35,
       dano: 10,
       behavior: () => [
-        { type: "attackVida", value:10}
+        { type: "attackVida", value: 10 }
       ],
       img: "../img/jogo/inimigos/gaivota.png",
       tipoDano: "🔱",
@@ -3105,6 +3105,7 @@ function drawCards() {
             playerHP -= dano;
           }
         });
+        checkEnemies();
         animateDamage(document.getElementById("player"));
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
       }
@@ -3638,7 +3639,7 @@ function drawCards() {
           if (c !== card && c.type === "lixo") {
             toRemove.add(c);
             lixoRemovido++;
-             atualizarLixo();
+            atualizarLixo();
             if (playerHP <= 30) {
               deck.push({ ...allCards.find(c => c.name === "Cura"), power: 3 });
             } else {
@@ -3686,7 +3687,7 @@ function drawCards() {
           if (c !== card && c.type === "lixo") {
             toRemove.add(c);
             lixoRemovido++;
-             atualizarLixo();
+            atualizarLixo();
           }
         }
 
@@ -3730,7 +3731,7 @@ function drawCards() {
           if (c !== card && c.type === "lixo") {
             toRemove.add(c);
             lixoRemovido++;
-             atualizarLixo();
+            atualizarLixo();
           }
         }
         if (lixoRemovido === 0) {
@@ -3773,7 +3774,7 @@ function drawCards() {
           if (c !== card && c.type === "lixo") {
             toRemove.add(c);
             lixoRemovido++;
-             atualizarLixo();
+            atualizarLixo();
           }
         }
         if (lixoRemovido === 0) {
@@ -4038,7 +4039,7 @@ function drawCards() {
           if (c !== card && (c.type === "lixo")) {
             matches.push(c);
             toRemove.add(c);
-             atualizarLixo();
+            atualizarLixo();
           }
         }
         if (matches.length === 0) {
@@ -4248,6 +4249,20 @@ function enemyTurn() {
 reviver = 0;
 
 function checkEnemies() {
+  if (playerHP <= 0) {
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("popupOver").style.display = "flex";
+    gerarItens();
+    limiteMao = maoInicio;
+    document.getElementById("enemies").style.display = "none";
+    document.getElementById("lifeBarsContainer").style.display = "none";
+    energy = energyMax;
+    drawNewCards();
+    drawCards();
+    updateHUD();
+    playerShield = playerShieldInit;
+  }
+  
   for (let i = enemies.length - 1; i >= 0; i--) {
     if (enemies[i].hp <= 0) {
 
