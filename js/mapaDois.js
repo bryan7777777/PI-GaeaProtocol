@@ -6,7 +6,7 @@ function atualizarLixo() {
   lixoReciclado++
   const elementos = document.querySelectorAll(".lixoReciclado");
   elementos.forEach(el => {
-    el.textContent = `🗑️Lixo Reciclado🗑️: ${lixoReciclado}`;
+    el.textContent = `♻️Lixos Reciclados♻️: ${lixoReciclado}`;
   });
 }
 
@@ -457,6 +457,9 @@ function criarPlayerNaDiv3() {
     case "gaeaReen":
       playerImg.src = "./../img/jogo/player/kalenart.png";
       playerDeck = [...characterDecks.gaeaReen];
+      playerHP = 10000
+      energyMax = 400
+      energy = 400
       maoInicio = 10;
       limiteMao = 10;
       break;
@@ -2618,7 +2621,6 @@ let zonaAtual = 1;
 
 function spawnEnemies(tipo) {
   playerShield = playerShieldInit;
-  enemies = [];
   const enemiesContainer = document.getElementById("enemies");
   enemiesContainer.innerHTML = "";
   document.getElementById("lifeBarsContainer").innerHTML = "";
@@ -3105,7 +3107,6 @@ function drawCards() {
             playerHP -= dano;
           }
         });
-        checkEnemies();
         animateDamage(document.getElementById("player"));
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
       }
@@ -4247,6 +4248,7 @@ function enemyTurn() {
 }
 
 reviver = 0;
+let aylaPhase = 0;
 
 function checkEnemies() {
   if (playerHP <= 0) {
@@ -4262,7 +4264,7 @@ function checkEnemies() {
     updateHUD();
     playerShield = playerShieldInit;
   }
-  
+
   for (let i = enemies.length - 1; i >= 0; i--) {
     if (enemies[i].hp <= 0) {
 
@@ -4305,6 +4307,8 @@ function checkEnemies() {
             morto.name === "Tristeza De Ayla" ||
             morto.name === "Ansiedade De Ayla" ||
             morto.name === "Raiva De Ayla" ||
+            morto.name === "Amor De Ayla" ||
+            morto.name === "Nojo De Ayla" ||
             morto.name === "Boss Ayla"
           ) {
             let novos = []; // ✅ agora é uma lista
@@ -4341,67 +4345,116 @@ function checkEnemies() {
               reviver++;
             }
 
-            if (morto.name === "Medo De Ayla" && reviver === 0) {
-              shakeScreenNatural(10, 400);
-              document.getElementById("jogo").style.backgroundImage =
-                "url('../img/jogo/background/cidadeAsustadora.png')";
-              novos.push({
-                name: "Ansiedade De Ayla",
-                hp: 70,
-                maxHp: 70,
-                dano: 15,
-                behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.7 ? 12 : 24 }],
-                img: "../img/jogo/inimigos/ansiedade.png",
-                tipoDano: "(⚔️❓💚🎭💊)💥",
-                tipoVida: "🪬",
-              });
-              novos.push({
-                name: "Raiva De Ayla",
-                hp: 30,
-                maxHp: 30,
-                dano: 30,
-                behavior: () => [{ type: "attack", value: 30 }],
-                img: "../img/jogo/inimigos/raiva.png",
-                tipoDano: "⚔️",
-                tipoVida: "🪬",
-              });
-              novos.push({
-                name: "Tristeza De Ayla",
-                hp: 35,
-                maxHp: 35,
-                dano: 12,
-                behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 12 : 24 }],
-                img: "../img/jogo/inimigos/tristeza.png",
-                tipoDano: "(💚🎭💊)💥",
-                tipoVida: "🪬",
-              });
-            }
+            if (morto.name.includes("Ayla")) {
+              if (morto.name === "Medo De Ayla" && aylaPhase === 0) {
+                aylaPhase = 1;
+                shakeScreenNatural(10, 400);
+                document.getElementById("jogo").style.backgroundImage = "url('../img/jogo/background/cidadeAsustadora.png')";
+                novos.push(
+                  {
+                    name: "Nojo De Ayla",
+                    hp: 60,
+                    dano: 20,
+                    behavior: () => [{ type: "attackVida", value: 20 }],
+                    img: "../img/jogo/inimigos/nojo.png",
+                    tipoDano: "🔱",
+                    tipoVida: "🪬",
+                  },
+                  {
+                    name: "Tristeza De Ayla",
+                    hp: 35,
+                    maxHp: 35,
+                    dano: 12,
+                    behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 12 : 24 }],
+                    img: "../img/jogo/inimigos/tristeza.png",
+                    tipoDano: "(💚🎭💊)💥",
+                    tipoVida: "🪬",
+                  }
+                );
+              }
+              else if (
+                ["Raiva De Ayla", "Tristeza De Ayla"].includes(morto.name) &&
+                aylaPhase === 1
+              ) {
+                if (enemies.every(e => !["Raiva De Ayla", "Tristeza De Ayla"].includes(e.name))) {
+                  aylaPhase = 2;
+                  novos.push(
+                    {
+                      name: "Ansiedade De Ayla",
+                      hp: 70,
+                      maxHp: 70,
+                      dano: 15,
+                      behavior: () => [
+                        { type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.7 ? 12 : 24 },
+                      ],
+                      img: "../img/jogo/inimigos/ansiedade.png",
+                      tipoDano: "(⚔️❓💚🎭💊)💥",
+                      tipoVida: "🪬",
+                    },
+                    {
+                      name: "Raiva De Ayla",
+                      hp: 30,
+                      maxHp: 30,
+                      dano: 30,
+                      behavior: () => [{ type: "attack", value: 30 }],
+                      img: "../img/jogo/inimigos/raiva.png",
+                      tipoDano: "⚔️",
+                      tipoVida: "🪬",
+                    }
+                  );
+                }
+              }
+              else if (
+                ["Angustia De Ayla", "Ansiedade De Ayla"].includes(morto.name) &&
+                aylaPhase === 2
+              ) {
+                if (enemies.every(e => !["Angustia De Ayla", "Ansiedade De Ayla"].includes(e.name))) {
+                  aylaPhase = 3;
+                  novos.push(
+                    {
+                      name: "Amor De Ayla",
+                      hp: 150,
+                      dano: 35,
+                      behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attack", value: 35 }],
+                      img: "../img/jogo/inimigos/amor.png",
+                      tipoDano: "⚔️❓💚🎭💊",
+                      tipoVida: "🪬",
+                    },
+                    {
+                      name: "Angustia De Ayla",
+                      hp: 50,
+                      dano: 20,
+                      behavior: () => [{ type: "heal", value: 20 }],
+                      img: "../img/jogo/inimigos/Vulnerabilidade.png",
+                      tipoDano: "💚🎭💊",
+                      tipoVida: "🪬",
+                    }
 
-            if (morto.name === "Tristeza De Ayla" || morto.name === "Ansiedade De Ayla" || morto.name === "Raiva De Ayla") {
-              reviver++;
-              if (reviver == 3) {
-                shakeScreenNatural(30, 800);
-                document.getElementById("jogo").style.backgroundImage =
-                  "url('../img/jogo/background/cidadeFantasma.png')";
-                novos.push({
-                  name: "Ira De Ayla",
-                  hp: 150,
-                  maxHp: 150,
-                  dano: 20,
-                  behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.9 ? 20 : 100 }],
-                  img: "../img/jogo/inimigos/bossIra.png",
-                  tipoDano: "(⚔️❓💚🎭💊)💣",
-                  tipoVida: "🧿",
-                });
-                novos.push({
-                  name: "Angustia De Ayla",
-                  hp: 50,
-                  dano: 20,
-                  behavior: () => [{ type: "heal", value: 20 }],
-                  img: "../img/jogo/inimigos/Vulnerabilidade.png",
-                  tipoDano: "💚🎭💊",
-                  tipoVida: "🧿",
-                });
+                  );
+                }
+              }
+              else if (
+                ["Nojo De Ayla", "Amor De Ayla"].includes(morto.name) &&
+                aylaPhase === 3
+              ) {
+                if (enemies.every(e => !["Nojo De Ayla", "Amor De Ayla"].includes(e.name))) {
+                  aylaPhase = 4;
+                  shakeScreenNatural(30, 800);
+                  document.getElementById("jogo").style.backgroundImage =
+                    "url('../img/jogo/background/cidadeFantasma.png')";
+                  novos.push({
+                    name: "Ayla",
+                    hp: 200,
+                    maxHp: 200,
+                    dano: 20,
+                    behavior: () => [
+                      { type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.9 ? 20 : 100 },
+                    ],
+                    img: "../img/jogo/inimigos/bossIra.png",
+                    tipoDano: "(⚔️❓💊)💣",
+                    tipoVida: "🧿",
+                  });
+                }
               }
             }
 
@@ -5157,6 +5210,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
 
         11: "lutaMapa2.png",
         16: "lutaMapa22.jpg",
+        20: "lutaMapa333.jpg",
 
         21: "lutaMapa3.png",
         26: "lutaMapa33.jpg",
