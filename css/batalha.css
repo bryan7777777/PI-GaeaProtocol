@@ -183,6 +183,7 @@ em{
   align-items: center;
   justify-content: center;
   margin-right: 30px;
+  gap: 20px;
 }
 
 .opcoesConf{

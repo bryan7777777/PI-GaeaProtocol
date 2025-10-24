@@ -1,5 +1,15 @@
 let telaAtual = 1;
 let telaAnterior = null;
+let lixoReciclado = 0;
+
+    function atualizarLixo() {
+      lixoReciclado++
+      const elementos = document.querySelectorAll(".lixoReciclado");
+      elementos.forEach(el => {
+        el.textContent = `🗑️Lixo Reciclado🗑️: ${lixoReciclado}`;
+      });
+    }
+
 configurarSelecaoPersonagem();
 
 document.getElementById('lutaUm').addEventListener('click', irParaDiv2);
@@ -320,13 +330,17 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Baralho Glacial"),
     ],
     gaeaReen: [
-      allCards.find(c => c.name === "Beserck"),
-      allCards.find(c => c.name === "Brilhando"),
-      allCards.find(c => c.name === "Cura"),
-      allCards.find(c => c.name === "Ataque Reciclável"),
-      allCards.find(c => c.name === "Entulho"),
-      allCards.find(c => c.name === "GÆPROTOCOL"),
-      allCards.find(c => c.name === "Gelo Mortal"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Fogo Amigo"),
     ]
   };
 
@@ -443,8 +457,8 @@ function criarPlayerNaDiv3() {
     case "gaeaReen":
       playerImg.src = "./../img/jogo/player/kalenart.png";
       playerDeck = [...characterDecks.gaeaReen];
-      maoInicio = 7;
-      limiteMao = 7;
+      maoInicio = 10;
+      limiteMao = 10;
       break;
     case "olaf":
       playerImg.src = "./../img/jogo/player/olaf.png";
@@ -1430,6 +1444,8 @@ const allCards = [
 // 🩸 Eu morro após atacar 3 vezes
 // 💚 prioriza curar aliados
 // 💊 auto cura
+// 🪬 quando todos que tem esse status morrem, geram um novo inimigo
+// 🧿 imune a marcação de vida e ataque
 // (⚔️)💥 chance de (30%) crit X2 (apenas ações dentro do parenteses)
 // (⚔️)🧨 chance de (15%) crit X4 (apenas ações dentro do parenteses)
 // (⚔️)💣 chance de (10%) crit X5 (apenas ações dentro do parenteses)
@@ -1644,6 +1660,19 @@ const normalModels = [
     }
   ],
   // 222222222222222222222
+  [
+    {
+      name: "Robo Cargueiro",
+      hp: 80,
+      maxHp: 80,
+      dano: 15,
+      behavior: () => [{ type: "attack", value: 15 }],
+      img: "../img/jogo/inimigos/roboCargueiro.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 2
+    }
+  ],
   [
     {
       name: "Gaivota Corrompida",
@@ -1876,8 +1905,218 @@ const normalModels = [
       tipoVida: "❤️",
       zona: 3
     },
-  ]
+  ],
+  [
+    {
+      name: "Valquiria",
+      hp: 40,
+      dano: 7,
+      behavior: () => [{ type: "attackVida", value: 7 }],
+      img: "../img/jogo/inimigos/valquiria.png",
+      tipoDano: "🔱",
+      tipoVida: "❤️",
+      zona: 3
+    },
+    {
+      name: "Valquiria",
+      hp: 40,
+      dano: 7,
+      behavior: () => [{ type: "attackVida", value: 7 }],
+      img: "../img/jogo/inimigos/valquiria.png",
+      tipoDano: "🔱",
+      tipoVida: "❤️",
+      zona: 3
+    },
+  ],
   // 444444444444444444444
+  [
+    {
+      name: "Cão Corrompido",
+      hp: 50,
+      maxHp: 50,
+      dano: 12,
+      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 12 : 24 }],
+      img: "../img/jogo/inimigos/cachorroPolicial.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "❤️",
+      zona: 4
+    },
+    {
+      name: "Sentinela Corrompido",
+      hp: 100,
+      maxHp: 100,
+      dano: 25,
+      behavior: () => [{ type: "attack", value: 25 }],
+      img: "../img/jogo/inimigos/sentinelaCorrompido.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 4
+    }
+  ],
+  [
+    {
+      name: "Vagante",
+      hp: 35,
+      maxHp: 35,
+      dano: 20,
+      behavior: () => [{ type: "attackVida", value: 20 }],
+      img: "../img/jogo/inimigos/ceifadorFantasma.png",
+      tipoDano: "🔱",
+      tipoVida: "🧿",
+      zona: 4
+    },
+    {
+      name: "Livro Corrompido",
+      hp: 30,
+      maxHp: 30,
+      dano: 25,
+      behavior: () => [{ type: "attack", value: 25 }],
+      img: "../img/jogo/inimigos/livroMaligno.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 4
+    },
+    {
+      name: "Livro Corrompido",
+      hp: 30,
+      maxHp: 30,
+      dano: 25,
+      behavior: () => [{ type: "attack", value: 25 }],
+      img: "../img/jogo/inimigos/livroMaligno.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 4
+    }
+  ],
+  [
+    {
+      name: "Pilha de Livros",
+      hp: 30,
+      maxHp: 30,
+      dano: 0,
+      behavior: () => [{ type: "attack", value: 0 }],
+      img: "../img/jogo/inimigos/livros.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 4
+    },
+    {
+      name: "Vagante",
+      hp: 35,
+      maxHp: 35,
+      dano: 20,
+      behavior: () => [{ type: "attackVida", value: 20 }],
+      img: "../img/jogo/inimigos/ceifadorFantasma.png",
+      tipoDano: "🔱",
+      tipoVida: "🧿",
+      zona: 4
+    },
+    {
+      name: "Vagante",
+      hp: 35,
+      maxHp: 35,
+      dano: 20,
+      behavior: () => [{ type: "attackVida", value: 20 }],
+      img: "../img/jogo/inimigos/ceifadorFantasma.png",
+      tipoDano: "🔱",
+      tipoVida: "🧿",
+      zona: 4
+    }
+  ],
+  [
+    {
+      name: "Vagante",
+      hp: 35,
+      maxHp: 35,
+      dano: 20,
+      behavior: () => [{ type: "attackVida", value: 20 }],
+      img: "../img/jogo/inimigos/ceifadorFantasma.png",
+      tipoDano: "🔱",
+      tipoVida: "🧿",
+      zona: 4
+    },
+    {
+      name: "Sacerdote Corrompido",
+      hp: 75,
+      maxHp: 75,
+      dano: 15,
+      behavior: () => [{ type: "attackVida", value: 15 }],
+      img: "../img/jogo/inimigos/claus.png",
+      tipoDano: "🔱",
+      tipoVida: "🧿",
+      zona: 4
+    }
+  ],
+  [
+    {
+      name: "Pilha de Livros",
+      hp: 30,
+      maxHp: 30,
+      dano: 0,
+      behavior: () => [{ type: "attack", value: 0 }],
+      img: "../img/jogo/inimigos/livros.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 4
+    },
+    {
+      name: "Livro Corrompido",
+      hp: 30,
+      maxHp: 30,
+      dano: 25,
+      behavior: () => [{ type: "attack", value: 25 }],
+      img: "../img/jogo/inimigos/livroMaligno.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 4
+    },
+    {
+      name: "Sacerdote Corrompido",
+      hp: 75,
+      maxHp: 75,
+      dano: 15,
+      behavior: () => [{ type: "attackVida", value: 15 }],
+      img: "../img/jogo/inimigos/claus.png",
+      tipoDano: "🔱",
+      tipoVida: "🧿",
+      zona: 4
+    }
+  ],
+  [
+    {
+      name: "Pilha de Livros",
+      hp: 30,
+      maxHp: 30,
+      dano: 0,
+      behavior: () => [{ type: "attack", value: 0 }],
+      img: "../img/jogo/inimigos/livros.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 4
+    },
+    {
+      name: "Livro Corrompido",
+      hp: 30,
+      maxHp: 30,
+      dano: 25,
+      behavior: () => [{ type: "attack", value: 25 }],
+      img: "../img/jogo/inimigos/livroMaligno.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 4
+    },
+    {
+      name: "Livro Corrompido",
+      hp: 30,
+      maxHp: 30,
+      dano: 25,
+      behavior: () => [{ type: "attack", value: 25 }],
+      img: "../img/jogo/inimigos/livroMaligno.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 4
+    }
+  ],
   // 555555555555555555555
 ];
 
@@ -1899,18 +2138,6 @@ const eliteModels = [
     }
   ],
   [
-    {
-      name: "FuradorKiwi",
-      hp: 16,
-      dano: 24,
-      behavior: () => [
-        { type: "attack", value: 24 }
-      ],
-      img: "../img/jogo/inimigos/kiwi.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 1
-    },
     {
       name: "FuradorKiwi",
       hp: 16,
@@ -1971,11 +2198,35 @@ const eliteModels = [
   // 2222222222222222222
   [
     {
+      name: "Robo Cargueiro Elite",
+      hp: 120,
+      maxHp: 120,
+      dano: 25,
+      behavior: () => [{ type: "attack", value: 25 }],
+      img: "../img/jogo/inimigos/cargueiroElite.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 2
+    },
+    {
+      name: "Robo Cargueiro",
+      hp: 80,
+      maxHp: 80,
+      dano: 15,
+      behavior: () => [{ type: "attack", value: 15 }],
+      img: "../img/jogo/inimigos/roboCargueiro.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 2
+    }
+  ],
+  [
+    {
       name: "Marinheiro",
       hp: 65,
       dano: 22,
       behavior: () => [
-        { type: "attack", value:22}
+        { type: "attack", value: 22 }
       ],
       img: "../img/jogo/inimigos/marinheiro.png",
       tipoDano: "⚔️",
@@ -1987,7 +2238,7 @@ const eliteModels = [
       hp: 45,
       dano: 12,
       behavior: () => [
-        { type: "attack", value:12}
+        { type: "attack", value: 12 }
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
@@ -1999,7 +2250,7 @@ const eliteModels = [
       hp: 75,
       dano: 8,
       behavior: () => [
-        { type: "attack", value:8}
+        { type: "attack", value: 8 }
       ],
       img: "../img/jogo/inimigos/capitao.png",
       tipoDano: "🔱",
@@ -2109,8 +2360,43 @@ const eliteModels = [
       tipoVida: "❤️",
       zona: 3
     },
-  ]
+  ],
   // 44444444444444444
+  [
+    {
+      name: "Pilha de Livros",
+      hp: 30,
+      maxHp: 30,
+      dano: 0,
+      behavior: () => [{ type: "attack", value: 0 }],
+      img: "../img/jogo/inimigos/livros.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 4
+    },
+    {
+      name: "Pilha de Livros",
+      hp: 30,
+      maxHp: 30,
+      dano: 0,
+      behavior: () => [{ type: "attack", value: 0 }],
+      img: "../img/jogo/inimigos/livros.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 4
+    },
+    {
+      name: "Emissario",
+      hp: 80,
+      maxHp: 80,
+      dano: 45,
+      behavior: () => [{ type: "morrer", value: 45 }],
+      img: "../img/jogo/inimigos/vingadorAraq.png",
+      tipoDano: "🩸",
+      tipoVida: "❤️",
+      zona: 4
+    }
+  ],
   // 55555555555555555
 ];
 
@@ -2274,6 +2560,18 @@ const bossModels = [
   // 444444444444444444
   [
     {
+      name: "Medo De Ayla",
+      hp: 20,
+      dano: 1,
+      behavior: () => [{ type: "heal", value: 1 }],
+      img: "../img/jogo/inimigos/medo.png",
+      tipoDano: "(💚🎭💊)💥",
+      tipoVida: "💤",
+      zona: 4
+    }
+  ],
+  [
+    {
       name: "Vigia de Irislidriz",
       hp: 30,
       dano: 5,
@@ -2316,6 +2614,7 @@ function createEnemy(imgSrc) {
 }
 
 let enemies = [];
+let zonaAtual = 1;
 
 function spawnEnemies(tipo) {
   playerShield = playerShieldInit;
@@ -2325,11 +2624,10 @@ function spawnEnemies(tipo) {
   document.getElementById("lifeBarsContainer").innerHTML = "";
 
   // --- define zona atual com base no mapa ---
-  let zonaAtual = 1;
-  if (mapaBatalha >= 41) zonaAtual = 5;
-  else if (mapaBatalha >= 31) zonaAtual = 4;
-  else if (mapaBatalha >= 21) zonaAtual = 3;
-  else if (mapaBatalha >= 11) zonaAtual = 2;
+  if (mapaBatalha >= 40) zonaAtual = 5;
+  else if (mapaBatalha >= 30) zonaAtual = 4;
+  else if (mapaBatalha >= 20) zonaAtual = 3;
+  else if (mapaBatalha >= 10) zonaAtual = 2;
 
   // --- seleciona pool conforme tipo ---
   let pool;
@@ -3244,6 +3542,7 @@ function drawCards() {
           if (c !== card && c.type === "lixo") {
             toRemove.add(c);
             lixoRemovido++;
+            atualizarLixo();
           }
         }
 
@@ -3288,6 +3587,7 @@ function drawCards() {
           if (c !== card && c.type === "lixo") {
             toRemove.add(c);
             lixoRemovido++;
+            atualizarLixo();
           }
         }
 
@@ -3338,6 +3638,7 @@ function drawCards() {
           if (c !== card && c.type === "lixo") {
             toRemove.add(c);
             lixoRemovido++;
+             atualizarLixo();
             if (playerHP <= 30) {
               deck.push({ ...allCards.find(c => c.name === "Cura"), power: 3 });
             } else {
@@ -3385,6 +3686,7 @@ function drawCards() {
           if (c !== card && c.type === "lixo") {
             toRemove.add(c);
             lixoRemovido++;
+             atualizarLixo();
           }
         }
 
@@ -3428,6 +3730,7 @@ function drawCards() {
           if (c !== card && c.type === "lixo") {
             toRemove.add(c);
             lixoRemovido++;
+             atualizarLixo();
           }
         }
         if (lixoRemovido === 0) {
@@ -3470,6 +3773,7 @@ function drawCards() {
           if (c !== card && c.type === "lixo") {
             toRemove.add(c);
             lixoRemovido++;
+             atualizarLixo();
           }
         }
         if (lixoRemovido === 0) {
@@ -3558,10 +3862,12 @@ function drawCards() {
         if (enemies[0].dano <= 1) {
 
         } else {
-          enemies[0].tipoDano = "❄️";
-          enemies[0].tipoVida = "❄️";
-          enemies[0].dano = Math.max(0, enemies[0].dano - 1);
-          enemies[0].behavior = () => [{ type: "attack", value: enemies[0].dano }];
+          if (enemies[0].tipoVida !== "🧿") {
+            enemies[0].tipoDano = "❄️";
+            enemies[0].tipoVida = "❄️";
+            enemies[0].dano = Math.max(0, enemies[0].dano - 1);
+            enemies[0].behavior = () => [{ type: "attack", value: enemies[0].dano }];
+          }
           floatText(enemies[0].el, `${card.power}❄️`, "blue");
         }
       }
@@ -3571,26 +3877,32 @@ function drawCards() {
         enemies.forEach(enemy => {
           if (!enemy || enemy.hp <= 0) return;
 
-          animateDamage(enemy.el); // animação de impacto no inimigo
+          animateDamage(enemy.el);
 
           if (enemy.dano > 1) {
-            enemy.tipoDano = "❄️";
-            enemy.tipoVida = "❄️";
-            enemy.dano = Math.max(0, enemy.dano - 1); // reduz o dano em 1
-            enemy.behavior = () => [{ type: "attack", value: enemy.dano }];
-            floatText(enemy.el, `${card.power}❄️`, "blue"); // texto flutuante visual
+            if (enemy.tipoVida !== "🧿") {
+              enemy.tipoDano = "❄️";
+              enemy.tipoVida = "❄️";
+              enemy.dano = Math.max(0, enemy.dano - 1); // reduz o dano em 1
+              enemy.behavior = () => [{ type: "attack", value: enemy.dano }];
+            }
+            floatText(enemy.el, `${card.power}❄️`, "blue");
           }
         });
       }
       //❄️
       else if (card.name === "Marcar") {
-        enemies[0].tipoVida = "❄️";
+        if (enemies[0].tipoVida !== "🧿") {
+          enemies[0].tipoVida = "❄️";
+        }
         floatText(enemies[0].el, "❄️", "blue"); // texto flutuante visual
       }
       //❄️
       else if (card.name === "Cemiterio Branco") {
         enemies.forEach(e => {
-          e.tipoVida = "❄️";
+          if (e.tipoVida !== "🧿") {
+            e.tipoVida = "❄️";
+          }
           floatText(e.el, "❄️", "blue"); // texto flutuante visual
         });
       }
@@ -3726,6 +4038,7 @@ function drawCards() {
           if (c !== card && (c.type === "lixo")) {
             matches.push(c);
             toRemove.add(c);
+             atualizarLixo();
           }
         }
         if (matches.length === 0) {
@@ -3888,13 +4201,14 @@ function enemyTurn() {
             let absorbed = Math.min(dano, playerShield);
             playerShield -= absorbed;
             dano -= absorbed;
+            floatText(document.getElementById("player"), `-${e.dano}🛡️`, "orange");
           }
           if (dano > 0) {
             playerHP -= dano;
+            redScreenGlow(300, 30);
+            floatText(document.getElementById("player"), `-${e.dano}⚔️`, "orange");
           }
           animateDamage(document.getElementById("player"));
-          floatText(document.getElementById("player"), `-${e.dano}⚔️`, "orange");
-          redScreenGlow(300, 30);
           // reduz turnos restantes
           e.turnosRestantes--;
 
@@ -3960,24 +4274,31 @@ function checkEnemies() {
         setTimeout(() => {
           if (!enemies[index]) return;
 
-          // guarda referências do DOM antigo
           const oldEl = morto.el;
           const oldBar = morto.barEl.closest("p");
 
-          // remove do DOM
           if (oldEl) oldEl.remove();
           if (oldBar) oldBar.remove();
 
-          // remove do array
           enemies.splice(index, 1);
 
-          // 🔥 Se o boss morreu e ainda pode reviver
-          if (morto.name === "Boss Irislidriz" || morto.name === "Vigia de Irislidriz" || morto.name === "Observador de Irislidriz") {
-            let novo;
+          if (
+            morto.name === "Boss Irislidriz" ||
+            morto.name === "Vigia de Irislidriz" ||
+            morto.name === "Observador de Irislidriz" ||
+            morto.name === "Medo De Ayla" ||
+            morto.name === "Tristeza De Ayla" ||
+            morto.name === "Ansiedade De Ayla" ||
+            morto.name === "Raiva De Ayla" ||
+            morto.name === "Boss Ayla"
+          ) {
+            let novos = []; // ✅ agora é uma lista
+
             if (morto.name === "Boss Irislidriz" && reviver === 0) {
               shakeScreenNatural(10, 400);
-              document.getElementById("jogo").style.backgroundImage = "url('../img/jogo/background/cidadeAsustadora.png')";
-              novo = {
+              document.getElementById("jogo").style.backgroundImage =
+                "url('../img/jogo/background/cidadeAsustadora.png')";
+              novos.push({
                 name: "Boss Irislidriz",
                 hp: 80,
                 maxHp: 80,
@@ -3986,12 +4307,13 @@ function checkEnemies() {
                 img: "../img/jogo/inimigos/valkFantasmaElite.png",
                 tipoDano: "⚔️",
                 tipoVida: "💤",
-              };
+              });
               reviver++;
             } else if (morto.name === "Boss Irislidriz" && reviver === 1) {
               shakeScreenNatural(30, 800);
-              document.getElementById("jogo").style.backgroundImage = "url('../img/jogo/background/cidadeFantasma.png')";
-              novo = {
+              document.getElementById("jogo").style.backgroundImage =
+                "url('../img/jogo/background/cidadeFantasma.png')";
+              novos.push({
                 name: "Boss Irislidriz",
                 hp: 50,
                 maxHp: 50,
@@ -4000,12 +4322,76 @@ function checkEnemies() {
                 img: "../img/jogo/inimigos/valkFantasma.png",
                 tipoDano: "🔱",
                 tipoVida: "❤️",
-              };
+              });
               reviver++;
             }
 
+            if (morto.name === "Medo De Ayla" && reviver === 0) {
+              shakeScreenNatural(10, 400);
+              document.getElementById("jogo").style.backgroundImage =
+                "url('../img/jogo/background/cidadeAsustadora.png')";
+              novos.push({
+                name: "Ansiedade De Ayla",
+                hp: 70,
+                maxHp: 70,
+                dano: 15,
+                behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.7 ? 12 : 24 }],
+                img: "../img/jogo/inimigos/ansiedade.png",
+                tipoDano: "(⚔️❓💚🎭💊)💥",
+                tipoVida: "🪬",
+              });
+              novos.push({
+                name: "Raiva De Ayla",
+                hp: 30,
+                maxHp: 30,
+                dano: 30,
+                behavior: () => [{ type: "attack", value: 30 }],
+                img: "../img/jogo/inimigos/raiva.png",
+                tipoDano: "⚔️",
+                tipoVida: "🪬",
+              });
+              novos.push({
+                name: "Tristeza De Ayla",
+                hp: 35,
+                maxHp: 35,
+                dano: 12,
+                behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 12 : 24 }],
+                img: "../img/jogo/inimigos/tristeza.png",
+                tipoDano: "(💚🎭💊)💥",
+                tipoVida: "🪬",
+              });
+            }
+
+            if (morto.name === "Tristeza De Ayla" || morto.name === "Ansiedade De Ayla" || morto.name === "Raiva De Ayla") {
+              reviver++;
+              if (reviver == 3) {
+                shakeScreenNatural(30, 800);
+                document.getElementById("jogo").style.backgroundImage =
+                  "url('../img/jogo/background/cidadeFantasma.png')";
+                novos.push({
+                  name: "Ira De Ayla",
+                  hp: 150,
+                  maxHp: 150,
+                  dano: 20,
+                  behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.9 ? 20 : 100 }],
+                  img: "../img/jogo/inimigos/bossIra.png",
+                  tipoDano: "(⚔️❓💚🎭💊)💣",
+                  tipoVida: "🧿",
+                });
+                novos.push({
+                  name: "Angustia De Ayla",
+                  hp: 50,
+                  dano: 20,
+                  behavior: () => [{ type: "heal", value: 20 }],
+                  img: "../img/jogo/inimigos/Vulnerabilidade.png",
+                  tipoDano: "💚🎭💊",
+                  tipoVida: "🧿",
+                });
+              }
+            }
+
             if (morto.name === "Vigia de Irislidriz") {
-              novo = {
+              novos.push({
                 name: "Protetor de Irislidriz",
                 hp: 100,
                 maxHp: 100,
@@ -4014,53 +4400,59 @@ function checkEnemies() {
                 img: "../img/jogo/inimigos/olhoIra.png",
                 tipoDano: "⚔️",
                 tipoVida: "❤️",
-              };
+              });
             }
 
             if (morto.name === "Observador de Irislidriz") {
-              novo = {
+              novos.push({
                 name: "Guardião de Irislidriz",
                 hp: 35,
                 maxHp: 35,
                 dano: 10,
-                behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 10 : 20 }],
+                behavior: () => [
+                  { type: "heal", value: Math.random() < 0.7 ? 10 : 20 },
+                ],
                 img: "../img/jogo/inimigos/olhoRedencao.png",
                 tipoDano: "(💚🎭💊)💥",
                 tipoVida: "❤️",
-              };
+              });
             }
 
-            if (novo) {
-              // adiciona no array na mesma posição
-              enemies.splice(index, 0, novo);
+            // Criação visual dos novos inimigos (sem mudar o resto da lógica)
+            if (novos.length > 0) {
+              novos.forEach((novo, j) => {
+                enemies.splice(index + j, 0, novo);
 
-              // cria elemento do inimigo
-              novo.el = createEnemy(novo.img);
-              novo.el.style.display = "inline-block";
+                novo.el = createEnemy(novo.img);
+                novo.el.style.display = "inline-block";
+                parentEnemies.insertBefore(
+                  novo.el,
+                  parentEnemies.children[index + j] || null
+                );
 
-              // insere no mesmo slot visual
-              parentEnemies.insertBefore(novo.el, parentEnemies.children[index] || null);
+                const lifeBar = document.createElement("p");
+                lifeBar.className = "enemy-bar";
+                lifeBar.innerHTML = `
+                  <strong> ⟪ ${novo.name} ⟫ </strong><br>
+                  ⟪ <span class="enemy-vida">${novo.tipoVida}</span> 
+                  <span class="enemy-hp">${novo.hp}</span> - 
+                  <span class="enemy-dano">${novo.tipoDano} ${novo.dano}</span> ⟫
+                `;
+                parentBars.insertBefore(
+                  lifeBar,
+                  parentBars.children[index + j] || null
+                );
 
-              // cria barra de vida e insere no mesmo slot
-              const lifeBar = document.createElement("p");
-              lifeBar.className = "enemy-bar";
-              lifeBar.innerHTML = `
-              <strong> ⟪ ${novo.name} ⟫ </strong><br>
-              ⟪ <span class="enemy-vida">${novo.tipoVida}</span> 
-              <span class="enemy-hp">${novo.hp}</span> - 
-              <span class="enemy-dano">${novo.tipoDano} ${novo.dano}</span> ⟫
-              `;
-              parentBars.insertBefore(lifeBar, parentBars.children[index] || null);
+                novo.barEl = lifeBar.querySelector(".enemy-hp");
+                novo.dmgEl = lifeBar.querySelector(".enemy-dano");
+                novo.tipoVidaEl = lifeBar.querySelector(".enemy-vida");
+              });
 
-              novo.barEl = lifeBar.querySelector(".enemy-hp");
-              novo.dmgEl = lifeBar.querySelector(".enemy-dano");
-              novo.tipoVidaEl = lifeBar.querySelector(".enemy-vida"); // ✅ referência salva
-              // garante containers visíveis
               displayInimigos();
             }
           }
 
-          // Se não houver mais inimigos, abre popup
+          // Checagem se acabou a batalha
           if (mapaBatalha === 50 && enemies.length === 0 && playerHP > 0) {
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popupFinal").style.display = "flex";
@@ -4092,6 +4484,7 @@ function checkEnemies() {
     }
   }
 }
+
 
 function redScreenGlow(duration = 500, intensity = 30) {
   const overlay = document.createElement("div");
