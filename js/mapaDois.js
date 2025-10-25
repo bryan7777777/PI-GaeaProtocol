@@ -4441,7 +4441,7 @@ function checkEnemies() {
                   aylaPhase = 4;
                   shakeScreenNatural(30, 800);
                   document.getElementById("jogo").style.backgroundImage =
-                    "url('../img/jogo/background/cidadeFantasma.png')";
+                    "url('../img/jogo/background/lutaSuperior.png')";
                   novos.push({
                     name: "Ayla",
                     hp: 200,
