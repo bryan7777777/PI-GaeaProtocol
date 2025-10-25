@@ -1552,32 +1552,6 @@ const normalModels = [
   ],
   [
     {
-      name: "BrocadorToper",
-      hp: 30,
-      dano: 12,
-      behavior: () => [
-        { type: Math.random() < 0.5 ? "attack" : "attackVida", value: 8 }
-      ],
-      img: "../img/jogo/inimigos/topeira.png",
-      tipoDano: "⚔️❓🔱",
-      tipoVida: "❤️",
-      zona: 1
-    },
-    {
-      name: "BrocadorToper",
-      hp: 30,
-      dano: 18,
-      behavior: () => [
-        { type: Math.random() < 0.5 ? "attack" : "attackVida", value: 8 }
-      ],
-      img: "../img/jogo/inimigos/topeira.png",
-      tipoDano: "⚔️❓🔱",
-      tipoVida: "❤️",
-      zona: 1
-    }
-  ],
-  [
-    {
       name: "Tartaruga",
       hp: 54,
       dano: 6,
@@ -2198,6 +2172,32 @@ const eliteModels = [
       zona: 1
     }
   ],
+  [
+    {
+      name: "BrocadorToper",
+      hp: 30,
+      dano: 12,
+      behavior: () => [
+        { type: Math.random() < 0.5 ? "attack" : "attackVida", value: 8 }
+      ],
+      img: "../img/jogo/inimigos/topeira.png",
+      tipoDano: "⚔️❓🔱",
+      tipoVida: "❤️",
+      zona: 1
+    },
+    {
+      name: "BrocadorToper",
+      hp: 30,
+      dano: 18,
+      behavior: () => [
+        { type: Math.random() < 0.5 ? "attack" : "attackVida", value: 8 }
+      ],
+      img: "../img/jogo/inimigos/topeira.png",
+      tipoDano: "⚔️❓🔱",
+      tipoVida: "❤️",
+      zona: 1
+    }
+  ],
   // 2222222222222222222
   [
     {
@@ -2365,6 +2365,38 @@ const eliteModels = [
     },
   ],
   // 44444444444444444
+  [
+    {
+      name: "Vigia de Irislidriz",
+      hp: 30,
+      dano: 5,
+      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 5 : 10 }],
+      img: "../img/jogo/inimigos/olho2.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "💤",
+      zona: 4
+    },
+    {
+      name: "Irislidriz",
+      hp: 60,
+      dano: 5,
+      behavior: () => [{ type: "attack", value: 5 }],
+      img: "../img/jogo/inimigos/bossValkFantasma.png",
+      tipoDano: "⚔️",
+      tipoVida: "💤",
+      zona: 4
+    },
+    {
+      name: "Observador de Irislidriz",
+      hp: 30,
+      dano: 5,
+      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 5 : 10 }],
+      img: "../img/jogo/inimigos/olho.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "💤",
+      zona: 4
+    },
+  ],
   [
     {
       name: "Pilha de Livros",
@@ -2572,38 +2604,6 @@ const bossModels = [
       tipoVida: "💤",
       zona: 4
     }
-  ],
-  [
-    {
-      name: "Vigia de Irislidriz",
-      hp: 30,
-      dano: 5,
-      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 5 : 10 }],
-      img: "../img/jogo/inimigos/olho2.png",
-      tipoDano: "(⚔️)💥",
-      tipoVida: "💤",
-      zona: 4
-    },
-    {
-      name: "Boss Irislidriz",
-      hp: 150,
-      dano: 5,
-      behavior: () => [{ type: "attack", value: 5 }],
-      img: "../img/jogo/inimigos/bossValkFantasma.png",
-      tipoDano: "⚔️",
-      tipoVida: "💤",
-      zona: 4
-    },
-    {
-      name: "Observador de Irislidriz",
-      hp: 30,
-      dano: 5,
-      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 5 : 10 }],
-      img: "../img/jogo/inimigos/olho.png",
-      tipoDano: "(⚔️)💥",
-      tipoVida: "💤",
-      zona: 4
-    },
   ]
   // 5555555555555555
 ];
@@ -4330,7 +4330,7 @@ function checkEnemies() {
           enemies.splice(index, 1);
 
           if (
-            morto.name === "Boss Irislidriz" ||
+            morto.name === "Irislidriz" ||
             morto.name === "Vigia de Irislidriz" ||
             morto.name === "Observador de Irislidriz" ||
             morto.name === "Medo De Ayla" ||
@@ -4343,13 +4343,11 @@ function checkEnemies() {
           ) {
             let novos = []; // ✅ agora é uma lista
 
-            if (morto.name === "Boss Irislidriz" && reviver === 0) {
+            if (morto.name === "Irislidriz" && reviver === 0) {
               shakeScreenNatural(10, 400);
-              document.getElementById("jogo").style.backgroundImage =
-                "url('../img/jogo/background/cidadeAsustadora.png')";
               novos.push({
-                name: "Boss Irislidriz",
-                hp: 80,
+                name: "Irislidriz",
+                hp: 50,
                 maxHp: 80,
                 dano: 20,
                 behavior: () => [{ type: "attack", value: 20 }],
@@ -4358,15 +4356,13 @@ function checkEnemies() {
                 tipoVida: "💤",
               });
               reviver++;
-            } else if (morto.name === "Boss Irislidriz" && reviver === 1) {
+            } else if (morto.name === "Irislidriz" && reviver === 1) {
               shakeScreenNatural(30, 800);
-              document.getElementById("jogo").style.backgroundImage =
-                "url('../img/jogo/background/cidadeFantasma.png')";
               novos.push({
-                name: "Boss Irislidriz",
-                hp: 50,
+                name: "Irislidriz",
+                hp: 40,
                 maxHp: 50,
-                dano: 30,
+                dano: 25,
                 behavior: () => [{ type: "attackVida", value: 30 }],
                 img: "../img/jogo/inimigos/valkFantasma.png",
                 tipoDano: "🔱",
