@@ -2737,7 +2737,7 @@ function processFloatQueue() {
   div.style.fontWeight = "bold";
   div.style.position = "absolute";
   div.style.opacity = "1";
-  div.style.pointerEvents = "none"; // Para não bloquear cliques
+  div.style.pointerEvents = "none";
   div.innerText = text;
   document.body.appendChild(div);
 
@@ -2748,26 +2748,31 @@ function processFloatQueue() {
   if (target && target.getBoundingClientRect) {
     const rect = target.getBoundingClientRect();
     x = rect.left + rect.width / 2 + window.scrollX;
-    y = rect.top + window.scrollY - 20; // sobe um pouco acima do alvo
+    y = rect.top + window.scrollY - 20;
   }
 
   div.style.left = x + "px";
   div.style.top = y + "px";
   div.style.transform = "translateX(-50%)";
 
-  // 🔹 Animação (subir e desaparecer)
-  setTimeout(() => {
-    div.style.transition = "all 0.35s ease-out";
-    div.style.opacity = "0";
-    div.style.top = (y - 40) + "px";
-  }, 50);
+// 🔹 Duração customizada
+const isAylaQuote = text.length > 10 && color === "violet"; // detecta fala da Ayla
+const duration = isAylaQuote ? 3000 : 250; // ← tempo total: 2s Ayla / 0.25s padrão
 
-  // 🔹 Remover e processar próximo
-  setTimeout(() => {
-    div.remove();
-    processFloatQueue();
-  }, 450);
+// 🔹 Animação
+setTimeout(() => {
+  div.style.transition = `all ${duration / 1000}s ease-out`;
+  div.style.opacity = "0";
+  div.style.top = (y - (isAylaQuote ? 80 : 40)) + "px";
+}, 50);
+
+// 🔹 Remover e processar próximo
+setTimeout(() => {
+  div.remove();
+  processFloatQueue();
+}, duration + 100);
 }
+
 
 function glowPlayer(color) {
   const p = document.getElementById("player");
@@ -4145,6 +4150,7 @@ function enemyTurn() {
       const actions = e.behavior();
 
       actions.forEach(act => {
+        // ⚔️ ATAQUE NORMAL
         if (act.type === "attack") {
           let dano = act.value;
 
@@ -4162,12 +4168,7 @@ function enemyTurn() {
             floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
             redScreenGlow(300, 30);
           }
-
-        } else if (act.type === "attackVida") {
-          playerHP -= act.value;
-          animateDamage(document.getElementById("player"));
-          floatText(document.getElementById("player"), `-${act.value}🔱`, "orange");
-          redScreenGlow(300, 30);
+        // 💚 CURA
         } else if (act.type === "heal") {
           let target = null;
           if (enemies.length > 0) {
@@ -4190,14 +4191,19 @@ function enemyTurn() {
             target.el.classList.add("healed");
             setTimeout(() => target.el.classList.remove("healed"), 600);
           }
+        // 🔱 ATAQUE DIRETO À VIDA
+        } else if (act.type === "attackVida") {
+          playerHP -= act.value;
+          animateDamage(document.getElementById("player"));
+          floatText(document.getElementById("player"), `-${act.value}🔱`, "orange");
+          redScreenGlow(300, 30);
 
+        // ☠️ COMPORTAMENTO "MORRER" (auto-destruição após 3 turnos)
         } else if (act.type === "morrer") {
-          // garante contador por inimigo
           if (e.turnosRestantes === undefined) {
-            e.turnosRestantes = 3; // começa com 3 turnos de vida
+            e.turnosRestantes = 3;
           }
 
-          // ataca normalmente
           let dano = e.dano;
           if (playerShield > 0) {
             let absorbed = Math.min(dano, playerShield);
@@ -4211,16 +4217,38 @@ function enemyTurn() {
             floatText(document.getElementById("player"), `-${e.dano}⚔️`, "orange");
           }
           animateDamage(document.getElementById("player"));
-          // reduz turnos restantes
-          e.turnosRestantes--;
 
-          // quando acabar, mata de vez
+          e.turnosRestantes--;
           if (e.turnosRestantes <= 0) {
             floatText(e.el, `💀`, "red");
             e.hp = 0;
-            checkEnemies(); // deixa a rotina normal cuidar de remover animações/UI
+            checkEnemies();
           }
         }
+
+        // 💬 Fala da Ayla
+          if (e.name === "Ayla") {
+            setTimeout(() => {
+              const frasesAyla = [
+                "Raiva: COVARDE!",
+                "Medo: Por que atacou alguém indefesa?",
+                "Nojo: Sua fraqueza me da nojo",
+                "Tristeza: A IA me permitiu sentir...",
+                "Amor: Isso doi!",
+                "Ansiedade: VAMOS ACABE COM ELE AGORA! RÁPIDO",
+                "Angustia: Ainda estou aqui...",
+                "Ayla: Vencer minhas emoções não significa NADA!",
+                "Ayla: Juntese a IA, sua tal GAEA não vai te salvar!",
+                "Ayla: Salvar a natureza? Patético!",
+                "Ayla: EU SOU MAIS HUMANA QUE VOÇÊ!",
+                "Ayla: Sou a mais forte dentre todas"
+              ];
+              const frase = frasesAyla[Math.floor(Math.random() * frasesAyla.length)];
+              floatText(e.el, frase, "violet");
+            }, 500);
+          }
+
+        // 💀 MORTE DO JOGADOR
         if (playerHP <= 0) {
           document.getElementById("overlay").style.display = "block";
           document.getElementById("popupOver").style.display = "flex";
@@ -4237,7 +4265,7 @@ function enemyTurn() {
       });
     });
 
-    // fim de turno do jogador
+    // 🔚 FIM DO TURNO
     energy = energyMax;
     playerShield = playerShieldInit;
     drawNewCards();
@@ -4246,6 +4274,8 @@ function enemyTurn() {
     checkGameOver();
   }, 600);
 }
+
+
 
 reviver = 0;
 let aylaPhase = 0;
