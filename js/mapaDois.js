@@ -1679,7 +1679,7 @@ const normalModels = [
   [
     {
       name: "Gaivota Corrompida",
-      hp: 35,
+      hp: 20,
       dano: 10,
       behavior: () => [
         { type: "attackVida", value: 10 }
@@ -1691,10 +1691,10 @@ const normalModels = [
     },
     {
       name: "Afogado",
-      hp: 85,
-      dano: 12,
+      hp: 75,
+      dano: 7,
       behavior: () => [
-        { type: "attackVida", value: Math.random() < 0.7 ? 12 : 24 }
+        { type: "attackVida", value: Math.random() < 0.7 ? 7 : 14 }
       ],
       img: "../img/jogo/inimigos/mergulhador.png",
       tipoDano: "(🔱)💥",
@@ -1731,7 +1731,7 @@ const normalModels = [
   [
     {
       name: "Gaivota Corrompida",
-      hp: 35,
+      hp: 20,
       dano: 10,
       behavior: () => [
         { type: "attackVida", value: 10 }
@@ -1783,7 +1783,7 @@ const normalModels = [
   [
     {
       name: "Gaivota Corrompida",
-      hp: 35,
+      hp: 20,
       dano: 10,
       behavior: () => [
         { type: "attackVida", value: 10 }
@@ -1795,7 +1795,7 @@ const normalModels = [
     },
     {
       name: "Gaivota Corrompida",
-      hp: 35,
+      hp: 20,
       dano: 10,
       behavior: () => [
         { type: "attackVida", value: 10 }
@@ -2458,9 +2458,9 @@ const bossModels = [
     },
     {
       name: "Boss Prj.Kraken",
-      hp: 120,
-      dano: 15,
-      behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "attackVida", value: Math.random() < 0.7 ? 15 : 30 }],
+      hp: 100,
+      dano: 10,
+      behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "attackVida", value: Math.random() < 0.7 ? 10 : 20 }],
       img: "../img/jogo/inimigos/bossKraken.png",
       tipoDano: "(⚔️❓🔱)💥",
       tipoVida: "💧",
