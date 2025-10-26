@@ -2095,6 +2095,126 @@ const normalModels = [
     }
   ],
   // 555555555555555555555
+  [
+    {
+      name: "Guarda",
+      hp: 70,
+      maxHp: 70,
+      dano: 20,
+      behavior: () => [{ type: "attack", value: 20 }],
+      img: "../img/jogo/inimigos/guarda.png",
+      tipoDano: "⚔️",
+      tipoVida: "🧿",
+      zona: 5
+    },
+    {
+      name: "Guarda",
+      hp: 70,
+      maxHp: 70,
+      dano: 20,
+      behavior: () => [{ type: "attack", value: 20 }],
+      img: "../img/jogo/inimigos/guarda.png",
+      tipoDano: "⚔️",
+      tipoVida: "🧿",
+      zona: 5
+    }
+  ],
+  [
+    {
+      name: "Drone De Combate",
+      hp: 45,
+      maxHp: 45,
+      dano: 15,
+      behavior: () => [{ type: "attackVida", value: 15 }],
+      img: "../img/jogo/inimigos/droneCombate.png",
+      tipoDano: "🔱",
+      tipoVida: "❤️",
+      zona: 5
+    },
+    {
+      name: "Drone De Combate",
+      hp: 45,
+      maxHp: 45,
+      dano: 15,
+      behavior: () => [{ type: "attackVida", value: 15 }],
+      img: "../img/jogo/inimigos/droneCombate.png",
+      tipoDano: "🔱",
+      tipoVida: "❤️",
+      zona: 5
+    }
+  ],
+  [
+    {
+      name: "Guarda",
+      hp: 70,
+      maxHp: 70,
+      dano: 20,
+      behavior: () => [{ type: "attack", value: 20 }],
+      img: "../img/jogo/inimigos/guarda.png",
+      tipoDano: "⚔️",
+      tipoVida: "🧿",
+      zona: 5
+    },
+    {
+      name: "Guarda Valquiria",
+      hp: 100,
+      maxHp: 100,
+      dano: 20,
+      behavior: () => [{ type: "attackVida", value: 20 }],
+      img: "../img/jogo/inimigos/guardaValk.png",
+      tipoDano: "🔱",
+      tipoVida: "❤️",
+      zona: 5
+    }
+  ],
+  [
+    {
+      name: "Guarda",
+      hp: 70,
+      maxHp: 70,
+      dano: 20,
+      behavior: () => [{ type: "attack", value: 20 }],
+      img: "../img/jogo/inimigos/guarda.png",
+      tipoDano: "⚔️",
+      tipoVida: "🧿",
+      zona: 5
+    },
+    {
+      name: "Guarda Forte",
+      hp: 70,
+      maxHp: 70,
+      dano: 25,
+      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 25:50 }],
+      img: "../img/jogo/inimigos/artilheiro.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "🧿",
+      zona: 5
+    }
+  ],
+  [
+    {
+      name: "Guarda",
+      hp: 70,
+      maxHp: 70,
+      dano: 20,
+      behavior: () => [{ type: "attack", value: 20 }],
+      img: "../img/jogo/inimigos/guarda.png",
+      tipoDano: "⚔️",
+      tipoVida: "🧿",
+      zona: 5
+    },
+    {
+      name: "Guarda Médico",
+      hp: 50,
+      maxHp: 50,
+      dano: 20,
+      behavior: () => [{ type: Math.random() < 0.5 ? "attack":"heal", value: 20 }],
+      img: "../img/jogo/inimigos/guardaMedico.png",
+      tipoDano: "⚔️❓💚🎭💊",
+      tipoVida: "❤️",
+      zona: 5
+    }
+  ]
 ];
 
 // ELITE
@@ -2433,6 +2553,32 @@ const eliteModels = [
     }
   ],
   // 55555555555555555
+  [
+    {
+      name: "Guarda Chefe",
+      hp: 80,
+      maxHp: 80,
+      dano: 35,
+      behavior: () => [{ type: "attack", value: 35 }],
+      img: "../img/jogo/inimigos/guardaElite.png",
+      tipoDano: "⚔️",
+      tipoVida: "🧿",
+      zona: 5
+    }
+  ],
+  [
+    {
+      name: "Prj. Nova",
+      hp: 150,
+      maxHp: 150,
+      dano: 35,
+      behavior: () => [{type: Math.random() < 0.75 ? "attack":"attackVida", value: 35 }],
+      img: "../img/jogo/inimigos/nova.png",
+      tipoDano: "⚔️❔🔱",
+      tipoVida: "🧿",
+      zona: 5
+    }
+  ]
 ];
 
 // BOSS
@@ -2606,6 +2752,19 @@ const bossModels = [
     }
   ]
   // 5555555555555555
+  [
+    {
+      name: "IA",
+      hp: 300,
+      maxHp: 300,
+      dano: 40,
+      behavior: () => [{type: Math.random() < 0.75 ? "attack":"attackVida", value: 40 }],
+      img: "../img/jogo/inimigos/minion.png",
+      tipoDano: "⚔️❔🔱",
+      tipoVida: "🧿",
+      zona: 5
+    }
+  ]
 ];
 
 function createEnemy(imgSrc) {
@@ -4226,7 +4385,7 @@ function enemyTurn() {
           }
         }
 
-        // 💬 Fala da Ayla
+        // Fala da Ayla
           if (e.name === "Ayla") {
             setTimeout(() => {
               const frasesAyla = [
@@ -4240,7 +4399,7 @@ function enemyTurn() {
                 "Ayla: Vencer minhas emoções não significa NADA!",
                 "Ayla: Juntese a IA, sua tal GAEA não vai te salvar!",
                 "Ayla: Salvar a natureza? Patético!",
-                "Ayla: EU SOU MAIS HUMANA QUE VOÇÊ!",
+                "Ayla: EU SOU MAIS HUMANA QUE VOCÊ!",
                 "Ayla: Sou a mais forte dentre todas"
               ];
               const frase = frasesAyla[Math.floor(Math.random() * frasesAyla.length)];
@@ -4248,7 +4407,7 @@ function enemyTurn() {
             }, 500);
           }
 
-        // 💀 MORTE DO JOGADOR
+        // MORTE DO JOGADOR
         if (playerHP <= 0) {
           document.getElementById("overlay").style.display = "block";
           document.getElementById("popupOver").style.display = "flex";
@@ -4264,8 +4423,7 @@ function enemyTurn() {
         }
       });
     });
-
-    // 🔚 FIM DO TURNO
+    // FIM DO TURNO
     energy = energyMax;
     playerShield = playerShieldInit;
     drawNewCards();
@@ -4341,7 +4499,7 @@ function checkEnemies() {
             morto.name === "Nojo De Ayla" ||
             morto.name === "Boss Ayla"
           ) {
-            let novos = []; // ✅ agora é uma lista
+            let novos = [];
 
             if (morto.name === "Irislidriz" && reviver === 0) {
               shakeScreenNatural(10, 400);
