@@ -2750,7 +2750,7 @@ const bossModels = [
       tipoVida: "💤",
       zona: 4
     }
-  ]
+  ],
   // 5555555555555555
   [
     {
