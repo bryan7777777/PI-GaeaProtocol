@@ -161,7 +161,63 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Defesa"),
       allCards.find(c => c.name === "Defesa"),
     ],
+    celso: [
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Mineração"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+    ],
+    felipe: [
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Mineração"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+    ],
+    maria: [
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Mineração"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+    ],
     verde: [
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Liderança"),
+      allCards.find(c => c.name === "Liderança"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Cura"),
+      allCards.find(c => c.name === "Escudo"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Ataque Reciclável"),
+      allCards.find(c => c.name === "Destruir Carta"),
+    ],
+    magnolia: [
       allCards.find(c => c.name === "Ataque"),
       allCards.find(c => c.name === "Ataque"),
       allCards.find(c => c.name === "Liderança"),
@@ -204,6 +260,20 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Destruir Carta"),
     ],
     porto: [
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Sistema de reflexão"),
+      allCards.find(c => c.name === "Sistema de reflexão"),
+      allCards.find(c => c.name === "Destruir Carta"),
+    ],
+    mercuri: [
       allCards.find(c => c.name === "Arpão"),
       allCards.find(c => c.name === "Arpão"),
       allCards.find(c => c.name === "Arpão"),
@@ -364,9 +434,27 @@ function criarPlayerNaDiv3() {
       playerImg.src = "./../img/jogo/player/mineiro.png";
       playerDeck = [...characterDecks.amarelo];
       break;
+    case "celso":
+      playerImg.src = "./../img/jogo/player/celso.png";
+      playerDeck = [...characterDecks.celso];
+      break;
+    case "felipe":
+      playerImg.src = "./../img/jogo/player/felipe.png";
+      playerDeck = [...characterDecks.felipe];
+      break;
+    case "maria":
+      playerImg.src = "./../img/jogo/player/maria.png";
+      playerDeck = [...characterDecks.maria];
+      break;
     case "verde":
       playerImg.src = "./../img/jogo/player/jao.png";
       playerDeck = [...characterDecks.verde];
+      maoInicio = 6;
+      limiteMao = 6;
+      break;
+    case "magnolia":
+      playerImg.src = "./../img/jogo/player/magnolia.png";
+      playerDeck = [...characterDecks.magnolia];
       maoInicio = 6;
       limiteMao = 6;
       break;
@@ -391,8 +479,16 @@ function criarPlayerNaDiv3() {
       playerMaxHP = 110, energyMax = 3, playerShieldInit = 5;
       playerHP = 110, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.porto];
-      maoInicio = 4;
-      limiteMao = 4;
+      maoInicio = 5;
+      limiteMao = 5;
+      break;
+    case "mercuri":
+      playerImg.src = "./../img/jogo/player/mercuri.png";
+      playerMaxHP = 110, energyMax = 3, playerShieldInit = 5;
+      playerHP = 110, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.mercuri];
+      maoInicio = 5;
+      limiteMao = 5;
       break;
     case "lilia":
       if (mapaBatalha == 0) {
@@ -577,8 +673,52 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 5
     },
+    celso: {
+      nome: "⛏️CELSO, O ARQUEOLOGO⛏️",
+      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀⛏️",
+      cor: "rgb(231, 201, 7)",
+      descricao: "Nem muito forte nem fraco, versátil e sabe como conseguir xenofluxo.",
+      hp: 100,
+      maxHp: 100,
+      energia: 3,
+      escudo: 0,
+      mao: 5
+    },
+    felipe: {
+      nome: "⛏️FELIPE, GEO MAPEADOR⛏️",
+      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀⛏️",
+      cor: "rgb(231, 201, 7)",
+      descricao: "Nem muito forte nem fraco, versátil e sabe como conseguir xenofluxo.",
+      hp: 100,
+      maxHp: 100,
+      energia: 3,
+      escudo: 0,
+      mao: 5
+    },
+    maria: {
+      nome: "⛏️MARIA, ESPECIALISTA EM EXPLOSÕES⛏️",
+      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀⛏️",
+      cor: "rgb(231, 201, 7)",
+      descricao: "Nem muito forte nem fraco, versátil e sabe como conseguir xenofluxo.",
+      hp: 100,
+      maxHp: 100,
+      energia: 3,
+      escudo: 0,
+      mao: 5
+    },
     verde: {
       nome: "🌿JÃO, O CARA🌿",
+      dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀🌿",
+      cor: "rgb(0, 188, 16)",
+      descricao: "Deck versátil, com um pouco de tudo e status balanceados.",
+      hp: 100,
+      maxHp: 100,
+      energia: 3,
+      escudo: 0,
+      mao: 6
+    },
+    magnolia: {
+      nome: "🌿MAGNOLIA, LIDER DA GAEA🌿",
       dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀🌿",
       cor: "rgb(0, 188, 16)",
       descricao: "Deck versátil, com um pouco de tudo e status balanceados.",
@@ -630,7 +770,18 @@ function configurarSelecaoPersonagem() {
       maxHp: 110,
       energia: 3,
       escudo: 5,
-      mao: 4
+      mao: 5
+    },
+    mercuri: {
+      nome: "⚓MERCURI, GUARDA PORTO⚓",
+      dificuldade: "⚓NÍVEL DE DIFICULDADE: 💀💀⚓",
+      cor: "rgba(69, 89, 222, 1)",
+      descricao: "Estrategista em causar dano na linha de trás, sabe se defender bem e usa isso a seu favor.",
+      hp: 110,
+      maxHp: 110,
+      energia: 3,
+      escudo: 5,
+      mao: 5
     },
     tomoeh: {
       nome: "🩸TOMOEH, A SOMBRA🩸",
