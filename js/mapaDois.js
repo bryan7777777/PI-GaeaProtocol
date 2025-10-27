@@ -711,6 +711,7 @@ const allCards = [
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/gaea.png",
     desc: "Recicla lixo. Ganhe vida, defesa e cause dano em 10 por cada carta de lixo reciclada.",
+    type: "cintilante"
   },
   {
     name: "Guardião",
@@ -719,6 +720,7 @@ const allCards = [
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/guardiao.png",
     desc: "Ganhe 1 de energia, se sua vida for 30 ou menos ganhe 30 de escudo e +1 de energia",
+    type: "cintilante"
   },
   {
     name: "Armamento Pesado",
@@ -727,6 +729,7 @@ const allCards = [
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/armamentoForte.jpg",
     desc: "Compre <strong>Impacto Bruto</strong>, <strong>Ataque</strong> e <strong>Rajada Dupla</strong> com custo 0 se sua mão for 3 ou menos",
+    type: "cintilante"
   },
   {
     name: "Chuva de Laminas",
@@ -735,6 +738,7 @@ const allCards = [
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/chuvaDeLaminas.jpg",
     desc: "Cause dano em area 5/10/15/20/30/40, e gaste energia respectivamente  0/1/2/3/4/5",
+    type: "cintilante"
   },
   {
     name: "Gelo Mortal",
@@ -824,7 +828,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/atk/Impacto.png",
     desc: "Causa 20 de dano ao inimigo.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Ataque",
@@ -833,7 +837,7 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/atk/ataque.png",
     desc: "Causa 6 de dano ao inimigo.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Broca Perfurante",
@@ -842,7 +846,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/atk/atkBroca.png",
     desc: "Causa 8 de dano ao ultimo inimigo, X2 se tiver 3 ou menos cartas na mão.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Ceifa",
@@ -851,7 +855,7 @@ const allCards = [
     rarity: "legend",
     img: "../img/jogo/cards/atk/fraqueza.png",
     desc: "Causa 12 de dano ao ultimo inimigo, se ele tiver 30 ou menos de vida X3 o dano.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Desprezo",
@@ -860,7 +864,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/atk/caido.png",
     desc: "Causa 20 de dano ao ultimo inimigo.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Artilharia Anti Sniper",
@@ -869,7 +873,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/atk/armamentoPesado.png",
     desc: "Compre <strong>Broca Perfurante</strong>, <strong>Ceifa</strong> e <strong>Desprezo</strong> com custo -1 se sua mão for 3 ou menos",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Drone de Ataque",
@@ -878,7 +882,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/atk/droneCombate.jpg",
     desc: "Compre 1 carta <strong>Ataque Preciso</strong> para cada inimigo em campo e causa 6 de dano todos os inimigos.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Ataque Preciso",
@@ -887,7 +891,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/atk/precisao.png",
     desc: "Causa 6 de dano ao inimigo, se a vida dele for menor que 30 cause 20 de dano.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Furia",
@@ -896,7 +900,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/atk/furia.png",
     desc: "Compre 4 <strong>Ataque Rapido</strong>, se for a unica carta na mão compre X2.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Ataque Rapido",
@@ -905,7 +909,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/atk/golpeRapido.png",
     desc: "Causa 5 de dano ao inimigo.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Liderança",
@@ -914,7 +918,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/atk/lideranca.jpeg",
     desc: "Causa 6 de dano e clone 2 cartas aleatorias do seu deck para a mão (Exceto ela mesma).",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Vingativo",
@@ -923,7 +927,7 @@ const allCards = [
     rarity: "legend",
     img: "../img/jogo/cards/atk/vinganca.jpeg",
     desc: "Causa dano baseado na vida perdida.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Rebeldia",
@@ -932,7 +936,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/atk/rebeldia.jpeg",
     desc: "Cause 7 de dano, +7 sem sem escudo, +7 com 30 ou menos de vida.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Drenagem",
@@ -941,7 +945,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/atk/drenoDeVida.png",
     desc: "Causa 10 de dano ao inimigo e cure-se em 10.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Rajada Dupla",
@@ -950,7 +954,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/atk/tiroCarregado.png",
     desc: "Ataca 2 vezes com 6 de dano cada.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Explosão",
@@ -959,7 +963,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/atk/ExplosaoDeEnergia.png",
     desc: "Causa 12 de dano em área a todos os inimigos.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Chuva De Fragmentos",
@@ -968,7 +972,7 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/atk/ChuvaDeFragmento.png",
     desc: "Causa 6 de dano em área a todos os inimigos.",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Beserck",
@@ -977,7 +981,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/atk/beserck.png",
     desc: "Cause 12 de dano, se houver 3 ou ou menos cartas na mão aumente em X3",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Fogo Amigo",
@@ -986,7 +990,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/atk/bombardeio.png",
     desc: "Cause 30 de dano em area, a cada inimigo no campo receba 15 de dano (max 45).",
-    type: "ataque"
+    type: "attack"
   },
   {
     name: "Defesa",
@@ -995,7 +999,7 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/def/Blindagem.png",
     desc: "Ganha 6 de escudo.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Tsunami",
@@ -1004,7 +1008,7 @@ const allCards = [
     rarity: "legend",
     img: "../img/jogo/cards/def/tsunami.png",
     desc: "Ganha 6 de escudo, ganhe X1 para cada carta na mão (Incluindo eu mesma) e para cada inimigo em campo.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Campo de Força Fraco",
@@ -1013,7 +1017,7 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/def/campoFraco.png",
     desc: "Ganha 3 de escudo.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Campo de Força Instavel",
@@ -1022,7 +1026,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/def/campoInstavel.png",
     desc: "Ganhe 44 de escudo se tiver exatamente 4 cartas na mão.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Campo Presurizado",
@@ -1031,7 +1035,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/def/campoPresurizado.png",
     desc: "Ganha 30 de escudo se eu for a unica carta na mão.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Blindagem Vital",
@@ -1040,7 +1044,7 @@ const allCards = [
     rarity: "legend",
     img: "../img/jogo/cards/def/blindagemMotivadora.png",
     desc: "Ganha escudo igual a vida atual, x2 se eu for a unica carta na mão.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Defesa Salvadora",
@@ -1049,7 +1053,7 @@ const allCards = [
     rarity: "legend",
     img: "../img/jogo/cards/def/umaVida.png",
     desc: "Ganha 6 de escudo, se tiver 3 ou menos cartas na mão cure tambem, se eu for a unica na mão X3.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Ultima Defesa",
@@ -1058,7 +1062,7 @@ const allCards = [
     rarity: "legend",
     img: "../img/jogo/cards/def/ultimaDef.png",
     desc: "Ganha 80 de escudo se eu for a unica carta na mão.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Campo Presurizado",
@@ -1067,7 +1071,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/def/campoPresurizado.png",
     desc: "Se só tiver 1 carta na mão ganhe 20 de escudo.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Escudo Triangular",
@@ -1076,7 +1080,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/def/escudoTriangular.png",
     desc: "Ganhe 10 de escudo, se tiver 3 ou menos cartas na mão X3 o valor.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Defesa Lunar",
@@ -1085,7 +1089,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/def/lua.png",
     desc: "Ganhe 30 de escudo se tiver 3 ou menos cartas, se não cause 30 de dano.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Drone Defensivo",
@@ -1094,7 +1098,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/def/droneDef.jpg",
     desc: "Compre uma carta de <strong>Defesa</strong> para cada inimigo em campo, se ouver 3 ganhe <strong>Escudo</strong> no lugar.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Arpão",
@@ -1103,7 +1107,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/def/arpao.png",
     desc: "Ataca o alvo mais distante em 3 e ganhe armadura (x3 o dano c/ armadura).",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Indestrutivel",
@@ -1112,7 +1116,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/def/indestrutivel.png",
     desc: "Multiplique sua armadura em X3.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Em guarda",
@@ -1121,7 +1125,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/def/emGuarda.png",
     desc: "Se possuir escudo ganhe 10 de escudo.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "PROTOCOL-Campo De Força",
@@ -1130,7 +1134,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/def/campoDeForca.png",
     desc: "Se sua vida for 30 ou menos ganhe 40 de escudo",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Brilhando",
@@ -1139,7 +1143,7 @@ const allCards = [
     rarity: "legend",
     img: "../img/jogo/cards/def/escudoDeVidro.png",
     desc: "Se sua vida estiver cheia ganhe 60 de escudo",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Impulso Defensivo",
@@ -1148,7 +1152,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/def/impulsoAzul.png",
     desc: "Ganha 3 de escudo e receba 1 de energia",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Escudo",
@@ -1157,7 +1161,7 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/def/escudoHolo.png",
     desc: "Cria um escudo de 10 pontos.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Sistema de reflexão",
@@ -1166,7 +1170,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/def/sisReflexao.png",
     desc: "Cria um escudo de 8 pontos e cause 4 de dano.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Escudo Retaliante",
@@ -1175,7 +1179,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/def/escudoRetaliante.png",
     desc: "Causa dano igual à sua armadura atual.",
-    type: "defesa"
+    type: "defense"
   },
   {
     name: "Cura",
@@ -1184,7 +1188,7 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/buff/Cura.png",
     desc: "Recupera 3 de vida.",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "Ritual",
@@ -1193,7 +1197,7 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/buff/ritual.png",
     desc: "Recupera 20 de vida se eu for a unica carta na mão, caso contrario perca vida.",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "Cura Forte",
@@ -1202,7 +1206,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/buff/coracaoForte.png",
     desc: "Recupera 30 de vida se eu for a unica carta na mão.",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "Estratégia",
@@ -1211,7 +1215,7 @@ const allCards = [
     rarity: "legend",
     img: "../img/jogo/cards/buff/cerebro.png",
     desc: "Se você tiver 3 cartas ou menos na mão clone 2 cartas (Exceto ela mesma), se tiver mais ganhe 2 de energia.",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "Limite da Vida",
@@ -1220,7 +1224,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/buff/limiteDaVida.png",
     desc: "Se você tiver 3 cartas ou menos na mão recupere 10 de vida, X3 se tiver 30 ou menos de vida.",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "Xenofluxo",
@@ -1229,7 +1233,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/buff/xenofluxo.jpg",
     desc: "Ganhe 1 de energia.",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "Drone Médico",
@@ -1238,7 +1242,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/buff/droneVerd.png",
     desc: "Recupera 5 de vida por cada inimigo em campo.",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "Sob-Vigia",
@@ -1247,7 +1251,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/buff/vigia.png",
     desc: "Ajuste sua vida para 25, se essa carta tirar vida ganhe 1 de energia.",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "Mineração",
@@ -1256,7 +1260,7 @@ const allCards = [
     rarity: "legend",
     img: "../img/jogo/cards/buff/mineracao.png",
     desc: "Mineração sustentavel, fornece 3 de energia, viva a sustentabilidade!",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "PROTOCOL-Reforço Estrutural",
@@ -1265,7 +1269,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/buff/reforcoDeEstrutura.png",
     desc: "Cure 20 de vida se sua vida estiver em 30 ou menos.",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "Impulso",
@@ -1274,7 +1278,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/buff/impulsoVerd.png",
     desc: "Aumenta a mão em 1 até o final da luta (limite da mão 10)",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "Golpe Neural Retaliante",
@@ -1283,7 +1287,7 @@ const allCards = [
     rarity: "epic",
     img: "../img/jogo/cards/buff/neural.png",
     desc: "Cause dano igual sua vida atual, perca 20 da vida atual (não pode ser letal a você)",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "Sobre Carga",
@@ -1292,7 +1296,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/buff/sobreCarga.png",
     desc: "Perca 4 de vida e cause 12 de dano.",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "Compra Dupla",
@@ -1301,7 +1305,7 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/buff/comprarCarta.png",
     desc: "Compra 2 cartas aleatórias.",
-    type: "suporte"
+    type: "heal"
   },
   {
     name: "Recicladora",
@@ -4268,6 +4272,62 @@ function drawCards() {
   });
 }
 
+// Seletores
+const btnInfoCards = document.querySelector(".infoCards");
+const popupOverlayDeck = document.getElementById("popupOverlayDeck");
+const closePopupDeck = document.getElementById("closePopupDeck");
+const deckContainer = document.getElementById("deckContainer");
+
+// Função para abrir popup e mostrar as cartas do deck
+btnInfoCards.addEventListener("click", () => {
+  deckContainer.innerHTML = ""; // limpa conteúdo anterior
+
+  // Garante que playerDeck existe
+  if (!playerDeck || playerDeck.length === 0) {
+    deckContainer.innerHTML = "<p>O deck está vazio.</p>";
+  } else {
+    playerDeck.forEach(card => {
+      if (!card) return;
+
+      // Cria o contêiner da carta
+      const cartaDiv = document.createElement("div");
+      cartaDiv.className = `card ${card.rarity} ${card.type}`; // usa o padrão do CSS .card
+
+      // Estrutura visual completa da carta
+      cartaDiv.innerHTML = `
+        <img src="${card.img}" alt="${card.name}">
+        <div class="energia"><strong>${card.cost ?? 0}</strong></div>
+        <div class="desc">
+          <strong>${card.name || "Carta sem nome"}</strong><br>
+          <em>${card.desc || "Sem descrição."}</em>
+        </div>
+      `;
+
+      // Adiciona ao container
+      deckContainer.appendChild(cartaDiv);
+    });
+  }
+
+  // Mostra o popup
+  popupOverlayDeck.style.opacity = "1";
+  popupOverlayDeck.style.pointerEvents = "auto";
+});
+
+// Fechar popup
+closePopupDeck.addEventListener("click", () => {
+  popupOverlayDeck.style.opacity = "0";
+  popupOverlayDeck.style.pointerEvents = "none";
+});
+
+// Fechar ao clicar fora do conteúdo
+popupOverlayDeck.addEventListener("click", (e) => {
+  if (e.target === popupOverlayDeck) {
+    popupOverlayDeck.style.opacity = "0";
+    popupOverlayDeck.style.pointerEvents = "none";
+  }
+});
+
+
 function drawNewCards() {
   deck.length = 0;
 
@@ -4815,9 +4875,9 @@ function gerarItens() {
 
     // tipo de carta para imagem de fundo
     switch (carta.type) {
-      case "ataque": cardDiv.classList.add("attack"); break;
-      case "defesa": cardDiv.classList.add("defense"); break;
-      case "suporte": cardDiv.classList.add("heal"); break;
+      case "attack": cardDiv.classList.add("attack"); break;
+      case "defense": cardDiv.classList.add("defense"); break;
+      case "heal": cardDiv.classList.add("heal"); break;
       case "reciclagem": cardDiv.classList.add("reciclagem"); break;
       case "lixo": cardDiv.classList.add("lixo"); break;
       case "cintilante": cardDiv.classList.add("cintilante"); break;
