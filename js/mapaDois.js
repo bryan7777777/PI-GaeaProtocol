@@ -95,13 +95,13 @@ function armaduraUp() {
 
 function armaduraSacre() {
   playerShieldInit += 15;
-  if (playerMaxHP <= 10) {
+  if (playerMaxHP <= 50) {
     playerMaxHP = 10;
-  } else if (playerHP > 50) {
-    playerHP = 50;
-    playerMaxHP -= 50;
   } else {
     playerMaxHP -= 50;
+    if (playerMaxHP <= 10) {
+      playerMaxHP=10;
+    }
   }
   updateHUD();
 }
