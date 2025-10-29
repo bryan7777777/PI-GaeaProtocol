@@ -5281,7 +5281,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
 }
 
   /* =================== NOTEBOOK =================== */
-@media (min-width: 1025px) and (max-width: 1840px) {
+@media (min-width: 1025px) and (max-width: 1940px) {
   #mapa {
     max-width: 1000px;
     height: 180vh;
@@ -5314,6 +5314,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
   }
   canvas{
   margin-top: -50px;
+  transform: scale(1.0);
   }  
   .coluna {
     gap: 10px;
@@ -5332,11 +5333,12 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
     height: 100vh;
     width: 100vw;
     gap: 10px;
-    margin-right: -248px;
+    margin-right: -288px;
     margin-top:-20px;
   }
   canvas{
   margin-top: -78px;
+  transform: scale(1.0);
   }  
   .coluna {
     gap: 10px;
