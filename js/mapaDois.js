@@ -400,17 +400,19 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Baralho Glacial"),
     ],
     gaeaReen: [
-      allCards.find(c => c.name === "Fogo Amigo"),
-      allCards.find(c => c.name === "Fogo Amigo"),
-      allCards.find(c => c.name === "Fogo Amigo"),
-      allCards.find(c => c.name === "Fogo Amigo"),
-      allCards.find(c => c.name === "Fogo Amigo"),
-      allCards.find(c => c.name === "Fogo Amigo"),
-      allCards.find(c => c.name === "Fogo Amigo"),
-      allCards.find(c => c.name === "Fogo Amigo"),
-      allCards.find(c => c.name === "Fogo Amigo"),
-      allCards.find(c => c.name === "Fogo Amigo"),
-      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
     ]
   };
 
@@ -1656,10 +1658,10 @@ const normalModels = [
   [
     {
       name: "Rinoceronte corrompido",
-      hp: 65,
-      dano: 10,
+      hp: 60,
+      dano: 4,
       behavior: () => [
-        { type: "attackVida", value: 10 }
+        { type: "attackVida", value: 4 }
       ],
       img: "../img/jogo/inimigos/rino.png",
       tipoDano: "🔱",
@@ -1772,7 +1774,7 @@ const normalModels = [
     },
     {
       name: "Tatu corrompido",
-      hp: 60,
+      hp: 45,
       dano: 8,
       behavior: () => [{ type: "attack", value: 8 }],
       img: "../img/jogo/inimigos/tatu.png",
@@ -1797,8 +1799,8 @@ const normalModels = [
       name: "Robo Cargueiro",
       hp: 80,
       maxHp: 80,
-      dano: 15,
-      behavior: () => [{ type: "attack", value: 15 }],
+      dano: 12,
+      behavior: () => [{ type: "attack", value: 12 }],
       img: "../img/jogo/inimigos/roboCargueiro.png",
       tipoDano: "⚔️",
       tipoVida: "❤️",
@@ -1820,7 +1822,7 @@ const normalModels = [
     },
     {
       name: "Afogado",
-      hp: 75,
+      hp: 70,
       dano: 7,
       behavior: () => [
         { type: "attackVida", value: Math.random() < 0.7 ? 7 : 14 }
@@ -1834,7 +1836,7 @@ const normalModels = [
   [
     {
       name: "Marinheiro",
-      hp: 65,
+      hp: 60,
       dano: 22,
       behavior: () => [
         { type: "attack", value: 22 }
@@ -1940,9 +1942,9 @@ const normalModels = [
     {
       name: "Guarda",
       hp: 30,
-      dano: 10,
+      dano: 7,
       behavior: () => [
-        { type: "attackVida", value: Math.random() < 0.7 ? 10 : 20 }
+        { type: "attackVida", value: Math.random() < 0.7 ? 7 : 14 }
       ],
       img: "../img/jogo/inimigos/guardaGreco.png",
       tipoDano: "(🔱)💥",
@@ -1952,9 +1954,9 @@ const normalModels = [
     {
       name: "Guarda",
       hp: 30,
-      dano: 10,
+      dano: 7,
       behavior: () => [
-        { type: "attackVida", value: Math.random() < 0.7 ? 10 : 20 }
+        { type: "attackVida", value: Math.random() < 0.7 ? 7 : 14 }
       ],
       img: "../img/jogo/inimigos/guardaGreco.png",
       tipoDano: "(🔱)💥",
@@ -1965,7 +1967,7 @@ const normalModels = [
   [
     {
       name: "Sentinela",
-      hp: 85,
+      hp: 80,
       dano: 10,
       behavior: () => [
         { type: "attack", value: 10 }
@@ -1992,9 +1994,9 @@ const normalModels = [
     {
       name: "Casca Grossa",
       hp: 80,
-      dano: 10,
+      dano: 5,
       behavior: () => [
-        { type: "attack", value: 10 }
+        { type: "attack", value: 5 }
       ],
       img: "../img/jogo/inimigos/cascaGrossa.png",
       tipoDano: "⚔️",
@@ -2075,8 +2077,8 @@ const normalModels = [
     },
     {
       name: "Sentinela Corrompido",
-      hp: 100,
-      maxHp: 100,
+      hp: 90,
+      maxHp: 90,
       dano: 25,
       behavior: () => [{ type: "attack", value: 25 }],
       img: "../img/jogo/inimigos/sentinelaCorrompido.png",
@@ -2378,7 +2380,7 @@ const eliteModels = [
   [
     {
       name: "Lenhador corrompido",
-      hp: 95,
+      hp: 70,
       dano: 15,
       behavior: () => [
         { type: "attack", value: Math.random() < 0.7 ? 15 : 30 }
@@ -2393,9 +2395,9 @@ const eliteModels = [
     {
       name: "FuradorKiwi",
       hp: 16,
-      dano: 24,
+      dano: 20,
       behavior: () => [
-        { type: "attack", value: 24 }
+        { type: "attack", value: 20 }
       ],
       img: "../img/jogo/inimigos/kiwi.png",
       tipoDano: "⚔️",
@@ -2405,9 +2407,9 @@ const eliteModels = [
     {
       name: "FuradorKiwi",
       hp: 16,
-      dano: 24,
+      dano: 20,
       behavior: () => [
-        { type: "attack", value: 24 }
+        { type: "attack", value: 20 }
       ],
       img: "../img/jogo/inimigos/kiwi.png",
       tipoDano: "⚔️",
@@ -2451,7 +2453,7 @@ const eliteModels = [
     {
       name: "BrocadorToper",
       hp: 30,
-      dano: 12,
+      dano: 8,
       behavior: () => [
         { type: Math.random() < 0.5 ? "attack" : "attackVida", value: 8 }
       ],
@@ -2463,7 +2465,7 @@ const eliteModels = [
     {
       name: "BrocadorToper",
       hp: 30,
-      dano: 18,
+      dano: 8,
       behavior: () => [
         { type: Math.random() < 0.5 ? "attack" : "attackVida", value: 8 }
       ],
@@ -2477,10 +2479,10 @@ const eliteModels = [
   [
     {
       name: "Robo Cargueiro Elite",
-      hp: 120,
-      maxHp: 120,
-      dano: 25,
-      behavior: () => [{ type: "attack", value: 25 }],
+      hp: 80,
+      maxHp: 80,
+      dano: 17,
+      behavior: () => [{ type: "attack", value: 17 }],
       img: "../img/jogo/inimigos/cargueiroElite.png",
       tipoDano: "⚔️",
       tipoVida: "❤️",
@@ -2501,7 +2503,7 @@ const eliteModels = [
   [
     {
       name: "Marinheiro",
-      hp: 65,
+      hp: 60,
       dano: 22,
       behavior: () => [
         { type: "attack", value: 22 }
@@ -2629,7 +2631,7 @@ const eliteModels = [
     {
       name: "Guarda",
       hp: 30,
-      dano: 10,
+      dano: 7,
       behavior: () => [
         { type: "attackVida", value: Math.random() < 0.7 ? 10 : 20 }
       ],
@@ -2699,8 +2701,8 @@ const eliteModels = [
       name: "Emissario",
       hp: 80,
       maxHp: 80,
-      dano: 45,
-      behavior: () => [{ type: "morrer", value: 45 }],
+      dano: 31,
+      behavior: () => [{ type: "morrer", value: 31 }],
       img: "../img/jogo/inimigos/vingadorAraq.png",
       tipoDano: "🩸",
       tipoVida: "❤️",
@@ -2713,8 +2715,8 @@ const eliteModels = [
       name: "Guarda Chefe",
       hp: 80,
       maxHp: 80,
-      dano: 35,
-      behavior: () => [{ type: "attack", value: 35 }],
+      dano: 33,
+      behavior: () => [{ type: "attack", value: 33 }],
       img: "../img/jogo/inimigos/guardaElite.png",
       tipoDano: "⚔️",
       tipoVida: "🧿",
@@ -2724,10 +2726,10 @@ const eliteModels = [
   [
     {
       name: "Prj. Nova",
-      hp: 150,
-      maxHp: 150,
-      dano: 35,
-      behavior: () => [{type: Math.random() < 0.75 ? "attack":"attackVida", value: 35 }],
+      hp: 100,
+      maxHp: 100,
+      dano: 33,
+      behavior: () => [{type: Math.random() < 0.75 ? "attack":"attackVida", value: 33 }],
       img: "../img/jogo/inimigos/nova.png",
       tipoDano: "⚔️❔🔱",
       tipoVida: "🧿",
@@ -2826,7 +2828,7 @@ const bossModels = [
     },
     {
       name: "Boss Paladium",
-      hp: 100,
+      hp: 150,
       dano: 8,
       behavior: () => [
         { type: Math.random() < 0.7 ? "attack" : "heal", value: Math.random() < 0.7 ? 8 : 16 }
@@ -2872,7 +2874,7 @@ const bossModels = [
     },
     {
       name: "Boss Valquiria",
-      hp: 125,
+      hp: 150,
       dano: 18,
       behavior: () => [
         { type: "attack", value: Math.random() < 0.7 ? 18 : 36 }
@@ -2910,11 +2912,11 @@ const bossModels = [
   [
     {
       name: "IA",
-      hp: 300,
-      maxHp: 300,
-      dano: 40,
-      behavior: () => [{type: Math.random() < 0.75 ? "attack":"attackVida", value: 40 }],
-      img: "../img/jogo/inimigos/minion.png",
+      hp: 250,
+      maxHp: 250,
+      dano: 38,
+      behavior: () => [{type: Math.random() < 0.75 ? "attack":"attackVida", value: 38 }],
+      img: "../img/jogo/inimigos/bossIa.png",
       tipoDano: "⚔️❔🔱",
       tipoVida: "🧿",
       zona: 5
