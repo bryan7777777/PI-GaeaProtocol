@@ -5278,6 +5278,9 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
     max-width: 45px;
     max-height: 45px;
   }
+    #mapa #conexoes{
+    margin-top:92px;
+    }
 }
 
   /* =================== NOTEBOOK =================== */
@@ -5286,7 +5289,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
     max-width: 1000px;
     height: 180vh;
     margin-right: 306px;
-    margin-top:92px;
+    margin-top:54px;
   }
   .coluna {
     gap: 50px;
