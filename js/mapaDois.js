@@ -5379,61 +5379,105 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
     }
 
     function gerarMapa() {
-      for (let i = 0; i < numFases; i++) {
-        const coluna = [];
-        for (let j = 0; j < caminhosPorFase; j++) {
-          let tipo = tipos[Math.floor(Math.random() * tipos.length)];
-          if (i === 0) tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
-          else if (i === numFases - 1) tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'boss' : 'invalido';
-          coluna.push({ tipo, conexoes: [] });
-        }
-        mapa.push(coluna);
+  // Tipos com pesos
+  const tipos = [
+    { tipo: 'inimigo', peso: 55 },
+    { tipo: 'elite', peso: 18 },
+    { tipo: 'hospital', peso: 8 },
+    { tipo: 'ferreiro', peso: 8 }
+  ];
+
+  // Sorteio ponderado de tipo
+  function sortearTipo() {
+    const totalPeso = tipos.reduce((soma, t) => soma + t.peso, 0);
+    let rand = Math.random() * totalPeso;
+    for (const t of tipos) {
+      if (rand < t.peso) return t.tipo;
+      rand -= t.peso;
+    }
+    return tipos[0].tipo;
+  }
+
+  // Criação da estrutura do mapa
+  for (let i = 0; i < numFases; i++) {
+    const coluna = [];
+
+    for (let j = 0; j < caminhosPorFase; j++) {
+      let tipo;
+
+      // Primeira fase: início fixo no centro
+      if (i === 0) {
+        tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
+      }
+      // Última fase: boss fixo no centro
+      else if (i === numFases - 1) {
+        tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'boss' : 'invalido';
+      }
+      // Penúltima fase: toda de hospital
+      else if (i === numFases - 2) {
+        tipo = 'hospital';
+      }
+      // Restante: tipos aleatórios com peso
+      else {
+        tipo = sortearTipo();
       }
 
-      for (let i = 0; i < numFases - 1; i++) {
-        for (let j = 0; j < caminhosPorFase; j++) {
-          if (mapa[i][j].tipo === 'invalido') continue;
+      coluna.push({ tipo, conexoes: [] });
+    }
 
-          if (i === 0) {
-            mapa[i][j].conexoes = [];
-            for (let k = 0; k < caminhosPorFase; k++) {
-              if (mapa[i + 1][k].tipo !== 'invalido') {
-                mapa[i][j].conexoes.push(k);
-              }
-            }
-            continue;
+    mapa.push(coluna);
+  }
+
+  // Conexões entre colunas
+  for (let i = 0; i < numFases - 1; i++) {
+    for (let j = 0; j < caminhosPorFase; j++) {
+      if (mapa[i][j].tipo === 'invalido') continue;
+
+      // Primeira fase: conecta a todos os válidos da próxima
+      if (i === 0) {
+        mapa[i][j].conexoes = [];
+        for (let k = 0; k < caminhosPorFase; k++) {
+          if (mapa[i + 1][k].tipo !== 'invalido') {
+            mapa[i][j].conexoes.push(k);
           }
-
-          if (i === numFases - 2) {
-            mapa[i][j].conexoes.push(Math.floor(caminhosPorFase / 2));
-            continue;
-          }
-
-          let possiveis = [];
-          if (j > 0 && mapa[i + 1][j - 1].tipo !== 'invalido') possiveis.push(j - 1);
-          if (mapa[i + 1][j].tipo !== 'invalido') possiveis.push(j);
-          if (j < caminhosPorFase - 1 && mapa[i + 1][j + 1].tipo !== 'invalido') possiveis.push(j + 1);
-          mapa[i][j].conexoes = shuffle(possiveis).slice(0, Math.floor(Math.random() * 2) + 1);
         }
+        continue;
       }
 
-      for (let i = 1; i < numFases; i++) {
-        for (let j = 0; j < caminhosPorFase; j++) {
-          if (mapa[i][j].tipo === 'invalido') continue;
-          let temEntrada = mapa[i - 1].some(n => n.conexoes.includes(j));
-          if (!temEntrada) {
-            let vizinhos = [j, j - 1, j + 1].filter(x => x >= 0 && x < caminhosPorFase);
-            shuffle(vizinhos);
-            for (let v of vizinhos) {
-              if (mapa[i - 1][v].tipo !== 'invalido') {
-                mapa[i - 1][v].conexoes.push(j);
-                break;
-              }
-            }
+      // Penúltima fase: conecta ao boss
+      if (i === numFases - 2) {
+        mapa[i][j].conexoes.push(Math.floor(caminhosPorFase / 2));
+        continue;
+      }
+
+      // Conexões aleatórias entre caminhos próximos
+      let possiveis = [];
+      if (j > 0 && mapa[i + 1][j - 1].tipo !== 'invalido') possiveis.push(j - 1);
+      if (mapa[i + 1][j].tipo !== 'invalido') possiveis.push(j);
+      if (j < caminhosPorFase - 1 && mapa[i + 1][j + 1].tipo !== 'invalido') possiveis.push(j + 1);
+      mapa[i][j].conexoes = shuffle(possiveis).slice(0, Math.floor(Math.random() * 2) + 1);
+    }
+  }
+
+  // Garante entradas para todos os nós válidos
+  for (let i = 1; i < numFases; i++) {
+    for (let j = 0; j < caminhosPorFase; j++) {
+      if (mapa[i][j].tipo === 'invalido') continue;
+      let temEntrada = mapa[i - 1].some(n => n.conexoes.includes(j));
+      if (!temEntrada) {
+        let vizinhos = [j, j - 1, j + 1].filter(x => x >= 0 && x < caminhosPorFase);
+        shuffle(vizinhos);
+        for (let v of vizinhos) {
+          if (mapa[i - 1][v].tipo !== 'invalido') {
+            mapa[i - 1][v].conexoes.push(j);
+            break;
           }
         }
       }
     }
+  }
+}
+
 
     function desenharMapa() {
       mapaContainer.innerHTML = '';
