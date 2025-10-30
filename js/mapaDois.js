@@ -100,7 +100,7 @@ function armaduraSacre() {
   } else {
     playerMaxHP -= 50;
     if (playerMaxHP <= 10) {
-      playerMaxHP=10;
+      playerMaxHP = 10;
     }
   }
   updateHUD();
@@ -400,9 +400,9 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Baralho Glacial"),
     ],
     gaeaReen: [
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Combustão"),
+      allCards.find(c => c.name === "Soterrar"),
+      allCards.find(c => c.name === "Jato De Água"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
@@ -894,12 +894,39 @@ const allCards = [
     type: "cintilante"
   },
   {
+    name: "Combustão",
+    cost: 1,
+    basePower: 8,
+    rarity: "fire",
+    img: "../img/jogo/cards/fire/combustao.png",
+    desc: "Marca todos os inimigos com FIRE",
+    type: "fire"
+  },
+  {
+    name: "Soterrar",
+    cost: 1,
+    basePower: 8,
+    rarity: "terra",
+    img: "../img/jogo/cards/terra/soterra.jpg",
+    desc: "Marca todos os inimigos com EARTH",
+    type: "terra"
+  },
+  {
+    name: "Jato De Água",
+    cost: 1,
+    basePower: 8,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/jatoAgua.png",
+    desc: "Marca todos os inimigos com WATER",
+    type: "agua"
+  },
+  {
     name: "Gelo Mortal",
     cost: 2,
     basePower: 1,
     rarity: "frost",
     img: "../img/jogo/cards/frost/geloMortal.png",
-    desc: "Marca e reduz 1 de dano do inimigo (Não fica a baixo de 1) e muda sua ação para ataque normal",
+    desc: "Marca com FROST e reduz 1 de dano do inimigo (Não fica a baixo de 1) e muda sua ação para ataque normal",
     type: "frost"
   },
   {
@@ -908,7 +935,7 @@ const allCards = [
     basePower: 1,
     rarity: "frost",
     img: "../img/jogo/cards/frost/nevasca.png",
-    desc: "Marca e reduz 1 de dano de todos os inimigos (Não fica a baixo de 1) e muda sua ação para ataque normal",
+    desc: "Marca com FROST e reduz 1 de dano de todos os inimigos (Não fica a baixo de 1) e muda sua ação para ataque normal",
     type: "frost"
   },
   {
@@ -917,7 +944,7 @@ const allCards = [
     basePower: 0,
     rarity: "frost",
     img: "../img/jogo/cards/frost/congelar.png",
-    desc: "Marca o inimigo",
+    desc: "Marca o inimigo com FROST",
     type: "frost"
   },
   {
@@ -926,7 +953,7 @@ const allCards = [
     basePower: 0,
     rarity: "frost",
     img: "../img/jogo/cards/frost/cemiterioBranco.png",
-    desc: "Marca todos os inimigos",
+    desc: "Marca todos os inimigos com FROST",
     type: "frost"
   },
   {
@@ -2318,7 +2345,7 @@ const normalModels = [
       name: "Guarda Forte",
       hp: 65,
       dano: 22,
-      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 22:44 }],
+      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 22 : 44 }],
       img: "../img/jogo/inimigos/artilheiro.png",
       tipoDano: "(⚔️)💥",
       tipoVida: "🧿",
@@ -2340,7 +2367,7 @@ const normalModels = [
       name: "Guarda Médico",
       hp: 50,
       dano: 20,
-      behavior: () => [{ type: Math.random() < 0.5 ? "attack":"heal", value: 20 }],
+      behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "heal", value: 20 }],
       img: "../img/jogo/inimigos/guardaMedico.png",
       tipoDano: "⚔️❓💚🎭💊",
       tipoVida: "❤️",
@@ -2697,7 +2724,7 @@ const eliteModels = [
       name: "Prj. Nova",
       hp: 100,
       dano: 33,
-      behavior: () => [{type: Math.random() < 0.75 ? "attack":"attackVida", value: 33 }],
+      behavior: () => [{ type: Math.random() < 0.75 ? "attack" : "attackVida", value: 33 }],
       img: "../img/jogo/inimigos/nova.png",
       tipoDano: "⚔️❔🔱",
       tipoVida: "🧿",
@@ -2883,7 +2910,7 @@ const bossModels = [
       hp: 250,
       maxHp: 250,
       dano: 38,
-      behavior: () => [{type: Math.random() < 0.75 ? "attack":"attackVida", value: 38 }],
+      behavior: () => [{ type: Math.random() < 0.75 ? "attack" : "attackVida", value: 38 }],
       img: "../img/jogo/inimigos/bossIa.png",
       tipoDano: "⚔️❔🔱",
       tipoVida: "🧿",
@@ -3039,22 +3066,22 @@ function processFloatQueue() {
   div.style.top = y + "px";
   div.style.transform = "translateX(-50%)";
 
-// 🔹 Duração customizada
-const isAylaQuote = text.length > 10 && color === "violet"; // detecta fala da Ayla
-const duration = isAylaQuote ? 3000 : 250; // ← tempo total: 2s Ayla / 0.25s padrão
+  // 🔹 Duração customizada
+  const isAylaQuote = text.length > 10 && color === "violet"; // detecta fala da Ayla
+  const duration = isAylaQuote ? 3000 : 250; // ← tempo total: 2s Ayla / 0.25s padrão
 
-// 🔹 Animação
-setTimeout(() => {
-  div.style.transition = `all ${duration / 1000}s ease-out`;
-  div.style.opacity = "0";
-  div.style.top = (y - (isAylaQuote ? 80 : 40)) + "px";
-}, 50);
+  // 🔹 Animação
+  setTimeout(() => {
+    div.style.transition = `all ${duration / 1000}s ease-out`;
+    div.style.opacity = "0";
+    div.style.top = (y - (isAylaQuote ? 80 : 40)) + "px";
+  }, 50);
 
-// 🔹 Remover e processar próximo
-setTimeout(() => {
-  div.remove();
-  processFloatQueue();
-}, duration + 100);
+  // 🔹 Remover e processar próximo
+  setTimeout(() => {
+    div.remove();
+    processFloatQueue();
+  }, duration + 100);
 }
 
 
@@ -3089,6 +3116,18 @@ function drawCards() {
       case "Armamento Pesado":
       case "Chuva de Laminas":
         tipo = "cintilante";
+        break;
+      //🔥🔥🔥🔥🔥 FIRE 2 🔥🔥🔥🔥🔥
+      case "Combustão":
+        tipo = "fire";
+        break;
+      //⛰️⛰️⛰️⛰️⛰️ TERRA 2 ⛰️⛰️⛰️⛰️⛰️
+      case "Soterrar":
+        tipo = "terra";
+        break;
+      //💧💧💧💧💧 AGUA 2 💧💧💧💧💧
+      case "Jato De Água":
+        tipo = "agua";
         break;
       //❄️❄️❄️❄️❄️ FROST ❄️❄️❄️❄️❄️
       case "Gelo Mortal":
@@ -3814,8 +3853,8 @@ function drawCards() {
 
       //  ♻️♻️♻️♻️♻️ RECICLAGEM ♻️♻️♻️♻️♻️
       else if (card.name === "Recicladora") {
-        let dano = Math.floor(lixoReciclado/3);
-        
+        let dano = Math.floor(lixoReciclado / 3);
+
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}⚔️`, "red");
@@ -4153,7 +4192,7 @@ function drawCards() {
         } else {
           if (enemies[0].tipoVida !== "🧿") {
             enemies[0].tipoDano = "❄️";
-            enemies[0].tipoVida = "❄️";
+            marcarInimigos("❄️", "unico")
             enemies[0].dano = Math.max(0, enemies[0].dano - 1);
             enemies[0].behavior = () => [{ type: "attack", value: enemies[0].dano }];
           }
@@ -4171,7 +4210,7 @@ function drawCards() {
           if (enemy.dano > 1) {
             if (enemy.tipoVida !== "🧿") {
               enemy.tipoDano = "❄️";
-              enemy.tipoVida = "❄️";
+              marcarInimigos("❄️", "area")
               enemy.dano = Math.max(0, enemy.dano - 1); // reduz o dano em 1
               enemy.behavior = () => [{ type: "attack", value: enemy.dano }];
             }
@@ -4181,19 +4220,13 @@ function drawCards() {
       }
       //❄️
       else if (card.name === "Marcar") {
-        if (enemies[0].tipoVida !== "🧿") {
-          enemies[0].tipoVida = "❄️";
-        }
-        floatText(enemies[0].el, "❄️", "blue"); // texto flutuante visual
+        marcarInimigos("❄️", "unico")
+        floatText(enemies[0].el, "❄️", "blue");
       }
       //❄️
       else if (card.name === "Cemiterio Branco") {
-        enemies.forEach(e => {
-          if (e.tipoVida !== "🧿") {
-            e.tipoVida = "❄️";
-          }
-          floatText(e.el, "❄️", "blue"); // texto flutuante visual
-        });
+        marcarInimigos("❄️", "area")
+          floatText(e.el, "❄️", "blue");
       }
       //❄️
       else if (card.name === "Ataque Condensado") {
@@ -4265,6 +4298,21 @@ function drawCards() {
             glowPlayer("green");
           }
         }
+      }
+      //  🔥🔥🔥🔥🔥 FIRE 🔥🔥🔥🔥🔥
+      else if (card.name === "Combustão") {
+        marcarInimigos("🔥", "unico")
+        floatText(enemies[0].el, "🔥", "lime");
+      }
+      //  💧💧💧💧💧 AGUA 💧💧💧💧💧
+      else if (card.name === "Jato De Água") {
+        marcarInimigos("💧", "unico")
+        floatText(enemies[0].el, "💧", "lime");
+      }
+      //  ⛰️⛰️⛰️⛰️⛰️ TERRA ⛰️⛰️⛰️⛰️⛰️
+      else if (card.name === "Soterrar") {
+        marcarInimigos("⛰️", "unico")
+        floatText(enemies[0].el, "⛰️", "lime");
       }
       //  ✨✨✨✨✨ CINTILANTE ✨✨✨✨✨
       else if (card.name === "Guardião") {
@@ -4446,6 +4494,45 @@ popupOverlayDeck.addEventListener("click", (e) => {
   }
 });
 
+function marcarInimigos(elemento, tipo) {
+
+  if (enemies[0].tipoVida !== "🧿" || enemy.tipoVida !== "🧿") {
+    if (elemento == "💧") {
+      if (tipo == "area") {
+        enemies.forEach(e => {
+          e.tipoVida = "💧";
+        });
+      } else if (tipo == "unico") {
+        enemies[0].tipoVida = "💧";
+      }
+    } else if (elemento == "🔥") {
+      if (tipo == "area") {
+        enemies.forEach(e => {
+          e.tipoVida = "🔥";
+        });
+      } else if (tipo == "unico") {
+        enemies[0].tipoVida = "🔥";
+      }
+  } else if (elemento == "⛰️") {
+    if (tipo == "area") {
+        enemies.forEach(e => {
+          e.tipoVida = "⛰️";
+        });
+      } else if (tipo == "unico") {
+        enemies[0].tipoVida = "⛰️";
+      }
+} else if (elemento == "❄️") {
+  if (tipo == "area") {
+        enemies.forEach(e => {
+          e.tipoVida = "❄️";
+        });
+      } else if (tipo == "unico") {
+        enemies[0].tipoVida = "❄️";
+      }
+}
+}
+}
+
 
 function drawNewCards() {
   deck.length = 0;
@@ -4506,7 +4593,7 @@ function enemyTurn() {
             floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
             redScreenGlow(300, 30);
           }
-        // 💚 CURA
+          // 💚 CURA
         } else if (act.type === "heal") {
           let target = null;
           if (enemies.length > 0) {
@@ -4529,14 +4616,14 @@ function enemyTurn() {
             target.el.classList.add("healed");
             setTimeout(() => target.el.classList.remove("healed"), 600);
           }
-        // 🔱 ATAQUE DIRETO À VIDA
+          // 🔱 ATAQUE DIRETO À VIDA
         } else if (act.type === "attackVida") {
           playerHP -= act.value;
           animateDamage(document.getElementById("player"));
           floatText(document.getElementById("player"), `-${act.value}🔱`, "orange");
           redScreenGlow(300, 30);
 
-        // ☠️ COMPORTAMENTO "MORRER" (auto-destruição após 3 turnos)
+          // ☠️ COMPORTAMENTO "MORRER" (auto-destruição após 3 turnos)
         } else if (act.type === "morrer") {
           if (e.turnosRestantes === undefined) {
             e.turnosRestantes = 3;
@@ -4565,26 +4652,26 @@ function enemyTurn() {
         }
 
         // Fala da Ayla
-          if (e.name === "Ayla") {
-            setTimeout(() => {
-              const frasesAyla = [
-                "Raiva: COVARDE!",
-                "Medo: Por que atacou alguém indefesa?",
-                "Nojo: Sua fraqueza me da nojo",
-                "Tristeza: A IA me permitiu sentir...",
-                "Amor: Isso doi!",
-                "Ansiedade: VAMOS ACABE COM ELE AGORA! RÁPIDO",
-                "Angustia: Ainda estou aqui...",
-                "Ayla: Vencer minhas emoções não significa NADA!",
-                "Ayla: Juntese a IA, sua tal GAEA não vai te salvar!",
-                "Ayla: Salvar a natureza? Patético!",
-                "Ayla: EU SOU MAIS HUMANA QUE VOCÊ!",
-                "Ayla: Sou a mais forte dentre todas"
-              ];
-              const frase = frasesAyla[Math.floor(Math.random() * frasesAyla.length)];
-              floatText(e.el, frase, "violet");
-            }, 500);
-          }
+        if (e.name === "Ayla") {
+          setTimeout(() => {
+            const frasesAyla = [
+              "Raiva: COVARDE!",
+              "Medo: Por que atacou alguém indefesa?",
+              "Nojo: Sua fraqueza me da nojo",
+              "Tristeza: A IA me permitiu sentir...",
+              "Amor: Isso doi!",
+              "Ansiedade: VAMOS ACABE COM ELE AGORA! RÁPIDO",
+              "Angustia: Ainda estou aqui...",
+              "Ayla: Vencer minhas emoções não significa NADA!",
+              "Ayla: Juntese a IA, sua tal GAEA não vai te salvar!",
+              "Ayla: Salvar a natureza? Patético!",
+              "Ayla: EU SOU MAIS HUMANA QUE VOCÊ!",
+              "Ayla: Sou a mais forte dentre todas"
+            ];
+            const frase = frasesAyla[Math.floor(Math.random() * frasesAyla.length)];
+            floatText(e.el, frase, "violet");
+          }, 500);
+        }
 
         // MORTE DO JOGADOR
         if (playerHP <= 0) {
@@ -5346,104 +5433,104 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
     }
 
     function gerarMapa() {
-  // Tipos com pesos
-  const tipos = [
-    { tipo: 'inimigo', peso: 55 },
-    { tipo: 'elite', peso: 18 },
-    { tipo: 'hospital', peso: 8 },
-    { tipo: 'ferreiro', peso: 8 }
-  ];
+      // Tipos com pesos
+      const tipos = [
+        { tipo: 'inimigo', peso: 55 },
+        { tipo: 'elite', peso: 18 },
+        { tipo: 'hospital', peso: 8 },
+        { tipo: 'ferreiro', peso: 8 }
+      ];
 
-  // Sorteio ponderado de tipo
-  function sortearTipo() {
-    const totalPeso = tipos.reduce((soma, t) => soma + t.peso, 0);
-    let rand = Math.random() * totalPeso;
-    for (const t of tipos) {
-      if (rand < t.peso) return t.tipo;
-      rand -= t.peso;
-    }
-    return tipos[0].tipo;
-  }
-
-  // Criação da estrutura do mapa
-  for (let i = 0; i < numFases; i++) {
-    const coluna = [];
-
-    for (let j = 0; j < caminhosPorFase; j++) {
-      let tipo;
-
-      // Primeira fase: início fixo no centro
-      if (i === 0) {
-        tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
-      }
-      // Última fase: boss fixo no centro
-      else if (i === numFases - 1) {
-        tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'boss' : 'invalido';
-      }
-      // Penúltima fase: toda de hospital
-      else if (i === numFases - 2) {
-        tipo = 'hospital';
-      }
-      // Restante: tipos aleatórios com peso
-      else {
-        tipo = sortearTipo();
-      }
-
-      coluna.push({ tipo, conexoes: [] });
-    }
-
-    mapa.push(coluna);
-  }
-
-  // Conexões entre colunas
-  for (let i = 0; i < numFases - 1; i++) {
-    for (let j = 0; j < caminhosPorFase; j++) {
-      if (mapa[i][j].tipo === 'invalido') continue;
-
-      // Primeira fase: conecta a todos os válidos da próxima
-      if (i === 0) {
-        mapa[i][j].conexoes = [];
-        for (let k = 0; k < caminhosPorFase; k++) {
-          if (mapa[i + 1][k].tipo !== 'invalido') {
-            mapa[i][j].conexoes.push(k);
-          }
+      // Sorteio ponderado de tipo
+      function sortearTipo() {
+        const totalPeso = tipos.reduce((soma, t) => soma + t.peso, 0);
+        let rand = Math.random() * totalPeso;
+        for (const t of tipos) {
+          if (rand < t.peso) return t.tipo;
+          rand -= t.peso;
         }
-        continue;
+        return tipos[0].tipo;
       }
 
-      // Penúltima fase: conecta ao boss
-      if (i === numFases - 2) {
-        mapa[i][j].conexoes.push(Math.floor(caminhosPorFase / 2));
-        continue;
-      }
+      // Criação da estrutura do mapa
+      for (let i = 0; i < numFases; i++) {
+        const coluna = [];
 
-      // Conexões aleatórias entre caminhos próximos
-      let possiveis = [];
-      if (j > 0 && mapa[i + 1][j - 1].tipo !== 'invalido') possiveis.push(j - 1);
-      if (mapa[i + 1][j].tipo !== 'invalido') possiveis.push(j);
-      if (j < caminhosPorFase - 1 && mapa[i + 1][j + 1].tipo !== 'invalido') possiveis.push(j + 1);
-      mapa[i][j].conexoes = shuffle(possiveis).slice(0, Math.floor(Math.random() * 2) + 1);
-    }
-  }
+        for (let j = 0; j < caminhosPorFase; j++) {
+          let tipo;
 
-  // Garante entradas para todos os nós válidos
-  for (let i = 1; i < numFases; i++) {
-    for (let j = 0; j < caminhosPorFase; j++) {
-      if (mapa[i][j].tipo === 'invalido') continue;
-      let temEntrada = mapa[i - 1].some(n => n.conexoes.includes(j));
-      if (!temEntrada) {
-        let vizinhos = [j, j - 1, j + 1].filter(x => x >= 0 && x < caminhosPorFase);
-        shuffle(vizinhos);
-        for (let v of vizinhos) {
-          if (mapa[i - 1][v].tipo !== 'invalido') {
-            mapa[i - 1][v].conexoes.push(j);
-            break;
+          // Primeira fase: início fixo no centro
+          if (i === 0) {
+            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
           }
+          // Última fase: boss fixo no centro
+          else if (i === numFases - 1) {
+            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'boss' : 'invalido';
+          }
+          // Penúltima fase: toda de hospital
+          else if (i === numFases - 2) {
+            tipo = 'hospital';
+          }
+          // Restante: tipos aleatórios com peso
+          else {
+            tipo = sortearTipo();
+          }
+
+          coluna.push({ tipo, conexoes: [] });
+        }
+
+        mapa.push(coluna);
+      }
+
+      // Conexões entre colunas
+      for (let i = 0; i < numFases - 1; i++) {
+        for (let j = 0; j < caminhosPorFase; j++) {
+          if (mapa[i][j].tipo === 'invalido') continue;
+
+          // Primeira fase: conecta a todos os válidos da próxima
+          if (i === 0) {
+            mapa[i][j].conexoes = [];
+            for (let k = 0; k < caminhosPorFase; k++) {
+              if (mapa[i + 1][k].tipo !== 'invalido') {
+                mapa[i][j].conexoes.push(k);
+              }
+            }
+            continue;
+          }
+
+          // Penúltima fase: conecta ao boss
+          if (i === numFases - 2) {
+            mapa[i][j].conexoes.push(Math.floor(caminhosPorFase / 2));
+            continue;
+          }
+
+          // Conexões aleatórias entre caminhos próximos
+          let possiveis = [];
+          if (j > 0 && mapa[i + 1][j - 1].tipo !== 'invalido') possiveis.push(j - 1);
+          if (mapa[i + 1][j].tipo !== 'invalido') possiveis.push(j);
+          if (j < caminhosPorFase - 1 && mapa[i + 1][j + 1].tipo !== 'invalido') possiveis.push(j + 1);
+          mapa[i][j].conexoes = shuffle(possiveis).slice(0, Math.floor(Math.random() * 2) + 1);
         }
       }
+
+      // Garante entradas para todos os nós válidos
+      for (let i = 1; i < numFases; i++) {
+        for (let j = 0; j < caminhosPorFase; j++) {
+          if (mapa[i][j].tipo === 'invalido') continue;
+          let temEntrada = mapa[i - 1].some(n => n.conexoes.includes(j));
+          if (!temEntrada) {
+            let vizinhos = [j, j - 1, j + 1].filter(x => x >= 0 && x < caminhosPorFase);
+            shuffle(vizinhos);
+            for (let v of vizinhos) {
+              if (mapa[i - 1][v].tipo !== 'invalido') {
+                mapa[i - 1][v].conexoes.push(j);
+                break;
+              }
+            }
+          }
+        }
+      }
     }
-  }
-}
 
 
     function desenharMapa() {
