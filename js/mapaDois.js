@@ -291,7 +291,7 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Terror Critico"),
       allCards.find(c => c.name === "Ataque Reciclável"),
       allCards.find(c => c.name === "Ataque Reciclável"),
-      allCards.find(c => c.name === "Defesa Reciclável"),
+      allCards.find(c => c.name === "Recicladora"),
       allCards.find(c => c.name === "Defesa Reciclável"),
       allCards.find(c => c.name === "Defesa Reciclável"),
       allCards.find(c => c.name === "Xenofluxo Reciclável"),
@@ -1466,7 +1466,7 @@ const allCards = [
     basePower: 8,
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/reciclagem.png",
-    desc: "Cause 8 de dano, se não tiver nenhuma carta na mão cause 50 de dano.",
+    desc: "Cause dano igual a 30% de todo lixo reciclado (Arredondado para baixo).",
     type: "reciclagem"
   },
   {
@@ -1658,7 +1658,7 @@ const normalModels = [
   [
     {
       name: "Rinoceronte corrompido",
-      hp: 60,
+      hp: 30,
       dano: 4,
       behavior: () => [
         { type: "attackVida", value: 4 }
@@ -1670,7 +1670,7 @@ const normalModels = [
     },
     {
       name: "formiga sentinela",
-      hp: 45,
+      hp: 30,
       dano: 6,
       behavior: () => [
         { type: "attack", value: 6 }
@@ -1684,7 +1684,7 @@ const normalModels = [
   [
     {
       name: "formiga sentinela",
-      hp: 30,
+      hp: 15,
       dano: 6,
       behavior: () => [
         { type: "attack", value: 6 }
@@ -1696,7 +1696,7 @@ const normalModels = [
     },
     {
       name: "formiga sentinela",
-      hp: 30,
+      hp: 15,
       dano: 6,
       behavior: () => [
         { type: "attack", value: 6 }
@@ -1710,7 +1710,7 @@ const normalModels = [
   [
     {
       name: "Tartaruga",
-      hp: 54,
+      hp: 34,
       dano: 6,
       behavior: () => [{ type: "attack", value: 6 }],
       img: "../img/jogo/inimigos/minion.png",
@@ -1764,7 +1764,7 @@ const normalModels = [
   [
     {
       name: "Tartaruga",
-      hp: 54,
+      hp: 34,
       dano: 6,
       behavior: () => [{ type: "attack", value: 6 }],
       img: "../img/jogo/inimigos/minion.png",
@@ -1774,7 +1774,7 @@ const normalModels = [
     },
     {
       name: "Tatu corrompido",
-      hp: 45,
+      hp: 25,
       dano: 8,
       behavior: () => [{ type: "attack", value: 8 }],
       img: "../img/jogo/inimigos/tatu.png",
@@ -1797,8 +1797,7 @@ const normalModels = [
   [
     {
       name: "Robo Cargueiro",
-      hp: 80,
-      maxHp: 80,
+      hp: 60,
       dano: 12,
       behavior: () => [{ type: "attack", value: 12 }],
       img: "../img/jogo/inimigos/roboCargueiro.png",
@@ -1810,10 +1809,10 @@ const normalModels = [
   [
     {
       name: "Gaivota Corrompida",
-      hp: 20,
-      dano: 10,
+      hp: 15,
+      dano: 5,
       behavior: () => [
-        { type: "attackVida", value: 10 }
+        { type: "attackVida", value: 5 }
       ],
       img: "../img/jogo/inimigos/gaivota.png",
       tipoDano: "🔱",
@@ -1822,7 +1821,7 @@ const normalModels = [
     },
     {
       name: "Afogado",
-      hp: 70,
+      hp: 55,
       dano: 7,
       behavior: () => [
         { type: "attackVida", value: Math.random() < 0.7 ? 7 : 14 }
@@ -1836,10 +1835,10 @@ const normalModels = [
   [
     {
       name: "Marinheiro",
-      hp: 60,
-      dano: 22,
+      hp: 45,
+      dano: 16,
       behavior: () => [
-        { type: "attack", value: 22 }
+        { type: "attack", value: 16 }
       ],
       img: "../img/jogo/inimigos/marinheiro.png",
       tipoDano: "⚔️",
@@ -1848,7 +1847,7 @@ const normalModels = [
     },
     {
       name: "Marinheiro Reciclado",
-      hp: 45,
+      hp: 30,
       dano: 12,
       behavior: () => [
         { type: "attack", value: 12 }
@@ -1862,10 +1861,10 @@ const normalModels = [
   [
     {
       name: "Gaivota Corrompida",
-      hp: 20,
-      dano: 10,
+      hp: 15,
+      dano: 5,
       behavior: () => [
-        { type: "attackVida", value: 10 }
+        { type: "attackVida", value: 5 }
       ],
       img: "../img/jogo/inimigos/gaivota.png",
       tipoDano: "🔱",
@@ -1874,7 +1873,7 @@ const normalModels = [
     },
     {
       name: "Marinheiro Reciclado",
-      hp: 45,
+      hp: 30,
       dano: 12,
       behavior: () => [
         { type: "attack", value: 12 }
@@ -1888,7 +1887,7 @@ const normalModels = [
   [
     {
       name: "Marinheiro Reciclado",
-      hp: 45,
+      hp: 30,
       dano: 12,
       behavior: () => [
         { type: "attack", value: 12 }
@@ -1900,7 +1899,7 @@ const normalModels = [
     },
     {
       name: "Marinheiro Reciclado",
-      hp: 45,
+      hp: 30,
       dano: 12,
       behavior: () => [
         { type: "attack", value: 12 }
@@ -1914,10 +1913,10 @@ const normalModels = [
   [
     {
       name: "Gaivota Corrompida",
-      hp: 20,
-      dano: 10,
+      hp: 15,
+      dano: 5,
       behavior: () => [
-        { type: "attackVida", value: 10 }
+        { type: "attackVida", value: 5 }
       ],
       img: "../img/jogo/inimigos/gaivota.png",
       tipoDano: "🔱",
@@ -1926,8 +1925,8 @@ const normalModels = [
     },
     {
       name: "Gaivota Corrompida",
-      hp: 20,
-      dano: 10,
+      hp: 15,
+      dano: 5,
       behavior: () => [
         { type: "attackVida", value: 10 }
       ],
@@ -1941,10 +1940,10 @@ const normalModels = [
   [
     {
       name: "Guarda",
-      hp: 30,
-      dano: 7,
+      hp: 25,
+      dano: 4,
       behavior: () => [
-        { type: "attackVida", value: Math.random() < 0.7 ? 7 : 14 }
+        { type: "attackVida", value: Math.random() < 0.7 ? 4 : 8 }
       ],
       img: "../img/jogo/inimigos/guardaGreco.png",
       tipoDano: "(🔱)💥",
@@ -1953,10 +1952,10 @@ const normalModels = [
     },
     {
       name: "Guarda",
-      hp: 30,
-      dano: 7,
+      hp: 25,
+      dano: 4,
       behavior: () => [
-        { type: "attackVida", value: Math.random() < 0.7 ? 7 : 14 }
+        { type: "attackVida", value: Math.random() < 0.7 ? 4 : 8 }
       ],
       img: "../img/jogo/inimigos/guardaGreco.png",
       tipoDano: "(🔱)💥",
@@ -1967,7 +1966,7 @@ const normalModels = [
   [
     {
       name: "Sentinela",
-      hp: 80,
+      hp: 55,
       dano: 10,
       behavior: () => [
         { type: "attack", value: 10 }
@@ -1979,10 +1978,10 @@ const normalModels = [
     },
     {
       name: "Guarda",
-      hp: 30,
-      dano: 10,
+      hp: 25,
+      dano: 4,
       behavior: () => [
-        { type: "attackVida", value: Math.random() < 0.7 ? 10 : 20 }
+        { type: "attackVida", value: Math.random() < 0.7 ? 4 : 8 }
       ],
       img: "../img/jogo/inimigos/guardaGreco.png",
       tipoDano: "(🔱)💥",
@@ -1993,7 +1992,7 @@ const normalModels = [
   [
     {
       name: "Casca Grossa",
-      hp: 80,
+      hp: 65,
       dano: 5,
       behavior: () => [
         { type: "attack", value: 5 }
@@ -2067,7 +2066,6 @@ const normalModels = [
     {
       name: "Cão Corrompido",
       hp: 50,
-      maxHp: 50,
       dano: 12,
       behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 12 : 24 }],
       img: "../img/jogo/inimigos/cachorroPolicial.png",
@@ -2077,8 +2075,7 @@ const normalModels = [
     },
     {
       name: "Sentinela Corrompido",
-      hp: 90,
-      maxHp: 90,
+      hp: 80,
       dano: 25,
       behavior: () => [{ type: "attack", value: 25 }],
       img: "../img/jogo/inimigos/sentinelaCorrompido.png",
@@ -2091,9 +2088,8 @@ const normalModels = [
     {
       name: "Vagante",
       hp: 35,
-      maxHp: 35,
-      dano: 20,
-      behavior: () => [{ type: "attackVida", value: 20 }],
+      dano: 12,
+      behavior: () => [{ type: "attackVida", value: 12 }],
       img: "../img/jogo/inimigos/ceifadorFantasma.png",
       tipoDano: "🔱",
       tipoVida: "🧿",
@@ -2102,9 +2098,8 @@ const normalModels = [
     {
       name: "Livro Corrompido",
       hp: 30,
-      maxHp: 30,
-      dano: 25,
-      behavior: () => [{ type: "attack", value: 25 }],
+      dano: 20,
+      behavior: () => [{ type: "attack", value: 20 }],
       img: "../img/jogo/inimigos/livroMaligno.png",
       tipoDano: "⚔️",
       tipoVida: "❤️",
@@ -2113,9 +2108,8 @@ const normalModels = [
     {
       name: "Livro Corrompido",
       hp: 30,
-      maxHp: 30,
-      dano: 25,
-      behavior: () => [{ type: "attack", value: 25 }],
+      dano: 20,
+      behavior: () => [{ type: "attack", value: 20 }],
       img: "../img/jogo/inimigos/livroMaligno.png",
       tipoDano: "⚔️",
       tipoVida: "❤️",
@@ -2126,7 +2120,6 @@ const normalModels = [
     {
       name: "Pilha de Livros",
       hp: 30,
-      maxHp: 30,
       dano: 0,
       behavior: () => [{ type: "attack", value: 0 }],
       img: "../img/jogo/inimigos/livros.png",
@@ -2137,9 +2130,8 @@ const normalModels = [
     {
       name: "Vagante",
       hp: 35,
-      maxHp: 35,
-      dano: 20,
-      behavior: () => [{ type: "attackVida", value: 20 }],
+      dano: 12,
+      behavior: () => [{ type: "attackVida", value: 12 }],
       img: "../img/jogo/inimigos/ceifadorFantasma.png",
       tipoDano: "🔱",
       tipoVida: "🧿",
@@ -2148,9 +2140,8 @@ const normalModels = [
     {
       name: "Vagante",
       hp: 35,
-      maxHp: 35,
-      dano: 20,
-      behavior: () => [{ type: "attackVida", value: 20 }],
+      dano: 12,
+      behavior: () => [{ type: "attackVida", value: 12 }],
       img: "../img/jogo/inimigos/ceifadorFantasma.png",
       tipoDano: "🔱",
       tipoVida: "🧿",
@@ -2161,9 +2152,8 @@ const normalModels = [
     {
       name: "Vagante",
       hp: 35,
-      maxHp: 35,
-      dano: 20,
-      behavior: () => [{ type: "attackVida", value: 20 }],
+      dano: 12,
+      behavior: () => [{ type: "attackVida", value: 12 }],
       img: "../img/jogo/inimigos/ceifadorFantasma.png",
       tipoDano: "🔱",
       tipoVida: "🧿",
@@ -2171,8 +2161,7 @@ const normalModels = [
     },
     {
       name: "Sacerdote Corrompido",
-      hp: 75,
-      maxHp: 75,
+      hp: 65,
       dano: 15,
       behavior: () => [{ type: "attackVida", value: 15 }],
       img: "../img/jogo/inimigos/claus.png",
@@ -2196,9 +2185,8 @@ const normalModels = [
     {
       name: "Livro Corrompido",
       hp: 30,
-      maxHp: 30,
-      dano: 25,
-      behavior: () => [{ type: "attack", value: 25 }],
+      dano: 20,
+      behavior: () => [{ type: "attack", value: 20 }],
       img: "../img/jogo/inimigos/livroMaligno.png",
       tipoDano: "⚔️",
       tipoVida: "❤️",
@@ -2206,8 +2194,7 @@ const normalModels = [
     },
     {
       name: "Sacerdote Corrompido",
-      hp: 75,
-      maxHp: 75,
+      hp: 65,
       dano: 15,
       behavior: () => [{ type: "attackVida", value: 15 }],
       img: "../img/jogo/inimigos/claus.png",
@@ -2231,9 +2218,8 @@ const normalModels = [
     {
       name: "Livro Corrompido",
       hp: 30,
-      maxHp: 30,
-      dano: 25,
-      behavior: () => [{ type: "attack", value: 25 }],
+      dano: 20,
+      behavior: () => [{ type: "attack", value: 20 }],
       img: "../img/jogo/inimigos/livroMaligno.png",
       tipoDano: "⚔️",
       tipoVida: "❤️",
@@ -2242,9 +2228,8 @@ const normalModels = [
     {
       name: "Livro Corrompido",
       hp: 30,
-      maxHp: 30,
-      dano: 25,
-      behavior: () => [{ type: "attack", value: 25 }],
+      dano: 20,
+      behavior: () => [{ type: "attack", value: 20 }],
       img: "../img/jogo/inimigos/livroMaligno.png",
       tipoDano: "⚔️",
       tipoVida: "❤️",
@@ -2256,7 +2241,6 @@ const normalModels = [
     {
       name: "Guarda",
       hp: 70,
-      maxHp: 70,
       dano: 20,
       behavior: () => [{ type: "attack", value: 20 }],
       img: "../img/jogo/inimigos/guarda.png",
@@ -2267,7 +2251,6 @@ const normalModels = [
     {
       name: "Guarda",
       hp: 70,
-      maxHp: 70,
       dano: 20,
       behavior: () => [{ type: "attack", value: 20 }],
       img: "../img/jogo/inimigos/guarda.png",
@@ -2279,10 +2262,9 @@ const normalModels = [
   [
     {
       name: "Drone De Combate",
-      hp: 45,
-      maxHp: 45,
-      dano: 15,
-      behavior: () => [{ type: "attackVida", value: 15 }],
+      hp: 35,
+      dano: 10,
+      behavior: () => [{ type: "attackVida", value: 10 }],
       img: "../img/jogo/inimigos/droneCombate.png",
       tipoDano: "🔱",
       tipoVida: "❤️",
@@ -2290,10 +2272,9 @@ const normalModels = [
     },
     {
       name: "Drone De Combate",
-      hp: 45,
-      maxHp: 45,
-      dano: 15,
-      behavior: () => [{ type: "attackVida", value: 15 }],
+      hp: 35,
+      dano: 10,
+      behavior: () => [{ type: "attackVida", value: 10 }],
       img: "../img/jogo/inimigos/droneCombate.png",
       tipoDano: "🔱",
       tipoVida: "❤️",
@@ -2304,7 +2285,6 @@ const normalModels = [
     {
       name: "Guarda",
       hp: 70,
-      maxHp: 70,
       dano: 20,
       behavior: () => [{ type: "attack", value: 20 }],
       img: "../img/jogo/inimigos/guarda.png",
@@ -2314,10 +2294,9 @@ const normalModels = [
     },
     {
       name: "Guarda Valquiria",
-      hp: 100,
-      maxHp: 100,
-      dano: 20,
-      behavior: () => [{ type: "attackVida", value: 20 }],
+      hp: 55,
+      dano: 18,
+      behavior: () => [{ type: "attackVida", value: 18 }],
       img: "../img/jogo/inimigos/guardaValk.png",
       tipoDano: "🔱",
       tipoVida: "❤️",
@@ -2328,7 +2307,6 @@ const normalModels = [
     {
       name: "Guarda",
       hp: 70,
-      maxHp: 70,
       dano: 20,
       behavior: () => [{ type: "attack", value: 20 }],
       img: "../img/jogo/inimigos/guarda.png",
@@ -2338,10 +2316,9 @@ const normalModels = [
     },
     {
       name: "Guarda Forte",
-      hp: 70,
-      maxHp: 70,
-      dano: 25,
-      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 25:50 }],
+      hp: 65,
+      dano: 22,
+      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 22:44 }],
       img: "../img/jogo/inimigos/artilheiro.png",
       tipoDano: "(⚔️)💥",
       tipoVida: "🧿",
@@ -2352,7 +2329,6 @@ const normalModels = [
     {
       name: "Guarda",
       hp: 70,
-      maxHp: 70,
       dano: 20,
       behavior: () => [{ type: "attack", value: 20 }],
       img: "../img/jogo/inimigos/guarda.png",
@@ -2363,7 +2339,6 @@ const normalModels = [
     {
       name: "Guarda Médico",
       hp: 50,
-      maxHp: 50,
       dano: 20,
       behavior: () => [{ type: Math.random() < 0.5 ? "attack":"heal", value: 20 }],
       img: "../img/jogo/inimigos/guardaMedico.png",
@@ -2380,7 +2355,7 @@ const eliteModels = [
   [
     {
       name: "Lenhador corrompido",
-      hp: 70,
+      hp: 40,
       dano: 15,
       behavior: () => [
         { type: "attack", value: Math.random() < 0.7 ? 15 : 30 }
@@ -2395,9 +2370,9 @@ const eliteModels = [
     {
       name: "FuradorKiwi",
       hp: 16,
-      dano: 20,
+      dano: 10,
       behavior: () => [
-        { type: "attack", value: 20 }
+        { type: "attack", value: 10 }
       ],
       img: "../img/jogo/inimigos/kiwi.png",
       tipoDano: "⚔️",
@@ -2407,9 +2382,9 @@ const eliteModels = [
     {
       name: "FuradorKiwi",
       hp: 16,
-      dano: 20,
+      dano: 10,
       behavior: () => [
-        { type: "attack", value: 20 }
+        { type: "attack", value: 10 }
       ],
       img: "../img/jogo/inimigos/kiwi.png",
       tipoDano: "⚔️",
@@ -2479,8 +2454,7 @@ const eliteModels = [
   [
     {
       name: "Robo Cargueiro Elite",
-      hp: 80,
-      maxHp: 80,
+      hp: 65,
       dano: 17,
       behavior: () => [{ type: "attack", value: 17 }],
       img: "../img/jogo/inimigos/cargueiroElite.png",
@@ -2490,8 +2464,7 @@ const eliteModels = [
     },
     {
       name: "Robo Cargueiro",
-      hp: 80,
-      maxHp: 80,
+      hp: 60,
       dano: 15,
       behavior: () => [{ type: "attack", value: 15 }],
       img: "../img/jogo/inimigos/roboCargueiro.png",
@@ -2503,10 +2476,10 @@ const eliteModels = [
   [
     {
       name: "Marinheiro",
-      hp: 60,
-      dano: 22,
+      hp: 45,
+      dano: 16,
       behavior: () => [
-        { type: "attack", value: 22 }
+        { type: "attack", value: 16 }
       ],
       img: "../img/jogo/inimigos/marinheiro.png",
       tipoDano: "⚔️",
@@ -2515,7 +2488,7 @@ const eliteModels = [
     },
     {
       name: "Marinheiro Reciclado",
-      hp: 45,
+      hp: 30,
       dano: 12,
       behavior: () => [
         { type: "attack", value: 12 }
@@ -2527,7 +2500,7 @@ const eliteModels = [
     },
     {
       name: "Capitão",
-      hp: 75,
+      hp: 55,
       dano: 8,
       behavior: () => [
         { type: "attack", value: 8 }
@@ -2541,7 +2514,7 @@ const eliteModels = [
   [
     {
       name: "Soldado do porto",
-      hp: 120,
+      hp: 65,
       dano: 10,
       behavior: () => [
         { type: Math.random() < 0.7 ? "attack" : "attackVida", value: Math.random() < 0.9 ? 10 : 50 }
@@ -2555,7 +2528,7 @@ const eliteModels = [
   [
     {
       name: "Amalgama",
-      hp: 120,
+      hp: 60,
       dano: 5,
       behavior: () => [
         { type: Math.random() < 0.5 ? "attackVida" : "heal", value: Math.random() < 0.7 ? 5 : 10 }
@@ -2583,9 +2556,9 @@ const eliteModels = [
     {
       name: "Sacerdote Elite",
       hp: 40,
-      dano: 10,
+      dano: 12,
       behavior: () => [
-        { type: Math.random() < 0.8 ? "attack" : "heal", value: 10 }
+        { type: Math.random() < 0.8 ? "attack" : "heal", value: 12 }
       ],
       img: "../img/jogo/inimigos/sacerdoteGuerreiroElite.png",
       tipoDano: "⚔️❔💚🎭💊",
@@ -2606,7 +2579,7 @@ const eliteModels = [
   [
     {
       name: "Sentinela",
-      hp: 85,
+      hp: 55,
       dano: 10,
       behavior: () => [
         { type: "attack", value: 10 }
@@ -2630,10 +2603,10 @@ const eliteModels = [
     },
     {
       name: "Guarda",
-      hp: 30,
-      dano: 7,
+      hp: 25,
+      dano: 4,
       behavior: () => [
-        { type: "attackVida", value: Math.random() < 0.7 ? 10 : 20 }
+        { type: "attackVida", value: Math.random() < 0.7 ? 4 : 8 }
       ],
       img: "../img/jogo/inimigos/guardaGreco.png",
       tipoDano: "(🔱)💥",
@@ -2655,7 +2628,7 @@ const eliteModels = [
     },
     {
       name: "Irislidriz",
-      hp: 60,
+      hp: 30,
       dano: 5,
       behavior: () => [{ type: "attack", value: 5 }],
       img: "../img/jogo/inimigos/bossValkFantasma.png",
@@ -2678,7 +2651,6 @@ const eliteModels = [
     {
       name: "Pilha de Livros",
       hp: 30,
-      maxHp: 30,
       dano: 0,
       behavior: () => [{ type: "attack", value: 0 }],
       img: "../img/jogo/inimigos/livros.png",
@@ -2689,7 +2661,6 @@ const eliteModels = [
     {
       name: "Pilha de Livros",
       hp: 30,
-      maxHp: 30,
       dano: 0,
       behavior: () => [{ type: "attack", value: 0 }],
       img: "../img/jogo/inimigos/livros.png",
@@ -2700,7 +2671,6 @@ const eliteModels = [
     {
       name: "Emissario",
       hp: 80,
-      maxHp: 80,
       dano: 31,
       behavior: () => [{ type: "morrer", value: 31 }],
       img: "../img/jogo/inimigos/vingadorAraq.png",
@@ -2714,7 +2684,6 @@ const eliteModels = [
     {
       name: "Guarda Chefe",
       hp: 80,
-      maxHp: 80,
       dano: 33,
       behavior: () => [{ type: "attack", value: 33 }],
       img: "../img/jogo/inimigos/guardaElite.png",
@@ -2727,7 +2696,6 @@ const eliteModels = [
     {
       name: "Prj. Nova",
       hp: 100,
-      maxHp: 100,
       dano: 33,
       behavior: () => [{type: Math.random() < 0.75 ? "attack":"attackVida", value: 33 }],
       img: "../img/jogo/inimigos/nova.png",
@@ -2794,8 +2762,8 @@ const bossModels = [
     {
       name: "Boss Prj.Kraken",
       hp: 100,
-      dano: 10,
-      behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "attackVida", value: Math.random() < 0.7 ? 10 : 20 }],
+      dano: 8,
+      behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "attackVida", value: Math.random() < 0.7 ? 8 : 16 }],
       img: "../img/jogo/inimigos/bossKraken.png",
       tipoDano: "(⚔️❓🔱)💥",
       tipoVida: "💧",
@@ -2852,9 +2820,9 @@ const bossModels = [
   [
     {
       name: "Solice a Esquecida",
-      hp: 150,
-      dano: 40,
-      behavior: () => [{ type: "morrer", value: 40 }],
+      hp: 155,
+      dano: 45,
+      behavior: () => [{ type: "morrer", value: 45 }],
       img: "../img/jogo/inimigos/solice.png",
       tipoDano: "🩸",
       tipoVida: "❤️",
@@ -3846,10 +3814,8 @@ function drawCards() {
 
       //  ♻️♻️♻️♻️♻️ RECICLAGEM ♻️♻️♻️♻️♻️
       else if (card.name === "Recicladora") {
-        let dano = card.power;
-        if (deck.length <= 1) {
-          dano = 50;
-        }
+        let dano = Math.floor(lixoReciclado/3);
+        
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}⚔️`, "red");
@@ -4719,7 +4685,6 @@ function checkEnemies() {
               novos.push({
                 name: "Irislidriz",
                 hp: 50,
-                maxHp: 80,
                 dano: 20,
                 behavior: () => [{ type: "attack", value: 20 }],
                 img: "../img/jogo/inimigos/valkFantasmaElite.png",
@@ -4732,7 +4697,6 @@ function checkEnemies() {
               novos.push({
                 name: "Irislidriz",
                 hp: 40,
-                maxHp: 50,
                 dano: 25,
                 behavior: () => [{ type: "attackVida", value: 30 }],
                 img: "../img/jogo/inimigos/valkFantasma.png",
@@ -4759,8 +4723,7 @@ function checkEnemies() {
                   },
                   {
                     name: "Tristeza De Ayla",
-                    hp: 35,
-                    maxHp: 35,
+                    hp: 40,
                     dano: 12,
                     behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 12 : 24 }],
                     img: "../img/jogo/inimigos/tristeza.png",
@@ -4770,17 +4733,16 @@ function checkEnemies() {
                 );
               }
               else if (
-                ["Raiva De Ayla", "Tristeza De Ayla"].includes(morto.name) &&
+                ["Nojo De Ayla", "Tristeza De Ayla"].includes(morto.name) &&
                 aylaPhase === 1
               ) {
-                if (enemies.every(e => !["Raiva De Ayla", "Tristeza De Ayla"].includes(e.name))) {
+                if (enemies.every(e => !["Nojo De Ayla", "Tristeza De Ayla"].includes(e.name))) {
                   aylaPhase = 2;
                   novos.push(
                     {
                       name: "Ansiedade De Ayla",
                       hp: 70,
-                      maxHp: 70,
-                      dano: 15,
+                      dano: 12,
                       behavior: () => [
                         { type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.7 ? 12 : 24 },
                       ],
@@ -4791,7 +4753,6 @@ function checkEnemies() {
                     {
                       name: "Raiva De Ayla",
                       hp: 30,
-                      maxHp: 30,
                       dano: 30,
                       behavior: () => [{ type: "attack", value: 30 }],
                       img: "../img/jogo/inimigos/raiva.png",
@@ -4810,9 +4771,9 @@ function checkEnemies() {
                   novos.push(
                     {
                       name: "Amor De Ayla",
-                      hp: 150,
-                      dano: 35,
-                      behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attack", value: 35 }],
+                      hp: 120,
+                      dano: 25,
+                      behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attack", value: 25 }],
                       img: "../img/jogo/inimigos/amor.png",
                       tipoDano: "⚔️❓💚🎭💊",
                       tipoVida: "🪬",
@@ -4831,10 +4792,10 @@ function checkEnemies() {
                 }
               }
               else if (
-                ["Nojo De Ayla", "Amor De Ayla"].includes(morto.name) &&
+                ["Angustia De Ayla", "Amor De Ayla"].includes(morto.name) &&
                 aylaPhase === 3
               ) {
-                if (enemies.every(e => !["Nojo De Ayla", "Amor De Ayla"].includes(e.name))) {
+                if (enemies.every(e => !["Angustia De Ayla", "Amor De Ayla"].includes(e.name))) {
                   aylaPhase = 4;
                   shakeScreenNatural(30, 800);
                   document.getElementById("jogo").style.backgroundImage =
@@ -4842,7 +4803,6 @@ function checkEnemies() {
                   novos.push({
                     name: "Ayla",
                     hp: 200,
-                    maxHp: 200,
                     dano: 20,
                     behavior: () => [
                       { type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.9 ? 20 : 100 },
