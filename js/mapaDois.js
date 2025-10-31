@@ -401,11 +401,11 @@ function criarPlayerNaDiv3() {
     ],
     gaeaReen: [
       allCards.find(c => c.name === "Combustão"),
-      allCards.find(c => c.name === "Soterrar"),
+      allCards.find(c => c.name === "Chuva De Fogo"),
       allCards.find(c => c.name === "Jato De Água"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Mar Denso"),
+      allCards.find(c => c.name === "Soterrar"),
+      allCards.find(c => c.name === "Deslizamento"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
@@ -896,27 +896,54 @@ const allCards = [
   {
     name: "Combustão",
     cost: 1,
-    basePower: 8,
+    basePower: 0,
     rarity: "fire",
     img: "../img/jogo/cards/fire/combustao.png",
+    desc: "Marca o inimigo com FIRE",
+    type: "fire"
+  },
+  {
+    name: "Chuva De Fogo",
+    cost: 1,
+    basePower: 0,
+    rarity: "fire",
+    img: "../img/jogo/cards/fire/chuvaDeFogo.png",
     desc: "Marca todos os inimigos com FIRE",
     type: "fire"
   },
   {
     name: "Soterrar",
     cost: 1,
-    basePower: 8,
+    basePower: 0,
     rarity: "terra",
     img: "../img/jogo/cards/terra/soterra.jpg",
+    desc: "Marca o inimigo com EARTH",
+    type: "terra"
+  },
+  {
+    name: "Deslizamento",
+    cost: 1,
+    basePower: 0,
+    rarity: "terra",
+    img: "../img/jogo/cards/terra/deslizamento.jpg",
     desc: "Marca todos os inimigos com EARTH",
     type: "terra"
   },
   {
     name: "Jato De Água",
     cost: 1,
-    basePower: 8,
+    basePower: 0,
     rarity: "agua",
     img: "../img/jogo/cards/agua/jatoAgua.png",
+    desc: "Marca o inimigo com WATER",
+    type: "agua"
+  },
+  {
+    name: "Mar Denso",
+    cost: 1,
+    basePower: 0,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/afogado.png",
     desc: "Marca todos os inimigos com WATER",
     type: "agua"
   },
@@ -3119,14 +3146,17 @@ function drawCards() {
         break;
       //🔥🔥🔥🔥🔥 FIRE 2 🔥🔥🔥🔥🔥
       case "Combustão":
+      case "Chuva De Fogo":
         tipo = "fire";
         break;
       //⛰️⛰️⛰️⛰️⛰️ TERRA 2 ⛰️⛰️⛰️⛰️⛰️
       case "Soterrar":
+      case "Deslizamento":
         tipo = "terra";
         break;
       //💧💧💧💧💧 AGUA 2 💧💧💧💧💧
       case "Jato De Água":
+      case "Mar Denso":
         tipo = "agua";
         break;
       //❄️❄️❄️❄️❄️ FROST ❄️❄️❄️❄️❄️
@@ -4301,13 +4331,22 @@ function drawCards() {
       else if (card.name === "Combustão") {
         marcarInimigos("🔥", "unico", true)
       }
+      else if (card.name === "Chuva De Fogo") {
+        marcarInimigos("🔥", "area", true)
+      }
       //  💧💧💧💧💧 AGUA 💧💧💧💧💧
       else if (card.name === "Jato De Água") {
         marcarInimigos("💧", "unico", true)
       }
+      else if (card.name === "Mar Denso") {
+        marcarInimigos("💧", "area", true)
+      }
       //  ⛰️⛰️⛰️⛰️⛰️ TERRA ⛰️⛰️⛰️⛰️⛰️
       else if (card.name === "Soterrar") {
         marcarInimigos("⛰️", "unico", true)
+      }
+      else if (card.name === "Deslizamento") {
+        marcarInimigos("⛰️", "area", true)
       }
       //  ✨✨✨✨✨ CINTILANTE ✨✨✨✨✨
       else if (card.name === "Guardião") {
