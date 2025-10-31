@@ -59,7 +59,7 @@ let limiteMao = 5;
 let maxMao = 10;
 
 function curaVida() {
-  playerHP = Math.min(playerHP + 25, playerMaxHP);
+  playerHP = Math.min(playerHP + 40, playerMaxHP);
 }
 
 function curaSacre() {
@@ -402,14 +402,19 @@ function criarPlayerNaDiv3() {
     gaeaReen: [
       allCards.find(c => c.name === "Combustão"),
       allCards.find(c => c.name === "Chuva De Fogo"),
-      allCards.find(c => c.name === "Jato De Água"),
-      allCards.find(c => c.name === "Mar Denso"),
-      allCards.find(c => c.name === "Soterrar"),
-      allCards.find(c => c.name === "Deslizamento"),
       allCards.find(c => c.name === "Explosão Termica"),
       allCards.find(c => c.name === "Ataque De Fogo"),
       allCards.find(c => c.name === "Lança Chamas"),
       allCards.find(c => c.name === "Cauterizar"),
+      allCards.find(c => c.name === "Jato De Água"),
+      allCards.find(c => c.name === "Mar Denso"),
+      allCards.find(c => c.name === "Chuva Isolante"),
+      allCards.find(c => c.name === "Chuva Corrosiva"),
+      allCards.find(c => c.name === "Corrosão"),
+      allCards.find(c => c.name === "Chuva Controlada"),
+      allCards.find(c => c.name === "Soterrar"),
+      allCards.find(c => c.name === "Deslizamento"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
@@ -967,20 +972,56 @@ const allCards = [
   },
   {
     name: "Jato De Água",
-    cost: 1,
+    cost: 0,
     basePower: 0,
     rarity: "agua",
     img: "../img/jogo/cards/agua/jatoAgua.png",
-    desc: "Marca o inimigo com WATER",
+    desc: "Marca o inimigo com 💧",
+    type: "agua"
+  },
+  {
+    name: "Chuva Isolante",
+    cost: 1,
+    basePower: 8,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/chuva.png",
+    desc: "Marca os inimigos com 💧, se eles estiverem marcados com 🔥 cause 8 de dano",
+    type: "agua"
+  },
+  {
+    name: "Chuva Controlada",
+    cost: 2,
+    basePower: 12,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/chuvaDensa.png",
+    desc: "Causa 12 de dano a inimigos marcados com 🔥",
+    type: "agua"
+  },
+  {
+    name: "Chuva Corrosiva",
+    cost: 3,
+    basePower: 22,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/chuvaCorrosiva.png",
+    desc: "Marca os inimigos com 💧, se eles estiverem marcados com 💧 cause 22 de dano",
+    type: "agua"
+  },
+  {
+    name: "Corrosão",
+    cost: 3,
+    basePower: 42,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/corrosao.png",
+    desc: "Marca o inimigo com 💧, se ele estiver marcado com 💧 cause 42 de dano",
     type: "agua"
   },
   {
     name: "Mar Denso",
-    cost: 1,
+    cost: 0,
     basePower: 0,
     rarity: "agua",
     img: "../img/jogo/cards/agua/afogado.png",
-    desc: "Marca todos os inimigos com WATER",
+    desc: "Marca todos os inimigos com 💧",
     type: "agua"
   },
   {
@@ -3197,6 +3238,10 @@ function drawCards() {
       //💧💧💧💧💧 AGUA 2 💧💧💧💧💧
       case "Jato De Água":
       case "Mar Denso":
+      case "Chuva Isolante":
+      case "Chuva Corrosiva":
+      case "Chuva Controlada":
+      case "Corrosão":
         tipo = "agua";
         break;
       //❄️❄️❄️❄️❄️ FROST ❄️❄️❄️❄️❄️
@@ -4431,6 +4476,49 @@ function drawCards() {
       else if (card.name === "Mar Denso") {
         marcarInimigos("💧", "area", true)
       }
+      else if (card.name === "Chuva Isolante") {
+        enemies.forEach(e => {
+        if (e.tipoVida === "🔥") {
+          animateDamage(e.el);
+          e.hp -= card.power;
+          floatText(e.el, `-${card.power}💧`, "red");
+        } else {
+          floatText(e.el, `💧`, "red");
+        }
+        }); 
+        marcarInimigos("💧", "area")
+      }
+      else if (card.name === "Chuva Controlada") {
+        enemies.forEach(e => {
+        if (e.tipoVida === "🔥") {
+          animateDamage(e.el);
+          e.hp -= card.power;
+          floatText(e.el, `-${card.power}💧`, "red");
+        } 
+        }); 
+      }
+      else if (card.name === "Chuva Corrosiva") {
+        enemies.forEach(e => {
+        if (e.tipoVida === "💧") {
+          animateDamage(e.el);
+          e.hp -= card.power;
+          floatText(e.el, `-${card.power}💧`, "red");
+        } else {
+          floatText(e.el, `💧`, "red");
+        }
+        }); 
+        marcarInimigos("💧", "area")
+      }
+      else if (card.name === "Corrosão") {
+        if (enemies[0].tipoVida === "💧") {
+          animateDamage(enemies[0].el);
+          enemies[0].hp -= card.power;
+          floatText(enemies[0].el, `-${card.power}💧`, "red");
+        } else {
+          floatText(enemies[0].el, `💧`, "red");
+        }
+        marcarInimigos("💧", "unico")
+      }
       //  ⛰️⛰️⛰️⛰️⛰️ TERRA ⛰️⛰️⛰️⛰️⛰️
       else if (card.name === "Soterrar") {
         marcarInimigos("⛰️", "unico", true)
@@ -5410,9 +5498,10 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
   .inimigo  { background: #d33; }
   .loot     { background: #fd0; }
   .loja     { background: #0d8; }
-  .ferreiro { background: rgba(99, 78, 49, 1); }
+  .ferreiro { background: #fd0; }
+  .hospital2 { background: #fd0; }
   .elite    { background: #a3f; }
-  .hospital { background: #4cf; }
+  .hospital { background: #0d8; }
   .boss     { background: #000; border: 2px solid white; }
   .invalido { opacity: 0; pointer-events: none; }
   .nodo.inacessivel {
@@ -5536,7 +5625,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
 
   // Começa o código JavaScript isolado no Shadow DOM
   (() => {
-    const tipos = ['inimigo', 'hospital', 'ferreiro', 'elite'];
+    const tipos = ['inimigo', 'hospital', 'ferreiro', 'elite','hospital?'];
     const mapa = [];
     const numFases = fases;
     const caminhosPorFase = caminhos;
@@ -5559,7 +5648,8 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
       const tipos = [
         { tipo: 'inimigo', peso: 55 },
         { tipo: 'elite', peso: 18 },
-        { tipo: 'hospital', peso: 8 },
+        { tipo: 'hospital', peso: 0 },
+        { tipo: 'hospital2', peso: 8 },
         { tipo: 'ferreiro', peso: 8 }
       ];
 
@@ -5670,7 +5760,8 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
             inimigo: '💀',
             loja: '🛒',
             elite: '☠️',
-            ferreiro: '⚒️',
+            ferreiro: '❓',
+            hospital2: '❓',
             hospital: '💚',
           }[nodo.tipo] || '';
 
@@ -5812,6 +5903,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
           break;
 
         case 'hospital':
+        case 'hospital2':
           mostrarTela(5); // Tela do hospital (div5)
           break;
 
