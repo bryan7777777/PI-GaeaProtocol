@@ -102,11 +102,11 @@ function abrirLoja() {
     let preco = 10;
     const rar = carta.rarity?.toLowerCase() ?? "common";
     const tipo = carta.type?.toLowerCase() ?? "";
-    if (rar === "rare") preco = 15;
-    else if (rar === "epic") preco = 20;
+    if (rar === "rare") preco = 14;
+    else if (rar === "epic") preco = 22;
     else if (rar === "legend") preco = 30;
     else if (rar === "cintilante") preco = 50;
-    else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 18;
+    else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 16;
 
     const precoDiv = document.createElement("div");
     precoDiv.classList.add("precoCarta");
@@ -3174,6 +3174,7 @@ function spawnEnemies(tipo) {
   let pool;
   switch (tipo) {
     case "inimigo": pool = normalModels; break;
+    case "inimigo2": pool = eliteModels; break;
     case "elite": pool = eliteModels; break;
     case "boss": pool = bossModels; break;
     default:
@@ -5626,6 +5627,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
   .loja     { background: #0d8; }
   .ferreiro { background: #fd0; }
   .hospital2 { background: #fd0; }
+  .inimigo2 { background: #fd0; }
   .elite    { background: #a3f; }
   .hospital { background: #0d8; }
   .boss     { background: #000; border: 2px solid white; }
@@ -5751,7 +5753,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
 
   // Começa o código JavaScript isolado no Shadow DOM
   (() => {
-    const tipos = ['inimigo', 'hospital', 'ferreiro', 'elite','hospital2','loja'];
+    const tipos = ['inimigo', 'hospital', 'ferreiro', 'elite','hospital2','inimigo2','loja'];
     const mapa = [];
     const numFases = fases;
     const caminhosPorFase = caminhos;
@@ -5775,9 +5777,10 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
         { tipo: 'inimigo', peso: 55 },
         { tipo: 'elite', peso: 18 },
         { tipo: 'hospital', peso: 0 },
-        { tipo: 'hospital2', peso: 8 },
-        { tipo: 'loja', peso: 55 },
-        { tipo: 'ferreiro', peso: 8 }
+        { tipo: 'hospital2', peso: 6 },
+        { tipo: 'inimigo2', peso: 6 },
+        { tipo: 'loja', peso: 5 },
+        { tipo: 'ferreiro', peso: 6 }
       ];
 
       // Sorteio ponderado de tipo
@@ -5889,6 +5892,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
             elite: '☠️',
             ferreiro: '❓',
             hospital2: '❓',
+            inimigo2: '❓',
             hospital: '💚',
           }[nodo.tipo] || '';
 
@@ -6009,6 +6013,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
     function executarAcao(tipo) {
       switch (tipo) {
         case 'inimigo':
+        case 'inimigo2':
         case 'elite':
         case 'boss':
           document.getElementById("enemies").style.display = "flex";
