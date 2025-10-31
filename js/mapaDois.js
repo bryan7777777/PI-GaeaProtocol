@@ -4201,6 +4201,7 @@ function drawCards() {
       }
       //❄️
       else if (card.name === "Nevasca Mortal") {
+        marcarInimigos("❄️", "area")
         // percorre todos os inimigos vivos
         enemies.forEach(enemy => {
           if (!enemy || enemy.hp <= 0) return;
@@ -4210,7 +4211,6 @@ function drawCards() {
           if (enemy.dano > 1) {
             if (enemy.tipoVida !== "🧿") {
               enemy.tipoDano = "❄️";
-              marcarInimigos("❄️", "area")
               enemy.dano = Math.max(0, enemy.dano - 1); // reduz o dano em 1
               enemy.behavior = () => [{ type: "attack", value: enemy.dano }];
             }
@@ -4220,13 +4220,11 @@ function drawCards() {
       }
       //❄️
       else if (card.name === "Marcar") {
-        marcarInimigos("❄️", "unico")
-        floatText(enemies[0].el, "❄️", "blue");
+        marcarInimigos("❄️", "unico", true)
       }
       //❄️
       else if (card.name === "Cemiterio Branco") {
-        marcarInimigos("❄️", "area")
-          floatText(e.el, "❄️", "blue");
+        marcarInimigos("❄️", "area", true)
       }
       //❄️
       else if (card.name === "Ataque Condensado") {
@@ -4301,18 +4299,15 @@ function drawCards() {
       }
       //  🔥🔥🔥🔥🔥 FIRE 🔥🔥🔥🔥🔥
       else if (card.name === "Combustão") {
-        marcarInimigos("🔥", "unico")
-        floatText(enemies[0].el, "🔥", "lime");
+        marcarInimigos("🔥", "unico", true)
       }
       //  💧💧💧💧💧 AGUA 💧💧💧💧💧
       else if (card.name === "Jato De Água") {
-        marcarInimigos("💧", "unico")
-        floatText(enemies[0].el, "💧", "lime");
+        marcarInimigos("💧", "unico", true)
       }
       //  ⛰️⛰️⛰️⛰️⛰️ TERRA ⛰️⛰️⛰️⛰️⛰️
       else if (card.name === "Soterrar") {
-        marcarInimigos("⛰️", "unico")
-        floatText(enemies[0].el, "⛰️", "lime");
+        marcarInimigos("⛰️", "unico", true)
       }
       //  ✨✨✨✨✨ CINTILANTE ✨✨✨✨✨
       else if (card.name === "Guardião") {
@@ -4494,43 +4489,25 @@ popupOverlayDeck.addEventListener("click", (e) => {
   }
 });
 
-function marcarInimigos(elemento, tipo) {
-
-  if (enemies[0].tipoVida !== "🧿" || enemy.tipoVida !== "🧿") {
-    if (elemento == "💧") {
-      if (tipo == "area") {
-        enemies.forEach(e => {
-          e.tipoVida = "💧";
-        });
-      } else if (tipo == "unico") {
-        enemies[0].tipoVida = "💧";
-      }
-    } else if (elemento == "🔥") {
-      if (tipo == "area") {
-        enemies.forEach(e => {
-          e.tipoVida = "🔥";
-        });
-      } else if (tipo == "unico") {
-        enemies[0].tipoVida = "🔥";
-      }
-  } else if (elemento == "⛰️") {
-    if (tipo == "area") {
-        enemies.forEach(e => {
-          e.tipoVida = "⛰️";
-        });
-      } else if (tipo == "unico") {
-        enemies[0].tipoVida = "⛰️";
-      }
-} else if (elemento == "❄️") {
+function marcarInimigos(elemento, tipo, txt = false) {
   if (tipo == "area") {
-        enemies.forEach(e => {
-          e.tipoVida = "❄️";
-        });
-      } else if (tipo == "unico") {
-        enemies[0].tipoVida = "❄️";
+    enemies.forEach(e => {
+      if (e.tipoVida === "🧿") return;
+      e.tipoVida = elemento;
+
+      if (txt == true) {
+        floatText(e.el, elemento, "blue");
       }
-}
-}
+    });
+  } else if (tipo == "unico") {
+    if (enemies[0].tipoVida !== "🧿") {
+      enemies[0].tipoVida = elemento;
+    }
+
+    if (txt == true) {
+      floatText(enemies[0].el, elemento, "blue");
+    }
+  }
 }
 
 
