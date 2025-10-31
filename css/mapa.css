@@ -19,6 +19,69 @@ html, body {
   justify-content: center;
 }
 
+.loja-principal {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+  padding: 20px;
+}
+
+.loja-esquerda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imgInventario {
+  width: 450px;
+}
+
+.loja-direita {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  gap: 60px;
+}
+
+.loja-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.itemLoja {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.precoCarta{
+  font-size: 28px;
+  font-weight: bold;
+  color: gold;
+  text-align: center;
+  margin-top: 6px;
+}
+
+.dinheiroAtual{
+  color: rgb(0, 255, 4);
+  font-size: 38px;
+  text-shadow: 0 0 38px black;
+}
+
+.itemLoja .card .energia{
+  margin-top: -112px;
+  margin-bottom: 88px;
+}
+
+#lojaUm{
+  width: 120%;
+}
+
 .tela {
   position: absolute;
   width: 100%;
@@ -399,7 +462,7 @@ button {
   background-color: rgb(0, 0, 0);
 }
 
-#fimSelecao, .inventario button, .ferreiro button, #lutaUm, #fimDeJogo, .pular{
+#fimSelecao, .inventario button, .ferreiro button, #lutaUm, #fimDeJogo, .pular, #lojaUm{
   width: 100%;
   height:100px;
   font-size: 80%;
@@ -416,7 +479,7 @@ button {
   max-height: 75px;
 }
 
-#fimSelecao:hover, .inventario button:hover, .ferreiro button:hover, #lutaUm:hover, #fimDeJogo:hover, .pular:hover{
+#fimSelecao:hover, .inventario button:hover, .ferreiro button:hover, #lutaUm:hover, #fimDeJogo:hover, .pular:hover, #lojaUm:hover{
   width: 100%;
   font-size: 100%;
   background-color: rgba(2, 114, 0, 0.6);
@@ -444,7 +507,7 @@ button {
 }
 
 /* HOSPITAL */
-#medico h1, #acolito h1, .ferreiro h1{
+#medico h1, #acolito h1, .ferreiro h1, .loja h1{
   width: 80%;
   text-align: center;
   color: rgb(160, 255, 180);

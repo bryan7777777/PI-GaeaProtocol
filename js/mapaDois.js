@@ -1,6 +1,7 @@
 let telaAtual = 1;
 let telaAnterior = null;
 let lixoReciclado = 0;
+let dinheiro = 0;
 
 function atualizarLixo() {
   lixoReciclado++
@@ -9,6 +10,129 @@ function atualizarLixo() {
     el.textContent = `♻️Lixos Reciclados♻️: ${lixoReciclado}`;
   });
 }
+
+function atualizarDinheiro() {
+  const elementos = document.querySelectorAll(".dinheiroAtual");
+  elementos.forEach(el => {
+    el.textContent = `🪙: ${dinheiro}`;
+  });
+}
+
+function abrirLoja() {
+  const lojaDiv = document.getElementById("div4");
+  if (!lojaDiv) return;
+
+  lojaDiv.innerHTML = ""; // limpa
+  const lojaContainer = document.createElement("div");
+  lojaContainer.classList.add("loja-principal");
+  lojaDiv.appendChild(lojaContainer);
+
+  const esquerda = document.createElement("div");
+  esquerda.classList.add("loja-esquerda");
+
+  const imgInv = document.createElement("img");
+  imgInv.src = "./../img/jogo/background/comerciante.png";
+  imgInv.alt = "Inventário";
+  imgInv.classList.add("imgInventario");
+  esquerda.appendChild(imgInv);
+
+  const btnVoltar = document.createElement("button");
+  btnVoltar.textContent = "Voltar para o mapa";
+  btnVoltar.id = "lojaUm";
+  btnVoltar.addEventListener("click", () => {
+    if (typeof irParaDiv2 === "function") irParaDiv2();
+  });
+  esquerda.appendChild(btnVoltar);
+
+  const direita = document.createElement("div");
+  direita.classList.add("loja-direita");
+
+  const titulo = document.createElement("h1");
+  titulo.classList.add("dinheiroAtual");
+  direita.appendChild(titulo);
+
+  const containerCartas = document.createElement("div");
+  containerCartas.classList.add("loja-container");
+  direita.appendChild(containerCartas);
+
+  lojaContainer.appendChild(esquerda);
+  lojaContainer.appendChild(direita);
+
+  // Atualiza o valor de moedas ao abrir a loja
+  atualizarDinheiro();
+
+  // pega 10 cartas distintas
+  const opcoes = [];
+  const max = Math.min(10, allCards?.length || 0);
+  while (opcoes.length < max) {
+    const carta = allCards[Math.floor(Math.random() * allCards.length)];
+    if (!opcoes.includes(carta)) opcoes.push(carta);
+  }
+
+  opcoes.forEach(carta => {
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("itemLoja");
+
+    const cardDiv = document.createElement("div");
+    cardDiv.classList.add("card");
+    cardDiv.classList.add(carta.rarity ?? "common");
+    if (carta.type) cardDiv.classList.add(carta.type);
+
+    if (carta.img) {
+      const img = document.createElement("img");
+      img.src = carta.img;
+      cardDiv.appendChild(img);
+    }
+
+    const nome = document.createElement("div");
+    nome.classList.add("titulo");
+    nome.textContent = carta.name;
+    cardDiv.appendChild(nome);
+
+    const custo = document.createElement("div");
+    custo.classList.add("energia");
+    custo.textContent = carta.cost ?? 0;
+    cardDiv.appendChild(custo);
+
+    const desc = document.createElement("div");
+    desc.classList.add("desc");
+    desc.innerHTML = carta.desc ?? "";
+    cardDiv.appendChild(desc);
+
+    let preco = 10;
+    const rar = carta.rarity?.toLowerCase() ?? "common";
+    const tipo = carta.type?.toLowerCase() ?? "";
+    if (rar === "rare") preco = 15;
+    else if (rar === "epic") preco = 20;
+    else if (rar === "legend") preco = 30;
+    else if (rar === "cintilante") preco = 50;
+    else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 18;
+
+    const precoDiv = document.createElement("div");
+    precoDiv.classList.add("precoCarta");
+    precoDiv.textContent = `💰 ${preco}`;
+
+    cardDiv.addEventListener("click", (ev) => {
+      ev.stopPropagation();
+      if (dinheiro >= preco) {
+        dinheiro -= preco;
+        atualizarDinheiro(); // atualiza sempre que gastar
+        if (!Array.isArray(playerDeck)) playerDeck = [];
+        playerDeck.push({ ...carta });
+        itemDiv.remove();
+        if (typeof floatText === "function") floatText(containerCartas, `-${preco}🪙`, "red");
+      } else {
+        if (typeof floatText === "function") floatText(cardDiv, "Dinheiro insuficiente!", "red");
+      }
+    });
+
+    itemDiv.appendChild(cardDiv);
+    itemDiv.appendChild(precoDiv);
+    containerCartas.appendChild(itemDiv);
+  });
+}
+
+
 
 configurarSelecaoPersonagem();
 
@@ -5187,6 +5311,7 @@ function checkEnemies() {
             drawCards();
             updateHUD();
             playerShield = playerShieldInit;
+            atualizarDinheiro()
           } else if (enemies.length === 0 && playerHP > 0) {
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popup").style.display = "flex";
@@ -5200,6 +5325,7 @@ function checkEnemies() {
             updateHUD();
             playerShield = playerShieldInit;
             reviver = 0;
+            atualizarDinheiro()
           }
         }, 500);
       })(i);
@@ -5625,7 +5751,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
 
   // Começa o código JavaScript isolado no Shadow DOM
   (() => {
-    const tipos = ['inimigo', 'hospital', 'ferreiro', 'elite','hospital?'];
+    const tipos = ['inimigo', 'hospital', 'ferreiro', 'elite','hospital2','loja'];
     const mapa = [];
     const numFases = fases;
     const caminhosPorFase = caminhos;
@@ -5650,6 +5776,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
         { tipo: 'elite', peso: 18 },
         { tipo: 'hospital', peso: 0 },
         { tipo: 'hospital2', peso: 8 },
+        { tipo: 'loja', peso: 55 },
         { tipo: 'ferreiro', peso: 8 }
       ];
 
@@ -5758,7 +5885,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
           el.textContent = {
             boss: '👑',
             inimigo: '💀',
-            loja: '🛒',
+            loja: '🪙',
             elite: '☠️',
             ferreiro: '❓',
             hospital2: '❓',
@@ -5892,10 +6019,23 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
           drawNewCards();
           drawCards();
           updateHUD();
+
+        if (tipo=='boss') {
+          dinheiro+=20;
+          dinheiro+=Math.floor(mapaBatalha/3);
+        } else if (tipo=='elite') {
+          dinheiro+=10;
+          dinheiro+=Math.floor(mapaBatalha/3);
+        } else if (tipo=='inimigo') {
+          dinheiro+=5;
+          dinheiro+=Math.floor(mapaBatalha/3);
+        }
+
           break;
 
         case 'loja':
           mostrarTela(4); // Tela da loja (div4)
+          abrirLoja()
           break;
 
         case 'ferreiro':
