@@ -406,10 +406,10 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Mar Denso"),
       allCards.find(c => c.name === "Soterrar"),
       allCards.find(c => c.name === "Deslizamento"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Explosão Termica"),
+      allCards.find(c => c.name === "Ataque De Fogo"),
+      allCards.find(c => c.name === "Lança Chamas"),
+      allCards.find(c => c.name === "Cauterizar"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
@@ -895,7 +895,7 @@ const allCards = [
   },
   {
     name: "Combustão",
-    cost: 1,
+    cost: 0,
     basePower: 0,
     rarity: "fire",
     img: "../img/jogo/cards/fire/combustao.png",
@@ -909,6 +909,42 @@ const allCards = [
     rarity: "fire",
     img: "../img/jogo/cards/fire/chuvaDeFogo.png",
     desc: "Marca todos os inimigos com FIRE",
+    type: "fire"
+  },
+  {
+    name: "Explosão Termica",
+    cost: 2,
+    basePower: 12,
+    rarity: "fire",
+    img: "../img/jogo/cards/fire/explosaoCalor.png",
+    desc: "Cause 10 de dano ao inimigo, se ele estiver marcado com 🔥 X2 ou ⛰️ X3 o dano",
+    type: "fire"
+  },
+  {
+    name: "Ataque De Fogo",
+    cost: 1,
+    basePower: 6,
+    rarity: "fire",
+    img: "../img/jogo/cards/fire/atkFogo.png",
+    desc: "Cause 6 de dano ao inimigo, se ele estiver marcado com 🔥 X2 ou ⛰️ X3 o dano",
+    type: "fire"
+  },
+  {
+    name: "Lança Chamas",
+    cost: 2,
+    basePower: 6,
+    rarity: "fire",
+    img: "../img/jogo/cards/fire/lancaChamas.png",
+    desc: "Cause 6 de dano a todos os inimigos e marca com 🔥, se ele estiver marcado com 🔥 X2 ou ⛰️ X3 o dano",
+    type: "fire"
+  },
+  {
+    name: "Cauterizar",
+    cost: 3,
+    basePower: 20,
+    rarity: "fire",
+    img: "../img/jogo/cards/fire/Cauterizar.png",
+    desc: "Cause 20 de dano ao inimigo e marca com 🔥, se ele estiver marcado com 🔥 X2 o dano",
     type: "fire"
   },
   {
@@ -953,7 +989,7 @@ const allCards = [
     basePower: 1,
     rarity: "frost",
     img: "../img/jogo/cards/frost/geloMortal.png",
-    desc: "Marca com FROST e reduz 1 de dano do inimigo (Não fica a baixo de 1) e muda sua ação para ataque normal",
+    desc: "Marca com ❄️ e reduz 1 de dano do inimigo (Não fica a baixo de 1) e muda sua ação para ataque normal",
     type: "frost"
   },
   {
@@ -962,7 +998,7 @@ const allCards = [
     basePower: 1,
     rarity: "frost",
     img: "../img/jogo/cards/frost/nevasca.png",
-    desc: "Marca com FROST e reduz 1 de dano de todos os inimigos (Não fica a baixo de 1) e muda sua ação para ataque normal",
+    desc: "Marca com ❄️ e reduz 1 de dano de todos os inimigos (Não fica a baixo de 1) e muda sua ação para ataque normal",
     type: "frost"
   },
   {
@@ -971,7 +1007,7 @@ const allCards = [
     basePower: 0,
     rarity: "frost",
     img: "../img/jogo/cards/frost/congelar.png",
-    desc: "Marca o inimigo com FROST",
+    desc: "Marca o inimigo com ❄️",
     type: "frost"
   },
   {
@@ -980,7 +1016,7 @@ const allCards = [
     basePower: 0,
     rarity: "frost",
     img: "../img/jogo/cards/frost/cemiterioBranco.png",
-    desc: "Marca todos os inimigos com FROST",
+    desc: "Marca todos os inimigos com ❄️",
     type: "frost"
   },
   {
@@ -989,7 +1025,7 @@ const allCards = [
     basePower: 8,
     rarity: "frost",
     img: "../img/jogo/cards/frost/atkGelido.png",
-    desc: "Cause 8 de dano, se o inimigo estiver marcado cause X3",
+    desc: "Cause 8 de dano, se o inimigo estiver marcado com ❄️ cause X3",
     type: "frost"
   },
   {
@@ -998,7 +1034,7 @@ const allCards = [
     basePower: 3,
     rarity: "frost",
     img: "../img/jogo/cards/frost/defGelida.png",
-    desc: "Ganhe 3 de armadura por cada carta do tipo frost na mão e X1 por cada inimigo marcado",
+    desc: "Ganhe 3 armadura por cada carta do tipo frost na mão e X1 por cada inimigo marcado com ❄️",
     type: "frost"
   },
   {
@@ -1007,7 +1043,7 @@ const allCards = [
     basePower: 1,
     rarity: "frost",
     img: "../img/jogo/cards/frost/degelo.png",
-    desc: "Ganhe 1 de energia por cada inimigo marcado",
+    desc: "Ganhe 1 de energia por cada inimigo marcado com ❄️",
     type: "frost"
   },
   {
@@ -1016,7 +1052,7 @@ const allCards = [
     basePower: 1,
     rarity: "frost",
     img: "../img/jogo/cards/frost/vidaGelida.png",
-    desc: "Ganhe 1 de vida por cada carta do tipo frost na mão e X1 por cada inimigo marcado",
+    desc: "Ganhe 1 de vida por cada carta do tipo frost na mão e X1 por cada inimigo marcado com ❄️",
     type: "frost"
   },
   {
@@ -1025,7 +1061,7 @@ const allCards = [
     basePower: 1,
     rarity: "frost",
     img: "../img/jogo/cards/frost/cardGelidas.png",
-    desc: "Compre 1 carta do seu deck (Exceto eu) por cada inimigo marcado",
+    desc: "Compre 1 carta do seu deck (Exceto eu) por cada inimigo marcado com ❄️",
     type: "frost"
   },
   {
@@ -3147,6 +3183,10 @@ function drawCards() {
       //🔥🔥🔥🔥🔥 FIRE 2 🔥🔥🔥🔥🔥
       case "Combustão":
       case "Chuva De Fogo":
+      case "Explosão Termica":
+      case "Ataque De Fogo":
+      case "Lança Chamas":
+      case "Cauterizar":
         tipo = "fire";
         break;
       //⛰️⛰️⛰️⛰️⛰️ TERRA 2 ⛰️⛰️⛰️⛰️⛰️
@@ -4334,6 +4374,56 @@ function drawCards() {
       else if (card.name === "Chuva De Fogo") {
         marcarInimigos("🔥", "area", true)
       }
+      else if (card.name === "Explosão Termica") {
+        if (enemies[0].tipoVida === "⛰️") {
+          dano = card.power * 3;
+        } else if (enemies[0].tipoVida === "🔥") {
+          dano = card.power * 2;
+        } else {
+          dano = card.power;
+        }
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= dano;
+        floatText(enemies[0].el, `-${dano}🔥`, "red");
+      }
+      else if (card.name === "Ataque De Fogo") {
+        if (enemies[0].tipoVida === "⛰️") {
+          dano = card.power * 3;
+        } else if (enemies[0].tipoVida === "🔥") {
+          dano = card.power * 2;
+        } else {
+          dano = card.power;
+        }
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= dano;
+        floatText(enemies[0].el, `-${dano}🔥`, "red");
+      }
+      else if (card.name === "Cauterizar") {
+        if (enemies[0].tipoVida === "🔥") {
+          dano = card.power * 2;
+        } else {
+          dano = card.power;
+        }
+        marcarInimigos("🔥", "unico")
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= dano;
+        floatText(enemies[0].el, `-${dano}🔥`, "red");
+      }
+      else if (card.name === "Lança Chamas") {
+        enemies.forEach(e => {
+        if (e.tipoVida === "⛰️") {
+          dano = card.power * 3;
+        } else if (e.tipoVida === "🔥") {
+          dano = card.power * 2;
+        } else {
+          dano = card.power;
+        }
+          animateDamage(e.el);
+          e.hp -= dano;
+          floatText(e.el, `-${dano}🔥`, "red");
+        }); 
+        marcarInimigos("🔥", "area")
+      }
       //  💧💧💧💧💧 AGUA 💧💧💧💧💧
       else if (card.name === "Jato De Água") {
         marcarInimigos("💧", "unico", true)
@@ -4529,9 +4619,25 @@ popupOverlayDeck.addEventListener("click", (e) => {
 });
 
 function marcarInimigos(elemento, tipo, txt = false) {
+  fraqueza = "";
+  switch (elemento) {
+    case "🔥":
+      fraqueza = "💧";
+      break;
+    case "⛰️":
+      fraqueza = "🔥";
+      break;
+    case "💧":
+      fraqueza = "⛰️";
+      break;
+  
+    default:
+      break;
+  }
+
   if (tipo == "area") {
     enemies.forEach(e => {
-      if (e.tipoVida === "🧿") return;
+      if (e.tipoVida === "🧿" || e.tipoVida === fraqueza) return;
       e.tipoVida = elemento;
 
       if (txt == true) {
@@ -4539,7 +4645,7 @@ function marcarInimigos(elemento, tipo, txt = false) {
       }
     });
   } else if (tipo == "unico") {
-    if (enemies[0].tipoVida !== "🧿") {
+    if (enemies[0].tipoVida !== "🧿" && enemies[0].tipoVida !== fraqueza) {
       enemies[0].tipoVida = elemento;
     }
 

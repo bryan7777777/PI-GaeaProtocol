@@ -589,13 +589,10 @@ color: rgb(227, 90, 255);
 
 .fire {background-image: url("../img/jogo/cards/fire.png");}
 .agua{background-image: url("../img/jogo/cards/agua.png");}
-
-.agua .desc, .fire .desc{background-color: #20202079; border-radius: 25px;}
-.agua .titulo, .fire .titulo{color: #ffffff; text-shadow: 0 0 4px #000000;}
-
 .frost{background-image: url("../img/jogo/cards/frost.png");}
-.frost .titulo, .frost .desc strong{color: #1900ff;}
-.frost .desc {color: #000000;}
+
+.agua .desc, .fire .desc, .frost .desc{background-color: #20202079; border-radius: 15px;}
+.agua .titulo, .fire .titulo, .frost .titulo{color: #ffffff; text-shadow: 0 0 4px #000000;}
 
 
 .common {
