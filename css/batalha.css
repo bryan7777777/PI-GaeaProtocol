@@ -893,7 +893,7 @@ color: rgb(227, 90, 255);
 .card.terra::after{
   content: "";
   position: absolute;
-  top: 0;
+  top: -30px;
   width: 40px;
   height: 25px;
   background-color: rgba(103, 214, 73, 0.95);
@@ -907,18 +907,18 @@ color: rgb(227, 90, 255);
 
 .card.terra:hover::before {
   opacity: 1;
-  animation: leafFallRight 3s ease-in forwards;
+  animation: leafFallRight 3s ease-in forwards infinite;
   animation-delay: 0s;
 }
 
 .card.terra:hover::after {
   opacity: 1;
-  animation: leafFallLeft 3.5s ease-in forwards;
+  animation: leafFallLeft 3.5s ease-in forwards infinite;
   animation-delay: 0.2s;
 }
 
 @keyframes leafFallRight {
-  0% { top: 0; left: 80%; transform: rotate(0deg); opacity: 1; }
+  0% { top: -30px; left: 80%; transform: rotate(0deg); opacity: 1; }
   25% { left: 60%; transform: rotate(20deg); }
   50% { left: 40%; transform: rotate(-10deg); }
   75% { left: 20%; transform: rotate(15deg); }
@@ -926,7 +926,7 @@ color: rgb(227, 90, 255);
 }
 
 @keyframes leafFallLeft {
-  0% { top: 0; left: 10%; transform: rotate(0deg); opacity: 1; }
+  0% { top: -30px; left: 10%; transform: rotate(0deg); opacity: 1; }
   25% { left: 30%; transform: rotate(-20deg); }
   50% { left: 50%; transform: rotate(10deg); }
   75% { left: 70%; transform: rotate(-15deg); }
