@@ -3,6 +3,23 @@ let telaAnterior = null;
 let lixoReciclado = 0;
 let dinheiro = 0;
 
+// Função para gerar o deck aleatório (só uma vez)
+function gerarDeckAleatorio(allCards) {
+  if (window.deckGerado) return window.deckGerado;
+  const cartasDisponiveis = [...allCards];
+  const deckAleatorio = [];
+
+  for (let i = 0; i < 12; i++) {
+    if (cartasDisponiveis.length === 0) break;
+    const indice = Math.floor(Math.random() * cartasDisponiveis.length);
+    deckAleatorio.push(cartasDisponiveis[indice]);
+    cartasDisponiveis.splice(indice, 1);
+  }
+
+  window.deckGerado = deckAleatorio;
+  return deckAleatorio;
+};
+
 function atualizarLixo() {
   lixoReciclado++
   const elementos = document.querySelectorAll(".lixoReciclado");
@@ -397,6 +414,103 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Rajada Dupla"),
       allCards.find(c => c.name === "Rajada Dupla"),
     ],
+    cleber: [
+      allCards.find(c => c.name === "Sistema de reflexão"),
+      allCards.find(c => c.name === "Sistema de reflexão"),
+      allCards.find(c => c.name === "Sistema de reflexão"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Escudo Retaliante"),
+      allCards.find(c => c.name === "Brilhando"),
+      allCards.find(c => c.name === "Brilhando"),
+      allCards.find(c => c.name === "Brilhando"),
+      allCards.find(c => c.name === "Indestrutivel"),
+      allCards.find(c => c.name === "Destruir Carta"),
+    ],
+    malaquias: [
+      allCards.find(c => c.name === "Liderança"),
+      allCards.find(c => c.name === "Furia"),
+      allCards.find(c => c.name === "Artilharia Anti Sniper"),
+      allCards.find(c => c.name === "Compra Dupla"),
+      allCards.find(c => c.name === "Compra Dupla"),
+      allCards.find(c => c.name === "Compra Dupla"),
+      allCards.find(c => c.name === "Compra Dupla"),
+      allCards.find(c => c.name === "Compra Dupla"),
+      allCards.find(c => c.name === "Estratégia"),
+      allCards.find(c => c.name === "Estratégia"),
+      allCards.find(c => c.name === "Estratégia"),
+      allCards.find(c => c.name === "Armamento Pesado"),
+    ],
+    renata: [
+      allCards.find(c => c.name === "Sob-Vigia"),
+      allCards.find(c => c.name === "Estratégia"),
+      allCards.find(c => c.name === "Mineração"),
+      allCards.find(c => c.name === "Xenofluxo"),
+      allCards.find(c => c.name === "Xenofluxo"),
+      allCards.find(c => c.name === "Xenofluxo"),
+      allCards.find(c => c.name === "Impulso"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Guardião"),
+    ],
+    marcos: [
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+    ],
+    cleide: [
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+    ],
+    magna: [
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+    ],
+    lucius: [
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Rajada Dupla"),
+    ],
     azul: [
       allCards.find(c => c.name === "Sistema de reflexão"),
       allCards.find(c => c.name === "Sistema de reflexão"),
@@ -460,7 +574,7 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Ataque"),
       allCards.find(c => c.name === "Ataque"),
       allCards.find(c => c.name === "Ataque Reciclável"),
-      allCards.find(c => c.name === "Arma Ancestral"),
+      allCards.find(c => c.name === "Força De Gaea"),
       allCards.find(c => c.name === "Defesa"),
       allCards.find(c => c.name === "Defesa"),
       allCards.find(c => c.name === "Defesa Reciclável"),
@@ -481,17 +595,17 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Destruir Carta"),
     ],
     magnolia: [
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Soterrar"),
+      allCards.find(c => c.name === "Deslizamento"),
+      allCards.find(c => c.name === "Arma Ancestral"),
+      allCards.find(c => c.name === "Arma Ancestral"),
+      allCards.find(c => c.name === "Arma Ancestral"),
       allCards.find(c => c.name === "Liderança"),
-      allCards.find(c => c.name === "Liderança"),
-      allCards.find(c => c.name === "Chuva De Fragmentos"),
+      allCards.find(c => c.name === "Chuva Rochosa"),
       allCards.find(c => c.name === "Cura"),
       allCards.find(c => c.name === "Escudo"),
       allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Ataque Reciclável"),
+      allCards.find(c => c.name === "Jato De Água"),
       allCards.find(c => c.name === "Destruir Carta"),
     ],
     vermelho: [
@@ -523,18 +637,32 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Destruir Carta"),
     ],
     porto: [
-      allCards.find(c => c.name === "Arpão"),
-      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Destruir Carta"),
       allCards.find(c => c.name === "Arpão"),
       allCards.find(c => c.name === "Arpão"),
       allCards.find(c => c.name === "Arpão"),
       allCards.find(c => c.name === "Arpão"),
       allCards.find(c => c.name === "Arpão"),
       allCards.find(c => c.name === "Impulso Defensivo"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Sistema de reflexão"),
-      allCards.find(c => c.name === "Sistema de reflexão"),
+      allCards.find(c => c.name === "Mar Denso"),
+      allCards.find(c => c.name === "Jato De Água"),
+      allCards.find(c => c.name === "Chuva Isolante"),
+      allCards.find(c => c.name === "Chuva Corrosiva"),
+      allCards.find(c => c.name === "Corrosão"),
+    ],
+    fergus: [
       allCards.find(c => c.name === "Destruir Carta"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Arpão"),
+      allCards.find(c => c.name === "Impulso Defensivo"),
+      allCards.find(c => c.name === "Broca Perfurante"),
+      allCards.find(c => c.name === "Ceifa"),
+      allCards.find(c => c.name === "Desprezo"),
+      allCards.find(c => c.name === "Drone de Ataque"),
+      allCards.find(c => c.name === "Artilharia Anti Sniper"),
     ],
     mercuri: [
       allCards.find(c => c.name === "Arpão"),
@@ -553,14 +681,14 @@ function criarPlayerNaDiv3() {
     ferrus: [
       allCards.find(c => c.name === "Terror Critico"),
       allCards.find(c => c.name === "Ataque Reciclável"),
-      allCards.find(c => c.name === "Ataque Reciclável"),
       allCards.find(c => c.name === "Recicladora"),
       allCards.find(c => c.name === "Defesa Reciclável"),
-      allCards.find(c => c.name === "Defesa Reciclável"),
       allCards.find(c => c.name === "Xenofluxo Reciclável"),
-      allCards.find(c => c.name === "Entulho"),
-      allCards.find(c => c.name === "Entulho"),
-      allCards.find(c => c.name === "Ferro Velho"),
+      allCards.find(c => c.name === "Furia"),
+      allCards.find(c => c.name === "Escudo"),
+      allCards.find(c => c.name === "Escudo De Gaea"),
+      allCards.find(c => c.name === "Coração De Gaea"),
+      allCards.find(c => c.name === "Restos de mecha"),
       allCards.find(c => c.name === "Ferro Velho"),
       allCards.find(c => c.name === "Ferro Velho"),
     ],
@@ -578,20 +706,7 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Guardião"),
       allCards.find(c => c.name === "Destruir Carta"),
     ],
-    x: [
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Beserck"),
-      allCards.find(c => c.name === "Chuva De Fragmentos"),
-      allCards.find(c => c.name === "Chuva De Fragmentos"),
-      allCards.find(c => c.name === "Vingativo"),
-      allCards.find(c => c.name === "Fogo Amigo"),
-      allCards.find(c => c.name === "Fogo Amigo"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Guardião"),
-      allCards.find(c => c.name === "Destruir Carta"),
-    ],
+    x: gerarDeckAleatorio(allCards),
     wallace: [
       allCards.find(c => c.name === "Ataque"),
       allCards.find(c => c.name === "Ataque"),
@@ -700,6 +815,62 @@ function criarPlayerNaDiv3() {
       maoInicio = 6;
       limiteMao = 6;
       break;
+    case "cleber":
+      playerImg.src = "./../img/jogo/player/cleber.png";
+      playerMaxHP = 160, energyMax = 3, playerShieldInit = 5;
+      playerHP = 160, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.cleber];
+      maoInicio = 5;
+      limiteMao = 5;
+      break;
+    case "malaquias":
+      playerImg.src = "./../img/jogo/player/malaquias.png";
+      playerMaxHP = 78, energyMax = 6, playerShieldInit = 0;
+      playerHP = 78, energy = 6, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.malaquias];
+      maoInicio = 3;
+      limiteMao = 3;
+      break;
+    case "renata":
+      playerImg.src = "./../img/jogo/player/renata.png";
+      playerMaxHP = 50, energyMax = 3, playerShieldInit = 0;
+      playerHP = 50, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.renata];
+      maoInicio = 6;
+      limiteMao = 6;
+      break;
+    case "marcos":
+      playerImg.src = "./../img/jogo/player/marcos.png";
+      playerMaxHP = 70, energyMax = 3, playerShieldInit = 0;
+      playerHP = 70, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.marcos];
+      maoInicio = 6;
+      limiteMao = 6;
+      break;
+    case "cleide":
+      playerImg.src = "./../img/jogo/player/cleide.png";
+      playerMaxHP = 70, energyMax = 3, playerShieldInit = 0;
+      playerHP = 70, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.cleide];
+      maoInicio = 6;
+      limiteMao = 6;
+      break;
+    case "magna":
+      playerImg.src = "./../img/jogo/player/magna.png";
+      playerMaxHP = 70, energyMax = 3, playerShieldInit = 0;
+      playerHP = 70, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.magna];
+      maoInicio = 6;
+      limiteMao = 6;
+      break;
+    case "lucius":
+      playerImg.src = "./../img/jogo/player/lucius.png";
+      playerMaxHP = 70, energyMax = 3, playerShieldInit = 0;
+      playerHP = 70, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.lucius];
+      maoInicio = 6;
+      limiteMao = 6;
+      break;
     case "azul":
       playerImg.src = "./../img/jogo/player/tank.png";
       playerMaxHP = 130, energyMax = 3, playerShieldInit = 5;
@@ -736,6 +907,7 @@ function criarPlayerNaDiv3() {
     case "magnolia":
       playerImg.src = "./../img/jogo/player/magnolia.png";
       playerDeck = [...characterDecks.magnolia];
+      playerMaxHP = 120, playerHP = 120, energyMax = 4, energy = 4;
       maoInicio = 6;
       limiteMao = 6;
       break;
@@ -763,10 +935,18 @@ function criarPlayerNaDiv3() {
       maoInicio = 5;
       limiteMao = 5;
       break;
+    case "fergus":
+      playerImg.src = "./../img/jogo/player/fergus.png";
+      playerMaxHP = 145, energyMax = 3, playerShieldInit = 0;
+      playerHP = 145, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.fergus];
+      maoInicio = 5;
+      limiteMao = 5;
+      break;
     case "mercuri":
       playerImg.src = "./../img/jogo/player/mercuri.png";
-      playerMaxHP = 110, energyMax = 3, playerShieldInit = 5;
-      playerHP = 110, energy = 3, playerShield = playerShieldInit;
+      playerMaxHP = 100, energyMax = 3, playerShieldInit = 0;
+      playerHP = 100, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.mercuri];
       maoInicio = 5;
       limiteMao = 5;
@@ -807,6 +987,8 @@ function criarPlayerNaDiv3() {
       playerImg.src = "./../img/jogo/player/sal2.png";
       playerMaxHP = 160, energyMax = 3, playerShieldInit = 0;
       playerHP = 80, energy = 3, playerShield = playerShieldInit;
+      dinheiro = 50;
+      atualizarDinheiro()
       playerDeck = [...characterDecks.ferrus];
       break;
     case "tomoeh":
@@ -819,8 +1001,8 @@ function criarPlayerNaDiv3() {
       break;
     case "x":
       playerImg.src = "./../img/jogo/player/x.png";
-      playerMaxHP = 200, energyMax = 2, playerShieldInit = 2;
-      playerHP = 100, energy = 2, playerShield = playerShieldInit;
+      playerMaxHP = 200, energyMax = 3, playerShieldInit = 2;
+      playerHP = 100, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.x];
       maoInicio = 4;
       limiteMao = 4;
@@ -829,6 +1011,8 @@ function criarPlayerNaDiv3() {
       playerImg.src = "./../img/jogo/player/wallace.png";
       playerMaxHP = 100, energyMax = 4, playerShieldInit = 0;
       playerHP = 100, energy = 4, playerShield = playerShieldInit;
+      dinheiro = 100;
+      atualizarDinheiro();
       playerDeck = [...characterDecks.wallace];
       break;
     case "gaeaReen":
@@ -848,7 +1032,7 @@ function criarPlayerNaDiv3() {
       break;
     case "olga":
       playerImg.src = "./../img/jogo/player/olga.png";
-      
+
       playerDeck = [...characterDecks.olga];
       break;
     case "glacia":
@@ -929,8 +1113,85 @@ function configurarSelecaoPersonagem() {
     },
     laranja: {
       nome: "🐦‍🔥GABRIEL, O INABALÁVEL🐦‍🔥",
+      dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀🐦‍🔥",
+      cor: "rgb(255, 128, 0)",
+      descricao: "Agressivo e ágil, perfeito para combates rápidos, causa múltiplos danos em um único alvo.",
+      hp: 70,
+      maxHp: 70,
+      energia: 3,
+      escudo: 0,
+      mao: 6
+    },
+    cleber: {
+      nome: "🐦‍🔥CLEBER, PROTETOR DA FAUNA🐦‍🔥",
+      dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀🐦‍🔥",
+      cor: "rgb(255, 128, 0)",
+      descricao: "Focado em defesa, ele fez questão que seu mecha parecesse com um leão, ele até hoje odeia arranhar ele, e sempre abre escudos para não danificar sua pintura, um arranhão para ele é pior que a morte, um leonino orgulhoso talvez? como será que ele lidará com quem joga sujo?.",
+      hp: 160,
+      maxHp: 160,
+      energia: 3,
+      escudo: 5,
+      mao: 5
+    },
+    malaquias: {
+      nome: "🐦‍🔥MALAQUIAS, ESPECIALISTA EM REPTEIS🐦‍🔥",
+      dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀💀🐦‍🔥",
+      cor: "rgb(255, 128, 0)",
+      descricao: "Maluco por compras, se ele pudesse comprava uma casa no shooping só para fazer compras lá, ele curte comprar bastante mas será que ele vai ter saldo para sustentar isso?.",
+      hp: 78,
+      maxHp: 78,
+      energia: 6,
+      escudo: 0,
+      mao: 3
+    },
+    renata: {
+      nome: "🐦‍🔥RENATA, ESPECIALISTA EM MAMIFEROS🐦‍🔥",
       dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀🐦‍🔥",
       cor: "rgb(255, 128, 0)",
+      descricao: "Mestre em fotografia, ágil exploradora, porém uma estrategista cautelosa, é capaz de gerar muita energia, como utilizar já é outra historia, .",
+      hp: 50,
+      maxHp: 50,
+      energia: 3,
+      escudo: 0,
+      mao: 6
+    },
+    marcos: {
+      nome: "🌪️MARCOS, O INABALÁVEL🌪️",
+      dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀🌪️",
+      cor: "rgba(255, 255, 255, 1)",
+      descricao: "Agressivo e ágil, perfeito para combates rápidos, causa múltiplos danos em um único alvo.",
+      hp: 70,
+      maxHp: 70,
+      energia: 3,
+      escudo: 0,
+      mao: 6
+    },
+    cleide: {
+      nome: "🌪️CLEIDE, PROTETOR DA FAUNA🌪️",
+      dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀🌪️",
+      cor: "rgba(255, 255, 255, 1)",
+      descricao: "Agressivo e ágil, perfeito para combates rápidos, causa múltiplos danos em um único alvo.",
+      hp: 70,
+      maxHp: 70,
+      energia: 3,
+      escudo: 0,
+      mao: 6
+    },
+    magna: {
+      nome: "🌪️MAGNA, ESPECIALISTA EM REPTEIS🌪️",
+      dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀🌪️",
+      cor: "rgba(255, 255, 255, 1)",
+      descricao: "Agressivo e ágil, perfeito para combates rápidos, causa múltiplos danos em um único alvo.",
+      hp: 70,
+      maxHp: 70,
+      energia: 3,
+      escudo: 0,
+      mao: 6
+    },
+    lucius: {
+      nome: "🌪️LUCIUS, ESPECIALISTA EM MAMIFEROS🌪️",
+      dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀🌪️",
+      cor: "rgba(255, 255, 255, 1)",
       descricao: "Agressivo e ágil, perfeito para combates rápidos, causa múltiplos danos em um único alvo.",
       hp: 70,
       maxHp: 70,
@@ -942,7 +1203,7 @@ function configurarSelecaoPersonagem() {
       nome: "⚓REINOR, O ESCUDO DA HUMANIDADE⚓",
       dificuldade: "⚓NÍVEL DE DIFICULDADE: 💀⚓",
       cor: "rgba(69, 89, 222, 1)",
-      descricao: "Focado em defesa, extremamente defensivo, utiliza de seus escudos para se proteger e causar dano.",
+      descricao: "Recrudado pelo ex lider, sempre sonhou em proyteger os mais fracos e faz de seu escudo o abri daqueles que não podem se defender, focado em defesa, extremamente defensivo, utiliza de seus escudos para se proteger e causar dano.",
       hp: 130,
       maxHp: 130,
       energia: 3,
@@ -995,7 +1256,7 @@ function configurarSelecaoPersonagem() {
     },
     verde: {
       nome: "🌿JÃO, O CARA🌿",
-      dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀🌿",
+      dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀💀🌿",
       cor: "rgb(0, 188, 16)",
       descricao: "Deck versátil, com um pouco de tudo e status balanceados.",
       hp: 100,
@@ -1008,10 +1269,10 @@ function configurarSelecaoPersonagem() {
       nome: "🌿MAGNOLIA, LIDER DA GAEA🌿",
       dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀🌿",
       cor: "rgb(0, 188, 16)",
-      descricao: "Deck versátil, com um pouco de tudo e status balanceados.",
-      hp: 100,
-      maxHp: 100,
-      energia: 3,
+      descricao: "Deck versátil com diversas cartas de terra, tem estatus bem maiores que muitos soldados da gaea, status balanceados e fortes.",
+      hp: 120,
+      maxHp: 120,
+      energia: 4,
       escudo: 0,
       mao: 6
     },
@@ -1028,9 +1289,9 @@ function configurarSelecaoPersonagem() {
     },
     ferrus: {
       nome: "⚒️MAGNUS FERRUS, O PRODÍGIO⚒️",
-      dificuldade: "⚒️NÍVEL DE DIFICULDADE: 💀💀💀⚒️",
+      dificuldade: "⚒️NÍVEL DE DIFICULDADE: 💀💀⚒️",
       cor: "rgb(103, 67, 0)",
-      descricao: "Deck focado inteiramente em reciclagem, quem diria que reciclar seria bom para todos os lados.",
+      descricao: "Deck focado em reciclagem, no inicio ele começa bem fraco mas com o tempo ele vai ganhando força com forme o tempo passa, quem diria que reciclar seria bom para todos os lados, por incrivel que pareça no meio do lixo ele achou... ouro? ok ele inicia com 50🪙 ao inves de 0🪙.",
       hp: 80,
       maxHp: 160,
       energia: 3,
@@ -1041,7 +1302,7 @@ function configurarSelecaoPersonagem() {
       nome: "🌿WALLACE, O ESPECTRO DA FLORESTA🌿",
       dificuldade: "🌿NÍVEL DE DIFICULDADE: NULL🌿",
       cor: "rgb(0, 188, 16)",
-      descricao: "NULL",
+      descricao: "Ex soldado da gaea, após achar um mecha de construção abandonado decidiu por conta propria ajudar, mesmo que aposentado e debilitado ele nunca deixou de acreditar em um futuro melhor, possui um deck bem leve e fraco, mas suas economias durante sua carreira podem ajudar com isso, ele inicia com 100🪙 ao inves de 0🪙",
       hp: 100,
       maxHp: 100,
       energia: 4,
@@ -1052,22 +1313,33 @@ function configurarSelecaoPersonagem() {
       nome: "⚓CLARICE, A AUTORIDADE DO PORTO⚓",
       dificuldade: "⚓NÍVEL DE DIFICULDADE: 💀💀⚓",
       cor: "rgba(69, 89, 222, 1)",
-      descricao: "Estrategista em causar dano na linha de trás, sabe se defender bem e usa isso a seu favor.",
+      descricao: "Assim como seu pai ela assumiu o manto de autoridade do porto, aprendeu bem com seu velho estratégias muito boas de ataque a distancia, mas ela se apaixonou pelo mar assim como sua mãe e por conta disso seu deck é hibrido com água.",
       hp: 110,
       maxHp: 110,
       energia: 3,
       escudo: 5,
       mao: 5
     },
-    mercuri: {
-      nome: "⚓MERCURI, GUARDA PORTO⚓",
+    fergus: {
+      nome: "⚓FERGUS, EX AUTORIDADE DO PORTO⚓",
       dificuldade: "⚓NÍVEL DE DIFICULDADE: 💀💀⚓",
       cor: "rgba(69, 89, 222, 1)",
-      descricao: "Estrategista em causar dano na linha de trás, sabe se defender bem e usa isso a seu favor.",
-      hp: 110,
-      maxHp: 110,
+      descricao: "Após conquistar todos os mares, extremamente respeitado ele foi, um deles ele renomeou em homenagem a sua amada filha e esposa, conquistou todos os mares com sua estrategia famosa de focar na linha de trás, aposentado ou não esse velho ainda está na ativa, enquanto ele não matar o KRAKEN e vingar sua esposa ele continuara na ativa!",
+      hp: 145,
+      maxHp: 145,
       energia: 3,
-      escudo: 5,
+      escudo: 0,
+      mao: 5
+    },
+    mercuri: {
+      nome: "⚓MERCURI, GUARDA PORTO⚓",
+      dificuldade: "⚓NÍVEL DE DIFICULDADE: 💀⚓",
+      cor: "rgba(69, 89, 222, 1)",
+      descricao: "Estrategista em causar dano na linha de trás, aprendeu com a ex autoridade do porto, sabe se defender bem e usa isso a seu favor, após ver os lindos mares ficarem poluidos ele não pensou duas vezes em fazer algo para ajudar.",
+      hp: 100,
+      maxHp: 100,
+      energia: 3,
+      escudo: 0,
       mao: 5
     },
     tomoeh: {
@@ -1093,13 +1365,13 @@ function configurarSelecaoPersonagem() {
       mao: 5
     },
     x: {
-      nome: "🔮#####, A ESQUECIDA🔮",
-      dificuldade: "🔮NÍVEL DE DIFICULDADE: NULL🔮",
+      nome: "🔮A ESQUECIDA🔮",
+      dificuldade: "🔮NÍVEL DE DIFICULDADE: 💀💀💀💀💀🔮",
       cor: "rgb(0, 114, 129)",
-      descricao: "NULL",
+      descricao: "Seu deck é... Assim como suas memórias... Sempre em neblina, seu deck é aleatório a cada partida",
       hp: 100,
       maxHp: 200,
-      energia: 2,
+      energia: 3,
       escudo: 2,
       mao: 4
     }
@@ -1418,7 +1690,7 @@ const allCards = [
     basePower: 3,
     rarity: "frost",
     img: "../img/jogo/cards/frost/defGelida.png",
-    desc: "Ganhe 3 armadura por cada carta do tipo frost na mão e X1 por cada inimigo marcado com ❄️",
+    desc: "Ganhe 3 armadura por cada carta do tipo FROST na mão e X1 por cada inimigo marcado com ❄️",
     type: "frost"
   },
   {
@@ -1436,7 +1708,7 @@ const allCards = [
     basePower: 1,
     rarity: "frost",
     img: "../img/jogo/cards/frost/vidaGelida.png",
-    desc: "Ganhe 1 de vida por cada carta do tipo frost na mão e X1 por cada inimigo marcado com ❄️",
+    desc: "Ganhe 1 de vida por cada carta do tipo FROST na mão e X1 por cada inimigo marcado com ❄️",
     type: "frost"
   },
   {
@@ -3861,6 +4133,7 @@ function drawCards() {
         glowPlayer("green");
         playerHP = Math.min(playerHP + card.power, playerMaxHP);
         enemies[0].hp -= card.power;
+        animateDamage(enemies[0].el);
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         floatText(document.getElementById("player"), `+${card.power}💚`, "lime")
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });;
@@ -4307,16 +4580,16 @@ function drawCards() {
         const cartasParaAdicionar = card.power;
         const espaco = maxMao - deck.length;
         const total = Math.min(cartasParaAdicionar, espaco);
-        for (let i = 0; i <= total; i++) {
+        for (let i = 0; i < total; i++) {
+          const sorteada = allCards[Math.floor(Math.random() * allCards.length)];
           const newCard = {
-            ...allCards[Math.floor(Math.random() * allCards.length)],
-            power: allCards[Math.floor(Math.random() * allCards.length)].basePower
+            ...sorteada,
+            power: sorteada.basePower
           };
-          deck.push(newCard); // adiciona diretamente, ignorando limite
+          deck.push(newCard);
         }
         glowPlayer("green");
       }
-
       //  ♻️♻️♻️♻️♻️ RECICLAGEM ♻️♻️♻️♻️♻️
       else if (card.name === "Recicladora") {
         let dano = Math.floor(lixoReciclado / 3);
