@@ -683,7 +683,7 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Força De Gaea"),
       allCards.find(c => c.name === "Tudo Virá Terra"),
       allCards.find(c => c.name === "Escudo De Gaea"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Coração De Gaea"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
@@ -1264,6 +1264,15 @@ const allCards = [
     rarity: "terra",
     img: "../img/jogo/cards/terra/escudoTerra.jpg",
     desc: "Ganhe 6 de escudo por cada carta do tipo EARTH e WATHER na mão mais 20% de todo o lixo reciclado",
+    type: "terra"
+  },
+  {
+    name: "Coração De Gaea",
+    cost: 1,
+    basePower: 2,
+    rarity: "terra",
+    img: "../img/jogo/cards/terra/vidaTerra.jpg",
+    desc: "Ganhe 2 de vida por cada carta do tipo EARTH e WATHER na mão mais 10% de todo o lixo reciclado",
     type: "terra"
   },
   {
@@ -3563,6 +3572,7 @@ function drawCards() {
       case "Brutalidade Da Terra":
       case "Tudo Virá Terra":
       case "Escudo De Gaea":
+      case "Coração De Gaea":
         tipo = "terra";
         break;
       //💧💧💧💧💧 AGUA 2 💧💧💧💧💧
@@ -4911,14 +4921,25 @@ function drawCards() {
         terraCount = deck.filter(c => c.type === "terra").length;
         aguaCount = deck.filter(c => c.type === "agua").length;
 
-        def = (terraCount + aguaCount) * 6;
+        def = (terraCount + aguaCount) * card.power;
         def += Math.floor(lixoReciclado * 0.2);
 
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
         playerShield += def;
       }
+      //⛰️
+      else if (card.name === "Coração De Gaea") {
+        terraCount = deck.filter(c => c.type === "terra").length;
+        aguaCount = deck.filter(c => c.type === "agua").length;
 
+        def = (terraCount + aguaCount) * card.power;
+        def += Math.floor(lixoReciclado * 0.1);
+
+        glowPlayer("green");
+        floatText(document.getElementById("player"), `+${def}💚`, "lime");
+        playerHP = Math.min(playerHP + def, playerMaxHP);
+      }
       //⛰️
       else if (card.name === "Chuva Rochosa") {
         enemies.forEach(e => {
