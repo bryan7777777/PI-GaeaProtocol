@@ -677,6 +677,12 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Chuva Controlada"),
       allCards.find(c => c.name === "Soterrar"),
       allCards.find(c => c.name === "Deslizamento"),
+      allCards.find(c => c.name === "Chuva Rochosa"),
+      allCards.find(c => c.name === "Arma Ancestral"),
+      allCards.find(c => c.name === "Brutalidade Da Terra"),
+      allCards.find(c => c.name === "Força De Gaea"),
+      allCards.find(c => c.name === "Tudo Virá Terra"),
+      allCards.find(c => c.name === "Escudo De Gaea"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
@@ -1221,7 +1227,61 @@ const allCards = [
     basePower: 0,
     rarity: "terra",
     img: "../img/jogo/cards/terra/soterra.jpg",
-    desc: "Marca o inimigo com EARTH",
+    desc: "Marca o inimigo com ⛰️",
+    type: "terra"
+  },
+  {
+    name: "Arma Ancestral",
+    cost: 1,
+    basePower: 8,
+    rarity: "terra",
+    img: "../img/jogo/cards/terra/atkTerra.jpg",
+    desc: "Cause 8 de dano ao inimigo, se ele estiver marcado com 💧 cause X3",
+    type: "terra"
+  },
+  {
+    name: "Brutalidade Da Terra",
+    cost: 1,
+    basePower: 12,
+    rarity: "terra",
+    img: "../img/jogo/cards/terra/atkForte.jpg",
+    desc: "Cause 12 de dano ao inimigo, se ele estiver marcado com ⛰️ cause X2",
+    type: "terra"
+  },
+  {
+    name: "Força De Gaea",
+    cost: 2,
+    basePower: 10,
+    rarity: "terra",
+    img: "../img/jogo/cards/terra/atkBrutoTerra.jpg",
+    desc: "Cause 10 de dano mais 30% de todo o lixo reciclado ao inimigo, se ele estiver marcado com ⛰️ cause X2",
+    type: "terra"
+  },
+  {
+    name: "Escudo De Gaea",
+    cost: 1,
+    basePower: 6,
+    rarity: "terra",
+    img: "../img/jogo/cards/terra/escudoTerra.jpg",
+    desc: "Ganhe 6 de escudo por cada carta do tipo EARTH e WATHER na mão mais 20% de todo o lixo reciclado",
+    type: "terra"
+  },
+  {
+    name: "Tudo Virá Terra",
+    cost: 3,
+    basePower: 30,
+    rarity: "terra",
+    img: "../img/jogo/cards/terra/entulhoTerra.jpg",
+    desc: "Cause 30 de dano mais 50% de todo o lixo reciclado ao inimigo se ele estiver marcado com ⛰️",
+    type: "terra"
+  },
+  {
+    name: "Chuva Rochosa",
+    cost: 1,
+    basePower: 5,
+    rarity: "terra",
+    img: "../img/jogo/cards/terra/chuvaTerra.jpg",
+    desc: "Cause 5 de dano a todos os inimigos e marca com ⛰️, se ele estiver marcado com ⛰️ X2 ou 💧 X3 o dano",
     type: "terra"
   },
   {
@@ -1230,7 +1290,7 @@ const allCards = [
     basePower: 0,
     rarity: "terra",
     img: "../img/jogo/cards/terra/deslizamento.jpg",
-    desc: "Marca todos os inimigos com EARTH",
+    desc: "Marca todos os inimigos com ⛰️",
     type: "terra"
   },
   {
@@ -3497,6 +3557,12 @@ function drawCards() {
       //⛰️⛰️⛰️⛰️⛰️ TERRA 2 ⛰️⛰️⛰️⛰️⛰️
       case "Soterrar":
       case "Deslizamento":
+      case "Chuva Rochosa":
+      case "Arma Ancestral":
+      case "Força De Gaea":
+      case "Brutalidade Da Terra":
+      case "Tudo Virá Terra":
+      case "Escudo De Gaea":
         tipo = "terra";
         break;
       //💧💧💧💧💧 AGUA 2 💧💧💧💧💧
@@ -4680,9 +4746,11 @@ function drawCards() {
       else if (card.name === "Combustão") {
         marcarInimigos("🔥", "unico", true)
       }
+      //🔥
       else if (card.name === "Chuva De Fogo") {
         marcarInimigos("🔥", "area", true)
       }
+      //🔥
       else if (card.name === "Explosão Termica") {
         if (enemies[0].tipoVida === "⛰️") {
           dano = card.power * 3;
@@ -4695,6 +4763,7 @@ function drawCards() {
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}🔥`, "red");
       }
+      //🔥
       else if (card.name === "Ataque De Fogo") {
         if (enemies[0].tipoVida === "⛰️") {
           dano = card.power * 3;
@@ -4707,6 +4776,7 @@ function drawCards() {
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}🔥`, "red");
       }
+      //🔥
       else if (card.name === "Cauterizar") {
         if (enemies[0].tipoVida === "🔥") {
           dano = card.power * 2;
@@ -4718,61 +4788,67 @@ function drawCards() {
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}🔥`, "red");
       }
+      //🔥
       else if (card.name === "Lança Chamas") {
         enemies.forEach(e => {
-        if (e.tipoVida === "⛰️") {
-          dano = card.power * 3;
-        } else if (e.tipoVida === "🔥") {
-          dano = card.power * 2;
-        } else {
-          dano = card.power;
-        }
+          if (e.tipoVida === "⛰️") {
+            dano = card.power * 3;
+          } else if (e.tipoVida === "🔥") {
+            dano = card.power * 2;
+          } else {
+            dano = card.power;
+          }
           animateDamage(e.el);
           e.hp -= dano;
           floatText(e.el, `-${dano}🔥`, "red");
-        }); 
+        });
         marcarInimigos("🔥", "area")
       }
       //  💧💧💧💧💧 AGUA 💧💧💧💧💧
       else if (card.name === "Jato De Água") {
         marcarInimigos("💧", "unico", true)
       }
+      //💧
       else if (card.name === "Mar Denso") {
         marcarInimigos("💧", "area", true)
       }
+      //💧
       else if (card.name === "Chuva Isolante") {
         enemies.forEach(e => {
-        if (e.tipoVida === "🔥") {
-          animateDamage(e.el);
-          e.hp -= card.power;
-          floatText(e.el, `-${card.power}💧`, "red");
-        } else {
-          floatText(e.el, `💧`, "red");
-        }
-        }); 
+          if (e.tipoVida === "🔥") {
+            animateDamage(e.el);
+            e.hp -= card.power;
+            floatText(e.el, `-${card.power}💧`, "red");
+          } else {
+            floatText(e.el, `💧`, "red");
+          }
+        });
         marcarInimigos("💧", "area")
       }
+      //💧
       else if (card.name === "Chuva Controlada") {
         enemies.forEach(e => {
-        if (e.tipoVida === "🔥") {
-          animateDamage(e.el);
-          e.hp -= card.power;
-          floatText(e.el, `-${card.power}💧`, "red");
-        } 
-        }); 
+          if (e.tipoVida === "🔥") {
+            animateDamage(e.el);
+            e.hp -= card.power;
+            floatText(e.el, `-${card.power}💧`, "red");
+          }
+        });
       }
+      //💧
       else if (card.name === "Chuva Corrosiva") {
         enemies.forEach(e => {
-        if (e.tipoVida === "💧") {
-          animateDamage(e.el);
-          e.hp -= card.power;
-          floatText(e.el, `-${card.power}💧`, "red");
-        } else {
-          floatText(e.el, `💧`, "red");
-        }
-        }); 
+          if (e.tipoVida === "💧") {
+            animateDamage(e.el);
+            e.hp -= card.power;
+            floatText(e.el, `-${card.power}💧`, "red");
+          } else {
+            floatText(e.el, `💧`, "red");
+          }
+        });
         marcarInimigos("💧", "area")
       }
+      //💧
       else if (card.name === "Corrosão") {
         if (enemies[0].tipoVida === "💧") {
           animateDamage(enemies[0].el);
@@ -4787,6 +4863,79 @@ function drawCards() {
       else if (card.name === "Soterrar") {
         marcarInimigos("⛰️", "unico", true)
       }
+      //⛰️
+      else if (card.name === "Arma Ancestral") {
+        if (enemies[0].tipoVida === "💧") {
+          dano = card.power * 3;
+        } else {
+          dano = card.power;
+        }
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= dano;
+        floatText(enemies[0].el, `-${dano}⛰️`, "red");
+      }
+      //⛰️
+      else if (card.name === "Brutalidade Da Terra") {
+        if (enemies[0].tipoVida === "⛰️") {
+          dano = card.power * 2;
+        } else {
+          dano = card.power;
+        }
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= dano;
+        floatText(enemies[0].el, `-${dano}⛰️`, "red");
+      }
+      //⛰️
+      else if (card.name === "Força De Gaea") {
+        dano = Math.floor(lixoReciclado / 3);
+        dano += card.power;
+        if (enemies[0].tipoVida === "⛰️") {
+          dano *= 2;
+        }
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= dano;
+        floatText(enemies[0].el, `-${dano}⛰️`, "red");
+      }
+      //⛰️
+      else if (card.name === "Tudo Virá Terra") {
+        dano = Math.floor(lixoReciclado / 2);
+        dano += card.power;
+        if (enemies[0].tipoVida === "⛰️") {
+          animateDamage(enemies[0].el);
+          enemies[0].hp -= dano;
+          floatText(enemies[0].el, `-${dano}⛰️`, "red");
+        }
+      }
+      //⛰️
+      else if (card.name === "Escudo De Gaea") {
+        terraCount = deck.filter(c => c.type === "terra").length;
+        aguaCount = deck.filter(c => c.type === "agua").length;
+
+        def = (terraCount + aguaCount) * 6;
+        def += Math.floor(lixoReciclado * 0.2);
+
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
+        playerShield += def;
+      }
+
+      //⛰️
+      else if (card.name === "Chuva Rochosa") {
+        enemies.forEach(e => {
+          if (e.tipoVida === "💧") {
+            dano = card.power * 3;
+          } else if (e.tipoVida === "⛰️") {
+            dano = card.power * 2;
+          } else {
+            dano = card.power;
+          }
+          animateDamage(e.el);
+          e.hp -= dano;
+          floatText(e.el, `-${dano}⛰️`, "red");
+        });
+        marcarInimigos("⛰️", "area")
+      }
+      //⛰️
       else if (card.name === "Deslizamento") {
         marcarInimigos("⛰️", "area", true)
       }
@@ -4982,7 +5131,7 @@ function marcarInimigos(elemento, tipo, txt = false) {
     case "💧":
       fraqueza = "⛰️";
       break;
-  
+
     default:
       break;
   }
@@ -5294,7 +5443,7 @@ function checkEnemies() {
                 );
               }
               else if (
-                ["Nojo De Ayla", "Tristeza De Ayla"].includes(morto.name) 
+                ["Nojo De Ayla", "Tristeza De Ayla"].includes(morto.name)
               ) {
                 if (enemies.every(e => !["Nojo De Ayla", "Tristeza De Ayla"].includes(e.name))) {
                   aylaPhase = 2;
@@ -5889,7 +6038,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
 
   // Começa o código JavaScript isolado no Shadow DOM
   (() => {
-    const tipos = ['inimigo', 'hospital', 'ferreiro', 'elite','hospital2','inimigo2','loja'];
+    const tipos = ['inimigo', 'hospital', 'ferreiro', 'elite', 'hospital2', 'inimigo2', 'loja'];
     const mapa = [];
     const numFases = fases;
     const caminhosPorFase = caminhos;
@@ -6161,16 +6310,16 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
           drawCards();
           updateHUD();
 
-        if (tipo=='boss') {
-          dinheiro+=20;
-          dinheiro+=Math.floor(mapaBatalha/3);
-        } else if (tipo=='elite') {
-          dinheiro+=10;
-          dinheiro+=Math.floor(mapaBatalha/3);
-        } else if (tipo=='inimigo') {
-          dinheiro+=5;
-          dinheiro+=Math.floor(mapaBatalha/3);
-        }
+          if (tipo == 'boss') {
+            dinheiro += 20;
+            dinheiro += Math.floor(mapaBatalha / 3);
+          } else if (tipo == 'elite') {
+            dinheiro += 10;
+            dinheiro += Math.floor(mapaBatalha / 3);
+          } else if (tipo == 'inimigo') {
+            dinheiro += 5;
+            dinheiro += Math.floor(mapaBatalha / 3);
+          }
 
           break;
 
