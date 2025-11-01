@@ -19,6 +19,61 @@ html, body {
   justify-content: center;
 }
 
+/* ===== POPUP DE REMOÇÃO DE CARTA ===== */
+.popup-remover-carta {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.85);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  z-index: 9999;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.popup-remover-carta .card {
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.popup-remover-carta .card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+/* Botão cancelar */
+.popup-remover-carta button {
+  width: 100%;
+  max-width: 160px;
+  height: 225px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  background: #b33;
+  color: white;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-bottom: 22px;
+}
+
+.popup-remover-carta button:hover {
+  background: #d44;
+}
+
+.loja h1{
+  margin-top: 30px;
+}
+
 .loja-principal {
   display: flex;
   justify-content: center;
@@ -462,7 +517,7 @@ button {
   background-color: rgb(0, 0, 0);
 }
 
-#fimSelecao, .inventario button, .ferreiro button, #lutaUm, #fimDeJogo, .pular, #lojaUm{
+#fimSelecao, .inventario button, .ferreiro button, #lutaUm, #fimDeJogo, .pular, #lojaUm, #btnRemoverCarta{
   width: 100%;
   height:100px;
   font-size: 80%;
@@ -479,7 +534,7 @@ button {
   max-height: 75px;
 }
 
-#fimSelecao:hover, .inventario button:hover, .ferreiro button:hover, #lutaUm:hover, #fimDeJogo:hover, .pular:hover, #lojaUm:hover{
+#fimSelecao:hover, .inventario button:hover, .ferreiro button:hover, #lutaUm:hover, #fimDeJogo:hover, .pular:hover, #lojaUm:hover, #btnRemoverCarta:hover{
   width: 100%;
   font-size: 100%;
   background-color: rgba(2, 114, 0, 0.6);

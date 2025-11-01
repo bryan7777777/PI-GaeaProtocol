@@ -44,6 +44,89 @@ function abrirLoja() {
   });
   esquerda.appendChild(btnVoltar);
 
+  // 🧹 botão para remover carta do deck
+  const btnRemoverCarta = document.createElement("button");
+  btnRemoverCarta.textContent = "Remover uma carta (10🪙)";
+  btnRemoverCarta.id = "btnRemoverCarta";
+  esquerda.appendChild(btnRemoverCarta);
+
+  // verifica se pode remover
+  const podeRemover = Array.isArray(playerDeck) && playerDeck.length > 10;
+
+  if (!podeRemover) {
+    btnRemoverCarta.disabled = true;
+    btnRemoverCarta.style.opacity = "0.6";
+    btnRemoverCarta.style.cursor = "not-allowed";
+  } else {
+    btnRemoverCarta.addEventListener("click", () => {
+      if (dinheiro < 10) {
+        if (typeof floatText === "function")
+          floatText(btnRemoverCarta, "Dinheiro insuficiente!", "red");
+        return;
+      }
+
+      // cria popup
+      const popup = document.createElement("div");
+      popup.classList.add("popup-remover-carta");
+
+      // botão cancelar (em cima)
+      const cancelarTopo = document.createElement("button");
+      cancelarTopo.textContent = "Cancelar";
+      cancelarTopo.addEventListener("click", () => popup.remove());
+      popup.appendChild(cancelarTopo);
+
+      playerDeck.forEach((carta, i) => {
+        const cardDiv = document.createElement("div");
+        cardDiv.classList.add("card", carta.rarity ?? "common");
+        if (carta.type) cardDiv.classList.add(carta.type);
+        cardDiv.style.margin = "10px";
+        cardDiv.style.cursor = "pointer";
+
+        if (carta.img) {
+          const img = document.createElement("img");
+          img.src = carta.img;
+          cardDiv.appendChild(img);
+        }
+
+        const nome = document.createElement("div");
+        nome.classList.add("titulo");
+        nome.textContent = carta.name;
+        cardDiv.appendChild(nome);
+
+        const desc = document.createElement("div");
+        desc.classList.add("desc");
+        desc.innerHTML = carta.desc ?? "";
+        cardDiv.appendChild(desc);
+
+        // clique na carta
+        cardDiv.addEventListener("click", () => {
+          if (playerDeck.length <= 10) {
+            if (typeof floatText === "function")
+              floatText(cardDiv, "Você não pode ter menos de 10 cartas!", "red");
+            return;
+          }
+
+          playerDeck.splice(i, 1);
+          dinheiro -= 10;
+          atualizarDinheiro();
+          popup.remove();
+          if (typeof floatText === "function") floatText(lojaDiv, "-10🪙", "yellow");
+        });
+
+        popup.appendChild(cardDiv);
+      });
+
+      // botão cancelar (em baixo)
+      const cancelarBaixo = document.createElement("button");
+      cancelarBaixo.textContent = "Cancelar";
+      cancelarBaixo.addEventListener("click", () => popup.remove());
+      popup.appendChild(cancelarBaixo);
+
+      lojaDiv.appendChild(popup);
+    });
+  }
+
+  // lado direito
   const direita = document.createElement("div");
   direita.classList.add("loja-direita");
 
@@ -58,10 +141,9 @@ function abrirLoja() {
   lojaContainer.appendChild(esquerda);
   lojaContainer.appendChild(direita);
 
-  // Atualiza o valor de moedas ao abrir a loja
   atualizarDinheiro();
 
-  // pega 10 cartas distintas
+  // cartas à venda
   const opcoes = [];
   const max = Math.min(10, allCards?.length || 0);
   while (opcoes.length < max) {
@@ -74,8 +156,7 @@ function abrirLoja() {
     itemDiv.classList.add("itemLoja");
 
     const cardDiv = document.createElement("div");
-    cardDiv.classList.add("card");
-    cardDiv.classList.add(carta.rarity ?? "common");
+    cardDiv.classList.add("card", carta.rarity ?? "common");
     if (carta.type) cardDiv.classList.add(carta.type);
 
     if (carta.img) {
@@ -116,7 +197,7 @@ function abrirLoja() {
       ev.stopPropagation();
       if (dinheiro >= preco) {
         dinheiro -= preco;
-        atualizarDinheiro(); // atualiza sempre que gastar
+        atualizarDinheiro();
         if (!Array.isArray(playerDeck)) playerDeck = [];
         playerDeck.push({ ...carta });
         itemDiv.remove();
@@ -130,6 +211,64 @@ function abrirLoja() {
     itemDiv.appendChild(precoDiv);
     containerCartas.appendChild(itemDiv);
   });
+}
+
+
+
+function abrirRemocaoCartas() {
+  const lojaDiv = document.getElementById("div4");
+  lojaDiv.innerHTML = "";
+
+  const titulo = document.createElement("h2");
+  titulo.textContent = "Remover Carta do Deck";
+  titulo.style.textAlign = "center";
+  lojaDiv.appendChild(titulo);
+
+  const container = document.createElement("div");
+  container.classList.add("remocao-container");
+  lojaDiv.appendChild(container);
+
+  if (!playerDeck || playerDeck.length === 0) {
+    const vazio = document.createElement("p");
+    vazio.textContent = "Seu deck está vazio!";
+    vazio.style.textAlign = "center";
+    container.appendChild(vazio);
+    return;
+  }
+
+  playerDeck.forEach((carta, index) => {
+    const cardDiv = document.createElement("div");
+    cardDiv.classList.add("card");
+    cardDiv.classList.add(carta.rarity ?? "common");
+    if (carta.type) cardDiv.classList.add(carta.type);
+
+    if (carta.img) {
+      const img = document.createElement("img");
+      img.src = carta.img;
+      cardDiv.appendChild(img);
+    }
+
+    const nome = document.createElement("div");
+    nome.classList.add("titulo");
+    nome.textContent = carta.name;
+    cardDiv.appendChild(nome);
+
+    cardDiv.addEventListener("click", () => {
+      // remove a carta do deck
+      playerDeck.splice(index, 1);
+      cardDiv.remove();
+      if (typeof floatText === "function") floatText(lojaDiv, "Carta removida!", "red");
+    });
+
+    container.appendChild(cardDiv);
+  });
+
+  // botão para voltar à loja
+  const btnVoltarLoja = document.createElement("button");
+  btnVoltarLoja.textContent = "Voltar à Loja";
+  btnVoltarLoja.style.marginTop = "20px";
+  btnVoltarLoja.addEventListener("click", abrirLoja);
+  lojaDiv.appendChild(btnVoltarLoja);
 }
 
 
@@ -2091,9 +2230,9 @@ const normalModels = [
     {
       name: "Marinheiro",
       hp: 45,
-      dano: 16,
+      dano: 8,
       behavior: () => [
-        { type: "attack", value: 16 }
+        { type: "attack", value: 8 }
       ],
       img: "../img/jogo/inimigos/marinheiro.png",
       tipoDano: "⚔️",
@@ -2103,9 +2242,9 @@ const normalModels = [
     {
       name: "Marinheiro Reciclado",
       hp: 30,
-      dano: 12,
+      dano: 8,
       behavior: () => [
-        { type: "attack", value: 12 }
+        { type: "attack", value: 8 }
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
@@ -2129,9 +2268,9 @@ const normalModels = [
     {
       name: "Marinheiro Reciclado",
       hp: 30,
-      dano: 12,
+      dano: 8,
       behavior: () => [
-        { type: "attack", value: 12 }
+        { type: "attack", value: 8 }
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
@@ -2143,9 +2282,9 @@ const normalModels = [
     {
       name: "Marinheiro Reciclado",
       hp: 30,
-      dano: 12,
+      dano: 8,
       behavior: () => [
-        { type: "attack", value: 12 }
+        { type: "attack", value: 8 }
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
@@ -2155,9 +2294,9 @@ const normalModels = [
     {
       name: "Marinheiro Reciclado",
       hp: 30,
-      dano: 12,
+      dano: 8,
       behavior: () => [
-        { type: "attack", value: 12 }
+        { type: "attack", value: 8 }
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
@@ -2732,9 +2871,9 @@ const eliteModels = [
     {
       name: "Marinheiro",
       hp: 45,
-      dano: 16,
+      dano: 8,
       behavior: () => [
-        { type: "attack", value: 16 }
+        { type: "attack", value: 8 }
       ],
       img: "../img/jogo/inimigos/marinheiro.png",
       tipoDano: "⚔️",
@@ -2744,9 +2883,9 @@ const eliteModels = [
     {
       name: "Marinheiro Reciclado",
       hp: 30,
-      dano: 12,
+      dano: 8,
       behavior: () => [
-        { type: "attack", value: 12 }
+        { type: "attack", value: 8 }
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
@@ -2756,9 +2895,9 @@ const eliteModels = [
     {
       name: "Capitão",
       hp: 55,
-      dano: 8,
+      dano: 7,
       behavior: () => [
-        { type: "attack", value: 8 }
+        { type: "attack", value: 7 }
       ],
       img: "../img/jogo/inimigos/capitao.png",
       tipoDano: "🔱",
