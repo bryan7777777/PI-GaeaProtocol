@@ -413,26 +413,26 @@ function criarPlayerNaDiv3() {
     amarelo: [
       allCards.find(c => c.name === "Destruir Carta"),
       allCards.find(c => c.name === "Mineração"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Deslizamento"),
+      allCards.find(c => c.name === "Soterrar"),
+      allCards.find(c => c.name === "Arma Ancestral"),
+      allCards.find(c => c.name === "Arma Ancestral"),
+      allCards.find(c => c.name === "Arma Ancestral"),
+      allCards.find(c => c.name === "Escudo De Gaea"),
+      allCards.find(c => c.name === "Escudo De Gaea"),
+      allCards.find(c => c.name === "Escudo De Gaea"),
+      allCards.find(c => c.name === "Coração De Gaea"),
+      allCards.find(c => c.name === "Mar Denso"),
     ],
     celso: [
       allCards.find(c => c.name === "Destruir Carta"),
       allCards.find(c => c.name === "Mineração"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Deslizamento"),
+      allCards.find(c => c.name === "Soterrar"),
+      allCards.find(c => c.name === "Chuva Rochosa"),
+      allCards.find(c => c.name === "Chuva Rochosa"),
+      allCards.find(c => c.name === "Chuva Rochosa"),
+      allCards.find(c => c.name === "Tudo Virá Terra"),
       allCards.find(c => c.name === "Defesa"),
       allCards.find(c => c.name === "Defesa"),
       allCards.find(c => c.name === "Defesa"),
@@ -441,30 +441,30 @@ function criarPlayerNaDiv3() {
     felipe: [
       allCards.find(c => c.name === "Destruir Carta"),
       allCards.find(c => c.name === "Mineração"),
+      allCards.find(c => c.name === "Deslizamento"),
+      allCards.find(c => c.name === "Soterrar"),
       allCards.find(c => c.name === "Ataque"),
       allCards.find(c => c.name === "Ataque"),
       allCards.find(c => c.name === "Ataque"),
       allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Escudo De Gaea"),
+      allCards.find(c => c.name === "Escudo De Gaea"),
+      allCards.find(c => c.name === "Escudo De Gaea"),
+      allCards.find(c => c.name === "Coração De Gaea"),
     ],
     maria: [
       allCards.find(c => c.name === "Destruir Carta"),
       allCards.find(c => c.name === "Mineração"),
+      allCards.find(c => c.name === "Deslizamento"),
+      allCards.find(c => c.name === "Soterrar"),
       allCards.find(c => c.name === "Ataque"),
       allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
-      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque Reciclável"),
+      allCards.find(c => c.name === "Arma Ancestral"),
       allCards.find(c => c.name === "Defesa"),
       allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa Reciclável"),
+      allCards.find(c => c.name === "Escudo De Gaea"),
     ],
     verde: [
       allCards.find(c => c.name === "Ataque"),
@@ -607,32 +607,32 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Destruir Carta"),
     ],
     olaf: [
-      allCards.find(c => c.name === "Defesa Condensada"),
-      allCards.find(c => c.name === "Defesa Condensada"),
-      allCards.find(c => c.name === "Coração Frio"),
-      allCards.find(c => c.name === "Coração Frio"),
-      allCards.find(c => c.name === "Ataque Condensado"),
-      allCards.find(c => c.name === "Ataque Condensado"),
-      allCards.find(c => c.name === "Nevasca Mortal"),
-      allCards.find(c => c.name === "Gelo Mortal"),
       allCards.find(c => c.name === "Marcar"),
       allCards.find(c => c.name === "Cemiterio Branco"),
       allCards.find(c => c.name === "Xenofluxo Glacial"),
       allCards.find(c => c.name === "Baralho Glacial"),
+      allCards.find(c => c.name === "Defesa Condensada"),
+      allCards.find(c => c.name === "Defesa Condensada"),
+      allCards.find(c => c.name === "Coração Frio"),
+      allCards.find(c => c.name === "Coração Frio"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
+      allCards.find(c => c.name === "Ataque"),
     ],
     olga: [
-      allCards.find(c => c.name === "Defesa Condensada"),
-      allCards.find(c => c.name === "Defesa Condensada"),
-      allCards.find(c => c.name === "Coração Frio"),
-      allCards.find(c => c.name === "Coração Frio"),
       allCards.find(c => c.name === "Ataque Condensado"),
       allCards.find(c => c.name === "Ataque Condensado"),
-      allCards.find(c => c.name === "Nevasca Mortal"),
-      allCards.find(c => c.name === "Gelo Mortal"),
+      allCards.find(c => c.name === "Ataque Condensado"),
+      allCards.find(c => c.name === "Ataque Condensado"),
       allCards.find(c => c.name === "Marcar"),
       allCards.find(c => c.name === "Cemiterio Branco"),
       allCards.find(c => c.name === "Xenofluxo Glacial"),
       allCards.find(c => c.name === "Baralho Glacial"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Cura"),
     ],
     glacia: [
       allCards.find(c => c.name === "Defesa Condensada"),
@@ -712,14 +712,19 @@ function criarPlayerNaDiv3() {
       break;
     case "celso":
       playerImg.src = "./../img/jogo/player/celso.png";
+      playerMaxHP = 75, playerHP = 75, energyMax = 4, energy = 4;
       playerDeck = [...characterDecks.celso];
       break;
     case "felipe":
       playerImg.src = "./../img/jogo/player/felipe.png";
+      playerMaxHP = 130, playerHP = 130, playerShieldInit = 5
       playerDeck = [...characterDecks.felipe];
       break;
     case "maria":
       playerImg.src = "./../img/jogo/player/maria.png";
+      playerMaxHP = 110, playerHP = 110;
+      maoInicio = 7;
+      limiteMao = 7;
       playerDeck = [...characterDecks.maria];
       break;
     case "verde":
@@ -837,14 +842,20 @@ function criarPlayerNaDiv3() {
       break;
     case "olaf":
       playerImg.src = "./../img/jogo/player/olaf.png";
+      playerMaxHP = 150, energyMax = 3, playerShieldInit = 5;
+      playerHP = 150, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.olaf];
       break;
     case "olga":
       playerImg.src = "./../img/jogo/player/olga.png";
+      
       playerDeck = [...characterDecks.olga];
       break;
     case "glacia":
       playerImg.src = "./../img/jogo/player/glacia.png";
+      playerMaxHP = 80, playerHP = 80, energyMax = 4, energy = 4;
+      maoInicio = 8;
+      limiteMao = 8;
       playerDeck = [...characterDecks.glacia];
       break;
     default:
@@ -874,13 +885,13 @@ function configurarSelecaoPersonagem() {
     },
     olaf: {
       nome: "❄️OLAF, O GUARDIÃO GELIDO❄️",
-      dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀❄️",
+      dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀💀❄️",
       cor: "rgb(128, 240, 255)",
-      descricao: "Focado em enfraquecer e marcar o inimigo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis.",
-      hp: 100,
-      maxHp: 100,
+      descricao: "Focado em usar o gelo como defesa, deck de gelo bem defensivo, porem fraco em atacar.",
+      hp: 150,
+      maxHp: 150,
       energia: 3,
-      escudo: 0,
+      escudo: 5,
       mao: 5
     },
     lilia: {
@@ -896,25 +907,25 @@ function configurarSelecaoPersonagem() {
     },
     olga: {
       nome: "❄️OLGA, A PESQUISADORA PRODIGIO❄️",
-      dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀❄️",
+      dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀💀❄️",
       cor: "rgb(128, 240, 255)",
-      descricao: "Focado em enfraquecer e marcar o inimigo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis.",
-      hp: 100,
-      maxHp: 100,
+      descricao: "Focada em causar muito dano de gelo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, ela é bem fraca na defesa.",
+      hp: 90,
+      maxHp: 90,
       energia: 3,
       escudo: 0,
-      mao: 5
+      mao: 6
     },
     glacia: {
       nome: "❄️GLACIA, VICE LIDER DOS PESQUISADORES❄️",
       dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀❄️",
       cor: "rgb(128, 240, 255)",
-      descricao: "Focado em enfraquecer e marcar o inimigo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis.",
-      hp: 100,
-      maxHp: 100,
-      energia: 3,
+      descricao: "Focada em enfraquecer e marcar o inimigo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, ela tem uma margem de visão tão boa e estratégia que sua mão raramente fica vazia, você sabera como gastar sua energia?.",
+      hp: 80,
+      maxHp: 80,
+      energia: 4,
       escudo: 0,
-      mao: 5
+      mao: 8
     },
     laranja: {
       nome: "🐦‍🔥GABRIEL, O INABALÁVEL🐦‍🔥",
@@ -942,7 +953,7 @@ function configurarSelecaoPersonagem() {
       nome: "⛏️BRUNO, O MINEIRO CHEFE⛏️",
       dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀⛏️",
       cor: "rgb(231, 201, 7)",
-      descricao: "Nem muito forte nem fraco, versátil e sabe como conseguir xenofluxo.",
+      descricao: "Deck focado em cartas de terra, extremamente forte contra água mas fraco contra fogo, versátil e sabe como conseguir xenofluxo.",
       hp: 100,
       maxHp: 100,
       energia: 3,
@@ -951,36 +962,36 @@ function configurarSelecaoPersonagem() {
     },
     celso: {
       nome: "⛏️CELSO, O ARQUEOLOGO⛏️",
-      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀⛏️",
+      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀💀⛏️",
       cor: "rgb(231, 201, 7)",
-      descricao: "Nem muito forte nem fraco, versátil e sabe como conseguir xenofluxo.",
-      hp: 100,
-      maxHp: 100,
-      energia: 3,
+      descricao: "Deck focado em cartas de terra, seu foco é em atacar com terra e se defender de forma fraca, versátil e sabe como conseguir xenofluxo.",
+      hp: 75,
+      maxHp: 75,
+      energia: 4,
       escudo: 0,
       mao: 5
     },
     felipe: {
       nome: "⛏️FELIPE, GEO MAPEADOR⛏️",
-      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀⛏️",
+      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀💀⛏️",
       cor: "rgb(231, 201, 7)",
-      descricao: "Nem muito forte nem fraco, versátil e sabe como conseguir xenofluxo.",
-      hp: 100,
-      maxHp: 100,
+      descricao: "Deck focado em cartas de terra, seu foco é usar a terra para se proteger, fraco no ataque, versátil e sabe como conseguir xenofluxo.",
+      hp: 130,
+      maxHp: 130,
       energia: 3,
-      escudo: 0,
+      escudo: 5,
       mao: 5
     },
     maria: {
       nome: "⛏️MARIA, ESPECIALISTA EM EXPLOSÕES⛏️",
-      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀⛏️",
+      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀💀💀⛏️",
       cor: "rgb(231, 201, 7)",
-      descricao: "Nem muito forte nem fraco, versátil e sabe como conseguir xenofluxo.",
-      hp: 100,
-      maxHp: 100,
+      descricao: "Nem muito forte nem fraco, deck equilibrado com cartas de terra, ela sabe que reciclar agora gera um futuro melhor, focada em escalar reciclagem.",
+      hp: 110,
+      maxHp: 110,
       energia: 3,
       escudo: 0,
-      mao: 5
+      mao: 7
     },
     verde: {
       nome: "🌿JÃO, O CARA🌿",
