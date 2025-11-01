@@ -2897,7 +2897,7 @@ const eliteModels = [
       hp: 55,
       dano: 7,
       behavior: () => [
-        { type: "attack", value: 7 }
+        { type: "attackVida", value: 7 }
       ],
       img: "../img/jogo/inimigos/capitao.png",
       tipoDano: "🔱",
@@ -5294,8 +5294,7 @@ function checkEnemies() {
                 );
               }
               else if (
-                ["Nojo De Ayla", "Tristeza De Ayla"].includes(morto.name) &&
-                aylaPhase === 1
+                ["Nojo De Ayla", "Tristeza De Ayla"].includes(morto.name) 
               ) {
                 if (enemies.every(e => !["Nojo De Ayla", "Tristeza De Ayla"].includes(e.name))) {
                   aylaPhase = 2;
@@ -5324,10 +5323,9 @@ function checkEnemies() {
                 }
               }
               else if (
-                ["Angustia De Ayla", "Ansiedade De Ayla"].includes(morto.name) &&
-                aylaPhase === 2
+                ["Raiva De Ayla", "Ansiedade De Ayla"].includes(morto.name)
               ) {
-                if (enemies.every(e => !["Angustia De Ayla", "Ansiedade De Ayla"].includes(e.name))) {
+                if (enemies.every(e => !["Raiva De Ayla", "Ansiedade De Ayla"].includes(e.name))) {
                   aylaPhase = 3;
                   novos.push(
                     {
@@ -5353,8 +5351,7 @@ function checkEnemies() {
                 }
               }
               else if (
-                ["Angustia De Ayla", "Amor De Ayla"].includes(morto.name) &&
-                aylaPhase === 3
+                ["Angustia De Ayla", "Amor De Ayla"].includes(morto.name)
               ) {
                 if (enemies.every(e => !["Angustia De Ayla", "Amor De Ayla"].includes(e.name))) {
                   aylaPhase = 4;
