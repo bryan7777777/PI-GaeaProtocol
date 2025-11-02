@@ -1495,7 +1495,7 @@ const allCards = [
   },
   {
     name: "Soterrar",
-    cost: 1,
+    cost: 0,
     basePower: 0,
     rarity: "terra",
     img: "../img/jogo/cards/terra/soterra.jpg",
