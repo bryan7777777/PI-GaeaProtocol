@@ -3294,9 +3294,9 @@ const eliteModels = [
     {
       name: "Centurião",
       hp: 50,
-      dano: 15,
+      dano: 6,
       behavior: () => [
-        { type: Math.random() < 0.6 ? "attack" : "attackVida", value: Math.random() < 0.7 ? 15 : 30 }
+        { type: Math.random() < 0.6 ? "attack" : "attackVida", value: Math.random() < 0.7 ? 6 : 12 }
       ],
       img: "../img/jogo/inimigos/eliteGreco.png",
       tipoDano: "(⚔️❔🔱)💥",
