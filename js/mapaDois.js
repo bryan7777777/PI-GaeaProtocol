@@ -5711,8 +5711,7 @@ function checkEnemies() {
             }
 
             if (morto.name.includes("Ayla")) {
-              if (morto.name === "Medo De Ayla" && aylaPhase === 0) {
-                aylaPhase = 1;
+              if (morto.name === "Medo De Ayla") {
                 shakeScreenNatural(10, 400);
                 document.getElementById("jogo").style.backgroundImage = "url('../img/jogo/background/cidadeAsustadora.png')";
                 novos.push(
@@ -5740,7 +5739,6 @@ function checkEnemies() {
                 ["Nojo De Ayla", "Tristeza De Ayla"].includes(morto.name)
               ) {
                 if (enemies.every(e => !["Nojo De Ayla", "Tristeza De Ayla"].includes(e.name))) {
-                  aylaPhase = 2;
                   novos.push(
                     {
                       name: "Ansiedade De Ayla",
@@ -5769,7 +5767,6 @@ function checkEnemies() {
                 ["Raiva De Ayla", "Ansiedade De Ayla"].includes(morto.name)
               ) {
                 if (enemies.every(e => !["Raiva De Ayla", "Ansiedade De Ayla"].includes(e.name))) {
-                  aylaPhase = 3;
                   novos.push(
                     {
                       name: "Amor De Ayla",
@@ -5796,11 +5793,12 @@ function checkEnemies() {
               else if (
                 ["Angustia De Ayla", "Amor De Ayla"].includes(morto.name)
               ) {
-                if (enemies.every(e => !["Angustia De Ayla", "Amor De Ayla"].includes(e.name))) {
-                  aylaPhase = 4;
+                const vivos = enemies.filter(e => e.hp > 0);
+                if (vivos.every(e => !["Angustia De Ayla", "Amor De Ayla"].includes(e.name))) {
                   shakeScreenNatural(30, 800);
                   document.getElementById("jogo").style.backgroundImage =
                     "url('../img/jogo/background/lutaSuperior.png')";
+                  console.log("Spawnando boss final: Ayla");
                   novos.push({
                     name: "Ayla",
                     hp: 200,
