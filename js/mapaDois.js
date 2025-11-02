@@ -456,60 +456,60 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Guardião"),
     ],
     marcos: [
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Jato De Água"),
+      allCards.find(c => c.name === "Chuva Isolante"),
+      allCards.find(c => c.name === "Chuva Controlada"),
+      allCards.find(c => c.name === "Combustão"),
+      allCards.find(c => c.name === "Chuva De Fogo"),
+      allCards.find(c => c.name === "Lança Chamas"),
       allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Chuva De Fragmentos"),
-      allCards.find(c => c.name === "Chuva De Fragmentos"),
-      allCards.find(c => c.name === "Impulso Defensivo"),
-      allCards.find(c => c.name === "Impulso Defensivo"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
+      allCards.find(c => c.name === "Defesa"),
       allCards.find(c => c.name === "Rajada Dupla"),
       allCards.find(c => c.name === "Rajada Dupla"),
     ],
     cleide: [
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Chuva De Fragmentos"),
-      allCards.find(c => c.name === "Chuva De Fragmentos"),
-      allCards.find(c => c.name === "Impulso Defensivo"),
-      allCards.find(c => c.name === "Impulso Defensivo"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Chuva Rochosa"),
+      allCards.find(c => c.name === "Brutalidade Da Terra"),
+      allCards.find(c => c.name === "Arma Ancestral"),
+      allCards.find(c => c.name === "Chuva Isolante"),
+      allCards.find(c => c.name === "Chuva Controlada"),
+      allCards.find(c => c.name === "Chuva Corrosiva"),
+      allCards.find(c => c.name === "Lança Chamas"),
+      allCards.find(c => c.name === "Explosão Termica"),
+      allCards.find(c => c.name === "Cauterizar"),
+      allCards.find(c => c.name === "Nevasca Mortal"),
+      allCards.find(c => c.name === "Baralho Glacial"),
+      allCards.find(c => c.name === "Xenofluxo Glacial"),
     ],
     magna: [
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Destruir Carta"),
       allCards.find(c => c.name === "Chuva De Fragmentos"),
       allCards.find(c => c.name === "Chuva De Fragmentos"),
-      allCards.find(c => c.name === "Impulso Defensivo"),
-      allCards.find(c => c.name === "Impulso Defensivo"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Explosão"),
+      allCards.find(c => c.name === "Explosão"),
+      allCards.find(c => c.name === "Fogo Amigo"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Lança Chamas"),
+      allCards.find(c => c.name === "Lança Chamas"),
+      allCards.find(c => c.name === "Chuva Controlada"),
+      allCards.find(c => c.name === "Chuva Controlada"),
+      allCards.find(c => c.name === "Chuva Isolante"),
+      allCards.find(c => c.name === "Chuva Isolante"),
     ],
     lucius: [
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Defesa"),
-      allCards.find(c => c.name === "Destruir Carta"),
-      allCards.find(c => c.name === "Chuva De Fragmentos"),
-      allCards.find(c => c.name === "Chuva De Fragmentos"),
-      allCards.find(c => c.name === "Impulso Defensivo"),
-      allCards.find(c => c.name === "Impulso Defensivo"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
-      allCards.find(c => c.name === "Rajada Dupla"),
+      allCards.find(c => c.name === "Vingativo"),
+      allCards.find(c => c.name === "Ceifa"),
+      allCards.find(c => c.name === "Ceifa"),
+      allCards.find(c => c.name === "Ceifa"),
+      allCards.find(c => c.name === "Tsunami"),
+      allCards.find(c => c.name === "Blindagem Vital"),
+      allCards.find(c => c.name === "Defesa Salvadora"),
+      allCards.find(c => c.name === "Brilhando"),
+      allCards.find(c => c.name === "Recicladora"),
+      allCards.find(c => c.name === "Terror Critico"),
+      allCards.find(c => c.name === "Mineração"),
+      allCards.find(c => c.name === "Estratégia"),
     ],
     azul: [
       allCards.find(c => c.name === "Sistema de reflexão"),
@@ -841,35 +841,35 @@ function criarPlayerNaDiv3() {
       break;
     case "marcos":
       playerImg.src = "./../img/jogo/player/marcos.png";
-      playerMaxHP = 70, energyMax = 3, playerShieldInit = 0;
-      playerHP = 70, energy = 3, playerShield = playerShieldInit;
+      playerMaxHP = 120, energyMax = 3, playerShieldInit = 0;
+      playerHP = 120, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.marcos];
-      maoInicio = 6;
-      limiteMao = 6;
+      maoInicio = 5;
+      limiteMao = 5;
       break;
     case "cleide":
       playerImg.src = "./../img/jogo/player/cleide.png";
-      playerMaxHP = 70, energyMax = 3, playerShieldInit = 0;
-      playerHP = 70, energy = 3, playerShield = playerShieldInit;
+      playerMaxHP = 100, energyMax = 3, playerShieldInit = 0;
+      playerHP = 100, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.cleide];
-      maoInicio = 6;
-      limiteMao = 6;
+      maoInicio = 7;
+      limiteMao = 7;
       break;
     case "magna":
       playerImg.src = "./../img/jogo/player/magna.png";
-      playerMaxHP = 70, energyMax = 3, playerShieldInit = 0;
-      playerHP = 70, energy = 3, playerShield = playerShieldInit;
+      playerMaxHP = 128, energyMax = 4, playerShieldInit = 0;
+      playerHP = 128, energy = 4, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.magna];
-      maoInicio = 6;
-      limiteMao = 6;
+      maoInicio = 5;
+      limiteMao = 5;
       break;
     case "lucius":
       playerImg.src = "./../img/jogo/player/lucius.png";
-      playerMaxHP = 70, energyMax = 3, playerShieldInit = 0;
-      playerHP = 70, energy = 3, playerShield = playerShieldInit;
+      playerMaxHP = 100, energyMax = 3, playerShieldInit = 0;
+      playerHP = 100, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.lucius];
-      maoInicio = 6;
-      limiteMao = 6;
+      maoInicio = 5;
+      limiteMao = 5;
       break;
     case "azul":
       playerImg.src = "./../img/jogo/player/tank.png";
@@ -1135,7 +1135,7 @@ function configurarSelecaoPersonagem() {
     },
     malaquias: {
       nome: "🐦‍🔥MALAQUIAS, ESPECIALISTA EM REPTEIS🐦‍🔥",
-      dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀💀🐦‍🔥",
+      dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀💀💀🐦‍🔥",
       cor: "rgb(255, 128, 0)",
       descricao: "Maluco por compras, se ele pudesse comprava uma casa no shooping só para fazer compras lá, ele curte comprar bastante mas será que ele vai ter saldo para sustentar isso?.",
       hp: 78,
@@ -1156,48 +1156,48 @@ function configurarSelecaoPersonagem() {
       mao: 6
     },
     marcos: {
-      nome: "🌪️MARCOS, O INABALÁVEL🌪️",
-      dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀🌪️",
+      nome: "🌪️MARCOS, EX BOMBEIRO🌪️",
+      dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀💀🌪️",
       cor: "rgba(255, 255, 255, 1)",
-      descricao: "Agressivo e ágil, perfeito para combates rápidos, causa múltiplos danos em um único alvo.",
-      hp: 70,
-      maxHp: 70,
+      descricao: "Após muitos anos trabalhando com queimadas e como bombeiro, ele decidiu se alistar para a aeronautica e seguir carreira, quem diria que suas abilidades com manuseio de fogo e controle dele seriam bem uteis, seu deck é focado em causar dano a inimigos em chamas e marcar com água.",
+      hp: 120,
+      maxHp: 120,
       energia: 3,
       escudo: 0,
-      mao: 6
+      mao: 5
     },
     cleide: {
-      nome: "🌪️CLEIDE, PROTETOR DA FAUNA🌪️",
-      dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀🌪️",
+      nome: "🌪️CLEIDE, A VETERANA🌪️",
+      dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀💀💀🌪️",
       cor: "rgba(255, 255, 255, 1)",
-      descricao: "Agressivo e ágil, perfeito para combates rápidos, causa múltiplos danos em um único alvo.",
-      hp: 70,
-      maxHp: 70,
+      descricao: "Já participou de muitas coisas na vida, mas ainda se lembra de tudo, sabe usar a estratégia ensinada pela Glacia, pela Autoridade do porto e pela Magnolia, muito respeitada por ambos os grupos, seu deck é uma mistura de todos os elementos, usufluir de sinergia é algo vital, mas como lidar com alguém imune a isso?.",
+      hp: 100,
+      maxHp: 100,
       energia: 3,
       escudo: 0,
-      mao: 6
+      mao: 7
     },
     magna: {
-      nome: "🌪️MAGNA, ESPECIALISTA EM REPTEIS🌪️",
+      nome: "🌪️MAGNA, A IMPACIENTE🌪️",
       dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀🌪️",
       cor: "rgba(255, 255, 255, 1)",
-      descricao: "Agressivo e ágil, perfeito para combates rápidos, causa múltiplos danos em um único alvo.",
-      hp: 70,
-      maxHp: 70,
-      energia: 3,
+      descricao: "Ela não curte focar apenas um alvo quando ela pode focar todos, utiliza de muitos golpes em área, perfeita para lidar com grandes grupos porém fraca contra inimigos solo.",
+      hp: 128,
+      maxHp: 128,
+      energia: 4,
       escudo: 0,
-      mao: 6
+      mao: 5
     },
     lucius: {
-      nome: "🌪️LUCIUS, ESPECIALISTA EM MAMIFEROS🌪️",
-      dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀🌪️",
+      nome: "🌪️LUCIUS, IRMÃO DO JÃO🌪️",
+      dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀💀🌪️",
       cor: "rgba(255, 255, 255, 1)",
-      descricao: "Agressivo e ágil, perfeito para combates rápidos, causa múltiplos danos em um único alvo.",
-      hp: 70,
-      maxHp: 70,
+      descricao: "Ninguem sabe onde ele vive, por onde anda, ele vai trabalhar quando ele quer pelo tempo que quer e até hoje se perguntão como ele não foi demitido, se não fosse pelos seus feitos lendários ele provavelmente não estária aqui, digamos que seu deck é algo lendário assim como dito.",
+      hp: 100,
+      maxHp: 100,
       energia: 3,
       escudo: 0,
-      mao: 6
+      mao: 5
     },
     azul: {
       nome: "⚓REINOR, O ESCUDO DA HUMANIDADE⚓",
@@ -1456,7 +1456,7 @@ const allCards = [
     basePower: 0,
     rarity: "fire",
     img: "../img/jogo/cards/fire/combustao.png",
-    desc: "Marca o inimigo com FIRE",
+    desc: "Marca o inimigo com 🔥",
     type: "fire"
   },
   {
@@ -1465,7 +1465,7 @@ const allCards = [
     basePower: 0,
     rarity: "fire",
     img: "../img/jogo/cards/fire/chuvaDeFogo.png",
-    desc: "Marca todos os inimigos com FIRE",
+    desc: "Marca todos os inimigos com 🔥",
     type: "fire"
   },
   {
