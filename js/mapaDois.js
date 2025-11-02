@@ -778,27 +778,16 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Baralho Glacial"),
     ],
     gaeaReen: [
-      allCards.find(c => c.name === "Combustão"),
-      allCards.find(c => c.name === "Chuva De Fogo"),
-      allCards.find(c => c.name === "Explosão Termica"),
-      allCards.find(c => c.name === "Ataque De Fogo"),
-      allCards.find(c => c.name === "Lança Chamas"),
-      allCards.find(c => c.name === "Cauterizar"),
-      allCards.find(c => c.name === "Jato De Água"),
-      allCards.find(c => c.name === "Mar Denso"),
-      allCards.find(c => c.name === "Chuva Isolante"),
-      allCards.find(c => c.name === "Chuva Corrosiva"),
-      allCards.find(c => c.name === "Corrosão"),
-      allCards.find(c => c.name === "Chuva Controlada"),
-      allCards.find(c => c.name === "Soterrar"),
-      allCards.find(c => c.name === "Deslizamento"),
-      allCards.find(c => c.name === "Chuva Rochosa"),
-      allCards.find(c => c.name === "Arma Ancestral"),
-      allCards.find(c => c.name === "Brutalidade Da Terra"),
-      allCards.find(c => c.name === "Força De Gaea"),
-      allCards.find(c => c.name === "Tudo Virá Terra"),
-      allCards.find(c => c.name === "Escudo De Gaea"),
-      allCards.find(c => c.name === "Coração De Gaea"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
@@ -2373,7 +2362,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/lobo.png",
       tipoDano: "(⚔️)💥",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     },
     {
@@ -2385,7 +2374,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/lobo.png",
       tipoDano: "(⚔️)💥",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     },
     {
@@ -2397,7 +2386,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/lobo.png",
       tipoDano: "(⚔️)💥",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     }
   ],
@@ -2423,7 +2412,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/formiga.png",
       tipoDano: "⚔️",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     }
   ],
@@ -2437,7 +2426,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/formiga.png",
       tipoDano: "⚔️",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     },
     {
@@ -2449,7 +2438,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/formiga.png",
       tipoDano: "⚔️",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     }
   ],
@@ -2461,7 +2450,7 @@ const normalModels = [
       behavior: () => [{ type: "attack", value: 6 }],
       img: "../img/jogo/inimigos/minion.png",
       tipoDano: "⚔️",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     },
     {
@@ -2515,7 +2504,7 @@ const normalModels = [
       behavior: () => [{ type: "attack", value: 6 }],
       img: "../img/jogo/inimigos/minion.png",
       tipoDano: "⚔️",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     },
     {
@@ -2525,7 +2514,7 @@ const normalModels = [
       behavior: () => [{ type: "attack", value: 8 }],
       img: "../img/jogo/inimigos/tatu.png",
       tipoDano: "⚔️",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     },
     {
@@ -2833,9 +2822,9 @@ const normalModels = [
   [
     {
       name: "Vagante",
-      hp: 35,
-      dano: 12,
-      behavior: () => [{ type: "attackVida", value: 12 }],
+      hp: 25,
+      dano: 10,
+      behavior: () => [{ type: "attackVida", value: 10 }],
       img: "../img/jogo/inimigos/ceifadorFantasma.png",
       tipoDano: "🔱",
       tipoVida: "🧿",
@@ -2875,9 +2864,9 @@ const normalModels = [
     },
     {
       name: "Vagante",
-      hp: 35,
-      dano: 12,
-      behavior: () => [{ type: "attackVida", value: 12 }],
+      hp: 25,
+      dano: 10,
+      behavior: () => [{ type: "attackVida", value: 10 }],
       img: "../img/jogo/inimigos/ceifadorFantasma.png",
       tipoDano: "🔱",
       tipoVida: "🧿",
@@ -2885,9 +2874,9 @@ const normalModels = [
     },
     {
       name: "Vagante",
-      hp: 35,
-      dano: 12,
-      behavior: () => [{ type: "attackVida", value: 12 }],
+      hp: 25,
+      dano: 10,
+      behavior: () => [{ type: "attackVida", value: 10 }],
       img: "../img/jogo/inimigos/ceifadorFantasma.png",
       tipoDano: "🔱",
       tipoVida: "🧿",
@@ -2897,45 +2886,12 @@ const normalModels = [
   [
     {
       name: "Vagante",
-      hp: 35,
-      dano: 12,
-      behavior: () => [{ type: "attackVida", value: 12 }],
+      hp: 25,
+      dano: 10,
+      behavior: () => [{ type: "attackVida", value: 10 }],
       img: "../img/jogo/inimigos/ceifadorFantasma.png",
       tipoDano: "🔱",
       tipoVida: "🧿",
-      zona: 4
-    },
-    {
-      name: "Sacerdote Corrompido",
-      hp: 65,
-      dano: 15,
-      behavior: () => [{ type: "attackVida", value: 15 }],
-      img: "../img/jogo/inimigos/claus.png",
-      tipoDano: "🔱",
-      tipoVida: "🧿",
-      zona: 4
-    }
-  ],
-  [
-    {
-      name: "Pilha de Livros",
-      hp: 30,
-      maxHp: 30,
-      dano: 0,
-      behavior: () => [{ type: "attack", value: 0 }],
-      img: "../img/jogo/inimigos/livros.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 4
-    },
-    {
-      name: "Livro Corrompido",
-      hp: 30,
-      dano: 20,
-      behavior: () => [{ type: "attack", value: 20 }],
-      img: "../img/jogo/inimigos/livroMaligno.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
       zona: 4
     },
     {
@@ -2987,8 +2943,8 @@ const normalModels = [
     {
       name: "Guarda",
       hp: 70,
-      dano: 20,
-      behavior: () => [{ type: "attack", value: 20 }],
+      dano: 10,
+      behavior: () => [{ type: "attack", value: 10 }],
       img: "../img/jogo/inimigos/guarda.png",
       tipoDano: "⚔️",
       tipoVida: "🧿",
@@ -2997,8 +2953,8 @@ const normalModels = [
     {
       name: "Guarda",
       hp: 70,
-      dano: 20,
-      behavior: () => [{ type: "attack", value: 20 }],
+      dano: 10,
+      behavior: () => [{ type: "attack", value: 10 }],
       img: "../img/jogo/inimigos/guarda.png",
       tipoDano: "⚔️",
       tipoVida: "🧿",
@@ -3031,8 +2987,8 @@ const normalModels = [
     {
       name: "Guarda",
       hp: 70,
-      dano: 20,
-      behavior: () => [{ type: "attack", value: 20 }],
+      dano: 10,
+      behavior: () => [{ type: "attack", value: 10 }],
       img: "../img/jogo/inimigos/guarda.png",
       tipoDano: "⚔️",
       tipoVida: "🧿",
@@ -3053,8 +3009,8 @@ const normalModels = [
     {
       name: "Guarda",
       hp: 70,
-      dano: 20,
-      behavior: () => [{ type: "attack", value: 20 }],
+      dano: 10,
+      behavior: () => [{ type: "attack", value: 10 }],
       img: "../img/jogo/inimigos/guarda.png",
       tipoDano: "⚔️",
       tipoVida: "🧿",
@@ -3075,8 +3031,8 @@ const normalModels = [
     {
       name: "Guarda",
       hp: 70,
-      dano: 20,
-      behavior: () => [{ type: "attack", value: 20 }],
+      dano: 10,
+      behavior: () => [{ type: "attack", value: 10 }],
       img: "../img/jogo/inimigos/guarda.png",
       tipoDano: "⚔️",
       tipoVida: "🧿",
@@ -3122,7 +3078,7 @@ const eliteModels = [
       ],
       img: "../img/jogo/inimigos/kiwi.png",
       tipoDano: "⚔️",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     },
     {
@@ -3134,7 +3090,7 @@ const eliteModels = [
       ],
       img: "../img/jogo/inimigos/kiwi.png",
       tipoDano: "⚔️",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     }
   ],
@@ -3180,7 +3136,7 @@ const eliteModels = [
       ],
       img: "../img/jogo/inimigos/topeira.png",
       tipoDano: "⚔️❓🔱",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     },
     {
@@ -3192,7 +3148,7 @@ const eliteModels = [
       ],
       img: "../img/jogo/inimigos/topeira.png",
       tipoDano: "⚔️❓🔱",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     }
   ],
@@ -3281,7 +3237,7 @@ const eliteModels = [
       ],
       img: "../img/jogo/inimigos/amalgama.png",
       tipoDano: "(🔱❓💊)💥",
-      tipoVida: "❤️",
+      tipoVida: "💧",
       zona: 2
     }
   ],
@@ -3397,6 +3353,39 @@ const eliteModels = [
     {
       name: "Pilha de Livros",
       hp: 30,
+      maxHp: 30,
+      dano: 0,
+      behavior: () => [{ type: "attack", value: 0 }],
+      img: "../img/jogo/inimigos/livros.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 4
+    },
+    {
+      name: "Livro Corrompido",
+      hp: 30,
+      dano: 20,
+      behavior: () => [{ type: "attack", value: 20 }],
+      img: "../img/jogo/inimigos/livroMaligno.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 4
+    },
+    {
+      name: "Sacerdote Corrompido",
+      hp: 65,
+      dano: 15,
+      behavior: () => [{ type: "attackVida", value: 15 }],
+      img: "../img/jogo/inimigos/claus.png",
+      tipoDano: "🔱",
+      tipoVida: "🧿",
+      zona: 4
+    }
+  ],
+  [
+    {
+      name: "Pilha de Livros",
+      hp: 30,
       dano: 0,
       behavior: () => [{ type: "attack", value: 0 }],
       img: "../img/jogo/inimigos/livros.png",
@@ -3421,7 +3410,7 @@ const eliteModels = [
       behavior: () => [{ type: "morrer", value: 31 }],
       img: "../img/jogo/inimigos/vingadorAraq.png",
       tipoDano: "🩸",
-      tipoVida: "❤️",
+      tipoVida: "🔥",
       zona: 4
     }
   ],
@@ -3465,7 +3454,7 @@ const bossModels = [
       ],
       img: "../img/jogo/inimigos/lobo.png",
       tipoDano: "(⚔️)💥",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     },
     {
@@ -3475,7 +3464,7 @@ const bossModels = [
       behavior: () => [{ type: "attackVida", value: 10 }],
       img: "../img/jogo/inimigos/bossLobo.png",
       tipoDano: "🔱",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     },
     {
@@ -3487,7 +3476,7 @@ const bossModels = [
       ],
       img: "../img/jogo/inimigos/lobo.png",
       tipoDano: "(⚔️)💥",
-      tipoVida: "❤️",
+      tipoVida: "⛰️",
       zona: 1
     }
   ],
