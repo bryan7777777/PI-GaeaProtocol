@@ -6703,7 +6703,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
           if (tipo == 'boss') {
             dinheiro += 20;
             dinheiro += Math.floor(mapaBatalha / 3);
-          } else if (tipo == 'elite') {
+          } else if (tipo == 'elite' || tipo == 'inimigo2') {
             dinheiro += 10;
             dinheiro += Math.floor(mapaBatalha / 3);
           } else if (tipo == 'inimigo') {
