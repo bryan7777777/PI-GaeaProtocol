@@ -778,14 +778,14 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Baralho Glacial"),
     ],
     gaeaReen: [
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
+      allCards.find(c => c.name === "Essencia Verde"),
+      allCards.find(c => c.name === "Defesa Renovavel"),
+      allCards.find(c => c.name === "Arma Auto Sustentavel"),
+      allCards.find(c => c.name === "Restos de mecha"),
+      allCards.find(c => c.name === "Restos de mecha"),
+      allCards.find(c => c.name === "Restos de mecha"),
+      allCards.find(c => c.name === "Restos de mecha"),
+      allCards.find(c => c.name === "Restos de mecha"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
       allCards.find(c => c.name === "Chuva de Laminas"),
@@ -2202,6 +2202,33 @@ const allCards = [
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/reciclagem.png",
     desc: "Cause dano igual a 30% de todo lixo reciclado (Arredondado para baixo).",
+    type: "reciclagem"
+  },
+  {
+    name: "Arma Auto Sustentavel",
+    cost: 2,
+    basePower: 8,
+    rarity: "legend",
+    img: "../img/jogo/cards/reciclagem/armaForte.jpg",
+    desc: "Recicla lixo, para cada lixo reciclado cause dano igual a 10% de todo lixo reciclado.",
+    type: "reciclagem"
+  },
+  {
+    name: "Essencia Verde",
+    cost: 1,
+    basePower: 8,
+    rarity: "legend",
+    img: "../img/jogo/cards/reciclagem/reevitalizacao.png",
+    desc: "Cure igual a 20% de todo lixo reciclado (Arredondado para baixo).",
+    type: "reciclagem"
+  },
+  {
+    name: "Defesa Renovavel",
+    cost: 1,
+    basePower: 8,
+    rarity: "legend",
+    img: "../img/jogo/cards/reciclagem/escudoForte.jpg",
+    desc: "Ganhe escudo igual a 50% de todo lixo reciclado (Arredondado para baixo).",
     type: "reciclagem"
   },
   {
@@ -3933,6 +3960,9 @@ function drawCards() {
         break;
       //  ♻️♻️♻️♻️♻️ RECICLAGEM 6 ♻️♻️♻️♻️♻️
       case "Recicladora":
+      case "Arma Auto Sustentavel":
+      case "Essencia Verde":
+      case "Defesa Renovavel":
       case "Drone de Coleta":
       case "Ataque Reciclável":
       case "Terror Critico":
@@ -4586,6 +4616,74 @@ function drawCards() {
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}⚔️`, "red");
+      }
+      //♻️
+      else if (card.name === "Arma Auto Sustentavel") {
+        const toRemove = new Set();
+        toRemove.add(card); // também remover a própria carta usada
+        let lixoRemovido = 0;
+
+        for (let j = 0; j < deck.length; j++) {
+          const c = deck[j];
+          if (c !== card && c.type === "lixo") {
+            toRemove.add(c);
+            lixoRemovido++;
+            atualizarLixo();
+          }
+        }
+
+        if (lixoRemovido === 0) {
+          // anima só a carta usada e remova-a normalmente
+          div.classList.add("card-remove");
+          setTimeout(() => {
+            for (let k = deck.length - 1; k >= 0; k--) {
+              if (deck[k] === card) { deck.splice(k, 1); break; }
+            }
+            drawCards();
+            updateHUD();
+          }, 300);
+          return;
+        }
+
+        let ganho = Math.floor(lixoRemovido * (lixoReciclado * 0.1));
+
+        // aplica efeito imediatamente
+        const dano = ganho;
+        if (enemies.length > 0) {
+          enemies[0].hp -= dano;
+          animateDamage(enemies[0].el);
+          floatText(enemies[0].el, `-${dano}⚔️`, "red");
+        }
+        updateHUD();
+
+        // anima e depois remove todas as cartas marcadas
+        div.classList.add("card-remove");
+        setTimeout(() => {
+          for (let k = deck.length - 1; k >= 0; k--) {
+            if (toRemove.has(deck[k])) deck.splice(k, 1);
+          }
+          drawCards();
+          checkEnemies();
+          updateHUD();
+        }, 300);
+
+        return;
+      }
+      //♻️
+      else if (card.name === "Essencia Verde") {
+        let dano = Math.floor(lixoReciclado / 5);
+
+        playerHP = Math.min(playerHP + dano, playerMaxHP);
+        glowPlayer("green");
+        floatText(document.getElementById("player"), `+${dano}💚`, "lime");
+      }
+      //♻️
+      else if (card.name === "Defesa Renovavel") {
+        let dano = Math.floor(lixoReciclado / 2);
+
+        playerShield += dano;
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${dano}🛡️`, "cyan");
       }
       //♻️
       else if (card.name === "Destruir Carta") {
