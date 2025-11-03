@@ -1289,7 +1289,7 @@ function configurarSelecaoPersonagem() {
     },
     wallace: {
       nome: "🌿WALLACE, O ESPECTRO DA FLORESTA🌿",
-      dificuldade: "🌿NÍVEL DE DIFICULDADE: NULL🌿",
+      dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀💀🌿",
       cor: "rgb(0, 188, 16)",
       descricao: "Ex soldado da gaea, após achar um mecha de construção abandonado decidiu por conta propria ajudar, mesmo que aposentado e debilitado ele nunca deixou de acreditar em um futuro melhor, possui um deck bem leve e fraco, mas suas economias durante sua carreira podem ajudar com isso, ele inicia com 100🪙 ao inves de 0🪙",
       hp: 100,
