@@ -777,20 +777,33 @@ function criarPlayerNaDiv3() {
       allCards.find(c => c.name === "Xenofluxo Glacial"),
       allCards.find(c => c.name === "Baralho Glacial"),
     ],
+    // gaeaReen: [
+    //   allCards.find(c => c.name === "Chuva de Laminas"),
+    //   allCards.find(c => c.name === "Chuva de Laminas"),
+    //   allCards.find(c => c.name === "Chuva de Laminas"),
+    //   allCards.find(c => c.name === "Chuva de Laminas"),
+    //   allCards.find(c => c.name === "Chuva de Laminas"),
+    //   allCards.find(c => c.name === "Chuva de Laminas"),
+    //   allCards.find(c => c.name === "Chuva de Laminas"),
+    //   allCards.find(c => c.name === "Chuva de Laminas"),
+    //   allCards.find(c => c.name === "Chuva de Laminas"),
+    //   allCards.find(c => c.name === "Chuva de Laminas"),
+    //   allCards.find(c => c.name === "Chuva de Laminas"),
+    // ],
     gaeaReen: [
       allCards.find(c => c.name === "Essencia Verde"),
       allCards.find(c => c.name === "Defesa Renovavel"),
       allCards.find(c => c.name === "Arma Auto Sustentavel"),
+      allCards.find(c => c.name === "Xenofluxo Reciclável"),
+      allCards.find(c => c.name === "Defesa Reciclável"),
+      allCards.find(c => c.name === "Ataque Reciclável"),
+      allCards.find(c => c.name === "Força De Gaea"),
+      allCards.find(c => c.name === "GÆPROTOCOL"),
       allCards.find(c => c.name === "Restos de mecha"),
       allCards.find(c => c.name === "Restos de mecha"),
       allCards.find(c => c.name === "Restos de mecha"),
       allCards.find(c => c.name === "Restos de mecha"),
       allCards.find(c => c.name === "Restos de mecha"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
-      allCards.find(c => c.name === "Chuva de Laminas"),
     ]
   };
 
@@ -1007,11 +1020,11 @@ function criarPlayerNaDiv3() {
     case "gaeaReen":
       playerImg.src = "./../img/jogo/player/kalenart.png";
       playerDeck = [...characterDecks.gaeaReen];
-      playerHP = 10000
-      energyMax = 400
-      energy = 400
-      maoInicio = 10;
-      limiteMao = 10;
+      playerHP = 120, playerMaxHP = 120
+      energyMax = 4
+      energy = 4
+      maoInicio = 6;
+      limiteMao = 6;
       break;
     case "olaf":
       playerImg.src = "./../img/jogo/player/olaf.png";
@@ -1344,14 +1357,14 @@ function configurarSelecaoPersonagem() {
     },
     gaeaReen: {
       nome: "🌿ELIZE, A ESPERANÇA🌿",
-      dificuldade: "🌿NÍVEL DE DIFICULDADE: NULL🌿",
+      dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀💀🌿",
       cor: "rgb(0, 188, 16)",
-      descricao: "NULL",
-      hp: 100,
-      maxHp: 100,
-      energia: 3,
+      descricao: "Deck focado em sustentabilidade, reciclagem é a melhor coisa a se fazer para o mundo e para melhorar suas cartas, deck focado em reciclagem e melhoria de cartas, no inicio é dificil mas no final ajuda todos",
+      hp: 120,
+      maxHp: 120,
+      energia: 4,
       escudo: 0,
-      mao: 5
+      mao: 6
     },
     x: {
       nome: "🔮A ESQUECIDA🔮",
