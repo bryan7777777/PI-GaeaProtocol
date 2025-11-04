@@ -26,6 +26,11 @@ em{
   font-size: 34px;
 }
 
+#popupFinal p{
+  color: #05c525;
+  text-shadow: 0 0 4px #000000;
+}
+
 #popupFinal .msgParaJogador, #popupOver .msgParaJogador{
   color: #fff;
   font-size: 24px;

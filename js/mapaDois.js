@@ -1357,7 +1357,7 @@ function configurarSelecaoPersonagem() {
     },
     gaeaReen: {
       nome: "🌿ELIZE, A ESPERANÇA🌿",
-      dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀💀🌿",
+      dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀🌿",
       cor: "rgb(0, 188, 16)",
       descricao: "Deck focado em sustentabilidade, reciclagem é a melhor coisa a se fazer para o mundo e para melhorar suas cartas, deck focado em reciclagem e melhoria de cartas, no inicio é dificil mas no final ajuda todos",
       hp: 120,
