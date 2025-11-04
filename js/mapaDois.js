@@ -5789,6 +5789,7 @@ function checkEnemies() {
             morto.name === "Tristeza De Ayla" ||
             morto.name === "Ansiedade De Ayla" ||
             morto.name === "Raiva De Ayla" ||
+            morto.name === "Angustia De Ayla" ||
             morto.name === "Amor De Ayla" ||
             morto.name === "Nojo De Ayla" ||
             morto.name === "Boss Ayla"
