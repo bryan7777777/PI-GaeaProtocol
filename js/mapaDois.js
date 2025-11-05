@@ -6309,6 +6309,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
     transition: transform 0.2s, opacity 0.3s;
     z-index: 10;
     background-color: #666;
+    border:solid 2px rgba(156, 228, 128, 1);
   }
   .nodo:hover { transform: scale(1.1); }
   .inimigo  { background: #d33; }
