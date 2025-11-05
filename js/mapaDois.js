@@ -6309,18 +6309,18 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
     transition: transform 0.2s, opacity 0.3s;
     z-index: 10;
     background-color: #666;
-    border:solid 2px rgba(156, 228, 128, 1);
+    border:solid 2px rgba(141, 235, 104, 1);
   }
   .nodo:hover { transform: scale(1.1); }
-  .inimigo  { background: #d33; }
-  .loot     { background: #fd0; }
-  .loja     { background: #0d8; }
-  .ferreiro { background: #fd0; }
-  .hospital2 { background: #fd0; }
-  .inimigo2 { background: #fd0; }
-  .elite    { background: #a3f; }
-  .hospital { background: #0d8; }
-  .boss     { background: #000; border: 2px solid white; }
+  .inimigo  { background: #d33; border: 3px groove rgba(241, 75, 75, 1); }
+  .loot     { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  .loja     { background: #0d8; border: 3px outset rgba(102, 255, 97, 1);}
+  .ferreiro { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  .hospital2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  .inimigo2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  .elite    { background: #a3f; border: 3px groove rgba(173, 98, 226, 1);}
+  .hospital { background: #0d8; border: 3px outset rgba(102, 255, 97, 1);}
+  .boss     { background: #000; border: 3px groove rgba(241, 75, 75, 1); }
   .invalido { opacity: 0; pointer-events: none; }
   .nodo.inacessivel {
     background-color: #444 !important;
