@@ -6250,7 +6250,7 @@ document.getElementById("fimSelecao").addEventListener("click", () => {
 });
 
 // MAPA
-function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
+function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
   const container = document.getElementById(dv);
   const shadow = container.attachShadow({ mode: "open" });
 
@@ -6564,7 +6564,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
     }
 
 
-    function desenharMapa() {
+    function desenharMapa(iconBoss) {
       mapaContainer.innerHTML = '';
       mapa.forEach((coluna, i) => {
         const colDiv = document.createElement('div');
@@ -6575,7 +6575,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
           el.classList.add('nodo', nodo.tipo);
           el.dataset.pos = `${i}-${j}`;
           el.textContent = {
-            boss: '👑',
+            boss: iconBoss,
             inimigo: '💀',
             loja: '🪙',
             elite: '☠️',
@@ -6776,15 +6776,15 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2) {
     }
 
     gerarMapa();
-    desenharMapa();
+    desenharMapa(iconBoss);
   })();
 }
 
-mapaCanvas("div2", 10, 5, "#45ff45ff", "#ff8834ff");
-mapaCanvas("div7", 10, 3, "#60ff34ff", "#34ffe1ff");
-mapaCanvas("div8", 10, 7, "#fbfbfbff", "#737373ff");
-mapaCanvas("div9", 10, 3, "#f5fd54ff", "#5db0e7ff");
-mapaCanvas("div10", 10, 9, "#5db0e7ff", "#e75d5dff");
+mapaCanvas("div2", 10, 5, "#45ff45ff", "#ff8834ff",'🐺');
+mapaCanvas("div7", 10, 3, "#60ff34ff", "#34ffe1ff",'🦑');
+mapaCanvas("div8", 10, 7, "#fbfbfbff", "#737373ff",'🗽');
+mapaCanvas("div9", 10, 3, "#f5fd54ff", "#5db0e7ff",'👻');
+mapaCanvas("div10", 10, 9, "#5db0e7ff", "#e75d5dff",'🤖');
 
 var myMusic = new Audio("./../audio/artblock.ogg");
 myMusic.loop = true;
