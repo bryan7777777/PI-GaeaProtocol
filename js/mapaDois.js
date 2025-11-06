@@ -6782,9 +6782,9 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 }
 
 mapaCanvas("div2", 10, 5, "#45ff45ff", "#ff8834ff",'🐺');
-mapaCanvas("div7", 10, 3, "#60ff34ff", "#34ffe1ff",'🦑');
+mapaCanvas("div7", 10, 5, "#60ff34ff", "#34ffe1ff",'🦑');
 mapaCanvas("div8", 10, 7, "#fbfbfbff", "#737373ff",'🗽');
-mapaCanvas("div9", 10, 3, "#f5fd54ff", "#5db0e7ff",'👻');
+mapaCanvas("div9", 10, 7, "#f5fd54ff", "#5db0e7ff",'👻');
 mapaCanvas("div10", 10, 9, "#5db0e7ff", "#e75d5dff",'🤖');
 
 var myMusic = new Audio("./../audio/artblock.ogg");
