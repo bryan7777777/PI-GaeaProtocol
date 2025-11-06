@@ -6466,7 +6466,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
       const tipos = [
         { tipo: 'inimigo', peso: 55 },
         { tipo: 'elite', peso: 18 },
-        { tipo: 'hospital', peso: 0 },
+        { tipo: 'hospital', peso: 5 },
         { tipo: 'hospital2', peso: 6 },
         { tipo: 'inimigo2', peso: 6 },
         { tipo: 'loja', peso: 5 },
