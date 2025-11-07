@@ -1687,7 +1687,7 @@ const allCards = [
     type: "frost"
   },
   {
-    name: "Golpe Frio Traseiro",
+    name: "Golpe Traseiro",
     cost: 1,
     basePower: 6,
     rarity: "frost",
@@ -3947,7 +3947,7 @@ function drawCards() {
       case "Granizo":
       case "Granizo Mortal":
       case "Misil Condensado":
-      case "Golpe Frio Traseiro":
+      case "Golpe Traseiro":
       case "Misil Termico Guiado":
       case "Cemiterio Branco":
       case "Ataque Condensado":
@@ -5122,7 +5122,7 @@ function drawCards() {
         });
       }
       //❄️
-      else if (card.name === "Golpe Frio Traseiro") {
+      else if (card.name === "Golpe Traseiro") {
         const alvo = [...enemies].reverse().find(e => e.hp > 0);
         let dano = card.basePower;
         if (alvo.tipoVida === "❄️" || alvo.tipoVida === "🌧️") {
