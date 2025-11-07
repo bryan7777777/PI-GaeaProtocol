@@ -1059,8 +1059,8 @@ function criarPlayerNaDiv3() {
 function configurarSelecaoPersonagem() {
   const personagensInfo = {
     vermelho: {
-      nome: "🔥VIKLAV, O GENERAL SANGUINARIO🔥",
-      dificuldade: "🔥NÍVEL DE DIFICULDADE: 💀💀💀🔥",
+      nome: "♨️VIKLAV, O GENERAL SANGUINARIO♨️",
+      dificuldade: "♨️NÍVEL DE DIFICULDADE: 💀💀💀♨️",
       cor: "rgb(172, 0, 0)",
       descricao: "Focado em causar muito dano em área, ele pode ser letal para ambos os lados.",
       hp: 50,
@@ -1458,7 +1458,7 @@ const allCards = [
     basePower: 0,
     rarity: "fire",
     img: "../img/jogo/cards/fire/combustao.png",
-    desc: "Marca o inimigo com 🔥",
+    desc: "Marca o inimigo com ♨️",
     type: "fire"
   },
   {
@@ -1467,7 +1467,7 @@ const allCards = [
     basePower: 0,
     rarity: "fire",
     img: "../img/jogo/cards/fire/chuvaDeFogo.png",
-    desc: "Marca todos os inimigos com 🔥",
+    desc: "Marca todos os inimigos com ♨️",
     type: "fire"
   },
   {
@@ -1476,7 +1476,7 @@ const allCards = [
     basePower: 12,
     rarity: "fire",
     img: "../img/jogo/cards/fire/explosaoCalor.png",
-    desc: "Cause 10 de dano ao inimigo, se ele estiver marcado com 🔥 X2 ou ⛰️ X3 o dano",
+    desc: "Cause 10 de dano ao inimigo, se ele estiver marcado com ♨️ X2 ou ⛰️ X3 o dano",
     type: "fire"
   },
   {
@@ -1485,7 +1485,7 @@ const allCards = [
     basePower: 6,
     rarity: "fire",
     img: "../img/jogo/cards/fire/atkFogo.png",
-    desc: "Cause 6 de dano ao inimigo, se ele estiver marcado com 🔥 X2 ou ⛰️ X3 o dano",
+    desc: "Cause 6 de dano ao inimigo, se ele estiver marcado com ♨️ X2 ou ⛰️ X3 o dano",
     type: "fire"
   },
   {
@@ -1494,7 +1494,7 @@ const allCards = [
     basePower: 6,
     rarity: "fire",
     img: "../img/jogo/cards/fire/lancaChamas.png",
-    desc: "Cause 6 de dano a todos os inimigos e marca com 🔥, se ele estiver marcado com 🔥 X2 ou ⛰️ X3 o dano",
+    desc: "Cause 6 de dano a todos os inimigos e marca com ♨️, se ele estiver marcado com ♨️ X2 ou ⛰️ X3 o dano",
     type: "fire"
   },
   {
@@ -1503,7 +1503,7 @@ const allCards = [
     basePower: 20,
     rarity: "fire",
     img: "../img/jogo/cards/fire/Cauterizar.png",
-    desc: "Cause 20 de dano ao inimigo e marca com 🔥, se ele estiver marcado com 🔥 X2 o dano",
+    desc: "Cause 20 de dano ao inimigo e marca com ♨️, se ele estiver marcado com ♨️ X2 o dano",
     type: "fire"
   },
   {
@@ -1521,7 +1521,7 @@ const allCards = [
     basePower: 8,
     rarity: "terra",
     img: "../img/jogo/cards/terra/atkTerra.jpg",
-    desc: "Cause 8 de dano ao inimigo, se ele estiver marcado com 💧 cause X3",
+    desc: "Cause 8 de dano ao inimigo, se ele estiver marcado com 🌧️ cause X3",
     type: "terra"
   },
   {
@@ -1575,7 +1575,7 @@ const allCards = [
     basePower: 5,
     rarity: "terra",
     img: "../img/jogo/cards/terra/chuvaTerra.jpg",
-    desc: "Cause 5 de dano a todos os inimigos e marca com ⛰️, se ele estiver marcado com ⛰️ X2 ou 💧 X3 o dano",
+    desc: "Cause 5 de dano a todos os inimigos e marca com ⛰️, se ele estiver marcado com ⛰️ X2 ou 🌧️ X3 o dano",
     type: "terra"
   },
   {
@@ -1593,7 +1593,7 @@ const allCards = [
     basePower: 0,
     rarity: "agua",
     img: "../img/jogo/cards/agua/jatoAgua.png",
-    desc: "Marca o inimigo com 💧",
+    desc: "Marca o inimigo com 🌧️",
     type: "agua"
   },
   {
@@ -1602,7 +1602,7 @@ const allCards = [
     basePower: 8,
     rarity: "agua",
     img: "../img/jogo/cards/agua/chuva.png",
-    desc: "Marca os inimigos com 💧, se eles estiverem marcados com 🔥 cause 8 de dano",
+    desc: "Marca os inimigos com 🌧️, se eles estiverem marcados com ♨️ cause 8 de dano",
     type: "agua"
   },
   {
@@ -1611,7 +1611,7 @@ const allCards = [
     basePower: 12,
     rarity: "agua",
     img: "../img/jogo/cards/agua/chuvaDensa.png",
-    desc: "Causa 12 de dano a inimigos marcados com 🔥",
+    desc: "Causa 12 de dano a inimigos marcados com ♨️",
     type: "agua"
   },
   {
@@ -1620,7 +1620,7 @@ const allCards = [
     basePower: 22,
     rarity: "agua",
     img: "../img/jogo/cards/agua/chuvaCorrosiva.png",
-    desc: "Marca os inimigos com 💧, se eles estiverem marcados com 💧 cause 22 de dano",
+    desc: "Marca os inimigos com 🌧️, se eles estiverem marcados com 🌧️ cause 22 de dano",
     type: "agua"
   },
   {
@@ -1629,7 +1629,7 @@ const allCards = [
     basePower: 42,
     rarity: "agua",
     img: "../img/jogo/cards/agua/corrosao.png",
-    desc: "Marca o inimigo com 💧, se ele estiver marcado com 💧 cause 42 de dano",
+    desc: "Marca o inimigo com 🌧️, se ele estiver marcado com 🌧️ cause 42 de dano",
     type: "agua"
   },
   {
@@ -1638,7 +1638,7 @@ const allCards = [
     basePower: 0,
     rarity: "agua",
     img: "../img/jogo/cards/agua/afogado.png",
-    desc: "Marca todos os inimigos com 💧",
+    desc: "Marca todos os inimigos com 🌧️",
     type: "agua"
   },
   {
@@ -1657,6 +1657,15 @@ const allCards = [
     rarity: "frost",
     img: "../img/jogo/cards/frost/nevasca.png",
     desc: "Marca com ❄️ e reduz 1 de dano de todos os inimigos (Não fica a baixo de 1) e muda sua ação para ataque normal",
+    type: "frost"
+  },
+  {
+    name: "Granizo",
+    cost: 2,
+    basePower: 6,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/chuvaDeGranizo.jpg",
+    desc: "Cause dano a todos os inimigos, se estiver  marcado com ❄️ X2 o dano, se estiver marcado com 🌧️ marca com ❄️",
     type: "frost"
   },
   {
@@ -2387,7 +2396,7 @@ const allCards = [
 // ⚔️🎭💚 se não puder executar a primeira ação executa a segunda
 // ⚔️❓💚 pode executar 2 ações, ou uma ou outra que esta adjacente (50% de chance)
 // ⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
-// 🩸💫⚜️✨💤🤢🥶💀👾☠️👻🧿🪬🌟🔥💧⚡ n criado
+// 🩸💫⚜️✨💤🤢🥶💀👾☠️👻🧿🪬🌟♨️🌧️⚡ n criado
 
 // NORMAL
 const normalModels = [
@@ -2603,7 +2612,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/mergulhador.png",
       tipoDano: "(🔱)💥",
-      tipoVida: "💧",
+      tipoVida: "🌧️",
       zona: 2
     }
   ],
@@ -2617,7 +2626,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/marinheiro.png",
       tipoDano: "⚔️",
-      tipoVida: "💧",
+      tipoVida: "🌧️",
       zona: 2
     },
     {
@@ -2629,7 +2638,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
-      tipoVida: "💧",
+      tipoVida: "🌧️",
       zona: 2
     }
   ],
@@ -2655,7 +2664,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
-      tipoVida: "💧",
+      tipoVida: "🌧️",
       zona: 2
     }
   ],
@@ -2669,7 +2678,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
-      tipoVida: "💧",
+      tipoVida: "🌧️",
       zona: 2
     },
     {
@@ -2681,7 +2690,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
-      tipoVida: "💧",
+      tipoVida: "🌧️",
       zona: 2
     }
   ],
@@ -3225,7 +3234,7 @@ const eliteModels = [
       ],
       img: "../img/jogo/inimigos/marinheiro.png",
       tipoDano: "⚔️",
-      tipoVida: "💧",
+      tipoVida: "🌧️",
       zona: 2
     },
     {
@@ -3237,7 +3246,7 @@ const eliteModels = [
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
-      tipoVida: "💧",
+      tipoVida: "🌧️",
       zona: 2
     },
     {
@@ -3249,7 +3258,7 @@ const eliteModels = [
       ],
       img: "../img/jogo/inimigos/capitao.png",
       tipoDano: "🔱",
-      tipoVida: "💧",
+      tipoVida: "🌧️",
       zona: 2
     }
   ],
@@ -3277,7 +3286,7 @@ const eliteModels = [
       ],
       img: "../img/jogo/inimigos/amalgama.png",
       tipoDano: "(🔱❓💊)💥",
-      tipoVida: "💧",
+      tipoVida: "🌧️",
       zona: 2
     }
   ],
@@ -3450,7 +3459,7 @@ const eliteModels = [
       behavior: () => [{ type: "morrer", value: 31 }],
       img: "../img/jogo/inimigos/vingadorAraq.png",
       tipoDano: "🩸",
-      tipoVida: "🔥",
+      tipoVida: "♨️",
       zona: 4
     }
   ],
@@ -3531,7 +3540,7 @@ const bossModels = [
       ],
       img: "../img/jogo/inimigos/tentaculoKraken.png",
       tipoDano: "(⚔️)💥",
-      tipoVida: "💧",
+      tipoVida: "🌧️",
       zona: 2
     },
     {
@@ -3541,7 +3550,7 @@ const bossModels = [
       behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "attackVida", value: Math.random() < 0.7 ? 8 : 16 }],
       img: "../img/jogo/inimigos/bossKraken.png",
       tipoDano: "(⚔️❓🔱)💥",
-      tipoVida: "💧",
+      tipoVida: "🌧️",
       zona: 2
     },
     {
@@ -3553,7 +3562,7 @@ const bossModels = [
       ],
       img: "../img/jogo/inimigos/tentaculoKraken.png",
       tipoDano: "(⚔️)💥",
-      tipoVida: "💧",
+      tipoVida: "🌧️",
       zona: 2
     }
   ],
@@ -3866,7 +3875,7 @@ function drawCards() {
       case "Chuva de Laminas":
         tipo = "cintilante";
         break;
-      //🔥🔥🔥🔥🔥 FIRE 2 🔥🔥🔥🔥🔥
+      //♨️♨️♨️♨️♨️ FIRE 2 ♨️♨️♨️♨️♨️
       case "Combustão":
       case "Chuva De Fogo":
       case "Explosão Termica":
@@ -3887,7 +3896,7 @@ function drawCards() {
       case "Coração De Gaea":
         tipo = "terra";
         break;
-      //💧💧💧💧💧 AGUA 2 💧💧💧💧💧
+      //🌧️🌧️🌧️🌧️🌧️ AGUA 2 🌧️🌧️🌧️🌧️🌧️
       case "Jato De Água":
       case "Mar Denso":
       case "Chuva Isolante":
@@ -3899,6 +3908,7 @@ function drawCards() {
       //❄️❄️❄️❄️❄️ FROST ❄️❄️❄️❄️❄️
       case "Gelo Mortal":
       case "Marcar":
+      case "Granizo":
       case "Cemiterio Branco":
       case "Ataque Condensado":
       case "Defesa Condensada":
@@ -5039,6 +5049,23 @@ function drawCards() {
         }
       }
       //❄️
+      else if (card.name === "Granizo") {
+        enemies.forEach(e => {
+          if (e.tipoVida === "❄️") {
+            dano = card.power * 2;
+          } else {
+            dano = card.power;
+          }
+
+          if (e.tipoVida === "🌧️") {
+            marcarInimigos("❄️", "area")
+          } 
+          animateDamage(e.el);
+          e.hp -= dano;
+          floatText(e.el, `-${dano}❄️`, "red");
+        });
+      }
+      //❄️
       else if (card.name === "Nevasca Mortal") {
         marcarInimigos("❄️", "area")
         // percorre todos os inimigos vivos
@@ -5136,122 +5163,122 @@ function drawCards() {
           }
         }
       }
-      //  🔥🔥🔥🔥🔥 FIRE 🔥🔥🔥🔥🔥
+      //  ♨️♨️♨️♨️♨️ FIRE ♨️♨️♨️♨️♨️
       else if (card.name === "Combustão") {
-        marcarInimigos("🔥", "unico", true)
+        marcarInimigos("♨️", "unico", true)
       }
-      //🔥
+      //♨️
       else if (card.name === "Chuva De Fogo") {
-        marcarInimigos("🔥", "area", true)
+        marcarInimigos("♨️", "area", true)
       }
-      //🔥
+      //♨️
       else if (card.name === "Explosão Termica") {
         if (enemies[0].tipoVida === "⛰️") {
           dano = card.power * 3;
-        } else if (enemies[0].tipoVida === "🔥") {
+        } else if (enemies[0].tipoVida === "♨️") {
           dano = card.power * 2;
         } else {
           dano = card.power;
         }
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
-        floatText(enemies[0].el, `-${dano}🔥`, "red");
+        floatText(enemies[0].el, `-${dano}♨️`, "red");
       }
-      //🔥
+      //♨️
       else if (card.name === "Ataque De Fogo") {
         if (enemies[0].tipoVida === "⛰️") {
           dano = card.power * 3;
-        } else if (enemies[0].tipoVida === "🔥") {
+        } else if (enemies[0].tipoVida === "♨️") {
           dano = card.power * 2;
         } else {
           dano = card.power;
         }
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
-        floatText(enemies[0].el, `-${dano}🔥`, "red");
+        floatText(enemies[0].el, `-${dano}♨️`, "red");
       }
-      //🔥
+      //♨️
       else if (card.name === "Cauterizar") {
-        if (enemies[0].tipoVida === "🔥") {
+        if (enemies[0].tipoVida === "♨️") {
           dano = card.power * 2;
         } else {
           dano = card.power;
         }
-        marcarInimigos("🔥", "unico")
+        marcarInimigos("♨️", "unico")
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
-        floatText(enemies[0].el, `-${dano}🔥`, "red");
+        floatText(enemies[0].el, `-${dano}♨️`, "red");
       }
-      //🔥
+      //♨️
       else if (card.name === "Lança Chamas") {
         enemies.forEach(e => {
           if (e.tipoVida === "⛰️") {
             dano = card.power * 3;
-          } else if (e.tipoVida === "🔥") {
+          } else if (e.tipoVida === "♨️") {
             dano = card.power * 2;
           } else {
             dano = card.power;
           }
           animateDamage(e.el);
           e.hp -= dano;
-          floatText(e.el, `-${dano}🔥`, "red");
+          floatText(e.el, `-${dano}♨️`, "red");
         });
-        marcarInimigos("🔥", "area")
+        marcarInimigos("♨️", "area")
       }
-      //  💧💧💧💧💧 AGUA 💧💧💧💧💧
+      //  🌧️🌧️🌧️🌧️🌧️ AGUA 🌧️🌧️🌧️🌧️🌧️
       else if (card.name === "Jato De Água") {
-        marcarInimigos("💧", "unico", true)
+        marcarInimigos("🌧️", "unico", true)
       }
-      //💧
+      //🌧️
       else if (card.name === "Mar Denso") {
-        marcarInimigos("💧", "area", true)
+        marcarInimigos("🌧️", "area", true)
       }
-      //💧
+      //🌧️
       else if (card.name === "Chuva Isolante") {
         enemies.forEach(e => {
-          if (e.tipoVida === "🔥") {
+          if (e.tipoVida === "♨️") {
             animateDamage(e.el);
             e.hp -= card.power;
-            floatText(e.el, `-${card.power}💧`, "red");
+            floatText(e.el, `-${card.power}🌧️`, "red");
           } else {
-            floatText(e.el, `💧`, "red");
+            floatText(e.el, `🌧️`, "red");
           }
         });
-        marcarInimigos("💧", "area")
+        marcarInimigos("🌧️", "area")
       }
-      //💧
+      //🌧️
       else if (card.name === "Chuva Controlada") {
         enemies.forEach(e => {
-          if (e.tipoVida === "🔥") {
+          if (e.tipoVida === "♨️") {
             animateDamage(e.el);
             e.hp -= card.power;
-            floatText(e.el, `-${card.power}💧`, "red");
+            floatText(e.el, `-${card.power}🌧️`, "red");
           }
         });
       }
-      //💧
+      //🌧️
       else if (card.name === "Chuva Corrosiva") {
         enemies.forEach(e => {
-          if (e.tipoVida === "💧") {
+          if (e.tipoVida === "🌧️") {
             animateDamage(e.el);
             e.hp -= card.power;
-            floatText(e.el, `-${card.power}💧`, "red");
+            floatText(e.el, `-${card.power}🌧️`, "red");
           } else {
-            floatText(e.el, `💧`, "red");
+            floatText(e.el, `🌧️`, "red");
           }
         });
-        marcarInimigos("💧", "area")
+        marcarInimigos("🌧️", "area")
       }
-      //💧
+      //🌧️
       else if (card.name === "Corrosão") {
-        if (enemies[0].tipoVida === "💧") {
+        if (enemies[0].tipoVida === "🌧️") {
           animateDamage(enemies[0].el);
           enemies[0].hp -= card.power;
-          floatText(enemies[0].el, `-${card.power}💧`, "red");
+          floatText(enemies[0].el, `-${card.power}🌧️`, "red");
         } else {
-          floatText(enemies[0].el, `💧`, "red");
+          floatText(enemies[0].el, `🌧️`, "red");
         }
-        marcarInimigos("💧", "unico")
+        marcarInimigos("🌧️", "unico")
       }
       //  ⛰️⛰️⛰️⛰️⛰️ TERRA ⛰️⛰️⛰️⛰️⛰️
       else if (card.name === "Soterrar") {
@@ -5259,7 +5286,7 @@ function drawCards() {
       }
       //⛰️
       else if (card.name === "Arma Ancestral") {
-        if (enemies[0].tipoVida === "💧") {
+        if (enemies[0].tipoVida === "🌧️") {
           dano = card.power * 3;
         } else {
           dano = card.power;
@@ -5327,7 +5354,7 @@ function drawCards() {
       //⛰️
       else if (card.name === "Chuva Rochosa") {
         enemies.forEach(e => {
-          if (e.tipoVida === "💧") {
+          if (e.tipoVida === "🌧️") {
             dano = card.power * 3;
           } else if (e.tipoVida === "⛰️") {
             dano = card.power * 2;
@@ -5527,13 +5554,13 @@ popupOverlayDeck.addEventListener("click", (e) => {
 function marcarInimigos(elemento, tipo, txt = false) {
   fraqueza = "";
   switch (elemento) {
-    case "🔥":
-      fraqueza = "💧";
+    case "♨️":
+      fraqueza = "🌧️";
       break;
     case "⛰️":
-      fraqueza = "🔥";
+      fraqueza = "♨️";
       break;
-    case "💧":
+    case "🌧️":
       fraqueza = "⛰️";
       break;
 
