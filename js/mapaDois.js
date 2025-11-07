@@ -1661,11 +1661,29 @@ const allCards = [
   },
   {
     name: "Granizo",
-    cost: 2,
+    cost: 1,
     basePower: 6,
     rarity: "frost",
     img: "../img/jogo/cards/frost/chuvaDeGranizo.jpg",
-    desc: "Cause dano a todos os inimigos, se estiver  marcado com ❄️ X2 o dano, se estiver marcado com 🌧️ marca com ❄️",
+    desc: "Cause 6 dano a todos os inimigos, se estiver  marcado com ❄️ X2 o dano, se estiver marcado com 🌧️ marca com ❄️",
+    type: "frost"
+  },
+  {
+    name: "Granizo Mortal",
+    cost: 2,
+    basePower: 12,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/chuvaMortal.jpg",
+    desc: "Cause 12 dano a todos os inimigos, se estiver  marcado com ❄️ ou 🌧️ X2 o dano, se estiver marcado com ♨️ X3",
+    type: "frost"
+  },
+  {
+    name: "Misil Termico Guiado",
+    cost: 3,
+    basePower: 40,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/misilGuiado.jpg",
+    desc: "Cause 40 dano a todos os inimigos marcados com ♨️",
     type: "frost"
   },
   {
@@ -3909,6 +3927,8 @@ function drawCards() {
       case "Gelo Mortal":
       case "Marcar":
       case "Granizo":
+      case "Granizo Mortal":
+      case "Misil Termico Guiado":
       case "Cemiterio Branco":
       case "Ataque Condensado":
       case "Defesa Condensada":
@@ -5063,6 +5083,32 @@ function drawCards() {
           animateDamage(e.el);
           e.hp -= dano;
           floatText(e.el, `-${dano}❄️`, "red");
+        });
+      }
+      //❄️
+      else if (card.name === "Granizo Mortal") {
+        enemies.forEach(e => {
+          if (e.tipoVida === "❄️" || e.tipoVida === "🌧️") {
+            dano = card.power * 2;
+          } else if (e.tipoVida === "♨️"){
+            dano = card.power * 3;
+          } else {
+            dano = card.power;
+          }
+
+          animateDamage(e.el);
+          e.hp -= dano;
+          floatText(e.el, `-${dano}❄️`, "red");
+        });
+      }
+      //❄️
+      else if (card.name === "Misil Termico Guiado") {
+        enemies.forEach(e => {
+          if (e.tipoVida === "♨️") {
+            animateDamage(e.el);
+            e.hp -= card.power;
+            floatText(e.el, `-${card.power}❄️`, "red");
+          }
         });
       }
       //❄️
