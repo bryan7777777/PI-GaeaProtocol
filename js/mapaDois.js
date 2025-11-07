@@ -1687,6 +1687,15 @@ const allCards = [
     type: "frost"
   },
   {
+    name: "Golpe Frio Traseiro",
+    cost: 1,
+    basePower: 6,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/golpeTraicoeiro.jpg",
+    desc: "Cause 6 dano ao ultimo inimigo inimigo, se estiver marcado com ❄️ ou 🌧️ X2, se estiver marcado com ♨️ X3",
+    type: "frost"
+  },
+  {
     name: "Marcar",
     cost: 0,
     basePower: 0,
@@ -1711,6 +1720,15 @@ const allCards = [
     rarity: "frost",
     img: "../img/jogo/cards/frost/atkGelido.png",
     desc: "Cause 8 de dano, se o inimigo estiver marcado com ❄️ cause X3",
+    type: "frost"
+  },
+  {
+    name: "Misil Condensado",
+    cost: 3,
+    basePower: 20,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/misil.jpg",
+    desc: "Cause 20 de dano, se o inimigo estiver marcado com ❄️ cause X3",
     type: "frost"
   },
   {
@@ -3928,6 +3946,8 @@ function drawCards() {
       case "Marcar":
       case "Granizo":
       case "Granizo Mortal":
+      case "Misil Condensado":
+      case "Golpe Frio Traseiro":
       case "Misil Termico Guiado":
       case "Cemiterio Branco":
       case "Ataque Condensado":
@@ -5102,6 +5122,21 @@ function drawCards() {
         });
       }
       //❄️
+      else if (card.name === "Golpe Frio Traseiro") {
+        const alvo = [...enemies].reverse().find(e => e.hp > 0);
+        let dano = card.basePower;
+        if (alvo.tipoVida === "❄️" || alvo.tipoVida === "🌧️") {
+            dano = card.power * 2;
+          } else if (alvo.tipoVida === "♨️"){
+            dano = card.power * 3;
+          }
+        if (alvo) {
+          animateDamage(alvo.el);
+          alvo.hp -= dano;
+          floatText(alvo.el, `-${dano}⚔️`, "red");
+        }
+      }
+      //❄️
       else if (card.name === "Misil Termico Guiado") {
         enemies.forEach(e => {
           if (e.tipoVida === "♨️") {
@@ -5140,6 +5175,17 @@ function drawCards() {
       }
       //❄️
       else if (card.name === "Ataque Condensado") {
+        if (enemies[0].tipoVida === "❄️") {
+          dano = card.power * 3;
+        } else {
+          dano = card.power;
+        }
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= dano;
+        floatText(enemies[0].el, `-${dano}❄️`, "red");
+      }
+      //❄️
+      else if (card.name === "Misil Condensado") {
         if (enemies[0].tipoVida === "❄️") {
           dano = card.power * 3;
         } else {
