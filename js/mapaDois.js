@@ -5680,7 +5680,6 @@ function marcarInimigos(elemento, tipo, txt = false) {
   }
 }
 
-
 function drawNewCards() {
   deck.length = 0;
 
@@ -5845,8 +5844,6 @@ function enemyTurn() {
     checkGameOver();
   }, 600);
 }
-
-
 
 reviver = 0;
 let aylaPhase = 0;
@@ -6141,7 +6138,6 @@ function checkEnemies() {
     }
   }
 }
-
 
 function redScreenGlow(duration = 500, intensity = 30) {
   const overlay = document.createElement("div");
