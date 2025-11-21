@@ -2437,701 +2437,715 @@ const allCards = [
 // NORMAL
 const normalModels = [
   // 111111111111111111111
+  // [
+  //   {
+  //     name: "Lobo",
+  //     hp: 20,
+  //     dano: 5,
+  //     behavior: () => [
+  //       { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
+  //     ],
+  //     img: "../img/jogo/inimigos/lobo.png",
+  //     tipoDano: "(⚔️)💥",
+  //     tipoVida: "⛰️",
+  //     zona: 1
+  //   },
+  //   {
+  //     name: "Lobo",
+  //     hp: 20,
+  //     dano: 5,
+  //     behavior: () => [
+  //       { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
+  //     ],
+  //     img: "../img/jogo/inimigos/lobo.png",
+  //     tipoDano: "(⚔️)💥",
+  //     tipoVida: "⛰️",
+  //     zona: 1
+  //   },
+  //   {
+  //     name: "Lobo",
+  //     hp: 20,
+  //     dano: 5,
+  //     behavior: () => [
+  //       { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
+  //     ],
+  //     img: "../img/jogo/inimigos/lobo.png",
+  //     tipoDano: "(⚔️)💥",
+  //     tipoVida: "⛰️",
+  //     zona: 1
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Rinoceronte corrompido",
+  //     hp: 30,
+  //     dano: 4,
+  //     behavior: () => [
+  //       { type: "attackVida", value: 4 }
+  //     ],
+  //     img: "../img/jogo/inimigos/rino.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "💞",
+  //     zona: 1
+  //   },
+  //   {
+  //     name: "formiga sentinela",
+  //     hp: 30,
+  //     dano: 6,
+  //     behavior: () => [
+  //       { type: "attack", value: 6 }
+  //     ],
+  //     img: "../img/jogo/inimigos/formiga.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "⛰️",
+  //     zona: 1
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "formiga sentinela",
+  //     hp: 15,
+  //     dano: 6,
+  //     behavior: () => [
+  //       { type: "attack", value: 6 }
+  //     ],
+  //     img: "../img/jogo/inimigos/formiga.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "⛰️",
+  //     zona: 1
+  //   },
+  //   {
+  //     name: "formiga sentinela",
+  //     hp: 15,
+  //     dano: 6,
+  //     behavior: () => [
+  //       { type: "attack", value: 6 }
+  //     ],
+  //     img: "../img/jogo/inimigos/formiga.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "⛰️",
+  //     zona: 1
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Tartaruga",
+  //     hp: 34,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attack", value: 6 }],
+  //     img: "../img/jogo/inimigos/minion.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "⛰️",
+  //     zona: 1
+  //   },
+  //   {
+  //     name: "Abelha corrompida",
+  //     hp: 6,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attack", value: 6 }],
+  //     img: "../img/jogo/inimigos/abelha.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 1
+  //   },
+  //   {
+  //     name: "Abelha corrompida",
+  //     hp: 6,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attack", value: 6 }],
+  //     img: "../img/jogo/inimigos/abelha.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 1
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Drone agricola",
+  //     hp: 8,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attackVida", value: 6 }],
+  //     img: "../img/jogo/inimigos/inimigo5.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "❤️",
+  //     zona: 1
+  //   },
+  //   {
+  //     name: "Drone agricola",
+  //     hp: 8,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attackVida", value: 6 }],
+  //     img: "../img/jogo/inimigos/inimigo5.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "❤️",
+  //     zona: 1
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Tartaruga",
+  //     hp: 34,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attack", value: 6 }],
+  //     img: "../img/jogo/inimigos/minion.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "⛰️",
+  //     zona: 1
+  //   },
+  //   {
+  //     name: "Tatu corrompido",
+  //     hp: 25,
+  //     dano: 8,
+  //     behavior: () => [{ type: "attack", value: 8 }],
+  //     img: "../img/jogo/inimigos/tatu.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "⛰️",
+  //     zona: 1
+  //   },
+  //   {
+  //     name: "Abelha corrompida",
+  //     hp: 6,
+  //     dano: 6,
+  //     behavior: () => [{ type: "attack", value: 6 }],
+  //     img: "../img/jogo/inimigos/abelha.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 1
+  //   }
+  // ],
+  // // 222222222222222222222
+  // [
+  //   {
+  //     name: "Robo Cargueiro",
+  //     hp: 60,
+  //     dano: 12,
+  //     behavior: () => [{ type: "attack", value: 12 }],
+  //     img: "../img/jogo/inimigos/roboCargueiro.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 2
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Gaivota Corrompida",
+  //     hp: 15,
+  //     dano: 5,
+  //     behavior: () => [
+  //       { type: "attackVida", value: 5 }
+  //     ],
+  //     img: "../img/jogo/inimigos/gaivota.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "❤️",
+  //     zona: 2
+  //   },
+  //   {
+  //     name: "Afogado",
+  //     hp: 55,
+  //     dano: 7,
+  //     behavior: () => [
+  //       { type: "attackVida", value: Math.random() < 0.7 ? 7 : 14 }
+  //     ],
+  //     img: "../img/jogo/inimigos/mergulhador.png",
+  //     tipoDano: "(🔱)💥",
+  //     tipoVida: "🌧️",
+  //     zona: 2
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Marinheiro",
+  //     hp: 45,
+  //     dano: 8,
+  //     behavior: () => [
+  //       { type: "attack", value: 8 }
+  //     ],
+  //     img: "../img/jogo/inimigos/marinheiro.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "🌧️",
+  //     zona: 2
+  //   },
+  //   {
+  //     name: "Marinheiro Reciclado",
+  //     hp: 30,
+  //     dano: 8,
+  //     behavior: () => [
+  //       { type: "attack", value: 8 }
+  //     ],
+  //     img: "../img/jogo/inimigos/marinheiroDeLixo.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "🌧️",
+  //     zona: 2
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Gaivota Corrompida",
+  //     hp: 15,
+  //     dano: 5,
+  //     behavior: () => [
+  //       { type: "attackVida", value: 5 }
+  //     ],
+  //     img: "../img/jogo/inimigos/gaivota.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "❤️",
+  //     zona: 2
+  //   },
+  //   {
+  //     name: "Marinheiro Reciclado",
+  //     hp: 30,
+  //     dano: 8,
+  //     behavior: () => [
+  //       { type: "attack", value: 8 }
+  //     ],
+  //     img: "../img/jogo/inimigos/marinheiroDeLixo.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "🌧️",
+  //     zona: 2
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Marinheiro Reciclado",
+  //     hp: 30,
+  //     dano: 8,
+  //     behavior: () => [
+  //       { type: "attack", value: 8 }
+  //     ],
+  //     img: "../img/jogo/inimigos/marinheiroDeLixo.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "🌧️",
+  //     zona: 2
+  //   },
+  //   {
+  //     name: "Marinheiro Reciclado",
+  //     hp: 30,
+  //     dano: 8,
+  //     behavior: () => [
+  //       { type: "attack", value: 8 }
+  //     ],
+  //     img: "../img/jogo/inimigos/marinheiroDeLixo.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "🌧️",
+  //     zona: 2
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Gaivota Corrompida",
+  //     hp: 15,
+  //     dano: 5,
+  //     behavior: () => [
+  //       { type: "attackVida", value: 5 }
+  //     ],
+  //     img: "../img/jogo/inimigos/gaivota.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "❤️",
+  //     zona: 2
+  //   },
+  //   {
+  //     name: "Gaivota Corrompida",
+  //     hp: 15,
+  //     dano: 5,
+  //     behavior: () => [
+  //       { type: "attackVida", value: 10 }
+  //     ],
+  //     img: "../img/jogo/inimigos/gaivota.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "❤️",
+  //     zona: 2
+  //   }
+  // ],
+  // // 333333333333333333333
+  // [
+  //   {
+  //     name: "Guarda",
+  //     hp: 25,
+  //     dano: 4,
+  //     behavior: () => [
+  //       { type: "attackVida", value: Math.random() < 0.7 ? 4 : 8 }
+  //     ],
+  //     img: "../img/jogo/inimigos/guardaGreco.png",
+  //     tipoDano: "(🔱)💥",
+  //     tipoVida: "❤️",
+  //     zona: 3
+  //   },
+  //   {
+  //     name: "Guarda",
+  //     hp: 25,
+  //     dano: 4,
+  //     behavior: () => [
+  //       { type: "attackVida", value: Math.random() < 0.7 ? 4 : 8 }
+  //     ],
+  //     img: "../img/jogo/inimigos/guardaGreco.png",
+  //     tipoDano: "(🔱)💥",
+  //     tipoVida: "❤️",
+  //     zona: 3
+  //   },
+  // ],
+  // [
+  //   {
+  //     name: "Sentinela",
+  //     hp: 55,
+  //     dano: 10,
+  //     behavior: () => [
+  //       { type: "attack", value: 10 }
+  //     ],
+  //     img: "../img/jogo/inimigos/sentinelaGreco.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 3
+  //   },
+  //   {
+  //     name: "Guarda",
+  //     hp: 25,
+  //     dano: 4,
+  //     behavior: () => [
+  //       { type: "attackVida", value: Math.random() < 0.7 ? 4 : 8 }
+  //     ],
+  //     img: "../img/jogo/inimigos/guardaGreco.png",
+  //     tipoDano: "(🔱)💥",
+  //     tipoVida: "❤️",
+  //     zona: 3
+  //   },
+  // ],
+  // [
+  //   {
+  //     name: "Casca Grossa",
+  //     hp: 65,
+  //     dano: 5,
+  //     behavior: () => [
+  //       { type: "attack", value: 5 }
+  //     ],
+  //     img: "../img/jogo/inimigos/cascaGrossa.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 3
+  //   },
+  //   {
+  //     name: "IA sacerdotisa",
+  //     hp: 24,
+  //     dano: 2,
+  //     behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 2 : 4 }],
+  //     img: "../img/jogo/inimigos/sacerdotisa.png",
+  //     tipoDano: "(💚🎭💊)💥",
+  //     tipoVida: "❤️",
+  //     zona: 3
+  //   },
+  // ],
+  // [
+  //   {
+  //     name: "Sacerdote Guerreiro",
+  //     hp: 40,
+  //     dano: 8,
+  //     behavior: () => [
+  //       { type: "attack", value: 8 }
+  //     ],
+  //     img: "../img/jogo/inimigos/sacerdoteGuerreiro.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 3
+  //   },
+  //   {
+  //     name: "Sacerdote Guerreiro",
+  //     hp: 40,
+  //     dano: 8,
+  //     behavior: () => [
+  //       { type: "attack", value: 8 }
+  //     ],
+  //     img: "../img/jogo/inimigos/sacerdoteGuerreiro.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 3
+  //   },
+  // ],
+  // [
+  //   {
+  //     name: "Valquiria",
+  //     hp: 40,
+  //     dano: 7,
+  //     behavior: () => [{ type: "attackVida", value: 7 }],
+  //     img: "../img/jogo/inimigos/valquiria.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "❤️",
+  //     zona: 3
+  //   },
+  //   {
+  //     name: "Valquiria",
+  //     hp: 40,
+  //     dano: 7,
+  //     behavior: () => [{ type: "attackVida", value: 7 }],
+  //     img: "../img/jogo/inimigos/valquiria.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "❤️",
+  //     zona: 3
+  //   },
+  // ],
+  // // 444444444444444444444
+  // [
+  //   {
+  //     name: "Cão Corrompido",
+  //     hp: 50,
+  //     dano: 12,
+  //     behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 12 : 24 }],
+  //     img: "../img/jogo/inimigos/cachorroPolicial.png",
+  //     tipoDano: "(⚔️)💥",
+  //     tipoVida: "❤️",
+  //     zona: 4
+  //   },
+  //   {
+  //     name: "Sentinela Corrompido",
+  //     hp: 80,
+  //     dano: 25,
+  //     behavior: () => [{ type: "attack", value: 25 }],
+  //     img: "../img/jogo/inimigos/sentinelaCorrompido.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 4
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Vagante",
+  //     hp: 25,
+  //     dano: 10,
+  //     behavior: () => [{ type: "attackVida", value: 10 }],
+  //     img: "../img/jogo/inimigos/ceifadorFantasma.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "🧿",
+  //     zona: 4
+  //   },
+  //   {
+  //     name: "Livro Corrompido",
+  //     hp: 30,
+  //     dano: 20,
+  //     behavior: () => [{ type: "attack", value: 20 }],
+  //     img: "../img/jogo/inimigos/livroMaligno.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 4
+  //   },
+  //   {
+  //     name: "Livro Corrompido",
+  //     hp: 30,
+  //     dano: 20,
+  //     behavior: () => [{ type: "attack", value: 20 }],
+  //     img: "../img/jogo/inimigos/livroMaligno.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 4
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Pilha de Livros",
+  //     hp: 30,
+  //     dano: 0,
+  //     behavior: () => [{ type: "attack", value: 0 }],
+  //     img: "../img/jogo/inimigos/livros.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 4
+  //   },
+  //   {
+  //     name: "Vagante",
+  //     hp: 25,
+  //     dano: 10,
+  //     behavior: () => [{ type: "attackVida", value: 10 }],
+  //     img: "../img/jogo/inimigos/ceifadorFantasma.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "🧿",
+  //     zona: 4
+  //   },
+  //   {
+  //     name: "Vagante",
+  //     hp: 25,
+  //     dano: 10,
+  //     behavior: () => [{ type: "attackVida", value: 10 }],
+  //     img: "../img/jogo/inimigos/ceifadorFantasma.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "🧿",
+  //     zona: 4
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Vagante",
+  //     hp: 25,
+  //     dano: 10,
+  //     behavior: () => [{ type: "attackVida", value: 10 }],
+  //     img: "../img/jogo/inimigos/ceifadorFantasma.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "🧿",
+  //     zona: 4
+  //   },
+  //   {
+  //     name: "Sacerdote Corrompido",
+  //     hp: 65,
+  //     dano: 15,
+  //     behavior: () => [{ type: "attackVida", value: 15 }],
+  //     img: "../img/jogo/inimigos/claus.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "🧿",
+  //     zona: 4
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Pilha de Livros",
+  //     hp: 30,
+  //     maxHp: 30,
+  //     dano: 0,
+  //     behavior: () => [{ type: "attack", value: 0 }],
+  //     img: "../img/jogo/inimigos/livros.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 4
+  //   },
+  //   {
+  //     name: "Livro Corrompido",
+  //     hp: 30,
+  //     dano: 20,
+  //     behavior: () => [{ type: "attack", value: 20 }],
+  //     img: "../img/jogo/inimigos/livroMaligno.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 4
+  //   },
+  //   {
+  //     name: "Livro Corrompido",
+  //     hp: 30,
+  //     dano: 20,
+  //     behavior: () => [{ type: "attack", value: 20 }],
+  //     img: "../img/jogo/inimigos/livroMaligno.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 4
+  //   }
+  // ],
+  // // 555555555555555555555
+  // [
+  //   {
+  //     name: "Guarda",
+  //     hp: 70,
+  //     dano: 10,
+  //     behavior: () => [{ type: "attack", value: 10 }],
+  //     img: "../img/jogo/inimigos/guarda.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "🧿",
+  //     zona: 5
+  //   },
+  //   {
+  //     name: "Guarda",
+  //     hp: 70,
+  //     dano: 10,
+  //     behavior: () => [{ type: "attack", value: 10 }],
+  //     img: "../img/jogo/inimigos/guarda.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "🧿",
+  //     zona: 5
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Drone De Combate",
+  //     hp: 35,
+  //     dano: 10,
+  //     behavior: () => [{ type: "attackVida", value: 10 }],
+  //     img: "../img/jogo/inimigos/droneCombate.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "❤️",
+  //     zona: 5
+  //   },
+  //   {
+  //     name: "Drone De Combate",
+  //     hp: 35,
+  //     dano: 10,
+  //     behavior: () => [{ type: "attackVida", value: 10 }],
+  //     img: "../img/jogo/inimigos/droneCombate.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "❤️",
+  //     zona: 5
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Guarda",
+  //     hp: 70,
+  //     dano: 10,
+  //     behavior: () => [{ type: "attack", value: 10 }],
+  //     img: "../img/jogo/inimigos/guarda.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "🧿",
+  //     zona: 5
+  //   },
+  //   {
+  //     name: "Guarda Valquiria",
+  //     hp: 55,
+  //     dano: 18,
+  //     behavior: () => [{ type: "attackVida", value: 18 }],
+  //     img: "../img/jogo/inimigos/guardaValk.png",
+  //     tipoDano: "🔱",
+  //     tipoVida: "❤️",
+  //     zona: 5
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Guarda",
+  //     hp: 70,
+  //     dano: 10,
+  //     behavior: () => [{ type: "attack", value: 10 }],
+  //     img: "../img/jogo/inimigos/guarda.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "🧿",
+  //     zona: 5
+  //   },
+  //   {
+  //     name: "Guarda Forte",
+  //     hp: 65,
+  //     dano: 22,
+  //     behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 22 : 44 }],
+  //     img: "../img/jogo/inimigos/artilheiro.png",
+  //     tipoDano: "(⚔️)💥",
+  //     tipoVida: "🧿",
+  //     zona: 5
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Guarda",
+  //     hp: 70,
+  //     dano: 10,
+  //     behavior: () => [{ type: "attack", value: 10 }],
+  //     img: "../img/jogo/inimigos/guarda.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "🧿",
+  //     zona: 5
+  //   },
+  //   {
+  //     name: "Guarda Médico",
+  //     hp: 50,
+  //     dano: 20,
+  //     behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "heal", value: 20 }],
+  //     img: "../img/jogo/inimigos/guardaMedico.png",
+  //     tipoDano: "⚔️❓💚🎭💊",
+  //     tipoVida: "❤️",
+  //     zona: 5
+  //   }
+  // ],
+
   [
     {
-      name: "Lobo",
-      hp: 20,
-      dano: 5,
-      behavior: () => [
-        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
-      ],
-      img: "../img/jogo/inimigos/lobo.png",
-      tipoDano: "(⚔️)💥",
-      tipoVida: "⛰️",
-      zona: 1
-    },
-    {
-      name: "Lobo",
-      hp: 20,
-      dano: 5,
-      behavior: () => [
-        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
-      ],
-      img: "../img/jogo/inimigos/lobo.png",
-      tipoDano: "(⚔️)💥",
-      tipoVida: "⛰️",
-      zona: 1
-    },
-    {
-      name: "Lobo",
-      hp: 20,
-      dano: 5,
-      behavior: () => [
-        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
-      ],
-      img: "../img/jogo/inimigos/lobo.png",
-      tipoDano: "(⚔️)💥",
-      tipoVida: "⛰️",
-      zona: 1
-    }
-  ],
-  [
-    {
-      name: "Rinoceronte corrompido",
-      hp: 30,
-      dano: 4,
-      behavior: () => [
-        { type: "attackVida", value: 4 }
-      ],
-      img: "../img/jogo/inimigos/rino.png",
-      tipoDano: "🔱",
-      tipoVida: "💞",
-      zona: 1
-    },
-    {
-      name: "formiga sentinela",
-      hp: 30,
-      dano: 6,
-      behavior: () => [
-        { type: "attack", value: 6 }
-      ],
-      img: "../img/jogo/inimigos/formiga.png",
-      tipoDano: "⚔️",
-      tipoVida: "⛰️",
-      zona: 1
-    }
-  ],
-  [
-    {
-      name: "formiga sentinela",
-      hp: 15,
-      dano: 6,
-      behavior: () => [
-        { type: "attack", value: 6 }
-      ],
-      img: "../img/jogo/inimigos/formiga.png",
-      tipoDano: "⚔️",
-      tipoVida: "⛰️",
-      zona: 1
-    },
-    {
-      name: "formiga sentinela",
-      hp: 15,
-      dano: 6,
-      behavior: () => [
-        { type: "attack", value: 6 }
-      ],
-      img: "../img/jogo/inimigos/formiga.png",
-      tipoDano: "⚔️",
-      tipoVida: "⛰️",
-      zona: 1
-    }
-  ],
-  [
-    {
-      name: "Tartaruga",
-      hp: 34,
-      dano: 6,
-      behavior: () => [{ type: "attack", value: 6 }],
-      img: "../img/jogo/inimigos/minion.png",
-      tipoDano: "⚔️",
-      tipoVida: "⛰️",
-      zona: 1
-    },
-    {
-      name: "Abelha corrompida",
-      hp: 6,
-      dano: 6,
-      behavior: () => [{ type: "attack", value: 6 }],
-      img: "../img/jogo/inimigos/abelha.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 1
-    },
-    {
-      name: "Abelha corrompida",
-      hp: 6,
-      dano: 6,
-      behavior: () => [{ type: "attack", value: 6 }],
-      img: "../img/jogo/inimigos/abelha.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 1
-    }
-  ],
-  [
-    {
-      name: "Drone agricola",
-      hp: 8,
-      dano: 6,
-      behavior: () => [{ type: "attackVida", value: 6 }],
-      img: "../img/jogo/inimigos/inimigo5.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️",
-      zona: 1
-    },
-    {
-      name: "Drone agricola",
-      hp: 8,
-      dano: 6,
-      behavior: () => [{ type: "attackVida", value: 6 }],
-      img: "../img/jogo/inimigos/inimigo5.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️",
-      zona: 1
-    }
-  ],
-  [
-    {
-      name: "Tartaruga",
-      hp: 34,
-      dano: 6,
-      behavior: () => [{ type: "attack", value: 6 }],
-      img: "../img/jogo/inimigos/minion.png",
-      tipoDano: "⚔️",
-      tipoVida: "⛰️",
-      zona: 1
-    },
-    {
-      name: "Tatu corrompido",
-      hp: 25,
-      dano: 8,
-      behavior: () => [{ type: "attack", value: 8 }],
-      img: "../img/jogo/inimigos/tatu.png",
-      tipoDano: "⚔️",
-      tipoVida: "⛰️",
-      zona: 1
-    },
-    {
-      name: "Abelha corrompida",
-      hp: 6,
-      dano: 6,
-      behavior: () => [{ type: "attack", value: 6 }],
-      img: "../img/jogo/inimigos/abelha.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 1
-    }
-  ],
-  // 222222222222222222222
-  [
-    {
-      name: "Robo Cargueiro",
-      hp: 60,
-      dano: 12,
-      behavior: () => [{ type: "attack", value: 12 }],
-      img: "../img/jogo/inimigos/roboCargueiro.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 2
-    }
-  ],
-  [
-    {
-      name: "Gaivota Corrompida",
-      hp: 15,
-      dano: 5,
-      behavior: () => [
-        { type: "attackVida", value: 5 }
-      ],
-      img: "../img/jogo/inimigos/gaivota.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️",
-      zona: 2
-    },
-    {
-      name: "Afogado",
-      hp: 55,
-      dano: 7,
-      behavior: () => [
-        { type: "attackVida", value: Math.random() < 0.7 ? 7 : 14 }
-      ],
-      img: "../img/jogo/inimigos/mergulhador.png",
-      tipoDano: "(🔱)💥",
-      tipoVida: "🌧️",
-      zona: 2
-    }
-  ],
-  [
-    {
-      name: "Marinheiro",
-      hp: 45,
-      dano: 8,
-      behavior: () => [
-        { type: "attack", value: 8 }
-      ],
-      img: "../img/jogo/inimigos/marinheiro.png",
-      tipoDano: "⚔️",
-      tipoVida: "🌧️",
-      zona: 2
-    },
-    {
-      name: "Marinheiro Reciclado",
-      hp: 30,
-      dano: 8,
-      behavior: () => [
-        { type: "attack", value: 8 }
-      ],
-      img: "../img/jogo/inimigos/marinheiroDeLixo.png",
-      tipoDano: "⚔️",
-      tipoVida: "🌧️",
-      zona: 2
-    }
-  ],
-  [
-    {
-      name: "Gaivota Corrompida",
-      hp: 15,
-      dano: 5,
-      behavior: () => [
-        { type: "attackVida", value: 5 }
-      ],
-      img: "../img/jogo/inimigos/gaivota.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️",
-      zona: 2
-    },
-    {
-      name: "Marinheiro Reciclado",
-      hp: 30,
-      dano: 8,
-      behavior: () => [
-        { type: "attack", value: 8 }
-      ],
-      img: "../img/jogo/inimigos/marinheiroDeLixo.png",
-      tipoDano: "⚔️",
-      tipoVida: "🌧️",
-      zona: 2
-    }
-  ],
-  [
-    {
-      name: "Marinheiro Reciclado",
-      hp: 30,
-      dano: 8,
-      behavior: () => [
-        { type: "attack", value: 8 }
-      ],
-      img: "../img/jogo/inimigos/marinheiroDeLixo.png",
-      tipoDano: "⚔️",
-      tipoVida: "🌧️",
-      zona: 2
-    },
-    {
-      name: "Marinheiro Reciclado",
-      hp: 30,
-      dano: 8,
-      behavior: () => [
-        { type: "attack", value: 8 }
-      ],
-      img: "../img/jogo/inimigos/marinheiroDeLixo.png",
-      tipoDano: "⚔️",
-      tipoVida: "🌧️",
-      zona: 2
-    }
-  ],
-  [
-    {
-      name: "Gaivota Corrompida",
-      hp: 15,
-      dano: 5,
-      behavior: () => [
-        { type: "attackVida", value: 5 }
-      ],
-      img: "../img/jogo/inimigos/gaivota.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️",
-      zona: 2
-    },
-    {
-      name: "Gaivota Corrompida",
-      hp: 15,
-      dano: 5,
-      behavior: () => [
-        { type: "attackVida", value: 10 }
-      ],
-      img: "../img/jogo/inimigos/gaivota.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️",
-      zona: 2
-    }
-  ],
-  // 333333333333333333333
-  [
-    {
-      name: "Guarda",
-      hp: 25,
-      dano: 4,
-      behavior: () => [
-        { type: "attackVida", value: Math.random() < 0.7 ? 4 : 8 }
-      ],
-      img: "../img/jogo/inimigos/guardaGreco.png",
-      tipoDano: "(🔱)💥",
-      tipoVida: "❤️",
-      zona: 3
-    },
-    {
-      name: "Guarda",
-      hp: 25,
-      dano: 4,
-      behavior: () => [
-        { type: "attackVida", value: Math.random() < 0.7 ? 4 : 8 }
-      ],
-      img: "../img/jogo/inimigos/guardaGreco.png",
-      tipoDano: "(🔱)💥",
-      tipoVida: "❤️",
-      zona: 3
-    },
-  ],
-  [
-    {
-      name: "Sentinela",
-      hp: 55,
-      dano: 10,
-      behavior: () => [
-        { type: "attack", value: 10 }
-      ],
-      img: "../img/jogo/inimigos/sentinelaGreco.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 3
-    },
-    {
-      name: "Guarda",
-      hp: 25,
-      dano: 4,
-      behavior: () => [
-        { type: "attackVida", value: Math.random() < 0.7 ? 4 : 8 }
-      ],
-      img: "../img/jogo/inimigos/guardaGreco.png",
-      tipoDano: "(🔱)💥",
-      tipoVida: "❤️",
-      zona: 3
-    },
-  ],
-  [
-    {
-      name: "Casca Grossa",
-      hp: 65,
-      dano: 5,
-      behavior: () => [
-        { type: "attack", value: 5 }
-      ],
-      img: "../img/jogo/inimigos/cascaGrossa.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 3
-    },
-    {
-      name: "IA sacerdotisa",
-      hp: 24,
-      dano: 2,
-      behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 2 : 4 }],
-      img: "../img/jogo/inimigos/sacerdotisa.png",
-      tipoDano: "(💚🎭💊)💥",
-      tipoVida: "❤️",
-      zona: 3
-    },
-  ],
-  [
-    {
-      name: "Sacerdote Guerreiro",
-      hp: 40,
-      dano: 8,
-      behavior: () => [
-        { type: "attack", value: 8 }
-      ],
-      img: "../img/jogo/inimigos/sacerdoteGuerreiro.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 3
-    },
-    {
-      name: "Sacerdote Guerreiro",
-      hp: 40,
-      dano: 8,
-      behavior: () => [
-        { type: "attack", value: 8 }
-      ],
-      img: "../img/jogo/inimigos/sacerdoteGuerreiro.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 3
-    },
-  ],
-  [
-    {
-      name: "Valquiria",
-      hp: 40,
-      dano: 7,
-      behavior: () => [{ type: "attackVida", value: 7 }],
-      img: "../img/jogo/inimigos/valquiria.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️",
-      zona: 3
-    },
-    {
-      name: "Valquiria",
-      hp: 40,
-      dano: 7,
-      behavior: () => [{ type: "attackVida", value: 7 }],
-      img: "../img/jogo/inimigos/valquiria.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️",
-      zona: 3
-    },
-  ],
-  // 444444444444444444444
-  [
-    {
-      name: "Cão Corrompido",
-      hp: 50,
-      dano: 12,
-      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 12 : 24 }],
-      img: "../img/jogo/inimigos/cachorroPolicial.png",
-      tipoDano: "(⚔️)💥",
-      tipoVida: "❤️",
-      zona: 4
-    },
-    {
-      name: "Sentinela Corrompido",
-      hp: 80,
-      dano: 25,
-      behavior: () => [{ type: "attack", value: 25 }],
-      img: "../img/jogo/inimigos/sentinelaCorrompido.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 4
-    }
-  ],
-  [
-    {
-      name: "Vagante",
-      hp: 25,
-      dano: 10,
-      behavior: () => [{ type: "attackVida", value: 10 }],
-      img: "../img/jogo/inimigos/ceifadorFantasma.png",
-      tipoDano: "🔱",
+      name: "Nemora",
+      hp: 250,
+      maxHp: 250,
+      dano: 38,
+      behavior: () => [{ type: Math.random() < 0.75 ? "attack" : "attackVida", value: 38 }],
+      img: "../img/jogo/inimigos/animado/statico/nemora1.png",
+      tipoDano: "⚔️❔🔱",
       tipoVida: "🧿",
-      zona: 4
-    },
-    {
-      name: "Livro Corrompido",
-      hp: 30,
-      dano: 20,
-      behavior: () => [{ type: "attack", value: 20 }],
-      img: "../img/jogo/inimigos/livroMaligno.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 4
-    },
-    {
-      name: "Livro Corrompido",
-      hp: 30,
-      dano: 20,
-      behavior: () => [{ type: "attack", value: 20 }],
-      img: "../img/jogo/inimigos/livroMaligno.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 4
-    }
-  ],
-  [
-    {
-      name: "Pilha de Livros",
-      hp: 30,
-      dano: 0,
-      behavior: () => [{ type: "attack", value: 0 }],
-      img: "../img/jogo/inimigos/livros.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 4
-    },
-    {
-      name: "Vagante",
-      hp: 25,
-      dano: 10,
-      behavior: () => [{ type: "attackVida", value: 10 }],
-      img: "../img/jogo/inimigos/ceifadorFantasma.png",
-      tipoDano: "🔱",
-      tipoVida: "🧿",
-      zona: 4
-    },
-    {
-      name: "Vagante",
-      hp: 25,
-      dano: 10,
-      behavior: () => [{ type: "attackVida", value: 10 }],
-      img: "../img/jogo/inimigos/ceifadorFantasma.png",
-      tipoDano: "🔱",
-      tipoVida: "🧿",
-      zona: 4
-    }
-  ],
-  [
-    {
-      name: "Vagante",
-      hp: 25,
-      dano: 10,
-      behavior: () => [{ type: "attackVida", value: 10 }],
-      img: "../img/jogo/inimigos/ceifadorFantasma.png",
-      tipoDano: "🔱",
-      tipoVida: "🧿",
-      zona: 4
-    },
-    {
-      name: "Sacerdote Corrompido",
-      hp: 65,
-      dano: 15,
-      behavior: () => [{ type: "attackVida", value: 15 }],
-      img: "../img/jogo/inimigos/claus.png",
-      tipoDano: "🔱",
-      tipoVida: "🧿",
-      zona: 4
-    }
-  ],
-  [
-    {
-      name: "Pilha de Livros",
-      hp: 30,
-      maxHp: 30,
-      dano: 0,
-      behavior: () => [{ type: "attack", value: 0 }],
-      img: "../img/jogo/inimigos/livros.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 4
-    },
-    {
-      name: "Livro Corrompido",
-      hp: 30,
-      dano: 20,
-      behavior: () => [{ type: "attack", value: 20 }],
-      img: "../img/jogo/inimigos/livroMaligno.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 4
-    },
-    {
-      name: "Livro Corrompido",
-      hp: 30,
-      dano: 20,
-      behavior: () => [{ type: "attack", value: 20 }],
-      img: "../img/jogo/inimigos/livroMaligno.png",
-      tipoDano: "⚔️",
-      tipoVida: "❤️",
-      zona: 4
-    }
-  ],
-  // 555555555555555555555
-  [
-    {
-      name: "Guarda",
-      hp: 70,
-      dano: 10,
-      behavior: () => [{ type: "attack", value: 10 }],
-      img: "../img/jogo/inimigos/guarda.png",
-      tipoDano: "⚔️",
-      tipoVida: "🧿",
-      zona: 5
-    },
-    {
-      name: "Guarda",
-      hp: 70,
-      dano: 10,
-      behavior: () => [{ type: "attack", value: 10 }],
-      img: "../img/jogo/inimigos/guarda.png",
-      tipoDano: "⚔️",
-      tipoVida: "🧿",
-      zona: 5
-    }
-  ],
-  [
-    {
-      name: "Drone De Combate",
-      hp: 35,
-      dano: 10,
-      behavior: () => [{ type: "attackVida", value: 10 }],
-      img: "../img/jogo/inimigos/droneCombate.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️",
-      zona: 5
-    },
-    {
-      name: "Drone De Combate",
-      hp: 35,
-      dano: 10,
-      behavior: () => [{ type: "attackVida", value: 10 }],
-      img: "../img/jogo/inimigos/droneCombate.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️",
-      zona: 5
-    }
-  ],
-  [
-    {
-      name: "Guarda",
-      hp: 70,
-      dano: 10,
-      behavior: () => [{ type: "attack", value: 10 }],
-      img: "../img/jogo/inimigos/guarda.png",
-      tipoDano: "⚔️",
-      tipoVida: "🧿",
-      zona: 5
-    },
-    {
-      name: "Guarda Valquiria",
-      hp: 55,
-      dano: 18,
-      behavior: () => [{ type: "attackVida", value: 18 }],
-      img: "../img/jogo/inimigos/guardaValk.png",
-      tipoDano: "🔱",
-      tipoVida: "❤️",
-      zona: 5
-    }
-  ],
-  [
-    {
-      name: "Guarda",
-      hp: 70,
-      dano: 10,
-      behavior: () => [{ type: "attack", value: 10 }],
-      img: "../img/jogo/inimigos/guarda.png",
-      tipoDano: "⚔️",
-      tipoVida: "🧿",
-      zona: 5
-    },
-    {
-      name: "Guarda Forte",
-      hp: 65,
-      dano: 22,
-      behavior: () => [{ type: "attack", value: Math.random() < 0.7 ? 22 : 44 }],
-      img: "../img/jogo/inimigos/artilheiro.png",
-      tipoDano: "(⚔️)💥",
-      tipoVida: "🧿",
-      zona: 5
-    }
-  ],
-  [
-    {
-      name: "Guarda",
-      hp: 70,
-      dano: 10,
-      behavior: () => [{ type: "attack", value: 10 }],
-      img: "../img/jogo/inimigos/guarda.png",
-      tipoDano: "⚔️",
-      tipoVida: "🧿",
-      zona: 5
-    },
-    {
-      name: "Guarda Médico",
-      hp: 50,
-      dano: 20,
-      behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "heal", value: 20 }],
-      img: "../img/jogo/inimigos/guardaMedico.png",
-      tipoDano: "⚔️❓💚🎭💊",
-      tipoVida: "❤️",
-      zona: 5
+      zona: 1
     }
   ]
 ];
@@ -3705,6 +3719,19 @@ const bossModels = [
       dano: 38,
       behavior: () => [{ type: Math.random() < 0.75 ? "attack" : "attackVida", value: 38 }],
       img: "../img/jogo/inimigos/bossIa.png",
+      tipoDano: "⚔️❔🔱",
+      tipoVida: "🧿",
+      zona: 5
+    }
+  ],
+  [
+    {
+      name: "Nemora",
+      hp: 250,
+      maxHp: 250,
+      dano: 38,
+      behavior: () => [{ type: Math.random() < 0.75 ? "attack" : "attackVida", value: 38 }],
+      img: "../img/jogo/inimigos/animado/statico/nemora1",
       tipoDano: "⚔️❔🔱",
       tipoVida: "🧿",
       zona: 5
@@ -5715,134 +5742,210 @@ function takeDamage(dmg) {
   updateHUD();
 }
 
-function enemyTurn() {
-  setTimeout(() => {
-    [...enemies].forEach(e => {
-      const actions = e.behavior();
+function animateNemoraAttack(enemy) {
+    return new Promise(resolve => {
 
-      actions.forEach(act => {
-        // ⚔️ ATAQUE NORMAL
-        if (act.type === "attack") {
-          let dano = act.value;
+        const container = enemy.el;
+        const img = enemy.el.querySelector("img");
 
-          if (playerShield > 0) {
-            let absorbed = Math.min(dano, playerShield);
-            playerShield -= absorbed;
-            dano -= absorbed;
-            animateDamage(document.getElementById("player"));
-            floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
-          }
+        if (!img) return resolve();
 
-          if (dano > 0) {
-            playerHP -= dano;
-            animateDamage(document.getElementById("player"));
-            floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
-            redScreenGlow(300, 30);
-          }
-          // 💚 CURA
-        } else if (act.type === "heal") {
-          let target = null;
-          if (enemies.length > 0) {
-            if (enemies[0] !== e && enemies[0].hp > 0) {
-              target = enemies[0];
-            } else {
-              for (let t of enemies) {
-                if (t !== e && t.hp > 0) { target = t; break; }
-              }
-            }
-          }
-          if (!target) {
-            if (e.hp > 0) target = e;
-          }
-          if (target) {
-            const max = target.maxHp ?? target.hp;
-            const healed = act.value;
-            target.hp = Math.min(target.hp + healed, max);
-            floatText(target.el, `+${healed}💚`, "green");
-            target.el.classList.add("healed");
-            setTimeout(() => target.el.classList.remove("healed"), 600);
-          }
-          // 🔱 ATAQUE DIRETO À VIDA
-        } else if (act.type === "attackVida") {
-          playerHP -= act.value;
-          animateDamage(document.getElementById("player"));
-          floatText(document.getElementById("player"), `-${act.value}🔱`, "orange");
-          redScreenGlow(300, 30);
+        const frames = {
+            f1: "../img/jogo/inimigos/animado/atk/nemora1.png",
+            f2: "../img/jogo/inimigos/animado/atk/nemora2.png",
+            f3: "../img/jogo/inimigos/animado/atk/nemora3.png",
+            f4: "../img/jogo/inimigos/animado/atk/nemora4.png",
+            f5: "../img/jogo/inimigos/animado/atk/nemora5.png",
+            idle: "../img/jogo/inimigos/animado/statico/nemora1.png"
+        };
 
-          // ☠️ COMPORTAMENTO "MORRER" (auto-destruição após 3 turnos)
-        } else if (act.type === "morrer") {
-          if (e.turnosRestantes === undefined) {
-            e.turnosRestantes = 3;
-          }
+        const dashTime = 900;   // tempo indo
+        const backTime = 900;   // tempo voltando
+        const stopTime = 1000;  // tempo parado no frame 4
+        const frameDelay = 150; // velocidade das trocas 1 → 2 → 3
 
-          let dano = e.dano;
-          if (playerShield > 0) {
-            let absorbed = Math.min(dano, playerShield);
-            playerShield -= absorbed;
-            dano -= absorbed;
-            floatText(document.getElementById("player"), `-${e.dano}🛡️`, "orange");
-          }
-          if (dano > 0) {
-            playerHP -= dano;
-            redScreenGlow(300, 30);
-            floatText(document.getElementById("player"), `-${e.dano}⚔️`, "orange");
-          }
-          animateDamage(document.getElementById("player"));
+        // ----------------------------
+        // AVANÇAR E TROCAR 1 → 2 → 3
+        // ----------------------------
+        setTimeout(() => img.src = frames.f1, 0);
+        setTimeout(() => img.src = frames.f2, frameDelay);
+        setTimeout(() => img.src = frames.f3, frameDelay * 2);
 
-          e.turnosRestantes--;
-          if (e.turnosRestantes <= 0) {
-            floatText(e.el, `💀`, "red");
-            e.hp = 0;
-            checkEnemies();
-          }
-        }
+        // mover para frente
+        container.style.transition = `transform ${dashTime}ms ease`;
+        container.style.transform = "translateX(-45vw)";
 
-        // Fala da Ayla
-        if (e.name === "Ayla") {
-          setTimeout(() => {
-            const frasesAyla = [
-              "Raiva: COVARDE!",
-              "Medo: Por que atacou alguém indefesa?",
-              "Nojo: Sua fraqueza me da nojo",
-              "Tristeza: A IA me permitiu sentir...",
-              "Amor: Isso doi!",
-              "Ansiedade: VAMOS ACABE COM ELE AGORA! RÁPIDO",
-              "Angustia: Ainda estou aqui...",
-              "Ayla: Vencer minhas emoções não significa NADA!",
-              "Ayla: Juntese a IA, sua tal GAEA não vai te salvar!",
-              "Ayla: Salvar a natureza? Patético!",
-              "Ayla: EU SOU MAIS HUMANA QUE VOCÊ!",
-              "Ayla: Sou a mais forte dentre todas"
-            ];
-            const frase = frasesAyla[Math.floor(Math.random() * frasesAyla.length)];
-            floatText(e.el, frase, "violet");
-          }, 500);
-        }
+        // quando terminar de andar:
+        setTimeout(() => {
 
-        // MORTE DO JOGADOR
-        if (playerHP <= 0) {
-          document.getElementById("overlay").style.display = "block";
-          document.getElementById("popupOver").style.display = "flex";
-          gerarItens();
-          limiteMao = maoInicio;
-          document.getElementById("enemies").style.display = "none";
-          document.getElementById("lifeBarsContainer").style.display = "none";
-          energy = energyMax;
-          drawNewCards();
-          drawCards();
-          updateHUD();
-          playerShield = playerShieldInit;
-        }
-      });
+            // frame 4 parado
+            img.src = frames.f4;
+
+            setTimeout(() => {
+
+                // voltar com frame 5
+                img.src = frames.f5;
+
+                container.style.transition = `transform ${backTime}ms ease`;
+                container.style.transform = "translateX(0)";
+
+                setTimeout(() => {
+
+                    // idle ao terminar
+                    img.src = frames.idle;
+                    resolve();
+                  
+                }, backTime);
+                
+            }, stopTime);
+            shakeScreenNatural(10, 400);
+        }, dashTime);
     });
-    // FIM DO TURNO
-    energy = energyMax;
-    playerShield = playerShieldInit;
-    drawNewCards();
-    drawCards();
-    updateHUD();
-    checkGameOver();
-  }, 600);
+}
+
+async function enemyTurn() {
+  
+  await new Promise(res => setTimeout(res, 600));
+
+  for (const e of enemies) {
+    const actions = e.behavior();
+
+    for (const act of actions) {
+
+      // ⚔ ATAQUE NORMAL
+      if (act.type === "attack") {
+
+        if (e.name === "Nemora") {
+        await animateNemoraAttack(e);
+    }
+
+        let dano = act.value;
+
+        if (playerShield > 0) {
+          let absorbed = Math.min(dano, playerShield);
+          playerShield -= absorbed;
+          dano -= absorbed;
+
+          animateDamage(document.getElementById("player"));
+          floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
+        }
+
+        if (dano > 0) {
+          playerHP -= dano;
+
+          animateDamage(document.getElementById("player"));
+          floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
+          redScreenGlow(300, 30);
+        }
+
+      // 💚 CURA
+      } else if (act.type === "heal") {
+
+        let target = enemies.find(t => t !== e && t.hp > 0) || e;
+
+        const max = target.maxHp ?? target.hp;
+        const healed = act.value;
+
+        target.hp = Math.min(target.hp + healed, max);
+
+        floatText(target.el, `+${healed}💚`, "green");
+
+        target.el.classList.add("healed");
+        setTimeout(() => target.el.classList.remove("healed"), 600);
+
+      // 🔱 ATAQUE DIRETO À VIDA
+      } else if (act.type === "attackVida") {
+        
+        if (e.name === "Nemora") {
+        await animateNemoraAttack(e);
+    }
+
+        playerHP -= act.value;
+
+        animateDamage(document.getElementById("player"));
+        floatText(document.getElementById("player"), `-${act.value}🔱`, "orange");
+        redScreenGlow(300, 30);
+
+      // ☠️ AUTO-DESTRUIÇÃO (morrer)
+      } else if (act.type === "morrer") {
+
+        if (e.turnosRestantes === undefined) {
+          e.turnosRestantes = 3;
+        }
+
+        let dano = e.dano;
+
+        if (playerShield > 0) {
+          let absorbed = Math.min(dano, playerShield);
+          playerShield -= absorbed;
+          dano -= absorbed;
+          floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
+        }
+
+        if (dano > 0) {
+          playerHP -= dano;
+          floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
+          redScreenGlow(300, 30);
+        }
+
+        animateDamage(document.getElementById("player"));
+
+        e.turnosRestantes--;
+        if (e.turnosRestantes <= 0) {
+          floatText(e.el, `💀`, "red");
+          e.hp = 0;
+          checkEnemies();
+        }
+      }
+
+      // Fala da Ayla
+      if (e.name === "Ayla") {
+        setTimeout(() => {
+          const frasesAyla = [
+            "Raiva: COVARDE!",
+            "Medo: Por que atacou alguém indefesa?",
+            "Nojo: Sua fraqueza me da nojo",
+            "Tristeza: A IA me permitiu sentir...",
+            "Amor: Isso doi!",
+            "Ansiedade: VAMOS ACABE COM ELE AGORA! RÁPIDO",
+            "Angustia: Ainda estou aqui...",
+            "Ayla: Vencer minhas emoções não significa NADA!",
+            "Ayla: Juntese a IA, sua tal GAEA não vai te salvar!",
+            "Ayla: Salvar a natureza? Patético!",
+            "Ayla: EU SOU MAIS HUMANA QUE VOCÊ!",
+            "Ayla: Sou a mais forte dentre todas"
+          ];
+          floatText(e.el, frasesAyla[Math.floor(Math.random() * frasesAyla.length)], "violet");
+        }, 500);
+      }
+
+      // MORTE DO JOGADOR
+      if (playerHP <= 0) {
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("popupOver").style.display = "flex";
+        gerarItens();
+        limiteMao = maoInicio;
+        document.getElementById("enemies").style.display = "none";
+        document.getElementById("lifeBarsContainer").style.display = "none";
+        energy = energyMax;
+        drawNewCards();
+        drawCards();
+        updateHUD();
+        playerShield = playerShieldInit;
+        return; // encerra turno
+      }
+
+    } // fim do for actions
+  } // fim do for enemies
+
+
+  // FINAL DO TURNO
+  energy = energyMax;
+  playerShield = playerShieldInit;
+  drawNewCards();
+  drawCards();
+  updateHUD();
+  checkGameOver();
 }
 
 reviver = 0;
