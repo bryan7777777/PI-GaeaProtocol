@@ -3717,13 +3717,13 @@ const bossModels = [
       maxHp: 400,
       dano: 40,
       behavior() {
-    return [
-      { 
-        type: Math.random() < 0.75 ? "attack" : "attackVida",
-        value: this.dano 
-      }
-    ];
-  },
+        return [
+          {
+            type: Math.random() < 0.75 ? "attack" : "attackVida",
+            value: this.dano
+          }
+        ];
+      },
       img: "../img/jogo/inimigos/animado/statico/nemora1.png",
       tipoDano: "(⚔️❔🔱)⚜️🎭💊",
       tipoVida: "🧿",
@@ -3908,8 +3908,8 @@ function glowPlayer(color) {
   setTimeout(() => p.classList.remove("glow-blue", "glow-green", "glow-cintilante"), 1000);
 }
 
-nemoraDef=false;
-nemoraAtk=false;
+nemoraDef = false;
+nemoraAtk = false;
 
 function animateDamage(el) {
   // animacao padrao para qlqr inimigo
@@ -3924,7 +3924,7 @@ function animateDamage(el) {
   // frames
   const frame1 = "../img/jogo/inimigos/animado/def/nemora1.png";
   const frame2 = "../img/jogo/inimigos/animado/def/nemora2.png";
-  const idle    = "../img/jogo/inimigos/animado/statico/nemora4.png";
+  const idle = "../img/jogo/inimigos/animado/statico/nemora4.png";
   // velocidade da animação
   const speed = 220;
   // FRAME 1
@@ -3947,12 +3947,12 @@ function animateDamage(el) {
     }, 250);
   }, speed);
   floatText(enemies[0].el, `Postura Defensiva`, "aqua");
-  if (nemoraDef==true) {
-    enemies[0].hp+=5;
+  if (nemoraDef == true) {
+    enemies[0].hp += 5;
     floatText(enemies[0].el, `+5💚`, "lime");
   }
-  nemoraDef=true;
-  nemoraAtk=false;
+  nemoraDef = true;
+  nemoraAtk = false;
 }
 
 
@@ -5161,7 +5161,7 @@ function drawCards() {
 
           if (e.tipoVida === "🌧️") {
             marcarInimigos("❄️", "area")
-          } 
+          }
           animateDamage(e.el);
           e.hp -= dano;
           floatText(e.el, `-${dano}❄️`, "red");
@@ -5172,7 +5172,7 @@ function drawCards() {
         enemies.forEach(e => {
           if (e.tipoVida === "❄️" || e.tipoVida === "🌧️") {
             dano = card.power * 2;
-          } else if (e.tipoVida === "♨️"){
+          } else if (e.tipoVida === "♨️") {
             dano = card.power * 3;
           } else {
             dano = card.power;
@@ -5188,10 +5188,10 @@ function drawCards() {
         const alvo = [...enemies].reverse().find(e => e.hp > 0);
         let dano = card.basePower;
         if (alvo.tipoVida === "❄️" || alvo.tipoVida === "🌧️") {
-            dano = card.power * 2;
-          } else if (alvo.tipoVida === "♨️"){
-            dano = card.power * 3;
-          }
+          dano = card.power * 2;
+        } else if (alvo.tipoVida === "♨️") {
+          dano = card.power * 3;
+        }
         if (alvo) {
           animateDamage(alvo.el);
           alvo.hp -= dano;
@@ -5778,76 +5778,72 @@ function takeDamage(dmg) {
 }
 
 function animateNemoraAttack(enemy) {
-  if (nemoraAtk==true) {
-    enemies[0].dano+=5;
+  if (nemoraAtk == true) {
+    enemies[0].dano += 5;
   }
-    return new Promise(resolve => {
-        const container = enemy.el;
-        const img = enemy.el.querySelector("img");
+  return new Promise(resolve => {
+    const container = enemy.el;
+    const img = enemy.el.querySelector("img");
 
-        if (!img) return resolve();
-        const frames = {
-            f1: "../img/jogo/inimigos/animado/atk/nemora1.png",
-            f2: "../img/jogo/inimigos/animado/atk/nemora3.png",
-            f3: "../img/jogo/inimigos/animado/atk/nemora2.png",
-            f4: "../img/jogo/inimigos/animado/atk/nemora4.png",
-            f5: "../img/jogo/inimigos/animado/atk/nemora5.png",
-            idle: "../img/jogo/inimigos/animado/statico/nemora2.png"
-        };
-        const dashTime = 700; // tempo indo
-        const backTime = 500; // tempo voltando
-        const stopTime = 500; // tempo parado no frame 4
-        const frameDelay = 200; // velocidade das trocas 1/2/3
-        // AVANÇAR E TROCAR 1/2/3
-        setTimeout(() => img.src = frames.f1, 0);
-        setTimeout(() => img.src = frames.f2, frameDelay);
-        setTimeout(() => img.src = frames.f3, frameDelay * 2);
-        // mover para frente
-        container.style.transition = `transform ${dashTime}ms ease`;
-        container.style.transform = "translateX(-45vw)";
-        // quando terminar de andar:
+    if (!img) return resolve();
+    const frames = {
+      f1: "../img/jogo/inimigos/animado/atk/nemora1.png",
+      f2: "../img/jogo/inimigos/animado/atk/nemora3.png",
+      f3: "../img/jogo/inimigos/animado/atk/nemora2.png",
+      f4: "../img/jogo/inimigos/animado/atk/nemora4.png",
+      f5: "../img/jogo/inimigos/animado/atk/nemora5.png",
+      idle: "../img/jogo/inimigos/animado/statico/nemora2.png"
+    };
+    const dashTime = 700; // tempo indo
+    const backTime = 500; // tempo voltando
+    const stopTime = 500; // tempo parado no frame 4
+    const frameDelay = 200; // velocidade das trocas 1/2/3
+    // AVANÇAR E TROCAR 1/2/3
+    setTimeout(() => img.src = frames.f1, 0);
+    setTimeout(() => img.src = frames.f2, frameDelay);
+    setTimeout(() => img.src = frames.f3, frameDelay * 2);
+    // mover para frente
+    container.style.transition = `transform ${dashTime}ms ease`;
+    container.style.transform = "translateX(-45vw)";
+    // quando terminar de andar:
+    setTimeout(() => {
+      // frame 4 parado
+      img.src = frames.f4;
+      floatText(enemies[0].el, `Postura Agressiva`, "rgb(231, 76, 62)");
+      setTimeout(() => {
+        // voltar com frame 5
+        img.src = frames.f5;
+        container.style.transition = `transform ${backTime}ms ease`;
+        container.style.transform = "translateX(0)";
         setTimeout(() => {
-            // frame 4 parado
-            img.src = frames.f4;
-              floatText(enemies[0].el, `Postura Agressiva`, "rgb(231, 76, 62)");
-            setTimeout(() => {
-                // voltar com frame 5
-                img.src = frames.f5;
-                container.style.transition = `transform ${backTime}ms ease`;
-                container.style.transform = "translateX(0)";
-                setTimeout(() => {
-                    // idle ao terminar
-                    img.src = frames.idle;
-                    resolve();
-                }, backTime);
-            }, stopTime);
-            shakeScreenNatural(10, 400);
-            updateEnemyBars();
-            if (nemoraAtk==true) {
-              floatText(enemies[0].el, `+5⚜️`, "yellow");
-            }
-            nemoraDef=false;
-            nemoraAtk=true;
-        }, dashTime);
-    });
+          // idle ao terminar
+          img.src = frames.idle;
+          resolve();
+        }, backTime);
+      }, stopTime);
+      shakeScreenNatural(10, 400);
+      updateEnemyBars();
+      if (nemoraAtk == true) {
+        floatText(enemies[0].el, `+5⚜️`, "yellow");
+      }
+      nemoraDef = false;
+      nemoraAtk = true;
+    }, dashTime);
+  });
 }
 
 async function enemyTurn() {
-  
   await new Promise(res => setTimeout(res, 600));
-
   for (const e of enemies) {
     const actions = e.behavior();
 
     for (const act of actions) {
-
-      // ⚔ ATAQUE NORMAL
+      // ⚔️ ATK
       if (act.type === "attack") {
 
         if (e.name === "Nemora") {
-        await animateNemoraAttack(e);
-    }
-
+          await animateNemoraAttack(e);
+        }
         let dano = act.value;
 
         if (playerShield > 0) {
@@ -5858,18 +5854,14 @@ async function enemyTurn() {
           animateDamage(document.getElementById("player"));
           floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
         }
-
         if (dano > 0) {
           playerHP -= dano;
-
           animateDamage(document.getElementById("player"));
           floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
           redScreenGlow(300, 30);
         }
-
-      // 💚 CURA
+        // 💚 CURA
       } else if (act.type === "heal") {
-
         let target = enemies.find(t => t !== e && t.hp > 0) || e;
 
         const max = target.maxHp ?? target.hp;
@@ -5882,26 +5874,23 @@ async function enemyTurn() {
         target.el.classList.add("healed");
         setTimeout(() => target.el.classList.remove("healed"), 600);
 
-      // 🔱 ATAQUE DIRETO À VIDA
+        // 🔱 ATAQUE DIRETO À VIDA
       } else if (act.type === "attackVida") {
-        
         if (e.name === "Nemora") {
-        await animateNemoraAttack(e);
-    }
-
+          await animateNemoraAttack(e);
+        }
         playerHP -= act.value;
 
         animateDamage(document.getElementById("player"));
         floatText(document.getElementById("player"), `-${act.value}🔱`, "orange");
         redScreenGlow(300, 30);
 
-      // ☠️ AUTO-DESTRUIÇÃO (morrer)
+        // ☠️ AUTO-DESTRUIÇÃO (morrer)
       } else if (act.type === "morrer") {
 
         if (e.turnosRestantes === undefined) {
           e.turnosRestantes = 3;
         }
-
         let dano = e.dano;
 
         if (playerShield > 0) {
@@ -5910,13 +5899,11 @@ async function enemyTurn() {
           dano -= absorbed;
           floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
         }
-
         if (dano > 0) {
           playerHP -= dano;
           floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
           redScreenGlow(300, 30);
         }
-
         animateDamage(document.getElementById("player"));
 
         e.turnosRestantes--;
@@ -7028,11 +7015,11 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
   })();
 }
 
-mapaCanvas("div2", 10, 5, "#45ff45ff", "#ff8834ff",'🐺');
-mapaCanvas("div7", 10, 5, "#60ff34ff", "#34ffe1ff",'🦑');
-mapaCanvas("div8", 10, 7, "#fbfbfbff", "#737373ff",'🗽');
-mapaCanvas("div9", 10, 7, "#f5fd54ff", "#5db0e7ff",'👻');
-mapaCanvas("div10", 10, 9, "#5db0e7ff", "#e75d5dff",'🤖');
+mapaCanvas("div2", 10, 5, "#45ff45ff", "#ff8834ff", '🐺');
+mapaCanvas("div7", 10, 5, "#60ff34ff", "#34ffe1ff", '🦑');
+mapaCanvas("div8", 10, 7, "#fbfbfbff", "#737373ff", '🗽');
+mapaCanvas("div9", 10, 7, "#f5fd54ff", "#5db0e7ff", '👻');
+mapaCanvas("div10", 10, 9, "#5db0e7ff", "#e75d5dff", '🤖');
 
 var myMusic = new Audio("./../audio/artblock.ogg");
 myMusic.loop = true;
