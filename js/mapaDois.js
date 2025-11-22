@@ -3134,6 +3134,26 @@ const normalModels = [
       zona: 5
     }
   ],
+  // [
+  //   {
+  //     name: "Nemora",
+  //     hp: 400,
+  //     maxHp: 400,
+  //     dano: 40,
+  //     behavior() {
+  //       return [
+  //         {
+  //           type: Math.random() < 0.75 ? "attack" : "attackVida",
+  //           value: this.dano
+  //         }
+  //       ];
+  //     },
+  //     img: "../img/jogo/inimigos/animado/statico/nemora1.png",
+  //     tipoDano: "(⚔️❔🔱)⚜️🎭💊",
+  //     tipoVida: "🧿",
+  //     zona: 1
+  //   }
+  // ]
 ];
 
 // ELITE
@@ -3697,19 +3717,19 @@ const bossModels = [
     }
   ],
   // 5555555555555555
-  [
-    {
-      name: "IA",
-      hp: 250,
-      maxHp: 250,
-      dano: 38,
-      behavior: () => [{ type: Math.random() < 0.75 ? "attack" : "attackVida", value: 38 }],
-      img: "../img/jogo/inimigos/bossIa.png",
-      tipoDano: "⚔️❔🔱",
-      tipoVida: "🧿",
-      zona: 5
-    }
-  ],
+  // [
+  //   {
+  //     name: "IA",
+  //     hp: 250,
+  //     maxHp: 250,
+  //     dano: 38,
+  //     behavior: () => [{ type: Math.random() < 0.75 ? "attack" : "attackVida", value: 38 }],
+  //     img: "../img/jogo/inimigos/bossIa.png",
+  //     tipoDano: "⚔️❔🔱",
+  //     tipoVida: "🧿",
+  //     zona: 5
+  //   }
+  // ],
   [
     {
       name: "Nemora",
@@ -3922,9 +3942,22 @@ function animateDamage(el) {
   const isNemora = img.src.includes("nemora");
   if (!isNemora) return;
   // frames
-  const frame1 = "../img/jogo/inimigos/animado/def/nemora1.png";
-  const frame2 = "../img/jogo/inimigos/animado/def/nemora2.png";
-  const idle = "../img/jogo/inimigos/animado/statico/nemora4.png";
+  if (nemoraDef==true) {
+    frame1 = "../img/jogo/inimigos/animado/def/nemora11.png";
+  frame2 = "../img/jogo/inimigos/animado/def/nemora22.png";
+  idle = "../img/jogo/inimigos/animado/statico/nemora444.png";
+  } else if (nemoraAtk==true) {
+    frame1 = "../img/jogo/inimigos/animado/def/nemora111.png";
+  frame2 = "../img/jogo/inimigos/animado/def/nemora222.png";
+  idle = "../img/jogo/inimigos/animado/statico/nemora444.png";
+  } else {
+    frame1 = "../img/jogo/inimigos/animado/def/nemora1.png";
+  frame2 = "../img/jogo/inimigos/animado/def/nemora2.png";
+  idle = "../img/jogo/inimigos/animado/statico/nemora444.png";
+  }
+  stopNemoraFire();
+  startNemoraSnow();
+  
   // velocidade da animação
   const speed = 220;
   // FRAME 1
@@ -3948,14 +3981,64 @@ function animateDamage(el) {
   }, speed);
   floatText(enemies[0].el, `Postura Defensiva`, "aqua");
   if (nemoraDef == true) {
-    enemies[0].hp += 5;
+    if (enemies[0].hp<100) {
+      enemies[0].hp += 20;
+    floatText(enemies[0].el, `+20💚`, "lime");
+
+    } else if (enemies[0].hp<200) {
+      enemies[0].hp += 15;
+    floatText(enemies[0].el, `+15💚`, "lime");
+
+    } else if (enemies[0].hp<300) {
+      enemies[0].hp += 10;
+    floatText(enemies[0].el, `+10💚`, "lime");
+
+    } else {
+      enemies[0].hp += 5;
     floatText(enemies[0].el, `+5💚`, "lime");
+    }
   }
   nemoraDef = true;
   nemoraAtk = false;
 }
 
+let nemoraSnowInterval = null;
 
+function startNemoraSnow() {
+  const container = document.getElementById("nemoraSnow");
+  if (!container) return;
+
+  container.style.display = "block";
+
+  if (nemoraSnowInterval) return;
+
+  nemoraSnowInterval = setInterval(() => {
+    const p = document.createElement("div");
+    p.classList.add("nemora-particle");
+
+    // agora cobre de 0% até 100% da tela
+    p.style.left = Math.random() * 100 + "vw";
+
+    // velocidade vertical permanece igual
+    p.style.animationDuration = (3 + Math.random() * 2) + "s";
+
+    container.appendChild(p);
+
+    setTimeout(() => p.remove(), 6000);
+  }, 30); // forte + preenchendo a tela inteira
+}
+
+function stopNemoraSnow() {
+  const container = document.getElementById("nemoraSnow");
+  if (!container) return;
+
+  container.style.display = "none";
+
+  clearInterval(nemoraSnowInterval);
+  nemoraSnowInterval = null;
+
+  container.innerHTML = "";
+}
 
 function drawCards() {
   const cards = document.getElementById("cards");
@@ -5786,14 +5869,37 @@ function animateNemoraAttack(enemy) {
     const img = enemy.el.querySelector("img");
 
     if (!img) return resolve();
-    const frames = {
+
+    if (nemoraAtk==true) {
+      frames = {
+      f1: "../img/jogo/inimigos/animado/atk/nemora11.png",
+      f2: "../img/jogo/inimigos/animado/atk/nemora33.png",
+      f3: "../img/jogo/inimigos/animado/atk/nemora22.png",
+      f4: "../img/jogo/inimigos/animado/atk/nemora44.png",
+      f5: "../img/jogo/inimigos/animado/atk/nemora55.png",
+      idle: "../img/jogo/inimigos/animado/statico/nemora222.png"
+    };
+    } else if (nemoraDef==true) {
+      frames = {
+      f1: "../img/jogo/inimigos/animado/atk/nemora111.png",
+      f2: "../img/jogo/inimigos/animado/atk/nemora333.png",
+      f3: "../img/jogo/inimigos/animado/atk/nemora222.png",
+      f4: "../img/jogo/inimigos/animado/atk/nemora444.png",
+      f5: "../img/jogo/inimigos/animado/atk/nemora55.png",
+      idle: "../img/jogo/inimigos/animado/statico/nemora222.png"
+    };
+    } else {
+      frames = {
       f1: "../img/jogo/inimigos/animado/atk/nemora1.png",
       f2: "../img/jogo/inimigos/animado/atk/nemora3.png",
       f3: "../img/jogo/inimigos/animado/atk/nemora2.png",
       f4: "../img/jogo/inimigos/animado/atk/nemora4.png",
-      f5: "../img/jogo/inimigos/animado/atk/nemora5.png",
-      idle: "../img/jogo/inimigos/animado/statico/nemora2.png"
+      f5: "../img/jogo/inimigos/animado/atk/nemora55.png",
+      idle: "../img/jogo/inimigos/animado/statico/nemora222.png"
     };
+    }
+    stopNemoraSnow();
+    startNemoraFire();
     const dashTime = 700; // tempo indo
     const backTime = 500; // tempo voltando
     const stopTime = 500; // tempo parado no frame 4
@@ -5831,6 +5937,45 @@ function animateNemoraAttack(enemy) {
     }, dashTime);
   });
 }
+
+let nemoraFireInterval = null;
+
+function startNemoraFire() {
+  const container = document.getElementById("nemoraFire");
+  if (!container) return;
+
+  container.style.display = "block";
+
+  if (nemoraFireInterval) return;
+
+  nemoraFireInterval = setInterval(() => {
+    const p = document.createElement("div");
+    p.classList.add("nemora-fire-particle");
+
+    // fogo aparece em qualquer lugar, igual nevasca
+    p.style.left = Math.random() * 100 + "vw";
+
+    // velocidade aleatória suave
+    p.style.animationDuration = (2 + Math.random() * 1.5) + "s";
+
+    container.appendChild(p);
+
+    setTimeout(() => p.remove(), 4000);
+  }, 25); // bem intenso, estilo chamas vivas
+}
+
+function stopNemoraFire() {
+  const container = document.getElementById("nemoraFire");
+  if (!container) return;
+
+  container.style.display = "none";
+
+  clearInterval(nemoraFireInterval);
+  nemoraFireInterval = null;
+
+  container.innerHTML = "";
+}
+
 
 async function enemyTurn() {
   await new Promise(res => setTimeout(res, 600));
