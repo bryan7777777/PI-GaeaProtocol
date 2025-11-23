@@ -4004,8 +4004,20 @@ function animateDamage(el) {
 
 let nemoraSnowInterval = null;
 
+function mudarBackground(tipo) {
+  const jogo = document.getElementById("jogo");
+  if (tipo === "atk") {
+    jogo.style.backgroundImage = "url('../img/jogo/background/nemoraAtk.png')";
+  } 
+  else if (tipo === "def") {
+    jogo.style.backgroundImage = "url('../img/jogo/background/nemoraDef.png')";
+  }
+}
+
+
 function startNemoraSnow() {
   const container = document.getElementById("nemoraSnow");
+  mudarBackground('def');
   if (!container) return;
 
   container.style.display = "block";
@@ -5928,6 +5940,7 @@ function animateNemoraAttack(enemy) {
         }, backTime);
       }, stopTime);
       shakeScreenNatural(10, 400);
+      mudarBackground('atk');
       updateEnemyBars();
       if (nemoraAtk == true) {
         floatText(enemies[0].el, `+5⚜️`, "yellow");

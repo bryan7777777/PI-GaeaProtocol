@@ -68,3 +68,9 @@
     opacity: 0;
   }
 }
+
+#jogo {
+  transition: background-image 0.6s ease-in-out, background 0.6s ease-in-out;
+  background-size: cover;
+  background-position: center;
+}
