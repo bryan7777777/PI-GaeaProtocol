@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Metadados -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocool - Gaea Protocol</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Megrim&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Container de partículas -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Overlay interativo -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Navegação (normalmente vem do index, mas inclusa aqui para compatibilidade) -->
+    <!-- <nav>
+        <div class="nav-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="protocool.html">Protocool</a></li>
+                <li><a href="about.html">Sobre</a></li>
+            </ul>
+        </div>
+    </nav> -->
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content" data-page="protocool">
+        <!-- Página PROTOCOOL -->
+        <div class="page-content active" id="protocool-page">
+            <!-- Botão para voltar -->
+            <button class="back-button" onclick="showHome()">← Voltar</button>
+            <h1>Protocool</h1>
+
+            <section>
+                <!-- Introdução aos Protocolos -->
+                <p>Cada Protocool foi criada para restaurar um aspecto específico da biosfera. Elas refletem filosofias diferentes sobre recuperação e prioridades distintas.</p>
+                
+                <!-- Grid com cards dos Protocolos -->
+                <div class="protocol-grid">
+                    <!-- Gleba Protocol -->
+                    <div class="protocol-card">
+                        <h3>Gleba Protocol</h3>
+                        <p class="protocol-subtitle">"Da terra virá o renascimento"</p>
+                        <p>Foco: solo e vegetação. Ferramentas e cartas que priorizam cura do terreno e geração de recursos sustentáveis. Builds que exploram regeneração contínua.</p>
+                    </div>
+                    
+                    <!-- Flora Protocol -->
+                    <div class="protocol-card">
+                        <h3>Flora Protocol</h3>
+                        <p class="protocol-subtitle">"Da floresta virá o renascimento"</p>
+                        <p>Foco: floresta e biodiversidade. Ferramentas e cartas que priorizam cura do ecossistema e geração de recursos naturais. Builds que exploram regeneração contínua.</p>
+                    </div>
+                    
+                    <!-- Fluvial Protocol -->
+                    <div class="protocol-card">
+                        <h3>Fluvial Protocol</h3>
+                        <p class="protocol-subtitle">"Do rio virá o renascimento"</p>
+                        <p>Foco: rios e ecossistemas aquáticos. Ferramentas e cartas que priorizam cura do ambiente aquático e geração de recursos hídricos. Builds que exploram regeneração contínua.</p>
+                    </div>
+                    
+                    <!-- Terrestre Protocol -->
+                    <div class="protocol-card">
+                        <h3>Terrestre Protocol</h3>
+                        <p class="protocol-subtitle">"Do solo virá o renascimento"</p>
+                        <p>Foco: solo e vegetação. Ferramentas e cartas que priorizam cura do terreno e geração de recursos sustentáveis. Builds que exploram regeneração contínua.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Script principal -->
+    <script src="js/script.js" defer></script>
+</body>
+</html>

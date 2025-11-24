@@ -1,161 +1,215 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Efeito de digitação para o título
-    const title = document.querySelector('header h1');
-    const originalTitle = title.textContent;
-    title.textContent = '';
-    
-    let i = 0;
-    const typingEffect = setInterval(() => {
-        if (i < originalTitle.length) {
-            title.textContent += originalTitle.charAt(i);
-            i++;
-        } else {
-            clearInterval(typingEffect);
-            title.classList.add('pulse');
-        }
-    }, 100);
+// Dados do painel lateral com informações sobre cada seção
+const panelData = {
+  sobre: {
+    title: 'Sobre',
+    content: 'Gaea Protocol é um deckbuilder roguelike tático que combina estratégia profunda com mecânicas acessíveis. Cada run é uma jornada única através de um mundo pós-apocalíptico, onde suas escolhas moldam não apenas seu deck, mas o destino do planeta.',
+    page: 'sobre-page'
+  },
+  historia: {
+    title: 'História',
+    content: 'Em um futuro onde a Terra está à beira do colapso, duas IAs - GAEA e Abaddon - travam uma guerra pelo destino da humanidade. Como piloto, você deve navegar por este conflito, descobrindo segredos e tomando decisões que afetam o equilíbrio do poder.',
+    page: 'historia-page'
+  },
+  protocool: {
+    title: 'Protocool',
+    content: 'Cinco Protocolos distintos, cada um com sua filosofia e estilo de jogo único. Do Protocolo Gleba com sua regeneração sustentável ao Protocolo Glacial com seu controle absoluto, escolha seu caminho para a restauração.',
+    page: 'protocool-page'
+  },
+  gameplay: {
+    title: 'Jogabilidade',
+    content: 'Combine cartas estrategicamente, colete relíquias poderosas e enfrente desafios crescentes. Cada decisão importa, desde a construção do seu deck até as escolhas de rota no mapa procedural.',
+    page: 'gameplay-page'
+  },
+  mundo: {
+    title: 'O Mundo',
+    content: 'Explore um planeta transformado pela guerra entre IAs. De florestas contaminadas a cidades em ruínas, cada bioma apresenta seus próprios desafios e oportunidades para restauração.',
+    page: 'mundo-page'
+  },
+  personagens: {
+    title: 'Personagens',
+    content: 'Três pilotos únicos, cada um com seu próprio mecha e estilo de jogo. Escolha entre velocidade, poder bruto ou resistência inabalável para enfrentar as ameaças do mundo devastado.',
+    page: 'personagens-page'
+  }
+};
 
-    
+/**
+ * Inicializa o sistema de partículas do fundo
+ * Cria partículas com posições e animações aleatórias
+ */
+function initParticles() {
+  const particlesContainer = document.getElementById('particles');
+  if (!particlesContainer) return;
 
-    // Scroll suave para links de navegação
-    document.querySelectorAll('nav a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 100,
-                    behavior: 'smooth'
-                });
-            }
-        });
+  for (let i = 0; i < 60; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDelay = Math.random() * 20 + 's';
+    p.style.animationDuration = (Math.random() * 15 + 15) + 's';
+    particlesContainer.appendChild(p);
+  }
+}
+
+/**
+ * Abre o painel lateral com o conteúdo da seção selecionada
+ * @param {string} section - Identificador da seção a ser exibida
+ */
+function openPanel(section) {
+  const panel = document.getElementById('sidePanel');
+  const overlay = document.getElementById('overlay');
+  const content = document.getElementById('panelContent');
+  const data = panelData[section];
+
+  if (!data || !content) return;
+
+  content.innerHTML = `
+    <h2>${data.title}</h2>
+    <p>${data.content}</p>
+    <button class="panel-button" onclick="showPage('${data.page}')">Ver Página Completa</button>
+  `;
+
+  panel.classList.add('active');
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+/**
+ * Fecha o painel lateral e remove o overlay
+ */
+function closePanel() {
+  const panel = document.getElementById('sidePanel');
+  const overlay = document.getElementById('overlay');
+  if (panel) panel.classList.remove('active');
+  if (overlay) overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+/**
+ * Navega para uma página específica do site
+ * @param {string} pageId - Identificador da página de destino
+ */
+function showPage(pageId) {
+  const pageName = pageId.replace('-page', '');
+  loadPage(pageName);
+  closePanel();
+}
+
+/**
+ * Carrega uma página do site
+ * Detecta automaticamente o caminho correto baseado na localização do arquivo
+ * @param {string} pageName - Nome da página
+ */
+function loadPage(pageName) {
+  // Determina o caminho correto baseado na página atual
+  const isHomePage = window.location.pathname.includes('index.html') || window.location.pathname === '/';
+  const pagesPath = isHomePage ? 'pages/' : '';
+  
+  fetch(`${pagesPath}${pageName}.html`)
+    .then(response => {
+      if (!response.ok) throw new Error('Página não encontrada');
+      return response.text();
+    })
+    .then(html => {
+      const main = document.querySelector('.main-content');
+      if (main) {
+        main.innerHTML = html;
+        // Reinicializa partículas na nova página
+        initParticles();
+        // Configura listeners para a nova página
+        setupEventListeners();
+      }
+      document.body.style.overflow = pageName === 'home' ? 'hidden' : 'auto';
+      
+      // Gerencia o footer
+      const footer = document.querySelector('.site-footer');
+      if (footer) {
+        footer.classList.toggle('show', pageName !== 'home');
+      }
+      
+      window.scrollTo(0, 0);
+    })
+    .catch(error => console.error('Erro ao carregar página:', error));
+}
+
+/**
+ * Volta para a página inicial
+ */
+function showHome() {
+  // Se já está na página inicial, apenas scroll para o topo
+  const isOnHome = document.getElementById('home') !== null;
+  if (isOnHome) {
+    window.scrollTo(0, 0);
+  } else {
+    // Se está em uma página filha, volta para o index
+    window.location.href = '../index.html';
+  }
+}
+
+/**
+ * Configura os event listeners necessários
+ * - Overlay para fechar o painel
+ * - Observer para controle de scroll
+ */
+function setupEventListeners() {
+  const overlay = document.getElementById('overlay');
+  if (overlay) {
+    overlay.removeEventListener('click', closePanel);
+    overlay.addEventListener('click', closePanel);
+  }
+
+  const sidePanel = document.getElementById('sidePanel');
+  if (sidePanel) {
+    const observer = new MutationObserver(() => {
+      document.body.style.overflow = sidePanel.classList.contains('active') ? 'hidden' : 'auto';
     });
+    observer.observe(sidePanel, { attributes: true, attributeFilter: ['class'] });
+  }
+}
 
-    // Efeito hover para containers
-    document.querySelectorAll('.container').forEach(container => {
-        container.addEventListener('mouseenter', () => {
-            container.style.transform = 'translateX(5px)';
-        });
-        container.addEventListener('mouseleave', () => {
-            container.style.transform = 'translateX(0)';
-        });
+/**
+ * Alterna o menu móvel (abre/fecha o hambúrguer)
+ */
+function toggleMobileMenu() {
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  
+  if (hamburger && navLinks) {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  }
+}
+
+/**
+ * Fecha o menu móvel quando um link é clicado
+ */
+function closeMobileMenu() {
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  
+  if (hamburger && navLinks) {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('active');
+  }
+}
+
+// Inicialização do site quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', () => {
+  initParticles();
+  setupEventListeners();
+  
+  // Expõe funções necessárias globalmente
+  window.openPanel = openPanel;
+  window.closePanel = closePanel;
+  window.showPage = showPage;
+  window.showHome = showHome;
+  window.toggleMobileMenu = toggleMobileMenu;
+  window.closeMobileMenu = closeMobileMenu;
+  
+  // Fecha menu móvel quando clica em um link
+  const navLinks = document.getElementById('navLinks');
+  if (navLinks) {
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
     });
-
-    // Formulário de newsletter
-    const newsletterForm = document.getElementById('newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            alert(`Obrigado por assinar nossa newsletter! Um e-mail foi enviado para ${email}`);
-            this.reset();
-        });
-    }
-
-    // Carregar dados dinâmicos
-    setTimeout(() => {
-        const features = [
-            "Sistema de Combate Tático",
-            "Geração Procedural de Mapas",
-            "Múltiplos Modelos de Mechas",
-            "Sistema de Evolução de Cartas",
-            "Eventos Narrativos Ramificados"
-        ];
-        
-        const featuresList = document.createElement('ul');
-        featuresList.className = 'features-list';
-        featuresList.style.margin = '2rem 0';
-        featuresList.style.paddingLeft = '2rem';
-        
-        features.forEach(feature => {
-            const li = document.createElement('li');
-            li.textContent = `⚡ ${feature}`;
-            li.style.marginBottom = '0.8rem';
-            li.style.color = 'var(--color-highlight)';
-            li.style.fontFamily = 'var(--font-main)';
-            featuresList.appendChild(li);
-        });
-        
-        const systemSection = document.querySelector('#gameplay h2');
-        if (systemSection) {
-            systemSection.insertAdjacentElement('afterend', featuresList);
-        }
-    }, 1500);
-});
-
-
-
-// background.js
-document.addEventListener('DOMContentLoaded', function() {
-    const canvas = document.getElementById('wave-background');
-    const ctx = canvas.getContext('2d');
-    
-    // Configurações fixas das ondas
-    const waveSettings = {
-        lineCount: 30,
-        amplitude: 10,
-        frequency: 0.5,
-        speed: 1,
-        wavyness: 2,
-        fuzz: 3,
-        color: 'rgba(122, 156, 110, 0.3)'
-    };
-    
-    let time = 0;
-    let wavynessOffsets = [];
-    
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    
-    function updateOffsets(count) {
-        wavynessOffsets = [];
-        for (let i = 0; i < count; i++) {
-            wavynessOffsets.push(Math.random() * 1000);
-        }
-    }
-    
-    function draw() {
-        const { lineCount, amplitude, frequency, speed, wavyness, fuzz, color } = waveSettings;
-        const spacing = canvas.height / (lineCount + 1);
-        
-        if (wavynessOffsets.length !== lineCount) {
-            updateOffsets(lineCount);
-        }
-        
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 1;
-        
-        for (let i = 0; i < lineCount; i++) {
-            const yBase = spacing * (i + 1);
-            const offset = wavynessOffsets[i];
-            
-            ctx.beginPath();
-            for (let x = 0; x < canvas.width; x++) {
-                const wave = Math.sin((x * 0.01 * frequency) + time + i * 0.2);
-                const waveOffset = Math.sin((x * 0.005) + time * 1.5 + offset) * wavyness;
-                const randomFuzz = (Math.random() - 0.5) * fuzz;
-                
-                const y = yBase + (wave + waveOffset) * amplitude + randomFuzz;
-                
-                if (x === 0) {
-                    ctx.moveTo(x, y);
-                } else {
-                    ctx.lineTo(x, y);
-                }
-            }
-            ctx.stroke();
-        }
-        
-        time += 0.01 * speed;
-        requestAnimationFrame(draw);
-    }
-    
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    draw();
+  }
 });

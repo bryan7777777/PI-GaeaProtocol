@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Metadados -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Gaea Protocol</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Megrim&display=swap">
+</head>
+<body>
+    <!-- Container de partículas animadas -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Overlay que fecha o painel lateral quando clicado -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content" data-page="sobre">
+        <!-- Página SOBRE -->
+        <div class="page-content active" id="sobre-page">
+            <!-- Botão para voltar à página inicial -->
+            <button class="back-button" onclick="showHome()">← Voltar</button>
+            <h1>Sobre</h1>
+
+            <section>
+                <!-- Introdução ao jogo -->
+                <p><strong>Gaea Protocol</strong> é um jogo independente que combina mecânicas de deckbuilding com exploração procedural. O foco é oferecer partidas curtas e estratégicas em que cada escolha altera o fluxo do jogo. Construímos o design para valorizar decisões informadas: gastar recursos, atualizar cartas, escolher rotas no mapa e interagir com eventos que podem mudar o resultado de uma run.</p>
+
+                <!-- Explicação da visão de design -->
+                <h2>Visão de design</h2>
+                <p>Clareza mecânica, risco-recompensa e rejogabilidade. Cada componente — cartas, mechas, relíquias e inimigos — foi pensado para gerar combinações interessantes, mantendo partidas balanceadas e justas.</p>
+
+                <!-- Plataformas onde o jogo será disponibilizado -->
+                <h2>Plataformas alvo</h2>
+                <p>PC (Windows) com possibilidade de portar para consoles dependendo do interesse e das vendas iniciais. Controles e UI são desenhados para funcionar bem tanto com mouse/teclado quanto com gamepad.</p>
+            </section>
+
+            <section class="intro-section">
+                <!-- Resumo do conceito -->
+                <h2>O conceito em poucas linhas</h2>
+                <p>Gaea Protocol é pensado para jogadores que apreciam decisões táticas e progressão por partida. O núcleo do jogo é um sistema de deckbuilding aplicado a combates por turno: cada carta tem utilidade imediata e potencial de sinergia com outras cartas e relíquias. Mapas procedurais combinam combate, eventos e nós especiais que exigem escolhas — arriscar, poupar ou adaptar-se.</p>
+
+                <!-- Motivos para jogar -->
+                <h2>Por que jogar?</h2>
+                <p>Se você gosta de otimizar, experimentar builds e enfrentar desafios crescentes, encontrará nas runs de Gaea um espaço para aprendizagem e experimentação. A estética em pixel art cria contraste entre a dureza do cenário e a clareza das mecânicas. O jogo prioriza clareza de feedback, decisões com consequência e variedade entre runs.</p>
+
+                <!-- Aviso sobre assets -->
+                <h2>Imagens / Arte</h2>
+                <p>Espaços reservados para arte e banners. Substitua as imagens em <code>/assets/</code> quando tiver as artes finais.</p>
+            </section>
+        </div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="site-footer show">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Gaea Protocol</h3>
+                <p>Um jogo indie brasileiro de estratégia e deckbuilding.</p>
+                <div class="social-links">
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="#" title="Steam"><i class="fab fa-steam"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a onclick="openPanel('sobre')">Sobre</a></li>
+                    <li><a onclick="openPanel('gameplay')">Como Jogar</a></li>
+                    <li><a onclick="openPanel('personagens')">Personagens</a></li>
+                </ul>
+            </div>
+
+            <!-- <div class="footer-section">
+                <h4>Contato</h4>
+                <p>contato@gaeaprotocol.com</p>
+                <p>Desenvolvido por Studio Gaea</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gaea Protocol. Todos os direitos reservados.</p>
+        </div>
+    </footer> -->
+
+    <!-- Script principal -->
+    <script src="../js/script.js" defer></script>
+</body>
+</html>

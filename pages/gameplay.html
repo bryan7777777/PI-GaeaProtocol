@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Metadados -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogabilidade - Gaea Protocol</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Megrim&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Script principal -->
+    <script src="../js/script.js" defer></script>
+</head>
+<body>
+    <!-- Container de partículas -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Overlay interativo -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content" data-page="gameplay">
+        <!-- Página JOGABILIDADE -->
+        <div class="page-content active" id="gameplay-page">
+            <!-- Botão para voltar -->
+            <button class="back-button" onclick="showHome()">← Voltar</button>
+            <h1>Jogabilidade</h1>
+
+            <section>
+                <!-- Visão geral do jogo -->
+                <h2>Visão geral</h2>
+                <p>Gaea Protocol é uma experiência tática com ênfase em escolhas por run. O jogador inicia com um deck base e, ao progredir, escolhe cartas, relíquias e upgrades em nós do mapa. Combates são por turno: cada carta tem custo e efeito claro, e a ordem de uso importa.</p>
+
+                <!-- Mecânicas principais -->
+                <h2>Mecânicas principais</h2>
+                <p><strong>Deckbuilding:</strong> Adicione e remova cartas durante a run para ajustar sua estratégia.</p>
+                <p><strong>Relíquias:</strong> Modificadores permanentes da run que alteram regras ou ampliam capacidades.</p>
+                <p><strong>Nós e Eventos:</strong> Decisões fora de combate que testam recursos, moralidade e risco.</p>
+
+                <!-- Sistema de progressão -->
+                <h2>Progressão</h2>
+                <p>Concluindo runs, jogadores desbloqueiam cartas, modificadores de dificuldade e relíquias adicionais. O jogo recompensa experimentação, com caminhos de especialização por Protocool e por tipo de mecha.</p>
+            </section>
+        </div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="site-footer show">
+        <div class="footer-content">
+            <!-- Seção principal -->
+            <div class="footer-section">
+                <h3>Gaea Protocol</h3>
+                <p>Um jogo indie brasileiro de estratégia e deckbuilding.</p>
+                
+                <!-- Links sociais -->
+                <div class="social-links">
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="#" title="Steam"><i class="fab fa-steam"></i></a>
+                </div>
+            </div>
+            
+            <!-- Links rápidos -->
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a onclick="openPanel('sobre')">Sobre</a></li>
+                    <li><a onclick="openPanel('gameplay')">Como Jogar</a></li>
+                    <li><a onclick="openPanel('personagens')">Personagens</a></li>
+                </ul>
+            </div>
+
+            <!-- Contato -->
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p>contato@gaeaprotocol.com</p>
+                <p>Desenvolvido por Studio Gaea</p>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gaea Protocol. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Painel lateral (abre quando clica nos links do menu) -->
+    <!-- <aside class="side-panel" id="sidePanel"> -->
+        <!-- Botão para fechar o painel -->
+        <!-- <button class="side-panel-close" onclick="closePanel()">×</button> -->
+        
+        <!-- Conteúdo dinâmico do painel (preenchido por JavaScript) -->
+        <!-- <div class="side-panel-content" id="panelContent"></div> -->
+    </aside>
+</body>
+</html>
