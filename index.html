@@ -47,15 +47,26 @@
         <div class="page-content active" id="home">
             <!-- Seção herói com título e chamada para ação -->
             <header class="hero">
-                <h1>GAEA PROTOCOL</h1>
-                <p class="subtitle">Deckbuilder Roguelike Tático</p>
-                <p class="lead">Assuma o controle de pilotos e mechas projetados para restaurar um planeta à beira do colapso.</p>
+                <!-- imagem secundária à esquerda (elemento secundário) -->
+                <div class="hero-image">
+                    <img src="assets/hero-mecha.png" alt="Mecha Gaea (placeholder)">
+                </div>
 
-                <!-- Botões de chamada para ação -->
-                <div class="cta-buttons">
-                    <button class="cta-button" onclick="openPanel('personagens')">Ver Personagens</button>
-                    <button class="cta-button secondary" onclick="openPanel('gameplay')">Como Jogar</button>
-                    <a href="./pages/telaDeInicioJogo.html"><button class="cta-button secondary">Jogar</button></a>
+                <!-- Conteúdo central -->
+                <div class="hero-content">
+                    <h1>GAEA PROTOCOL</h1>
+                    <p class="subtitle">Deckbuilder Roguelike Tático</p>
+                    <p class="lead">Assuma o controle de pilotos e mechas projetados para restaurar um planeta à beira do colapso.</p>
+
+                    <!-- Botões de chamada para ação -->
+                    <div class="cta-buttons">
+                        <!-- <button class="cta-button" onclick="openPanel('personagens')">Ver Personagens</button> -->
+                        <button class="cta-button secondary" onclick="openPanel('gameplay')">Como Jogar</button>
+                        <!-- Novo: Experimente Agora -->
+                        <a href="pages/telaDeInicioJogo.html">
+                            <button class="cta-button play-game">Experimente Agora</button>
+                        </a>
+                    </div>
                 </div>
             </header>
         </div>
@@ -249,46 +260,6 @@
         </div>
     </main>
 
-    <!-- RODAPÉ DO SITE -->
-    <footer class="site-footer">
-        <div class="footer-content">
-            <!-- Seção principal do footer com informações -->
-            <div class="footer-section">
-                <h3>Gaea Protocol</h3>
-                <p>Um jogo indie brasileiro de estratégia e deckbuilding.</p>
-                
-                <!-- Links para redes sociais -->
-                <div class="social-links">
-                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
-                    <a href="#" title="Steam"><i class="fab fa-steam"></i></a>
-                </div>
-            </div>
-            
-            <!-- Links rápidos do footer -->
-            <div class="footer-section">
-                <h4>Links Rápidos</h4>
-                <ul>
-                    <li><a onclick="openPanel('sobre')">Sobre</a></li>
-                    <li><a onclick="openPanel('gameplay')">Como Jogar</a></li>
-                    <li><a onclick="openPanel('personagens')">Personagens</a></li>
-                </ul>
-            </div>
-
-            <!-- Informações de contato -->
-            <div class="footer-section">
-                <h4>Contato</h4>
-                <p>contato@gaeaprotocol.com</p>
-                <p>Desenvolvido por Studio Gaea</p>
-            </div>
-        </div>
-        
-        <!-- Copyright -->
-        <div class="footer-bottom">
-            <p>&copy; 2024 Gaea Protocol. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-
     <!-- PAINEL LATERAL (abre quando clica em um link do menu) -->
     <aside class="side-panel" id="sidePanel">
         <!-- Botão para fechar o painel -->
@@ -299,5 +270,19 @@
     </aside>
 
     <!-- <script src="js/script.js"></script> -->
+
+    <!-- Sistema de Background Avançado -->
+<div class="background-system">
+    <div class="background-base"></div>
+    <div class="circuit-grid"></div>
+    <div class="energy-lines">
+        <div class="energy-line"></div>
+        <div class="energy-line"></div>
+        <div class="energy-line"></div>
+    </div>
+    <div class="particles-container" id="particlesContainer"></div>
+    <div class="scanner-effect"></div>
+    <div class="distortion-layer"></div>
+</div>
 </body>
 </html>

@@ -113,19 +113,21 @@ function loadPage(pageName) {
       const main = document.querySelector('.main-content');
       if (main) {
         main.innerHTML = html;
+        // ADDED: atualiza atributo para que o CSS trate main corretamente
+        main.setAttribute('data-page', pageName);
         // Reinicializa partículas na nova página
         initParticles();
         // Configura listeners para a nova página
         setupEventListeners();
       }
       document.body.style.overflow = pageName === 'home' ? 'hidden' : 'auto';
-      
-      // Gerencia o footer
+
+      // Ajusta visibilidade do footer via classe "show"
       const footer = document.querySelector('.site-footer');
       if (footer) {
         footer.classList.toggle('show', pageName !== 'home');
       }
-      
+
       window.scrollTo(0, 0);
     })
     .catch(error => console.error('Erro ao carregar página:', error));
@@ -212,4 +214,41 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', closeMobileMenu);
     });
   }
+});
+
+
+
+
+// Sistema de Partículas Avançado
+function createAdvancedParticles() {
+    const container = document.getElementById('particlesContainer');
+    const particleCount = 80;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        const size = Math.random() * 4 + 1;
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        
+        // Tipos de partículas
+        const types = ['main', 'secondary', 'tertiary', 'glow', 'trail'];
+        const type = types[Math.floor(Math.random() * types.length)];
+        
+        particle.className = `particle ${type}`;
+        particle.style.left = `${left}%`;
+        particle.style.top = `${top}%`;
+        
+        // Variáveis CSS para animação única
+        particle.style.setProperty('--tx', `${(Math.random() - 0.5) * 200}px`);
+        particle.style.setProperty('--ty', `${-Math.random() * 150 - 50}vh`);
+        particle.style.animationDelay = `${Math.random() * 20}s`;
+        particle.style.animationDuration = `${15 + Math.random() * 15}s`;
+        
+        container.appendChild(particle);
+    }
+}
+
+// Inicializar quando a página carregar
+document.addEventListener('DOMContentLoaded', function() {
+    createAdvancedParticles();
 });
