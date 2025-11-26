@@ -646,6 +646,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 .hero-image img {
@@ -654,6 +655,7 @@ nav {
     object-fit: contain;
     filter: drop-shadow(0 0 30px rgba(122, 156, 110, 0.5));
     animation: float-image 6s ease-in-out infinite;
+    
 }
 
 @keyframes float-image {
