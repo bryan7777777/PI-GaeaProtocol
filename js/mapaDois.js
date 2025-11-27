@@ -1502,7 +1502,7 @@ const allCards = [
     cost: 3,
     basePower: 20,
     rarity: "fire",
-    img: "../img/jogo/cards/fire/Cauterizar.png",
+    img: "../img/jogo/cards/fire/cauterizar.png",
     desc: "Cause 20 de dano ao inimigo e marca com ♨️, se ele estiver marcado com ♨️ X2 o dano",
     type: "fire"
   },
