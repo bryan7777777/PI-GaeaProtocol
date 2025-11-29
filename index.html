@@ -30,8 +30,13 @@
             <!-- Logo que clica para voltar home -->
             <div class="logo-text" onclick="showHome()">GAEA PROTOCOL</div>
 
+            <!-- Botão hamburger para mobile (adicionado) -->
+            <button id="hamburger" class="hamburger" onclick="toggleMobileMenu()" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+
             <!-- Links de navegação (abrem painel lateral) -->
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a onclick="openPanel('sobre')">Sobre</a></li>
                 <li><a onclick="openPanel('historia')">História</a></li>
                 <li><a onclick="openPanel('gameplay')">gameplay</a></li>

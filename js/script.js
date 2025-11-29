@@ -100,51 +100,109 @@ function showPage(pageId) {
  * @param {string} pageName - Nome da página
  */
 function loadPage(pageName) {
-  // Determina o caminho correto baseado na página atual
-  const isHomePage = window.location.pathname.includes('index.html') || window.location.pathname === '/';
-  const pagesPath = isHomePage ? 'pages/' : '';
-  
-  fetch(`${pagesPath}${pageName}.html`)
-    .then(response => {
-      if (!response.ok) throw new Error('Página não encontrada');
-      return response.text();
-    })
-    .then(html => {
-      const main = document.querySelector('.main-content');
-      if (main) {
-        main.innerHTML = html;
-        // ADDED: atualiza atributo para que o CSS trate main corretamente
-        main.setAttribute('data-page', pageName);
-        // Reinicializa partículas na nova página
-        initParticles();
-        // Configura listeners para a nova página
-        setupEventListeners();
-      }
-      document.body.style.overflow = pageName === 'home' ? 'hidden' : 'auto';
+  const tryPaths = [
+    `pages/${pageName}.html`,
+    `./pages/${pageName}.html`,
+    `../pages/${pageName}.html`,
+    `/pages/${pageName}.html`,
+    `${pageName}.html`,
+    `./${pageName}.html`
+  ];
 
-      // Ajusta visibilidade do footer via classe "show"
-      const footer = document.querySelector('.site-footer');
-      if (footer) {
-        footer.classList.toggle('show', pageName !== 'home');
+  (async () => {
+    let html = null;
+    for (const p of tryPaths) {
+      try {
+        const resp = await fetch(p);
+        if (resp.ok) {
+          html = await resp.text();
+          break;
+        }
+      } catch (e) {
+        // tentar próximo candidato
       }
+    }
 
-      window.scrollTo(0, 0);
-    })
-    .catch(error => console.error('Erro ao carregar página:', error));
+    if (!html) {
+      console.error('Não foi possível carregar a página. Tentados:', tryPaths);
+      return;
+    }
+
+    // Parsar e extrair só o conteúdo principal (evita inserir <html> inteira dentro do main)
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const fetchedMain = doc.querySelector('.main-content') || doc.querySelector('main') || doc.body;
+
+    const main = document.querySelector('.main-content');
+    if (main) {
+      main.innerHTML = fetchedMain ? fetchedMain.innerHTML : html;
+      main.setAttribute('data-page', pageName);
+      initParticles(); // reinicializa partículas na nova página
+      setupEventListeners(); // reinstala listeners
+    } else {
+      console.error('Elemento .main-content não encontrado para inserir a página carregada.');
+    }
+
+    document.body.style.overflow = pageName === 'home' ? 'hidden' : 'auto';
+
+    // Ajusta visibilidade do footer via classe "show"
+    const footer = document.querySelector('.site-footer');
+    if (footer) {
+      footer.classList.toggle('show', pageName !== 'home');
+    }
+
+    window.scrollTo(0, 0);
+  })();
 }
 
-/**
- * Volta para a página inicial
- */
 function showHome() {
-  // Se já está na página inicial, apenas scroll para o topo
-  const isOnHome = document.getElementById('home') !== null;
-  if (isOnHome) {
+  // se já existe a seção home no DOM ou main já aponta para home, apenas scroll
+  const homeEl = document.getElementById('home');
+  const main = document.querySelector('.main-content');
+  const dataPage = main ? main.getAttribute('data-page') : null;
+  if (homeEl || dataPage === 'home') {
     window.scrollTo(0, 0);
-  } else {
-    // Se está em uma página filha, volta para o index
-    window.location.href = '../index.html';
+    return;
   }
+
+  // se a página foi aberta diretamente em /pages/..., redireciona ao index correto (preserva subpath)
+  if (window.location.pathname.includes('/pages/')) {
+    const indexPath = window.location.pathname.replace(/\/pages\/.*$/, '/index.html');
+    window.location.href = indexPath;
+    return;
+  }
+
+  // fallback: tentamos obter o index.html e extrair a seção .main-content/home
+  const candidates = ['index.html', './index.html', '../index.html', '/index.html'];
+  (async () => {
+    for (const p of candidates) {
+      try {
+        const resp = await fetch(p);
+        if (!resp.ok) continue;
+        const html = await resp.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const fetchedMain = doc.querySelector('.main-content') || doc.querySelector('#home') || doc.body;
+        if (fetchedMain) {
+          if (main) {
+            main.innerHTML = fetchedMain.innerHTML;
+            main.setAttribute('data-page', 'home');
+            initParticles();
+            setupEventListeners();
+          } else {
+            // se não encontrou main atual, faça navegação simples
+            window.location.href = p;
+          }
+          window.scrollTo(0,0);
+          return;
+        }
+      } catch (err) {
+        // tenta próximo
+      }
+    }
+    // se tudo falhar, redireciona ao root como último recurso
+    window.location.href = '/';
+  })();
 }
 
 /**
@@ -252,3 +310,6 @@ function createAdvancedParticles() {
 document.addEventListener('DOMContentLoaded', function() {
     createAdvancedParticles();
 });
+
+
+
