@@ -165,12 +165,25 @@ function showHome() {
     return;
   }
 
-  // se a página foi aberta diretamente em /pages/..., redireciona ao index correto (preserva subpath)
-  if (window.location.pathname.includes('/pages/')) {
-    const indexPath = window.location.pathname.replace(/\/pages\/.*$/, '/index.html');
-    window.location.href = indexPath;
-    return;
-  }
+// if (window.location.pathname.includes('/pages/')) {
+//     const indexPath = window.location.pathname.replace(/\/pages\/.*$/, '/index.html');
+//     window.location.href = indexPath;
+//     return;
+// }
+
+// Detecta automaticamente o nome do seu repositório no GitHub Pages
+function getRepoBasePath() {
+    const path = window.location.pathname.split('/');
+    if (path.length > 1) {
+        return '/' + path[1]; // ex: /PI-GaeaProtocol
+    }
+    return '';
+}
+
+function showHome() {
+    const base = getRepoBasePath();
+    window.location.href = base + '/index.html';
+}
 
   // fallback: tentamos obter o index.html e extrair a seção .main-content/home
   const candidates = ['index.html', './index.html', '../index.html', '/index.html'];
