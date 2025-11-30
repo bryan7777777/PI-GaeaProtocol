@@ -193,7 +193,7 @@ function showHome() {
             // se não encontrou main atual, faça navegação simples
             window.location.href = p;
           }
-          window.scrollTo(0,0);
+          window.scrollTo(0, 0);
           return;
         }
       } catch (err) {
@@ -232,7 +232,7 @@ function setupEventListeners() {
 function toggleMobileMenu() {
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
-  
+
   if (hamburger && navLinks) {
     hamburger.classList.toggle('active');
     navLinks.classList.toggle('active');
@@ -245,7 +245,7 @@ function toggleMobileMenu() {
 function closeMobileMenu() {
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
-  
+
   if (hamburger && navLinks) {
     hamburger.classList.remove('active');
     navLinks.classList.remove('active');
@@ -256,7 +256,7 @@ function closeMobileMenu() {
 document.addEventListener('DOMContentLoaded', () => {
   initParticles();
   setupEventListeners();
-  
+
   // Expõe funções necessárias globalmente
   window.openPanel = openPanel;
   window.closePanel = closePanel;
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.showHome = showHome;
   window.toggleMobileMenu = toggleMobileMenu;
   window.closeMobileMenu = closeMobileMenu;
-  
+
   // Fecha menu móvel quando clica em um link
   const navLinks = document.getElementById('navLinks');
   if (navLinks) {
@@ -279,37 +279,129 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Sistema de Partículas Avançado
 function createAdvancedParticles() {
-    const container = document.getElementById('particlesContainer');
-    const particleCount = 80;
-    
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        const size = Math.random() * 4 + 1;
-        const left = Math.random() * 100;
-        const top = Math.random() * 100;
-        
-        // Tipos de partículas
-        const types = ['main', 'secondary', 'tertiary', 'glow', 'trail'];
-        const type = types[Math.floor(Math.random() * types.length)];
-        
-        particle.className = `particle ${type}`;
-        particle.style.left = `${left}%`;
-        particle.style.top = `${top}%`;
-        
-        // Variáveis CSS para animação única
-        particle.style.setProperty('--tx', `${(Math.random() - 0.5) * 200}px`);
-        particle.style.setProperty('--ty', `${-Math.random() * 150 - 50}vh`);
-        particle.style.animationDelay = `${Math.random() * 20}s`;
-        particle.style.animationDuration = `${15 + Math.random() * 15}s`;
-        
-        container.appendChild(particle);
-    }
+  const container = document.getElementById('particlesContainer');
+  const particleCount = 80;
+
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    const size = Math.random() * 4 + 1;
+    const left = Math.random() * 100;
+    const top = Math.random() * 100;
+
+    // Tipos de partículas
+    const types = ['main', 'secondary', 'tertiary', 'glow', 'trail'];
+    const type = types[Math.floor(Math.random() * types.length)];
+
+    particle.className = `particle ${type}`;
+    particle.style.left = `${left}%`;
+    particle.style.top = `${top}%`;
+
+    // Variáveis CSS para animação única
+    particle.style.setProperty('--tx', `${(Math.random() - 0.5) * 200}px`);
+    particle.style.setProperty('--ty', `${-Math.random() * 150 - 50}vh`);
+    particle.style.animationDelay = `${Math.random() * 20}s`;
+    particle.style.animationDuration = `${15 + Math.random() * 15}s`;
+
+    container.appendChild(particle);
+  }
 }
 
-// Inicializar quando a página carregar
-document.addEventListener('DOMContentLoaded', function() {
-    createAdvancedParticles();
+
+// Aguardar o DOM estar completamente carregado
+document.addEventListener('DOMContentLoaded', function () {
+  // Mobile menu toggle
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  }
+
+
+  // Smooth scrolling for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const target = document.querySelector(targetId);
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth'
+        });
+        if (navLinks) {
+          navLinks.classList.remove('active');
+        }
+      }
+    });
+  });
+
+  // Intersection Observer for animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.skill-category, .project-card, .certificate-item').forEach(function (el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  // // Panel functionality - definir funções globalmente
+  // window.openPanel = function(panelId) {
+  //     const panel = document.getElementById(panelId);
+  //     if (panel) {
+  //         panel.classList.add('active');
+  //         document.body.style.overflow = 'hidden';
+  //     }
+  // };
+
+  // window.closePanel = function(panelId) {
+  //     const panel = document.getElementById(panelId);
+  //     if (panel) {
+  //         panel.classList.remove('active');
+  //         document.body.style.overflow = '';
+  //     }
+  // };
+
+  // // Close panel when clicking outside
+  // document.querySelectorAll('.panel').forEach(function(panel) {
+  //     panel.addEventListener('click', function(e) {
+  //         if (e.target === panel) {
+  //             closePanel(panel.id);
+  //         }
+  //     });
+  // });
+
+  // Add click handlers to certificate items
+  document.querySelectorAll('.certificate-item').forEach(function (item) {
+    item.addEventListener('click', function () {
+      const panelId = item.getAttribute('data-panel');
+      if (panelId) {
+        openPanel(panelId);
+      }
+    });
+  });
+
+  // Fechar panel com tecla ESC
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.panel.active').forEach(function (panel) {
+        closePanel(panel.id);
+      });
+    }
+  });
 });
-
-
 
