@@ -10,7 +10,7 @@
   
   body {
     margin: 0;
-    background: url('./../img/jogo/background/bgMenu.png') no-repeat center center fixed;
+    background: url('./../img/site/backgrond/background.png') no-repeat center center fixed;
     background-size: cover;
     color: var(--cor-principal);
     font-family: var(--fonte-principal);
