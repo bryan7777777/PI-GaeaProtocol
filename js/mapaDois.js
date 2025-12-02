@@ -962,7 +962,7 @@ function criarPlayerNaDiv3() {
         maoInicio = 4;
         limiteMao = 4;
       }
-      if (mapaBatalha == 31) {
+      if (mapaBatalha == 19) {
         imgLilia = "./../img/jogo/player/lilia3.png";
         playerMaxHP += 80;
         energyMax += 3;
@@ -971,7 +971,7 @@ function criarPlayerNaDiv3() {
         limiteMao += 4;
         playerShieldInit += 15;
         playerShield = playerShieldInit;
-      } else if (mapaBatalha == 6) {
+      } else if (mapaBatalha == 11) {
         imgLilia = "./../img/jogo/player/lilia2.png";
         playerMaxHP += 20;
         energyMax += 2;
@@ -3770,10 +3770,10 @@ function spawnEnemies(tipo) {
   document.getElementById("lifeBarsContainer").innerHTML = "";
 
   // --- define zona atual com base no mapa ---
-  if (mapaBatalha >= 40) zonaAtual = 5;
-  else if (mapaBatalha >= 30) zonaAtual = 4;
-  else if (mapaBatalha >= 20) zonaAtual = 3;
-  else if (mapaBatalha >= 10) zonaAtual = 2;
+  if (mapaBatalha >= 28) zonaAtual = 5;
+  else if (mapaBatalha >= 21) zonaAtual = 4;
+  else if (mapaBatalha >= 14) zonaAtual = 3;
+  else if (mapaBatalha >= 7) zonaAtual = 2;
 
   // --- seleciona pool conforme tipo ---
   let pool;
@@ -6382,7 +6382,7 @@ function checkEnemies() {
           }
 
           // Checagem se acabou a batalha
-          if (mapaBatalha === 50 && enemies.length === 0 && playerHP > 0) {
+          if (mapaBatalha === 35 && enemies.length === 0 && playerHP > 0) {
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popupFinal").style.display = "flex";
             gerarItens();
@@ -6576,10 +6576,10 @@ function proximaTela() {
 
 function irParaDiv2() {
   const mb = mapaBatalha;
-  if (mb >= 40) return mostrarTela(10);
-  if (mb >= 30) return mostrarTela(9);
-  if (mb >= 20) return mostrarTela(8);
-  if (mb >= 10) return mostrarTela(7);
+  if (mb >= 28) return mostrarTela(10);
+  if (mb >= 21) return mostrarTela(9);
+  if (mb >= 14) return mostrarTela(8);
+  if (mb >= 7) return mostrarTela(7);
   return mostrarTela(2);
 }
 
@@ -6663,7 +6663,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
   // }
 
   canvas {
-    margin-left: 17.1%;
+    margin-left: 22vw;
     margin-top: 3.3%;
     width:100%;
   }
@@ -6676,7 +6676,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
     width: max-content;
     align-items: center;
     height: 700px;
-    margin-left: 5.7%;
+    margin-left: 15vw;
   }
   .coluna {
     display: flex;
@@ -7140,25 +7140,25 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
       mapaBatalha++
       const fundos = {
-        6: "luta3.png",
+        4: "luta3.png",
 
-        11: "lutaMapa2.png",
-        16: "lutaMapa22.jpg",
-        20: "lutaMapa333.jpg",
+        8: "lutaMapa2.png",
+        11: "lutaMapa22.jpg",
+        14: "lutaMapa333.jpg",
 
-        21: "lutaMapa3.png",
-        26: "lutaMapa33.jpg",
+        15: "lutaMapa3.png",
+        18: "lutaMapa33.jpg",
 
-        31: "lutaMapa4.jpg",
-        36: "lutaMapa44.jpg",
+        19: "lutaMapa4.jpg",
+        22: "lutaMapa44.jpg",
 
-        41: "lutaMapa5.jpg",
-        46: "lutaMapa55.jpg"
+        29: "lutaMapa5.jpg",
+        32: "lutaMapa55.jpg"
       };
 
-      if (mapaBatalha == 31 && personagemSelecionado == "lilia") {
+      if (mapaBatalha == 19 && personagemSelecionado == "lilia") {
         criarPlayerNaDiv3()
-      } else if (mapaBatalha == 6 && personagemSelecionado == "lilia") {
+      } else if (mapaBatalha == 11 && personagemSelecionado == "lilia") {
         criarPlayerNaDiv3()
       }
 
@@ -7173,11 +7173,11 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
   })();
 }
 
-mapaCanvas("div2", 10, 5, "#45ff45ff", "#ff8834ff", '🐺');
-mapaCanvas("div7", 10, 5, "#60ff34ff", "#34ffe1ff", '🦑');
-mapaCanvas("div8", 10, 7, "#fbfbfbff", "#737373ff", '🗽');
-mapaCanvas("div9", 10, 7, "#f5fd54ff", "#5db0e7ff", '👻');
-mapaCanvas("div10", 10, 9, "#5db0e7ff", "#e75d5dff", '🤖');
+mapaCanvas("div2", 7, 3, "#45ff45ff", "#ff8834ff", '🐺');
+mapaCanvas("div7", 7, 3, "#60ff34ff", "#34ffe1ff", '🦑');
+mapaCanvas("div8", 7, 5, "#fbfbfbff", "#737373ff", '🗽');
+mapaCanvas("div9", 7, 7, "#f5fd54ff", "#5db0e7ff", '👻');
+mapaCanvas("div10", 7, 7, "#5db0e7ff", "#e75d5dff", '🤖');
 
 var myMusic = new Audio("./../audio/artblock.ogg");
 myMusic.loop = true;
