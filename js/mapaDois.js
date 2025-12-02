@@ -377,12 +377,13 @@ function armaduraSacre() {
   playerShieldInit += 15;
   if (playerMaxHP <= 50) {
     playerMaxHP = 10;
-  } else {
+} else {
     playerMaxHP -= 50;
-    if (playerMaxHP <= 10) {
-      playerMaxHP = 10;
-    }
-  }
+    playerMaxHP = Math.max(playerMaxHP, 10);
+}
+if (playerHp > playerMaxHP) {
+    playerHp = playerMaxHP;
+}
   updateHUD();
 }
 
