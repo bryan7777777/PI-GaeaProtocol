@@ -4,22 +4,39 @@
 <head>
     <!-- Metadados da página -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    
+    <!-- Meta tags para melhor experiência mobile -->
+    <meta name="theme-color" content="#1e3a28">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Preconnect para fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <title>Gaea Protocol</title>
-
+    
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Megrim&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <!-- Script principal (carregado com defer para executar após DOM carregar) -->
+    
+    <!-- Script principal -->
     <script src="js/script.js" defer></script>
 </head>
 
 <body>
-    <!-- Container de partículas animadas (background) -->
-    <div class="particles" id="particles"></div>
+    <!-- Sistema de Background Avançado -->
+    <div class="background-system">
+        <div class="background-base"></div>
+        <div class="circuit-grid"></div>
+        <div class="energy-lines" id="energyLinesContainer"></div>
+        <div class="particles-container" id="particlesContainer"></div>
+        <div class="scanner-effect"></div>
+        <div class="distortion-layer"></div>
+    </div>
 
     <!-- Overlay escuro que aparece quando o painel lateral está ativo -->
     <div class="overlay" id="overlay"></div>
@@ -30,11 +47,18 @@
             <!-- Logo que clica para voltar home -->
             <div class="logo-text" onclick="showHome()">GAEA PROTOCOL</div>
 
+            <!-- Botão hamburger para mobile -->
+            <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
             <!-- Links de navegação (abrem painel lateral) -->
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a onclick="openPanel('sobre')">Sobre</a></li>
                 <li><a onclick="openPanel('historia')">História</a></li>
-                <li><a onclick="openPanel('gameplay')">gameplay</a></li>
+                <li><a onclick="openPanel('gameplay')">Gameplay</a></li>
                 <li><a onclick="openPanel('protocool')">Protocool</a></li>
                 <li><a onclick="openPanel('mundo')">O Mundo</a></li>
                 <li><a onclick="openPanel('personagens')">Personagens</a></li>
@@ -63,7 +87,6 @@
 
                     <!-- Botões de chamada para ação -->
                     <div class="cta-buttons">
-                        <!-- <button class="cta-button" onclick="openPanel('personagens')">Ver Personagens</button> -->
                         <button class="cta-button secondary" onclick="openPanel('gameplay')">Como Jogar</button>
                         <!-- Novo: Experimente Agora -->
                         <a href="pages/telaDeInicioJogo.html">
@@ -324,21 +347,75 @@
         <div class="side-panel-content" id="panelContent"></div>
     </aside>
 
-    <!-- <script src="js/script.js"></script> -->
-
-    <!-- Sistema de Background Avançado -->
-    <div class="background-system">
-        <div class="background-base"></div>
-        <div class="circuit-grid"></div>
-        <div class="energy-lines">
-            <div class="energy-line"></div>
-            <div class="energy-line"></div>
-            <div class="energy-line"></div>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>GAEA PROTOCOL</h3>
+                <p>Um deckbuilder roguelike tático onde suas decisões moldam o destino do planeta.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-steam"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a onclick="showHome()">Home</a></li>
+                    <li><a onclick="openPanel('sobre')">Sobre</a></li>
+                    <li><a onclick="openPanel('gameplay')">Gameplay</a></li>
+                    <li><a onclick="openPanel('protocool')">Protocool</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Suporte</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Termos de Serviço</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="particles-container" id="particlesContainer"></div>
-        <div class="scanner-effect"></div>
-        <div class="distortion-layer"></div>
-    </div>
+        
+        <div class="contributors-footer">
+            <div class="contributors-content">
+                <h4>Desenvolvido Por</h4>
+                <div class="contributors-grid">
+                    <div class="contributor">
+                        <div class="contributor-name">Nome do Desenvolvedor 1</div>
+                        <a href="#" class="contributor-git">
+                            <i class="fab fa-github"></i> @usuario1
+                        </a>
+                    </div>
+                    <div class="contributor">
+                        <div class="contributor-name">Nome do Desenvolvedor 2</div>
+                        <a href="#" class="contributor-git">
+                            <i class="fab fa-github"></i> @usuario2
+                        </a>
+                    </div>
+                    <div class="contributor">
+                        <div class="contributor-name">Nome do Desenvolvedor 3</div>
+                        <a href="#" class="contributor-git">
+                            <i class="fab fa-github"></i> @usuario3
+                        </a>
+                    </div>
+                </div>
+                <div class="senac-credit">
+                    Projeto acadêmico desenvolvido para o <strong>SENAC</strong> - 2024
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gaea Protocol. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
 </body>
 
 </html>

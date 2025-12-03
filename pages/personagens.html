@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <!-- Metadados -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personagens - Gaea Protocol</title>
-    
+
     <!-- Estilos -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Megrim&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+
+    </style>
 </head>
+
 <body>
     <!-- Container de partículas -->
     <div class="particles" id="particles"></div>
-    
+
     <!-- Overlay interativo -->
     <div class="overlay" id="overlay"></div>
 
@@ -28,65 +33,886 @@
 
             <section>
                 <!-- Introdução aos personagens -->
-                <p>Os pilotos jogáveis representam estilos de jogo distintos. Cada perfil abaixo traz objetivo de jogo, especialização e exemplos de cartas/relíquias que combinam bem com o estilo.</p>
+                <p>Escolha entre 28 pilotos únicos, distribuídos em 7 Protocolos distintos. Cada personagem oferece um estilo de jogo específico, com habilidades e estratégias particulares.</p>
 
-                <!-- PERSONAGEM 1: CORREDOR -->
-                <article class="character">
-                    <h2>Jão</h2>
-                    <div class="classePersonagem gaea">
-                        <div class="personagens"><img id="verde" src="./../img/jogo/pilotos/capaceteverde.png" alt=""></div>
-                        <div class="personagens"><img id="magnolia" src="./../img/jogo/pilotos/magnolia.jpg" alt=""></div>
-                        <div class="personagens"><img id="wallace" src="./../img/jogo/pilotos/espectroDaFloresta.jpeg" alt="">
-                        </div>
-                        <div class="personagens"><img id="gaeaReen" src="./../img/jogo/pilotos/gaeaReen.png" alt=""></div>
-                      </div>
-                    <div class="character-body">
-                        <!-- Placeholder para imagens -->
-                        <p>Objetivo de jogo: Correr e completar o percurso em tempo recorde.</p>
-                        <p>Especialização: Velocidade e agilidade.</p>
-                        
-                        <!-- Cartas e relíquias recomendadas -->
-                        <p>Exemplos de cartas/relíquias que combinam bem com o estilo:</p>
-                        <ul>
-                            <li>Cartas de velocidade e agilidade.</li>
-                            <li>Relíquias que aumentam o tempo de corrida.</li>
-                        </ul>
-                    </div>
-                </article>
+                <!-- Navegação entre protocolos -->
+                <div class="protocol-navigation" id="protocolNav">
+                    <button class="protocol-nav-btn active" data-protocol="gaea">GAEA PROTOCOOL</button>
+                    <button class="protocol-nav-btn" data-protocol="gleba">GLEBA PROTOCOOL</button>
+                    <button class="protocol-nav-btn" data-protocol="oceano">OCEANO PROTOCOOL</button>
+                    <button class="protocol-nav-btn" data-protocol="fauna">FAUNA PROTOCOOL</button>
+                    <button class="protocol-nav-btn" data-protocol="eolico">EÓLICO PROTOCOOL</button>
+                    <button class="protocol-nav-btn" data-protocol="glacial">GLACIAL PROTOCOOL</button>
+                    <button class="protocol-nav-btn" data-protocol="solitarios">SOLITÁRIOS</button>
+                </div>
 
-                <!-- PERSONAGEM 2: SEGUNDO PERSONAGEM -->
-                <article class="character">
-                    <h2>Outro Personagem</h2>
-                    <div class="character-body">
-                        <!-- Placeholder para imagens -->
-                        <p>Objetivo de jogo: Completar o percurso com o melhor desempenho.</p>
-                        <p>Especialização: Estratégia e planejamento.</p>
-                        
-                        <!-- Cartas e relíquias recomendadas -->
-                        <p>Exemplos de cartas/relíquias que combinam bem com o estilo:</p>
-                        <ul>
-                            <li>Cartas de estratégia e planejamento.</li>
-                            <li>Relíquias que aumentam o tempo de corrida.</li>
-                        </ul>
-                    </div>
-                </article>
+                <!-- ========================= GAEA PROTOCOOL ========================= -->
+                <div class="protocol-section" id="gaea-protocol">
+                    <h2 class="protocol-title">GAEA PROTOCOOL</h2>
+                    <p class="protocol-subtitle">"O equilíbrio perfeito entre natureza e tecnologia"</p>
+                    
+                    <div class="character-grid">
+                        <!-- Personagem 1: Verde -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/capaceteverde.png" alt="Verde" class="character-image">
+                            <h3 class="character-name">Verde</h3>
+                            <p class="character-role">Especialista em Cura e Regeneração</p>
+                            <p class="character-description">Mestre das artes de restauração, Verde utiliza técnicas avançadas de bioengenharia para curar aliados e regenerar ecossistemas danificados.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">100</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Cura em Área</span>
+                                <span class="ability-tag">Regeneração</span>
+                                <span class="ability-tag">Suporte</span>
+                            </div>
+                        </article>
 
-                <!-- PERSONAGEM 3: TERCEIRO PERSONAGEM -->
-                <article class="character">
-                    <h2>Outro Personagem</h2>
-                    <div class="character-body">
-                        <!-- Placeholder para imagens -->
-                        <p>Objetivo de jogo: Completar o percurso com o melhor desempenho.</p>
-                        <p>Especialização: Estratégia e planejamento.</p>
-                        
-                        <!-- Cartas e relíquias recomendadas -->
-                        <p>Exemplos de cartas/relíquias que combinam bem com o estilo:</p>
-                        <ul>
-                            <li>Cartas de estratégia e planejamento.</li>
-                            <li>Relíquias que aumentam o tempo de corrida.</li>
-                        </ul>
+                        <!-- Personagem 2: Magnolia -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/magnolia.jpg" alt="Magnolia" class="character-image">
+                            <h3 class="character-name">Magnolia</h3>
+                            <p class="character-role">Botânica de Combate</p>
+                            <p class="character-description">Especialista em flora mutagênica, Magnolia manipula plantas venenosas e curativas para controlar o campo de batalha.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">85</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Veneno</span>
+                                <span class="ability-tag">Controle</span>
+                                <span class="ability-tag">Sustentável</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Wallace -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/espectroDaFloresta.jpeg" alt="Espectro da Floresta" class="character-image">
+                            <h3 class="character-name">Espectro da Floresta</h3>
+                            <p class="character-role">Guardião Silencioso</p>
+                            <p class="character-description">Movendo-se como uma sombra entre as árvores, Wallace protege a natureza com golpes precisos e táticas furtivas.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">75</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Furtividade</span>
+                                <span class="ability-tag">Crítico</span>
+                                <span class="ability-tag">Mobilidade</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: Gaea Reen -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/gaeaReen.png" alt="Gaea Reen" class="character-image">
+                            <h3 class="character-name">Gaea Reen</h3>
+                            <p class="character-role">Conexão Primordial</p>
+                            <p class="character-description">Comunica-se diretamente com a consciência do planeta, canalizando energias antigas para mudar o curso das batalhas.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">80</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Poder Primitivo</span>
+                                <span class="ability-tag">Buff Global</span>
+                                <span class="ability-tag">Transformação</span>
+                            </div>
+                        </article>
                     </div>
-                </article>
+                </div>
+
+                <!-- ========================= GLEBA PROTOCOOL ========================= -->
+                <div class="protocol-section" id="gleba-protocol" style="display: none;">
+                    <h2 class="protocol-title">GLEBA PROTOCOOL</h2>
+                    <p class="protocol-subtitle">"Da terra virá o renascimento"</p>
+                    
+                    <div class="character-grid">
+                        <!-- Personagem 1: Amarelo -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/capaceteamarelo.png" alt="Amarelo" class="character-image">
+                            <h3 class="character-name">Minerador Amarelo</h3>
+                            <p class="character-role">Perfurador de Terreno</p>
+                            <p class="character-description">Especialista em perfuração e mineração, utiliza tecnologia sísmica para criar vantagens táticas no campo de batalha.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">110</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Perfuração</span>
+                                <span class="ability-tag">Defesa</span>
+                                <span class="ability-tag">Construção</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 2: Felipe -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/felipe.jpg" alt="Felipe" class="character-image">
+                            <h3 class="character-name">Felipe</h3>
+                            <p class="character-role">Engenheiro de Solo</p>
+                            <p class="character-description">Manipula a composição do solo para criar barreiras defensivas e armadilhas naturais contra inimigos.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">95</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Armadilhas</span>
+                                <span class="ability-tag">Controle de Área</span>
+                                <span class="ability-tag">Sustentação</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Celso -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/celso.jpg" alt="Celso" class="character-image">
+                            <h3 class="character-name">Celso</h3>
+                            <p class="character-role">Geólogo de Batalha</p>
+                            <p class="character-description">Utiliza seu conhecimento geológico para prever movimentos do terreno e criar vantagens estratégicas.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">90</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Previsão</span>
+                                <span class="ability-tag">Estratégia</span>
+                                <span class="ability-tag">Posicionamento</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: Maria -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/maria.jpg" alt="Maria" class="character-image">
+                            <h3 class="character-name">Maria</h3>
+                            <p class="character-role">Cultivadora de Força</p>
+                            <p class="character-description">Cria ligações simbióticas com a terra, absorvendo nutrientes para fortalecer a si mesma e seus aliados.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">105</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Absorção</span>
+                                <span class="ability-tag">Buff de Grupo</span>
+                                <span class="ability-tag">Simbioso</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ========================= OCEANO PROTOCOOL ========================= -->
+                <div class="protocol-section" id="oceano-protocol" style="display: none;">
+                    <h2 class="protocol-title">OCEANO PROTOCOOL</h2>
+                    <p class="protocol-subtitle">"Das profundezas virá a renovação"</p>
+                    
+                    <div class="character-grid">
+                        <!-- Personagem 1: Porto -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/autoridadeDoPorto.jpg" alt="Autoridade do Porto" class="character-image">
+                            <h3 class="character-name">Autoridade do Porto</h3>
+                            <p class="character-role">Comandante Naval</p>
+                            <p class="character-description">Controla fluxos marítimos e correntes oceânicas para manipular o campo de batalha a seu favor.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">95</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Controle de Água</span>
+                                <span class="ability-tag">Movimentação</span>
+                                <span class="ability-tag">Comando</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 2: Azul -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/capaceteazul.png" alt="Azul" class="character-image">
+                            <h3 class="character-name">Marinheiro Azul</h3>
+                            <p class="character-role">Navegador das Profundezas</p>
+                            <p class="character-description">Adaptado às pressões abissais, utiliza tecnologia de mergulho profundo para táticas surpreendentes.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">100</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Adaptação</span>
+                                <span class="ability-tag">Resistência</span>
+                                <span class="ability-tag">Surpresa</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Fergus -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/fergus.jpg" alt="Fergus" class="character-image">
+                            <h3 class="character-name">Fergus</h3>
+                            <p class="character-role">Oceanógrafo de Combate</p>
+                            <p class="character-description">Estuda padrões marinhos para prever movimentos inimigos e criar estratégias baseadas em correntes.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">85</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Previsão</span>
+                                <span class="ability-tag">Estratégia</span>
+                                <span class="ability-tag">Análise</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: Mercuri -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/mercuri.jpg" alt="Mercuri" class="character-image">
+                            <h3 class="character-name">Mercuri</h3>
+                            <p class="character-role">Alquimista das Águas</p>
+                            <p class="character-description">Manipula propriedades químicas da água para criar poções curativas e substâncias corrosivas.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">90</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Alquimia</span>
+                                <span class="ability-tag">Cura</span>
+                                <span class="ability-tag">Corrosão</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ========================= FAUNA PROTOCOOL ========================= -->
+                <div class="protocol-section" id="fauna-protocol" style="display: none;">
+                    <h2 class="protocol-title">FAUNA PROTOCOOL</h2>
+                    <p class="protocol-subtitle">"Na diversidade está a força"</p>
+                    
+                    <div class="character-grid">
+                        <!-- Personagem 1: Laranja -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/capacetelaranja.png" alt="Laranja" class="character-image">
+                            <h3 class="character-name">Caçador Laranja</h3>
+                            <p class="character-role">Rastreador Animal</p>
+                            <p class="character-description">Utiliza técnicas de rastreamento animal e camuflagem natural para emboscar inimigos desprevenidos.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">90</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Camuflagem</span>
+                                <span class="ability-tag">Emboscada</span>
+                                <span class="ability-tag">Rastreamento</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 2: Cleber -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/cleber.jpg" alt="Cleber" class="character-image">
+                            <h3 class="character-name">Cleber</h3>
+                            <p class="character-role">Comunicador Animal</p>
+                            <p class="character-description">Comunica-se com a fauna local para obter informações táticas e apoio durante as batalhas.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">85</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Comunicação</span>
+                                <span class="ability-tag">Suporte Animal</span>
+                                <span class="ability-tag">Reconhecimento</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Malaquias -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/malaquias.jpg" alt="Malaquias" class="character-image">
+                            <h3 class="character-name">Malaquias</h3>
+                            <p class="character-role">Biomimético</p>
+                            <p class="character-description">Copia habilidades de animais para adaptar-se rapidamente a qualquer situação de combate.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">95</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Adaptação</span>
+                                <span class="ability-tag">Mimetismo</span>
+                                <span class="ability-tag">Versatilidade</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: Renata -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/renata.jpg" alt="Renata" class="character-image">
+                            <h3 class="character-name">Renata</h3>
+                            <p class="character-role">Protetora da Vida</p>
+                            <p class="character-description">Dedica-se à proteção da fauna, utilizando técnicas que neutralizam ameaças sem danificar ecossistemas.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">100</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Proteção</span>
+                                <span class="ability-tag">Neutralização</span>
+                                <span class="ability-tag">Ecossistema</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ========================= EÓLICO PROTOCOOL ========================= -->
+                <div class="protocol-section" id="eolico-protocol" style="display: none;">
+                    <h2 class="protocol-title">EÓLICO PROTOCOOL</h2>
+                    <p class="protocol-subtitle">"No vento está a liberdade"</p>
+                    
+                    <div class="character-grid">
+                        <!-- Personagem 1: Marcos -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/marcos.jpg" alt="Marcos" class="character-image">
+                            <h3 class="character-name">Marcos</h3>
+                            <p class="character-role">Mestre dos Ventos</p>
+                            <p class="character-description">Controla correntes de ar para aumentar mobilidade, desviar projéteis e criar turbilhões destrutivos.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">85</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Mobilidade</span>
+                                <span class="ability-tag">Deflexão</span>
+                                <span class="ability-tag">Controle</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 2: Cleide -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/cleide.jpg" alt="Cleide" class="character-image">
+                            <h3 class="character-name">Cleide</h3>
+                            <p class="character-role">Navegadora Celeste</p>
+                            <p class="character-description">Utiliza padrões climáticos para prever movimentos e posicionar-se estrategicamente no campo de batalha.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">90</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Previsão</span>
+                                <span class="ability-tag">Posicionamento</span>
+                                <span class="ability-tag">Estratégia</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Magna -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/magna.jpg" alt="Magna" class="character-image">
+                            <h3 class="character-name">Magna</h3>
+                            <p class="character-role">Geradora de Energia</p>
+                            <p class="character-description">Converte energia eólica em poder ofensivo, criando rajadas cortantes e campos de força atmosféricos.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">80</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Energia</span>
+                                <span class="ability-tag">Ofensivo</span>
+                                <span class="ability-tag">Campo de Força</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: Lucius -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/lucius.jpg" alt="Lucius" class="character-image">
+                            <h3 class="character-name">Lucius</h3>
+                            <p class="character-role">Acrobata Aéreo</p>
+                            <p class="character-description">Executa manobras aéreas complexas, atacando de ângulos inesperados e evitando contra-ataques.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">75</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Acrobacia</span>
+                                <span class="ability-tag">Evasão</span>
+                                <span class="ability-tag">Ângulos</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ========================= GLACIAL PROTOCOOL ========================= -->
+                <div class="protocol-section" id="glacial-protocol" style="display: none;">
+                    <h2 class="protocol-title">GLACIAL PROTOCOOL</h2>
+                    <p class="protocol-subtitle">"No gelo está a preservação"</p>
+                    
+                    <div class="character-grid">
+                        <!-- Personagem 1: Lilia -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/lilia.png" alt="Lilia" class="character-image">
+                            <h3 class="character-name">Lilia</h3>
+                            <p class="character-role">Criomante</p>
+                            <p class="character-description">Manipula temperaturas extremamente baixas para congelar inimigos e criar barreiras de gelo defensivas.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">100</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Congelamento</span>
+                                <span class="ability-tag">Defesa</span>
+                                <span class="ability-tag">Controle</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 2: Glacia -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/glacia.jpg" alt="Glacia" class="character-image">
+                            <h3 class="character-name">Glacia</h3>
+                            <p class="character-role">Preservadora</p>
+                            <p class="character-description">Utiliza técnicas de preservação criogênica para manter aliados em estado de estase e regeneração.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">95</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Preservação</span>
+                                <span class="ability-tag">Cura</span>
+                                <span class="ability-tag">Estase</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Olaf -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/olaf.jpg" alt="Olaf" class="character-image">
+                            <h3 class="character-name">Olaf</h3>
+                            <p class="character-role">Escultor de Gelo</p>
+                            <p class="character-description">Cria armas e estruturas de gelo instantaneamente, adaptando-se rapidamente às necessidades da batalha.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">90</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Criação</span>
+                                <span class="ability-tag">Adaptação</span>
+                                <span class="ability-tag">Ofensivo</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: Olga -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/olga.jpg" alt="Olga" class="character-image">
+                            <h3 class="character-name">Olga</h3>
+                            <p class="character-role">Climatologista</p>
+                            <p class="character-description">Estuda e manipula padrões climáticos para criar nevascas ofensivas e condições de visibilidade favoráveis.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">85</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Clima</span>
+                                <span class="ability-tag">Visibilidade</span>
+                                <span class="ability-tag">Ofensivo em Área</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ========================= SOLITÁRIOS ========================= -->
+                <div class="protocol-section" id="solitarios-protocol" style="display: none;">
+                    <h2 class="protocol-title">SOLITÁRIOS</h2>
+                    <p class="protocol-subtitle">"Cada um por seu caminho"</p>
+                    
+                    <div class="character-grid">
+                        <!-- Personagem 1: X -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/gemea.jpeg" alt="Gêmea" class="character-image">
+                            <h3 class="character-name">Gêmea</h3>
+                            <p class="character-role">Dupla Personalidade</p>
+                            <p class="character-description">Alterna entre personalidades ofensivas e defensivas, adaptando-se instantaneamente a qualquer situação.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">95</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Adaptação</span>
+                                <span class="ability-tag">Dualidade</span>
+                                <span class="ability-tag">Imprevisibilidade</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 2: Tomoeh -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/sombraDaMorte.jpeg" alt="Sombra da Morte" class="character-image">
+                            <h3 class="character-name">Sombra da Morte</h3>
+                            <p class="character-role">Assassino Silencioso</p>
+                            <p class="character-description">Especializado em eliminação rápida e silenciosa, desaparecendo sem deixar rastros após cada ataque.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">70</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Furtividade</span>
+                                <span class="ability-tag">Eliminação</span>
+                                <span class="ability-tag">Crítico</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Ferrus -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/magnusFerrus.png" alt="Magnus Ferrus" class="character-image">
+                            <h3 class="character-name">Magnus Ferrus</h3>
+                            <p class="character-role">Forjador de Ferro</p>
+                            <p class="character-description">Manipula metais com sua mente, criando armas e armaduras instantaneamente durante o combate.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">110</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Metalurgia</span>
+                                <span class="ability-tag">Criação</span>
+                                <span class="ability-tag">Defesa</span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: Roxo -->
+                        <article class="character-card">
+                            <img src="./../img/jogo/pilotos/capaceteroxo.png" alt="Roxo" class="character-image">
+                            <h3 class="character-name">Místico Roxo</h3>
+                            <p class="character-role">Manipulador de Energia</p>
+                            <p class="character-description">Canaliza energias arcanas para criar efeitos imprevisíveis e quebram as regras convencionais do combate.</p>
+                            
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="difficulty">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">HP Base</div>
+                                    <div class="stat-value">80</div>
+                                </div>
+                            </div>
+                            
+                            <div class="character-abilities">
+                                <span class="ability-tag">Arcano</span>
+                                <span class="ability-tag">Imprevisível</span>
+                                <span class="ability-tag">Quebra de Regras</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
@@ -122,8 +948,3 @@
             <p>&copy; 2024 Gaea Protocol. Todos os direitos reservados.</p>
         </div>
     </footer>
-
-    <!-- Script principal -->
-    <script src="../js/script.js" defer></script>
-</body>
-</html>

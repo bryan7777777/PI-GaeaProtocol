@@ -1,5 +1,25 @@
-// Dados do painel lateral com informações sobre cada seção
-const panelData = {
+/**
+ * GAEA PROTOCOL - SCRIPT PRINCIPAL
+ * Sistema de navegação SPA (Single Page Application) com painel lateral
+ * e efeitos visuais avançados.
+ * 
+ * Arquivo: script.js
+ * Versão: 1.0.0
+ * Autor: Equipe Gaea Protocol
+ */
+
+// ============================================================================
+// 1. CONFIGURAÇÕES E DADOS DO SISTEMA
+// ============================================================================
+
+/**
+ * Dados do painel lateral com informações sobre cada seção do site
+ * Cada seção possui:
+ * - title: Título da seção
+ * - content: Descrição resumida
+ * - page: ID da página completa correspondente
+ */
+const PANEL_DATA = {
   sobre: {
     title: 'Sobre',
     content: 'Gaea Protocol é um deckbuilder roguelike tático que combina estratégia profunda com mecânicas acessíveis. Cada run é uma jornada única através de um mundo pós-apocalíptico, onde suas escolhas moldam não apenas seu deck, mas o destino do planeta.',
@@ -33,41 +53,197 @@ const panelData = {
 };
 
 /**
- * Inicializa o sistema de partículas do fundo
+ * Configurações do sistema de partículas
+ * Define tipos e comportamentos das partículas no background
+ */
+const PARTICLE_CONFIG = {
+  count: 80,                       // Número total de partículas
+  types: ['main', 'secondary', 'tertiary', 'glow', 'trail', 'spark', 'orb', 'crystal'],
+  animationDuration: {              // Duração das animações em segundos
+    min: 10,
+    max: 25
+  },
+  movementRange: {                  // Alcance do movimento das partículas
+    x: 300,                         // Movimento horizontal máximo (px)
+    y: 200                          // Movimento vertical máximo (vh)
+  }
+};
+
+/**
+ * Configurações do Intersection Observer
+ * Para animações de entrada dos elementos na tela
+ */
+const OBSERVER_CONFIG = {
+  threshold: 0.1,                   // 10% do elemento visível
+  rootMargin: '0px 0px -50px 0px'   // Margem para trigger antecipado
+};
+
+// ============================================================================
+// 2. SISTEMA DE EFEITOS VISUAIS
+// ============================================================================
+
+/**
+ * Inicializa o sistema de partículas do background
  * Cria partículas com posições e animações aleatórias
+ * 
+ * Fluxo:
+ * 1. Limpa partículas existentes
+ * 2. Cria novas partículas com propriedades aleatórias
+ * 3. Define animações CSS personalizadas
+ * 4. Adiciona ao container
  */
 function initParticles() {
-  const particlesContainer = document.getElementById('particles');
-  if (!particlesContainer) return;
+  const particlesContainer = document.getElementById('particlesContainer');
+  
+  // Validação: Verifica se o container existe
+  if (!particlesContainer) {
+    console.warn('Container de partículas não encontrado');
+    return;
+  }
 
-  for (let i = 0; i < 60; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.animationDelay = Math.random() * 20 + 's';
-    p.style.animationDuration = (Math.random() * 15 + 15) + 's';
-    particlesContainer.appendChild(p);
+  // Limpar partículas existentes para evitar acúmulo
+  particlesContainer.innerHTML = '';
+
+  // Criar novas partículas
+  for (let i = 0; i < PARTICLE_CONFIG.count; i++) {
+    createParticle(particlesContainer, i);
   }
 }
 
 /**
+ * Cria uma partícula individual com propriedades aleatórias
+ * @param {HTMLElement} container - Container onde a partícula será adicionada
+ * @param {number} index - Índice da partícula (para delays de animação)
+ */
+function createParticle(container, index) {
+  const particle = document.createElement('div');
+  const left = Math.random() * 100;  // Posição horizontal (%)
+  const top = Math.random() * 100;   // Posição vertical (%)
+  
+  // Seleciona tipo aleatório da lista
+  const type = PARTICLE_CONFIG.types[
+    Math.floor(Math.random() * PARTICLE_CONFIG.types.length)
+  ];
+
+  // Configura classes CSS
+  particle.className = `particle ${type}`;
+  particle.style.left = `${left}%`;
+  particle.style.top = `${top}%`;
+
+  // Configura movimento aleatório
+  configureParticleMovement(particle, type);
+  
+  // Configura temporização da animação
+  configureParticleTiming(particle, index);
+  
+  // Adiciona ao container
+  container.appendChild(particle);
+}
+
+/**
+ * Configura o movimento da partícula com variáveis CSS
+ * @param {HTMLElement} particle - Elemento da partícula
+ * @param {string} type - Tipo da partícula
+ */
+function configureParticleMovement(particle, type) {
+  // Movimento aleatório em X e Y
+  const tx = (Math.random() - 0.5) * PARTICLE_CONFIG.movementRange.x;
+  const ty = -Math.random() * (PARTICLE_CONFIG.movementRange.y / 2) - 50;
+
+  // Define variáveis CSS para controle da animação
+  particle.style.setProperty('--tx', `${tx}px`);
+  particle.style.setProperty('--ty', `${ty}vh`);
+  
+  // Configurações específicas por tipo de partícula
+  switch(type) {
+    case 'glow':
+      particle.style.setProperty('--max-opacity', '1');
+      break;
+    case 'orb':
+      particle.style.setProperty('--start-scale', Math.random() * 0.5 + 0.5);
+      particle.style.setProperty('--end-scale', Math.random() * 0.3 + 0.1);
+      particle.style.setProperty('--rotation', `${Math.random() * 360}deg`);
+      break;
+    case 'crystal':
+      particle.style.setProperty('--rotation', `${Math.random() * 720}deg`);
+      break;
+  }
+}
+
+/**
+ * Configura a temporização da animação da partícula
+ * @param {HTMLElement} particle - Elemento da partícula
+ * @param {number} index - Índice para delay sequencial
+ */
+function configureParticleTiming(particle, index) {
+  const delay = Math.random() * 20;  // Delay aleatório até 20 segundos
+  const duration = PARTICLE_CONFIG.animationDuration.min + 
+                  Math.random() * (PARTICLE_CONFIG.animationDuration.max - 
+                                  PARTICLE_CONFIG.animationDuration.min);
+  
+  particle.style.animationDelay = `${delay}s`;
+  particle.style.animationDuration = `${duration}s`;
+}
+
+/**
+ * Inicializa as linhas de energia animadas no background
+ * Cria 5 linhas horizontais com animações de deslocamento
+ */
+function initEnergyLines() {
+  const energyLinesContainer = document.getElementById('energyLinesContainer');
+  
+  if (!energyLinesContainer) {
+    console.warn('Container de linhas de energia não encontrado');
+    return;
+  }
+  
+  // Limpar linhas existentes
+  energyLinesContainer.innerHTML = '';
+  
+  // Criar 5 linhas de energia com alturas diferentes
+  for (let i = 0; i < 5; i++) {
+    const line = document.createElement('div');
+    line.className = 'energy-line';
+    energyLinesContainer.appendChild(line);
+  }
+}
+
+// ============================================================================
+// 3. SISTEMA DE NAVEGAÇÃO E PAINEL LATERAL
+// ============================================================================
+
+/**
  * Abre o painel lateral com o conteúdo da seção selecionada
- * @param {string} section - Identificador da seção a ser exibida
+ * @param {string} section - Identificador da seção (chave em PANEL_DATA)
+ * 
+ * Fluxo:
+ * 1. Obtém dados da seção
+ * 2. Atualiza conteúdo do painel
+ * 3. Exibe painel e overlay
+ * 4. Bloqueia scroll da página
  */
 function openPanel(section) {
   const panel = document.getElementById('sidePanel');
   const overlay = document.getElementById('overlay');
   const content = document.getElementById('panelContent');
-  const data = panelData[section];
+  const data = PANEL_DATA[section];
 
-  if (!data || !content) return;
+  // Validação: Verifica se os elementos e dados existem
+  if (!data || !content) {
+    console.error(`Dados não encontrados para a seção: ${section}`);
+    return;
+  }
 
+  // Monta conteúdo HTML do painel
   content.innerHTML = `
     <h2>${data.title}</h2>
     <p>${data.content}</p>
-    <button class="panel-button" onclick="showPage('${data.page}')">Ver Página Completa</button>
+    <button class="panel-button" onclick="showPage('${data.page}')">
+      Ver Página Completa
+    </button>
   `;
 
+  // Ativa painel e overlay
   panel.classList.add('active');
   overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -75,17 +251,20 @@ function openPanel(section) {
 
 /**
  * Fecha o painel lateral e remove o overlay
+ * Restaura o scroll da página
  */
 function closePanel() {
   const panel = document.getElementById('sidePanel');
   const overlay = document.getElementById('overlay');
+  
   if (panel) panel.classList.remove('active');
   if (overlay) overlay.classList.remove('active');
+  
   document.body.style.overflow = 'auto';
 }
 
 /**
- * Navega para uma página específica do site
+ * Navega para uma página específica do site e fecha o painel
  * @param {string} pageId - Identificador da página de destino
  */
 function showPage(pageId) {
@@ -95,11 +274,112 @@ function showPage(pageId) {
 }
 
 /**
- * Carrega uma página do site
- * Detecta automaticamente o caminho correto baseado na localização do arquivo
- * @param {string} pageName - Nome da página
+ * Volta para a página inicial (home)
+ * 
+ * Fluxo:
+ * 1. Se já está na home, apenas faz scroll para o topo
+ * 2. Se não, tenta carregar o index.html
+ * 3. Fallback: redireciona para a URL do index
  */
-function loadPage(pageName) {
+function showHome() {
+  const homeEl = document.getElementById('home');
+  const main = document.querySelector('.main-content');
+  const dataPage = main ? main.getAttribute('data-page') : null;
+  
+  // Se já está na home, apenas faz scroll para o topo
+  if (homeEl || dataPage === 'home') {
+    window.scrollTo(0, 0);
+    return;
+  }
+
+  // Carrega a página inicial
+  loadHomePage();
+}
+
+/**
+ * Carrega dinamicamente a página inicial
+ * @async
+ */
+async function loadHomePage() {
+  // Detecta automaticamente o caminho base (para GitHub Pages)
+  const base = getRepoBasePath();
+  
+  // Lista de caminhos possíveis para o index.html
+  const candidates = [
+    'index.html',
+    './index.html',
+    '../index.html',
+    `${base}/index.html`,
+    '/index.html'
+  ];
+  
+  // Tenta cada caminho até encontrar um que funcione
+  for (const path of candidates) {
+    try {
+      const success = await tryLoadPage(path);
+      if (success) return;
+    } catch (err) {
+      continue; // Tenta próximo caminho
+    }
+  }
+  
+  // Fallback: redireciona se nenhum caminho funcionou
+  window.location.href = `${base}/index.html`;
+}
+
+/**
+ * Tenta carregar uma página pelo caminho especificado
+ * @param {string} path - Caminho para o arquivo HTML
+ * @returns {Promise<boolean>} - Sucesso ou falha
+ */
+async function tryLoadPage(path) {
+  try {
+    const resp = await fetch(path);
+    if (!resp.ok) return false;
+    
+    const html = await resp.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const fetchedMain = doc.querySelector('.main-content') || 
+                       doc.querySelector('#home') || 
+                       doc.body;
+    
+    const main = document.querySelector('.main-content');
+    if (!fetchedMain || !main) return false;
+    
+    // Atualiza conteúdo da página
+    main.innerHTML = fetchedMain.innerHTML;
+    main.setAttribute('data-page', 'home');
+    
+    // Reinicializa efeitos visuais
+    reinitializePageEffects();
+    
+    // Configura estado da página inicial
+    document.body.style.overflow = 'hidden';
+    const footer = document.querySelector('.site-footer');
+    if (footer) {
+      footer.classList.remove('show');
+    }
+    
+    window.scrollTo(0, 0);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+
+/**
+ * Carrega uma página específica do site
+ * @param {string} pageName - Nome da página (sem extensão)
+ * 
+ * Fluxo:
+ * 1. Tenta vários caminhos possíveis
+ * 2. Extrai apenas o conteúdo principal
+ * 3. Atualiza a página atual
+ * 4. Reinicializa efeitos e listeners
+ */
+async function loadPage(pageName) {
+  // Lista de caminhos possíveis para o arquivo da página
   const tryPaths = [
     `pages/${pageName}.html`,
     `./pages/${pageName}.html`,
@@ -109,138 +389,88 @@ function loadPage(pageName) {
     `./${pageName}.html`
   ];
 
-  (async () => {
-    let html = null;
-    for (const p of tryPaths) {
-      try {
-        const resp = await fetch(p);
-        if (resp.ok) {
-          html = await resp.text();
-          break;
-        }
-      } catch (e) {
-        // tentar próximo candidato
+  let html = null;
+  
+  // Tenta cada caminho até encontrar um válido
+  for (const path of tryPaths) {
+    try {
+      const resp = await fetch(path);
+      if (resp.ok) {
+        html = await resp.text();
+        break;
       }
+    } catch (e) {
+      // Continua para o próximo caminho
     }
+  }
 
-    if (!html) {
-      console.error('Não foi possível carregar a página. Tentados:', tryPaths);
-      return;
-    }
-
-    // Parsar e extrair só o conteúdo principal (evita inserir <html> inteira dentro do main)
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const fetchedMain = doc.querySelector('.main-content') || doc.querySelector('main') || doc.body;
-
-    const main = document.querySelector('.main-content');
-    if (main) {
-      main.innerHTML = fetchedMain ? fetchedMain.innerHTML : html;
-      main.setAttribute('data-page', pageName);
-      initParticles(); // reinicializa partículas na nova página
-      setupEventListeners(); // reinstala listeners
-    } else {
-      console.error('Elemento .main-content não encontrado para inserir a página carregada.');
-    }
-
-    document.body.style.overflow = pageName === 'home' ? 'hidden' : 'auto';
-
-    // Ajusta visibilidade do footer via classe "show"
-    const footer = document.querySelector('.site-footer');
-    if (footer) {
-      footer.classList.toggle('show', pageName !== 'home');
-    }
-
-    window.scrollTo(0, 0);
-  })();
-}
-
-function showHome() {
-  // se já existe a seção home no DOM ou main já aponta para home, apenas scroll
-  const homeEl = document.getElementById('home');
-  const main = document.querySelector('.main-content');
-  const dataPage = main ? main.getAttribute('data-page') : null;
-  if (homeEl || dataPage === 'home') {
-    window.scrollTo(0, 0);
+  // Validação: Verifica se encontrou o HTML
+  if (!html) {
+    console.error('Não foi possível carregar a página. Caminhos tentados:', tryPaths);
     return;
   }
 
-// if (window.location.pathname.includes('/pages/')) {
-//     const indexPath = window.location.pathname.replace(/\/pages\/.*$/, '/index.html');
-//     window.location.href = indexPath;
-//     return;
-// }
-
-// Detecta automaticamente o nome do seu repositório no GitHub Pages
-function getRepoBasePath() {
-    const path = window.location.pathname.split('/');
-    if (path.length > 1) {
-        return '/' + path[1]; // ex: /PI-GaeaProtocol
-    }
-    return '';
-}
-
-function showHome() {
-    const base = getRepoBasePath();
-    window.location.href = base + '/index.html';
-}
-
-  // fallback: tentamos obter o index.html e extrair a seção .main-content/home
-  const candidates = ['index.html', './index.html', '../index.html', '/index.html'];
-  (async () => {
-    for (const p of candidates) {
-      try {
-        const resp = await fetch(p);
-        if (!resp.ok) continue;
-        const html = await resp.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const fetchedMain = doc.querySelector('.main-content') || doc.querySelector('#home') || doc.body;
-        if (fetchedMain) {
-          if (main) {
-            main.innerHTML = fetchedMain.innerHTML;
-            main.setAttribute('data-page', 'home');
-            initParticles();
-            setupEventListeners();
-          } else {
-            // se não encontrou main atual, faça navegação simples
-            window.location.href = p;
-          }
-          window.scrollTo(0, 0);
-          return;
-        }
-      } catch (err) {
-        // tenta próximo
-      }
-    }
-    // se tudo falhar, redireciona ao root como último recurso
-    window.location.href = '/';
-  })();
+  // Processa o HTML carregado
+  processLoadedPage(html, pageName);
 }
 
 /**
- * Configura os event listeners necessários
- * - Overlay para fechar o painel
- * - Observer para controle de scroll
+ * Processa o HTML carregado e atualiza a página
+ * @param {string} html - Conteúdo HTML da página
+ * @param {string} pageName - Nome da página
  */
-function setupEventListeners() {
-  const overlay = document.getElementById('overlay');
-  if (overlay) {
-    overlay.removeEventListener('click', closePanel);
-    overlay.addEventListener('click', closePanel);
+function processLoadedPage(html, pageName) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  
+  // Extrai apenas o conteúdo principal (evita duplicar <html>, <body>)
+  const fetchedMain = doc.querySelector('.main-content') || 
+                     doc.querySelector('main') || 
+                     doc.body;
+
+  const main = document.querySelector('.main-content');
+  if (!main) {
+    console.error('Elemento .main-content não encontrado na página atual');
+    return;
   }
 
-  const sidePanel = document.getElementById('sidePanel');
-  if (sidePanel) {
-    const observer = new MutationObserver(() => {
-      document.body.style.overflow = sidePanel.classList.contains('active') ? 'hidden' : 'auto';
-    });
-    observer.observe(sidePanel, { attributes: true, attributeFilter: ['class'] });
+  // Atualiza conteúdo da página
+  main.innerHTML = fetchedMain ? fetchedMain.innerHTML : html;
+  main.setAttribute('data-page', pageName);
+  
+  // Reinicializa efeitos visuais e listeners
+  reinitializePageEffects();
+  
+  // Configura estado da página
+  document.body.style.overflow = pageName === 'home' ? 'hidden' : 'auto';
+  
+  // Gerencia visibilidade do footer
+  const footer = document.querySelector('.site-footer');
+  if (footer) {
+    footer.classList.toggle('show', pageName !== 'home');
   }
+
+  window.scrollTo(0, 0);
 }
 
 /**
- * Alterna o menu móvel (abre/fecha o hambúrguer)
+ * Reinicializa todos os efeitos visuais e configurações da página
+ * Chamado sempre que uma nova página é carregada
+ */
+function reinitializePageEffects() {
+  initParticles();
+  initEnergyLines();
+  setupEventListeners();
+  setupIntersectionObserver();
+}
+
+// ============================================================================
+// 4. SISTEMA DE MENU MOBILE
+// ============================================================================
+
+/**
+ * Alterna o estado do menu móvel (abre/fecha)
+ * Controla tanto o ícone hambúrguer quanto a lista de navegação
  */
 function toggleMobileMenu() {
   const hamburger = document.getElementById('hamburger');
@@ -253,7 +483,8 @@ function toggleMobileMenu() {
 }
 
 /**
- * Fecha o menu móvel quando um link é clicado
+ * Fecha o menu móvel
+ * Usado quando um link é clicado no menu mobile
  */
 function closeMobileMenu() {
   const hamburger = document.getElementById('hamburger');
@@ -265,156 +496,253 @@ function closeMobileMenu() {
   }
 }
 
-// Inicialização do site quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', () => {
-  initParticles();
-  setupEventListeners();
+// ============================================================================
+// 5. SISTEMA DE OBSERVAÇÃO E ANIMAÇÕES
+// ============================================================================
 
+/**
+ * Configura o Intersection Observer para animações de entrada
+ * Observa elementos e aplica animações quando entram na viewport
+ */
+function setupIntersectionObserver() {
+  const intersectionObserver = new IntersectionObserver(
+    handleIntersection,
+    OBSERVER_CONFIG
+  );
+
+  // Seleciona elementos para observar
+  const elementsToObserve = document.querySelectorAll(
+    '.character, .protocol-card, .back-button'
+  );
+
+  // Configura cada elemento
+  elementsToObserve.forEach(el => {
+    // Estado inicial oculto
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    
+    // Inicia observação
+    intersectionObserver.observe(el);
+  });
+}
+
+/**
+ * Manipula as intersecções detectadas pelo Observer
+ * @param {IntersectionObserverEntry[]} entries - Entradas observadas
+ */
+function handleIntersection(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Quando o elemento fica visível, aplica a animação
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}
+
+// ============================================================================
+// 6. CONFIGURAÇÃO DE EVENT LISTENERS
+// ============================================================================
+
+/**
+ * Configura todos os event listeners necessários
+ * - Overlay para fechar painel
+ * - Observer para controle de scroll
+ * - Menu mobile
+ */
+function setupEventListeners() {
+  setupOverlayListener();
+  setupPanelObserver();
+  setupMobileMenuListeners();
+}
+
+/**
+ * Configura listener para o overlay (fecha painel ao clicar)
+ */
+function setupOverlayListener() {
+  const overlay = document.getElementById('overlay');
+  
+  if (overlay) {
+    // Remove listener anterior para evitar duplicação
+    overlay.removeEventListener('click', closePanel);
+    // Adiciona novo listener
+    overlay.addEventListener('click', closePanel);
+  }
+}
+
+/**
+ * Configura observer para o painel lateral
+ * Controla overflow do body baseado no estado do painel
+ */
+function setupPanelObserver() {
+  const sidePanel = document.getElementById('sidePanel');
+  
+  if (sidePanel) {
+    const observer = new MutationObserver(() => {
+      document.body.style.overflow = sidePanel.classList.contains('active') 
+        ? 'hidden' 
+        : 'auto';
+    });
+    
+    observer.observe(sidePanel, { 
+      attributes: true, 
+      attributeFilter: ['class'] 
+    });
+  }
+}
+
+/**
+ * Configura listeners para o menu mobile
+ * Fecha menu ao clicar em links
+ */
+function setupMobileMenuListeners() {
+  const navLinks = document.getElementById('navLinks');
+  
+  if (navLinks) {
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+  }
+}
+
+// ============================================================================
+// 7. FUNÇÕES UTILITÁRIAS
+// ============================================================================
+
+/**
+ * Obtém o caminho base do repositório (para GitHub Pages)
+ * @returns {string} Caminho base ou string vazia
+ */
+function getRepoBasePath() {
+  const path = window.location.pathname.split('/');
+  
+  // GitHub Pages geralmente tem estrutura: /reponame/
+  if (path.length > 1 && path[1]) {
+    return '/' + path[1];
+  }
+  
+  return '';
+}
+
+// ============================================================================
+// 8. INICIALIZAÇÃO DO SISTEMA
+// ============================================================================
+
+/**
+ * Inicializa toda a aplicação quando o DOM estiver carregado
+ * 
+ * Fluxo de inicialização:
+ * 1. Efeitos visuais (partículas e linhas de energia)
+ * 2. Event listeners
+ * 3. Menu mobile
+ * 4. Intersection Observer para animações
+ * 5. Exposição de funções globais
+ */
+function initializeApp() {
+  // Inicializa efeitos visuais
+  initParticles();
+  initEnergyLines();
+  
+  // Configura listeners
+  setupEventListeners();
+  
+  // Configura menu mobile
+  setupMobileMenuListeners();
+  
+  // Configura animações de entrada
+  setupIntersectionObserver();
+  
   // Expõe funções necessárias globalmente
+  exposeGlobalFunctions();
+}
+
+/**
+ * Expõe funções necessárias no escopo global
+ * Para acesso via atributos HTML (onclick, etc.)
+ */
+function exposeGlobalFunctions() {
   window.openPanel = openPanel;
   window.closePanel = closePanel;
   window.showPage = showPage;
   window.showHome = showHome;
   window.toggleMobileMenu = toggleMobileMenu;
   window.closeMobileMenu = closeMobileMenu;
+  window.getRepoBasePath = getRepoBasePath;
+}
 
-  // Fecha menu móvel quando clica em um link
-  const navLinks = document.getElementById('navLinks');
-  if (navLinks) {
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMobileMenu);
-    });
-  }
-});
+// ============================================================================
+// 9. EXECUÇÃO DA APLICAÇÃO
+// ============================================================================
 
+// Aguarda o DOM estar completamente carregado
+document.addEventListener('DOMContentLoaded', initializeApp);
 
-
-
-// Sistema de Partículas Avançado
-function createAdvancedParticles() {
-  const container = document.getElementById('particlesContainer');
-  const particleCount = 80;
-
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement('div');
-    const size = Math.random() * 4 + 1;
-    const left = Math.random() * 100;
-    const top = Math.random() * 100;
-
-    // Tipos de partículas
-    const types = ['main', 'secondary', 'tertiary', 'glow', 'trail'];
-    const type = types[Math.floor(Math.random() * types.length)];
-
-    particle.className = `particle ${type}`;
-    particle.style.left = `${left}%`;
-    particle.style.top = `${top}%`;
-
-    // Variáveis CSS para animação única
-    particle.style.setProperty('--tx', `${(Math.random() - 0.5) * 200}px`);
-    particle.style.setProperty('--ty', `${-Math.random() * 150 - 50}vh`);
-    particle.style.animationDelay = `${Math.random() * 20}s`;
-    particle.style.animationDuration = `${15 + Math.random() * 15}s`;
-
-    container.appendChild(particle);
-  }
+// Exporta funções para testes (se necessário)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    PANEL_DATA,
+    PARTICLE_CONFIG,
+    initParticles,
+    openPanel,
+    closePanel,
+    showHome,
+    toggleMobileMenu,
+    getRepoBasePath
+  };
 }
 
 
-// Aguardar o DOM estar completamente carregado
-document.addEventListener('DOMContentLoaded', function () {
-  // Mobile menu toggle
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
 
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-  }
-
-
-  // Smooth scrolling for navigation links
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
-      const target = document.querySelector(targetId);
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth'
+    // <!-- Script para navegação entre protocolos -->
+   
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos da navegação
+            const protocolButtons = document.querySelectorAll('.protocol-nav-btn');
+            const protocolSections = document.querySelectorAll('.protocol-section');
+            
+            // Função para mostrar uma seção específica
+            function showProtocol(protocolId) {
+                // Esconde todas as seções
+                protocolSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Remove classe ativa de todos os botões
+                protocolButtons.forEach(button => {
+                    button.classList.remove('active');
+                });
+                
+                // Mostra a seção selecionada
+                const targetSection = document.getElementById(`${protocolId}-protocol`);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                    
+                    // Adiciona animação de entrada
+                    targetSection.style.animation = 'fadeInUp 0.6s ease-out';
+                    
+                    // Scroll suave para a seção
+                    targetSection.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+                
+                // Ativa o botão correspondente
+                const activeButton = document.querySelector(`.protocol-nav-btn[data-protocol="${protocolId}"]`);
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                }
+            }
+            
+            // Adiciona event listeners aos botões
+            protocolButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const protocolId = this.getAttribute('data-protocol');
+                    showProtocol(protocolId);
+                });
+            });
+            
+            // Mostra o primeiro protocolo por padrão
+            showProtocol('gaea');
         });
-        if (navLinks) {
-          navLinks.classList.remove('active');
-        }
-      }
-    });
-  });
-
-  // Intersection Observer for animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.skill-category, .project-card, .certificate-item').forEach(function (el) {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-  });
-
-  // // Panel functionality - definir funções globalmente
-  // window.openPanel = function(panelId) {
-  //     const panel = document.getElementById(panelId);
-  //     if (panel) {
-  //         panel.classList.add('active');
-  //         document.body.style.overflow = 'hidden';
-  //     }
-  // };
-
-  // window.closePanel = function(panelId) {
-  //     const panel = document.getElementById(panelId);
-  //     if (panel) {
-  //         panel.classList.remove('active');
-  //         document.body.style.overflow = '';
-  //     }
-  // };
-
-  // // Close panel when clicking outside
-  // document.querySelectorAll('.panel').forEach(function(panel) {
-  //     panel.addEventListener('click', function(e) {
-  //         if (e.target === panel) {
-  //             closePanel(panel.id);
-  //         }
-  //     });
-  // });
-
-  // Add click handlers to certificate items
-  document.querySelectorAll('.certificate-item').forEach(function (item) {
-    item.addEventListener('click', function () {
-      const panelId = item.getAttribute('data-panel');
-      if (panelId) {
-        openPanel(panelId);
-      }
-    });
-  });
-
-  // Fechar panel com tecla ESC
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.panel.active').forEach(function (panel) {
-        closePanel(panel.id);
-      });
-    }
-  });
-});
-
