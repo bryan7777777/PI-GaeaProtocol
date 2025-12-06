@@ -377,13 +377,13 @@ function armaduraSacre() {
   playerShieldInit += 15;
   if (playerMaxHP <= 50) {
     playerMaxHP = 10;
-} else {
+  } else {
     playerMaxHP -= 50;
     playerMaxHP = Math.max(playerMaxHP, 10);
-}
-if (playerHp > playerMaxHP) {
+  }
+  if (playerHp > playerMaxHP) {
     playerHp = playerMaxHP;
-}
+  }
   updateHUD();
 }
 
@@ -3155,26 +3155,26 @@ const normalModels = [
   //     zona: 1
   //   }
   // ],
-  // [
-  //   {
-  //     name: "IA",
-  //     hp: 400,
-  //     maxHp: 400,
-  //     dano: 40,
-  //     behavior() {
-  //       return [
-  //         {
-  //           type: Math.random() < 0.75 ? "attack" :"heal",
-  //           value: this.dano
-  //         }
-  //       ];
-  //     },
-  //     img: "../img/jogo/inimigos/animado/ia/statico/ia1.png",
-  //     tipoDano: "(⚔️)⚜️🎭💊",
-  //     tipoVida: "🧿",
-  //     zona: 1
-  //   }
-  // ]
+//   [
+//     {
+//       name: "IA",
+//       hp: 500,
+//       maxHp: 500,
+//       dano: 20,
+//       behavior() {
+//         return [
+//           {
+//             type: Math.random() < 0.25 ? "heal" : Math.random() < 0.8 ? "attack" : "attackVida",
+//             value: this.dano
+//           }
+//         ];
+//       },
+//       img: "../img/jogo/inimigos/animado/ia/statico/ia1.png",
+//       tipoDano: "(⚔️❔🔱❔💊)⚜️",
+//       tipoVida: "🧿",
+//       zona: 1
+//     }
+//   ]
 ];
 
 // ELITE
@@ -3741,21 +3741,21 @@ const bossModels = [
   [
     {
       name: "IA",
-      hp: 400,
-      maxHp: 400,
-      dano: 40,
+      hp: 500,
+      maxHp: 500,
+      dano: 20,
       behavior() {
         return [
           {
-            type: Math.random() < 0.75 ? "attack" :"heal",
+            type: Math.random() < 0.25 ? "heal" : Math.random() < 0.8 ? "attack" : "attackVida",
             value: this.dano
           }
         ];
       },
       img: "../img/jogo/inimigos/animado/ia/statico/ia1.png",
-      tipoDano: "(⚔️)⚜️🎭💊",
+      tipoDano: "(⚔️❔🔱❔💊)⚜️",
       tipoVida: "🧿",
-      zona: 1
+      zona: 5
     }
   ],
   [
@@ -3996,17 +3996,17 @@ function animateDamage(el) {
   if (nemoraDef === true) {
     frame1 = "../img/jogo/inimigos/animado/nemora/def/nemora11.png";
     frame2 = "../img/jogo/inimigos/animado/nemora/def/nemora22.png";
-    idle  = "../img/jogo/inimigos/animado/nemora/statico/nemora444.png";
+    idle = "../img/jogo/inimigos/animado/nemora/statico/nemora444.png";
 
   } else if (nemoraAtk === true) {
     frame1 = "../img/jogo/inimigos/animado/nemora/def/nemora111.png";
     frame2 = "../img/jogo/inimigos/animado/nemora/def/nemora222.png";
-    idle  = "../img/jogo/inimigos/animado/nemora/statico/nemora444.png";
+    idle = "../img/jogo/inimigos/animado/nemora/statico/nemora444.png";
 
   } else {
     frame1 = "../img/jogo/inimigos/animado/nemora/def/nemora1.png";
     frame2 = "../img/jogo/inimigos/animado/nemora/def/nemora2.png";
-    idle  = "../img/jogo/inimigos/animado/nemora/statico/nemora444.png";
+    idle = "../img/jogo/inimigos/animado/nemora/statico/nemora444.png";
   }
 
   // parar efeitos de fogo, ativar snow etc
@@ -4070,7 +4070,7 @@ function animateIAHit(el, img) {
   const frame1 = "../img/jogo/inimigos/animado/ia/def/ia1.png";
   const frame2 = "../img/jogo/inimigos/animado/ia/def/ia2.png";
   const frame3 = "../img/jogo/inimigos/animado/ia/def/ia1.png";
-  const idle   = "../img/jogo/inimigos/animado/ia/statico/ia1.png";
+  const idle = "../img/jogo/inimigos/animado/ia/statico/ia1.png";
 
   const speed = 150;
 
@@ -4098,7 +4098,7 @@ function mudarBackground(tipo) {
   const jogo = document.getElementById("jogo");
   if (tipo === "atk") {
     jogo.style.backgroundImage = "url('../img/jogo/background/nemoraAtk.png')";
-  } 
+  }
   else if (tipo === "def") {
     jogo.style.backgroundImage = "url('../img/jogo/background/nemoraDef.png')";
   }
@@ -5968,6 +5968,10 @@ function animateEnemyCrossScreen(enemy) {
     const img = container.querySelector("img");
     if (!img) return resolve();
 
+    const jogo = document.getElementById("jogo");
+
+    const originalJogoTransform = jogo.style.transform || "scale(1) translate(0px, 0px)";
+
     // FRAMES
     const frames = {
       f1: "../img/jogo/inimigos/animado/ia/atk/ia11.png",
@@ -5978,124 +5982,111 @@ function animateEnemyCrossScreen(enemy) {
       idle: "../img/jogo/inimigos/animado/ia/statico/ia1.png",
     };
 
-    // EFEITO DE RASTRO
-    const trailSrc = "../img/jogo/inimigos/animado/ia/efeitos/ia1.jpg";
-
-    // posição original
     const originalTransform = window.getComputedStyle(container).transform;
 
-    // tempos ajustados
-    const toLeftTime = 900;    // dash saindo da tela
-    const toRightTime = 500;   // retorno
-    const pauseTime = 10;      // praticamente zero – reaparece instantâneo
-    const frameDelay = 150;    // troca de sprite
+    const toLeftTime = 900;
+    const toRightTime = 500;
+    const pauseTime = 10;
+    const frameDelay = 150;
 
-    // animação de ataque (1,2,3)
+    // =====================================================
+    // 🔍 FUNÇÃO QUE CALCULA E APLICA O ZOOM NO PLAYER
+    // =====================================================
+    function zoomOnPlayer() {
+  const game = document.getElementById("jogo");
+  const target = document.getElementById("player-area");
+
+  const rect = target.getBoundingClientRect();
+
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+
+  const offsetTop = 300; // Foca 10% acima do normal (50 → 40)
+
+  game.style.transition = "transform 0.6s ease";
+  game.style.transformOrigin = `${centerX}px ${centerY - offsetTop}px`;
+  game.style.transform = "scale(1.8)";
+}
+
     setTimeout(() => img.src = frames.f1, 0);
     setTimeout(() => img.src = frames.f2, frameDelay);
     setTimeout(() => img.src = frames.f3, frameDelay * 2);
+    zoomOnPlayer();
 
-    // =====================================================
-    //  FUNÇÃO QUE CRIA 4 RASTROS E FAZ ELES DESLIZAREM
-    // =====================================================
     function spawnTrailEffects() {
+      const trailSrc = "../img/jogo/inimigos/animado/ia/efeitos/ia3.png";
+      const totalTrails = 4;
+      const toLeftTime = 2700;
 
-  const trailSrc = "../img/jogo/inimigos/animado/ia/efeitos/ia3.png";
-  const totalTrails = 4;
-  const toLeftTime = 2700;
+      for (let i = 0; i < totalTrails; i++) {
+        const trail = document.createElement("img");
+        trail.src = trailSrc;
 
-  for (let i = 0; i < totalTrails; i++) {
+        trail.style.position = "absolute";
+        trail.style.pointerEvents = "none";
+        trail.style.opacity = "0.8";
+        trail.style.filter = "brightness(1.35)";
+        trail.style.width = "500px";
+        trail.style.height = "300px";
 
-    const trail = document.createElement("img");
-    trail.src = trailSrc;
+        const inFront = i < 2;
+        trail.style.zIndex = inFront ? "9999" : "1";
 
-    trail.style.position = "absolute";
-    trail.style.pointerEvents = "none";
-    trail.style.opacity = "0.8";
-    trail.style.filter = "brightness(1.35)";
-    trail.style.width = "500px";
-    trail.style.height = "300px";
+        let offsetY = 0;
+        let offsetX = 0;
 
-    // --- profundidade (frente vs trás) ---
-    const inFront = i < 2;
-    trail.style.zIndex = inFront ? "9999" : "1";
+        if (inFront) {
+          if (i === 0) { offsetY = -15; offsetX = 8; }
+          else { offsetY = -60; offsetX = 3; }
+        } else {
+          if (i === 2) { offsetY = 20; offsetX = 20; }
+          else { offsetY = -40; offsetX = 25; }
+        }
 
-    // --- offsets mais dispersos ---
-    let offsetY = 0;
-    let offsetX = 0;
+        trail.style.top = (container.offsetTop + offsetY) + "px";
+        trail.style.left = `calc(100vw + ${offsetX}vw)`;
 
-    if (inFront) {
-      // RASTROS DA FRENTE
-      if (i === 0) {
-        offsetY = -15;   // um pouco acima
-        offsetX = 8;     // mais perto do inimigo
-      } else {
-        offsetY = -60;   // sobe bem mais (dispersão alta)
-        offsetX = 3;     // um pouco mais atrás
-      }
-    } else {
-      // RASTROS DE TRÁS
-      if (i === 2) {
-        offsetY = +20;   // um pouco abaixo
-        offsetX = 20;
-      } else {
-        offsetY = -40;   // sobe mais
-        offsetX = 25;
+        trail.style.transform = "translateX(0)";
+        trail.style.transition = `transform ${toLeftTime}ms linear`;
+
+        container.parentElement.appendChild(trail);
+
+        requestAnimationFrame(() => {
+          trail.style.transform = "translateX(-160vw)";
+        });
+
+        setTimeout(() => trail.remove(), toLeftTime + 200);
       }
     }
 
-    // posição inicial (lado direito da tela)
-    trail.style.top = (container.offsetTop + offsetY) + "px";
-    trail.style.left = `calc(100vw + ${offsetX}vw)`;
-
-    // animação
-    trail.style.transform = "translateX(0)";
-    trail.style.transition = `transform ${toLeftTime}ms linear`;
-
-    container.parentElement.appendChild(trail);
-
-    // inicia movimento
-    requestAnimationFrame(() => {
-      trail.style.transform = "translateX(-160vw)";
-    });
-
-    // remove ao final
-    setTimeout(() => trail.remove(), toLeftTime + 200);
-  }
-}
-
-    // =====================================================
-    // 1 — ENEMY DASH ATÉ SAIR DA TELA
-    // =====================================================
+    // DASH DO INIMIGO
     container.style.transition = `transform ${toLeftTime}ms ease-in-out`;
     container.style.transform = "translateX(-110vw)";
 
-    // criar rastros
     spawnTrailEffects();
 
     setTimeout(() => {
-
-      img.src = frames.f4; // frame parado antes de retornar
+      img.src = frames.f4;
 
       setTimeout(() => {
-
-        // =====================================================
-        // 2 — TELEPORTA PARA A DIREITA (REAPARECE INSTANTE)
-        // =====================================================
+        // teleport
         container.style.transition = "none";
         container.style.transform = "translateX(110vw)";
-        void container.offsetWidth; // reflow
+        void container.offsetWidth;
 
         img.src = frames.f5;
 
-        // =====================================================
-        // 3 — VOLTA PARA A POSIÇÃO ORIGINAL
-        // =====================================================
+        // volta
         container.style.transition = `transform ${toRightTime}ms ease-in-out`;
         container.style.transform = originalTransform === "none" ? "translateX(0)" : originalTransform;
 
         setTimeout(() => {
-          img.src = frames.idle;  // idle final
+          img.src = frames.idle;
+
+          // remove o zoom
+          jogo.style.transition = "transform 500ms ease-out";
+          jogo.style.transform = originalJogoTransform;
+
           resolve();
         }, toRightTime);
 
@@ -6105,27 +6096,54 @@ function animateEnemyCrossScreen(enemy) {
   });
 }
 
+
+
+function animateEnemySimpleFrames(enemy) {
+  return new Promise(resolve => {
+    const container = enemy.el;
+    const img = container.querySelector("img");
+    if (!img) return resolve();
+
+    const frames = {
+      f1: "../img/jogo/inimigos/animado/ia/atk/ia1.png",
+      f2: "../img/jogo/inimigos/animado/ia/atk/ia2.png",
+      idle: "../img/jogo/inimigos/animado/ia/statico/ia1.png"
+    };
+    shakeScreenNatural(10, 400);
+    startScreenGlitch();
+
+    const frameDelay = 150;
+
+    setTimeout(() => img.src = frames.f1, 0);
+    setTimeout(() => img.src = frames.f2, frameDelay);
+    setTimeout(() => img.src = frames.f1, frameDelay * 2);
+    setTimeout(() => {
+      img.src = frames.idle;
+      resolve();
+      stopScreenGlitch();
+    }, frameDelay * 3);
+  });
+}
+
+
 function animateIAHitBasic(el) {
   const img = el.querySelector("img");
   if (!img) return;
 
   const frame1 = "../img/jogo/inimigos/animado/ia/cura/ia2.png";
   const frame2 = "../img/jogo/inimigos/animado/ia/cura/ia2.png";
-  const idle   = "../img/jogo/inimigos/animado/ia/statico/ia1.png";
+  const idle = "../img/jogo/inimigos/animado/ia/statico/ia1.png";
 
-  const speed = 200; // troca rápida
+  const speed = 200;
 
-  // 🔵 inicia glitch na tela
   startScreenGlitch();
 
-  // frames simples
   setTimeout(() => (img.src = frame1), 0);
   setTimeout(() => (img.src = frame2), speed);
   setTimeout(() => (img.src = frame1), speed * 2);
   setTimeout(() => {
     img.src = idle;
 
-    // glitch some quando termina
     stopScreenGlitch();
 
   }, speed * 3);
@@ -6151,40 +6169,40 @@ function animateNemoraAttack(enemy) {
 
     if (!img) return resolve();
 
-    if (nemoraAtk==true) {
+    if (nemoraAtk == true) {
       frames = {
-      f1: "../img/jogo/inimigos/animado/nemora/atk/nemora11.png",
-      f2: "../img/jogo/inimigos/animado/nemora/atk/nemora33.png",
-      f3: "../img/jogo/inimigos/animado/nemora/atk/nemora22.png",
-      f4: "../img/jogo/inimigos/animado/nemora/atk/nemora44.png",
-      f5: "../img/jogo/inimigos/animado/nemora/atk/nemora55.png",
-      idle: "../img/jogo/inimigos/animado/nemora/statico/nemora222.png"
-    };
-    } else if (nemoraDef==true) {
+        f1: "../img/jogo/inimigos/animado/nemora/atk/nemora11.png",
+        f2: "../img/jogo/inimigos/animado/nemora/atk/nemora33.png",
+        f3: "../img/jogo/inimigos/animado/nemora/atk/nemora22.png",
+        f4: "../img/jogo/inimigos/animado/nemora/atk/nemora44.png",
+        f5: "../img/jogo/inimigos/animado/nemora/atk/nemora55.png",
+        idle: "../img/jogo/inimigos/animado/nemora/statico/nemora222.png"
+      };
+    } else if (nemoraDef == true) {
       frames = {
-      f1: "../img/jogo/inimigos/animado/nemora/atk/nemora111.png",
-      f2: "../img/jogo/inimigos/animado/nemora/atk/nemora333.png",
-      f3: "../img/jogo/inimigos/animado/nemora/atk/nemora222.png",
-      f4: "../img/jogo/inimigos/animado/nemora/atk/nemora444.png",
-      f5: "../img/jogo/inimigos/animado/nemora/atk/nemora55.png",
-      idle: "../img/jogo/inimigos/animado/nemora/statico/nemora222.png"
-    };
+        f1: "../img/jogo/inimigos/animado/nemora/atk/nemora111.png",
+        f2: "../img/jogo/inimigos/animado/nemora/atk/nemora333.png",
+        f3: "../img/jogo/inimigos/animado/nemora/atk/nemora222.png",
+        f4: "../img/jogo/inimigos/animado/nemora/atk/nemora444.png",
+        f5: "../img/jogo/inimigos/animado/nemora/atk/nemora55.png",
+        idle: "../img/jogo/inimigos/animado/nemora/statico/nemora222.png"
+      };
     } else {
       frames = {
-      f1: "../img/jogo/inimigos/animado/nemora/atk/nemora1.png",
-      f2: "../img/jogo/inimigos/animado/nemora/atk/nemora3.png",
-      f3: "../img/jogo/inimigos/animado/nemora/atk/nemora2.png",
-      f4: "../img/jogo/inimigos/animado/nemora/atk/nemora4.png",
-      f5: "../img/jogo/inimigos/animado/nemora/atk/nemora55.png",
-      idle: "../img/jogo/inimigos/animado/nemora/statico/nemora222.png"
-    };
+        f1: "../img/jogo/inimigos/animado/nemora/atk/nemora1.png",
+        f2: "../img/jogo/inimigos/animado/nemora/atk/nemora3.png",
+        f3: "../img/jogo/inimigos/animado/nemora/atk/nemora2.png",
+        f4: "../img/jogo/inimigos/animado/nemora/atk/nemora4.png",
+        f5: "../img/jogo/inimigos/animado/nemora/atk/nemora55.png",
+        idle: "../img/jogo/inimigos/animado/nemora/statico/nemora222.png"
+      };
     }
     stopNemoraSnow();
     startNemoraFire();
-    const dashTime = 700; // tempo indo
-    const backTime = 500; // tempo voltando
-    const stopTime = 500; // tempo parado no frame 4
-    const frameDelay = 200; // velocidade das trocas 1/2/3
+    const dashTime = 700; 
+    const backTime = 500; 
+    const stopTime = 500; 
+    const frameDelay = 200; 
     // AVANÇAR E TROCAR 1/2/3
     setTimeout(() => img.src = frames.f1, 0);
     setTimeout(() => img.src = frames.f2, frameDelay);
@@ -6269,7 +6287,10 @@ async function enemyTurn() {
       if (act.type === "attack") {
 
         if (e.name === "IA") {
-          await animateEnemyCrossScreen(e);
+          await animateEnemySimpleFrames(e);
+          enemies[0].dano += 5;
+          floatText(enemies[0].el, `+5⚜️`, "yellow");
+          updateEnemyBars();
         }
         if (e.name === "Nemora") {
           await animateNemoraAttack(e);
@@ -6293,16 +6314,23 @@ async function enemyTurn() {
         // 💚 CURA
       } else if (act.type === "heal") {
 
-        
         let target = enemies.find(t => t !== e && t.hp > 0) || e;
-        animateIAHitBasic(target.el);
-        
+        if (e.name === "IA") {
+          animateIAHitBasic(target.el);
+        }
+
         const max = target.maxHp ?? target.hp;
         const healed = act.value;
 
         target.hp = Math.min(target.hp + healed, max);
 
         floatText(target.el, `+${healed}💚`, "green");
+
+        if (e.name === "IA") {
+          enemies[0].dano += 5;
+          floatText(enemies[0].el, `+5⚜️`, "yellow");
+          updateEnemyBars();
+        }
 
         target.el.classList.add("healed");
         setTimeout(() => target.el.classList.remove("healed"), 600);
@@ -6311,6 +6339,12 @@ async function enemyTurn() {
       } else if (act.type === "attackVida") {
         if (e.name === "Nemora") {
           await animateNemoraAttack(e);
+        }
+        if (e.name === "IA") {
+          await animateEnemyCrossScreen(e);
+          enemies[0].dano += 5;
+          floatText(enemies[0].el, `+5⚜️`, "yellow");
+          updateEnemyBars();
         }
         playerHP -= act.value;
 
