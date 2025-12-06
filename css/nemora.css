@@ -74,3 +74,13 @@
   background-size: cover;
   background-position: center;
 }
+
+.screen-glitch {
+  animation: glitchScreen 0.12s steps(2, end);
+}
+
+@keyframes glitchScreen {
+  0% { filter: hue-rotate(20deg) contrast(140%); transform: skewX(3deg); }
+  50% { filter: hue-rotate(-20deg) contrast(180%); transform: skewX(-3deg); }
+  100% { filter: none; transform: none; }
+}
