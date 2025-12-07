@@ -3155,26 +3155,26 @@ const normalModels = [
   //     zona: 1
   //   }
   // ],
-//   [
-//     {
-//       name: "IA",
-//       hp: 500,
-//       maxHp: 500,
-//       dano: 20,
-//       behavior() {
-//         return [
-//           {
-//             type: Math.random() < 0.25 ? "heal" : Math.random() < 0.8 ? "attack" : "attackVida",
-//             value: this.dano
-//           }
-//         ];
-//       },
-//       img: "../img/jogo/inimigos/animado/ia/statico/ia1.png",
-//       tipoDano: "(⚔️❔🔱❔💊)⚜️",
-//       tipoVida: "🧿",
-//       zona: 1
-//     }
-//   ]
+  // [
+  //   {
+  //     name: "IA",
+  //     hp: 500,
+  //     maxHp: 500,
+  //     dano: 15,
+  //     behavior() {
+  //       return [
+  //         {
+  //           type: Math.random() < 0.25 ? "heal" : Math.random() < 0.8 ? "attack" : "attackVida",
+  //           value: this.dano
+  //         }
+  //       ];
+  //     },
+  //     img: "../img/jogo/inimigos/animado/ia/statico/ia1.png",
+  //     tipoDano: "(⚔️❔🔱❔💊)⚜️",
+  //     tipoVida: "🧿",
+  //     zona: 1
+  //   }
+  // ]
 ];
 
 // ELITE
@@ -3743,7 +3743,7 @@ const bossModels = [
       name: "IA",
       hp: 500,
       maxHp: 500,
-      dano: 20,
+      dano: 15,
       behavior() {
         return [
           {
@@ -3758,26 +3758,26 @@ const bossModels = [
       zona: 5
     }
   ],
-  [
-    {
-      name: "Nemora",
-      hp: 400,
-      maxHp: 400,
-      dano: 40,
-      behavior() {
-        return [
-          {
-            type: Math.random() < 0.75 ? "attack" : "attackVida",
-            value: this.dano
-          }
-        ];
-      },
-      img: "../img/jogo/inimigos/animado/nemora/statico/nemora1.png",
-      tipoDano: "(⚔️❔🔱)⚜️🎭💊",
-      tipoVida: "🧿",
-      zona: 5
-    }
-  ]
+  // [
+  //   {
+  //     name: "Nemora",
+  //     hp: 400,
+  //     maxHp: 400,
+  //     dano: 40,
+  //     behavior() {
+  //       return [
+  //         {
+  //           type: Math.random() < 0.75 ? "attack" : "attackVida",
+  //           value: this.dano
+  //         }
+  //       ];
+  //     },
+  //     img: "../img/jogo/inimigos/animado/nemora/statico/nemora1.png",
+  //     tipoDano: "(⚔️❔🔱)⚜️🎭💊",
+  //     tipoVida: "🧿",
+  //     zona: 5
+  //   }
+  // ]
 ];
 
 function createEnemy(imgSrc) {
@@ -3972,7 +3972,7 @@ function animateDamage(el) {
 
   // identifica qual inimigo é
   const isNemora = img.src.includes("nemora");
-  const isIA = img.src.includes("ia");
+  const isIA = img.src.includes("/ia/");
 
   // ===============================
   //  SE FOR **IA** → animação própria
@@ -3982,9 +3982,6 @@ function animateDamage(el) {
     return;
   }
 
-  // ===============================
-  //  SE NÃO FOR **NEMORA**, encerra
-  // ===============================
   if (!isNemora) return;
 
   // ===============================
@@ -4009,7 +4006,6 @@ function animateDamage(el) {
     idle = "../img/jogo/inimigos/animado/nemora/statico/nemora444.png";
   }
 
-  // parar efeitos de fogo, ativar snow etc
   stopNemoraFire();
   startNemoraSnow();
 
@@ -6152,12 +6148,31 @@ function animateIAHitBasic(el) {
 function startScreenGlitch() {
   const body = document.body;
   body.classList.add("screen-glitch");
+
+  // Blocos glitch (efeito novo)
+  for (let i = 0; i < 16; i++) {
+    const block = document.createElement("div");
+    block.classList.add("glitch-chunk");
+
+    block.style.left = Math.random() * 100 + "vw";
+    block.style.top = Math.random() * 100 + "vh";
+    block.style.width = 80 + Math.random() * 200 + "px";
+    block.style.height = 20 + Math.random() * 60 + "px";
+
+    document.body.appendChild(block);
+
+    // remove depois da animação
+    setTimeout(() => block.remove(), 180);
+  }
 }
 
 function stopScreenGlitch() {
   const body = document.body;
-  setTimeout(() => body.classList.remove("screen-glitch"), 120);
+  setTimeout(() => {
+    body.classList.remove("screen-glitch");
+  }, 150);
 }
+
 
 function animateNemoraAttack(enemy) {
   if (nemoraAtk == true) {
@@ -6291,6 +6306,7 @@ async function enemyTurn() {
           enemies[0].dano += 5;
           floatText(enemies[0].el, `+5⚜️`, "yellow");
           updateEnemyBars();
+          stopScreenGlitch()
         }
         if (e.name === "Nemora") {
           await animateNemoraAttack(e);
@@ -6345,6 +6361,8 @@ async function enemyTurn() {
           enemies[0].dano += 5;
           floatText(enemies[0].el, `+5⚜️`, "yellow");
           updateEnemyBars();
+          startScreenGlitch();
+          stopScreenGlitch()
         }
         playerHP -= act.value;
 
