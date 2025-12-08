@@ -3164,7 +3164,7 @@ const normalModels = [
   //     behavior() {
   //       return [
   //         {
-  //           type: Math.random() < 0.25 ? "heal" : Math.random() < 0.8 ? "attack" : "attackVida",
+  //           type: Math.random() < 0.25 ? "heal" : Math.random() < 0.1 ? "attack" : "attackVida",
   //           value: this.dano
   //         }
   //       ];
@@ -4300,12 +4300,18 @@ function drawCards() {
       if (energy < card.cost || playerHP <= 0 || enemies.length === 0) return;
       energy -= card.cost;
 
+      if (hasItem(7)) {
+      curandeiro();
+      }
       //  ⚔️⚔️⚔️⚔️⚔️ ATAQUE ⚔️⚔️⚔️⚔️⚔️
       if (card.name === "Ataque") {
         animateDamage(enemies[0].el);
         enemies[0].hp -= card.power;
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Ceifa") {
@@ -4320,6 +4326,9 @@ function drawCards() {
           floatText(alvo.el, `-${dano}⚔️`, "red");
         }
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Desprezo") {
@@ -4330,6 +4339,9 @@ function drawCards() {
           floatText(alvo.el, `-${card.power}⚔️`, "red");
         }
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Broca Perfurante") {
@@ -4345,6 +4357,9 @@ function drawCards() {
           floatText(alvo.el, `-${dano}⚔️`, "red");
         }
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Artilharia Anti Sniper") {
@@ -4355,6 +4370,9 @@ function drawCards() {
           deck.push({ ...allCards.find(c => c.name === "Ceifa"), power: 12, cost: 1 });
           deck.push({ ...allCards.find(c => c.name === "Desprezo"), power: 20, cost: 1 });
         }
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Ataque Rapido") {
@@ -4362,6 +4380,9 @@ function drawCards() {
         enemies[0].hp -= card.power;
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Ataque Preciso") {
@@ -4374,6 +4395,9 @@ function drawCards() {
         enemies[0].hp -= dano;
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         floatText(enemies[0].el, `-${dano}⚔️`, "red");
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Rebeldia") {
@@ -4388,6 +4412,9 @@ function drawCards() {
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}⚔️`, "red");
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Vingativo") {
@@ -4396,6 +4423,9 @@ function drawCards() {
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}⚔️`, "red");
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Liderança") {
@@ -4420,6 +4450,9 @@ function drawCards() {
             deck.push(newCard); // adiciona diretamente
           }
         }
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Furia") {
@@ -4435,6 +4468,9 @@ function drawCards() {
         for (let i = 0; i <= total; i++) {
           deck.push({ ...allCards.find(c => c.name === "Ataque Rapido"), power: 5, cost: 0 });
         }
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Drone de Ataque") {
@@ -4451,6 +4487,9 @@ function drawCards() {
         for (let i = 0; i <= total; i++) {
           deck.push({ ...allCards.find(c => c.name === "Ataque Preciso"), power: 6 });
         }
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Drenagem") {
@@ -4462,6 +4501,9 @@ function drawCards() {
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         floatText(document.getElementById("player"), `+${card.power}💚`, "lime")
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });;
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
 
       else if (card.name === "Explosão") {
@@ -4471,6 +4513,9 @@ function drawCards() {
           floatText(e.el, `-${card.power}⚔️`, "red");
         });
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Chuva De Fragmentos") {
@@ -4480,6 +4525,9 @@ function drawCards() {
           floatText(e.el, `-${card.power}⚔️`, "red");
         });
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Fogo Amigo") {
@@ -4501,6 +4549,9 @@ function drawCards() {
         });
         animateDamage(document.getElementById("player"));
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Rajada Dupla") {
@@ -4510,6 +4561,9 @@ function drawCards() {
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Impacto Bruto") {
@@ -4517,6 +4571,9 @@ function drawCards() {
         enemies[0].hp -= card.power;
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
       //⚔️
       else if (card.name === "Beserck") {
@@ -4528,6 +4585,9 @@ function drawCards() {
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}⚔️`, "red");
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        if (hasItem(12)) {
+      applyItemAreaBonus(enemies);
+      }
       }
 
       //  🛡️🛡️🛡️🛡️🛡️ DEFESA 🛡️🛡️🛡️🛡️🛡️
@@ -4536,6 +4596,9 @@ function drawCards() {
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Campo de Força Fraco") {
@@ -4543,6 +4606,9 @@ function drawCards() {
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Tsunami") {
@@ -4551,6 +4617,9 @@ function drawCards() {
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Defesa Salvadora") {
@@ -4572,6 +4641,9 @@ function drawCards() {
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Ultima Defesa") {
@@ -4581,6 +4653,9 @@ function drawCards() {
           floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         }
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Campo de Força Instavel") {
@@ -4590,6 +4665,9 @@ function drawCards() {
           floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         }
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Campo Presurizado") {
@@ -4599,6 +4677,9 @@ function drawCards() {
           floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         }
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Blindagem Vital") {
@@ -4610,6 +4691,9 @@ function drawCards() {
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Campo Presurizado") {
@@ -4619,6 +4703,9 @@ function drawCards() {
           floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Escudo Triangular") {
@@ -4631,6 +4718,9 @@ function drawCards() {
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Defesa Lunar") {
@@ -4645,6 +4735,9 @@ function drawCards() {
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
           floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         }
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Em guarda") {
@@ -4654,6 +4747,9 @@ function drawCards() {
           floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         }
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Drone Defensivo") {
@@ -4669,6 +4765,9 @@ function drawCards() {
         for (let i = 0; i <= total; i++) {
           deck.push(oq);
         }
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Impulso Defensivo") {
@@ -4678,6 +4777,9 @@ function drawCards() {
         floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
         floatText(document.getElementById("player"), `+${card.power + 2}🛡️`, "cyan");
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Arpão") {
@@ -4695,6 +4797,9 @@ function drawCards() {
         playerShield += 3;
         floatText(document.getElementById("player"), `+3🛡️`, "blue");
         deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Escudo") {
@@ -4702,6 +4807,9 @@ function drawCards() {
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Indestrutivel") {
@@ -4710,6 +4818,9 @@ function drawCards() {
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${escudo}🛡️`, "cyan");
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Sistema de reflexão") {
@@ -4720,6 +4831,9 @@ function drawCards() {
         floatText(enemies[0].el, `-${card.power}⚔️`, "red");
         floatText(document.getElementById("player"), `+${(card.power * 2)}🛡️`, "cyan");
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "PROTOCOL-Campo De Força") {
@@ -4729,6 +4843,9 @@ function drawCards() {
           glowPlayer("blue");
         }
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
 
       else if (card.name === "Brilhando") {
@@ -4738,6 +4855,9 @@ function drawCards() {
           glowPlayer("blue");
         }
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
       //🛡️
       else if (card.name === "Escudo Retaliante") {
@@ -4746,6 +4866,9 @@ function drawCards() {
         floatText(enemies[0].el, `-${playerShield}⚔️`, "red");
         glowPlayer("blue");
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
+        if (hasItem(13)) {
+      protetor();
+      }
       }
 
       //  💚💚💚💚💚 BUFF 💚💚💚💚💚
@@ -5904,15 +6027,28 @@ function marcarInimigos(elemento, tipo, txt = false) {
   }
 
   if (tipo == "area") {
+    if (hasItem(15)) {
+      reciclador();
+      }
+      if (hasItem(16)) {
+      gancioso();
+      }
+
     enemies.forEach(e => {
       if (e.tipoVida === "🧿" || e.tipoVida === fraqueza) return;
       e.tipoVida = elemento;
-
       if (txt == true) {
         floatText(e.el, elemento, "blue");
       }
     });
   } else if (tipo == "unico") {
+    if (hasItem(15)) {
+      reciclador();
+      }
+      if (hasItem(16)) {
+      gancioso();
+      }
+
     if (enemies[0].tipoVida !== "🧿" && enemies[0].tipoVida !== fraqueza) {
       enemies[0].tipoVida = elemento;
     }
@@ -5958,7 +6094,7 @@ function takeDamage(dmg) {
   updateHUD();
 }
 
-function animateEnemyCrossScreen(enemy) { 
+function animateEnemyCrossScreen(enemy) {
   return new Promise(resolve => {
     const container = enemy.el;
     const img = container.querySelector("img");
@@ -5971,9 +6107,9 @@ function animateEnemyCrossScreen(enemy) {
     // FRAMES
     const frames = {
       f1: "../img/jogo/inimigos/animado/ia/atk/ia11.png",
-      f2: "../img/jogo/inimigos/animado/ia/atk/ia22.png",
-      f3: "../img/jogo/inimigos/animado/ia/atk/ia22.png",
-      f4: "../img/jogo/inimigos/animado/ia/atk/ia22.png",
+      f2: "../img/jogo/inimigos/animado/ia/atk/ia33.png",
+      f3: "../img/jogo/inimigos/animado/ia/atk/ia33.png",
+      f4: "../img/jogo/inimigos/animado/ia/atk/ia33.png",
       f5: "../img/jogo/inimigos/animado/ia/atk/ia11.png",
       idle: "../img/jogo/inimigos/animado/ia/statico/ia1.png",
     };
@@ -5989,20 +6125,20 @@ function animateEnemyCrossScreen(enemy) {
     // 🔍 FUNÇÃO QUE CALCULA E APLICA O ZOOM NO PLAYER
     // =====================================================
     function zoomOnPlayer() {
-  const game = document.getElementById("jogo");
-  const target = document.getElementById("player-area");
+      const game = document.getElementById("jogo");
+      const target = document.getElementById("player-area");
 
-  const rect = target.getBoundingClientRect();
+      const rect = target.getBoundingClientRect();
 
-  const centerX = rect.left + rect.width / 2;
-  const centerY = rect.top + rect.height / 2;
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
 
-  const offsetTop = 300; // Foca 10% acima do normal (50 → 40)
+      const offsetTop = 300; // Foca 10% acima do normal (50 → 40)
 
-  game.style.transition = "transform 0.6s ease";
-  game.style.transformOrigin = `${centerX}px ${centerY - offsetTop}px`;
-  game.style.transform = "scale(1.8)";
-}
+      game.style.transition = "transform 0.6s ease";
+      game.style.transformOrigin = `${centerX}px ${centerY - offsetTop}px`;
+      game.style.transform = "scale(1.8)";
+    }
 
     setTimeout(() => img.src = frames.f1, 0);
     setTimeout(() => img.src = frames.f2, frameDelay);
@@ -6010,7 +6146,7 @@ function animateEnemyCrossScreen(enemy) {
     zoomOnPlayer();
 
     function spawnTrailEffects() {
-      const trailSrc = "../img/jogo/inimigos/animado/ia/efeitos/ia3.png";
+      const trailSrc = "../img/jogo/inimigos/animado/ia/efeitos/ia111.png";
       const totalTrails = 4;
       const toLeftTime = 2700;
 
@@ -6214,10 +6350,10 @@ function animateNemoraAttack(enemy) {
     }
     stopNemoraSnow();
     startNemoraFire();
-    const dashTime = 700; 
-    const backTime = 500; 
-    const stopTime = 500; 
-    const frameDelay = 200; 
+    const dashTime = 700;
+    const backTime = 500;
+    const stopTime = 500;
+    const frameDelay = 200;
     // AVANÇAR E TROCAR 1/2/3
     setTimeout(() => img.src = frames.f1, 0);
     setTimeout(() => img.src = frames.f2, frameDelay);
@@ -6424,7 +6560,7 @@ async function enemyTurn() {
       if (playerHP <= 0) {
         document.getElementById("overlay").style.display = "block";
         document.getElementById("popupOver").style.display = "flex";
-        gerarItens();
+        // gerarCartaRecomp();
         limiteMao = maoInicio;
         document.getElementById("enemies").style.display = "none";
         document.getElementById("lifeBarsContainer").style.display = "none";
@@ -6712,7 +6848,11 @@ function checkEnemies() {
           if (mapaBatalha === 35 && enemies.length === 0 && playerHP > 0) {
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popupFinal").style.display = "flex";
-            gerarItens();
+            if (mapaBatalha == 7 || mapaBatalha == 14 || mapaBatalha == 21 || mapaBatalha == 28) {
+              gerarItens();
+            } else {
+              gerarCartaRecomp();
+            }
             limiteMao = maoInicio;
             document.getElementById("enemies").style.display = "none";
             document.getElementById("lifeBarsContainer").style.display = "none";
@@ -6725,7 +6865,11 @@ function checkEnemies() {
           } else if (enemies.length === 0 && playerHP > 0) {
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popup").style.display = "flex";
-            gerarItens();
+            if (mapaBatalha == 7 || mapaBatalha == 14 || mapaBatalha == 21 || mapaBatalha == 28) {
+              gerarItens();
+            } else {
+              gerarCartaRecomp();
+            }
             limiteMao = maoInicio;
             document.getElementById("enemies").style.display = "none";
             document.getElementById("lifeBarsContainer").style.display = "none";
@@ -6793,7 +6937,245 @@ function shakeScreenNatural(maxIntensity = 20, duration = 600) {
   step();
 }
 
+const allItems = [
+  { id: 1, name: "Coração De Quartzo", img: "./../img/jogo/itens/Vida2.png", desc: "+40 HP" },
+  { id: 2, name: "Gerador De Algas", img: "./../img/jogo/itens/Algas.png", desc: "+1 ENERGIA" },
+  { id: 3, name: "ReeForja", img: "./../img/jogo/itens/Picareta2.png", desc: "+50🪙" },
+  { id: 4, name: "Chip Do Batedor", img: "./../img/jogo/itens/auraLaranja.png", desc: "+1 ENERGIA" },
+  { id: 5, name: "Amuleto De Gaea", img: "./../img/jogo/itens/colarDeGaea.png", desc: "+50 HP, +1 ENERGIA" },
+  { id: 6, name: "Ecosistema Preservado", img: "./../img/jogo/itens/bolhaPreservada.png", desc: "+50 HP, +1 ENERGIA" },
+  { id: 7, name: "Preservar", img: "./../img/jogo/itens/ecosistema.png", desc: "Sempre que uma carta for usada cure 2 de vida" },
+  { id: 8, name: "Chip Do Defensor", img: "./../img/jogo/itens/chipDeDef.png", desc: "+10 ARMADURA TODO TURNO" },
+  { id: 9, name: "Pedras De Mana", img: "./../img/jogo/itens/pedrasDeMana.png", desc: "+1 ENERGIA" },
+  { id: 10, name: "Cartas Runicas", img: "./../img/jogo/itens/versoCard.png", desc: "+1 CARTA NA MÃO (max 10)" },
+  { id: 11, name: "Carta Amaldiçoada", img: "./../img/jogo/itens/cartaTriste.png", desc: "-1 CARTA NA MÃO" },
+  { id: 12, name: "Olho Do Kraken", img: "./../img/jogo/itens/olhoKraken.png", desc: "Sempre que uma carta VERMELHA for usada cause 5 de dano em todos os inimigos" },
+  { id: 13, name: "OlhoI De lizdris", img: "./../img/jogo/itens/olhoIlizdris.png", desc: "Sempre que uma carta AZUL for usada ganhe 5 de escudo nesse turno" },
+  { id: 14, name: "Marujin", img: "./../img/jogo/itens/marujin.png", desc: "+10 HP, +5 ARMADURA TODO TURNO, +1 ENERGIA" },
+  { id: 15, name: "Reciclador", img: "./../img/jogo/itens/colarReciclagem.png", desc: "Todas as cartas elementais que MARCAM o inimigo causam dano ao primeiro inimigo igual a 5% de todo o lixo reciclado (arredonda para baixo)" },
+  { id: 16, name: "Ganacia", img: "./../img/jogo/itens/ouro.png", desc: "Todas as cartas elementais que MARCAM o inimigo causam dano ao primeiro inimigo igual a 10% de todo o 🪙 (arredonda para baixo)" },
+];
+
+function aplicarBuff(item) { 
+  switch (item.id) { 
+    case 1: //vida
+    playerMaxHP += 40;
+    break; 
+
+    case 8: // Escudo
+    playerShieldInit += 10;
+    playerShield=playerShieldInit;
+    break; 
+
+    case 3: // money
+    dinheiro+=50;
+    atualizarDinheiro();
+    break; 
+
+    case 2: // energia
+    case 4: 
+    case 9:
+    energyMax+=1;
+    energy=energyMax;
+    break; 
+
+    case 10: // mao +
+    limiteMao+=1;
+    maoInicio=limiteMao;
+    break;
+
+    case 11: // mao -
+    limiteMao-=1;
+    maoInicio=limiteMao;
+    break;
+
+    case 5:
+    case 6: 
+    playerMaxHP += 50;
+    energyMax+=1;
+    energy=energyMax;
+    break; 
+
+    case 14: 
+    playerMaxHP += 10;
+    energyMax+=1;
+    energy=energyMax;
+    playerShieldInit += 5;
+    playerShield=playerShieldInit;
+    break;
+  } 
+  updateHUD(); 
+}
+
+function hasItem(id) {
+  return itensJaPegos.includes(id);
+}
+
+
+function applyItemAreaBonus(enemies) {
+  const bonusDamage = 5;
+
+  enemies.forEach(e => {
+    if (!e || e.hp <= 0) return;
+
+    animateDamage(e.el);
+    e.hp -= bonusDamage;
+    floatText(e.el, `-${bonusDamage}⚔️`, "orange");
+
+    if (e.hp < 0) e.hp = 0;
+
+    if (e.hp === 0) {
+      e.el.classList.add("enemy-dead");
+      setTimeout(() => e.el.remove(), 300);
+    }
+  });
+}
+
+function protetor(){
+  playerShield+=5;
+  floatText(document.getElementById("player"), `+${5}🛡️`, "cyan");
+}
+
+function reciclador(){
+  let dano = Math.floor(lixoReciclado / 20);
+
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= dano;
+        floatText(enemies[0].el, `-${dano}⚔️`, "red");
+}
+
+function gancioso(){
+  let dano = Math.floor(dinheiro / 10);
+
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= dano;
+        floatText(enemies[0].el, `-${dano}⚔️`, "red");
+}
+
+function curandeiro(){
+  playerHP = Math.min(playerHP + 2, playerMaxHP);
+  glowPlayer("green");
+  floatText(document.getElementById("player"), `+${2}💚`, "lime");
+}
+
+let itensJaPegos = [];
+
+/*TOOLTIP GLOBAL*/
+const tooltip = document.createElement("div");
+tooltip.style.position = "fixed";
+tooltip.style.padding = "8px 12px";
+tooltip.style.background = "rgba(0, 255, 60, 0.5)";
+tooltip.style.border = "2px solid #00ff66";
+tooltip.style.borderRadius = "0 25px 0 25px";
+tooltip.style.color = "black";
+tooltip.style.fontWeight = "bold";
+tooltip.style.pointerEvents = "none";
+tooltip.style.zIndex = "9999";
+tooltip.style.display = "none";
+document.body.appendChild(tooltip);
+
 function gerarItens() {
+  const container = document.getElementById("recompensa");
+  const inventario = document.getElementById("itens");
+
+  if (!container) {
+    console.error("ERRO: div #recompensa NÃO ENCONTRADA!");
+    return;
+  }
+
+  container.innerHTML = "";
+  container.style.display = "flex";
+  container.style.flexDirection = "row";
+  container.style.justifyContent = "center";
+  container.style.alignItems = "center";
+  container.style.gap = "20px";
+  container.style.width = "100%";
+
+  const itensDisponiveis = allItems.filter(i => !itensJaPegos.includes(i.id));
+  const quantidade = Math.min(3, itensDisponiveis.length);
+
+  if (quantidade === 0) {
+    container.innerHTML = "<p style='color:white'>Nenhum item disponível!</p>";
+    return;
+  }
+
+  const escolhidos = [];
+  while (escolhidos.length < quantidade) {
+    const item = itensDisponiveis[Math.floor(Math.random() * itensDisponiveis.length)];
+    if (!escolhidos.includes(item)) escolhidos.push(item);
+  }
+
+  escolhidos.forEach(item => {
+    const box = document.createElement("div");
+    box.classList.add("item-box");
+    box.style.cursor = "pointer";
+    box.style.transition = "0.2s";
+
+    // brilho verde ao passar o mouse
+    box.addEventListener("mouseenter", () => {
+      box.style.filter = "drop-shadow(0 0 10px #00ff3389)";
+    });
+    box.addEventListener("mouseleave", () => {
+      box.style.filter = "none";
+    });
+
+    const img = document.createElement("img");
+    img.src = item.img;
+    img.style.width = "100px";
+
+    const nome = document.createElement("div");
+    nome.textContent = item.name;
+    nome.style.fontSize = "18px";
+    nome.style.marginTop = "8px";
+    nome.style.fontWeight = "bold";
+
+    const desc = document.createElement("div");
+    desc.textContent = item.desc;
+    desc.style.marginTop = "4px";
+    desc.style.fontSize = "14px";
+    desc.style.opacity = "0.8";
+
+    /* Evento de pegar o item */
+    box.addEventListener("click", () => {
+      itensJaPegos.push(item.id);
+
+      // cria imagem no inventário
+      const invImg = document.createElement("img");
+      invImg.src = item.img;
+      invImg.style.margin = "5px";
+      invImg.style.cursor = "pointer";
+
+      /* TOOLTIP NO INVENTÁRIO */
+      invImg.addEventListener("mouseenter", () => {
+        tooltip.textContent = `(${item.name}) ${item.desc}`;
+        tooltip.style.display = "block";
+      });
+
+      invImg.addEventListener("mousemove", (ev) => {
+        tooltip.style.left = ev.clientX + 15 + "px";
+        tooltip.style.top = ev.clientY + 15 + "px";
+      });
+
+      invImg.addEventListener("mouseleave", () => {
+        tooltip.style.display = "none";
+      });
+
+      inventario.appendChild(invImg);
+      aplicarBuff(item);
+
+      fecharPopup();
+      irParaDiv2();
+      updateHUD();
+    });
+
+    box.appendChild(img);
+    box.appendChild(nome);
+    box.appendChild(desc);
+    container.appendChild(box);
+  });
+}
+
+function gerarCartaRecomp() {
   const container = document.getElementById("recompensa");
   container.innerHTML = ""; // limpa itens antigos
 
