@@ -3454,7 +3454,6 @@ function criarPlayerNaDiv3() {
   // Insere como primeiro elemento da div3
   div3.insertBefore(playerImg, div3.firstChild);
 };
-
 // ARREY PLAYER DECK
 const characterDecks = {
   laranja: [
@@ -3834,34 +3833,34 @@ const characterDecks = {
     allCards.find(c => c.name === "Xenofluxo Glacial"),
     allCards.find(c => c.name === "Baralho Glacial"),
   ],
-  gaeaReen: [
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-  ],
   // gaeaReen: [
-  //   allCards.find(c => c.name === "Essencia Verde"),
-  //   allCards.find(c => c.name === "Defesa Renovavel"),
-  //   allCards.find(c => c.name === "Arma Auto Sustentavel"),
-  //   allCards.find(c => c.name === "Xenofluxo Reciclável"),
-  //   allCards.find(c => c.name === "Defesa Reciclável"),
-  //   allCards.find(c => c.name === "Ataque Reciclável"),
-  //   allCards.find(c => c.name === "Força De Gaea"),
-  //   allCards.find(c => c.name === "GÆPROTOCOL"),
-  //   allCards.find(c => c.name === "Restos de mecha"),
-  //   allCards.find(c => c.name === "Restos de mecha"),
-  //   allCards.find(c => c.name === "Restos de mecha"),
-  //   allCards.find(c => c.name === "Restos de mecha"),
-  //   allCards.find(c => c.name === "Restos de mecha"),
-  // ]
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  // ],
+  gaeaReen: [
+    allCards.find(c => c.name === "Essencia Verde"),
+    allCards.find(c => c.name === "Defesa Renovavel"),
+    allCards.find(c => c.name === "Arma Auto Sustentavel"),
+    allCards.find(c => c.name === "Xenofluxo Reciclável"),
+    allCards.find(c => c.name === "Defesa Reciclável"),
+    allCards.find(c => c.name === "Ataque Reciclável"),
+    allCards.find(c => c.name === "Força De Gaea"),
+    allCards.find(c => c.name === "GÆPROTOCOL"),
+    allCards.find(c => c.name === "Restos de mecha"),
+    allCards.find(c => c.name === "Restos de mecha"),
+    allCards.find(c => c.name === "Restos de mecha"),
+    allCards.find(c => c.name === "Restos de mecha"),
+    allCards.find(c => c.name === "Restos de mecha"),
+  ]
 };
 
 //ENEMYS
