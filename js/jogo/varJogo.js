@@ -3,6 +3,7 @@ let telaAtual = 1;
 let telaAnterior = null;
 let mapaBatalha = 0;
 let zonaAtual = 1;
+let tipoFase;
 
 // CONFS
 var myMusic = new Audio("./../audio/artblock.ogg");

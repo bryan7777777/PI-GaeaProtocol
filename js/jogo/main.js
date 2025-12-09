@@ -2422,11 +2422,6 @@ function checkEnemies() {
           if (mapaBatalha === 35 && enemies.length === 0 && playerHP > 0) {
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popupFinal").style.display = "flex";
-            if (mapaBatalha == 7 || mapaBatalha == 14 || mapaBatalha == 21 || mapaBatalha == 28) {
-              gerarItens();
-            } else {
-              gerarCartaRecomp();
-            }
             limiteMao = maoInicio;
             document.getElementById("enemies").style.display = "none";
             document.getElementById("lifeBarsContainer").style.display = "none";
@@ -2439,7 +2434,7 @@ function checkEnemies() {
           } else if (enemies.length === 0 && playerHP > 0) {
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popup").style.display = "flex";
-            if (mapaBatalha == 7 || mapaBatalha == 14 || mapaBatalha == 21 || mapaBatalha == 28) {
+            if (tipoFase == "elite" || tipoFase == "boss"){
               gerarItens();
             } else {
               gerarCartaRecomp();
@@ -2974,7 +2969,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
           drawNewCards();
           drawCards();
           updateHUD();
-
+          tipoFase = tipo;
           if (tipo == 'boss') {
             dinheiro += 20;
             dinheiro += Math.floor(mapaBatalha / 3);
@@ -2991,15 +2986,18 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
         case 'loja':
           mostrarTela(4); // Tela da loja (div4)
           abrirLoja()
+          tipoFase = tipo;
           break;
 
         case 'ferreiro':
           mostrarTela(6);
+          tipoFase = tipo;
           break;
 
         case 'hospital':
         case 'hospital2':
           mostrarTela(5); // Tela do hospital (div5)
+          tipoFase = tipo;
           break;
 
         default:

@@ -23,8 +23,10 @@ function aplicarBuff(item) {
       break;
 
     case 10: // mao +
+    if (limiteMao<maxMao) {
       limiteMao += 1;
       maoInicio = limiteMao;
+    }
       break;
 
     case 11: // mao -
