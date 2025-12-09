@@ -15,8 +15,8 @@ const allItems = [
   { id: 14, name: "Marujin", img: "./../img/jogo/itens/marujin.png", desc: "+10 HP, +5 ARMADURA TODO TURNO, +1 ENERGIA" },
   { id: 15, name: "Reciclador", img: "./../img/jogo/itens/colarReciclagem.png", desc: "Todas as cartas elementais que MARCAM o inimigo causam dano ao primeiro inimigo igual a 5% de todo o lixo reciclado (arredonda para baixo)" },
   { id: 16, name: "Ganacia", img: "./../img/jogo/itens/ouro.png", desc: "Todas as cartas elementais que MARCAM o inimigo causam dano ao primeiro inimigo igual a 10% de todo o 🪙 (arredonda para baixo)" },
-  { id: 17, name: "Coroa Glacial", img: "./../img/jogo/itens/leryGo.jpg", desc: "Todas as cartas de GELO/FROST tem 30% de chance de causar 20% de todo o lixo reciclado como dano ao primeiro inimigo" },
-  { id: 18, name: "Estatua Da Gaea", img: "./../img/jogo/itens/estatuaDeGaea.jpg", desc: "Todas as cartas do tipo LIXO agora quando usadas dão +5🪙 e aumentão o contador de lixo reciclado em +1" },
-  { id: 19, name: "Coroa Da Gaea", img: "./../img/jogo/itens/coroaDeGaea.jpg", desc: "Se você tiver a Estatua De Gaea e o Amuleto De Gaea, sempre que uma carta for usada cure 2 de vida" },
-  { id: 20, name: "Reciclagem Elemental", img: "./../img/jogo/itens/reciclagemElemental.jpg", desc: "Todas as cartas elementais a partir de agora sempre que usadas aumentão o contador de lixo reciclado em +2" },
+  { id: 17, name: "Coroa Glacial", img: "./../img/jogo/itens/leryGo.png", desc: "Todas as cartas de GELO/FROST tem 30% de chance de causar 20% de todo o lixo reciclado como dano ao primeiro inimigo" },
+  { id: 18, name: "Estatua Da Gaea", img: "./../img/jogo/itens/estatuaDeGaea.png", desc: "Todas as cartas do tipo LIXO agora quando usadas dão +5🪙 e aumentão o contador de lixo reciclado em +1" },
+  { id: 19, name: "Coroa Da Gaea", img: "./../img/jogo/itens/coroaDeGaea.png", desc: "Se você tiver a Estatua De Gaea e o Amuleto De Gaea, sempre que uma carta for usada cure 2 de vida" },
+  { id: 20, name: "Reciclagem Elemental", img: "./../img/jogo/itens/reciclagemElemental.png", desc: "Todas as cartas elementais a partir de agora sempre que usadas aumentão o contador de lixo reciclado em +2" },
 ];
