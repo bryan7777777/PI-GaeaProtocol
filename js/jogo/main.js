@@ -107,6 +107,7 @@ function processFloatQueue() {
     processFloatQueue();
   }, duration + 100);
 };
+// LOGICA DAS CARDS
 function drawCards() {
   const cards = document.getElementById("cards");
   cards.innerHTML = "";
@@ -269,7 +270,7 @@ function drawCards() {
       if (energy < card.cost || playerHP <= 0 || enemies.length === 0) return;
       energy -= card.cost;
 
-      if (hasItem(7)) {
+      if (hasItem(19) && hasItem(18) && hasItem(5)) {
         curandeiro();
       }
       //  ⚔️⚔️⚔️⚔️⚔️ ATAQUE ⚔️⚔️⚔️⚔️⚔️
@@ -1365,23 +1366,29 @@ function drawCards() {
 
       //  🗑️🗑️🗑️🗑️🗑️ LIXO 🗑️🗑️🗑️🗑️🗑️
       else if (card.name === "Entulho") {
+        estatuaDeGaea();
       }
       else if (card.name === "Drone Quebrado") {
+        estatuaDeGaea();
       }
       //🗑️
       else if (card.name === "Lixo quimico") {
+        estatuaDeGaea();
       }
       //🗑️
       else if (card.name === "Escudo quebrado") {
         floatText(document.getElementById("player"), `+${"0"}🛡️`, "cyan");
+        estatuaDeGaea();
       }
       //🗑️
       else if (card.name === "Cura Quebrada") {
         floatText(document.getElementById("player"), `+${"0"}💚`, "lime");
+        estatuaDeGaea();
       }
       //🗑️
       else if (card.name === "Arma Quebrada") {
         floatText(enemies[0].el, `-${"0"}⚔️`, "red");
+        estatuaDeGaea();
       }
       //🗑️
       else if (card.name === "Restos de mecha") {
@@ -1393,6 +1400,7 @@ function drawCards() {
         for (let i = 0; i <= total; i++) {
           deck.push({ ...allCards.find(c => c.name === "Entulho"), power: 0 });
         }
+        estatuaDeGaea();
       }
       //🗑️
       else if (card.name === "Ferro Velho") {
@@ -1405,6 +1413,7 @@ function drawCards() {
         for (let i = 0; i <= total; i++) {
           deck.push({ ...allCards.find(c => c.name === "Entulho"), power: 0 });
         }
+        estatuaDeGaea();
       }
 
       //  ❄️❄️❄️❄️❄️ FROST ❄️❄️❄️❄️❄️
@@ -1421,6 +1430,13 @@ function drawCards() {
             enemies[0].behavior = () => [{ type: "attack", value: enemies[0].dano }];
           }
           floatText(enemies[0].el, `${card.power}❄️`, "blue");
+        }
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
         }
       }
       //❄️
@@ -1439,6 +1455,13 @@ function drawCards() {
           e.hp -= dano;
           floatText(e.el, `-${dano}❄️`, "red");
         });
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
+        }
       }
       //❄️
       else if (card.name === "Granizo Mortal") {
@@ -1455,6 +1478,13 @@ function drawCards() {
           e.hp -= dano;
           floatText(e.el, `-${dano}❄️`, "red");
         });
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
+        }
       }
       //❄️
       else if (card.name === "Golpe Traseiro") {
@@ -1470,6 +1500,13 @@ function drawCards() {
           alvo.hp -= dano;
           floatText(alvo.el, `-${dano}⚔️`, "red");
         }
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
+        }
       }
       //❄️
       else if (card.name === "Misil Termico Guiado") {
@@ -1480,6 +1517,13 @@ function drawCards() {
             floatText(e.el, `-${card.power}❄️`, "red");
           }
         });
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
+        }
       }
       //❄️
       else if (card.name === "Nevasca Mortal") {
@@ -1499,14 +1543,35 @@ function drawCards() {
             floatText(enemy.el, `${card.power}❄️`, "blue");
           }
         });
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
+        }
       }
       //❄️
       else if (card.name === "Marcar") {
         marcarInimigos("❄️", "unico", true)
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
+        }
       }
       //❄️
       else if (card.name === "Cemiterio Branco") {
         marcarInimigos("❄️", "area", true)
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
+        }
       }
       //❄️
       else if (card.name === "Ataque Condensado") {
@@ -1518,6 +1583,13 @@ function drawCards() {
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}❄️`, "red");
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
+        }
       }
       //❄️
       else if (card.name === "Misil Condensado") {
@@ -1529,6 +1601,13 @@ function drawCards() {
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}❄️`, "red");
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
+        }
       }
       //❄️
       else if (card.name === "Defesa Condensada") {
@@ -1545,6 +1624,13 @@ function drawCards() {
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${armorGain}🛡️`, "cyan");
         playerShield += armorGain;
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
+        }
       }
       //❄️
       else if (card.name === "Coração Frio") {
@@ -1561,6 +1647,13 @@ function drawCards() {
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${armorGain}💚`, "lime");
         playerHP = Math.min(playerHP + armorGain, playerMaxHP);
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
+        }
       }
       //❄️
       else if (card.name === "Xenofluxo Glacial") {
@@ -1569,6 +1662,13 @@ function drawCards() {
 
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${energiInimigo}🔷`, "lime");
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
+        }
       }
       //❄️
       else if (card.name === "Baralho Glacial") {
@@ -1589,14 +1689,29 @@ function drawCards() {
             glowPlayer("green");
           }
         }
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+        if (hasItem(17)) {
+          glacial();
+        }
       }
       //  ♨️♨️♨️♨️♨️ FIRE ♨️♨️♨️♨️♨️
       else if (card.name === "Combustão") {
         marcarInimigos("♨️", "unico", true)
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //♨️
       else if (card.name === "Chuva De Fogo") {
         marcarInimigos("♨️", "area", true)
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //♨️
       else if (card.name === "Explosão Termica") {
@@ -1610,6 +1725,10 @@ function drawCards() {
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}♨️`, "red");
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //♨️
       else if (card.name === "Ataque De Fogo") {
@@ -1623,6 +1742,10 @@ function drawCards() {
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}♨️`, "red");
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //♨️
       else if (card.name === "Cauterizar") {
@@ -1635,6 +1758,10 @@ function drawCards() {
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}♨️`, "red");
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //♨️
       else if (card.name === "Lança Chamas") {
@@ -1651,14 +1778,26 @@ function drawCards() {
           floatText(e.el, `-${dano}♨️`, "red");
         });
         marcarInimigos("♨️", "area")
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //  🌧️🌧️🌧️🌧️🌧️ AGUA 🌧️🌧️🌧️🌧️🌧️
       else if (card.name === "Jato De Água") {
         marcarInimigos("🌧️", "unico", true)
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //🌧️
       else if (card.name === "Mar Denso") {
         marcarInimigos("🌧️", "area", true)
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //🌧️
       else if (card.name === "Chuva Isolante") {
@@ -1672,6 +1811,10 @@ function drawCards() {
           }
         });
         marcarInimigos("🌧️", "area")
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //🌧️
       else if (card.name === "Chuva Controlada") {
@@ -1682,6 +1825,10 @@ function drawCards() {
             floatText(e.el, `-${card.power}🌧️`, "red");
           }
         });
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //🌧️
       else if (card.name === "Chuva Corrosiva") {
@@ -1695,6 +1842,10 @@ function drawCards() {
           }
         });
         marcarInimigos("🌧️", "area")
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //🌧️
       else if (card.name === "Corrosão") {
@@ -1706,10 +1857,18 @@ function drawCards() {
           floatText(enemies[0].el, `🌧️`, "red");
         }
         marcarInimigos("🌧️", "unico")
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //  ⛰️⛰️⛰️⛰️⛰️ TERRA ⛰️⛰️⛰️⛰️⛰️
       else if (card.name === "Soterrar") {
         marcarInimigos("⛰️", "unico", true)
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //⛰️
       else if (card.name === "Arma Ancestral") {
@@ -1721,6 +1880,10 @@ function drawCards() {
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}⛰️`, "red");
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //⛰️
       else if (card.name === "Brutalidade Da Terra") {
@@ -1732,6 +1895,10 @@ function drawCards() {
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}⛰️`, "red");
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //⛰️
       else if (card.name === "Força De Gaea") {
@@ -1743,6 +1910,10 @@ function drawCards() {
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
         floatText(enemies[0].el, `-${dano}⛰️`, "red");
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //⛰️
       else if (card.name === "Tudo Virá Terra") {
@@ -1752,6 +1923,10 @@ function drawCards() {
           animateDamage(enemies[0].el);
           enemies[0].hp -= dano;
           floatText(enemies[0].el, `-${dano}⛰️`, "red");
+        }
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
         }
       }
       //⛰️
@@ -1765,6 +1940,10 @@ function drawCards() {
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
         playerShield += def;
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //⛰️
       else if (card.name === "Coração De Gaea") {
@@ -1777,6 +1956,10 @@ function drawCards() {
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${def}💚`, "lime");
         playerHP = Math.min(playerHP + def, playerMaxHP);
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //⛰️
       else if (card.name === "Chuva Rochosa") {
@@ -1793,10 +1976,18 @@ function drawCards() {
           floatText(e.el, `-${dano}⛰️`, "red");
         });
         marcarInimigos("⛰️", "area")
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //⛰️
       else if (card.name === "Deslizamento") {
         marcarInimigos("⛰️", "area", true)
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
       }
       //  ✨✨✨✨✨ CINTILANTE ✨✨✨✨✨
       else if (card.name === "Guardião") {
@@ -2316,106 +2507,6 @@ function shakeScreenNatural(maxIntensity = 20, duration = 600) {
   }
 
   step();
-};
-function gerarItens() {
-  const container = document.getElementById("recompensa");
-  const inventario = document.getElementById("itens");
-
-  if (!container) {
-    console.error("ERRO: div #recompensa NÃO ENCONTRADA!");
-    return;
-  }
-
-  container.innerHTML = "";
-  container.style.display = "flex";
-  container.style.flexDirection = "row";
-  container.style.justifyContent = "center";
-  container.style.alignItems = "center";
-  container.style.gap = "20px";
-  container.style.width = "100%";
-
-  const itensDisponiveis = allItems.filter(i => !itensJaPegos.includes(i.id));
-  const quantidade = Math.min(3, itensDisponiveis.length);
-
-  if (quantidade === 0) {
-    container.innerHTML = "<p style='color:white'>Nenhum item disponível!</p>";
-    return;
-  }
-
-  const escolhidos = [];
-  while (escolhidos.length < quantidade) {
-    const item = itensDisponiveis[Math.floor(Math.random() * itensDisponiveis.length)];
-    if (!escolhidos.includes(item)) escolhidos.push(item);
-  }
-
-  escolhidos.forEach(item => {
-    const box = document.createElement("div");
-    box.classList.add("item-box");
-    box.style.cursor = "pointer";
-    box.style.transition = "0.2s";
-
-    // brilho verde ao passar o mouse
-    box.addEventListener("mouseenter", () => {
-      box.style.filter = "drop-shadow(0 0 10px #00ff3389)";
-    });
-    box.addEventListener("mouseleave", () => {
-      box.style.filter = "none";
-    });
-
-    const img = document.createElement("img");
-    img.src = item.img;
-    img.style.width = "100px";
-
-    const nome = document.createElement("div");
-    nome.textContent = item.name;
-    nome.style.fontSize = "18px";
-    nome.style.marginTop = "8px";
-    nome.style.fontWeight = "bold";
-
-    const desc = document.createElement("div");
-    desc.textContent = item.desc;
-    desc.style.marginTop = "4px";
-    desc.style.fontSize = "14px";
-    desc.style.opacity = "0.8";
-
-    /* Evento de pegar o item */
-    box.addEventListener("click", () => {
-      itensJaPegos.push(item.id);
-
-      // cria imagem no inventário
-      const invImg = document.createElement("img");
-      invImg.src = item.img;
-      invImg.style.margin = "5px";
-      invImg.style.cursor = "pointer";
-
-      /* TOOLTIP NO INVENTÁRIO */
-      invImg.addEventListener("mouseenter", () => {
-        tooltip.textContent = `(${item.name}) ${item.desc}`;
-        tooltip.style.display = "block";
-      });
-
-      invImg.addEventListener("mousemove", (ev) => {
-        tooltip.style.left = ev.clientX + 15 + "px";
-        tooltip.style.top = ev.clientY + 15 + "px";
-      });
-
-      invImg.addEventListener("mouseleave", () => {
-        tooltip.style.display = "none";
-      });
-
-      inventario.appendChild(invImg);
-      aplicarBuff(item);
-
-      fecharPopup();
-      irParaDiv2();
-      updateHUD();
-    });
-
-    box.appendChild(img);
-    box.appendChild(nome);
-    box.appendChild(desc);
-    container.appendChild(box);
-  });
 };
 
 // MAPA
@@ -4020,7 +4111,6 @@ async function enemyTurn() {
   updateHUD();
   checkGameOver();
 };
-
 // IA
 function animateEnemySimpleFrames(enemy) {
   return new Promise(resolve => {
@@ -4048,7 +4138,6 @@ function animateEnemySimpleFrames(enemy) {
     }, frameDelay * 3);
   });
 };
-
 // NEMORA
 function animateNemoraAttack(enemy) {
   if (nemoraAtk == true) {
@@ -4232,6 +4321,106 @@ function animateDamage(el) {
 };
 
 // ITENS
+function gerarItens() {
+  const container = document.getElementById("recompensa");
+  const inventario = document.getElementById("itens");
+
+  if (!container) {
+    console.error("ERRO: div #recompensa NÃO ENCONTRADA!");
+    return;
+  }
+
+  container.innerHTML = "";
+  container.style.display = "flex";
+  container.style.flexDirection = "row";
+  container.style.justifyContent = "center";
+  container.style.alignItems = "center";
+  container.style.gap = "20px";
+  container.style.width = "100%";
+
+  const itensDisponiveis = allItems.filter(i => !itensJaPegos.includes(i.id));
+  const quantidade = Math.min(3, itensDisponiveis.length);
+
+  if (quantidade === 0) {
+    container.innerHTML = "<p style='color:white'>Nenhum item disponível!</p>";
+    return;
+  }
+
+  const escolhidos = [];
+  while (escolhidos.length < quantidade) {
+    const item = itensDisponiveis[Math.floor(Math.random() * itensDisponiveis.length)];
+    if (!escolhidos.includes(item)) escolhidos.push(item);
+  }
+
+  escolhidos.forEach(item => {
+    const box = document.createElement("div");
+    box.classList.add("item-box");
+    box.style.cursor = "pointer";
+    box.style.transition = "0.2s";
+
+    // brilho verde ao passar o mouse
+    box.addEventListener("mouseenter", () => {
+      box.style.filter = "drop-shadow(0 0 10px #00ff3389)";
+    });
+    box.addEventListener("mouseleave", () => {
+      box.style.filter = "none";
+    });
+
+    const img = document.createElement("img");
+    img.src = item.img;
+    img.style.width = "100px";
+
+    const nome = document.createElement("div");
+    nome.textContent = item.name;
+    nome.style.fontSize = "18px";
+    nome.style.marginTop = "8px";
+    nome.style.fontWeight = "bold";
+
+    const desc = document.createElement("div");
+    desc.textContent = item.desc;
+    desc.style.marginTop = "4px";
+    desc.style.fontSize = "14px";
+    desc.style.opacity = "0.8";
+
+    /* Evento de pegar o item */
+    box.addEventListener("click", () => {
+      itensJaPegos.push(item.id);
+
+      // cria imagem no inventário
+      const invImg = document.createElement("img");
+      invImg.src = item.img;
+      invImg.style.margin = "5px";
+      invImg.style.cursor = "pointer";
+
+      /* TOOLTIP NO INVENTÁRIO */
+      invImg.addEventListener("mouseenter", () => {
+        tooltip.textContent = `(${item.name}) ${item.desc}`;
+        tooltip.style.display = "block";
+      });
+
+      invImg.addEventListener("mousemove", (ev) => {
+        tooltip.style.left = ev.clientX + 15 + "px";
+        tooltip.style.top = ev.clientY + 15 + "px";
+      });
+
+      invImg.addEventListener("mouseleave", () => {
+        tooltip.style.display = "none";
+      });
+
+      inventario.appendChild(invImg);
+      aplicarBuff(item);
+
+      fecharPopup();
+      irParaDiv2();
+      updateHUD();
+    });
+
+    box.appendChild(img);
+    box.appendChild(nome);
+    box.appendChild(desc);
+    container.appendChild(box);
+  });
+};
 function applyItemAreaBonus(enemies) {
   const bonusDamage = 5;
 
@@ -4273,6 +4462,22 @@ function curandeiro() {
   glowPlayer("green");
   floatText(document.getElementById("player"), `+${2}💚`, "lime");
 };
+function glacial() {
+  if (Math.random() < 0.3) {
+    let dano = Math.floor(lixoReciclado / 5);
+
+    animateDamage(enemies[0].el);
+    enemies[0].hp -= dano;
+    floatText(enemies[0].el, `-${dano}⚔️`, "red");
+  }
+}
+function estatuaDeGaea() {
+  if (hasItem(18)) {
+    dinheiro += 5;
+    atualizarDinheiro();
+    atualizarLixo();
+  }
+}
 
 // CALLING FUNCTIONS
 myMusic.play();

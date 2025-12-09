@@ -5,7 +5,7 @@ const allItems = [
   { id: 4, name: "Chip Do Batedor", img: "./../img/jogo/itens/auraLaranja.png", desc: "+1 ENERGIA" },
   { id: 5, name: "Amuleto De Gaea", img: "./../img/jogo/itens/colarDeGaea.png", desc: "+50 HP, +1 ENERGIA" },
   { id: 6, name: "Ecosistema Preservado", img: "./../img/jogo/itens/bolhaPreservada.png", desc: "+50 HP, +1 ENERGIA" },
-  { id: 7, name: "Preservar", img: "./../img/jogo/itens/ecosistema.png", desc: "Sempre que uma carta for usada cure 2 de vida" },
+  { id: 7, name: "Preservar", img: "./../img/jogo/itens/ecosistema.png", desc: "+40 HP" },
   { id: 8, name: "Chip Do Defensor", img: "./../img/jogo/itens/chipDeDef.png", desc: "+10 ARMADURA TODO TURNO" },
   { id: 9, name: "Pedras De Mana", img: "./../img/jogo/itens/pedrasDeMana.png", desc: "+1 ENERGIA" },
   { id: 10, name: "Cartas Runicas", img: "./../img/jogo/itens/versoCard.png", desc: "+1 CARTA NA MÃO (max 10)" },
@@ -15,4 +15,8 @@ const allItems = [
   { id: 14, name: "Marujin", img: "./../img/jogo/itens/marujin.png", desc: "+10 HP, +5 ARMADURA TODO TURNO, +1 ENERGIA" },
   { id: 15, name: "Reciclador", img: "./../img/jogo/itens/colarReciclagem.png", desc: "Todas as cartas elementais que MARCAM o inimigo causam dano ao primeiro inimigo igual a 5% de todo o lixo reciclado (arredonda para baixo)" },
   { id: 16, name: "Ganacia", img: "./../img/jogo/itens/ouro.png", desc: "Todas as cartas elementais que MARCAM o inimigo causam dano ao primeiro inimigo igual a 10% de todo o 🪙 (arredonda para baixo)" },
+  { id: 17, name: "Coroa Glacial", img: "./../img/jogo/itens/leryGo.jpg", desc: "Todas as cartas de GELO/FROST tem 30% de chance de causar 20% de todo o lixo reciclado como dano ao primeiro inimigo" },
+  { id: 18, name: "Estatua Da Gaea", img: "./../img/jogo/itens/estatuaDeGaea.jpg", desc: "Todas as cartas do tipo LIXO agora quando usadas dão +5🪙 e aumentão o contador de lixo reciclado em +1" },
+  { id: 19, name: "Coroa Da Gaea", img: "./../img/jogo/itens/coroaDeGaea.jpg", desc: "Se você tiver a Estatua De Gaea e o Amuleto De Gaea, sempre que uma carta for usada cure 2 de vida" },
+  { id: 20, name: "Reciclagem Elemental", img: "./../img/jogo/itens/reciclagemElemental.jpg", desc: "Todas as cartas elementais a partir de agora sempre que usadas aumentão o contador de lixo reciclado em +2" },
 ];

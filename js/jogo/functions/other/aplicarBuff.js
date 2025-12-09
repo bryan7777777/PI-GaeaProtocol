@@ -1,6 +1,7 @@
 function aplicarBuff(item) {
   switch (item.id) {
     case 1: //vida
+    case 7:
       playerMaxHP += 40;
       break;
 
