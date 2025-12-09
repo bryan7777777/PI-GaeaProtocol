@@ -1,0 +1,41 @@
+GUA DAS PASTAS DENTRO DO ./JS/JOGO/
+
+JOGO{PASTA DE ARREYS, PASTA DA BIBLIOTECA DE FUNCTIONS, MAIN ONDE REUNE TUDO, VARJOGO ONDE ESTÁ DECLARADO AS VAR GLOBAIS E ARRAYS VAZIOS}
+
+ARREYS{ARREY DAS CARTAS GERAL, ITENS GERAL, BLOCO DOS INIMIGOS NORMAIS/ELITE/BOSS}
+
+FUNCTIONS {
+    DIVSTRANSITION{
+        TRANSIÇÃO ENTRE AS DIVS
+    }
+    ENEMYS{
+        ALL{CONF GERAL DOS INIMIGOS}
+        IA{CONF DO BOSS IA}
+        NEMORA{CONF DO BOSS NEMORA}
+    }
+    OTHER{
+        OUTRAS FUNCTION, LOJA, ATT UID, ATT HEADER PLAYER, POPUP, SELÇÃO PLAYER UNICO, CHECK PLAYER ITEM, CHECK GAME OVER
+    }
+    PLAYER{
+        CONF QUE DIZ RESPEITO AO PLAYER, SELECT PERSO, DESENHAR CARDS NA MÃO, EFECTS, UPDATE UID PLAYER
+    }
+}
+
+STATS ENEMYS
+
+💞 inicio da batalha aumenta a vida maxima dos aliados adjacentes em 15 (dura até apos a morte)
+💤 eu disperto e revivo mais forte
+⚔️/❄️ atk normal
+🔱 ignora armadura
+🩸 Eu morro após atacar 3 vezes
+💚 prioriza curar aliados
+💊 auto cura
+🪬 quando todos que tem esse status morrem, geram um novo inimigo
+🧿 imune a marcação de vida e ataque
+(⚔️)💥 chance de (30%) crit X2 (apenas ações dentro do parenteses)
+(⚔️)🧨 chance de (15%) crit X4 (apenas ações dentro do parenteses)
+(⚔️)💣 chance de (10%) crit X5 (apenas ações dentro do parenteses)
+⚔️🎭💚 se não puder executar a primeira ação executa a segunda
+⚔️❓💚 pode executar 2 ações, ou uma ou outra que esta adjacente (50% de chance)
+⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
+🩸💫⚜️✨💤🤢🥶💀👾☠️👻🧿🪬🌟♨️🌧️⚡ n criado

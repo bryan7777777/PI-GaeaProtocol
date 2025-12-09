@@ -1,0 +1,18 @@
+const allItems = [
+  { id: 1, name: "Coração De Quartzo", img: "./../img/jogo/itens/Vida2.png", desc: "+40 HP" },
+  { id: 2, name: "Gerador De Algas", img: "./../img/jogo/itens/Algas.png", desc: "+1 ENERGIA" },
+  { id: 3, name: "ReeForja", img: "./../img/jogo/itens/Picareta2.png", desc: "+50🪙" },
+  { id: 4, name: "Chip Do Batedor", img: "./../img/jogo/itens/auraLaranja.png", desc: "+1 ENERGIA" },
+  { id: 5, name: "Amuleto De Gaea", img: "./../img/jogo/itens/colarDeGaea.png", desc: "+50 HP, +1 ENERGIA" },
+  { id: 6, name: "Ecosistema Preservado", img: "./../img/jogo/itens/bolhaPreservada.png", desc: "+50 HP, +1 ENERGIA" },
+  { id: 7, name: "Preservar", img: "./../img/jogo/itens/ecosistema.png", desc: "Sempre que uma carta for usada cure 2 de vida" },
+  { id: 8, name: "Chip Do Defensor", img: "./../img/jogo/itens/chipDeDef.png", desc: "+10 ARMADURA TODO TURNO" },
+  { id: 9, name: "Pedras De Mana", img: "./../img/jogo/itens/pedrasDeMana.png", desc: "+1 ENERGIA" },
+  { id: 10, name: "Cartas Runicas", img: "./../img/jogo/itens/versoCard.png", desc: "+1 CARTA NA MÃO (max 10)" },
+  { id: 11, name: "Carta Amaldiçoada", img: "./../img/jogo/itens/cartaTriste.png", desc: "-1 CARTA NA MÃO" },
+  { id: 12, name: "Olho Do Kraken", img: "./../img/jogo/itens/olhoKraken.png", desc: "Sempre que uma carta VERMELHA for usada cause 5 de dano em todos os inimigos" },
+  { id: 13, name: "OlhoI De lizdris", img: "./../img/jogo/itens/olhoIlizdris.png", desc: "Sempre que uma carta AZUL for usada ganhe 5 de escudo nesse turno" },
+  { id: 14, name: "Marujin", img: "./../img/jogo/itens/marujin.png", desc: "+10 HP, +5 ARMADURA TODO TURNO, +1 ENERGIA" },
+  { id: 15, name: "Reciclador", img: "./../img/jogo/itens/colarReciclagem.png", desc: "Todas as cartas elementais que MARCAM o inimigo causam dano ao primeiro inimigo igual a 5% de todo o lixo reciclado (arredonda para baixo)" },
+  { id: 16, name: "Ganacia", img: "./../img/jogo/itens/ouro.png", desc: "Todas as cartas elementais que MARCAM o inimigo causam dano ao primeiro inimigo igual a 10% de todo o 🪙 (arredonda para baixo)" },
+];

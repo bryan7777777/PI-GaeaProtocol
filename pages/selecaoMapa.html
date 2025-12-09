@@ -5,14 +5,72 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Document</title>
+  <link rel="shortcut icon" href="../img/site/logo/logo2.png" type="image/x-icon">
+
+  <!-- EXTENDS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- STYLE -->
   <link rel="stylesheet" href="./../css/reset.css" />
   <link rel="stylesheet" href="./../css/mapa.css" />
   <link rel="stylesheet" href="./../css/nemora.css" />
-  <script src="./../js/mapaDois.js" defer></script>
   <link rel="stylesheet" href="./../css/batalha.css">
-  <link rel="shortcut icon" href="../img/site/logo/logo2.png" type="image/x-icon">
+
+  <!-- JS -->
+  <!-- VARS -->
+  <script src="./../js/jogo/varJogo.js" defer></script>
+
+  <!-- ARREYS -->
+  <script src="./../js/jogo/arreys/allCards.js" defer></script>
+  <script src="./../js/jogo/arreys/allItems.js" defer></script>
+  <script src="./../js/jogo/arreys/normalModels.js" defer></script>
+  <script src="./../js/jogo/arreys/eliteModels.js" defer></script>
+  <script src="./../js/jogo/arreys/bossModels.js" defer></script>
+
+  <!-- LIBRARY -->
+  <script src="./../js/jogo/functions/other/hasItem.js" defer></script>
+  <script src="./../js/jogo/functions/other/atualizarLixo.js" defer></script>
+  <script src="./../js/jogo/functions/player/gerarDeckAleatorio.js" defer></script>
+  <script src="./../js/jogo/functions/other/atualizarDinheiro.js" defer></script>
+  <script src="./../js/jogo/functions/player/updateHUD.js" defer></script>
+  <script src="./../js/jogo/functions/player/glowPlayer.js" defer></script>
+  <script src="./../js/jogo/functions/other/checkGameOver.js" defer></script>
+  <script src="./../js/jogo/functions/other/fecharPopup.js" defer></script>
+  <script src="./../js/jogo/functions/other/gerarCartasRecompensa.js" defer></script>
+  <script src="./../js/jogo/functions/player/configurarSelecaoPersonagem.js" defer></script>
+  <script src="./../js/jogo/functions/player/drawNewCards.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/nemora/mudarBackground.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/nemora/startNemoraSnow.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/nemora/stopNemoraSnow.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/nemora/startNemoraFire.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/nemora/stopNemoraFire.js" defer></script>
+  <script src="./../js/jogo/functions/other/aplicarBuff.js" defer></script>
+  <script src="./../js/jogo/functions/itens/Kraken.js" defer></script>
+  <script src="./../js/jogo/functions/itens/protetor.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/all/createEnemy.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/all/updateEnemyBars.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/all/spawnEnemis.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/all/displayInimigos.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/ia/startScreenGlitch.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/ia/stopScreenGlitch.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/ia/animateEnemyCrossScreen.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/ia/animateIAHit.js" defer></script>
+  <script src="./../js/jogo/functions/enemys/ia/animateIAHitBasic.js" defer></script>
+  <script src="./../js/jogo/functions/other/abrirRemocaoCartas.js" defer></script>
+  <script src="./../js/jogo/functions/divsTransition/mostrarTela.js" defer></script>
+  <script src="./../js/jogo/functions/divsTransition/proximaTela.js" defer></script>
+  <script src="./../js/jogo/functions/divsTransition/irParaDiv2.js" defer></script>
+  <script src="./../js/jogo/functions/divsTransition/irParaDiv4.js" defer></script>
+  <script src="./../js/jogo/functions/divsTransition/irParaDiv5.js" defer></script>
+  <script src="./../js/jogo/functions/divsTransition/irParaDiv6.js" defer></script>
+  <script src="./../js/jogo/functions/divsTransition/voltarAnterior.js" defer></script>
+  <script src="./../js/jogo/functions/other/selecaoPlayerUnic.js" defer></script>
+
+  <!-- MAIN -->
+  <script src="./../js/jogo/main.js" defer></script>
+
+
   <!-- <script src="./../js/batalha.js" defer></script> -->
 </head>
 <div id="nemoraSnow"></div>
