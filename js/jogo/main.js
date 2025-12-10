@@ -107,6 +107,403 @@ function processFloatQueue() {
     processFloatQueue();
   }, duration + 100);
 };
+function marcarInimigos(elemento, tipo, txt = false) {
+  fraqueza = "";
+  switch (elemento) {
+    case "♨️":
+      fraqueza = "🌧️";
+      break;
+    case "⛰️":
+      fraqueza = "♨️";
+      break;
+    case "🌧️":
+      fraqueza = "⛰️";
+      break;
+
+    default:
+      break;
+  }
+
+  if (tipo == "area") {
+    if (hasItem(15)) {
+      reciclador();
+    }
+    if (hasItem(16)) {
+      gancioso();
+    }
+
+    enemies.forEach(e => {
+      if (e.tipoVida === "🧿" || e.tipoVida === fraqueza) return;
+      e.tipoVida = elemento;
+      if (txt == true) {
+        floatText(e.el, elemento, "blue");
+      }
+    });
+  } else if (tipo == "unico") {
+    if (hasItem(15)) {
+      reciclador();
+    }
+    if (hasItem(16)) {
+      gancioso();
+    }
+
+    if (enemies[0].tipoVida !== "🧿" && enemies[0].tipoVida !== fraqueza) {
+      enemies[0].tipoVida = elemento;
+    }
+
+    if (txt == true) {
+      floatText(enemies[0].el, elemento, "blue");
+    }
+  }
+};
+function checkEnemies() {
+  if (playerHP <= 0) {
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("popupOver").style.display = "flex";
+    gerarItens();
+    limiteMao = maoInicio;
+    document.getElementById("enemies").style.display = "none";
+    document.getElementById("lifeBarsContainer").style.display = "none";
+    energy = energyMax;
+    drawNewCards();
+    drawCards();
+    updateHUD();
+    playerShield = playerShieldInit;
+  }
+
+  for (let i = enemies.length - 1; i >= 0; i--) {
+    if (enemies[i].hp <= 0) {
+
+      const morto = enemies[i];
+      const parentEnemies = document.getElementById("enemies");
+      const parentBars = document.getElementById("lifeBarsContainer");
+
+      // animação de morte do inimigo
+      if (morto.el) {
+        morto.el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+        morto.el.style.opacity = "0";
+        morto.el.style.transform = "scale(0.8)";
+      }
+
+      if (morto.barEl) {
+        const barP = morto.barEl.closest("p");
+        if (barP) {
+          barP.style.transition = "opacity 0.5s ease";
+          barP.style.opacity = "0";
+        }
+      }
+
+      ((index) => {
+        setTimeout(() => {
+          if (!enemies[index]) return;
+
+          const oldEl = morto.el;
+          const oldBar = morto.barEl.closest("p");
+
+          if (oldEl) oldEl.remove();
+          if (oldBar) oldBar.remove();
+
+          enemies.splice(index, 1);
+
+          if (
+            morto.name === "Irislidriz" ||
+            morto.name === "Vigia de Irislidriz" ||
+            morto.name === "Observador de Irislidriz" ||
+            morto.name === "Medo De Ayla" ||
+            morto.name === "Tristeza De Ayla" ||
+            morto.name === "Ansiedade De Ayla" ||
+            morto.name === "Raiva De Ayla" ||
+            morto.name === "Angustia De Ayla" ||
+            morto.name === "Amor De Ayla" ||
+            morto.name === "Nojo De Ayla" ||
+            morto.name === "Boss Ayla"
+          ) {
+            let novos = [];
+
+            if (morto.name === "Irislidriz" && reviver === 0) {
+              shakeScreenNatural(10, 400);
+              novos.push({
+                name: "Irislidriz",
+                hp: 50,
+                dano: 20,
+                behavior: () => [{ type: "attack", value: 20 }],
+                img: "../img/jogo/inimigos/valkFantasmaElite.png",
+                tipoDano: "⚔️",
+                tipoVida: "💤",
+              });
+              reviver++;
+            } else if (morto.name === "Irislidriz" && reviver === 1) {
+              shakeScreenNatural(30, 800);
+              novos.push({
+                name: "Irislidriz",
+                hp: 40,
+                dano: 25,
+                behavior: () => [{ type: "attackVida", value: 30 }],
+                img: "../img/jogo/inimigos/valkFantasma.png",
+                tipoDano: "🔱",
+                tipoVida: "❤️",
+              });
+              reviver++;
+            }
+
+            if (morto.name.includes("Ayla")) {
+              if (morto.name === "Medo De Ayla") {
+                shakeScreenNatural(10, 400);
+                document.getElementById("jogo").style.backgroundImage = "url('../img/jogo/background/cidadeAsustadora.png')";
+                novos.push(
+                  {
+                    name: "Nojo De Ayla",
+                    hp: 60,
+                    dano: 20,
+                    behavior: () => [{ type: "attackVida", value: 20 }],
+                    img: "../img/jogo/inimigos/nojo.png",
+                    tipoDano: "🔱",
+                    tipoVida: "🪬",
+                  },
+                  {
+                    name: "Tristeza De Ayla",
+                    hp: 40,
+                    dano: 12,
+                    behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 12 : 24 }],
+                    img: "../img/jogo/inimigos/tristeza.png",
+                    tipoDano: "(💚🎭💊)💥",
+                    tipoVida: "🪬",
+                  }
+                );
+              }
+              else if (
+                ["Nojo De Ayla", "Tristeza De Ayla"].includes(morto.name)
+              ) {
+                if (enemies.every(e => !["Nojo De Ayla", "Tristeza De Ayla"].includes(e.name))) {
+                  novos.push(
+                    {
+                      name: "Ansiedade De Ayla",
+                      hp: 70,
+                      dano: 12,
+                      behavior: () => [
+                        { type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.7 ? 12 : 24 },
+                      ],
+                      img: "../img/jogo/inimigos/ansiedade.png",
+                      tipoDano: "(⚔️❓💚🎭💊)💥",
+                      tipoVida: "🪬",
+                    },
+                    {
+                      name: "Raiva De Ayla",
+                      hp: 30,
+                      dano: 30,
+                      behavior: () => [{ type: "attack", value: 30 }],
+                      img: "../img/jogo/inimigos/raiva.png",
+                      tipoDano: "⚔️",
+                      tipoVida: "🪬",
+                    }
+                  );
+                }
+              }
+              else if (
+                ["Raiva De Ayla", "Ansiedade De Ayla"].includes(morto.name)
+              ) {
+                if (enemies.every(e => !["Raiva De Ayla", "Ansiedade De Ayla"].includes(e.name))) {
+                  novos.push(
+                    {
+                      name: "Amor De Ayla",
+                      hp: 120,
+                      dano: 25,
+                      behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attack", value: 25 }],
+                      img: "../img/jogo/inimigos/amor.png",
+                      tipoDano: "⚔️❓💚🎭💊",
+                      tipoVida: "🪬",
+                    },
+                    {
+                      name: "Angustia De Ayla",
+                      hp: 50,
+                      dano: 20,
+                      behavior: () => [{ type: "heal", value: 20 }],
+                      img: "../img/jogo/inimigos/Vulnerabilidade.png",
+                      tipoDano: "💚🎭💊",
+                      tipoVida: "🪬",
+                    }
+
+                  );
+                }
+              }
+              else if (
+                ["Angustia De Ayla", "Amor De Ayla"].includes(morto.name)
+              ) {
+                const vivos = enemies.filter(e => e.hp > 0);
+                if (vivos.every(e => !["Angustia De Ayla", "Amor De Ayla"].includes(e.name))) {
+                  shakeScreenNatural(30, 800);
+                  document.getElementById("jogo").style.backgroundImage =
+                    "url('../img/jogo/background/lutaSuperior.png')";
+                  console.log("Spawnando boss final: Ayla");
+                  novos.push({
+                    name: "Ayla",
+                    hp: 200,
+                    dano: 20,
+                    behavior: () => [
+                      { type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.9 ? 20 : 100 },
+                    ],
+                    img: "../img/jogo/inimigos/bossIra.png",
+                    tipoDano: "(⚔️❓💊)💣",
+                    tipoVida: "🧿",
+                  });
+                }
+              }
+            }
+
+            if (morto.name === "Vigia de Irislidriz") {
+              novos.push({
+                name: "Protetor de Irislidriz",
+                hp: 100,
+                maxHp: 100,
+                dano: 5,
+                behavior: () => [{ type: "attack", value: 5 }],
+                img: "../img/jogo/inimigos/olhoIra.png",
+                tipoDano: "⚔️",
+                tipoVida: "❤️",
+              });
+            }
+
+            if (morto.name === "Observador de Irislidriz") {
+              novos.push({
+                name: "Guardião de Irislidriz",
+                hp: 35,
+                maxHp: 35,
+                dano: 10,
+                behavior: () => [
+                  { type: "heal", value: Math.random() < 0.7 ? 10 : 20 },
+                ],
+                img: "../img/jogo/inimigos/olhoRedencao.png",
+                tipoDano: "(💚🎭💊)💥",
+                tipoVida: "❤️",
+              });
+            }
+
+            // Criação visual dos novos inimigos (sem mudar o resto da lógica)
+            if (novos.length > 0) {
+              novos.forEach((novo, j) => {
+                enemies.splice(index + j, 0, novo);
+
+                novo.el = createEnemy(novo.img);
+                novo.el.style.display = "inline-block";
+                parentEnemies.insertBefore(
+                  novo.el,
+                  parentEnemies.children[index + j] || null
+                );
+
+                const lifeBar = document.createElement("p");
+                lifeBar.className = "enemy-bar";
+                lifeBar.innerHTML = `
+                  <strong> ⟪ ${novo.name} ⟫ </strong><br>
+                  ⟪ <span class="enemy-vida">${novo.tipoVida}</span> 
+                  <span class="enemy-hp">${novo.hp}</span> - 
+                  <span class="enemy-dano">${novo.tipoDano} ${novo.dano}</span> ⟫
+                `;
+                parentBars.insertBefore(
+                  lifeBar,
+                  parentBars.children[index + j] || null
+                );
+
+                novo.barEl = lifeBar.querySelector(".enemy-hp");
+                novo.dmgEl = lifeBar.querySelector(".enemy-dano");
+                novo.tipoVidaEl = lifeBar.querySelector(".enemy-vida");
+              });
+
+              displayInimigos();
+            }
+          }
+
+          // Checagem se acabou a batalha
+          if (mapaBatalha === 35 && enemies.length === 0 && playerHP > 0) {
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("popupFinal").style.display = "flex";
+            limiteMao = maoInicio;
+            document.getElementById("enemies").style.display = "none";
+            document.getElementById("lifeBarsContainer").style.display = "none";
+            energy = energyMax;
+            drawNewCards();
+            drawCards();
+            updateHUD();
+            playerShield = playerShieldInit;
+            atualizarDinheiro()
+          } else if (enemies.length === 0 && playerHP > 0) {
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("popup").style.display = "flex";
+
+            if (hasItem(23)) {
+              cura = playerMaxHP / 10;
+              playerHP += cura;
+            }
+
+            if (tipoFase == "elite" || tipoFase == "boss") {
+              gerarItens();
+            } else {
+              gerarCartaRecomp();
+            }
+
+            limiteMao = maoInicio;
+            document.getElementById("enemies").style.display = "none";
+            document.getElementById("lifeBarsContainer").style.display = "none";
+            energy = energyMax;
+            drawNewCards();
+            drawCards();
+            updateHUD();
+            playerShield = playerShieldInit;
+            reviver = 0;
+            atualizarDinheiro()
+          }
+        }, 500);
+      })(i);
+    }
+  }
+};
+function redScreenGlow(duration = 500, intensity = 30) {
+  const overlay = document.createElement("div");
+  overlay.style.position = "fixed";
+  overlay.style.top = "0";
+  overlay.style.left = "0";
+  overlay.style.width = "100%";
+  overlay.style.height = "100%";
+  overlay.style.pointerEvents = "none"; // não bloqueia cliques
+  overlay.style.boxSizing = "border-box";
+  overlay.style.zIndex = "9999";
+
+  // cria o glow vermelho para dentro
+  overlay.style.boxShadow = `0 0 ${intensity}px ${intensity / 2}px rgba(214, 77, 77, 1) inset`;
+  overlay.style.opacity = "1";
+  overlay.style.transition = `opacity 0.3s ease-out`;
+
+  document.body.appendChild(overlay);
+
+  // desaparece suavemente
+  setTimeout(() => {
+    overlay.style.opacity = "0";
+    setTimeout(() => overlay.remove(), 300);
+  }, duration);
+};
+function shakeScreenNatural(maxIntensity = 20, duration = 600) {
+  const container = document.body; // ou outro container principal
+  const start = Date.now();
+
+  function step() {
+    const elapsed = Date.now() - start;
+    const progress = elapsed / duration;
+
+    if (progress < 1) {
+      // intensidade diminui com o tempo (ease out)
+      const intensity = maxIntensity * (1 - progress);
+      const x = (Math.random() * 2 - 1) * intensity;
+      const y = (Math.random() * 2 - 1) * intensity;
+
+      container.style.transform = `translate(${x}px, ${y}px)`;
+      requestAnimationFrame(step);
+    } else {
+      // reseta posição
+      container.style.transform = '';
+    }
+  }
+
+  step();
+};
 // LOGICA DAS CARDS
 function drawCards() {
   const cards = document.getElementById("cards");
@@ -847,6 +1244,7 @@ function drawCards() {
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        itensVerd();
       }
       //💚
       else if (card.name === "Ritual") {
@@ -860,6 +1258,7 @@ function drawCards() {
           playerHP -= card.power;
         }
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        itensVerd();
       }
       //💚
       else if (card.name === "Cura Forte") {
@@ -869,6 +1268,7 @@ function drawCards() {
           floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
         }
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        itensVerd();
       }
       //💚
       else if (card.name === "Limite da Vida") {
@@ -882,6 +1282,7 @@ function drawCards() {
           floatText(document.getElementById("player"), `+${cura}💚`, "lime");
         }
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        itensVerd();
       }
       //💚
       else if (card.name === "Estratégia") {
@@ -907,6 +1308,7 @@ function drawCards() {
           glowPlayer("green");
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
+        itensVerd();
       }
       //💚
       else if (card.name === "Xenofluxo") {
@@ -914,6 +1316,7 @@ function drawCards() {
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        itensVerd();
       }
       //💚
       else if (card.name === "Drone Médico") {
@@ -924,6 +1327,7 @@ function drawCards() {
         for (let i = 0; i < enemies.length; i++) {
           playerHP = Math.min(playerHP + card.power, playerMaxHP);
         }
+        itensVerd();
       }
       //💚
       else if (card.name === "Sob-Vigia") {
@@ -940,6 +1344,7 @@ function drawCards() {
           floatText(document.getElementById("player"), `+${dano}💚`, "lime");
         }
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        itensVerd();
       }
       //💚
       else if (card.name === "Sobre Carga") {
@@ -950,6 +1355,7 @@ function drawCards() {
         floatText(enemies[0].el, `-${card.power * 3}⚔️`, "red");
         floatText(document.getElementById("player"), `-${card.power}💔`, "red");
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        itensVerd();
       }
       //💚
       else if (card.name === "Golpe Neural Retaliante") {
@@ -966,6 +1372,7 @@ function drawCards() {
         floatText(enemies[0].el, `-${playerHP}⚔️`, "red");
         floatText(document.getElementById("player"), `-${dano}💔`, "red");
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        itensVerd();
       }
       //💚
       else if (card.name === "Impulso") {
@@ -975,6 +1382,7 @@ function drawCards() {
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${card.power}➕`, "lime");
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        itensVerd();
       }
       //💚
       else if (card.name === "Mineração") {
@@ -982,6 +1390,7 @@ function drawCards() {
         glowPlayer("green");
         floatText(document.getElementById("player"), `+${3}🔷`, "lime");
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        itensVerd();
       }
       //💚
       else if (card.name === "PROTOCOL-Reforço Estrutural") {
@@ -991,6 +1400,7 @@ function drawCards() {
           glowPlayer("green");
         }
         deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        itensVerd();
       }
       //💚
       else if (card.name === "Compra Dupla") {
@@ -1007,6 +1417,7 @@ function drawCards() {
           deck.push(newCard);
         }
         glowPlayer("green");
+        itensVerd();
       }
       //  ♻️♻️♻️♻️♻️ RECICLAGEM ♻️♻️♻️♻️♻️
       else if (card.name === "Recicladora") {
@@ -2112,396 +2523,6 @@ function drawCards() {
     };
     cards.appendChild(div);
   });
-};
-function marcarInimigos(elemento, tipo, txt = false) {
-  fraqueza = "";
-  switch (elemento) {
-    case "♨️":
-      fraqueza = "🌧️";
-      break;
-    case "⛰️":
-      fraqueza = "♨️";
-      break;
-    case "🌧️":
-      fraqueza = "⛰️";
-      break;
-
-    default:
-      break;
-  }
-
-  if (tipo == "area") {
-    if (hasItem(15)) {
-      reciclador();
-    }
-    if (hasItem(16)) {
-      gancioso();
-    }
-
-    enemies.forEach(e => {
-      if (e.tipoVida === "🧿" || e.tipoVida === fraqueza) return;
-      e.tipoVida = elemento;
-      if (txt == true) {
-        floatText(e.el, elemento, "blue");
-      }
-    });
-  } else if (tipo == "unico") {
-    if (hasItem(15)) {
-      reciclador();
-    }
-    if (hasItem(16)) {
-      gancioso();
-    }
-
-    if (enemies[0].tipoVida !== "🧿" && enemies[0].tipoVida !== fraqueza) {
-      enemies[0].tipoVida = elemento;
-    }
-
-    if (txt == true) {
-      floatText(enemies[0].el, elemento, "blue");
-    }
-  }
-};
-function checkEnemies() {
-  if (playerHP <= 0) {
-    document.getElementById("overlay").style.display = "block";
-    document.getElementById("popupOver").style.display = "flex";
-    gerarItens();
-    limiteMao = maoInicio;
-    document.getElementById("enemies").style.display = "none";
-    document.getElementById("lifeBarsContainer").style.display = "none";
-    energy = energyMax;
-    drawNewCards();
-    drawCards();
-    updateHUD();
-    playerShield = playerShieldInit;
-  }
-
-  for (let i = enemies.length - 1; i >= 0; i--) {
-    if (enemies[i].hp <= 0) {
-
-      const morto = enemies[i];
-      const parentEnemies = document.getElementById("enemies");
-      const parentBars = document.getElementById("lifeBarsContainer");
-
-      // animação de morte do inimigo
-      if (morto.el) {
-        morto.el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-        morto.el.style.opacity = "0";
-        morto.el.style.transform = "scale(0.8)";
-      }
-
-      if (morto.barEl) {
-        const barP = morto.barEl.closest("p");
-        if (barP) {
-          barP.style.transition = "opacity 0.5s ease";
-          barP.style.opacity = "0";
-        }
-      }
-
-      ((index) => {
-        setTimeout(() => {
-          if (!enemies[index]) return;
-
-          const oldEl = morto.el;
-          const oldBar = morto.barEl.closest("p");
-
-          if (oldEl) oldEl.remove();
-          if (oldBar) oldBar.remove();
-
-          enemies.splice(index, 1);
-
-          if (
-            morto.name === "Irislidriz" ||
-            morto.name === "Vigia de Irislidriz" ||
-            morto.name === "Observador de Irislidriz" ||
-            morto.name === "Medo De Ayla" ||
-            morto.name === "Tristeza De Ayla" ||
-            morto.name === "Ansiedade De Ayla" ||
-            morto.name === "Raiva De Ayla" ||
-            morto.name === "Angustia De Ayla" ||
-            morto.name === "Amor De Ayla" ||
-            morto.name === "Nojo De Ayla" ||
-            morto.name === "Boss Ayla"
-          ) {
-            let novos = [];
-
-            if (morto.name === "Irislidriz" && reviver === 0) {
-              shakeScreenNatural(10, 400);
-              novos.push({
-                name: "Irislidriz",
-                hp: 50,
-                dano: 20,
-                behavior: () => [{ type: "attack", value: 20 }],
-                img: "../img/jogo/inimigos/valkFantasmaElite.png",
-                tipoDano: "⚔️",
-                tipoVida: "💤",
-              });
-              reviver++;
-            } else if (morto.name === "Irislidriz" && reviver === 1) {
-              shakeScreenNatural(30, 800);
-              novos.push({
-                name: "Irislidriz",
-                hp: 40,
-                dano: 25,
-                behavior: () => [{ type: "attackVida", value: 30 }],
-                img: "../img/jogo/inimigos/valkFantasma.png",
-                tipoDano: "🔱",
-                tipoVida: "❤️",
-              });
-              reviver++;
-            }
-
-            if (morto.name.includes("Ayla")) {
-              if (morto.name === "Medo De Ayla") {
-                shakeScreenNatural(10, 400);
-                document.getElementById("jogo").style.backgroundImage = "url('../img/jogo/background/cidadeAsustadora.png')";
-                novos.push(
-                  {
-                    name: "Nojo De Ayla",
-                    hp: 60,
-                    dano: 20,
-                    behavior: () => [{ type: "attackVida", value: 20 }],
-                    img: "../img/jogo/inimigos/nojo.png",
-                    tipoDano: "🔱",
-                    tipoVida: "🪬",
-                  },
-                  {
-                    name: "Tristeza De Ayla",
-                    hp: 40,
-                    dano: 12,
-                    behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 12 : 24 }],
-                    img: "../img/jogo/inimigos/tristeza.png",
-                    tipoDano: "(💚🎭💊)💥",
-                    tipoVida: "🪬",
-                  }
-                );
-              }
-              else if (
-                ["Nojo De Ayla", "Tristeza De Ayla"].includes(morto.name)
-              ) {
-                if (enemies.every(e => !["Nojo De Ayla", "Tristeza De Ayla"].includes(e.name))) {
-                  novos.push(
-                    {
-                      name: "Ansiedade De Ayla",
-                      hp: 70,
-                      dano: 12,
-                      behavior: () => [
-                        { type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.7 ? 12 : 24 },
-                      ],
-                      img: "../img/jogo/inimigos/ansiedade.png",
-                      tipoDano: "(⚔️❓💚🎭💊)💥",
-                      tipoVida: "🪬",
-                    },
-                    {
-                      name: "Raiva De Ayla",
-                      hp: 30,
-                      dano: 30,
-                      behavior: () => [{ type: "attack", value: 30 }],
-                      img: "../img/jogo/inimigos/raiva.png",
-                      tipoDano: "⚔️",
-                      tipoVida: "🪬",
-                    }
-                  );
-                }
-              }
-              else if (
-                ["Raiva De Ayla", "Ansiedade De Ayla"].includes(morto.name)
-              ) {
-                if (enemies.every(e => !["Raiva De Ayla", "Ansiedade De Ayla"].includes(e.name))) {
-                  novos.push(
-                    {
-                      name: "Amor De Ayla",
-                      hp: 120,
-                      dano: 25,
-                      behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attack", value: 25 }],
-                      img: "../img/jogo/inimigos/amor.png",
-                      tipoDano: "⚔️❓💚🎭💊",
-                      tipoVida: "🪬",
-                    },
-                    {
-                      name: "Angustia De Ayla",
-                      hp: 50,
-                      dano: 20,
-                      behavior: () => [{ type: "heal", value: 20 }],
-                      img: "../img/jogo/inimigos/Vulnerabilidade.png",
-                      tipoDano: "💚🎭💊",
-                      tipoVida: "🪬",
-                    }
-
-                  );
-                }
-              }
-              else if (
-                ["Angustia De Ayla", "Amor De Ayla"].includes(morto.name)
-              ) {
-                const vivos = enemies.filter(e => e.hp > 0);
-                if (vivos.every(e => !["Angustia De Ayla", "Amor De Ayla"].includes(e.name))) {
-                  shakeScreenNatural(30, 800);
-                  document.getElementById("jogo").style.backgroundImage =
-                    "url('../img/jogo/background/lutaSuperior.png')";
-                  console.log("Spawnando boss final: Ayla");
-                  novos.push({
-                    name: "Ayla",
-                    hp: 200,
-                    dano: 20,
-                    behavior: () => [
-                      { type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.9 ? 20 : 100 },
-                    ],
-                    img: "../img/jogo/inimigos/bossIra.png",
-                    tipoDano: "(⚔️❓💊)💣",
-                    tipoVida: "🧿",
-                  });
-                }
-              }
-            }
-
-            if (morto.name === "Vigia de Irislidriz") {
-              novos.push({
-                name: "Protetor de Irislidriz",
-                hp: 100,
-                maxHp: 100,
-                dano: 5,
-                behavior: () => [{ type: "attack", value: 5 }],
-                img: "../img/jogo/inimigos/olhoIra.png",
-                tipoDano: "⚔️",
-                tipoVida: "❤️",
-              });
-            }
-
-            if (morto.name === "Observador de Irislidriz") {
-              novos.push({
-                name: "Guardião de Irislidriz",
-                hp: 35,
-                maxHp: 35,
-                dano: 10,
-                behavior: () => [
-                  { type: "heal", value: Math.random() < 0.7 ? 10 : 20 },
-                ],
-                img: "../img/jogo/inimigos/olhoRedencao.png",
-                tipoDano: "(💚🎭💊)💥",
-                tipoVida: "❤️",
-              });
-            }
-
-            // Criação visual dos novos inimigos (sem mudar o resto da lógica)
-            if (novos.length > 0) {
-              novos.forEach((novo, j) => {
-                enemies.splice(index + j, 0, novo);
-
-                novo.el = createEnemy(novo.img);
-                novo.el.style.display = "inline-block";
-                parentEnemies.insertBefore(
-                  novo.el,
-                  parentEnemies.children[index + j] || null
-                );
-
-                const lifeBar = document.createElement("p");
-                lifeBar.className = "enemy-bar";
-                lifeBar.innerHTML = `
-                  <strong> ⟪ ${novo.name} ⟫ </strong><br>
-                  ⟪ <span class="enemy-vida">${novo.tipoVida}</span> 
-                  <span class="enemy-hp">${novo.hp}</span> - 
-                  <span class="enemy-dano">${novo.tipoDano} ${novo.dano}</span> ⟫
-                `;
-                parentBars.insertBefore(
-                  lifeBar,
-                  parentBars.children[index + j] || null
-                );
-
-                novo.barEl = lifeBar.querySelector(".enemy-hp");
-                novo.dmgEl = lifeBar.querySelector(".enemy-dano");
-                novo.tipoVidaEl = lifeBar.querySelector(".enemy-vida");
-              });
-
-              displayInimigos();
-            }
-          }
-
-          // Checagem se acabou a batalha
-          if (mapaBatalha === 35 && enemies.length === 0 && playerHP > 0) {
-            document.getElementById("overlay").style.display = "block";
-            document.getElementById("popupFinal").style.display = "flex";
-            limiteMao = maoInicio;
-            document.getElementById("enemies").style.display = "none";
-            document.getElementById("lifeBarsContainer").style.display = "none";
-            energy = energyMax;
-            drawNewCards();
-            drawCards();
-            updateHUD();
-            playerShield = playerShieldInit;
-            atualizarDinheiro()
-          } else if (enemies.length === 0 && playerHP > 0) {
-            document.getElementById("overlay").style.display = "block";
-            document.getElementById("popup").style.display = "flex";
-            if (tipoFase == "elite" || tipoFase == "boss"){
-              gerarItens();
-            } else {
-              gerarCartaRecomp();
-            }
-            limiteMao = maoInicio;
-            document.getElementById("enemies").style.display = "none";
-            document.getElementById("lifeBarsContainer").style.display = "none";
-            energy = energyMax;
-            drawNewCards();
-            drawCards();
-            updateHUD();
-            playerShield = playerShieldInit;
-            reviver = 0;
-            atualizarDinheiro()
-          }
-        }, 500);
-      })(i);
-    }
-  }
-};
-function redScreenGlow(duration = 500, intensity = 30) {
-  const overlay = document.createElement("div");
-  overlay.style.position = "fixed";
-  overlay.style.top = "0";
-  overlay.style.left = "0";
-  overlay.style.width = "100%";
-  overlay.style.height = "100%";
-  overlay.style.pointerEvents = "none"; // não bloqueia cliques
-  overlay.style.boxSizing = "border-box";
-  overlay.style.zIndex = "9999";
-
-  // cria o glow vermelho para dentro
-  overlay.style.boxShadow = `0 0 ${intensity}px ${intensity / 2}px rgba(214, 77, 77, 1) inset`;
-  overlay.style.opacity = "1";
-  overlay.style.transition = `opacity 0.3s ease-out`;
-
-  document.body.appendChild(overlay);
-
-  // desaparece suavemente
-  setTimeout(() => {
-    overlay.style.opacity = "0";
-    setTimeout(() => overlay.remove(), 300);
-  }, duration);
-};
-function shakeScreenNatural(maxIntensity = 20, duration = 600) {
-  const container = document.body; // ou outro container principal
-  const start = Date.now();
-
-  function step() {
-    const elapsed = Date.now() - start;
-    const progress = elapsed / duration;
-
-    if (progress < 1) {
-      // intensidade diminui com o tempo (ease out)
-      const intensity = maxIntensity * (1 - progress);
-      const x = (Math.random() * 2 - 1) * intensity;
-      const y = (Math.random() * 2 - 1) * intensity;
-
-      container.style.transform = `translate(${x}px, ${y}px)`;
-      requestAnimationFrame(step);
-    } else {
-      // reseta posição
-      container.style.transform = '';
-    }
-  }
-
-  step();
 };
 
 // MAPA
@@ -4327,6 +4348,11 @@ function gerarItens() {
     console.error("ERRO: div #recompensa NÃO ENCONTRADA!");
     return;
   }
+  if (hasItem(21)) {
+    numItens = 4;
+  } else {
+    numItens = 3;
+  }
 
   container.innerHTML = "";
   container.style.display = "flex";
@@ -4337,7 +4363,7 @@ function gerarItens() {
   container.style.width = "100%";
 
   const itensDisponiveis = allItems.filter(i => !itensJaPegos.includes(i.id));
-  const quantidade = Math.min(3, itensDisponiveis.length);
+  const quantidade = Math.min(numItens, itensDisponiveis.length);
 
   if (quantidade === 0) {
     container.innerHTML = "<p style='color:white'>Nenhum item disponível!</p>";
@@ -4474,6 +4500,16 @@ function estatuaDeGaea() {
     dinheiro += 5;
     atualizarDinheiro();
     atualizarLixo();
+  }
+}
+function itensVerd() {
+  if (hasItem(24) && hasItem(25)) {
+    curandeiro()
+  }
+  if (hasItem(22) && hasItem(25)) {
+    if (Math.random() < 0.3) {
+      energy += 1;
+    }
   }
 }
 

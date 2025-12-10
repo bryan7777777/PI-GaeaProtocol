@@ -18,6 +18,7 @@ function aplicarBuff(item) {
     case 2: // energia
     case 4:
     case 9:
+    case 25:
       energyMax += 1;
       energy = energyMax;
       break;
