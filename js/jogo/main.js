@@ -431,12 +431,15 @@ function checkEnemies() {
 
             if (hasItem(23)) {
               cura = playerMaxHP / 10;
-              playerHP += cura;
+              playerHP = Math.min(playerHP + cura, playerMaxHP);
+              glowPlayer("green");
+              floatText(document.getElementById("player"), `+${cura}💚`, "lime");
             }
 
             if (tipoFase == "elite" || tipoFase == "boss") {
               gerarItens();
             } else {
+              // gerarItens();
               gerarCartaRecomp();
             }
 
@@ -4509,6 +4512,8 @@ function itensVerd() {
   if (hasItem(22) && hasItem(25)) {
     if (Math.random() < 0.3) {
       energy += 1;
+      glowPlayer("blue");
+      floatText(document.getElementById("player"), `+${1}🔷`, "cyan");
     }
   }
 }
