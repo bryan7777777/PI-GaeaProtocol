@@ -594,15 +594,6 @@ const allCards = [
     type: "defense"
   },
   {
-    name: "Campo Presurizado",
-    cost: 1,
-    basePower: 20,
-    rarity: "rare",
-    img: "../img/jogo/cards/def/campoPresurizado.png",
-    desc: "Se só tiver 1 carta na mão ganhe 20 de escudo.",
-    type: "defense"
-  },
-  {
     name: "Escudo Triangular",
     cost: 1,
     basePower: 10,
@@ -830,7 +821,7 @@ const allCards = [
   {
     name: "Compra Dupla",
     cost: 1,
-    basePower: 1,
+    basePower: 2,
     rarity: "rare",
     img: "../img/jogo/cards/buff/comprarCarta.png",
     desc: "Compra 2 cartas aleatórias.",

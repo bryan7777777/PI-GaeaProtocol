@@ -606,7 +606,6 @@ function drawCards() {
       case "Escudo Triangular":
       case "Arpão":
       case "Defesa Lunar":
-      case "Campo Presurizado":
       case "Em guarda":
       case "Indestrutivel":
       case "Sistema de reflexão":
@@ -1061,18 +1060,6 @@ function drawCards() {
         glowPlayer("blue");
         floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
         deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
-        if (hasItem(13)) {
-          protetor();
-        }
-      }
-      //🛡️
-      else if (card.name === "Campo Presurizado") {
-        if (deck.length == 1) {
-          playerShield += card.power;
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
-          deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
-        }
         if (hasItem(13)) {
           protetor();
         }
@@ -2770,8 +2757,33 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
         for (let j = 0; j < caminhosPorFase; j++) {
           let tipo;
 
+          if (pagina === "tutorial.html") {
+            if (i === numFases - 3) {
+            tipo = 'hospital2';
+          } else if (i === numFases - 4) {
+            tipo = 'ferreiro';
+          } else if (i === numFases - 5) {
+            tipo = 'elite';
+          } else if (i === numFases - 6) {
+            tipo = 'loja';
+          }
+
+           // Primeira fase: início fixo no centro
+          else if (i === 0) {
+            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
+          }
+          // Última fase: boss fixo no centro
+          else if (i === numFases - 1) {
+            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'boss' : 'invalido';
+          }
+          // Penúltima fase: toda de hospital
+          else if (i === numFases - 2) {
+            tipo = 'hospital';
+          }
+          }
+
           // Primeira fase: início fixo no centro
-          if (i === 0) {
+          else if (i === 0) {
             tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
           }
           // Última fase: boss fixo no centro
@@ -4521,8 +4533,17 @@ function itensVerd() {
 // CALLING FUNCTIONS
 myMusic.play();
 configurarSelecaoPersonagem();
+
+const pagina = location.pathname.split("/").pop();
+
+if (pagina === "tutorial.html") {
+mapaCanvas("div2", 7, 1, "#45ff45ff", "#ff8834ff", '🐺');
+}
+
+if (pagina === "selecaoMapa.html") {
 mapaCanvas("div2", 7, 3, "#45ff45ff", "#ff8834ff", '🐺');
 mapaCanvas("div7", 7, 3, "#60ff34ff", "#34ffe1ff", '🦑');
 mapaCanvas("div8", 7, 5, "#fbfbfbff", "#737373ff", '🗽');
 mapaCanvas("div9", 7, 7, "#f5fd54ff", "#5db0e7ff", '👻');
 mapaCanvas("div10", 7, 7, "#5db0e7ff", "#e75d5dff", '🤖');
+}
