@@ -430,7 +430,7 @@ function checkEnemies() {
             document.getElementById("popup").style.display = "flex";
 
             if (hasItem(23)) {
-              cura = playerMaxHP / 10;
+              cura = Math.floor(playerMaxHP / 10);
               playerHP = Math.min(playerHP + cura, playerMaxHP);
               glowPlayer("green");
               floatText(document.getElementById("player"), `+${cura}💚`, "lime");
