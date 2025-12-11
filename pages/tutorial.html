@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="./../css/mapa.css" />
   <link rel="stylesheet" href="./../css/nemora.css" />
   <link rel="stylesheet" href="./../css/batalha.css">
+  <link rel="stylesheet" href="./../css/tutorial.css">
 
   <!-- JS -->
   <!-- VARS -->
@@ -77,6 +78,13 @@
 <div id="nemoraFire"></div>
 
 <body>
+  <div id="tutorial-overlay" style="display:none;">
+    <img id="tutorial-img" src="" alt="">
+  <div id="tutorial-box">
+    <p id="tutorial-text"></p>
+    <span id="tutorial-hint"><i>-- clique em qualquer lugar para avançar --</i></span>
+  </div>
+</div>
   <div id="game">
     <div class="tela selecaoPlayer" id="div1">
       <div id="blocoSelecao">
@@ -341,5 +349,4 @@
     </div>
   </div>
 </body>
-
 </html>

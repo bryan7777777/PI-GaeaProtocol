@@ -47,6 +47,22 @@ document.querySelectorAll('.armaduraUp').forEach(el => {
 document.querySelectorAll('.armaduraSacre').forEach(el => {
   el.addEventListener('click', armaduraSacre);
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const botao = document.getElementById("fimSelecao");
+
+  botao.addEventListener("click", () => {
+    iniciarTutorial([
+      "Boas-vindas, piloto, ao GÆA PROTOCOL!",
+      "Aqui você aprenderá o básico. Eu serei sua tutora, você pode me chamar de GAEA.",
+      "Este é o início da sua jornada para restaurar a natureza corrompida por uma IA.",
+      "Escolha seus caminhos com cuidado — cada decisão importa. Os caminhos são interligados por linhas, e apenas aqueles conectados são acessíveis.",
+      "Existem diversos pontos: hospitais, combates normais, combates contra elites, lojas, eventos e combates contra o boss.",
+      "Os pontos de evento só ficam coloridos quando estão acessíveis e, após concluir o evento, não será possível voltar — apenas avançar!",
+      "O jogo é um roguelike, ou seja, os mapas e inimigos sempre serão aleatórios. Cada jogatina será única!",
+      "Prepare-se para lutar contra inimigos poderosos e coletar relíquias e cartas muito fortes!"
+    ], "./../img/jogo/gaeazinha.jpg");
+  });
+});
 
 // INTERNAL FUNCTIONS LIBRARY
 // CONFS
@@ -425,6 +441,14 @@ function checkEnemies() {
             updateHUD();
             playerShield = playerShieldInit;
             atualizarDinheiro()
+          } else if (mapaBatalha === 7 && enemies.length === 0 && playerHP > 0 && pagina === "tutorial.html") {
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("popupFinal").style.display = "flex";
+            document.getElementById("enemies").style.display = "none";
+            document.getElementById("lifeBarsContainer").style.display = "none";
+            iniciarTutorial([
+              "Minha bênção e aprovação vieram junto com a derrota do boss. Daqui para frente será só você: derrote a IA que corrompeu este mundo e traga a vida de volta a ele. Boa sorte!"
+            ],"./../img/jogo/gaeazinha.jpg");
           } else if (enemies.length === 0 && playerHP > 0) {
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popup").style.display = "flex";
@@ -436,11 +460,29 @@ function checkEnemies() {
               floatText(document.getElementById("player"), `+${cura}💚`, "lime");
             }
 
-            if (tipoFase == "elite" || tipoFase == "boss") {
+            if (tipoFase == "elite" || tipoFase == "boss" || tipoFase == "inimigo2") {
               gerarItens();
+              if (pagina === "tutorial.html") {
+                iniciarTutorial([
+                  "Parabéns por vencer um inimigo tão forte!",
+                  "Inimigos de elite e bosses concedem relíquias como recompensa!",
+                  "As relíquias mudam a forma como você joga — monte builds poderosas com elas!",
+                  "Caso não queira nenhum item, você pode clicar em pular. Porém, não recomendo: itens NÃO se repetem. Se você não conseguir pegar todos, não se preocupe, eles podem voltar depois!",
+                  "Apenas os que você já pegou param de aparecer!",
+                  "As que já foram obtidas aparecerão na parte superior esquerda (passe o mouse sobre as relíquias para ver suas respectivas descrições)."
+                ],"./../img/jogo/gaeazinha.jpg");
+              }
             } else {
               // gerarItens();
               gerarCartaRecomp();
+              if (pagina === "tutorial.html") {
+                iniciarTutorial([
+                  "Sempre que derrotar um inimigo, você receberá uma recompensa!",
+                  "Inimigos comuns dão cartas como recompensa!",
+                  "Derrote inimigos mais fortes para obter relíquias poderosas!",
+                  "Caso não queira nenhuma carta, você pode clicar em pular."
+                ],"./../img/jogo/gaeazinha.jpg");
+              }
             }
 
             limiteMao = maoInicio;
@@ -2709,7 +2751,6 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
   // Começa o código JavaScript isolado no Shadow DOM
   (() => {
-    const tipos = ['inimigo', 'hospital', 'ferreiro', 'elite', 'hospital2', 'inimigo2', 'loja'];
     const mapa = [];
     const numFases = fases;
     const caminhosPorFase = caminhos;
@@ -2733,10 +2774,10 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
         { tipo: 'inimigo', peso: 55 },
         { tipo: 'elite', peso: 18 },
         { tipo: 'hospital', peso: 5 },
-        { tipo: 'hospital2', peso: 6 },
-        { tipo: 'inimigo2', peso: 6 },
-        { tipo: 'loja', peso: 5 },
-        { tipo: 'ferreiro', peso: 6 }
+        { tipo: 'hospital2', peso: 7 },
+        { tipo: 'inimigo2', peso: 8 },
+        { tipo: 'loja', peso: 6 },
+        { tipo: 'ferreiro', peso: 7 }
       ];
 
       // Sorteio ponderado de tipo
@@ -2759,27 +2800,27 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
           if (pagina === "tutorial.html") {
             if (i === numFases - 3) {
-            tipo = 'hospital2';
-          } else if (i === numFases - 4) {
-            tipo = 'ferreiro';
-          } else if (i === numFases - 5) {
-            tipo = 'elite';
-          } else if (i === numFases - 6) {
-            tipo = 'loja';
-          }
+              tipo = 'hospital2';
+            } else if (i === numFases - 4) {
+              tipo = 'ferreiro';
+            } else if (i === numFases - 5) {
+              tipo = 'elite';
+            } else if (i === numFases - 6) {
+              tipo = 'loja';
+            }
 
-           // Primeira fase: início fixo no centro
-          else if (i === 0) {
-            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
-          }
-          // Última fase: boss fixo no centro
-          else if (i === numFases - 1) {
-            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'boss' : 'invalido';
-          }
-          // Penúltima fase: toda de hospital
-          else if (i === numFases - 2) {
-            tipo = 'hospital';
-          }
+            // Primeira fase: início fixo no centro
+            else if (i === 0) {
+              tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
+            }
+            // Última fase: boss fixo no centro
+            else if (i === numFases - 1) {
+              tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'boss' : 'invalido';
+            }
+            // Penúltima fase: toda de hospital
+            else if (i === numFases - 2) {
+              tipo = 'hospital';
+            }
           }
 
           // Primeira fase: início fixo no centro
@@ -2992,6 +3033,68 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
     }
 
     function executarAcao(tipo) {
+      if (pagina === "tutorial.html") {
+        if (tipo == "inimigo") {
+          iniciarTutorial([
+            "Cada inimigo possui seus próprios status: ⟪ ❤️ (Vida — quando chega a zero, ele é eliminado) - ⚔️ (Ação — o que o inimigo fará, podendo ser ataque ou cura) ⟫.",
+            "Sempre que você clicar em FINALIZAR TURNO, os inimigos executam suas ações, seja qual for o tipo delas!",
+            "Há um menu no canto superior direito onde você pode ver, com mais detalhes, as ações e tipos de vida de cada inimigo.",
+            "Você também possui seus próprios status! Vida e armadura. Após os inimigos executarem suas ações, sua armadura é zerada. Existem mechas, itens e eventos que podem fazer você iniciar o turno com armadura maior que 0.",
+            "Use suas cartas para derrotar os inimigos. Cada carta possui seu custo (🔷), e cada mecha tem um limite de energia (🔷). Mas não se preocupe: ao finalizar seu turno, sua mão e energia (🔷) são restaurados!",
+            "Existem 10 tipos de cartas, mas falarei apenas de 5!",
+            "VERMELHAS — focadas em causar dano.",
+            "AZUIS — focadas em fornecer escudo.",
+            "VERDES — focadas em buffs e cura.",
+            "AMARELAS — focadas em reciclar as cinzas; elas dependem direta ou indiretamente delas.",
+            "CINZAS — todas são consideradas LIXO; algumas cartas dependem delas para funcionar.",
+            "O restante cabe a você descobrir enquanto se aventura!",
+            "As cartas VERMELHAS, AZUIS e VERDES geram lixo sempre que usadas. Lembre-se disso, pois o lixo é priorizado: caso você tenha uma carta que gere outras, o lixo sempre entra primeiro!",
+            "Você pode ter no máximo 10 cartas em sua mão; as excedentes são descartadas!",
+            "Reciclar cartas aumenta seu contador de lixo reciclado. Isso é importante, pois muitas cartas usam esse valor para ficarem mais fortes!",
+            "Com isso em mente, derrote os inimigos. Voltaremos a conversar mais tarde!"
+          ],"./../img/jogo/gaeazinha.jpg");
+        } else if (tipo == "loja") {
+          iniciarTutorial([
+            "Após vencer uma luta, você receberá ouro. Quanto mais avançar, mais ouro ganhará. Elites e bosses fornecem quantias ainda maiores.",
+            "O ouro que você ganha pode ser gasto aqui para comprar cartas ou pagar para descartar.",
+            "No momento, você não tem ouro suficiente para comprar nada. Então, vamos voltar para o mapa!",
+            "Mas sinta-se a vontade para olhar a loja!"
+          ],"./../img/jogo/gaeazinha.jpg");
+        } else if (tipo == "elite") {
+          iniciarTutorial([
+            "Uma batalha de elite!",
+            "Os inimigos costumam ser mais fortes, mas as recompensas são melhores. Cabe a você escolher seu caminho!",
+            "Eles costumam dropar relíquias, que são buffs passivos válidos apenas durante essa gameplay. Após uma derrota ou vitória, tudo é perdido: o ouro, o contador lixo reciclado e as cartas adicionadas ao deck!",
+            "Porém suas conquistas e score são salvos na sua conta!"
+          ],"./../img/jogo/gaeazinha.jpg");
+        } else if (tipo == "ferreiro") {
+          iniciarTutorial([
+            "Olha só que sorte!",
+            "Um ferreiro! Nele você poderá aumentar sua armadura.",
+            "Mas, caso não queira, pode simplesmente clicar em pular!"
+          ],"./../img/jogo/gaeazinha.jpg");
+        } else if (tipo == "hospital2") {
+          iniciarTutorial([
+            "Eventos acontecem de forma aleatória. Em um momento você está em um ferreiro e, no outro, pode acabar em uma emboscada. Portanto, não fique confiante demais!",
+            "Mas, neste caso, você deu sorte e encontrou um hospital!",
+            "Nele você encontrará dois tipos de profissionais: médicos e acólitos.",
+            "Qual deles deseja escolher? Veja o que cada um oferece e decida — ou apenas clique em pular!"
+          ],"./../img/jogo/gaeazinha.jpg");
+        } else if (tipo == "hospital") {
+          iniciarTutorial([
+            "Sempre antes de enfrentar um boss haverá um hospital — para nossa felicidade!",
+            "Cure-se antes de enfrentar um inimigo muito forte ou aumente sua vida máxima, caso esteja bem preparado!"
+          ],"./../img/jogo/gaeazinha.jpg");
+
+        } else if (tipo == "boss") {
+          iniciarTutorial([
+            "Acredito que já ensinei tudo o que podia.",
+            "Derrote este boss para retornar ao painel de controle e iniciar uma aventura por conta própria!",
+            "Não se preocupe: você poderá me ver novamente aqui no tutorial sempre que quiser!",
+            "Em caso de dúvidas, você pode clicar nos botões no canto superior direito. Neles você verá as cartas que estão no seu deck e um guia rápido caso esqueça algo!"
+          ],"./../img/jogo/gaeazinha.jpg");
+        }
+      }
       switch (tipo) {
         case 'inimigo':
         case 'inimigo2':
@@ -3073,6 +3176,74 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
     gerarMapa();
     desenharMapa(iconBoss);
   })();
+}
+// TUTORIAL
+function iniciarTutorial(textos, imagemSrc = null) {
+  const overlay = document.getElementById("tutorial-overlay");
+  const textBox = document.getElementById("tutorial-text");
+  const img = document.getElementById("tutorial-img");
+
+  if (imagemSrc) {
+    img.src = imagemSrc;
+    img.style.display = "block";
+  } else {
+    img.style.display = "none";
+  }
+
+  let index = 0;
+  let charIndex = 0;
+  let escrevendo = false;
+  let typingInterval;
+
+  overlay.style.display = "flex";
+
+  function escreverTexto() {
+    escrevendo = true;
+
+    // --- ANIMAÇÃO DE PULO NA IMAGEM ---
+    img.classList.remove("tutorial-jump");
+    void img.offsetWidth; // força reflow para reiniciar a animação
+    img.classList.add("tutorial-jump");
+    // -----------------------------------
+
+    const frase = textos[index];
+    textBox.innerHTML = "";
+
+    typingInterval = setInterval(() => {
+      textBox.innerHTML += frase.charAt(charIndex);
+      charIndex++;
+
+      if (charIndex >= frase.length) {
+        clearInterval(typingInterval);
+        escrevendo = false;
+      }
+    }, 20);
+  }
+
+  function pularOuAvançar() {
+    const frase = textos[index];
+
+    if (escrevendo) {
+      clearInterval(typingInterval);
+      textBox.innerHTML = frase;
+      escrevendo = false;
+      return;
+    }
+
+    index++;
+
+    if (index >= textos.length) {
+      overlay.style.display = "none";
+      return;
+    }
+
+    charIndex = 0;
+    escreverTexto();
+  }
+
+  overlay.onclick = pularOuAvançar;
+
+  escreverTexto();
 }
 
 // SHOOP
@@ -4537,13 +4708,13 @@ configurarSelecaoPersonagem();
 const pagina = location.pathname.split("/").pop();
 
 if (pagina === "tutorial.html") {
-mapaCanvas("div2", 7, 1, "#45ff45ff", "#ff8834ff", '🐺');
+  mapaCanvas("div2", 7, 1, "#45ff45ff", "#ff8834ff", '🐺');
 }
 
 if (pagina === "selecaoMapa.html") {
-mapaCanvas("div2", 7, 3, "#45ff45ff", "#ff8834ff", '🐺');
-mapaCanvas("div7", 7, 3, "#60ff34ff", "#34ffe1ff", '🦑');
-mapaCanvas("div8", 7, 5, "#fbfbfbff", "#737373ff", '🗽');
-mapaCanvas("div9", 7, 7, "#f5fd54ff", "#5db0e7ff", '👻');
-mapaCanvas("div10", 7, 7, "#5db0e7ff", "#e75d5dff", '🤖');
+  mapaCanvas("div2", 7, 3, "#45ff45ff", "#ff8834ff", '🐺');
+  mapaCanvas("div7", 7, 3, "#60ff34ff", "#34ffe1ff", '🦑');
+  mapaCanvas("div8", 7, 5, "#fbfbfbff", "#737373ff", '🗽');
+  mapaCanvas("div9", 7, 7, "#f5fd54ff", "#5db0e7ff", '👻');
+  mapaCanvas("div10", 7, 7, "#5db0e7ff", "#e75d5dff", '🤖');
 }

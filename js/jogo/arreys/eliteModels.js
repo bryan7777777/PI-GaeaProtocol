@@ -1,3 +1,21 @@
+const eliteModelsTuti = [
+  // 11111111111111111
+  [
+    {
+      name: "Lenhador corrompido",
+      hp: 25,
+      dano: 5,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.7 ? 5 : 10 }
+      ],
+      img: "../img/jogo/inimigos/lenhador.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "❤️",
+      zona: 1
+    }
+  ]
+];
+
 const eliteModels = [
   // 11111111111111111
   [

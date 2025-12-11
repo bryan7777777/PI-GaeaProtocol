@@ -1,0 +1,97 @@
+/* Tela escurecida */
+#tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 9999;
+  cursor: pointer;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Caixa de texto */
+#tutorial-box {
+  width: 100%;
+  max-width: 750px;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 20px 30px;
+  margin-bottom: 40px;
+  border-radius: 0 55px 0 55px;
+  border: solid 2px #4caf50;
+  box-shadow: 0 0 15px 4px #00ff99;
+  color: white;
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  animation: fadeIn 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Texto */
+#tutorial-text {
+  min-height: 70px;
+  line-height: 1.4em;
+}
+
+/* Dica (itálico) */
+#tutorial-hint {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  opacity: 0.7;
+  font-size: 16px;
+}
+
+/* Animação */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+#tutorial-overlay {
+  
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#tutorial-overlay img {
+  width: 150px;
+  height: auto;
+  margin-right: 20px;
+  border: solid 2px #4caf50;
+  box-shadow: 0 0 15px 4px #00ff99;
+  border-radius: 0 25px 0 25px;
+  margin-bottom: 40px;
+}
+
+#tutorial-text {
+  color: white;
+  font-size: 20px;
+  width: 60%;
+}
+
+/* Animação de pulo */
+@keyframes tutorialJump {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-12px); }
+  60%  { transform: translateY(0); }
+  80%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+.tutorial-jump {
+  animation: tutorialJump 0.35s ease;
+}

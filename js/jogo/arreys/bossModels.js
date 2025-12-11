@@ -1,3 +1,42 @@
+const bossModelsTuti = [
+  [
+    {
+      name: "Lobo",
+      hp: 10,
+      dano: 2,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.7 ? 2 : 4 }
+      ],
+      img: "../img/jogo/inimigos/lobo.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "⛰️",
+      zona: 1
+    },
+    {
+      name: "Boss Alfa",
+      hp: 45,
+      dano: 5,
+      behavior: () => [{ type: "attackVida", value: 5 }],
+      img: "../img/jogo/inimigos/bossLobo.png",
+      tipoDano: "🔱",
+      tipoVida: "⛰️",
+      zona: 1
+    },
+    {
+      name: "Lobo",
+      hp: 10,
+      dano: 2,
+      behavior: () => [
+        { type: "attack", value: Math.random() < 0.7 ? 2 : 4 }
+      ],
+      img: "../img/jogo/inimigos/lobo.png",
+      tipoDano: "(⚔️)💥",
+      tipoVida: "⛰️",
+      zona: 1
+    }
+  ],
+]
+
 const bossModels = [
   // 11111111111111
   [

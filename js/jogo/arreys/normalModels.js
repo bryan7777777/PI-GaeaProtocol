@@ -1,4 +1,39 @@
-const normalModels = [
+const normalModelsTuti = [
+  [
+  {
+      name: "Tartaruga",
+      hp: 24,
+      dano: 2,
+      behavior: () => [{ type: "attack", value: 2 }],
+      img: "../img/jogo/inimigos/minion.png",
+      tipoDano: "⚔️",
+      tipoVida: "⛰️",
+      zona: 1
+    },
+    {
+      name: "Tatu corrompido",
+      hp: 15,
+      dano: 3,
+      behavior: () => [{ type: "attack", value: 3 }],
+      img: "../img/jogo/inimigos/tatu.png",
+      tipoDano: "⚔️",
+      tipoVida: "⛰️",
+      zona: 1
+    },
+    {
+      name: "Abelha corrompida",
+      hp: 6,
+      dano: 1,
+      behavior: () => [{ type: "attack", value: 1 }],
+      img: "../img/jogo/inimigos/abelha.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 1
+    }
+    ]
+];
+
+ const normalModels = [
   // 111111111111111111111
   [
     {

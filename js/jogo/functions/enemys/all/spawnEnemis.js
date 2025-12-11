@@ -12,14 +12,25 @@ function spawnEnemies(tipo) {
 
   // --- seleciona pool conforme tipo ---
   let pool;
-  switch (tipo) {
-    case "inimigo": pool = normalModels; break;
-    case "inimigo2": pool = eliteModels; break;
-    case "elite": pool = eliteModels; break;
-    case "boss": pool = bossModels; break;
-    default:
-      console.warn("Tipo desconhecido:", tipo);
-      return;
+  if (pagina === "tutorial.html") {
+    switch (tipo) {
+      case "inimigo": pool = normalModelsTuti; break;
+      case "elite": pool = eliteModelsTuti; break;
+      case "boss": pool = bossModelsTuti; break;
+      default:
+        console.warn("Tipo desconhecido:", tipo);
+        return;
+    }
+  } else {
+    switch (tipo) {
+      case "inimigo": pool = normalModels; break;
+      case "inimigo2": pool = eliteModels; break;
+      case "elite": pool = eliteModels; break;
+      case "boss": pool = bossModels; break;
+      default:
+        console.warn("Tipo desconhecido:", tipo);
+        return;
+    }
   }
 
   // --- filtra inimigos pela zona ---
