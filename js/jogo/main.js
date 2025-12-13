@@ -448,7 +448,7 @@ function checkEnemies() {
             document.getElementById("lifeBarsContainer").style.display = "none";
             iniciarTutorial([
               "Minha bênção e aprovação vieram junto com a derrota do boss. Daqui para frente será só você: derrote a IA que corrompeu este mundo e traga a vida de volta a ele. Boa sorte!"
-            ],"./../img/jogo/gaeazinha.jpg");
+            ], "./../img/jogo/gaeazinha.jpg");
           } else if (enemies.length === 0 && playerHP > 0) {
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popup").style.display = "flex";
@@ -470,7 +470,7 @@ function checkEnemies() {
                   "Caso não queira nenhum item, você pode clicar em pular. Porém, não recomendo: itens NÃO se repetem. Se você não conseguir pegar todos, não se preocupe, eles podem voltar depois!",
                   "Apenas os que você já pegou param de aparecer!",
                   "As que já foram obtidas aparecerão na parte superior esquerda (passe o mouse sobre as relíquias para ver suas respectivas descrições)."
-                ],"./../img/jogo/gaeazinha.jpg");
+                ], "./../img/jogo/gaeazinha.jpg");
               }
             } else {
               // gerarItens();
@@ -481,7 +481,7 @@ function checkEnemies() {
                   "Inimigos comuns dão cartas como recompensa!",
                   "Derrote inimigos mais fortes para obter relíquias poderosas!",
                   "Caso não queira nenhuma carta, você pode clicar em pular."
-                ],"./../img/jogo/gaeazinha.jpg");
+                ], "./../img/jogo/gaeazinha.jpg");
               }
             }
 
@@ -3035,56 +3035,39 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
     function executarAcao(tipo) {
       if (pagina === "tutorial.html") {
         if (tipo == "inimigo") {
-          iniciarTutorial([
-            "Cada inimigo possui seus próprios status: ⟪ ❤️ (Vida — quando chega a zero, ele é eliminado) - ⚔️ (Ação — o que o inimigo fará, podendo ser ataque ou cura) ⟫.",
-            "Sempre que você clicar em FINALIZAR TURNO, os inimigos executam suas ações, seja qual for o tipo delas!",
-            "Há um menu no canto superior direito onde você pode ver, com mais detalhes, as ações e tipos de vida de cada inimigo.",
-            "Você também possui seus próprios status! Vida e armadura. Após os inimigos executarem suas ações, sua armadura é zerada. Existem mechas, itens e eventos que podem fazer você iniciar o turno com armadura maior que 0.",
-            "Use suas cartas para derrotar os inimigos. Cada carta possui seu custo (🔷), e cada mecha tem um limite de energia (🔷). Mas não se preocupe: ao finalizar seu turno, sua mão e energia (🔷) são restaurados!",
-            "Existem 10 tipos de cartas, mas falarei apenas de 5!",
-            "VERMELHAS — focadas em causar dano.",
-            "AZUIS — focadas em fornecer escudo.",
-            "VERDES — focadas em buffs e cura.",
-            "AMARELAS — focadas em reciclar as cinzas; elas dependem direta ou indiretamente delas.",
-            "CINZAS — todas são consideradas LIXO; algumas cartas dependem delas para funcionar.",
-            "O restante cabe a você descobrir enquanto se aventura!",
-            "As cartas VERMELHAS, AZUIS e VERDES geram lixo sempre que usadas. Lembre-se disso, pois o lixo é priorizado: caso você tenha uma carta que gere outras, o lixo sempre entra primeiro!",
-            "Você pode ter no máximo 10 cartas em sua mão; as excedentes são descartadas!",
-            "Reciclar cartas aumenta seu contador de lixo reciclado. Isso é importante, pois muitas cartas usam esse valor para ficarem mais fortes!",
-            "Com isso em mente, derrote os inimigos. Voltaremos a conversar mais tarde!"
-          ],"./../img/jogo/gaeazinha.jpg");
+          executarTutorialCompleto();
         } else if (tipo == "loja") {
           iniciarTutorial([
             "Após vencer uma luta, você receberá ouro. Quanto mais avançar, mais ouro ganhará. Elites e bosses fornecem quantias ainda maiores.",
             "O ouro que você ganha pode ser gasto aqui para comprar cartas ou pagar para descartar.",
             "No momento, você não tem ouro suficiente para comprar nada. Então, vamos voltar para o mapa!",
             "Mas sinta-se a vontade para olhar a loja!"
-          ],"./../img/jogo/gaeazinha.jpg");
+          ], "./../img/jogo/gaeazinha.jpg");
         } else if (tipo == "elite") {
           iniciarTutorial([
             "Uma batalha de elite!",
             "Os inimigos costumam ser mais fortes, mas as recompensas são melhores. Cabe a você escolher seu caminho!",
             "Eles costumam dropar relíquias, que são buffs passivos válidos apenas durante essa gameplay. Após uma derrota ou vitória, tudo é perdido: o ouro, o contador lixo reciclado e as cartas adicionadas ao deck!",
             "Porém suas conquistas e score são salvos na sua conta!"
-          ],"./../img/jogo/gaeazinha.jpg");
+          ], "./../img/jogo/gaeazinha.jpg");
         } else if (tipo == "ferreiro") {
           iniciarTutorial([
             "Olha só que sorte!",
             "Um ferreiro! Nele você poderá aumentar sua armadura.",
             "Mas, caso não queira, pode simplesmente clicar em pular!"
-          ],"./../img/jogo/gaeazinha.jpg");
+          ], "./../img/jogo/gaeazinha.jpg");
         } else if (tipo == "hospital2") {
           iniciarTutorial([
             "Eventos acontecem de forma aleatória. Em um momento você está em um ferreiro e, no outro, pode acabar em uma emboscada. Portanto, não fique confiante demais!",
             "Mas, neste caso, você deu sorte e encontrou um hospital!",
             "Nele você encontrará dois tipos de profissionais: médicos e acólitos.",
             "Qual deles deseja escolher? Veja o que cada um oferece e decida — ou apenas clique em pular!"
-          ],"./../img/jogo/gaeazinha.jpg");
+          ], "./../img/jogo/gaeazinha.jpg");
         } else if (tipo == "hospital") {
           iniciarTutorial([
             "Sempre antes de enfrentar um boss haverá um hospital — para nossa felicidade!",
             "Cure-se antes de enfrentar um inimigo muito forte ou aumente sua vida máxima, caso esteja bem preparado!"
-          ],"./../img/jogo/gaeazinha.jpg");
+          ], "./../img/jogo/gaeazinha.jpg");
 
         } else if (tipo == "boss") {
           iniciarTutorial([
@@ -3092,7 +3075,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
             "Derrote este boss para retornar ao painel de controle e iniciar uma aventura por conta própria!",
             "Não se preocupe: você poderá me ver novamente aqui no tutorial sempre que quiser!",
             "Em caso de dúvidas, você pode clicar nos botões no canto superior direito. Neles você verá as cartas que estão no seu deck e um guia rápido caso esqueça algo!"
-          ],"./../img/jogo/gaeazinha.jpg");
+          ], "./../img/jogo/gaeazinha.jpg");
         }
       }
       switch (tipo) {
@@ -3178,72 +3161,129 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
   })();
 }
 // TUTORIAL
-function iniciarTutorial(textos, imagemSrc = null) {
-  const overlay = document.getElementById("tutorial-overlay");
-  const textBox = document.getElementById("tutorial-text");
-  const img = document.getElementById("tutorial-img");
+function iniciarTutorial(textos, imagemSrc = null, imagemSrc2 = null) {
+  return new Promise(resolve => {
+    const overlay = document.getElementById("tutorial-overlay");
+    const textBox = document.getElementById("tutorial-text");
+    const img = document.getElementById("tutorial-img");
+    const img2 = document.getElementById("tutorial-img2");
 
-  if (imagemSrc) {
-    img.src = imagemSrc;
-    img.style.display = "block";
-  } else {
-    img.style.display = "none";
-  }
+    if (imagemSrc) {
+      img.src = imagemSrc;
+      img.style.display = "block";
+    } else {
+      img.style.display = "none";
+    }
 
-  let index = 0;
-  let charIndex = 0;
-  let escrevendo = false;
-  let typingInterval;
+    if (imagemSrc2) {
+      img2.src = imagemSrc2;
+      img2.style.display = "block";
+    } else {
+      img2.style.display = "none";
+    }
 
-  overlay.style.display = "flex";
+    let index = 0;
+    let charIndex = 0;
+    let escrevendo = false;
+    let typingInterval;
 
-  function escreverTexto() {
-    escrevendo = true;
+    overlay.style.display = "flex";
 
-    // --- ANIMAÇÃO DE PULO NA IMAGEM ---
-    img.classList.remove("tutorial-jump");
-    void img.offsetWidth; // força reflow para reiniciar a animação
-    img.classList.add("tutorial-jump");
-    // -----------------------------------
+    function escreverTexto() {
+      escrevendo = true;
+      // animação
+      img.classList.remove("tutorial-jump");
+      void img.offsetWidth;
+      img.classList.add("tutorial-jump");
+      const frase = textos[index];
+      textBox.innerHTML = "";
 
-    const frase = textos[index];
-    textBox.innerHTML = "";
+      typingInterval = setInterval(() => {
+        textBox.innerHTML += frase.charAt(charIndex);
+        charIndex++;
 
-    typingInterval = setInterval(() => {
-      textBox.innerHTML += frase.charAt(charIndex);
-      charIndex++;
+        if (charIndex >= frase.length) {
+          clearInterval(typingInterval);
+          escrevendo = false;
+        }
+      }, 20);
+    }
 
-      if (charIndex >= frase.length) {
+    function pularOuAvançar() {
+      const frase = textos[index];
+      if (escrevendo) {
         clearInterval(typingInterval);
+        textBox.innerHTML = frase;
         escrevendo = false;
+        return;
       }
-    }, 20);
-  }
 
-  function pularOuAvançar() {
-    const frase = textos[index];
-
-    if (escrevendo) {
-      clearInterval(typingInterval);
-      textBox.innerHTML = frase;
-      escrevendo = false;
-      return;
+      index++;
+      if (index >= textos.length) {
+        overlay.style.display = "none";
+        overlay.onclick = null; 
+        resolve();              
+        return;
+      }
+      charIndex = 0;
+      escreverTexto();
     }
 
-    index++;
+    overlay.onclick = pularOuAvançar;
 
-    if (index >= textos.length) {
-      overlay.style.display = "none";
-      return;
-    }
-
-    charIndex = 0;
     escreverTexto();
-  }
+  });
+}
+// TXT COMPACTO
+async function executarTutorialCompleto() {
 
-  overlay.onclick = pularOuAvançar;
+  await iniciarTutorial([
+    "Cada inimigo possui seus próprios status: ⟪ ❤️ Vida - ⚔️ Ação ⟫.",
+    "Sempre que você clicar em FINALIZAR TURNO, os inimigos executam suas ações!",
+    "Há um menu no canto superior direito onde você pode ver mais detalhes.",
+    "Você também possui seus próprios status: Vida e Armadura.",
+    "Use suas cartas para derrotar os inimigos.",
+    "Existem 10 tipos de cartas, mas falarei apenas de 5!"
+  ], "./../img/jogo/gaeazinha.jpg");
 
-  escreverTexto();
+  await iniciarTutorial(
+    ["VERMELHAS / ATAQUE (⚔️) — focadas em causar dano."],
+    "./../img/jogo/gaeazinha.jpg",
+    "./../img/jogo/cards/vermelho.png"
+  );
+
+  await iniciarTutorial(
+    ["AZUIS / DEFESA (🛡️) — focadas em fornecer escudo."],
+    "./../img/jogo/gaeazinha.jpg",
+    "./../img/jogo/cards/azul.png"
+  );
+
+  await iniciarTutorial(
+    ["VERDES / BUFFS (💚) — focadas em buffs e cura."],
+    "./../img/jogo/gaeazinha.jpg",
+    "./../img/jogo/cards/verd.png"
+  );
+
+  await iniciarTutorial(
+    ["AMARELAS / RECICLAGEM (♻️) — focadas em reciclar as cinzas."],
+    "./../img/jogo/gaeazinha.jpg",
+    "./../img/jogo/cards/amarelo1.png"
+  );
+
+  await iniciarTutorial(
+    ["CINZAS / LIXO (🗑️) — todas são consideradas LIXO."],
+    "./../img/jogo/gaeazinha.jpg",
+    "./../img/jogo/cards/cinza.png"
+  );
+
+  await iniciarTutorial([
+    "O restante cabe a você descobrir!",
+    "Cartas geram lixo sempre que usadas.",
+    "Você pode ter no máximo 10 cartas na mão.",
+    "Reciclar cartas aumenta seu contador.",
+    "Boa sorte, piloto!"
+  ], "./../img/jogo/gaeazinha.jpg");
+
 }
 
 // SHOOP
@@ -4290,6 +4330,14 @@ async function enemyTurn() {
 
       // MORTE DO JOGADOR
       if (playerHP <= 0) {
+        if (pagina === "tutorial.html") {
+          iniciarTutorial([
+            "Oh não, essa batalha foi difícil…",
+            "Mas não desanime! Toda derrota é um aprendizado.",
+            "Este é um roguelike: cair faz parte do caminho para voltar mais forte, mais sábio e mais preparado!",
+            "Levante-se, tente novamente e continue lutando pelo meio ambiente!"
+          ], "./../img/jogo/gaeazinha.jpg");
+        }
         document.getElementById("overlay").style.display = "block";
         document.getElementById("popupOver").style.display = "flex";
         // gerarCartaRecomp();

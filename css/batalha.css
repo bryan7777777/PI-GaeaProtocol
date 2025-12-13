@@ -584,21 +584,21 @@ color: rgb(227, 90, 255);
   background-size: cover;
 }
 
-.attack{background-image: url("../img/jogo/cards/vermelho.jpg");}
-.defense {background-image: url("../img/jogo/cards/azul.jpg");}
-.heal {background-image: url("../img/jogo/cards/verd.jpg");}
-.reciclagem {background-image: url("../img/jogo/cards/amarelo.jpg");}
-.lixo {background-image: url("../img/jogo/cards/sinza.jpg");}
-.cintilante {background-image: url("../img/jogo/cards/cintilante.png");}
-.terra{background-image: url("../img/jogo/cards/terra.png");}
+.attack{background-image: url("../img/jogo/cards/vermelho.png");}
+.defense {background-image: url("../img/jogo/cards/azul.png");}
+.heal {background-image: url("../img/jogo/cards/verd.png");}
+.reciclagem {background-image: url("../img/jogo/cards/amarelo1.png");}
+.lixo {background-image: url("../img/jogo/cards/cinza.png");}
+.cintilante {background-image: url("../img/jogo/cards/cintilante1.png");}
 
+.terra{background-image: url("../img/jogo/cards/terra.png");}
 .fire {background-image: url("../img/jogo/cards/fire.png");}
 .agua{background-image: url("../img/jogo/cards/agua.png");}
 .frost{background-image: url("../img/jogo/cards/frost.png");}
 
-.agua .desc, .fire .desc, .frost .desc{background-color: #20202079; border-radius: 15px;}
+.agua .desc, .fire .desc, .frost .desc, .defense .desc, .attack .desc, .cintilante .desc, .reciclagem .desc{background-color: #20202079; border-radius: 15px;}
 .agua .titulo, .fire .titulo, .frost .titulo{color: aqua; text-shadow: 0 0 4px #000000;}
-
+.legend:hover .desc {background-color: #00000000;}
 
 .common {
   box-shadow: 0 0 20px rgb(168, 168, 168);

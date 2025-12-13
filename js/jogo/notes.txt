@@ -39,3 +39,12 @@ STATS ENEMYS
 ⚔️❓💚 pode executar 2 ações, ou uma ou outra que esta adjacente (50% de chance)
 ⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
 🩸💫⚜️✨💤🤢🥶💀👾☠️👻🧿🪬🌟♨️🌧️⚡ n criado
+
+PALTAS{
+    POO - citar a nova organização para contornar usar type="module" e evitar redefinir o cod inteiro
+    ITENS - citar a criação de itens e oq fazem
+    NIMAÇÃO - citar sobre as animações e a vida que deu para o jogo e possiveis ajustes no futuro
+    TUTORIAL - citar a criação de um tutorial simples
+    FILTRO DALTONICO - citar a descoberta da falta de suporte para daltonicos descoberta com o tutorial
+    AJUSTES PARA DALTONICOS - citar como foi resolvido o problema para daltonicos
+}
