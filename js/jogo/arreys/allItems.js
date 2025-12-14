@@ -20,8 +20,8 @@ const allItems = [
   { id: 19, name: "Coroa Da Gaea", img: "./../img/jogo/itens/coroaDeGaea.png", desc: "Se você tiver a Estatua De Gaea e o Amuleto De Gaea, sempre que uma carta for usada cure 2 de vida" },
   { id: 20, name: "Reciclagem Elemental", img: "./../img/jogo/itens/reciclagemElemental.png", desc: "Todas as cartas elementais a partir de agora sempre que usadas aumentão o contador de lixo reciclado em +2" },
   { id: 21, name: "Gaeazinha", img: "./../img/jogo/itens/peluciaDeGaea.png", desc: "Aumenta as opções de itens em +1" },
-  { id: 22, name: "Capsula Médica", img: "./../img/jogo/itens/reatorMedico.png", desc: "Precisa de energia. Sempre que uma carta VERDE for usada tem 30% de chance de ganhar 1 de energia nesse turno" },
+  { id: 22, name: "Capsula Médica", img: "./../img/jogo/itens/reatorMedico.png", desc: "Precisa de um Gerador para funcionar. Sempre que uma carta VERDE for usada tem 30% de chance de ganhar 1 de energia nesse turno" },
   { id: 23, name: "Kit Médico", img: "./../img/jogo/itens/kitMedico.png", desc: "No final de cada combate cure 10% da sua vida maxima" },
-  { id: 24, name: "Chip Do Curandeiro", img: "./../img/jogo/itens/chipDeCura.png", desc: "Precisa de energia. Sempre que uma carta VERDE for usada cure 2 de vida" },
+  { id: 24, name: "Chip Do Curandeiro", img: "./../img/jogo/itens/chipDeCura.png", desc: "Precisa de um Gerador para funcionar. Sempre que uma carta VERDE for usada cure 2 de vida" },
   { id: 25, name: "Gerador", img: "./../img/jogo/itens/gerador.png", desc: "+1 ENERGIA e energiza itens" },
 ];

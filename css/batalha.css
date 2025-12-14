@@ -596,7 +596,7 @@ color: rgb(227, 90, 255);
 .agua{background-image: url("../img/jogo/cards/agua.png");}
 .frost{background-image: url("../img/jogo/cards/frost.png");}
 
-.agua .desc, .fire .desc, .frost .desc, .defense .desc, .attack .desc, .cintilante .desc, .reciclagem .desc{background-color: #20202079; border-radius: 15px;}
+.agua .desc, .fire .desc, .frost .desc, .defense .desc, .attack .desc, .cintilante .desc, .reciclagem .desc, .heal .desc{background-color: #20202079; border-radius: 15px;}
 .agua .titulo, .fire .titulo, .frost .titulo{color: aqua; text-shadow: 0 0 4px #000000;}
 .legend:hover .desc {background-color: #00000000;}
 
