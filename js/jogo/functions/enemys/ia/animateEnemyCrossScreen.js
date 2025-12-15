@@ -1,5 +1,7 @@
-function animateEnemyCrossScreen(enemy) {
+async function animateEnemyCrossScreen(enemy) {
+  await showScreenImage("../img/jogo/inimigos/animado/ia/efeitos/efeitoTeste.png");
   return new Promise(resolve => {
+    
     const container = enemy.el;
     const img = container.querySelector("img");
     if (!img) return resolve();
@@ -131,3 +133,40 @@ function animateEnemyCrossScreen(enemy) {
     }, toLeftTime);
   });
 };
+
+function showScreenImage(imgSrc) {
+  return new Promise(resolve => {
+    startScreenGlitch();
+    shakeScreenNatural();
+    
+
+    const overlay = document.createElement("div");
+    const img = document.createElement("img");
+
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.zIndex = "99999";
+    overlay.style.pointerEvents = "none";
+    overlay.style.overflow = "hidden";
+
+    img.src = imgSrc;
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "cover";
+
+    img.style.transform = "translateY(-100%)";
+    img.style.transition = "transform 0.28s cubic-bezier(0.1, 0.8, 0.2, 1.2)";
+
+    overlay.appendChild(img);
+    document.body.appendChild(overlay);
+
+    img.getBoundingClientRect(); // força render
+
+    img.style.transform = "translateY(0%)";
+
+    setTimeout(() => {
+      overlay.remove();
+      resolve();
+    }, 700); // tempo total curto
+  });
+}
