@@ -15,6 +15,10 @@ let nemoraSnowInterval = null;
 let nemoraFireInterval = null;
 let reviver = 0;
 let aylaPhase = 0;
+let SoliceApareceu=false;
+let playerImgDialogo;
+let nomeInimigo;
+let identificadorBoss;
 
 // ARREY
 const deck = [];

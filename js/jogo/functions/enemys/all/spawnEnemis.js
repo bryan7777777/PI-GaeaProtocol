@@ -45,6 +45,7 @@ function spawnEnemies(tipo) {
 
   // --- escolhe bloco aleatório compatível ---
   const block = blocosZona[Math.floor(Math.random() * blocosZona.length)];
+  nomeInimigo = block;
 
   // --- instancia inimigos ---
   block.forEach(base => {

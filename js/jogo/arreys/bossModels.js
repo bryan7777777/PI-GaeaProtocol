@@ -207,44 +207,50 @@ const bossModels = [
     }
   ],
   // 5555555555555555
-  [
-    {
-      name: "IA",
-      hp: 500,
-      maxHp: 500,
-      dano: 15,
+];
+
+function bossFinal() {
+  if (SoliceApareceu) {
+    bossModels.push([{
+      name: "Nemora",
+      hp: 400,
+      maxHp: 400,
+      dano: 40,
       behavior() {
         return [
           {
-            type: Math.random() < 0.25 ? "heal" : Math.random() < 0.8 ? "attack" : "attackVida",
+            type: Math.random() < 0.75 ? "attack" : "attackVida",
             value: this.dano
           }
         ];
       },
-      img: "../img/jogo/inimigos/animado/ia/statico/ia1.png",
-      tipoDano: "(⚔️❔🔱❔💊)⚜️",
+      img: "../img/jogo/inimigos/animado/nemora/statico/nemora1.png",
+      tipoDano: "(⚔️❔🔱)⚜️🎭💊",
       tipoVida: "🧿",
       zona: 5
-    }
-  ],
-  // [
-  //   {
-  //     name: "Nemora",
-  //     hp: 400,
-  //     maxHp: 400,
-  //     dano: 40,
-  //     behavior() {
-  //       return [
-  //         {
-  //           type: Math.random() < 0.75 ? "attack" : "attackVida",
-  //           value: this.dano
-  //         }
-  //       ];
-  //     },
-  //     img: "../img/jogo/inimigos/animado/nemora/statico/nemora1.png",
-  //     tipoDano: "(⚔️❔🔱)⚜️🎭💊",
-  //     tipoVida: "🧿",
-  //     zona: 5
-  //   }
-  // ]
-];
+    }]);
+  } else {
+    bossModels.push([{
+  name: "IA",
+  hp: 500,
+  maxHp: 500,
+  dano: 15,
+  behavior() {
+    return [
+      {
+        type: Math.random() < 0.25
+          ? "heal"
+          : Math.random() < 0.8
+          ? "attack"
+          : "attackVida",
+        value: this.dano
+      }
+    ];
+  },
+  img: "../img/jogo/inimigos/animado/ia/statico/ia1.png",
+  tipoDano: "(⚔️❔🔱❔💊)⚜️",
+  tipoVida: "🧿",
+  zona: 5
+}]);
+  }
+}

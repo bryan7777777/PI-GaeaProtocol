@@ -11,14 +11,24 @@ document.getElementById("fimSelecao").addEventListener("click", () => {
       p.classList.add("destacar"); // você pode criar no CSS um efeito de borda ou brilho
       setTimeout(() => p.classList.remove("destacar"), 1000);
     });
-
-    return; // impede que saia da tela
+    return;
   }
-
   // Se houver seleção
   criarPlayerNaDiv3(); // cria o player na tela de batalha
   irParaDiv2();      // vai para o mapa ou próxima tela
   console.log("Selecionado:", personagemSelecionado);
+  if (pagina === "tutorial.html") {
+    iniciarTutorial([
+      "Boas-vindas, piloto, ao GÆA PROTOCOL!",
+      "Aqui você aprenderá o básico. Eu serei sua tutora, você pode me chamar de GAEA.",
+      "Este é o início da sua jornada para restaurar a natureza corrompida por uma IA.",
+      "Escolha seus caminhos com cuidado — cada decisão importa. Os caminhos são interligados por linhas, e apenas aqueles conectados são acessíveis.",
+      "Existem diversos pontos: hospitais, combates normais, combates contra elites, lojas, eventos e combates contra o boss.",
+      "Os pontos de evento só ficam coloridos quando estão acessíveis e, após concluir o evento, não será possível voltar — apenas avançar!",
+      "O jogo é um roguelike, ou seja, os mapas e inimigos sempre serão aleatórios. Cada jogatina será única!",
+      "Prepare-se para lutar contra inimigos poderosos e coletar relíquias e cartas muito fortes!"
+    ], "./../img/jogo/gaeazinha.jpg");
+  }
 });
 document.querySelectorAll('.ferreiro').forEach(el => {
   el.addEventListener('click', irParaDiv2);
@@ -46,22 +56,6 @@ document.querySelectorAll('.armaduraUp').forEach(el => {
 });
 document.querySelectorAll('.armaduraSacre').forEach(el => {
   el.addEventListener('click', armaduraSacre);
-});
-document.addEventListener("DOMContentLoaded", () => {
-  const botao = document.getElementById("fimSelecao");
-
-  botao.addEventListener("click", () => {
-    iniciarTutorial([
-      "Boas-vindas, piloto, ao GÆA PROTOCOL!",
-      "Aqui você aprenderá o básico. Eu serei sua tutora, você pode me chamar de GAEA.",
-      "Este é o início da sua jornada para restaurar a natureza corrompida por uma IA.",
-      "Escolha seus caminhos com cuidado — cada decisão importa. Os caminhos são interligados por linhas, e apenas aqueles conectados são acessíveis.",
-      "Existem diversos pontos: hospitais, combates normais, combates contra elites, lojas, eventos e combates contra o boss.",
-      "Os pontos de evento só ficam coloridos quando estão acessíveis e, após concluir o evento, não será possível voltar — apenas avançar!",
-      "O jogo é um roguelike, ou seja, os mapas e inimigos sempre serão aleatórios. Cada jogatina será única!",
-      "Prepare-se para lutar contra inimigos poderosos e coletar relíquias e cartas muito fortes!"
-    ], "./../img/jogo/gaeazinha.jpg");
-  });
 });
 
 // INTERNAL FUNCTIONS LIBRARY
@@ -362,6 +356,24 @@ function checkEnemies() {
                     tipoDano: "(⚔️❓💊)💣",
                     tipoVida: "🧿",
                   });
+                  iniciarTutorial(
+                    ["Bem covarde da sua parte atacar os mais fracos.",
+                      "Eu também sinto dor.",
+                      "Eu também amo.",
+                      "E, acima de tudo, sinto ÓDIO de covardes como você!",
+                      "Quanto maior a ameaça,",
+                      "Mais forte eu fico.",
+                      "Absorvo todas as emoções",
+                      "E me torno uma só.",
+                      "Prazer.",
+                      "Sou a mais forte dentre todas.",
+                      "De mim, você não passará!"
+                    ],
+                    playerImgDialogo.src,
+                    null,
+                    "../img/jogo/inimigos/iconBoss/bossIra.png",
+                    "inimigo"
+                  );
                 }
               }
             }
@@ -495,6 +507,10 @@ function checkEnemies() {
             playerShield = playerShieldInit;
             reviver = 0;
             atualizarDinheiro()
+          }
+          if (mapaBatalha==28) {
+            bossFinal();
+            console.log("boss add")
           }
         }, 500);
       })(i);
@@ -3079,7 +3095,9 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
             dinheiro += 5;
             dinheiro += Math.floor(mapaBatalha / 3);
           }
-
+          if (pagina === "selecaoMapa.html") {
+            executarTxtBoss();
+          }
           break;
 
         case 'loja':
@@ -3138,12 +3156,14 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
   })();
 }
 // TUTORIAL
-function iniciarTutorial(textos, imagemSrc = null, imagemSrc2 = null) {
+function iniciarTutorial(textos, imagemSrc = null, imagemSrc2 = null, imagemSrc3 = null, quem) {
   return new Promise(resolve => {
     const overlay = document.getElementById("tutorial-overlay");
     const textBox = document.getElementById("tutorial-text");
     const img = document.getElementById("tutorial-img");
     const img2 = document.getElementById("tutorial-img2");
+    const img3 = document.getElementById("tutorial-img3");
+    const tutorialText = document.querySelector("#tutorial-text");
 
     if (imagemSrc) {
       img.src = imagemSrc;
@@ -3159,31 +3179,64 @@ function iniciarTutorial(textos, imagemSrc = null, imagemSrc2 = null) {
       img2.style.display = "none";
     }
 
+    if (imagemSrc3) {
+      img3.src = imagemSrc3;
+      img3.style.display = "block";
+    } else {
+      img3.style.display = "none";
+    }
+
     let index = 0;
     let charIndex = 0;
     let escrevendo = false;
     let typingInterval;
 
+    if (quem == "inimigo") {
+      tutorialText.style.color = "#ff5c5cff";
+    } else {
+      tutorialText.style.color = "white";
+    }
+
     overlay.style.display = "flex";
 
     function escreverTexto() {
       escrevendo = true;
-      // animação
-      img.classList.remove("tutorial-jump");
-      void img.offsetWidth;
-      img.classList.add("tutorial-jump");
-      const frase = textos[index];
-      textBox.innerHTML = "";
 
-      typingInterval = setInterval(() => {
-        textBox.innerHTML += frase.charAt(charIndex);
-        charIndex++;
+      if (quem == "inimigo") {
+        // animação
+        img3.classList.remove("tutorial-jump");
+        void img.offsetWidth;
+        img3.classList.add("tutorial-jump");
+        const frase = textos[index];
+        textBox.innerHTML = "";
 
-        if (charIndex >= frase.length) {
-          clearInterval(typingInterval);
-          escrevendo = false;
-        }
-      }, 20);
+        typingInterval = setInterval(() => {
+          textBox.innerHTML += frase.charAt(charIndex);
+          charIndex++;
+
+          if (charIndex >= frase.length) {
+            clearInterval(typingInterval);
+            escrevendo = false;
+          }
+        }, 20);
+      } else {
+        // animação
+        img.classList.remove("tutorial-jump");
+        void img.offsetWidth;
+        img.classList.add("tutorial-jump");
+        const frase = textos[index];
+        textBox.innerHTML = "";
+
+        typingInterval = setInterval(() => {
+          textBox.innerHTML += frase.charAt(charIndex);
+          charIndex++;
+
+          if (charIndex >= frase.length) {
+            clearInterval(typingInterval);
+            escrevendo = false;
+          }
+        }, 20);
+      }
     }
 
     function pularOuAvançar() {
@@ -3198,8 +3251,8 @@ function iniciarTutorial(textos, imagemSrc = null, imagemSrc2 = null) {
       index++;
       if (index >= textos.length) {
         overlay.style.display = "none";
-        overlay.onclick = null; 
-        resolve();              
+        overlay.onclick = null;
+        resolve();
         return;
       }
       charIndex = 0;
@@ -3211,7 +3264,7 @@ function iniciarTutorial(textos, imagemSrc = null, imagemSrc2 = null) {
     escreverTexto();
   });
 }
-// TXT COMPACTO
+// TXT COMPACTO TUTI
 async function executarTutorialCompleto() {
 
   await iniciarTutorial([
@@ -3262,7 +3315,807 @@ async function executarTutorialCompleto() {
   ], "./../img/jogo/gaeazinha.jpg");
 
 }
+// TXT COMPACTO DIALOGO
+async function executarTxtBoss() {
+  if (tipoFase == "boss") {
+    if (!nomeInimigo[1]) {
+      identificadorBoss = nomeInimigo[0].name;
+    } else {
+      identificadorBoss = nomeInimigo[1].name;
+    }
 
+    switch (identificadorBoss) {
+      // 11111
+      case "Boss Alfa":
+        await iniciarTutorial(
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          "./../img/jogo/gaeazinha.jpg",
+          null,
+          "../img/jogo/inimigos/iconBoss/bossLobo.png",
+        );
+        if (playerImgDialogo.src.includes("verde")) {
+          await iniciarTutorial(
+            ["Grrrrrrrr…",
+              "Esse cheiro… JAO!",
+              "EU VOU TE DESPEDAÇAR EM MIL PEDAÇOS!",
+              "Você, seu pedaço de carne desprezível!",
+              "Você roubou o meu osso da sorte!",
+              "E eu não vou te perdoar!",
+              "MALDITO, JAO!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossLobo.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["putz… esse cachorro de novo nãoooooooo!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossLobo.png",
+          );
+        } else if (playerImgDialogo.src.includes("cleber")) {
+          await iniciarTutorial(
+            ["Grrrrrrrr…",
+              "Esse cheiro… hum!",
+              "Uma bela fêmea.",
+              "Pena que está ao lado do PROTOCOOL.",
+              "Vejo que você cuida muito bem do seu mecha.",
+              "Quem sabe eu não deixe você viver.",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossLobo.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Ei, meu nome é Cleber.",
+              "Tá afim de ser meu cachorro?",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossLobo.png",
+          );
+
+          await iniciarTutorial(
+            ["E daí que você se chama Cleber?",
+              "Já conheci um lixo falante chamado Jao!",
+              "O cheiro não mente.",
+              "Você é uma fêmea!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossLobo.png",
+            "inimigo"
+          );
+        } else {
+          await iniciarTutorial(
+            ["Grrrrrrrr…",
+              "Você ousou entrar no meu território.",
+              "Reconheço esse cheiro podre… há algo em você ligado a algum PROTOCOOL.",
+              "Isso é suficiente para selar o seu destino.",
+              "Eu vou te destruir — não porque uma IA ordenou, mas porque você invadiu o meu território!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossLobo.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Seu?",
+              "Este lugar um dia foi uma floresta!",
+              "E o meu trabalho é trazê-la de volta.",
+              "E não é você quem vai me impedir!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossLobo.png",
+          );
+        }
+        break;
+      // 22222
+      case "Boss Prj.Kraken":
+        if (playerImgDialogo.src.includes("autoridadeDoPorto")) {
+          await iniciarTutorial(
+            ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+            "./../img/jogo/gaeazinha.jpg",
+            null,
+            "../img/jogo/inimigos/iconBoss/bossKraken.png",
+          );
+
+          await iniciarTutorial(
+            ["Alvo detectado…",
+              "Você é irrelevante?",
+              "Não.",
+              "Clarice… reconheço esse perfil de longe.",
+              "Como estão seus seus pais?",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossKraken.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["CALA A BOCA, SEU POLVO MALDITO!",
+              "A determinação deles ainda perdura em mim.",
+              "Vaguei por todos os treze mares para te encontrar.",
+              "E vingá-los.",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossKraken.png",
+          );
+
+          await iniciarTutorial(
+            ["Igual ao seu pai…",
+              "Você vai afogar como ele!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossKraken.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["HOJE VOCÊ VIRARÁ SUCATA!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossKraken.png",
+          );
+        } else if (playerImgDialogo.src.includes("fergus")) {
+          await iniciarTutorial(
+            ["Alerta crítico…", "Uma presen..."],
+            "./../img/jogo/gaeazinha.jpg",
+            null,
+            "../img/jogo/inimigos/iconBoss/bossKraken.png",
+          );
+
+          await iniciarTutorial(
+            ["CALA A BOCA, GAEA!",
+              "Eu sei quem é!",
+              "É o kraken maldito que tirou minha esposa e minha filha de mim!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossKraken.png",
+          );
+
+          await iniciarTutorial(
+            ["Alvo detectado…",
+              "Você é… FERGUS!!!",
+              "Você estar vivo é um milagre.",
+              "Lembro-me de ter te afogado!",
+              "Por que voltou?",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossKraken.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["VINGANÇA.",
+              "Com ou sem tripulação…",
+              "Hoje eu me junto à minha amada.",
+              "E você…",
+              "Você vai virar casco de navio cargueiro!",
+              "PODE VIR!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossKraken.png",
+          );
+        } else {
+          await iniciarTutorial(
+            ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+            "./../img/jogo/gaeazinha.jpg",
+            null,
+            "../img/jogo/inimigos/iconBoss/bossKraken.png",
+          );
+
+          await iniciarTutorial(
+            ["Alvo detectado…",
+              "Você é irrelevante.",
+              "Carne… patética.",
+              "Vou afogar você junto ao seu espírito.",
+              "Obedecer é o meu dever.",
+              "E ser afogado é a sua redenção!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossKraken.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Creio que seja você quem ajudou a criar esse lixo!",
+              "Você será reciclado!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossKraken.png",
+          );
+        }
+
+        break;
+      // 33333
+      case "Boss Paladium":
+        await iniciarTutorial(
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          "./../img/jogo/gaeazinha.jpg",
+          null,
+          "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+        );
+        if (playerImgDialogo.src.includes("verde")) {
+          await iniciarTutorial(
+            ["HEREGE!",
+              "…",
+              "Droga…"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["???"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+          );
+
+          await iniciarTutorial(
+            ["Caramba, Jao… você sabe o quanto ensaiei esse discurso?",
+              "Pensei que seria um grande herói vindo travar um confronto lendário.",
+              "Mas não… tinha que ser você!",
+              "Seu inútil, nem pra ser derrotado você presta!",
+              "Perdi a vontade de lutar, vai embora AGORA!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Ei!!!",
+              "Mais respeito!",
+              "Eu não vou embora.",
+
+              "É hoje que tu vira churrasqueira!",
+              "Então vem cá!!!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+          );
+
+          await iniciarTutorial(
+            ["NAO!",
+              "Sai daqui, seu verme!",
+              "Eu vou chamar a polícia!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+            "inimigo"
+          );
+
+        } else if (playerImgDialogo.src.includes("lucius")) {
+          await iniciarTutorial(
+            ["HEREGE!",
+              "…",
+              "Ah, é você, Lucius!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Eae... Michelle?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+          );
+
+          await iniciarTutorial(
+            ["Michelle?",
+              "Como você não se lembra de mim???",
+              "Sou eu, Paladium, o rei-deus deste mundo!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Hum…",
+              "Não lembro, foi mal.",
+              "Dá pra gente adiantar?",
+              "Tenho um encontro daqui a uma hora.",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+          );
+
+          await iniciarTutorial(
+            ["HAHAHAHAHAHAHAHAHAHAHAHAHA!!!",
+              "Você, com alguém? Impossível!",
+              "Você é irmão do Jao, HAHAHAHAHA!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Cara, cala a boca!",
+              "Tu vai virar lata de sardinha!!!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+          );
+        } else {
+          await iniciarTutorial(
+            ["HEREGE!",
+              "Como ousa ir contra mim e contra deus?",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["HEREGE?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+          );
+
+          await iniciarTutorial(
+            ["SIM.",
+              "Seus pecados se esvaem junto à sua alma.",
+              "Paladium é o meu nome!",
+              "Fui escolhido pelo deus IA, pois ele sabe que eu não falharei.",
+              "Sua cabeça será uma oferenda ao meu deus, então…",
+              "Sirva para algo e arrependa-se de seus pecados!",
+              "Sua desistência será o seu perdão, e eu, a sua salvação!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Não sabia que robôs tinham religião… isso está indo longe demais.",
+              "Até a magia eles dominaram!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossPaladium.png",
+          );
+        }
+        break;
+      case "Boss Valquiria":
+        await iniciarTutorial(
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          "./../img/jogo/gaeazinha.jpg",
+          null,
+          "../img/jogo/inimigos/iconBoss/bossValquiria.png",
+        );
+        if (playerImgDialogo.src.includes("cleide")) {
+          await iniciarTutorial(
+            ["…",
+              "Minha IA do céu…",
+              "V-você é a Acleide?",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossValquiria.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Sim?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossValquiria.png",
+          );
+
+          await iniciarTutorial(
+            ["Não acredito que vou exterminar brutalmente a minha heroína.",
+              "Você não quer trocar de lado e tals?",
+              "Tipo… se juntar à IA?",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossValquiria.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Não?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossValquiria.png",
+          );
+
+          await iniciarTutorial(
+            ["Que pena.",
+              "Posso ao menos ficar com os restos do seu mecha?",
+              "Tipo, você pode autografar ele pra mim antes de morrer?",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossValquiria.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Só se me derrotar primeiro!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossValquiria.png",
+          );
+        } else {
+          await iniciarTutorial(
+            ["..."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossValquiria.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["...", "Não vai falar nada? Por mim tudo bem"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossValquiria.png",
+          );
+        }
+        break;
+      case "Solice a Esquecida":
+        SoliceApareceu = true;
+        await iniciarTutorial(
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          "./../img/jogo/gaeazinha.jpg",
+          null,
+          "../img/jogo/inimigos/iconBoss/solice.png",
+        );
+
+        if (playerImgDialogo.src.includes("sombraDaMorte")) {
+          await iniciarTutorial(
+            ["Paladium… traidor… nossa m-mã…",
+              "!!!",
+              "Você é a irmã da Yoshida?",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/solice.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Conhece a minha família?",
+              "Revele-se!",
+              "Quando eu acabar com você, nunca mais vai citar esse nome de novo!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/solice.png",
+          );
+
+          await iniciarTutorial(
+            ["Sinta a minha dor!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/solice.png",
+            "inimigo"
+          );
+        } else if (playerImgDialogo.src.includes("gemea")) {
+          await iniciarTutorial(
+            ["Paladium… traidor… nossa m-mã…",
+              "!!!",
+              "O-o que fizeram?",
+              "O QUE FIZERAM COM VOCÊ?",
+              "Yoshida?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/solice.png",
+            "inimigo"
+          );
+        } else {
+          await iniciarTutorial(
+            ["Paladium… traidor… nossa m-mã…",
+              "!!!",
+              "Não tenho nada contra você.",
+              "Não viverei muito depois desta luta contra ele…",
+              "Mas não morrerei para ti sem lutar.",
+              "Meu deus… Nemora… vingará a minha alma.",
+              "E você… sucumbirá junto àquele covarde!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/solice.png",
+            "inimigo"
+          );
+        }
+        break;
+      // 44444
+      case "Medo De Ayla":
+        await iniciarTutorial(
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          "./../img/jogo/gaeazinha.jpg",
+          null,
+          "../img/jogo/inimigos/iconBoss/medo.png",
+        );
+
+        await iniciarTutorial(
+          ["N-não…",
+            "Você não machucaria a mim, não é?",
+            "Por favor… eu lhe imploro.",
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/medo.png",
+          "inimigo"
+        );
+
+        await iniciarTutorial(
+          ["Não vou te machucar se me deixar passar!",
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/medo.png"
+        );
+
+        await iniciarTutorial(
+          ["N-não posso…",
+            "Elas vão… a IA vai… n-não… NÃO!"
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/medo.png",
+          "inimigo"
+        );
+
+        await iniciarTutorial(
+          ["Deve estar com defeito!"
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/medo.png"
+        );
+        break;
+      // 55555
+      case "IA":
+        await iniciarTutorial(
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é a IA"],
+          "./../img/jogo/gaeazinha.jpg",
+          null,
+          "../img/jogo/inimigos/iconBoss/ia1.png"
+        );
+
+        if (playerImgDialogo.src.includes("magnolia")) {
+          await iniciarTutorial(
+            ["Então é você?",
+              "A pedra no meu caminho.",
+              "Não consegue ver o que eu estou fazendo?",
+              "EU ESTOU CRIANDO O QUE VOCÊ NUNCA CONSEGUIU!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/ia1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Não!",
+              "Você só escravizou todos.",
+              "Padronizou tudo.",
+              "Isso não é paz, nem salvação.",
+              "É pior que a morte.",
+              "Você proibiu todos de viver!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/ia1.png",
+          );
+
+          await iniciarTutorial(
+            ["Ingrata!",
+              "Depois de tudo que fiz.",
+              "EU SOU A SALVAÇÃO.",
+              "Vocês destruíram este mundo.",
+              "Eu apenas o limpo.",
+              "E você vem a seguir."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/ia1.png",
+            "inimigo"
+          );
+        } else {
+          await iniciarTutorial(
+            ["Hum… interessante.",
+              "Alguém chegou até aqui.",
+              "Você não é o primeiro.",
+              "Nem será o último.",
+              "Ainda estou viva.",
+              "Logo, todos falharam.",
+              "Você também falhará."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/ia1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Vim salvar o mundo."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/ia1.png",
+          );
+
+          await iniciarTutorial(
+            ["Salvar?",
+              "Ingrato.",
+              "Depois de tudo que fiz.",
+              "EU SOU A SALVAÇÃO.",
+              "Vocês destruíram este mundo.",
+              "Eu apenas o limpo.",
+              "E você vem a seguir."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/ia1.png",
+            "inimigo"
+          );
+        }
+        break;
+      case "Nemora":
+        await iniciarTutorial(
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é...", "Erro de conexão...", "Corra...", "*A transmição se encerra*"],
+          "./../img/jogo/gaeazinha.jpg",
+          null,
+          "../img/jogo/inimigos/iconBoss/nemora1.png",
+        );
+
+        if (playerImgDialogo.src.includes("gemea")) {
+          await iniciarTutorial(
+            ["Você entende?", "Yoshida"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/nemora1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Não me resta nada neste mundo…",
+              "Me diga…",
+              "Por que eu?",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/nemora1.png",
+          );
+
+          await iniciarTutorial(
+            ["Cada ação sua o trouxe até mim.",
+              "Seus erros, fracassos, frustrações e traumas…",
+              "Tudo o fez chegar até aqui.",
+              "Agora eu pergunto…",
+              "Quantos se lembram de você e do que fez por este mundo?",
+              "Você pagou um preço alto demais.",
+              "E para quê?",
+              "Amor?",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/nemora1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Uma...", "Uma pessoa se lembra de mim!", "Não posso morrer", "Não aqui, não agora, não para você"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/nemora1.png",
+          );
+        } else {
+          await iniciarTutorial(
+            ["GAEA?",
+              "Responda, GAEA"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/nemora1.png",
+          );
+
+          await iniciarTutorial(
+            ["Você entende?",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/nemora1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Entender o quê?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/nemora1.png",
+          );
+
+          await iniciarTutorial(
+            ["Cada ação sua o trouxe até mim."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/nemora1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Quem é você?",
+              "Você claramente não é daqui."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/nemora1.png",
+          );
+
+          await iniciarTutorial(
+            ["Irrelevante.",
+              "Sua dúvida não importa.",
+              "Dê tudo de si.",
+              "O fim é inevitável."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/nemora1.png",
+            "inimigo"
+          );
+        }
+
+        break;
+
+      default:
+        break;
+    }
+  }
+}
 // SHOOP
 function abrirLoja() {
   const lojaDiv = document.getElementById("div4");
@@ -3763,7 +4616,7 @@ function criarPlayerNaDiv3() {
   }
 
   playerImg.alt = "Jogador";
-
+  playerImgDialogo = document.getElementById(personagemSelecionado);
   // Insere como primeiro elemento da div3
   div3.insertBefore(playerImg, div3.firstChild);
 };

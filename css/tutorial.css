@@ -58,27 +58,26 @@
 }
 
 #tutorial-overlay {
-  
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  gap: 20px;
 }
 
 #tutorial-overlay img {
   width: 150px;
   height: auto;
-  margin-right: 20px;
   border: solid 2px #4caf50;
   box-shadow: 0 0 15px 4px #00ff99;
   border-radius: 0 25px 0 25px;
   margin-bottom: 40px;
+  background-color: black;
 }
 
 #tutorial-text {
-  color: white;
   font-size: 20px;
   width: 60%;
 }
