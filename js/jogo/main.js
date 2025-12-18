@@ -263,111 +263,133 @@ function checkEnemies() {
                 novos.push(
                   {
                     name: "Nojo De Ayla",
-                    hp: 60,
+                    hp: 80,
                     dano: 20,
                     behavior: () => [{ type: "attackVida", value: 20 }],
-                    img: "../img/jogo/inimigos/nojo.png",
+                    img: "../img/jogo/inimigos/ayla/nojo.png",
                     tipoDano: "🔱",
                     tipoVida: "🪬",
                   },
                   {
-                    name: "Tristeza De Ayla",
-                    hp: 40,
-                    dano: 12,
-                    behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 12 : 24 }],
-                    img: "../img/jogo/inimigos/tristeza.png",
-                    tipoDano: "(💚🎭💊)💥",
+                    name: "Raiva De Ayla",
+                    hp: 50,
+                    dano: 50,
+                    behavior: () => [{ type: "attack", value: 50 }],
+                    img: "../img/jogo/inimigos/ayla/raiva.png",
+                    tipoDano: "⚔️",
                     tipoVida: "🪬",
                   }
                 );
+                iniciarTutorial(
+                    ["Credo! Que covardia da sua parte atacar os mais fracos.",
+                      "Vermes como você me dão nojo!"
+                    ],
+                    playerImgDialogo.src,
+                    null,
+                    "../img/jogo/inimigos/iconBoss/nojo.png",
+                    "inimigo"
+                  );
               }
               else if (
-                ["Nojo De Ayla", "Tristeza De Ayla"].includes(morto.name)
+                ["Nojo De Ayla", "Raiva De Ayla"].includes(morto.name)
               ) {
-                if (enemies.every(e => !["Nojo De Ayla", "Tristeza De Ayla"].includes(e.name))) {
+                if (enemies.every(e => !["Nojo De Ayla", "Raiva De Ayla"].includes(e.name))) {
                   novos.push(
                     {
                       name: "Ansiedade De Ayla",
-                      hp: 70,
+                      hp: 180,
                       dano: 12,
                       behavior: () => [
                         { type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.7 ? 12 : 24 },
                       ],
-                      img: "../img/jogo/inimigos/ansiedade.png",
+                      img: "../img/jogo/inimigos/ayla/ansiedade.png",
                       tipoDano: "(⚔️❓💚🎭💊)💥",
-                      tipoVida: "🪬",
-                    },
-                    {
-                      name: "Raiva De Ayla",
-                      hp: 30,
-                      dano: 30,
-                      behavior: () => [{ type: "attack", value: 30 }],
-                      img: "../img/jogo/inimigos/raiva.png",
-                      tipoDano: "⚔️",
-                      tipoVida: "🪬",
-                    }
-                  );
-                }
-              }
-              else if (
-                ["Raiva De Ayla", "Ansiedade De Ayla"].includes(morto.name)
-              ) {
-                if (enemies.every(e => !["Raiva De Ayla", "Ansiedade De Ayla"].includes(e.name))) {
-                  novos.push(
-                    {
-                      name: "Amor De Ayla",
-                      hp: 120,
-                      dano: 25,
-                      behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attack", value: 25 }],
-                      img: "../img/jogo/inimigos/amor.png",
-                      tipoDano: "⚔️❓💚🎭💊",
                       tipoVida: "🪬",
                     },
                     {
                       name: "Angustia De Ayla",
                       hp: 50,
-                      dano: 20,
-                      behavior: () => [{ type: "heal", value: 20 }],
-                      img: "../img/jogo/inimigos/Vulnerabilidade.png",
-                      tipoDano: "💚🎭💊",
+                      dano: 30,
+                      behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attackVida", value: 30 }],
+                      img: "../img/jogo/inimigos/ayla/Vulnerabilidade.png",
+                      tipoDano: "🔱❓💚🎭💊",
                       tipoVida: "🪬",
                     }
-
+                  );
+                  iniciarTutorial(
+                    ["Você me deixou ansiosa, raramente passam do Nojo e da Raiva.",
+                      "Finalmente estou empolgada e AGORA eu quero lutar!"
+                    ],
+                    playerImgDialogo.src,
+                    null,
+                    "../img/jogo/inimigos/iconBoss/ansiedade.png",
+                    "inimigo"
                   );
                 }
               }
               else if (
-                ["Angustia De Ayla", "Amor De Ayla"].includes(morto.name)
+                ["Angustia De Ayla", "Ansiedade De Ayla"].includes(morto.name)
+              ) {
+                if (enemies.every(e => !["Angustia De Ayla", "Ansiedade De Ayla"].includes(e.name))) {
+                  novos.push(
+                    {
+                      name: "Amor De Ayla",
+                      hp: 150,
+                      dano: 25,
+                      behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attack", value: 25 }],
+                      img: "../img/jogo/inimigos/ayla/amor.png",
+                      tipoDano: "⚔️❓💚🎭💊",
+                      tipoVida: "🪬",
+                    },
+                    {
+                      name: "Tristeza De Ayla",
+                      hp: 65,
+                      dano: 24,
+                      behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 24 : 48 }],
+                      img: "../img/jogo/inimigos/ayla/tristeza.png",
+                      tipoDano: "(💚🎭💊)💥",
+                      tipoVida: "🪬",
+                    }
+                  );
+                  iniciarTutorial(
+                    ["Eu amava tanto elas...",
+                      "Sua morte não deve ser melancolica, deve ser lenta e dolorosa!",
+                      "Assim como meu coração partido por sofrer uma perca"
+                    ],
+                    playerImgDialogo.src,
+                    null,
+                    "../img/jogo/inimigos/iconBoss/amor.png",
+                    "inimigo"
+                  );
+                }
+              }
+              else if (
+                ["Tristeza De Ayla", "Amor De Ayla"].includes(morto.name)
               ) {
                 const vivos = enemies.filter(e => e.hp > 0);
-                if (vivos.every(e => !["Angustia De Ayla", "Amor De Ayla"].includes(e.name))) {
+                if (vivos.every(e => !["Tristeza De Ayla", "Amor De Ayla"].includes(e.name))) {
                   shakeScreenNatural(30, 800);
                   document.getElementById("jogo").style.backgroundImage =
                     "url('../img/jogo/background/lutaSuperior.png')";
                   console.log("Spawnando boss final: Ayla");
                   novos.push({
                     name: "Ayla",
-                    hp: 200,
-                    dano: 20,
+                    hp: 400,
+                    dano: 30,
                     behavior: () => [
-                      { type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.9 ? 20 : 100 },
+                      { type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.9 ? 30 : 150 },
                     ],
-                    img: "../img/jogo/inimigos/bossIra.png",
+                    img: "../img/jogo/inimigos/ayla/bossIra.png",
                     tipoDano: "(⚔️❓💊)💣",
                     tipoVida: "🧿",
                   });
                   iniciarTutorial(
                     ["Bem covarde da sua parte atacar os mais fracos.",
-                      "Eu também sinto dor.",
-                      "Eu também amo.",
-                      "E, acima de tudo, sinto ÓDIO de covardes como você!",
-                      "Quanto maior a ameaça,",
-                      "Mais forte eu fico.",
-                      "Absorvo todas as emoções",
-                      "E me torno uma só.",
-                      "Prazer.",
-                      "Sou a mais forte dentre todas.",
-                      "De mim, você não passará!"
+                      "Eu também sinto dor. Eu também amo...",
+                      "E acima de tudo, sinto ÓDIO de covardes como você!",
+                      "Quanto maior for a ameaça, Mais forte eu devo ficar.",
+                      "Absorvo todas as emoções e me torno uma só.",
+                      "Prazer, eu sou a mais forte dentre todas.",
                     ],
                     playerImgDialogo.src,
                     null,
@@ -508,7 +530,7 @@ function checkEnemies() {
             reviver = 0;
             atualizarDinheiro()
           }
-          if (mapaBatalha==28) {
+          if (mapaBatalha == 28) {
             bossFinal();
             console.log("boss add")
           }
@@ -3911,6 +3933,53 @@ async function executarTxtBoss() {
           null,
           "../img/jogo/inimigos/iconBoss/medo.png"
         );
+
+        await iniciarTutorial(
+          ["Quem está com defeito VOCÊ!",
+            "SE TOCAR UM DEDO NELA EU VOU TE DESPEDAÇAR!!!"
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/raiva.png",
+          "inimigo"
+        );
+
+        await iniciarTutorial(
+          ["Quem disse isso?"
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/medo.png"
+        );
+
+        await iniciarTutorial(
+          ["*Susurro*",
+            "Ayla..."
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/Vulnerabilidade.png",
+          "inimigo"
+        );
+
+        await iniciarTutorial(
+          ["Onde se esconde?"
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/medo.png"
+        );
+
+        await iniciarTutorial(
+          ["Esconde? Ela está bem na sua frenta...",
+            "Mostre ser uma ameaça e sofra as consequências!",
+            "Eu avisei..."
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/tristeza.png",
+          "inimigo"
+        );
         break;
       // 55555
       case "IA":
@@ -5223,9 +5292,12 @@ function animateEnemySimpleFrames(enemy) {
 };
 // NEMORA
 function animateNemoraAttack(enemy) {
-  if (nemoraAtk == true) {
+  if (nemoraAtk == true && enemies[0].hp < 350) {
+    enemies[0].dano += 10;
+  } else if (nemoraAtk == true || enemies[0].hp < 700){
     enemies[0].dano += 5;
   }
+
   return new Promise(resolve => {
     const container = enemy.el;
     const img = enemy.el.querySelector("img");
@@ -5292,7 +5364,9 @@ function animateNemoraAttack(enemy) {
       shakeScreenNatural(10, 400);
       mudarBackground('atk');
       updateEnemyBars();
-      if (nemoraAtk == true) {
+      if (nemoraAtk == true && enemies[0].hp < 350) {
+        floatText(enemies[0].el, `+10⚜️`, "yellow");
+      } else if (nemoraAtk == true || enemies[0].hp < 700) {
         floatText(enemies[0].el, `+5⚜️`, "yellow");
       }
       nemoraDef = false;
@@ -5382,14 +5456,26 @@ function animateDamage(el) {
   // cura especial
   if (nemoraDef === true) {
     if (enemies[0].hp < 100) {
+      enemies[0].hp += 35;
+      floatText(enemies[0].el, `+35💚`, "lime");
+
+    } else if (enemies[0].hp < 200) {
+      enemies[0].hp += 30;
+      floatText(enemies[0].el, `+30💚`, "lime");
+
+    } else if (enemies[0].hp < 300) {
+      enemies[0].hp += 25;
+      floatText(enemies[0].el, `+25💚`, "lime");
+
+    } else if (enemies[0].hp < 400) {
       enemies[0].hp += 20;
       floatText(enemies[0].el, `+20💚`, "lime");
 
-    } else if (enemies[0].hp < 200) {
+    } else if (enemies[0].hp < 500) {
       enemies[0].hp += 15;
       floatText(enemies[0].el, `+15💚`, "lime");
 
-    } else if (enemies[0].hp < 300) {
+    } else if (enemies[0].hp < 600) {
       enemies[0].hp += 10;
       floatText(enemies[0].el, `+10💚`, "lime");
 

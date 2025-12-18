@@ -771,5 +771,17 @@ const normalModelsTuti = [
   //     tipoVida: "🧿",
   //     zona: 1
   //   }
-  // ]
+  // ],
+  // [
+  //   {
+  //     name: "Medo De Ayla",
+  //     hp: 20,
+  //     dano: 1,
+  //     behavior: () => [{ type: "heal", value: 1 }],
+  //     img: "../img/jogo/inimigos/ayla/medo.png",
+  //     tipoDano: "(💚🎭💊)💥",
+  //     tipoVida: "💤",
+  //     zona: 1
+  //   }
+  // ],
 ];

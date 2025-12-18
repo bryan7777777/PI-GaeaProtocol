@@ -200,7 +200,7 @@ const bossModels = [
       hp: 20,
       dano: 1,
       behavior: () => [{ type: "heal", value: 1 }],
-      img: "../img/jogo/inimigos/medo.png",
+      img: "../img/jogo/inimigos/ayla/medo.png",
       tipoDano: "(💚🎭💊)💥",
       tipoVida: "💤",
       zona: 4
@@ -213,8 +213,8 @@ function bossFinal() {
   if (SoliceApareceu) {
     bossModels.push([{
       name: "Nemora",
-      hp: 400,
-      maxHp: 400,
+      hp: 700,
+      maxHp: 700,
       dano: 40,
       behavior() {
         return [
@@ -232,9 +232,9 @@ function bossFinal() {
   } else {
     bossModels.push([{
   name: "IA",
-  hp: 500,
-  maxHp: 500,
-  dano: 15,
+  hp: 550,
+  maxHp: 550,
+  dano: 20,
   behavior() {
     return [
       {
