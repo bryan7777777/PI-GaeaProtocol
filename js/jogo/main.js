@@ -280,15 +280,16 @@ function checkEnemies() {
                     tipoVida: "🪬",
                   }
                 );
+                PULAR_TODO_TUTORIAL = false;
                 iniciarTutorial(
-                    ["Credo! Que covardia da sua parte atacar os mais fracos.",
-                      "Vermes como você me dão nojo!"
-                    ],
-                    playerImgDialogo.src,
-                    null,
-                    "../img/jogo/inimigos/iconBoss/nojo.png",
-                    "inimigo"
-                  );
+                  ["Credo! Que covardia da sua parte atacar os mais fracos.",
+                    "Vermes como você me dão nojo!"
+                  ],
+                  playerImgDialogo.src,
+                  null,
+                  "../img/jogo/inimigos/iconBoss/nojo.png",
+                  "inimigo"
+                );
               }
               else if (
                 ["Nojo De Ayla", "Raiva De Ayla"].includes(morto.name)
@@ -316,6 +317,7 @@ function checkEnemies() {
                       tipoVida: "🪬",
                     }
                   );
+                  PULAR_TODO_TUTORIAL = false;
                   iniciarTutorial(
                     ["Você me deixou ansiosa, raramente passam do Nojo e da Raiva.",
                       "Finalmente estou empolgada e AGORA eu quero lutar!"
@@ -351,6 +353,7 @@ function checkEnemies() {
                       tipoVida: "🪬",
                     }
                   );
+                  PULAR_TODO_TUTORIAL = false;
                   iniciarTutorial(
                     ["Eu amava tanto elas...",
                       "Sua morte não deve ser melancolica, deve ser lenta e dolorosa!",
@@ -383,6 +386,7 @@ function checkEnemies() {
                     tipoDano: "(⚔️❓💊)💣",
                     tipoVida: "🧿",
                   });
+                  PULAR_TODO_TUTORIAL = false;
                   iniciarTutorial(
                     ["Bem covarde da sua parte atacar os mais fracos.",
                       "Eu também sinto dor. Eu também amo...",
@@ -3178,117 +3182,119 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
   })();
 }
 // TUTORIAL
-function iniciarTutorial(textos, imagemSrc = null, imagemSrc2 = null, imagemSrc3 = null, quem) {
+function iniciarTutorial(textos, imagemSrc = null, imagemSrc2 = null, imagemSrc3 = null, quem = null) {
   return new Promise(resolve => {
+
+    // Se o tutorial global foi pulado, não mostra nada
+    if (PULAR_TODO_TUTORIAL) {
+      resolve();
+      return;
+    }
+
     const overlay = document.getElementById("tutorial-overlay");
     const textBox = document.getElementById("tutorial-text");
     const img = document.getElementById("tutorial-img");
     const img2 = document.getElementById("tutorial-img2");
     const img3 = document.getElementById("tutorial-img3");
-    const tutorialText = document.querySelector("#tutorial-text");
-
-    if (imagemSrc) {
-      img.src = imagemSrc;
-      img.style.display = "block";
-    } else {
-      img.style.display = "none";
-    }
-
-    if (imagemSrc2) {
-      img2.src = imagemSrc2;
-      img2.style.display = "block";
-    } else {
-      img2.style.display = "none";
-    }
-
-    if (imagemSrc3) {
-      img3.src = imagemSrc3;
-      img3.style.display = "block";
-    } else {
-      img3.style.display = "none";
-    }
+    const skipBtn = document.getElementById("tutorial-skip");
 
     let index = 0;
     let charIndex = 0;
+    let typingInterval = null;
     let escrevendo = false;
-    let typingInterval;
 
-    if (quem == "inimigo") {
-      tutorialText.style.color = "#ff5c5cff";
-    } else {
-      tutorialText.style.color = "white";
-    }
+    /* ---------- VISUAL ---------- */
+
+    textBox.style.color = (quem === "inimigo") ? "#ff5c5c" : "white";
+
+    img.style.display = imagemSrc ? "block" : "none";
+    if (imagemSrc) img.src = imagemSrc;
+
+    img2.style.display = imagemSrc2 ? "block" : "none";
+    if (imagemSrc2) img2.src = imagemSrc2;
+
+    img3.style.display = imagemSrc3 ? "block" : "none";
+    if (imagemSrc3) img3.src = imagemSrc3;
 
     overlay.style.display = "flex";
+    skipBtn.style.display = "block";
+
+    /* ---------- FUNÇÕES ---------- */
 
     function escreverTexto() {
+      clearInterval(typingInterval);
       escrevendo = true;
+      charIndex = 0;
 
-      if (quem == "inimigo") {
-        // animação
-        img3.classList.remove("tutorial-jump");
-        void img.offsetWidth;
-        img3.classList.add("tutorial-jump");
-        const frase = textos[index];
-        textBox.innerHTML = "";
+      const frase = textos[index];
+      textBox.textContent = "";
 
-        typingInterval = setInterval(() => {
-          textBox.innerHTML += frase.charAt(charIndex);
-          charIndex++;
-
-          if (charIndex >= frase.length) {
-            clearInterval(typingInterval);
-            escrevendo = false;
-          }
-        }, 20);
-      } else {
-        // animação
-        img.classList.remove("tutorial-jump");
-        void img.offsetWidth;
-        img.classList.add("tutorial-jump");
-        const frase = textos[index];
-        textBox.innerHTML = "";
-
-        typingInterval = setInterval(() => {
-          textBox.innerHTML += frase.charAt(charIndex);
-          charIndex++;
-
-          if (charIndex >= frase.length) {
-            clearInterval(typingInterval);
-            escrevendo = false;
-          }
-        }, 20);
+      const imgAnimada = (quem === "inimigo") ? img3 : img;
+      if (imgAnimada) {
+        imgAnimada.classList.remove("tutorial-jump");
+        void imgAnimada.offsetWidth;
+        imgAnimada.classList.add("tutorial-jump");
       }
+
+      typingInterval = setInterval(() => {
+        textBox.textContent += frase.charAt(charIndex);
+        charIndex++;
+
+        if (charIndex >= frase.length) {
+          clearInterval(typingInterval);
+          escrevendo = false;
+        }
+      }, 20);
     }
 
-    function pularOuAvançar() {
-      const frase = textos[index];
+    function encerrarTutorialLocal() {
+      clearInterval(typingInterval);
+      overlay.style.display = "none";
+      overlay.onclick = null;
+      skipBtn.onclick = null;
+      skipBtn.style.display = "none";
+      textBox.textContent = "";
+      resolve();
+    }
+
+    function pularTudo() {
+      PULAR_TODO_TUTORIAL = true;
+      encerrarTutorialLocal();
+    }
+
+    /* ---------- EVENTOS ---------- */
+
+    overlay.onclick = () => {
       if (escrevendo) {
         clearInterval(typingInterval);
-        textBox.innerHTML = frase;
+        textBox.textContent = textos[index];
         escrevendo = false;
         return;
       }
 
       index++;
       if (index >= textos.length) {
-        overlay.style.display = "none";
-        overlay.onclick = null;
-        resolve();
+        encerrarTutorialLocal();
         return;
       }
-      charIndex = 0;
+
       escreverTexto();
-    }
+    };
 
-    overlay.onclick = pularOuAvançar;
+    skipBtn.onclick = (e) => {
+      e.stopPropagation();
+      pularTudo();
+    };
 
+    /* ---------- START ---------- */
     escreverTexto();
   });
 }
+
+
 // TXT COMPACTO TUTI
 async function executarTutorialCompleto() {
-
+PULAR_TODO_TUTORIAL = false;
   await iniciarTutorial([
     "Cada inimigo possui seus próprios status: ⟪ ❤️ Vida - ⚔️ Ação ⟫.",
     "Sempre que você clicar em FINALIZAR TURNO, os inimigos executam suas ações!",
@@ -3339,6 +3345,7 @@ async function executarTutorialCompleto() {
 }
 // TXT COMPACTO DIALOGO
 async function executarTxtBoss() {
+      PULAR_TODO_TUTORIAL = false;
   if (tipoFase == "boss") {
     if (!nomeInimigo[1]) {
       identificadorBoss = nomeInimigo[0].name;
@@ -5294,7 +5301,7 @@ function animateEnemySimpleFrames(enemy) {
 function animateNemoraAttack(enemy) {
   if (nemoraAtk == true && enemies[0].hp < 350) {
     enemies[0].dano += 10;
-  } else if (nemoraAtk == true || enemies[0].hp < 700){
+  } else if (nemoraAtk == true || enemies[0].hp < 700) {
     enemies[0].dano += 5;
   }
 

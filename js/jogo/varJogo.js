@@ -19,6 +19,7 @@ let SoliceApareceu=false;
 let playerImgDialogo;
 let nomeInimigo;
 let identificadorBoss;
+let PULAR_TODO_TUTORIAL = false;
 
 // ARREY
 const deck = [];
