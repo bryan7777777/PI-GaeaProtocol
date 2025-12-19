@@ -39,19 +39,6 @@ document.querySelectorAll('.inventario').forEach(el => {
 document.querySelectorAll('.pular').forEach(el => {
   el.addEventListener('click', irParaDiv2);
 });
-document.querySelectorAll('.curaVida').forEach(el => {
-  el.addEventListener('click', curaVida);
-});
-document.querySelectorAll('.aumentaVida').forEach(el => {
-  el.addEventListener('click', aumentaVida);
-});
-document.querySelectorAll('.aumentaSacre').forEach(el => {
-  el.addEventListener('click', aumentaSacre);
-});
-document.querySelectorAll('.curaSacre').forEach(el => {
-  el.addEventListener('click', curaSacre);
-});
-
 // INTERNAL FUNCTIONS LIBRARY
 // CONFS
 function floatText(target, text, color) {
@@ -3057,6 +3044,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
           iniciarTutorial([
             "Após vencer uma luta, você receberá ouro. Quanto mais avançar, mais ouro ganhará. Elites e bosses fornecem quantias ainda maiores.",
             "O ouro que você ganha pode ser gasto aqui para comprar cartas ou pagar para descartar.",
+            "O custo das cartas e upgrades vai aumentando conforme você progride, então não pare de coletar ouro!",
             "No momento, você não tem ouro suficiente para comprar nada. Então, vamos voltar para o mapa!",
             "Mas sinta-se a vontade para olhar a loja!"
           ], "./../img/jogo/gaeazinha.jpg");
@@ -3071,19 +3059,20 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
           iniciarTutorial([
             "Olha só que sorte!",
             "Um ferreiro! Nele você poderá comprar itens que mudam como você joga.",
+            "Assim como a loja o ferreiro e os hospitais também vão aumentar seus preços com forme você progride!",
             "Mas, caso não queira ou não tenha dinheiro, pode simplesmente clicar em voltar para o mapa!"
           ], "./../img/jogo/gaeazinha.jpg");
         } else if (tipo == "hospital2") {
           iniciarTutorial([
             "Eventos acontecem de forma aleatória. Em um momento você está em um ferreiro e, no outro, pode acabar em uma emboscada. Portanto, não fique confiante demais!",
             "Mas, neste caso, você deu sorte e encontrou um hospital!",
-            "Nele você encontrará dois tipos de profissionais: médicos e acólitos.",
-            "Qual deles deseja escolher? Veja o que cada um oferece e decida — ou apenas clique em pular!"
+            "Nele você pode comprar cartas de BUFF, se curar e aumentar sua vida maxima",
+            "Quando você se curar ou aumentar sua vida você volta para o mapa, então certifique-se de ter feito tudo o que tinha para fazer antes de se curar!"
           ], "./../img/jogo/gaeazinha.jpg");
         } else if (tipo == "hospital") {
           iniciarTutorial([
             "Sempre antes de enfrentar um boss haverá um hospital — para nossa felicidade!",
-            "Cure-se antes de enfrentar um inimigo muito forte ou aumente sua vida máxima, caso esteja bem preparado!"
+            "Cure-se antes de enfrentar um inimigo muito forte ou aumente sua vida máxima, caso esteja com bastante 🪙 você pode comprar alguma carta!"
           ], "./../img/jogo/gaeazinha.jpg");
 
         } else if (tipo == "boss") {
@@ -3139,6 +3128,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
         case 'hospital':
         case 'hospital2':
           mostrarTela(5); // Tela do hospital (div5)
+          abrirMedico()
           tipoFase = tipo;
           break;
 
@@ -3293,7 +3283,7 @@ function iniciarTutorial(textos, imagemSrc = null, imagemSrc2 = null, imagemSrc3
 
 // TXT COMPACTO TUTI
 async function executarTutorialCompleto() {
-PULAR_TODO_TUTORIAL = false;
+  PULAR_TODO_TUTORIAL = false;
   await iniciarTutorial([
     "Cada inimigo possui seus próprios status: ⟪ ❤️ Vida - ⚔️ Ação ⟫.",
     "Sempre que você clicar em FINALIZAR TURNO, os inimigos executam suas ações!",
@@ -3344,7 +3334,7 @@ PULAR_TODO_TUTORIAL = false;
 }
 // TXT COMPACTO DIALOGO
 async function executarTxtBoss() {
-      PULAR_TODO_TUTORIAL = false;
+  PULAR_TODO_TUTORIAL = false;
   if (tipoFase == "boss") {
     if (!nomeInimigo[1]) {
       identificadorBoss = nomeInimigo[0].name;
@@ -4588,6 +4578,154 @@ function abrirFerreiro() {
     itemDiv.appendChild(box);
     itemDiv.appendChild(precoDiv);
     containerItens.appendChild(itemDiv);
+  });
+}
+function abrirMedico() {
+  const medicoDiv = document.getElementById("div5");
+  if (!medicoDiv) return;
+
+  medicoDiv.innerHTML = "";
+
+  /* 🔒 BLINDA TODA A DIV */
+  medicoDiv.addEventListener("click", e => {
+    e.stopPropagation();
+  });
+
+  /* ================= CONTAINER ================= */
+  const container = document.createElement("div");
+  container.classList.add("loja-principal");
+  medicoDiv.appendChild(container);
+
+  /* ================= ESQUERDA ================= */
+  const esquerda = document.createElement("div");
+  esquerda.classList.add("loja-esquerda");
+
+  const img = document.createElement("img");
+  img.src = "./../img/jogo/background/medico.png";
+  img.classList.add("imgInventario");
+  esquerda.appendChild(img);
+
+  /* ===== CURAR VIDA ===== */
+  const btnCurar = document.createElement("button");
+  btnCurar.className = "inventario curaVida";
+  btnCurar.textContent = "Cure 40 de vida (E volte para o mapa)";
+
+  esquerda.appendChild(btnCurar);
+
+  /* ===== AUMENTAR VIDA MÁXIMA ===== */
+  const btnVidaMax = document.createElement("button");
+  btnVidaMax.className = "inventario aumentaVida";
+  btnVidaMax.textContent = "Aumente sua vida maxima em 10 (E volte para o mapa)";
+
+  esquerda.appendChild(btnVidaMax);
+
+  /* ===== PULAR (RESETA CUSTOS E SAI) ===== */
+  const btnPular = document.createElement("button");
+  btnPular.classList.add("pular");
+  btnPular.textContent = "Voltar para o mapa";
+
+  btnPular.onclick = () => {
+    // 🔄 RESET TOTAL AO SAIR
+    custoCuraMedico = 0;
+    custoVidaMaxMedico = 0;
+
+    irParaDiv2();
+  };
+
+  esquerda.appendChild(btnPular);
+
+  /* ================= DIREITA ================= */
+  const direita = document.createElement("div");
+  direita.classList.add("loja-direita");
+
+  const titulo = document.createElement("h1");
+  titulo.classList.add("dinheiroAtual");
+  direita.appendChild(titulo);
+
+  const containerCartas = document.createElement("div");
+  containerCartas.classList.add("loja-container");
+  direita.appendChild(containerCartas);
+
+  container.appendChild(esquerda);
+  container.appendChild(direita);
+
+  atualizarDinheiro();
+
+  /* ================= CARTAS DE CURA ================= */
+  const cartasCura = allCards.filter(c => c.type === "heal");
+  const max = Math.min(6, cartasCura.length);
+  const escolhidas = [];
+
+  while (escolhidas.length < max) {
+    const carta = cartasCura[Math.floor(Math.random() * cartasCura.length)];
+    if (!escolhidas.includes(carta)) escolhidas.push(carta);
+  }
+
+  escolhidas.forEach(carta => {
+    let preco = 10 + (mapaBatalha ?? 0);
+
+    const rar = carta.rarity?.toLowerCase();
+    if (rar === "rare") preco += 4;
+    else if (rar === "epic") preco += 12;
+    else if (rar === "legend") preco += 20;
+
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("itemLoja");
+
+    const cardDiv = document.createElement("div");
+    cardDiv.classList.add("card", carta.rarity ?? "common", "heal");
+
+    if (carta.img) {
+      const img = document.createElement("img");
+      img.src = carta.img;
+      cardDiv.appendChild(img);
+    }
+
+    const nome = document.createElement("div");
+    nome.classList.add("titulo");
+    nome.textContent = carta.name;
+    cardDiv.appendChild(nome);
+
+    const custo = document.createElement("div");
+    custo.classList.add("energia");
+    custo.textContent = carta.cost ?? 0;
+    cardDiv.appendChild(custo);
+
+    const desc = document.createElement("div");
+    desc.classList.add("desc");
+    desc.innerHTML = carta.desc ?? "<i>Sem descrição</i>";
+    cardDiv.appendChild(desc);
+
+    const precoDiv = document.createElement("div");
+    precoDiv.classList.add("precoCarta");
+    precoDiv.textContent = `💰 ${preco}`;
+
+    cardDiv.addEventListener("click", e => {
+      bloquearSaida(e);
+
+      if (dinheiro < preco) {
+        floatText?.(cardDiv, "Dinheiro insuficiente!", "red");
+        return;
+      }
+
+      dinheiro -= preco;
+      atualizarDinheiro();
+
+      playerDeck.push({ ...carta });
+      itemDiv.remove();
+
+      floatText?.(containerCartas, `-${preco}🪙`, "green");
+    });
+
+    itemDiv.appendChild(cardDiv);
+    itemDiv.appendChild(precoDiv);
+    containerCartas.appendChild(itemDiv);
+  });
+  document.querySelectorAll('.curaVida').forEach(el => {
+    el.addEventListener('click', curaVida);
+  });
+  document.querySelectorAll('.aumentaVida').forEach(el => {
+    el.addEventListener('click', aumentaVida);
   });
 }
 function bloquearSaida(e) {

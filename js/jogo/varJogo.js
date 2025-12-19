@@ -10,6 +10,8 @@ let custoRemoverBase = 10;
 let custoRemoverAtual = null;
 let custoAtualizarFerreiro = null;
 const custoAtualizarFerreiroBase = 50;
+let custoCuraMedico = 0;
+let custoVidaMaxMedico = 0;
 
 // CONFS
 var myMusic = new Audio("./../audio/artblock.ogg");
