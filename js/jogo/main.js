@@ -51,12 +51,6 @@ document.querySelectorAll('.aumentaSacre').forEach(el => {
 document.querySelectorAll('.curaSacre').forEach(el => {
   el.addEventListener('click', curaSacre);
 });
-document.querySelectorAll('.armaduraUp').forEach(el => {
-  el.addEventListener('click', armaduraUp);
-});
-document.querySelectorAll('.armaduraSacre').forEach(el => {
-  el.addEventListener('click', armaduraSacre);
-});
 
 // INTERNAL FUNCTIONS LIBRARY
 // CONFS
@@ -480,6 +474,7 @@ function checkEnemies() {
             playerShield = playerShieldInit;
             atualizarDinheiro()
           } else if (mapaBatalha === 7 && enemies.length === 0 && playerHP > 0 && pagina === "tutorial.html") {
+            PULAR_TODO_TUTORIAL = false;
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popupFinal").style.display = "flex";
             document.getElementById("enemies").style.display = "none";
@@ -501,6 +496,7 @@ function checkEnemies() {
             if (tipoFase == "elite" || tipoFase == "boss" || tipoFase == "inimigo2") {
               gerarItens();
               if (pagina === "tutorial.html") {
+                PULAR_TODO_TUTORIAL = false;
                 iniciarTutorial([
                   "Parabéns por vencer um inimigo tão forte!",
                   "Inimigos de elite e bosses concedem relíquias como recompensa!",
@@ -514,6 +510,7 @@ function checkEnemies() {
               // gerarItens();
               gerarCartaRecomp();
               if (pagina === "tutorial.html") {
+                PULAR_TODO_TUTORIAL = false;
                 iniciarTutorial([
                   "Sempre que derrotar um inimigo, você receberá uma recompensa!",
                   "Inimigos comuns dão cartas como recompensa!",
@@ -3053,6 +3050,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
     function executarAcao(tipo) {
       if (pagina === "tutorial.html") {
+        PULAR_TODO_TUTORIAL = false;
         if (tipo == "inimigo") {
           executarTutorialCompleto();
         } else if (tipo == "loja") {
@@ -3072,8 +3070,8 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
         } else if (tipo == "ferreiro") {
           iniciarTutorial([
             "Olha só que sorte!",
-            "Um ferreiro! Nele você poderá aumentar sua armadura.",
-            "Mas, caso não queira, pode simplesmente clicar em pular!"
+            "Um ferreiro! Nele você poderá comprar itens que mudam como você joga.",
+            "Mas, caso não queira ou não tenha dinheiro, pode simplesmente clicar em voltar para o mapa!"
           ], "./../img/jogo/gaeazinha.jpg");
         } else if (tipo == "hospital2") {
           iniciarTutorial([
@@ -3134,6 +3132,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
         case 'ferreiro':
           mostrarTela(6);
+          abrirFerreiro();
           tipoFase = tipo;
           break;
 
@@ -3942,7 +3941,7 @@ async function executarTxtBoss() {
         );
 
         await iniciarTutorial(
-          ["Quem está com defeito VOCÊ!",
+          ["Quem está com defeito é VOCÊ!",
             "SE TOCAR UM DEDO NELA EU VOU TE DESPEDAÇAR!!!"
           ],
           playerImgDialogo.src,
@@ -4197,65 +4196,70 @@ function abrirLoja() {
   const lojaDiv = document.getElementById("div4");
   if (!lojaDiv) return;
 
-  lojaDiv.innerHTML = ""; // limpa
+  lojaDiv.innerHTML = "";
+
   const lojaContainer = document.createElement("div");
   lojaContainer.classList.add("loja-principal");
   lojaDiv.appendChild(lojaContainer);
 
+  /* ================= ESQUERDA ================= */
   const esquerda = document.createElement("div");
   esquerda.classList.add("loja-esquerda");
 
   const imgInv = document.createElement("img");
   imgInv.src = "./../img/jogo/background/comerciante.png";
-  imgInv.alt = "Inventário";
   imgInv.classList.add("imgInventario");
   esquerda.appendChild(imgInv);
 
+  /* ===== VOLTAR ===== */
   const btnVoltar = document.createElement("button");
-  btnVoltar.textContent = "Voltar para o mapa";
   btnVoltar.id = "lojaUm";
-  btnVoltar.addEventListener("click", () => {
+  btnVoltar.textContent = "Voltar para o mapa";
+  btnVoltar.onclick = () => {
+    custoAtualizarAtual = null;
+    custoRemoverAtual = null; // 🔄 reset total
     if (typeof irParaDiv2 === "function") irParaDiv2();
-  });
+  };
   esquerda.appendChild(btnVoltar);
 
-  // 🧹 botão para remover carta do deck
+  /* ===== INICIALIZA CUSTOS ===== */
+  if (custoAtualizarAtual === null) {
+    custoAtualizarAtual = custoAtualizarBase + (mapaBatalha ?? 0);
+  }
+
+  if (custoRemoverAtual === null) {
+    custoRemoverAtual = custoRemoverBase + (mapaBatalha ?? 0);
+  }
+
+  /* ===== REMOVER CARTA ===== */
   const btnRemoverCarta = document.createElement("button");
-  btnRemoverCarta.textContent = "Remover uma carta (10🪙)";
-  btnRemoverCarta.id = "btnRemoverCarta";
+  btnRemoverCarta.textContent = `Remover carta (${custoRemoverAtual}🪙)`;
   esquerda.appendChild(btnRemoverCarta);
 
-  // verifica se pode remover
   const podeRemover = Array.isArray(playerDeck) && playerDeck.length > 10;
 
   if (!podeRemover) {
     btnRemoverCarta.disabled = true;
     btnRemoverCarta.style.opacity = "0.6";
-    btnRemoverCarta.style.cursor = "not-allowed";
   } else {
-    btnRemoverCarta.addEventListener("click", () => {
-      if (dinheiro < 10) {
-        if (typeof floatText === "function")
-          floatText(btnRemoverCarta, "Dinheiro insuficiente!", "red");
+    btnRemoverCarta.onclick = () => {
+      if (dinheiro < custoRemoverAtual) {
+        floatText?.(btnRemoverCarta, "Dinheiro insuficiente!", "red");
         return;
       }
 
-      // cria popup
       const popup = document.createElement("div");
       popup.classList.add("popup-remover-carta");
 
-      // botão cancelar (em cima)
       const cancelarTopo = document.createElement("button");
       cancelarTopo.textContent = "Cancelar";
-      cancelarTopo.addEventListener("click", () => popup.remove());
+      cancelarTopo.onclick = () => popup.remove();
       popup.appendChild(cancelarTopo);
 
       playerDeck.forEach((carta, i) => {
         const cardDiv = document.createElement("div");
         cardDiv.classList.add("card", carta.rarity ?? "common");
         if (carta.type) cardDiv.classList.add(carta.type);
-        cardDiv.style.margin = "10px";
-        cardDiv.style.cursor = "pointer";
 
         if (carta.img) {
           const img = document.createElement("img");
@@ -4268,40 +4272,67 @@ function abrirLoja() {
         nome.textContent = carta.name;
         cardDiv.appendChild(nome);
 
+        const custo = document.createElement("div");
+        custo.classList.add("energia");
+        custo.textContent = carta.cost ?? 0;
+        cardDiv.appendChild(custo);
+
         const desc = document.createElement("div");
         desc.classList.add("desc");
-        desc.innerHTML = carta.desc ?? "";
+        desc.innerHTML = carta.desc ?? "<i>Sem descrição</i>";
         cardDiv.appendChild(desc);
 
-        // clique na carta
-        cardDiv.addEventListener("click", () => {
+        cardDiv.onclick = () => {
           if (playerDeck.length <= 10) {
-            if (typeof floatText === "function")
-              floatText(cardDiv, "Você não pode ter menos de 10 cartas!", "red");
+            floatText?.(cardDiv, "Mínimo de 10 cartas!", "red");
             return;
           }
 
+          const custoPago = custoRemoverAtual;
+
           playerDeck.splice(i, 1);
-          dinheiro -= 10;
+          dinheiro -= custoPago;
           atualizarDinheiro();
+
+          custoRemoverAtual *= 2; // 🔁 dobra custo
+          btnRemoverCarta.textContent = `Remover carta (${custoRemoverAtual}🪙)`;
+
           popup.remove();
-          if (typeof floatText === "function") floatText(lojaDiv, "-10🪙", "yellow");
-        });
+          floatText?.(lojaDiv, `-${custoPago}🪙`, "yellow");
+        };
 
         popup.appendChild(cardDiv);
       });
 
-      // botão cancelar (em baixo)
       const cancelarBaixo = document.createElement("button");
       cancelarBaixo.textContent = "Cancelar";
-      cancelarBaixo.addEventListener("click", () => popup.remove());
+      cancelarBaixo.onclick = () => popup.remove();
       popup.appendChild(cancelarBaixo);
 
       lojaDiv.appendChild(popup);
-    });
+    };
   }
 
-  // lado direito
+  /* ===== ATUALIZAR LOJA ===== */
+  const btnAtualizarLoja = document.createElement("button");
+  btnAtualizarLoja.textContent = `Atualizar loja (${custoAtualizarAtual}🪙)`;
+
+  btnAtualizarLoja.onclick = () => {
+    if (dinheiro < custoAtualizarAtual) {
+      floatText?.(btnAtualizarLoja, "Dinheiro insuficiente!", "red");
+      return;
+    }
+
+    dinheiro -= custoAtualizarAtual;
+    atualizarDinheiro();
+
+    custoAtualizarAtual *= 2; // 🔁 dobra
+    abrirLoja(); // 🔄 aqui PODE atualizar a loja
+  };
+
+  esquerda.appendChild(btnAtualizarLoja);
+
+  /* ================= DIREITA ================= */
   const direita = document.createElement("div");
   direita.classList.add("loja-direita");
 
@@ -4318,15 +4349,29 @@ function abrirLoja() {
 
   atualizarDinheiro();
 
-  // cartas à venda
+  /* ================= CARTAS À VENDA ================= */
   const opcoes = [];
   const max = Math.min(10, allCards?.length || 0);
+
   while (opcoes.length < max) {
     const carta = allCards[Math.floor(Math.random() * allCards.length)];
     if (!opcoes.includes(carta)) opcoes.push(carta);
   }
 
   opcoes.forEach(carta => {
+    let preco = 10;
+
+    const rar = carta.rarity?.toLowerCase();
+    const tipo = carta.type?.toLowerCase();
+
+    if (rar === "rare") preco = 14;
+    else if (rar === "epic") preco = 22;
+    else if (rar === "legend") preco = 30;
+    else if (rar === "cintilante") preco = 50;
+    else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 16;
+
+    preco += mapaBatalha ?? 0;
+
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("itemLoja");
 
@@ -4352,41 +4397,203 @@ function abrirLoja() {
 
     const desc = document.createElement("div");
     desc.classList.add("desc");
-    desc.innerHTML = carta.desc ?? "";
+    desc.innerHTML = carta.desc ?? "<i>Sem descrição</i>";
     cardDiv.appendChild(desc);
-
-    let preco = 10;
-    const rar = carta.rarity?.toLowerCase() ?? "common";
-    const tipo = carta.type?.toLowerCase() ?? "";
-    if (rar === "rare") preco = 14;
-    else if (rar === "epic") preco = 22;
-    else if (rar === "legend") preco = 30;
-    else if (rar === "cintilante") preco = 50;
-    else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 16;
 
     const precoDiv = document.createElement("div");
     precoDiv.classList.add("precoCarta");
     precoDiv.textContent = `💰 ${preco}`;
 
-    cardDiv.addEventListener("click", (ev) => {
-      ev.stopPropagation();
-      if (dinheiro >= preco) {
-        dinheiro -= preco;
-        atualizarDinheiro();
-        if (!Array.isArray(playerDeck)) playerDeck = [];
-        playerDeck.push({ ...carta });
-        itemDiv.remove();
-        if (typeof floatText === "function") floatText(containerCartas, `-${preco}🪙`, "red");
-      } else {
-        if (typeof floatText === "function") floatText(cardDiv, "Dinheiro insuficiente!", "red");
+    cardDiv.onclick = () => {
+      if (dinheiro < preco) {
+        floatText?.(cardDiv, "Dinheiro insuficiente!", "red");
+        return;
       }
-    });
+
+      dinheiro -= preco;
+      atualizarDinheiro();
+      playerDeck.push({ ...carta });
+      itemDiv.remove();
+      floatText?.(containerCartas, `-${preco}🪙`, "red");
+    };
 
     itemDiv.appendChild(cardDiv);
     itemDiv.appendChild(precoDiv);
     containerCartas.appendChild(itemDiv);
   });
-};
+}
+function abrirFerreiro() {
+  const ferreiroDiv = document.getElementById("div6");
+  const inventario = document.getElementById("itens");
+  if (!ferreiroDiv || !inventario) return;
+
+  ferreiroDiv.innerHTML = "";
+
+  /* BLINDA TODA A DIV */
+  ferreiroDiv.addEventListener("click", e => {
+    e.stopPropagation();
+  });
+
+  /* ================= CONTAINER ================= */
+  const container = document.createElement("div");
+  container.classList.add("loja-principal");
+  ferreiroDiv.appendChild(container);
+
+  /* ================= ESQUERDA ================= */
+  const esquerda = document.createElement("div");
+  esquerda.classList.add("loja-esquerda");
+
+  const img = document.createElement("img");
+  img.src = "./../img/jogo/background/comercianteItens.png";
+  img.classList.add("imgInventario");
+  esquerda.appendChild(img);
+
+  /* ===== VOLTAR (ÚNICO QUE SAI DA DIV) ===== */
+  const btnVoltar = document.createElement("button");
+  btnVoltar.textContent = "Voltar para o mapa";
+  btnVoltar.onclick = () => {
+    custoAtualizarFerreiro = null;
+    irParaDiv2(); // ÚNICO ponto que troca div
+  };
+  esquerda.appendChild(btnVoltar);
+
+  /* ===== CUSTO ATUALIZAR ===== */
+  if (custoAtualizarFerreiro === null) {
+    custoAtualizarFerreiro = custoAtualizarFerreiroBase + (mapaBatalha ?? 0);
+  }
+
+  const btnAtualizar = document.createElement("button");
+  btnAtualizar.textContent = `Atualizar loja (${custoAtualizarFerreiro}🪙)`;
+
+  btnAtualizar.addEventListener("click", e => {
+    bloquearSaida(e);
+
+    if (dinheiro < custoAtualizarFerreiro) {
+      floatText?.(btnAtualizar, "Dinheiro insuficiente!", "red");
+      return;
+    }
+
+    dinheiro -= custoAtualizarFerreiro;
+    atualizarDinheiro();
+
+    custoAtualizarFerreiro *= 2;
+    abrirFerreiro(); // 🔄 recarrega SEM sair
+  });
+
+  esquerda.appendChild(btnAtualizar);
+
+  /* ================= DIREITA ================= */
+  const direita = document.createElement("div");
+  direita.classList.add("loja-direita");
+
+  const titulo = document.createElement("h1");
+  titulo.textContent = "Ferreiro";
+  titulo.classList.add("dinheiroAtual");
+  direita.appendChild(titulo);
+
+  const containerItens = document.createElement("div");
+  containerItens.classList.add("loja-container");
+  direita.appendChild(containerItens);
+
+  container.appendChild(esquerda);
+  container.appendChild(direita);
+
+  atualizarDinheiro();
+
+  /* ================= ITENS ================= */
+  const itensDisponiveis = allItems.filter(
+    item => !itensJaPegos.includes(item.id)
+  );
+
+  const max = Math.min(3, itensDisponiveis.length);
+  const escolhidos = [];
+
+  while (escolhidos.length < max) {
+    const item = itensDisponiveis[Math.floor(Math.random() * itensDisponiveis.length)];
+    if (!escolhidos.includes(item)) escolhidos.push(item);
+  }
+
+  escolhidos.forEach(item => {
+    const preco = 50 + (mapaBatalha ?? 0);
+
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("itemLoja");
+
+    const box = document.createElement("div");
+    box.classList.add("item-box");
+    box.style.cursor = "pointer";
+
+    box.addEventListener("click", e => {
+      bloquearSaida(e);
+
+      if (dinheiro < preco) {
+        floatText?.(box, "Dinheiro insuficiente!", "red");
+        return;
+      }
+
+      dinheiro -= preco;
+      atualizarDinheiro();
+
+      itensJaPegos.push(item.id);
+
+      /* ===== INVENTÁRIO (IGUAL gerarItens) ===== */
+      const invImg = document.createElement("img");
+      invImg.src = item.img;
+      invImg.style.margin = "5px";
+      invImg.style.cursor = "pointer";
+
+      invImg.addEventListener("mouseenter", () => {
+        tooltip.textContent = `(${item.name}) ${item.desc}`;
+        tooltip.style.display = "block";
+      });
+
+      invImg.addEventListener("mousemove", ev => {
+        tooltip.style.left = ev.clientX + 15 + "px";
+        tooltip.style.top = ev.clientY + 15 + "px";
+      });
+
+      invImg.addEventListener("mouseleave", () => {
+        tooltip.style.display = "none";
+      });
+
+      inventario.appendChild(invImg);
+
+      aplicarBuff(item);
+      updateHUD();
+
+      itemDiv.remove();
+      floatText?.(containerItens, `-${preco}🪙`, "red");
+    });
+
+    const imgItem = document.createElement("img");
+    imgItem.src = item.img;
+    imgItem.style.width = "100px";
+
+    const nome = document.createElement("div");
+    nome.textContent = item.name;
+    nome.classList.add("titulo");
+
+    const desc = document.createElement("div");
+    desc.textContent = item.desc;
+    desc.classList.add("desc");
+
+    const precoDiv = document.createElement("div");
+    precoDiv.classList.add("precoCarta");
+    precoDiv.textContent = `💰 ${preco}`;
+
+    box.appendChild(imgItem);
+    box.appendChild(nome);
+    box.appendChild(desc);
+
+    itemDiv.appendChild(box);
+    itemDiv.appendChild(precoDiv);
+    containerItens.appendChild(itemDiv);
+  });
+}
+function bloquearSaida(e) {
+  e.preventDefault();
+  e.stopPropagation();
+}
 
 // EVENTS
 function curaVida() {
@@ -4412,23 +4619,6 @@ function aumentaSacre() {
     playerHP = 1;
   } else {
     playerHP -= 50;
-  }
-  updateHUD();
-};
-function armaduraUp() {
-  playerShieldInit += 2;
-  updateHUD();
-};
-function armaduraSacre() {
-  playerShieldInit += 15;
-  if (playerMaxHP <= 50) {
-    playerMaxHP = 10;
-  } else {
-    playerMaxHP -= 50;
-    playerMaxHP = Math.max(playerMaxHP, 10);
-  }
-  if (playerHp > playerMaxHP) {
-    playerHp = playerMaxHP;
   }
   updateHUD();
 };
@@ -5237,6 +5427,7 @@ async function enemyTurn() {
       // MORTE DO JOGADOR
       if (playerHP <= 0) {
         if (pagina === "tutorial.html") {
+          PULAR_TODO_TUTORIAL = false;
           iniciarTutorial([
             "Oh não, essa batalha foi difícil…",
             "Mas não desanime! Toda derrota é um aprendizado.",

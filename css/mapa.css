@@ -70,6 +70,19 @@ html, body {
   background: #d44;
 }
 
+#div6 .loja-container .item-box{
+  width: 20vw;
+  height: 55vh;
+}
+
+#div6 .imgInventario{
+  margin-top: 5vh;
+}
+
+#div6 .dinheiroAtual{
+  width: 60vw;
+}
+
 .loja h1{
   margin-top: 30px;
 }
@@ -90,7 +103,7 @@ html, body {
 }
 
 .imgInventario {
-  width: 450px;
+  width: 380px;
 }
 
 .loja-direita {
@@ -517,7 +530,7 @@ button {
   background-color: rgb(0, 0, 0);
 }
 
-#fimSelecao, .inventario button, .ferreiro button, #lutaUm, #fimDeJogo, .pular, #lojaUm, #btnRemoverCarta{
+#fimSelecao, .inventario button, .ferreiro button, #lutaUm, #fimDeJogo, .pular, #lojaUm,.loja-esquerda button, #btnRemoverCarta{
   width: 100%;
   height:100px;
   font-size: 80%;
@@ -534,12 +547,22 @@ button {
   max-height: 75px;
 }
 
-#fimSelecao:hover, .inventario button:hover, .ferreiro button:hover, #lutaUm:hover, #fimDeJogo:hover, .pular:hover, #lojaUm:hover, #btnRemoverCarta:hover{
+#fimSelecao:hover, .inventario button:hover, .loja-esquerda button:hover, .ferreiro button:hover, #lutaUm:hover, #fimDeJogo:hover, .pular:hover, #lojaUm:hover, #btnRemoverCarta:hover{
   width: 100%;
   font-size: 100%;
   background-color: rgba(2, 114, 0, 0.6);
   box-shadow: 2px 2px 50px 2px rgba(0, 255, 106, 0.521);
   border: solid 5px rgb(108, 223, 133);
+}
+
+.loja-esquerda button, .loja-esquerda button:hover{
+  height: 10%;
+  font-size: 80%;
+}
+
+.popup-remover-carta .energia{
+  margin-top: -115px;
+  margin-bottom: 90px;
 }
 
 #fimDeJogo:hover, #fimDeJogo{

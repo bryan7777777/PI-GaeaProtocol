@@ -4,6 +4,12 @@ let telaAnterior = null;
 let mapaBatalha = 0;
 let zonaAtual = 1;
 let tipoFase;
+let custoAtualizarBase = 5;
+let custoAtualizarAtual = null;
+let custoRemoverBase = 10;
+let custoRemoverAtual = null;
+let custoAtualizarFerreiro = null;
+const custoAtualizarFerreiroBase = 50;
 
 // CONFS
 var myMusic = new Audio("./../audio/artblock.ogg");
