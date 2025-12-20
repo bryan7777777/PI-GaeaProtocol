@@ -24,4 +24,6 @@ const allItems = [
   { id: 23, name: "Kit Médico", img: "./../img/jogo/itens/kitMedico.png", desc: "No final de cada combate cure 10% da sua vida maxima" },
   { id: 24, name: "Chip Do Curandeiro", img: "./../img/jogo/itens/chipDeCura.png", desc: "Precisa de um Gerador para funcionar. Sempre que uma carta VERDE for usada cure 2 de vida" },
   { id: 25, name: "Gerador", img: "./../img/jogo/itens/gerador.png", desc: "+1 ENERGIA e energiza itens" },
+  { id: 26, name: "Fragmento Do Mundo", img: "./../img/jogo/itens/frostKey.png", desc: "Essa chave peculiar parece ser feita de gelo luminezente, será que ela possui alguma utilidade? ela aparenta estar ligada com solice, será que ela diz algo?" },
+  { id: 27, name: "Coração Do Mundo", img: "./../img/jogo/itens/fireKey.png", desc: "Essa chave esta muito quenta para segurar, talves algo feito de gelo luminezente esfrie" },
 ];

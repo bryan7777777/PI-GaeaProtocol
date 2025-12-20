@@ -24,10 +24,14 @@ let nemoraFireInterval = null;
 let reviver = 0;
 let aylaPhase = 0;
 let SoliceApareceu=false;
+let dialogoSolice=false;
+let dialogoAyla=false;
 let playerImgDialogo;
 let nomeInimigo;
 let identificadorBoss;
 let PULAR_TODO_TUTORIAL = false;
+let primeiraGeracaoItem = true;
+let primeiraAberturaFerreiro = true;
 
 // ARREY
 const deck = [];

@@ -42,9 +42,22 @@ STATS ENEMYS
 
 PALTAS{
     POO - citar a nova organização para contornar usar type="module" e evitar redefinir o cod inteiro
+    ==========
     ITENS - citar a criação de itens e oq fazem
+    ==========
     NIMAÇÃO - citar sobre as animações e a vida que deu para o jogo e possiveis ajustes no futuro
+    ==========
     TUTORIAL - citar a criação de um tutorial simples
+    ==========
     FILTRO DALTONICO - citar a descoberta da falta de suporte para daltonicos descoberta com o tutorial
+    ==========
     AJUSTES PARA DALTONICOS - citar como foi resolvido o problema para daltonicos
+    ==========
+    DIALOGO - citar reutilização do cod do tutorial para criar dialogo entre o personagem e o boss, cd boss tem alguem com uma fala especial
+    ==========
+    EVENTOS ALTERADOS - citar o reworck nos eventos para n dxa eles inferiores aos itens
+    ==========
+    BALANCEAMENTO - citar o nerf nas cartas de reciclagem, buff nas elementais e buff boss final para tornar o jogo mais balanceado
+    ==========
+    BOSS SECRETO - citar sobre como acessar o boss secreto
 }

@@ -239,6 +239,7 @@ function checkEnemies() {
 
             if (morto.name.includes("Ayla")) {
               if (morto.name === "Medo De Ayla") {
+                if (dialogoAyla) {bossFinal(); return;}
                 shakeScreenNatural(10, 400);
                 document.getElementById("jogo").style.backgroundImage = "url('../img/jogo/background/cidadeAsustadora.png')";
                 novos.push(
@@ -518,7 +519,7 @@ function checkEnemies() {
             reviver = 0;
             atualizarDinheiro()
           }
-          if (mapaBatalha == 28) {
+          if (mapaBatalha == 29) {
             bossFinal();
             console.log("boss add")
           }
@@ -3279,8 +3280,6 @@ function iniciarTutorial(textos, imagemSrc = null, imagemSrc2 = null, imagemSrc3
     escreverTexto();
   });
 }
-
-
 // TXT COMPACTO TUTI
 async function executarTutorialCompleto() {
   PULAR_TODO_TUTORIAL = false;
@@ -3883,6 +3882,84 @@ async function executarTxtBoss() {
             "inimigo"
           );
         }
+
+        if (hasItem(26)) {
+          dialogoSolice = true
+          await iniciarTutorial(
+            ["Espere por favor!",
+              "Você sabe algo sobre essa chave?",
+              "Tinha seu nome escrito na caixa que encontrei"
+            ],
+            playerImgDialogo.src,
+            "./../img/jogo/itens/frostKey.png",
+            "../img/jogo/inimigos/iconBoss/solice.png",
+          );
+
+          await iniciarTutorial(
+            ["Não é uma merá chave!",
+              "É o fragmento do mundo espiritual",
+              "Procurei em vida e morte por eles, itens magicos de poder imenso!",
+              "Mas é inutil sozinha, há menos que você tenha o Coração Do Mundo que é o fragmento do mundo fisico",
+              "Você tem? Se não, então não tenho mais nada a dizer"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/solice.png",
+            "inimigo"
+          );
+          if (hasItem(27)) {
+            await iniciarTutorial(
+              ["Isso é o fragmento?",
+                "Tive que por em um recipiente termico, não sei de onde vem tanta energia"
+              ],
+              playerImgDialogo.src,
+              "./../img/jogo/itens/fireKey.png",
+              "../img/jogo/inimigos/iconBoss/solice.png",
+            );
+
+            await iniciarTutorial(
+              ["Você... Achou...",
+                "Precisa ir até ayla, ela é a única com poder suficiente para infundir esses fragmentos",
+                "Se eu estivesse menos ferida faria isso, sempre quis conhecer os deuses do outro mundo... Nemora...",
+                "Já ajudei com o que sabia, agora me ajude e me de uma morte digna"
+              ],
+              playerImgDialogo.src,
+              null,
+              "../img/jogo/inimigos/iconBoss/solice.png",
+              "inimigo"
+            );
+
+            await iniciarTutorial(
+              ["Certamente"
+              ],
+              playerImgDialogo.src,
+              null,
+              "../img/jogo/inimigos/iconBoss/solice.png",
+            );
+          }
+
+          if (hasItem(26) && !hasItem(27)) {
+            await iniciarTutorial(
+              ["Não, mas posso achar!"
+              ],
+              playerImgDialogo.src,
+              null,
+              "../img/jogo/inimigos/iconBoss/solice.png",
+            );
+
+            await iniciarTutorial(
+              ["Muitos morrerão tentando achar!",
+                "Você apenas deu sorte e essa chave me pertencia!",
+                "Caso consiga fale com Ayla, ela é capaz de infundir essa chave!",
+                "Chega de falar, morra ou me derrote!"
+              ],
+              playerImgDialogo.src,
+              null,
+              "../img/jogo/inimigos/iconBoss/solice.png",
+              "inimigo"
+            );
+          }
+        }
         break;
       // 44444
       case "Medo De Ayla":
@@ -3976,6 +4053,55 @@ async function executarTxtBoss() {
           "../img/jogo/inimigos/iconBoss/tristeza.png",
           "inimigo"
         );
+
+        if (hasItem(26) && hasItem(27) && dialogoSolice) {
+          await iniciarTutorial(
+            ["Espere... eu falei com Solise...",
+              "Ela disse que você pode me ajudar",
+              "Estrou com o Fragmento Do Mundo e o Coração Do Mundo!",
+              "Ela disse que você é a unica capaz de infundir eles..."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/medo.png"
+          );
+
+          await iniciarTutorial(
+            ["Solice... Quanto tempo não escuto esse nome... De onde me lembro...",
+              "Uma velha amiga, me lembrei, devo minha vida a ela",
+              "Vejo que carrega o sonho dela!",
+              "Vou lhe ajudar com isso, em troca dese deixar Medo em paz!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossIra.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["OK"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossIra.png"
+          );
+
+          await iniciarTutorial(
+            ["Ah, isso me custa muito mana e energia...",
+              "*Ayla funde os fragmentos e algo acontece*",
+              "Eu senti uma energia poderosa com um mana imenso após fundir os fragmentos...",
+              "Preciso recuperar minhas forças, vá até a base da IA, a energia veio de lá, antigamente aquele local era um portal magico..."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossIra.png",
+            "inimigo"
+          );
+          document.getElementById("overlay").style.display = "block";
+            document.getElementById("popup").style.display = "flex";
+            dialogoAyla=true;
+            atualizarDinheiro();
+        }
         break;
       // 55555
       case "IA":
@@ -4181,6 +4307,7 @@ async function executarTxtBoss() {
     }
   }
 }
+
 // SHOOP
 function abrirLoja() {
   const lojaDiv = document.getElementById("div4");
@@ -4443,7 +4570,7 @@ function abrirFerreiro() {
   btnVoltar.textContent = "Voltar para o mapa";
   btnVoltar.onclick = () => {
     custoAtualizarFerreiro = null;
-    irParaDiv2(); // ÚNICO ponto que troca div
+    irParaDiv2();
   };
   esquerda.appendChild(btnVoltar);
 
@@ -4498,11 +4625,26 @@ function abrirFerreiro() {
   const max = Math.min(3, itensDisponiveis.length);
   const escolhidos = [];
 
-  while (escolhidos.length < max) {
-    const item = itensDisponiveis[Math.floor(Math.random() * itensDisponiveis.length)];
-    if (!escolhidos.includes(item)) escolhidos.push(item);
+  /* 🔒 PRIMEIRA VEZ: garante item ID 27 */
+  if (primeiraAberturaFerreiro) {
+    const item27 = itensDisponiveis.find(i => i.id === 27);
+    if (item27) {
+      escolhidos.push(item27);
+    }
+    primeiraAberturaFerreiro = false;
   }
 
+  /* 🎲 COMPLETA ALEATORIAMENTE */
+  while (escolhidos.length < max) {
+    const item = itensDisponiveis[
+      Math.floor(Math.random() * itensDisponiveis.length)
+    ];
+    if (!escolhidos.includes(item)) {
+      escolhidos.push(item);
+    }
+  }
+
+  /* ================= RENDER ================= */
   escolhidos.forEach(item => {
     const preco = 50 + (mapaBatalha ?? 0);
 
@@ -4526,7 +4668,7 @@ function abrirFerreiro() {
 
       itensJaPegos.push(item.id);
 
-      /* ===== INVENTÁRIO (IGUAL gerarItens) ===== */
+      /* ===== INVENTÁRIO ===== */
       const invImg = document.createElement("img");
       invImg.src = item.img;
       invImg.style.margin = "5px";
@@ -5834,11 +5976,9 @@ function gerarItens() {
     console.error("ERRO: div #recompensa NÃO ENCONTRADA!");
     return;
   }
-  if (hasItem(21)) {
-    numItens = 4;
-  } else {
-    numItens = 3;
-  }
+
+  // quantidade de itens
+  let numItens = hasItem(21) ? 4 : 3;
 
   container.innerHTML = "";
   container.style.display = "flex";
@@ -5848,7 +5988,10 @@ function gerarItens() {
   container.style.gap = "20px";
   container.style.width = "100%";
 
-  const itensDisponiveis = allItems.filter(i => !itensJaPegos.includes(i.id));
+  const itensDisponiveis = allItems.filter(
+    i => !itensJaPegos.includes(i.id)
+  );
+
   const quantidade = Math.min(numItens, itensDisponiveis.length);
 
   if (quantidade === 0) {
@@ -5857,11 +6000,28 @@ function gerarItens() {
   }
 
   const escolhidos = [];
-  while (escolhidos.length < quantidade) {
-    const item = itensDisponiveis[Math.floor(Math.random() * itensDisponiveis.length)];
-    if (!escolhidos.includes(item)) escolhidos.push(item);
+
+  /* 🔒 PRIMEIRA VEZ: garante item ID 26 */
+  if (primeiraGeracaoItem) {
+    const item26 = itensDisponiveis.find(i => i.id === 26);
+    if (item26) {
+      escolhidos.push(item26);
+    }
+    primeiraGeracaoItem = false;
   }
 
+  /* 🎲 COMPLETA ALEATORIAMENTE */
+  while (escolhidos.length < quantidade) {
+    const item = itensDisponiveis[
+      Math.floor(Math.random() * itensDisponiveis.length)
+    ];
+
+    if (!escolhidos.includes(item)) {
+      escolhidos.push(item);
+    }
+  }
+
+  /* ================= RENDERIZAÇÃO ================= */
   escolhidos.forEach(item => {
     const box = document.createElement("div");
     box.classList.add("item-box");
@@ -5872,6 +6032,7 @@ function gerarItens() {
     box.addEventListener("mouseenter", () => {
       box.style.filter = "drop-shadow(0 0 10px #00ff3389)";
     });
+
     box.addEventListener("mouseleave", () => {
       box.style.filter = "none";
     });
@@ -5892,23 +6053,22 @@ function gerarItens() {
     desc.style.fontSize = "14px";
     desc.style.opacity = "0.8";
 
-    /* Evento de pegar o item */
+    /* 📦 EVENTO DE PEGAR ITEM */
     box.addEventListener("click", () => {
       itensJaPegos.push(item.id);
 
-      // cria imagem no inventário
       const invImg = document.createElement("img");
       invImg.src = item.img;
       invImg.style.margin = "5px";
       invImg.style.cursor = "pointer";
 
-      /* TOOLTIP NO INVENTÁRIO */
+      /* 🧠 TOOLTIP NO INVENTÁRIO */
       invImg.addEventListener("mouseenter", () => {
         tooltip.textContent = `(${item.name}) ${item.desc}`;
         tooltip.style.display = "block";
       });
 
-      invImg.addEventListener("mousemove", (ev) => {
+      invImg.addEventListener("mousemove", ev => {
         tooltip.style.left = ev.clientX + 15 + "px";
         tooltip.style.top = ev.clientY + 15 + "px";
       });
@@ -5918,8 +6078,8 @@ function gerarItens() {
       });
 
       inventario.appendChild(invImg);
-      aplicarBuff(item);
 
+      aplicarBuff(item);
       fecharPopup();
       irParaDiv2();
       updateHUD();
@@ -5930,7 +6090,7 @@ function gerarItens() {
     box.appendChild(desc);
     container.appendChild(box);
   });
-};
+}
 function applyItemAreaBonus(enemies) {
   const bonusDamage = 5;
 

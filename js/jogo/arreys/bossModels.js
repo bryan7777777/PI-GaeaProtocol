@@ -210,7 +210,7 @@ const bossModels = [
 ];
 
 function bossFinal() {
-  if (SoliceApareceu) {
+  if (SoliceApareceu && dialogoAyla) {
     bossModels.push([{
       name: "Nemora",
       hp: 700,
