@@ -232,15 +232,15 @@ function bossFinal() {
   } else {
     bossModels.push([{
   name: "IA",
-  hp: 550,
-  maxHp: 550,
-  dano: 20,
+  hp: 570,
+  maxHp: 570,
+  dano: 25,
   behavior() {
     return [
       {
         type: Math.random() < 0.25
           ? "heal"
-          : Math.random() < 0.8
+          : Math.random() < 0.7
           ? "attack"
           : "attackVida",
         value: this.dano

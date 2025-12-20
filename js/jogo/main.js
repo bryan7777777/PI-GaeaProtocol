@@ -1456,7 +1456,7 @@ function drawCards() {
       }
       //  ♻️♻️♻️♻️♻️ RECICLAGEM ♻️♻️♻️♻️♻️
       else if (card.name === "Recicladora") {
-        let dano = Math.floor(lixoReciclado / 3);
+        let dano = Math.floor(lixoReciclado / 5);
 
         animateDamage(enemies[0].el);
         enemies[0].hp -= dano;
@@ -1490,7 +1490,7 @@ function drawCards() {
           return;
         }
 
-        let ganho = Math.floor(lixoRemovido * (lixoReciclado * 0.1));
+        let ganho = Math.floor(lixoRemovido * (lixoReciclado * 0.05));
 
         // aplica efeito imediatamente
         const dano = ganho;
@@ -1516,7 +1516,7 @@ function drawCards() {
       }
       //♻️
       else if (card.name === "Essencia Verde") {
-        let dano = Math.floor(lixoReciclado / 5);
+        let dano = Math.floor(lixoReciclado / 10);
 
         playerHP = Math.min(playerHP + dano, playerMaxHP);
         glowPlayer("green");
@@ -1524,7 +1524,7 @@ function drawCards() {
       }
       //♻️
       else if (card.name === "Defesa Renovavel") {
-        let dano = Math.floor(lixoReciclado / 2);
+        let dano = Math.floor(lixoReciclado / 4);
 
         playerShield += dano;
         glowPlayer("blue");
@@ -2348,7 +2348,7 @@ function drawCards() {
       }
       //⛰️
       else if (card.name === "Força De Gaea") {
-        dano = Math.floor(lixoReciclado / 3);
+        dano = Math.floor(lixoReciclado / 10);
         dano += card.power;
         if (enemies[0].tipoVida === "⛰️") {
           dano *= 2;

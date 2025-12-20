@@ -122,7 +122,7 @@ const allCards = [
     basePower: 10,
     rarity: "terra",
     img: "../img/jogo/cards/terra/atkBrutoTerra.jpg",
-    desc: "Cause 10 de dano mais 30% de todo o lixo reciclado ao inimigo, se ele estiver marcado com ⛰️ cause X2",
+    desc: "Cause 10 de dano mais 10% de todo o lixo reciclado ao inimigo, se ele estiver marcado com ⛰️ cause X2",
     type: "terra"
   },
   {
@@ -833,7 +833,7 @@ const allCards = [
     basePower: 8,
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/reciclagem.png",
-    desc: "Cause dano igual a 30% de todo lixo reciclado (Arredondado para baixo).",
+    desc: "Cause dano igual a 20% de todo lixo reciclado (Arredondado para baixo).",
     type: "reciclagem"
   },
   {
@@ -842,7 +842,7 @@ const allCards = [
     basePower: 8,
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/armaForte.jpg",
-    desc: "Recicla lixo, para cada lixo reciclado cause dano igual a 10% de todo lixo reciclado.",
+    desc: "Recicla lixo, para cada lixo reciclado cause dano igual a 5% de todo lixo reciclado.",
     type: "reciclagem"
   },
   {
@@ -851,7 +851,7 @@ const allCards = [
     basePower: 8,
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/reevitalizacao.png",
-    desc: "Cure igual a 20% de todo lixo reciclado (Arredondado para baixo).",
+    desc: "Cure igual a 10% de todo lixo reciclado (Arredondado para baixo).",
     type: "reciclagem"
   },
   {
@@ -860,7 +860,7 @@ const allCards = [
     basePower: 8,
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/escudoForte.jpg",
-    desc: "Ganhe escudo igual a 50% de todo lixo reciclado (Arredondado para baixo).",
+    desc: "Ganhe escudo igual a 25% de todo lixo reciclado (Arredondado para baixo).",
     type: "reciclagem"
   },
   {
