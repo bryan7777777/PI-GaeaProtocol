@@ -4056,7 +4056,7 @@ async function executarTxtBoss() {
 
         if (hasItem(26) && hasItem(27) && dialogoSolice) {
           await iniciarTutorial(
-            ["Espere... eu falei com Solise...",
+            ["Espere... você é a tal ayla? eu falei com Solise...",
               "Ela disse que você pode me ajudar",
               "Estrou com o Fragmento Do Mundo e o Coração Do Mundo!",
               "Ela disse que você é a unica capaz de infundir eles..."
@@ -4070,7 +4070,7 @@ async function executarTxtBoss() {
             ["Solice... Quanto tempo não escuto esse nome... De onde me lembro...",
               "Uma velha amiga, me lembrei, devo minha vida a ela",
               "Vejo que carrega o sonho dela!",
-              "Vou lhe ajudar com isso, em troca dese deixar Medo em paz!"
+              "Vou lhe ajudar com isso, em troca deve deixar Medo em paz e partir desse lugar!"
             ],
             playerImgDialogo.src,
             null,
@@ -4088,7 +4088,18 @@ async function executarTxtBoss() {
 
           await iniciarTutorial(
             ["Ah, isso me custa muito mana e energia...",
-              "*Ayla funde os fragmentos e algo acontece*",
+              "*Ayla funde os fragmentos e algo acontece*"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/bossIra.png",
+            "inimigo"
+          );
+
+          shakeScreenNatural(30, 800);
+
+          await iniciarTutorial(
+            ["Pronto eu fundi eles!",
               "Eu senti uma energia poderosa com um mana imenso após fundir os fragmentos...",
               "Preciso recuperar minhas forças, vá até a base da IA, a energia veio de lá, antigamente aquele local era um portal magico..."
             ],
@@ -4097,6 +4108,7 @@ async function executarTxtBoss() {
             "../img/jogo/inimigos/iconBoss/bossIra.png",
             "inimigo"
           );
+
           document.getElementById("overlay").style.display = "block";
             document.getElementById("popup").style.display = "flex";
             dialogoAyla=true;
