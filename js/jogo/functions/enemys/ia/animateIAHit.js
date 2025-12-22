@@ -1,8 +1,15 @@
-function animateIAHit(el, img) {
-  const frame1 = "../img/jogo/inimigos/animado/ia/def/ia1.png";
-  const frame2 = "../img/jogo/inimigos/animado/ia/def/ia2.png";
-  const frame3 = "../img/jogo/inimigos/animado/ia/def/ia1.png";
-  const idle = "../img/jogo/inimigos/animado/ia/statico/ia1.png";
+function animateIAHit(el, img, boss) {
+  let frame1 = "../img/jogo/inimigos/animado/ia/def/ia1.png";
+  let frame2 = "../img/jogo/inimigos/animado/ia/def/ia2.png";
+  let frame3 = "../img/jogo/inimigos/animado/ia/def/ia1.png";
+  let idle = "../img/jogo/inimigos/animado/ia/statico/ia1.png";
+
+  if (boss === "belinda") {
+    frame1 = "../img/jogo/inimigos/animado/belinda/def/belinda1.png";
+    frame2 = "../img/jogo/inimigos/animado/belinda/def/belinda2.png";
+    frame3 = "../img/jogo/inimigos/animado/belinda/def/belinda1.png";
+    idle = "../img/jogo/inimigos/animado/belinda/statico/belinda1.png";
+  }
 
   const speed = 150;
 

@@ -32,13 +32,14 @@ STATS ENEMYS
 💊 auto cura
 🪬 quando todos que tem esse status morrem, geram um novo inimigo
 🧿 imune a marcação de vida e ataque
+♟️ invoco um aliado
 (⚔️)💥 chance de (30%) crit X2 (apenas ações dentro do parenteses)
 (⚔️)🧨 chance de (15%) crit X4 (apenas ações dentro do parenteses)
 (⚔️)💣 chance de (10%) crit X5 (apenas ações dentro do parenteses)
 ⚔️🎭💚 se não puder executar a primeira ação executa a segunda
 ⚔️❓💚 pode executar 2 ações, ou uma ou outra que esta adjacente (50% de chance)
 ⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
-🩸💫⚜️✨💤🤢🥶💀👾☠️👻🧿🪬🌟♨️🌧️⚡ n criado
+🩸💫⚜️✨💤🤢🥶💀👾☠️👻🧿🪬🌟♨️🌧️⚡♟️ n criado
 
 PALTAS{
     POO - citar a nova organização para contornar usar type="module" e evitar redefinir o cod inteiro

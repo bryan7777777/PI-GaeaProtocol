@@ -784,4 +784,27 @@ const normalModelsTuti = [
   //     zona: 1
   //   }
   // ],
+//   [
+//     {
+//       name: "Belinda",
+//       hp: 300,
+//       dano: 35,
+//       behavior() { if (Math.random() < 0.68) {
+//     return [{
+//       type: "spawn",
+//       baseEnemy: droneSpawn
+//     }];
+//   }
+
+//   return [{
+//     type: "heal",
+//     value: this.dano
+//   }];
+// },
+//       img: "../img/jogo/inimigos/animado/belinda/statico/belinda1.png",
+//       tipoDano: "♟️❔💚🎭💊",
+//       tipoVida: "❤️",
+//       zona: 1
+//     }
+//   ],
 ];

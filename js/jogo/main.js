@@ -239,7 +239,7 @@ function checkEnemies() {
 
             if (morto.name.includes("Ayla")) {
               if (morto.name === "Medo De Ayla") {
-                if (dialogoAyla) {bossFinal(); return;}
+                if (dialogoAyla) { bossFinal(); return; }
                 shakeScreenNatural(10, 400);
                 document.getElementById("jogo").style.backgroundImage = "url('../img/jogo/background/cidadeAsustadora.png')";
                 novos.push(
@@ -4110,9 +4110,9 @@ async function executarTxtBoss() {
           );
 
           document.getElementById("overlay").style.display = "block";
-            document.getElementById("popup").style.display = "flex";
-            dialogoAyla=true;
-            atualizarDinheiro();
+          document.getElementById("popup").style.display = "flex";
+          dialogoAyla = true;
+          atualizarDinheiro();
         }
         break;
       // 55555
@@ -5590,12 +5590,26 @@ const characterDecks = {
 //ENEMYS
 async function enemyTurn() {
   await new Promise(res => setTimeout(res, 600));
-  for (const e of enemies) {
+  const enemiesSnapshot = [...enemies];
+  for (const e of enemiesSnapshot) {
     const actions = e.behavior();
-
     for (const act of actions) {
-      // ⚔️ ATK
-      if (act.type === "attack") {
+      // 👾 SPAWN
+      if (act.type === "spawn") {
+        if (e.name === "Belinda") {
+          await animateEnemySimpleFrames(e, "belinda");
+        }
+        if (enemies.length >= 3) {
+          floatText(e.el, "SEM ESPAÇO!", "gray");
+          continue;
+        }
+        const index = enemies.indexOf(e);
+        spawnEnemyInBattle(act.baseEnemy, index);
+        e.el.classList.add("casting");
+        setTimeout(() => e.el.classList.remove("casting"), 600);
+
+        // ⚔️ ATK
+      } else if (act.type === "attack") {
 
         if (e.name === "IA") {
           await animateEnemySimpleFrames(e);
@@ -5625,10 +5639,12 @@ async function enemyTurn() {
         }
         // 💚 CURA
       } else if (act.type === "heal") {
-
         let target = enemies.find(t => t !== e && t.hp > 0) || e;
         if (e.name === "IA") {
           animateIAHitBasic(target.el);
+        }
+        if (e.name === "Belinda") {
+          await animateEnemySimpleFrames(e, "belinda");
         }
 
         const max = target.maxHp ?? target.hp;
@@ -5666,7 +5682,7 @@ async function enemyTurn() {
         floatText(document.getElementById("player"), `-${act.value}🔱`, "orange");
         redScreenGlow(300, 30);
 
-        // ☠️ AUTO-DESTRUIÇÃO (morrer)
+        // 💀 MORTE
       } else if (act.type === "morrer") {
 
         if (e.turnosRestantes === undefined) {
@@ -5753,33 +5769,146 @@ async function enemyTurn() {
   updateHUD();
   checkGameOver();
 };
+function spawnEnemyInBattle(baseEnemy, indexBase) {
+  if (enemies.length >= 3) return false;
+
+  const enemy = {
+    name: baseEnemy.name,
+    hp: baseEnemy.hp,
+    maxHp: baseEnemy.hp,
+    dano: baseEnemy.dano,
+    behavior: baseEnemy.behavior,
+    tipoDano: baseEnemy.tipoDano,
+    tipoVida: baseEnemy.tipoVida,
+    el: createEnemy(baseEnemy.img)
+  };
+
+  // 👇 SPAWN NA FRENTE DO INVOCADOR
+  enemies.splice(indexBase, 0, enemy);
+
+  enemy.el.classList.add("spawn-front");
+  setTimeout(() => {
+    enemy.el.classList.remove("spawn-front");
+  }, 500);
+
+  // recria DOM
+  const enemiesContainer = document.getElementById("enemies");
+  enemiesContainer.innerHTML = "";
+  document.getElementById("lifeBarsContainer").innerHTML = "";
+
+  enemies.forEach(e => {
+    enemiesContainer.appendChild(e.el);
+    e.el.style.display = "inline-block";
+
+    const lifeBar = document.createElement("p");
+    lifeBar.className = "enemy-bar";
+    lifeBar.innerHTML = `
+      <strong> ⟪ ${e.name} ⟫ </strong><br>
+      ⟪ <span class="enemy-vida">${e.tipoVida}</span> 
+         <span class="enemy-hp">${e.hp}</span> - 
+         <span class="enemy-dano">${e.tipoDano} ${e.dano}</span> ⟫
+    `;
+    document.getElementById("lifeBarsContainer").appendChild(lifeBar);
+
+    e.barEl = lifeBar.querySelector(".enemy-hp");
+    e.dmgEl = lifeBar.querySelector(".enemy-dano");
+    e.tipoVidaEl = lifeBar.querySelector(".enemy-vida");
+  });
+
+  floatText(enemy.el, "INVOCADO!", "cyan");
+
+  return true;
+}
+//INIMIGOS DO SPAWN
+const droneSpawn = {
+  name: "Guarda Real",
+  hp: 50,
+  dano: 10,
+  behavior() {
+    return [
+      { type: "attack", value: this.dano }
+    ];
+  },
+  tipoDano: "⚔️",
+  tipoVida: "❤️",
+  img: "../img/jogo/inimigos/minion.png"
+};
+
 // IA
-function animateEnemySimpleFrames(enemy) {
+function animateEnemySimpleFrames(enemy, boss) {
   return new Promise(resolve => {
     const container = enemy.el;
     const img = container.querySelector("img");
+    let frames;
+
     if (!img) return resolve();
 
-    const frames = {
-      f1: "../img/jogo/inimigos/animado/ia/atk/ia1.png",
-      f2: "../img/jogo/inimigos/animado/ia/atk/ia2.png",
-      idle: "../img/jogo/inimigos/animado/ia/statico/ia1.png"
-    };
+    if (boss === "belinda") {
+      frames = {
+        f1: "../img/jogo/inimigos/animado/belinda/atk/belinda1.png",
+        f2: "../img/jogo/inimigos/animado/belinda/atk/belinda2.png",
+        idle: "../img/jogo/inimigos/animado/belinda/statico/belinda1.png"
+      };
+    } else {
+      frames = {
+        f1: "../img/jogo/inimigos/animado/ia/atk/ia1.png",
+        f2: "../img/jogo/inimigos/animado/ia/atk/ia2.png",
+        idle: "../img/jogo/inimigos/animado/ia/statico/ia1.png"
+      };
+      startScreenGlitch();
+    }
     shakeScreenNatural(10, 400);
-    startScreenGlitch();
+
 
     const frameDelay = 150;
 
-    setTimeout(() => img.src = frames.f1, 0);
-    setTimeout(() => img.src = frames.f2, frameDelay);
-    setTimeout(() => img.src = frames.f1, frameDelay * 2);
+    // frame 1
+    setTimeout(() => {
+      img.src = frames.f1;
+
+      if (boss === "belinda") {
+        img.style.transform = "scale(1.15)";
+        img.style.marginBottom = "20px";
+      } else {
+        img.style.transform = "scale(1)";
+        img.style.marginBottom = "0px";
+      }
+    }, 0);
+
+    // frame 2
+    setTimeout(() => {
+      img.src = frames.f2;
+
+      if (boss === "belinda") {
+        img.style.transform = "scale(1.25)";
+        img.style.marginBottom = "40px";
+      }
+    }, frameDelay);
+
+    // frame 1 novamente
+    setTimeout(() => {
+      img.src = frames.f1;
+
+      if (boss === "belinda") {
+        img.style.transform = "scale(1.15)";
+        img.style.marginBottom = "20px";
+      } else {
+        img.style.transform = "scale(1)";
+        img.style.marginBottom = "0px";
+      }
+    }, frameDelay * 2);
+
+    // idle
     setTimeout(() => {
       img.src = frames.idle;
-      resolve();
+      img.style.transform = "scale(1)";
+      img.style.marginBottom = "0px";
       stopScreenGlitch();
+      resolve();
     }, frameDelay * 3);
   });
-};
+}
+
 // NEMORA
 function animateNemoraAttack(enemy) {
   if (nemoraAtk == true && enemies[0].hp < 350) {
@@ -5878,12 +6007,18 @@ function animateDamage(el) {
   // identifica qual inimigo é
   const isNemora = img.src.includes("nemora");
   const isIA = img.src.includes("/ia/");
+  const isBelinda = img.src.includes("/belinda/");
 
   // ===============================
   //  SE FOR **IA** → animação própria
   // ===============================
   if (isIA) {
     animateIAHit(el, img);
+    return;
+  }
+
+  if (isBelinda) {
+    animateIAHit(el, img, "belinda");
     return;
   }
 
