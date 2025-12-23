@@ -792,7 +792,7 @@ const normalModelsTuti = [
 //       behavior() { if (Math.random() < 0.68) {
 //     return [{
 //       type: "spawn",
-//       baseEnemy: droneSpawn
+//       baseEnemy: peaoSpawn
 //     }];
 //   }
 
@@ -803,6 +803,29 @@ const normalModelsTuti = [
 // },
 //       img: "../img/jogo/inimigos/animado/belinda/statico/belinda1.png",
 //       tipoDano: "♟️❔💚🎭💊",
+//       tipoVida: "❤️",
+//       zona: 1
+//     }
+//   ],
+//   [
+//     {
+//       name: "Svetlana",
+//       hp: 345,
+//       dano: 45,
+//       behavior() { if (Math.random() < 0.68) {
+//     return [{
+//       type: "spawn",
+//       baseEnemy: svetlanaSpawn
+//     }];
+//   }
+
+//   return [{
+//     type: "attack",
+//     value: this.dano
+//   }];
+// },
+//       img: "../img/jogo/inimigos/animado/svetlana/statico/svetlana1.png",
+//       tipoDano: "♟️❔⚔️",
 //       tipoVida: "❤️",
 //       zona: 1
 //     }

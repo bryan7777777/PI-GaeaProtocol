@@ -5596,6 +5596,9 @@ async function enemyTurn() {
     for (const act of actions) {
       // 👾 SPAWN
       if (act.type === "spawn") {
+        if (e.name === "Svetlana") {
+          await animateEnemySimpleFrames(e, "svetlana");
+        }
         if (e.name === "Belinda") {
           await animateEnemySimpleFrames(e, "belinda");
         }
@@ -5611,6 +5614,9 @@ async function enemyTurn() {
         // ⚔️ ATK
       } else if (act.type === "attack") {
 
+        if (e.name === "Svetlana") {
+          await animateEnemySimpleFrames(e, "svetlana");
+        }
         if (e.name === "IA") {
           await animateEnemySimpleFrames(e);
           enemies[0].dano += 5;
@@ -5820,7 +5826,7 @@ function spawnEnemyInBattle(baseEnemy, indexBase) {
   return true;
 }
 //INIMIGOS DO SPAWN
-const droneSpawn = {
+const peaoSpawn = {
   name: "Guarda Real",
   hp: 50,
   dano: 10,
@@ -5833,6 +5839,19 @@ const droneSpawn = {
   tipoVida: "❤️",
   img: "../img/jogo/inimigos/minion.png"
 };
+const svetlanaSpawn = {
+  name: "Ilusão De Svetlana",
+  hp: 10,
+  dano: 30,
+  behavior() {
+    return [
+      { type: "attackVida", value: this.dano }
+    ];
+  },
+  tipoDano: "⁉️",
+  tipoVida: "❤️",
+  img: "../img/jogo/inimigos/animado/svetlana/statico/svetlana11.png"
+};
 
 // IA
 function animateEnemySimpleFrames(enemy, boss) {
@@ -5843,7 +5862,13 @@ function animateEnemySimpleFrames(enemy, boss) {
 
     if (!img) return resolve();
 
-    if (boss === "belinda") {
+    if (boss === "svetlana") {
+      frames = {
+        f1: "../img/jogo/inimigos/animado/svetlana/atk/svetlana1.png",
+        f2: "../img/jogo/inimigos/animado/svetlana/atk/svetlana2.png",
+        idle: "../img/jogo/inimigos/animado/svetlana/statico/svetlana11.png"
+      };
+    } else if (boss === "belinda") {
       frames = {
         f1: "../img/jogo/inimigos/animado/belinda/atk/belinda1.png",
         f2: "../img/jogo/inimigos/animado/belinda/atk/belinda2.png",
@@ -6008,6 +6033,7 @@ function animateDamage(el) {
   const isNemora = img.src.includes("nemora");
   const isIA = img.src.includes("/ia/");
   const isBelinda = img.src.includes("/belinda/");
+  const isSvetlana = img.src.includes("/svetlana/");
 
   // ===============================
   //  SE FOR **IA** → animação própria
@@ -6019,6 +6045,10 @@ function animateDamage(el) {
 
   if (isBelinda) {
     animateIAHit(el, img, "belinda");
+    return;
+  }
+  if (isSvetlana) {
+    animateIAHit(el, img, "svetlana");
     return;
   }
 

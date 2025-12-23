@@ -28,6 +28,7 @@ STATS ENEMYS
 ⚔️/❄️ atk normal
 🔱 ignora armadura
 🩸 Eu morro após atacar 3 vezes
+⁉️ Ação ocultada pelo inimigo
 💚 prioriza curar aliados
 💊 auto cura
 🪬 quando todos que tem esse status morrem, geram um novo inimigo

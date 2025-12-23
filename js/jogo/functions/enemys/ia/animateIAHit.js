@@ -11,6 +11,13 @@ function animateIAHit(el, img, boss) {
     idle = "../img/jogo/inimigos/animado/belinda/statico/belinda1.png";
   }
 
+  if (boss === "svetlana") {
+    frame1 = "../img/jogo/inimigos/animado/svetlana/def/svetlana1.png";
+    frame2 = "../img/jogo/inimigos/animado/svetlana/def/svetlana1.png";
+    frame3 = "../img/jogo/inimigos/animado/svetlana/def/svetlana1.png";
+    idle = "../img/jogo/inimigos/animado/svetlana/statico/svetlana1.png";
+  }
+
   const speed = 150;
 
   setTimeout(() => (img.src = frame1), 0);
