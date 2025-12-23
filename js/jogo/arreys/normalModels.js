@@ -1,6 +1,6 @@
 const normalModelsTuti = [
   [
-  {
+    {
       name: "Tartaruga",
       hp: 24,
       dano: 2,
@@ -30,10 +30,10 @@ const normalModelsTuti = [
       tipoVida: "❤️",
       zona: 1
     }
-    ]
+  ]
 ];
 
- const normalModels = [
+const normalModels = [
   // 111111111111111111111
   [
     {
@@ -784,50 +784,51 @@ const normalModelsTuti = [
   //     zona: 1
   //   }
   // ],
-//   [
-//     {
-//       name: "Belinda",
-//       hp: 300,
-//       dano: 35,
-//       behavior() { if (Math.random() < 0.68) {
-//     return [{
-//       type: "spawn",
-//       baseEnemy: peaoSpawn
-//     }];
-//   }
+  // [
+  //   {
+  //     name: "Belinda",
+  //     hp: 300,
+  //     dano: 35,
+  //     behavior() {
+  //       const blocos = [
+  //         { type: "spawn", baseEnemy: peaoSpawn },
+  //         { type: "spawn", baseEnemy: bispoSpawn },
+  //         { type: "spawn", baseEnemy: reiSpawn },
+  //         { type: "spawn", baseEnemy: torreSpawn },
+  //         { type: "heal", value: this.dano },
+  //         { type: "attack", value: this.dano }
+  //       ];
 
-//   return [{
-//     type: "heal",
-//     value: this.dano
-//   }];
-// },
-//       img: "../img/jogo/inimigos/animado/belinda/statico/belinda1.png",
-//       tipoDano: "♟️❔💚🎭💊",
-//       tipoVida: "❤️",
-//       zona: 1
-//     }
-//   ],
-//   [
-//     {
-//       name: "Svetlana",
-//       hp: 345,
-//       dano: 45,
-//       behavior() { if (Math.random() < 0.68) {
-//     return [{
-//       type: "spawn",
-//       baseEnemy: svetlanaSpawn
-//     }];
-//   }
+  //       const escolha = Math.floor(Math.random() * blocos.length);
+  //       return [blocos[escolha]];
+  //     },
+  //     img: "../img/jogo/inimigos/animado/belinda/statico/belinda1.png",
+  //     tipoDano: "♟️❔⚔️❔💚🎭💊",
+  //     tipoVida: "❤️",
+  //     zona: 1
+  //   }
+  // ],
+  //   [
+  //     {
+  //       name: "Svetlana",
+  //       hp: 345,
+  //       dano: 45,
+  //       behavior() { if (Math.random() < 0.68) {
+  //     return [{
+  //       type: "spawn",
+  //       baseEnemy: svetlanaSpawn
+  //     }];
+  //   }
 
-//   return [{
-//     type: "attack",
-//     value: this.dano
-//   }];
-// },
-//       img: "../img/jogo/inimigos/animado/svetlana/statico/svetlana1.png",
-//       tipoDano: "♟️❔⚔️",
-//       tipoVida: "❤️",
-//       zona: 1
-//     }
-//   ],
+  //   return [{
+  //     type: "attack",
+  //     value: this.dano
+  //   }];
+  // },
+  //       img: "../img/jogo/inimigos/animado/svetlana/statico/svetlana1.png",
+  //       tipoDano: "♟️❔⚔️",
+  //       tipoVida: "❤️",
+  //       zona: 1
+  //     }
+  //   ],
 ];

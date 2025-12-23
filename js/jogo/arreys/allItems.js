@@ -26,4 +26,6 @@ const allItems = [
   { id: 25, name: "Gerador", img: "./../img/jogo/itens/gerador.png", desc: "+1 ENERGIA e energiza itens" },
   { id: 26, name: "Fragmento Do Mundo", img: "./../img/jogo/itens/frostKey.png", desc: "Essa chave peculiar parece ser feita de gelo luminezente, será que ela possui alguma utilidade? ela aparenta estar ligada com solice, será que ela diz algo?" },
   { id: 27, name: "Coração Do Mundo", img: "./../img/jogo/itens/fireKey.png", desc: "Essa chave esta muito quenta para segurar, talves algo feito de gelo luminezente esfrie" },
+  { id: 28, name: "Cavalo Guia", img: "./../img/jogo/itens/cavalo.png", desc: "Tem chance do boss Belinda aparecer para recuperar esse item. +1 ENERGIA" },
+  { id: 29, name: "Baralho Magico", img: "./../img/jogo/itens/baralhoMagico.png", desc: "Tem chance do boss Svetlana aparecer para recuperar esse item. +1 CARTA NA MÃO (max 10)" },
 ];

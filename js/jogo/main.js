@@ -3128,6 +3128,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
         case 'hospital':
         case 'hospital2':
+          checkItemBoss();
           mostrarTela(5); // Tela do hospital (div5)
           abrirMedico()
           tipoFase = tipo;
@@ -4112,9 +4113,360 @@ async function executarTxtBoss() {
           document.getElementById("overlay").style.display = "block";
           document.getElementById("popup").style.display = "flex";
           dialogoAyla = true;
-          atualizarDinheiro();
+          inimigoPassifico();
         }
         break;
+      case "Belinda":
+        await iniciarTutorial(
+          [
+            "Alerta crítico…",
+            "Uma presença ameaçadora foi detectada!",
+            "Possivelmente é o chefe dessa zona, escolhido pela IA."
+          ],
+          "./../img/jogo/gaeazinha.jpg",
+          null,
+          "../img/jogo/inimigos/iconBoss/belinda1.png"
+        );
+
+        await iniciarTutorial(
+          [
+            "Então é você o rato que roubou uma de minhas peças de invocação?",
+            "Fique sabendo que andar por aí sem um cavalo é bastante demorado. Peões e torres não são bons para viagens longas, mesmo sendo fortes em combate.",
+            "Devolva-a e eu lhe darei um funeral digno!"
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/belinda1.png",
+          "inimigo"
+        );
+
+        await iniciarTutorial(
+          [
+            "Peça de invocação?",
+            "Então você usa essas peças para invocar seus aliados?"
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/belinda1.png"
+        );
+
+        await iniciarTutorial(
+          [
+            "Exato. Sem ela, eu não sou capaz de invocar essa unidade."
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/belinda1.png",
+          "inimigo"
+        );
+
+        if (playerImgDialogo.src.includes("capaceteverde")) {
+          await iniciarTutorial(
+            [
+              "Então eu posso ter CAVALO?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/belinda1.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Sim... o quê? Quer dizer... lógico que não!",
+              "Quem invoca sou eu, não você!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/belinda1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Me ensina como eu invoco ele!",
+              "Eu preciso ter um cavalo!",
+              "Ter um cavalo é muito legal, além de essa peça de invocação ser muito bonita.",
+              "Eu não vou te dar, não. Perdeu porque quis, agora é meu!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/belinda1.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Bastardo... eu vou arrancar isso dos seus restos mortais e dos escombros!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/belinda1.png",
+            "inimigo"
+          );
+
+        } else if (playerImgDialogo.src.includes("capaceteroxo")) {
+          await iniciarTutorial(
+            [
+              "Interessante... vou estudá-la com cuidado.",
+              "E, claro, vou roubar as que você tem consigo e formar um exército com elas!",
+              "Inclusive... quem sabe eu não faça o mesmo com você?",
+              "Afinal, tenho que invadir seu sistema e checar sua memória para descobrir como elas funcionam."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/belinda1.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Bastardo... acha que pode me ameaçar?",
+              "EU NÃO SOU UM PEÃO DESCARTÁVEL PARA SER USADO!",
+              "As peças só obedecem a mim, e quando eu acabar com você e recuperar minha peça...",
+              "Eu vou fazer de você meu escravo!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/belinda1.png",
+            "inimigo"
+          );
+
+        } else {
+          await iniciarTutorial(
+            [
+              "Não deveria ser o rei quem invoca as peças, em vez da rainha?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/belinda1.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Cale-se, bastardo!",
+              "O que você entende sobre hierarquia?",
+              "O rei não manda e nunca mandou em nada. Ele é apenas uma peça de enfeite, um peão com imagem e status.",
+              "É a igreja que controla como o reino vive.",
+              "E sabe quem manipula o rei e a igreja? Exatamente eu!",
+              "Tenho status e poder, logo invoco as peças à minha vontade!",
+              "Chega de conversa. Cansei de você!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/belinda1.png",
+            "inimigo"
+          );
+        }
+        break
+      case "Svetlana":
+        await iniciarTutorial(
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é a IA"],
+          "./../img/jogo/gaeazinha.jpg",
+          null,
+          "../img/jogo/inimigos/iconBoss/svetlana.png"
+        );
+
+        await iniciarTutorial(
+          [
+            "As cartas me disseram que você tem algo que me pertence!"
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/svetlana.png",
+          "inimigo"
+        );
+
+        if (playerImgDialogo.src.includes("capaceteverde")) {
+          await iniciarTutorial(
+            [
+              "Essas cartas de baboseiras mágicas de Merlin, benzidas por estrelas de... sei lá que troço velho é esse!"
+            ],
+            playerImgDialogo.src,
+            "../img/jogo/itens/baralhoMagico.png",
+            "../img/jogo/inimigos/iconBoss/svetlana.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Ei!",
+              "Não são troços velhos, são cartas de tarô, seu... animal?",
+              "Na verdade, nem parece certo te insultar de animal. Parece até que eu estaria insultando os animais.",
+              "Nem eles são tão burros quanto você!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Me chamou do quê, mula sem cabeça?",
+              "Era só o que me faltava: os robôs também pegaram essa modinha.",
+              "MALDITA IA! Tirou minha grama verde, meus churrascos de domingo e agora isso...",
+              "Esse mundo está perdido mesmo."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Eu não sou um robô, sou um espírito mágico que possui esta casca metálica.",
+              "A propósito, magia existe, tá!",
+              "Eu não sou como vocês, mortais, que fingem fazer magia. Um bando de vigaristas.",
+              "Eu faço magia de verdade!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Prove!",
+              "Eu só acredito vendo. Invoca para mim um cavalo de ouro com três cabeças, asas de fogo e que cospe sorvete de flocos!",
+              "Aí eu acredito em você e peço desculpas. Se quiser, até me ajoelho e lambo seus pés."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Não é assim que magia funciona...",
+              "*suspiro*",
+              "Quer saber? Vou mostrar a magia, TE EXTERMINANDO DO PLANO MATERIAL E DA EXISTÊNCIA DO TEMPO E DA ANIQUI..."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Tá, tá, tá! Já chega de baboseira.",
+              "Para alguém que não tem boca, você fala demais.",
+              "Cai pra dentro logo. O Lucius está me ligando, e entre escutar os papos dele sobre \"tô falando, essa é diferente, cara, ela me ama\" e morrer para você,",
+              "eu prefiro ter que lidar com você!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png"
+          );
+        } else if (playerImgDialogo.src.includes("gaeaReen")) {
+          await iniciarTutorial(
+            [
+              "Vejo que você não é uma \"vigarista\". É uma maga de alto nível, muito poderosa.",
+              "Creio que, pela sua essência, você trabalha com ilusões. Então você é uma ilusionista?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Impressionante, alguém que acredita e entende de magia!",
+              "Sabe, eu não quero brigar. Se me devolver meu baralho mágico, eu deixo você passar!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Esse?",
+              "Na verdade, eu queria que você me ensinasse a usá-lo. Sempre quis entender como funcionam magias relacionadas a cartas!",
+              "Foi por isso que eu o peguei. Você poderia me ensinar? Prometo devolver depois!"
+            ],
+            playerImgDialogo.src,
+            "../img/jogo/itens/baralhoMagico.png",
+            "../img/jogo/inimigos/iconBoss/svetlana.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Isso... eu gostei de você!",
+              "*Horas se passam, e ambas conversam sobre as cartas de tarô*",
+              "Quer saber? Fique com o baralho para você!",
+              "Garota, você tem muito talento. Vou deixar você passar, mas temos que nos ver de novo.",
+              "Ainda tenho muito o que te ensinar!",
+              "Sempre que quiser me rever ou precisar da minha ajuda, use as cartas como te ensinei!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Ok, até a próxima... amiga?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Amiga!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png",
+            "inimigo"
+          );
+
+          inimigoPassifico();
+        } else {
+          await iniciarTutorial(
+            [
+              "Quem é você?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Uma maga de alto nível. Você não vai querer mesmo me enfrentar.",
+              "Apenas me dê o meu baralho mágico e eu irei embora."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Assim, senhora maga, com todo o respeito a você e às suas cartas, mas...",
+              "Seu baralho está servindo como um gerador para mim.",
+              "Não sei de onde vem tanta energia, mas não posso devolvê-lo, ainda mais em um futuro onde isso é escasso."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Então vai ser do jeito difícil."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/svetlana.png",
+            "inimigo"
+          );
+        }
+        break
       // 55555
       case "IA":
         await iniciarTutorial(
@@ -5825,9 +6177,15 @@ function spawnEnemyInBattle(baseEnemy, indexBase) {
 
   return true;
 }
+function inimigoPassifico() {
+  enemies[0].hp -= enemies[0].hp;
+  updateEnemyBars()
+  checkEnemies()
+  atualizarDinheiro();
+}
 //INIMIGOS DO SPAWN
 const peaoSpawn = {
-  name: "Guarda Real",
+  name: "Soldado Real",
   hp: 50,
   dano: 10,
   behavior() {
@@ -5837,7 +6195,46 @@ const peaoSpawn = {
   },
   tipoDano: "⚔️",
   tipoVida: "❤️",
-  img: "../img/jogo/inimigos/minion.png"
+  img: "../img/jogo/inimigos/peaoBranco.png"
+};
+const bispoSpawn = {
+  name: "Sacerdote Real",
+  hp: 25,
+  dano: 20,
+  behavior() {
+    return [
+      { type: "heal", value: this.dano }
+    ];
+  },
+  tipoDano: "💚🎭💊",
+  tipoVida: "❤️",
+  img: "../img/jogo/inimigos/bispoBranco.png"
+};
+const torreSpawn = {
+  name: "Guarda Real",
+  hp: 80,
+  dano: 5,
+  behavior() {
+    return [
+      { type: "attack", value: this.dano }
+    ];
+  },
+  tipoDano: "⚔️",
+  tipoVida: "❤️",
+  img: "../img/jogo/inimigos/torreBranca.png"
+};
+const reiSpawn = {
+  name: "Rei James",
+  hp: 10,
+  dano: 5,
+  behavior() {
+    return [
+      { type: "attackVida", value: this.dano }
+    ];
+  },
+  tipoDano: "🔱",
+  tipoVida: "❤️",
+  img: "../img/jogo/inimigos/reiBranco.png"
 };
 const svetlanaSpawn = {
   name: "Ilusão De Svetlana",
@@ -5845,7 +6242,10 @@ const svetlanaSpawn = {
   dano: 30,
   behavior() {
     return [
-      { type: "attackVida", value: this.dano }
+      {
+        type: Math.random() < 0.5 ? "attack" : "attackVida",
+        value: this.dano
+      }
     ];
   },
   tipoDano: "⁉️",
@@ -6267,6 +6667,20 @@ function gerarItens() {
     box.appendChild(desc);
     container.appendChild(box);
   });
+}
+function checkItemBoss() {
+  if (hasItem(28)) {
+    if (belindaSpawnBoss) {
+      bossAtivadoPorItem("belinda");
+      belindaSpawnBoss = false;
+    }
+  }
+  if (hasItem(29)) {
+    if (svetlanaSpawnBoss) {
+      bossAtivadoPorItem("svetlana");
+      svetlanaSpawnBoss = false;
+    }
+  }
 }
 function applyItemAreaBonus(enemies) {
   const bonusDamage = 5;

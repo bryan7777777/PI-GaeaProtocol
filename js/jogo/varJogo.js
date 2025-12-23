@@ -32,6 +32,8 @@ let identificadorBoss;
 let PULAR_TODO_TUTORIAL = false;
 let primeiraGeracaoItem = true;
 let primeiraAberturaFerreiro = true;
+let belindaSpawnBoss = true;
+let svetlanaSpawnBoss = true;
 
 // ARREY
 const deck = [];

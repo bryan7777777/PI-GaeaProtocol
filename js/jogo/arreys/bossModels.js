@@ -209,6 +209,62 @@ const bossModels = [
   // 5555555555555555
 ];
 
+function bossAtivadoPorItem(inimigo) {
+  switch (inimigo) {
+    case "belinda":
+      bossModels.push([{
+          name: "Belinda",
+          hp: 300,
+          dano: 35,
+          behavior() {
+            const blocos = [
+              { type: "spawn", baseEnemy: peaoSpawn },
+              { type: "spawn", baseEnemy: bispoSpawn },
+              { type: "spawn", baseEnemy: reiSpawn },
+              { type: "spawn", baseEnemy: torreSpawn },
+              { type: "heal", value: this.dano },
+              { type: "attack", value: this.dano }
+            ];
+
+            const escolha = Math.floor(Math.random() * blocos.length);
+            return [blocos[escolha]];
+          },
+          img: "../img/jogo/inimigos/animado/belinda/statico/belinda1.png",
+          tipoDano: "♟️❔⚔️❔💚🎭💊",
+          tipoVida: "❤️",
+          zona: 4
+        }]);
+      break;
+    case "svetlana":
+      bossModels.push([{
+        name: "Svetlana",
+        hp: 345,
+        dano: 45,
+        behavior() {
+          if (Math.random() < 0.68) {
+            return [{
+              type: "spawn",
+              baseEnemy: svetlanaSpawn
+            }];
+          }
+
+          return [{
+            type: "attack",
+            value: this.dano
+          }];
+        },
+        img: "../img/jogo/inimigos/animado/svetlana/statico/svetlana1.png",
+        tipoDano: "♟️❔⚔️",
+        tipoVida: "❤️",
+        zona: 4
+      }]);
+      break;
+
+    default:
+      break;
+  }
+}
+
 function bossFinal() {
   if (SoliceApareceu && dialogoAyla) {
     bossModels.push([{
@@ -231,26 +287,26 @@ function bossFinal() {
     }]);
   } else {
     bossModels.push([{
-  name: "IA",
-  hp: 570,
-  maxHp: 570,
-  dano: 25,
-  behavior() {
-    return [
-      {
-        type: Math.random() < 0.25
-          ? "heal"
-          : Math.random() < 0.7
-          ? "attack"
-          : "attackVida",
-        value: this.dano
-      }
-    ];
-  },
-  img: "../img/jogo/inimigos/animado/ia/statico/ia1.png",
-  tipoDano: "(⚔️❔🔱❔💊)⚜️",
-  tipoVida: "🧿",
-  zona: 5
-}]);
+      name: "IA",
+      hp: 570,
+      maxHp: 570,
+      dano: 25,
+      behavior() {
+        return [
+          {
+            type: Math.random() < 0.25
+              ? "heal"
+              : Math.random() < 0.7
+                ? "attack"
+                : "attackVida",
+            value: this.dano
+          }
+        ];
+      },
+      img: "../img/jogo/inimigos/animado/ia/statico/ia1.png",
+      tipoDano: "(⚔️❔🔱❔💊)⚜️",
+      tipoVida: "🧿",
+      zona: 5
+    }]);
   }
 }

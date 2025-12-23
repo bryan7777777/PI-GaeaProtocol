@@ -19,15 +19,17 @@ function aplicarBuff(item) {
     case 4:
     case 9:
     case 25:
+    case 28:
       energyMax += 1;
       energy = energyMax;
       break;
 
     case 10: // mao +
-    if (limiteMao<maxMao) {
-      limiteMao += 1;
-      maoInicio = limiteMao;
-    }
+    case 29:
+      if (limiteMao < maxMao) {
+        limiteMao += 1;
+        maoInicio = limiteMao;
+      }
       break;
 
     case 11: // mao -
