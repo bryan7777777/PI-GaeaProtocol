@@ -2,10 +2,12 @@ function aplicarBuff(item) {
   switch (item.id) {
     case 1: //vida
     case 7:
+    case 33:
       playerMaxHP += 40;
       break;
 
     case 8: // Escudo
+    case 32:
       playerShieldInit += 10;
       playerShield = playerShieldInit;
       break;
@@ -20,6 +22,7 @@ function aplicarBuff(item) {
     case 9:
     case 25:
     case 28:
+    case 30:
       energyMax += 1;
       energy = energyMax;
       break;
@@ -33,6 +36,7 @@ function aplicarBuff(item) {
       break;
 
     case 11: // mao -
+    case 30:
       limiteMao -= 1;
       maoInicio = limiteMao;
       break;
@@ -50,6 +54,10 @@ function aplicarBuff(item) {
       energy = energyMax;
       playerShieldInit += 5;
       playerShield = playerShieldInit;
+      break;
+
+    case 31:
+      playerMaxHP += 100;
       break;
   }
   updateHUD();

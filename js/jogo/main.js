@@ -198,6 +198,7 @@ function checkEnemies() {
 
           if (
             morto.name === "Irislidriz" ||
+            morto.name === "Isla" ||
             morto.name === "Vigia de Irislidriz" ||
             morto.name === "Observador de Irislidriz" ||
             morto.name === "Medo De Ayla" ||
@@ -210,6 +211,28 @@ function checkEnemies() {
             morto.name === "Boss Ayla"
           ) {
             let novos = [];
+
+            if (morto.name === "Isla") {
+              shakeScreenNatural(10, 400);
+              novos.push({
+                name: "Isla Despertada",
+                hp: 80,
+                maxHp: 80,
+                dano: 20,
+                behavior() {
+                  return [
+                    {
+                      type: "attack",
+                      value: this.dano
+                    }
+                  ];
+                },
+                img: "../img/jogo/inimigos/animado/isla/statico/PetroleoQuen1.png",
+                tipoDano: "⚔️",
+                tipoVida: "❤️",
+                zona: 1
+              });
+            }
 
             if (morto.name === "Irislidriz" && reviver === 0) {
               shakeScreenNatural(10, 400);
@@ -5946,14 +5969,11 @@ async function enemyTurn() {
   for (const e of enemiesSnapshot) {
     const actions = e.behavior();
     for (const act of actions) {
+      // ANIMAÇÃO
+      await aplicarAnimacao(e.name, act.type);
+
       // 👾 SPAWN
       if (act.type === "spawn") {
-        if (e.name === "Svetlana") {
-          await animateEnemySimpleFrames(e, "svetlana");
-        }
-        if (e.name === "Belinda") {
-          await animateEnemySimpleFrames(e, "belinda");
-        }
         if (enemies.length >= 3) {
           floatText(e.el, "SEM ESPAÇO!", "gray");
           continue;
@@ -5965,20 +5985,6 @@ async function enemyTurn() {
 
         // ⚔️ ATK
       } else if (act.type === "attack") {
-
-        if (e.name === "Svetlana") {
-          await animateEnemySimpleFrames(e, "svetlana");
-        }
-        if (e.name === "IA") {
-          await animateEnemySimpleFrames(e);
-          enemies[0].dano += 5;
-          floatText(enemies[0].el, `+5⚜️`, "yellow");
-          updateEnemyBars();
-          stopScreenGlitch()
-        }
-        if (e.name === "Nemora") {
-          await animateNemoraAttack(e);
-        }
         let dano = act.value;
 
         if (playerShield > 0) {
@@ -5998,12 +6004,6 @@ async function enemyTurn() {
         // 💚 CURA
       } else if (act.type === "heal") {
         let target = enemies.find(t => t !== e && t.hp > 0) || e;
-        if (e.name === "IA") {
-          animateIAHitBasic(target.el);
-        }
-        if (e.name === "Belinda") {
-          await animateEnemySimpleFrames(e, "belinda");
-        }
 
         const max = target.maxHp ?? target.hp;
         const healed = act.value;
@@ -6023,17 +6023,6 @@ async function enemyTurn() {
 
         // 🔱 ATAQUE DIRETO À VIDA
       } else if (act.type === "attackVida") {
-        if (e.name === "Nemora") {
-          await animateNemoraAttack(e);
-        }
-        if (e.name === "IA") {
-          floatText(enemies[0].el, `+10⚜️`, "yellow");
-          await animateEnemyCrossScreen(e);
-          enemies[0].dano += 10;
-          updateEnemyBars();
-          startScreenGlitch();
-          stopScreenGlitch()
-        }
         playerHP -= act.value;
 
         animateDamage(document.getElementById("player"));
@@ -6127,6 +6116,77 @@ async function enemyTurn() {
   updateHUD();
   checkGameOver();
 };
+async function aplicarAnimacao(nomeBoss, acao) {
+  const enemiesSnapshot = [...enemies];
+  for (const e of enemiesSnapshot) {
+    let target = enemies.find(t => t !== e && t.hp > 0) || e;
+
+    switch (true) {
+      //================================
+      //1111111111
+      case nomeBoss === "Guinevere" && acao === "attack":
+        await animateEnemySimpleFrames(e, "guinevere");
+        break;
+
+      //================================
+      //2222222222
+      case nomeBoss === "Pedro" && (acao === "attack" || acao === "attackVida"):
+        await animateEnemySimpleFrames(e, "pedro");
+        break;
+
+      case nomeBoss === "Isla" && acao === "attack":
+        await animateEnemySimpleFrames(e, "isla");
+        break;
+
+      case nomeBoss === "Isla Despertada" && acao === "attack":
+        await animateEnemySimpleFrames(e, "isla2");
+        break;
+
+      //================================
+      //3333333333
+
+      //================================
+      //4444444444
+      case nomeBoss === "Svetlana" && (acao === "attack" || acao === "spawn"):
+        await animateEnemySimpleFrames(e, "svetlana");
+        break;
+
+      case nomeBoss === "Belinda" && (acao === "heal" || acao === "spawn"):
+        await animateEnemySimpleFrames(e, "belinda");
+        break;
+
+      //================================
+      //5555555555
+      case nomeBoss === "Nemora" && (acao === "attack" || acao === "attackVida"):
+        await animateNemoraAttack(e);
+        break;
+
+      case nomeBoss === "IA":
+        if (acao === "attack") {
+          await animateEnemySimpleFrames(e);
+          enemies[0].dano += 5;
+          floatText(enemies[0].el, `+5⚜️`, "yellow");
+          updateEnemyBars();
+          stopScreenGlitch();
+
+        } else if (acao === "attackVida") {
+          floatText(enemies[0].el, `+10⚜️`, "yellow");
+          await animateEnemyCrossScreen(e);
+          enemies[0].dano += 10;
+          updateEnemyBars();
+          startScreenGlitch();
+          stopScreenGlitch()
+
+        } else if (acao === "heal") {
+          animateIAHitBasic(target.el);
+        }
+        break;
+
+      default:
+        break;
+    }
+  }
+}
 function spawnEnemyInBattle(baseEnemy, indexBase) {
   if (enemies.length >= 3) return false;
 
@@ -6253,88 +6313,7 @@ const svetlanaSpawn = {
   img: "../img/jogo/inimigos/animado/svetlana/statico/svetlana11.png"
 };
 
-// IA
-function animateEnemySimpleFrames(enemy, boss) {
-  return new Promise(resolve => {
-    const container = enemy.el;
-    const img = container.querySelector("img");
-    let frames;
-
-    if (!img) return resolve();
-
-    if (boss === "svetlana") {
-      frames = {
-        f1: "../img/jogo/inimigos/animado/svetlana/atk/svetlana1.png",
-        f2: "../img/jogo/inimigos/animado/svetlana/atk/svetlana2.png",
-        idle: "../img/jogo/inimigos/animado/svetlana/statico/svetlana11.png"
-      };
-    } else if (boss === "belinda") {
-      frames = {
-        f1: "../img/jogo/inimigos/animado/belinda/atk/belinda1.png",
-        f2: "../img/jogo/inimigos/animado/belinda/atk/belinda2.png",
-        idle: "../img/jogo/inimigos/animado/belinda/statico/belinda1.png"
-      };
-    } else {
-      frames = {
-        f1: "../img/jogo/inimigos/animado/ia/atk/ia1.png",
-        f2: "../img/jogo/inimigos/animado/ia/atk/ia2.png",
-        idle: "../img/jogo/inimigos/animado/ia/statico/ia1.png"
-      };
-      startScreenGlitch();
-    }
-    shakeScreenNatural(10, 400);
-
-
-    const frameDelay = 150;
-
-    // frame 1
-    setTimeout(() => {
-      img.src = frames.f1;
-
-      if (boss === "belinda") {
-        img.style.transform = "scale(1.15)";
-        img.style.marginBottom = "20px";
-      } else {
-        img.style.transform = "scale(1)";
-        img.style.marginBottom = "0px";
-      }
-    }, 0);
-
-    // frame 2
-    setTimeout(() => {
-      img.src = frames.f2;
-
-      if (boss === "belinda") {
-        img.style.transform = "scale(1.25)";
-        img.style.marginBottom = "40px";
-      }
-    }, frameDelay);
-
-    // frame 1 novamente
-    setTimeout(() => {
-      img.src = frames.f1;
-
-      if (boss === "belinda") {
-        img.style.transform = "scale(1.15)";
-        img.style.marginBottom = "20px";
-      } else {
-        img.style.transform = "scale(1)";
-        img.style.marginBottom = "0px";
-      }
-    }, frameDelay * 2);
-
-    // idle
-    setTimeout(() => {
-      img.src = frames.idle;
-      img.style.transform = "scale(1)";
-      img.style.marginBottom = "0px";
-      stopScreenGlitch();
-      resolve();
-    }, frameDelay * 3);
-  });
-}
-
-// NEMORA
+// IA/NEMORA
 function animateNemoraAttack(enemy) {
   if (nemoraAtk == true && enemies[0].hp < 350) {
     enemies[0].dano += 10;
@@ -6418,6 +6397,111 @@ function animateNemoraAttack(enemy) {
     }, dashTime);
   });
 };
+// ANIMAÇÃO ATK BASICO
+function animateEnemySimpleFrames(enemy, boss) {
+  return new Promise(resolve => {
+    const container = enemy.el;
+    const img = container.querySelector("img");
+    let frames;
+
+    if (!img) return resolve();
+
+    if (boss === "svetlana") {
+      frames = {
+        f1: "../img/jogo/inimigos/animado/svetlana/atk/svetlana1.png",
+        f2: "../img/jogo/inimigos/animado/svetlana/atk/svetlana2.png",
+        idle: "../img/jogo/inimigos/animado/svetlana/statico/svetlana11.png"
+      };
+    } else if (boss === "belinda") {
+      frames = {
+        f1: "../img/jogo/inimigos/animado/belinda/atk/belinda1.png",
+        f2: "../img/jogo/inimigos/animado/belinda/atk/belinda2.png",
+        idle: "../img/jogo/inimigos/animado/belinda/statico/belinda1.png"
+      };
+    } else if (boss === "pedro") {
+      frames = {
+        f1: "../img/jogo/inimigos/animado/pedro/atk/pedro1.png",
+        f2: "../img/jogo/inimigos/animado/pedro/atk/pedro2.png",
+        idle: "../img/jogo/inimigos/animado/pedro/statico/pedro1.png"
+      };
+    } else if (boss === "guinevere") {
+      frames = {
+        f1: "../img/jogo/inimigos/animado/guinevere/atk/guinevere1.png",
+        f2: "../img/jogo/inimigos/animado/guinevere/atk/guinevere2.png",
+        idle: "../img/jogo/inimigos/animado/guinevere/statico/guinevere1.png"
+      };
+    } else if (boss === "isla") {
+      frames = {
+        f1: "../img/jogo/inimigos/animado/isla/atk/isla1.png",
+        f2: "../img/jogo/inimigos/animado/isla/atk/isla2.png",
+        idle: "../img/jogo/inimigos/animado/isla/statico/isla1.png"
+      };
+    } else if (boss === "isla2") {
+      frames = {
+        f1: "../img/jogo/inimigos/animado/isla/atk/isla11.png",
+        f2: "../img/jogo/inimigos/animado/isla/atk/isla22.png",
+        idle: "../img/jogo/inimigos/animado/isla/statico/PetroleoQuen1.png"
+      };
+    } else {
+      frames = {
+        f1: "../img/jogo/inimigos/animado/ia/atk/ia1.png",
+        f2: "../img/jogo/inimigos/animado/ia/atk/ia2.png",
+        idle: "../img/jogo/inimigos/animado/ia/statico/ia1.png"
+      };
+      startScreenGlitch();
+    }
+    shakeScreenNatural(10, 400);
+
+
+    const frameDelay = 150;
+
+    // frame 1
+    setTimeout(() => {
+      img.src = frames.f1;
+
+      if (boss === "belinda" || boss === "pedro") {
+        img.style.transform = "scale(1.15)";
+        img.style.marginBottom = "20px";
+      } else {
+        img.style.transform = "scale(1)";
+        img.style.marginBottom = "0px";
+      }
+    }, 0);
+
+    // frame 2
+    setTimeout(() => {
+      img.src = frames.f2;
+
+      if (boss === "belinda" || boss === "pedro") {
+        img.style.transform = "scale(1.25)";
+        img.style.marginBottom = "40px";
+      }
+    }, frameDelay);
+
+    // frame 1 novamente
+    setTimeout(() => {
+      img.src = frames.f1;
+
+      if (boss === "belinda" || boss === "pedro") {
+        img.style.transform = "scale(1.15)";
+        img.style.marginBottom = "20px";
+      } else {
+        img.style.transform = "scale(1)";
+        img.style.marginBottom = "0px";
+      }
+    }, frameDelay * 2);
+
+    // idle
+    setTimeout(() => {
+      img.src = frames.idle;
+      img.style.transform = "scale(1)";
+      img.style.marginBottom = "0px";
+      stopScreenGlitch();
+      resolve();
+    }, frameDelay * 3);
+  });
+}
+// ANIMAÇÃO DEF BASICA
 function animateDamage(el) {
 
   // ===============================
@@ -6434,6 +6518,11 @@ function animateDamage(el) {
   const isIA = img.src.includes("/ia/");
   const isBelinda = img.src.includes("/belinda/");
   const isSvetlana = img.src.includes("/svetlana/");
+  const isPedro = img.src.includes("/pedro/");
+  const isGuinevere = img.src.includes("/guinevere/");
+  const isIsla = img.src.includes("/isla/");
+  const isIsla2 = img.src.includes("PetroleoQuen");
+  const isPeru = img.src.includes("/peru/");
 
   // ===============================
   //  SE FOR **IA** → animação própria
@@ -6451,6 +6540,27 @@ function animateDamage(el) {
     animateIAHit(el, img, "svetlana");
     return;
   }
+  if (isPedro) {
+    animateIAHit(el, img, "pedro");
+    return;
+  }
+  if (isGuinevere) {
+    animateIAHit(el, img, "guinevere");
+    return;
+  }
+  if (isIsla2) {
+    animateIAHit(el, img, "islaDois");
+    return;
+  }
+  if (isIsla) {
+    animateIAHit(el, img, "isla");
+    return;
+  }
+  if (isPeru) {
+    animateIAHit(el, img, "peru");
+    return;
+  }
+
 
   if (!isNemora) return;
 
@@ -6578,12 +6688,15 @@ function gerarItens() {
 
   const escolhidos = [];
 
-  /* 🔒 PRIMEIRA VEZ: garante item ID 26 */
+  /* 🔒 PRIMEIRA VEZ: garante os itens 26, 31 e 33 */
   if (primeiraGeracaoItem) {
-    const item26 = itensDisponiveis.find(i => i.id === 26);
-    if (item26) {
-      escolhidos.push(item26);
-    }
+    [26, 31, 33].forEach(id => {
+      const item = itensDisponiveis.find(i => i.id === id);
+      if (item && !escolhidos.includes(item)) {
+        escolhidos.push(item);
+      }
+    });
+
     primeiraGeracaoItem = false;
   }
 
@@ -6679,6 +6792,30 @@ function checkItemBoss() {
     if (svetlanaSpawnBoss) {
       bossAtivadoPorItem("svetlana");
       svetlanaSpawnBoss = false;
+    }
+  }
+  if (hasItem(30)) {
+    if (pedroSpawnBoss) {
+      bossAtivadoPorItem("pedro");
+      pedroSpawnBoss = false;
+    }
+  }
+  if (hasItem(31)) {
+    if (guinevereSpawnBoss) {
+      bossAtivadoPorItem("guinevere");
+      guinevereSpawnBoss = false;
+    }
+  }
+  if (hasItem(32)) {
+    if (islaSpawnBoss) {
+      bossAtivadoPorItem("isla");
+      islaSpawnBoss = false;
+    }
+  }
+  if (hasItem(33)) {
+    if (peruSpawnBoss) {
+      bossAtivadoPorItem("peru");
+      peruSpawnBoss = false;
     }
   }
 }

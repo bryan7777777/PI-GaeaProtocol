@@ -23,6 +23,7 @@ FUNCTIONS {
 
 STATS ENEMYS
 
+🌵 reflete 5 de dano ao sofrer dano
 💞 inicio da batalha aumenta a vida maxima dos aliados adjacentes em 15 (dura até apos a morte)
 💤 eu disperto e revivo mais forte
 ⚔️/❄️ atk normal

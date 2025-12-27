@@ -23,17 +23,23 @@ let nemoraSnowInterval = null;
 let nemoraFireInterval = null;
 let reviver = 0;
 let aylaPhase = 0;
-let SoliceApareceu=false;
-let dialogoSolice=false;
-let dialogoAyla=false;
 let playerImgDialogo;
 let nomeInimigo;
 let identificadorBoss;
 let PULAR_TODO_TUTORIAL = false;
+
+// FLAGS
+let SoliceApareceu=false;
+let dialogoSolice=false;
+let dialogoAyla=false;
 let primeiraGeracaoItem = true;
 let primeiraAberturaFerreiro = true;
 let belindaSpawnBoss = true;
 let svetlanaSpawnBoss = true;
+let pedroSpawnBoss = true;
+let guinevereSpawnBoss = true;
+let islaSpawnBoss = true;
+let peruSpawnBoss = true;
 
 // ARREY
 const deck = [];

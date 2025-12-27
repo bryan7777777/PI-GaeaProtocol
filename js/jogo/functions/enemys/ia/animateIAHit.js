@@ -18,6 +18,61 @@ function animateIAHit(el, img, boss) {
     idle = "../img/jogo/inimigos/animado/svetlana/statico/svetlana1.png";
   }
 
+  if (boss === "isla") {
+    frame1 = "../img/jogo/inimigos/animado/isla/def/isla1.png";
+    frame2 = "../img/jogo/inimigos/animado/isla/def/isla1.png";
+    frame3 = "../img/jogo/inimigos/animado/isla/def/isla1.png";
+    idle = "../img/jogo/inimigos/animado/isla/statico/isla1.png";
+  }
+
+  if (boss === "islaDois") {
+    frame1 = "../img/jogo/inimigos/animado/isla/def/isla11.png";
+    frame2 = "../img/jogo/inimigos/animado/isla/def/isla11.png";
+    frame3 = "../img/jogo/inimigos/animado/isla/def/isla11.png";
+    idle = "../img/jogo/inimigos/animado/isla/statico/PetroleoQuen1.png";
+  }
+
+  if (boss === "peru") {
+    frame1 = "../img/jogo/inimigos/animado/peru/def/peru1.png";
+    frame2 = "../img/jogo/inimigos/animado/peru/def/peru2.png";
+    frame3 = "../img/jogo/inimigos/animado/peru/def/peru1.png";
+    idle = "../img/jogo/inimigos/animado/peru/statico/peru1.png";
+  }
+
+  if (boss === "pedro") {
+    frame1 = "../img/jogo/inimigos/animado/pedro/def/pedro1.png";
+    frame2 = "../img/jogo/inimigos/animado/pedro/def/pedro1.png";
+    frame3 = "../img/jogo/inimigos/animado/pedro/def/pedro1.png";
+    idle = "../img/jogo/inimigos/animado/pedro/statico/pedro1.png";
+    retaliar();
+  }
+
+  if (boss === "guinevere") {
+    frame1 = "../img/jogo/inimigos/animado/guinevere/def/guinevere1.png";
+    frame2 = "../img/jogo/inimigos/animado/guinevere/def/guinevere2.png";
+    frame3 = "../img/jogo/inimigos/animado/guinevere/def/guinevere1.png";
+    idle = "../img/jogo/inimigos/animado/guinevere/statico/guinevere1.png";
+    retaliar();
+  }
+
+  function retaliar() {
+    let dano = 5;
+    if (playerShield > 0) {
+      let absorbed = Math.min(dano, playerShield);
+      playerShield -= absorbed;
+      dano -= absorbed;
+      animateDamage(document.getElementById("player"));
+      floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
+    }
+    if (dano > 0) {
+      playerHP -= dano;
+      animateDamage(document.getElementById("player"));
+      floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
+      redScreenGlow(300, 30);
+    }
+    updateHUD();
+  }
+
   const speed = 150;
 
   setTimeout(() => (img.src = frame1), 0);

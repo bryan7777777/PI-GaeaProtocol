@@ -831,4 +831,84 @@ const normalModels = [
   //       zona: 1
   //     }
   //   ],
+  //   [
+  //   {
+  //     name: "Pedro",
+  //     hp: 150,
+  //     maxHp: 150,
+  //     dano: 7,
+  //     behavior() {
+  //       return [
+  //         {
+  //           type: Math.random() < 0.65 ? "attack" : "attackVida",
+  //           value: this.dano
+  //         }
+  //       ];
+  //     },
+  //     img: "../img/jogo/inimigos/animado/pedro/statico/pedro1.png",
+  //     tipoDano: "⚔️❔🔱",
+  //     tipoVida: "🌵",
+  //     zona: 1
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Guinevere",
+  //     hp: 120,
+  //     maxHp: 120,
+  //     dano: 5,
+  //     behavior() {
+  //       return [
+  //         {
+  //           type: "attack",
+  //           value: this.dano
+  //         }
+  //       ];
+  //     },
+  //     img: "../img/jogo/inimigos/animado/guinevere/statico/guinevere1.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "🌵",
+  //     zona: 1
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "Isla",
+  //     hp: 80,
+  //     maxHp: 80,
+  //     dano: 20,
+  //     behavior() {
+  //       return [
+  //         {
+  //           type: "attack",
+  //           value: this.dano
+  //         }
+  //       ];
+  //     },
+  //     img: "../img/jogo/inimigos/animado/isla/statico/isla1.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "💤",
+  //     zona: 1
+  //   }
+  // ],
+  // [
+  //   {
+  //     name: "PeruSterminador",
+  //     hp: 70,
+  //     maxHp: 70,
+  //     dano: 20,
+  //     behavior() {
+  //       return [
+  //         {
+  //           type: "attack",
+  //           value: this.dano
+  //         }
+  //       ];
+  //     },
+  //     img: "../img/jogo/inimigos/animado/peru/statico/peru1.png",
+  //     tipoDano: "⚔️",
+  //     tipoVida: "❤️",
+  //     zona: 1
+  //   }
+  // ],
 ];

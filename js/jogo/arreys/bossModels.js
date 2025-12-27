@@ -213,27 +213,27 @@ function bossAtivadoPorItem(inimigo) {
   switch (inimigo) {
     case "belinda":
       bossModels.push([{
-          name: "Belinda",
-          hp: 300,
-          dano: 35,
-          behavior() {
-            const blocos = [
-              { type: "spawn", baseEnemy: peaoSpawn },
-              { type: "spawn", baseEnemy: bispoSpawn },
-              { type: "spawn", baseEnemy: reiSpawn },
-              { type: "spawn", baseEnemy: torreSpawn },
-              { type: "heal", value: this.dano },
-              { type: "attack", value: this.dano }
-            ];
+        name: "Belinda",
+        hp: 300,
+        dano: 35,
+        behavior() {
+          const blocos = [
+            { type: "spawn", baseEnemy: peaoSpawn },
+            { type: "spawn", baseEnemy: bispoSpawn },
+            { type: "spawn", baseEnemy: reiSpawn },
+            { type: "spawn", baseEnemy: torreSpawn },
+            { type: "heal", value: this.dano },
+            { type: "attack", value: this.dano }
+          ];
 
-            const escolha = Math.floor(Math.random() * blocos.length);
-            return [blocos[escolha]];
-          },
-          img: "../img/jogo/inimigos/animado/belinda/statico/belinda1.png",
-          tipoDano: "♟️❔⚔️❔💚🎭💊",
-          tipoVida: "❤️",
-          zona: 4
-        }]);
+          const escolha = Math.floor(Math.random() * blocos.length);
+          return [blocos[escolha]];
+        },
+        img: "../img/jogo/inimigos/animado/belinda/statico/belinda1.png",
+        tipoDano: "♟️❔⚔️❔💚🎭💊",
+        tipoVida: "❤️",
+        zona: 4
+      }]);
       break;
     case "svetlana":
       bossModels.push([{
@@ -259,54 +259,134 @@ function bossAtivadoPorItem(inimigo) {
         zona: 4
       }]);
       break;
+    case "pedro":
+      bossModels.push([{
+        name: "Pedro",
+        hp: 150,
+        maxHp: 150,
+        dano: 7,
+        behavior() {
+          return [
+            {
+              type: Math.random() < 0.65 ? "attack" : "attackVida",
+              value: this.dano
+            }
+          ];
+        },
+        img: "../img/jogo/inimigos/animado/pedro/statico/pedro1.png",
+        tipoDano: "⚔️❔🔱",
+        tipoVida: "🌵",
+        zona: 2
+      }]);
+      break;
+    case "guinevere":
+      bossModels.push([{
+        name: "Guinevere",
+        hp: 120,
+        maxHp: 120,
+        dano: 5,
+        behavior() {
+          return [
+            {
+              type: "attack",
+              value: this.dano
+            }
+          ];
+        },
+        img: "../img/jogo/inimigos/animado/guinevere/statico/guinevere1.png",
+        tipoDano: "⚔️",
+        tipoVida: "🌵",
+        zona: 1
+      }]);
+      break;
+    case "isla":
+      bossModels.push([{
+      name: "Isla",
+      hp: 80,
+      maxHp: 80,
+      dano: 20,
+      behavior() {
+        return [
+          {
+            type: "attack",
+            value: this.dano
+          }
+        ];
+      },
+      img: "../img/jogo/inimigos/animado/isla/statico/isla1.png",
+      tipoDano: "⚔️",
+      tipoVida: "💤",
+      zona: 2
+      }]);
+      break;
+    case "peru":
+      bossModels.push([{
+      name: "PeruSterminador",
+      hp: 70,
+      maxHp: 70,
+      dano: 20,
+      behavior() {
+        return [
+          {
+            type: "attack",
+            value: this.dano
+          }
+        ];
+      },
+      img: "../img/jogo/inimigos/animado/peru/statico/peru1.png",
+      tipoDano: "⚔️",
+      tipoVida: "❤️",
+      zona: 1
+      }]);
+      break;
 
     default:
       break;
   }
 }
 
-function bossFinal() {
-  if (SoliceApareceu && dialogoAyla) {
-    bossModels.push([{
-      name: "Nemora",
-      hp: 700,
-      maxHp: 700,
-      dano: 40,
-      behavior() {
-        return [
-          {
-            type: Math.random() < 0.75 ? "attack" : "attackVida",
-            value: this.dano
-          }
-        ];
-      },
-      img: "../img/jogo/inimigos/animado/nemora/statico/nemora1.png",
-      tipoDano: "(⚔️❔🔱)⚜️🎭💊",
-      tipoVida: "🧿",
-      zona: 5
-    }]);
-  } else {
-    bossModels.push([{
-      name: "IA",
-      hp: 570,
-      maxHp: 570,
-      dano: 25,
-      behavior() {
-        return [
-          {
-            type: Math.random() < 0.25
-              ? "heal"
-              : Math.random() < 0.7
-                ? "attack"
-                : "attackVida",
-            value: this.dano
-          }
-        ];
-      },
-      img: "../img/jogo/inimigos/animado/ia/statico/ia1.png",
-      tipoDano: "(⚔️❔🔱❔💊)⚜️",
-      tipoVida: "🧿",
-      zona: 5
-    }]);
+  function bossFinal() {
+    if (SoliceApareceu && dialogoAyla) {
+      bossModels.push([{
+        name: "Nemora",
+        hp: 700,
+        maxHp: 700,
+        dano: 40,
+        behavior() {
+          return [
+            {
+              type: Math.random() < 0.75 ? "attack" : "attackVida",
+              value: this.dano
+            }
+          ];
+        },
+        img: "../img/jogo/inimigos/animado/nemora/statico/nemora1.png",
+        tipoDano: "(⚔️❔🔱)⚜️🎭💊",
+        tipoVida: "🧿",
+        zona: 5
+      }]);
+    } else {
+      bossModels.push([{
+        name: "IA",
+        hp: 570,
+        maxHp: 570,
+        dano: 25,
+        behavior() {
+          return [
+            {
+              type: Math.random() < 0.25
+                ? "heal"
+                : Math.random() < 0.7
+                  ? "attack"
+                  : "attackVida",
+              value: this.dano
+            }
+          ];
+        },
+        img: "../img/jogo/inimigos/animado/ia/statico/ia1.png",
+        tipoDano: "(⚔️❔🔱❔💊)⚜️",
+        tipoVida: "🧿",
+        zona: 5
+      }]);
+    }
   }
-}
