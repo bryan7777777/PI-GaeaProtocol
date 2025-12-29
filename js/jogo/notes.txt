@@ -63,4 +63,6 @@ PALTAS{
     BALANCEAMENTO - citar o nerf nas cartas de reciclagem, buff nas elementais e buff boss final para tornar o jogo mais balanceado
     ==========
     BOSS SECRETO - citar sobre como acessar o boss secreto
+    ==========
+    BOSS REWORCK - citar a possibiidade de um reworck nos boss, devido a seus modelos antigos, está muito dif criar uma animação para eles
 }

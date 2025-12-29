@@ -218,20 +218,55 @@ function checkEnemies() {
                 name: "Isla Despertada",
                 hp: 80,
                 maxHp: 80,
-                dano: 20,
+                dano: 10,
                 behavior() {
                   return [
                     {
-                      type: "attack",
+                      type: "attackVida",
                       value: this.dano
                     }
                   ];
                 },
                 img: "../img/jogo/inimigos/animado/isla/statico/PetroleoQuen1.png",
-                tipoDano: "⚔️",
+                tipoDano: "🔱",
                 tipoVida: "❤️",
                 zona: 1
               });
+              PULAR_TODO_TUTORIAL = false;
+              if (playerImgDialogo.src.includes("autoridadeDoPorto")) {
+                iniciarTutorial(
+                  ["Contemple a minha verdadeira forma!",
+                    "Acha mesmo que uma orca pode ganhar de uma deusa?",
+                    "Você vai se juntar ao nosso pai!"
+                  ],
+                  playerImgDialogo.src,
+                  null,
+                  "../img/jogo/inimigos/iconBoss/PetroleoQuen1.png",
+                  "inimigo"
+                );
+              } else if (playerImgDialogo.src.includes("fergus")) {
+                iniciarTutorial(
+                  ["Contemple a minha verdadeira forma!",
+                    "Seu velho maldito!",
+                    "Vou ter que te matar com minhas proprias mãos"
+                  ],
+                  playerImgDialogo.src,
+                  null,
+                  "../img/jogo/inimigos/iconBoss/PetroleoQuen1.png",
+                  "inimigo"
+                );
+              } else {
+                iniciarTutorial(
+                  ["Contemple a minha verdadeira forma!",
+                    "Seja grato por eu ser a ultima coisa que você vera!",
+                    "De nada por ser perfeita e linda!"
+                  ],
+                  playerImgDialogo.src,
+                  null,
+                  "../img/jogo/inimigos/iconBoss/PetroleoQuen1.png",
+                  "inimigo"
+                );
+              }
             }
 
             if (morto.name === "Irislidriz" && reviver === 0) {
@@ -3458,6 +3493,411 @@ async function executarTxtBoss() {
           );
         }
         break;
+      case "PeruSterminador":
+        await iniciarTutorial(
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          "./../img/jogo/gaeazinha.jpg",
+          null,
+          "../img/jogo/inimigos/iconBoss/peru1.png",
+        );
+        if (playerImgDialogo.src.includes("verde")) {
+          await iniciarTutorial(
+            [
+              "Gluglu! Alvo localizado!",
+              "Jão... Hasta la vista, baby."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Meu Deus… um peru exterminador do futuro!",
+              "Você não deveria ter um óculos e uma jaqueta de couro?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+          );
+
+          await iniciarTutorial(
+            [
+              "Gluglu! Deveria!",
+              "Mas não encontrei nenhum indivíduo com essas roupas para me apropriar forçadamente dos bens dele.",
+              "Na verdade, eu nem encontrei humanos por aqui!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Que pena… Então… por que exatamente você quer me matar?",
+              "A IA que mandou você, né? Eu devo ter sido um grande herói que derrotou a IA e salvou o mundo.",
+              "Aposto que foi isso. Cara, eu sou muito bom!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+          );
+
+          await iniciarTutorial(
+            [
+              "Gluglu! Negativo!",
+              "Quem me enviou foi o Professor Lucius!",
+              "Ele gravou uma mensagem. Quer ver?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Não sei o que mais me surpreende… o Lucius ter te enviado, ou o fato dele se intitular de “Professor”.",
+              "Mostra aí a mensagem."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+          );
+
+          await iniciarTutorial(
+            [
+              "Primeiramente, eu arrumei uma esposa que me ama!",
+              "Segundamente, aposto que você deve estar se perguntando por que eu enviei um peru exterminador do futuro atrás de você."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/lucius.jpg",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Na verdade, eu já sei.",
+              "Foi porque eu disse que você se deita com iguais, né?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/lucius.jpg",
+          );
+
+          await iniciarTutorial(
+            [
+              "Exatamente...",
+              "Depois desse dia eu só pensei em vingança… por me humilhar na frente da minha vigésima quarta namorada.",
+              "Por isso, eu jurei te aniquilar…"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/lucius.jpg",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Tá, mas foi por esse comentário que ela terminou com você?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/lucius.jpg",
+          );
+
+          await iniciarTutorial(
+            [
+              "...",
+              "Não…",
+              "MAS ISSO NÃO IMPORTA!",
+              "No futuro você quebra meu PS24! Seu monstro!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/lucius.jpg",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Ok, agora sim você tem um bom motivo pra me exterminar!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/lucius.jpg",
+          );
+
+        } else if (playerImgDialogo.src.includes("lucius")) {
+          await iniciarTutorial(
+            [
+              "Gluglu! Professor Lucius",
+              "Eu vim enviado do futuro para exterminar o alvo Jao!",
+              "Onde ele se encontra?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Wow no futuro eu sou um professor, legal!",
+              "Sei lá onde tá o Jao",
+              "Me conta, o que fez eu querer mata meu irmão com um peru exterminador do futuro?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+          );
+
+          await iniciarTutorial(
+            [
+              "Gluglu! Ele quebrou seu PS24 e lhe humilhou na frente da sua vigésima quarta namorada!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "ESSE MONSTRO!!!",
+              "Ache ele e extermine ele de forma brutal ele não merece ver a luz do amanhã!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+          );
+
+          await iniciarTutorial(
+            [
+              "Gluglu! Afirmativo professor Lucius!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Gostei de ser chamado de professor! Acho que vou adotar isso no futuro!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+          );
+          inimigoPassifico();
+        } else {
+          await iniciarTutorial(
+            [
+              "Gluglu!",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Isso é um peru? Assim você não deveria falar igual os outro robos animais?",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+          );
+
+          await iniciarTutorial(
+            [
+              "Gluglu!",
+              "Gluglu... Gluglu Gluglu Gluglu!",
+              "Gluglu?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Então tá né.",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/peru1.png",
+          );
+        }
+        break;
+      case "Guinevere":
+        await iniciarTutorial(
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          "./../img/jogo/gaeazinha.jpg",
+          null,
+          "../img/jogo/inimigos/iconBoss/guinevere1.png",
+        );
+
+        await iniciarTutorial(
+          ["Me desculpe...",
+            "Eu não consigo controlar..."
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/guinevere1.png",
+          "inimigo"
+        );
+        if (playerImgDialogo.src.includes("magnusFerrus")) {
+          await iniciarTutorial(
+            ["Ma-maguinus?",
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/guinevere1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Quem é vo—",
+              "GUINEVERE?!",
+              "O que fizeram com você? Por quê?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/guinevere1.png",
+          );
+
+          await iniciarTutorial(
+            ["Eu… me perdoe…",
+              "*som de choro*",
+              "Foi horrível… é pior do que pensávamos… A IA não quer destruir o mundo… ela quer destruir a gente!",
+              "Ela preservou todas as espécies de animais e plantas… ela quer exterminar TODOS os humanos!",
+              "Aparentemente, foi tudo culpa nossa… tanta poluição… fizemos tudo isso por simples papel com valor…",
+              "Ela pretende reconstruir tudo sem a gente, porque acredita que não somos capazes de mudar… que somos inferiores…",
+              "Os humanos que ela captura… ela transforma em ciborgues… mas fica ainda pior…",
+              "Eles permanecem conscientes… e sentem dor… mas são incapazes de desobedecer!",
+              "E eu… me desculpe… por favor… acabem com meu sofrimento… eu não sou uma assassina…"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/guinevere1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Eu nunca vou esquecer tudo o que você fez por mim…",
+              "Me perdoe, Guinevere…",
+              "*pensando*",
+              "Só espero que você não veja os humanos atrás de você."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/guinevere1.png",
+          );
+
+          await iniciarTutorial(
+            ["*Guinevere se vira bruscamente, procurando qualquer grupo de humanos*",
+              "*Magnus rapidamente age, desligando o contato com a IA e o controle do corpo*",
+              "Eu… o que você fez?",
+              "Eu sabia que podia confiar em você!!!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/guinevere1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Eu não posso te matar me desculpe!",
+              "Eu também não sou um assassino, sei que você está traumatizada, mas...",
+              "Por favor, me deixe te ajudar!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/guinevere1.png",
+          );
+
+          await iniciarTutorial(
+            ["Você sempre foi o meu herói!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/guinevere1.png",
+            "inimigo"
+          );
+          inimigoPassifico();
+        } else if (playerImgDialogo.src.includes("olga")) {
+          await iniciarTutorial(
+            ["Você…",
+              "*pensando*",
+              "CORRE COM AS PESSOAS PELA DIREITA, OLAF! EU FICO DE DISTRAÇÃO!!!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/guinevere1.png",
+          );
+
+          await iniciarTutorial(
+            ["*Guinevere se vira bruscamente, procurando qualquer grupo de humanos*",
+              "*Olga rapidamente age, desligando o contato com a IA e o controle do corpo*",
+              "Eu… o que você fez?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/guinevere1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Eu tirei você do controle da IA.",
+              "Você ainda é meio humana, mas… ela estava controlando você, certo?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/guinevere1.png",
+          );
+
+          await iniciarTutorial(
+            ["Muito obrigada…",
+              "*som de choro*",
+              "Eu não sei como agradecer… ela me fez fazer coisas horríveis…",
+              "Eu preciso achar o Magnus… preciso saber como ele está!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/guinevere1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Relaxa, vamos achar seu amigo.",
+              "Pensa rápido, hein, Olga?",
+              "Mandou bem, meu anjo de neve!"
+            ],
+            "../img/jogo/pilotos/olaf.jpg",
+            null,
+            "../img/jogo/inimigos/iconBoss/guinevere1.png",
+          );
+
+          await iniciarTutorial(
+            ["Pare com isso, Olaf.",
+              "Temos que achar nossa líder e o resto do grupo — e ajudar ela a encontrar o amigo também.",
+              "Acredito que ela tenha informações valiosas nessa guerra."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/guinevere1.png",
+          );
+
+          inimigoPassifico();
+        }
+        break;
       // 22222
       case "Boss Prj.Kraken":
         if (playerImgDialogo.src.includes("autoridadeDoPorto")) {
@@ -3583,7 +4023,322 @@ async function executarTxtBoss() {
             "../img/jogo/inimigos/iconBoss/bossKraken.png",
           );
         }
+        break;
+      case "Pedro":
+        await iniciarTutorial(
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          "./../img/jogo/gaeazinha.jpg",
+          null,
+          "../img/jogo/inimigos/iconBoss/pedro1.png",
+        );
+        if (playerImgDialogo.src.includes("verde")) {
+          await iniciarTutorial(
+            [
+              "Tema as profundezas…"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/pedro1.png",
+            "inimigo"
+          );
 
+          await iniciarTutorial(
+            [
+              "Vai dar uma de Nautilus agora?",
+              "Seu nome ao menos é esse?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/pedro1.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "NÃO ME INTERROMPA!",
+              "E não, esse não é o meu nome."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/pedro1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Já que eu vou ser afogado e não sei o quê você vai fazer, poderia ao menos me dizer, né?",
+              "Deve ser algo legal, tipo Tripa Seca, Capitão Nemo, Rei Abissal, Comandante Rádion, Exilado do Abismo..."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/pedro1.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "É Pedro...",
+              "Eu meio que estava sem criatividade na hora, então só usei meu nome mesmo.",
+              "Mas esses que você falou são legais pra caramba!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/pedro1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Pedro? Hahahahahahaha!",
+              "Eu estava esperando algo épico e você simplesmente não teve criatividade para pensar em um nome bom! Hahaha!",
+              "Posso então te chamar de PP?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/pedro1.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "NÃO! VOCÊ NÃO PODE ME CHAMAR ASSIM!",
+              "Quer saber? Esquece, eu vou te afogar aqui mesmo e roubar um dos nomes que você citou!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/pedro1.png",
+            "inimigo"
+          );
+        } else if (playerImgDialogo.src.includes("mercuri")) {
+          await iniciarTutorial(
+            [
+              "Tema as profundezas…",
+              "Você cavou a própria cova abissal ao pegar o que é meu.",
+              "E agora eu vou te afogar!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/pedro1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Pedro?",
+              "Reconheço essa voz de longe.",
+              "E aí, Pedrão, quanto tempo!",
+              "Sou eu, o Mercuri. Lembra de mim?"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/pedro1.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Mercuri?",
+              "Perdão, não te reconheci por conta do cachecol.",
+              "Que bom te ver! Ainda sou grato por você ter me salvado de Fergus.",
+              "Aquele velho é maluco."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/pedro1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            [
+              "Que bom que você se lembra de mim!",
+              "Mas me fala aí… você está do lado da IA?",
+              "Porque, se estiver, a gente meio que vai ter que lutar e tal…"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/pedro1.png"
+          );
+
+          await iniciarTutorial(
+            [
+              "Foi mal, cara… mas fui obrigado a me unir a ela.",
+              "Ela disse que devolveria minhas memórias.",
+              "Mas até agora só me lembro de você.",
+              "Não vou enrolar muito… apenas caia pra dentro."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/pedro1.png",
+            "inimigo"
+          );
+        } else {
+          await iniciarTutorial(
+            [
+              "Tema as profundezas…",
+              "Você cavou a própria cova abissal ao pegar o que é meu.",
+              "E agora eu vou te afogar!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/pedro1.png",
+            "inimigo"
+          );
+        }
+        break;
+      case "Isla":
+        await iniciarTutorial(
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          "./../img/jogo/gaeazinha.jpg",
+          null,
+          "../img/jogo/inimigos/iconBoss/isla1.png",
+        );
+
+        await iniciarTutorial(
+          ["🎶la la la🎶",
+            "???!",
+            "vejo que eu tenho um fã? gostou do que ouviu?"
+          ],
+          playerImgDialogo.src,
+          null,
+          "../img/jogo/inimigos/iconBoss/isla1.png",
+          "inimigo"
+        );
+        if (playerImgDialogo.src.includes("autoridadeDoPorto")) {
+          await iniciarTutorial(
+            ["Piranha mal-amada!",
+              "Você era uma de nós!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/isla1.png",
+          );
+
+          await iniciarTutorial(
+            ["Clarice, meu amor... quanto tempo!",
+              "Continua a mesma invejosa, fraca e cheia de dor e choro...",
+              "Tudo porque seu papai não tá mais aqui!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/isla1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Ele morreu porque você é uma incompetente incapaz de fazer seu trabalho!",
+              "Eu que devia ter ido com ele, não você!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/isla1.png",
+          );
+
+          await iniciarTutorial(
+            ["Quer saber o que eu acho? Eu acho BEM FEITO que ele tenha se afogado!",
+              "Aquele velho obcecado e louco!",
+              "Era pra EU ser a próxima autoridade do porto, mas aquele velho escolheu... você...",
+              "Credo! Nem ele nem você sabem como administrar seus homens!",
+              "Perda de tempo tentar salvar os 13 mares!",
+              "Me fala, Clarice... O QUE VOCÊ FEZ ATÉ AGORA???",
+              "Quantos mares salvou da poluição? Acho que... ZERO! Sua incompetente!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/isla1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Isso aqui mostra quem você sempre foi...",
+              "Aposto que nossa mãe deve estar bem orgulhosa de TODOS os seus crimes...",
+              "Piranha!"
+            ],
+            playerImgDialogo.src,
+            "./../img/jogo/itens/sombraDoPassado.png",
+            "../img/jogo/inimigos/iconBoss/isla1.png",
+          );
+
+          await iniciarTutorial(
+            ["Roubando o que não é seu... que coisa feia. Igual à sua cara!",
+              "Quanto tempo eu esperei pra te matar com minhas próprias garras!",
+              "Ainda me lembro do dia em que você me bateu e me chamou de covarde!",
+              "Agora... POR QUE VOCÊ NÃO REPETE ISSO NA MINHA CARA?",
+              "A IA me permitiu viver e ser linda para sempre!",
+              "Afinal... todo mundo vai morrer um dia. E você não é exceção.",
+              "Na verdade… você vai ser a próxima!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/isla1.png",
+            "inimigo"
+          );
+
+        } else if (playerImgDialogo.src.includes("fergus")) {
+          await iniciarTutorial(
+            ["Isso aqui mostra quem você sempre foi...",
+              "Sua mãe teria vergonha de você!"
+            ],
+            playerImgDialogo.src,
+            "./../img/jogo/itens/sombraDoPassado.png",
+            "../img/jogo/inimigos/iconBoss/isla1.png",
+          );
+
+          await iniciarTutorial(
+            ["Velho inútil!",
+              "Você ainda tá vivo? Eu vi você morrer na minha frente!",
+              "Voltou dos mortos pra morrer de novo, foi?",
+              "Já estava pensando em mandar a Clarice se juntar a você e à mamãe..."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/isla1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["CALA A BOCA!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/isla1.png",
+          );
+
+          await iniciarTutorial(
+            ["..."
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/isla1.png",
+            "inimigo"
+          );
+
+          await iniciarTutorial(
+            ["Olha o que você fez! OLHA O QUE VOCÊ FEZ!",
+              "Ainda vem falar isso pra mim? Por isso eu escolhi a Clarice, sua pirralha mimada!",
+              "Você virou exatamente o mal que juramos combater!",
+              "Tenho certeza que a Clarice vai cuidar bem do meu porto… das minhas orcas…",
+              "Ela me deu algo que você nunca conseguiu… ORGULHO!",
+              "Você não é minha filha… é minha presa! E eu não sou seu pai… eu sou um tubarão!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/isla1.png",
+          );
+
+        } else {
+          await iniciarTutorial(
+            ["Tenho um trabalho para fazer e você está me impedindo!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/isla1.png",
+          );
+
+          await iniciarTutorial(
+            ["Relaxa! Você vai afundar rapidinho!"
+            ],
+            playerImgDialogo.src,
+            null,
+            "../img/jogo/inimigos/iconBoss/isla1.png",
+            "inimigo"
+          );
+        }
         break;
       // 33333
       case "Boss Paladium":
