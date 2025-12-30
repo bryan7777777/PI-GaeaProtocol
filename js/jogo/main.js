@@ -3804,8 +3804,7 @@ async function executarTxtBoss() {
           await iniciarTutorial(
             ["*Guinevere se vira bruscamente, procurando qualquer grupo de humanos*",
               "*Magnus rapidamente age, desligando o contato com a IA e o controle do corpo*",
-              "Eu… o que você fez?",
-              "Eu sabia que podia confiar em você!!!"
+              "Eu… o que você fez?"
             ],
             playerImgDialogo.src,
             null,
