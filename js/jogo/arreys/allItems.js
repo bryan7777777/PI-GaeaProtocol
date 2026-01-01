@@ -32,4 +32,7 @@ const allItems = [
   { id: 31, name: "Medalha De Herói", img: "./../img/jogo/itens/heroi.png", desc: "Tem chance do boss Guinevere aparecer para recuperar esse item na zona 1. +100 HP" },
   { id: 32, name: "Reflexo Da Verdade", img: "./../img/jogo/itens/sombraDoPassado.png", desc: "Tem chance do boss Isla aparecer para recuperar esse item na zona 2. +10 ARMADURA TODO TURNO" },
   { id: 33, name: "Óculos Supimpa", img: "./../img/jogo/itens/peruEsterminador.png", desc: "Tem chance do boss Peru aparecer para recuperar esse item na zona 1. +40 HP" },
+  { id: 34, name: "Aureola Dos Mortos", img: "./../img/jogo/itens/coroaDosMortos.png", desc: "Uma linda replica, quem será que tem a original? +100 HP" },
+  { id: 35, name: "Infância Manchada", img: "./../img/jogo/itens/tybers.png", desc: "Tem uma etiqueta escrito que pertence a \"Alegria\". +10 ARMADURA TODO TURNO" },
+  { id: 36, name: "Guia Da Alma", img: "./../img/jogo/itens/lampiao.png", desc: "Revela a \"verdade\", esse item precissa de mais 2 outros itens para ativar seu potencial? Seja lá qual for, em seu metal está escrito \"Traição\". +1 ENERGIA" },
 ];

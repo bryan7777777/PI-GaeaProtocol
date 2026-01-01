@@ -134,9 +134,12 @@ async function animateEnemyCrossScreen(enemy) {
   });
 };
 
-function showScreenImage(imgSrc) {
+function showScreenImage(imgSrc, glichAtivo = true) {
   return new Promise(resolve => {
-    startScreenGlitch();
+    if (glichAtivo) {
+      startScreenGlitch();
+    }
+
     shakeScreenNatural();
     
 

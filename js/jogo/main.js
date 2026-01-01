@@ -208,6 +208,9 @@ function checkEnemies() {
             morto.name === "Angustia De Ayla" ||
             morto.name === "Amor De Ayla" ||
             morto.name === "Nojo De Ayla" ||
+            morto.name === "Ira De Ayla" ||
+            morto.name === "Alegria De Ayla" ||
+            morto.name === "Traição De Ayla" ||
             morto.name === "Boss Ayla"
           ) {
             let novos = [];
@@ -414,9 +417,8 @@ function checkEnemies() {
                   shakeScreenNatural(30, 800);
                   document.getElementById("jogo").style.backgroundImage =
                     "url('../img/jogo/background/lutaSuperior.png')";
-                  console.log("Spawnando boss final: Ayla");
                   novos.push({
-                    name: "Ayla",
+                    name: "Ira De Ayla",
                     hp: 400,
                     dano: 30,
                     behavior: () => [
@@ -432,12 +434,91 @@ function checkEnemies() {
                       "Eu também sinto dor. Eu também amo...",
                       "E acima de tudo, sinto ÓDIO de covardes como você!",
                       "Quanto maior for a ameaça, Mais forte eu devo ficar.",
-                      "Absorvo todas as emoções e me torno uma só.",
                       "Prazer, eu sou a mais forte dentre todas.",
                     ],
                     playerImgDialogo.src,
                     null,
                     "../img/jogo/inimigos/iconBoss/bossIra.png",
+                    "inimigo"
+                  );
+                }
+              } else if (hasItem(34) && hasItem(35) && hasItem(36) && ["Ira De Ayla"].includes(morto.name)) {
+                if (enemies.every(e => !["Angustia De Ayla", "Ansiedade De Ayla"].includes(e.name))) {
+                  novos.push(
+                    {
+                      name: "Alegria De Ayla",
+                      hp: 95,
+                      dano: 55,
+                      behavior: () => [{ type: "attack", value: 55 }],
+                      img: "../img/jogo/inimigos/ayla/alegria.png",
+                      tipoDano: "⚔️",
+                      tipoVida: "🪬",
+                    },
+                    {
+                      name: "Traição De Ayla",
+                      hp: 65,
+                      dano: 30,
+                      behavior: () => [{ type: "attackVida", value: 30 }],
+                      img: "../img/jogo/inimigos/ayla/traicao.png",
+                      tipoDano: "🔱",
+                      tipoVida: "🪬",
+                    }
+                  );
+                  PULAR_TODO_TUTORIAL = false;
+                  iniciarTutorial(
+                    ["Que emocionante hahahaha!!!",
+                      "Vejo que você achou algo que é nosso né Traição?",
+                      "Ela não é de muitas palavra, digamos que ela anda com a \"cabeça fora do lugar\" ultimamente hahahahaha",
+                      "Sabe quem mais vai perder a cabeça?"
+                    ],
+                    playerImgDialogo.src,
+                    null,
+                    "../img/jogo/inimigos/iconBoss/alegria.png",
+                    "inimigo"
+                  );
+                }
+              } else if (["Alegria De Ayla", "Traição De Ayla"].includes(morto.name)) {
+                if (enemies.every(e => !["Alegria De Ayla", "Traição De Ayla"].includes(e.name))) {
+                  novos.push(
+                    {
+                      name: "Ayla",
+                      hp: 1000,
+                      dano: 30,
+                      behavior: () => {
+                        const type = Math.random() < 0.8 ? "attack" : "attackVida";
+                        let base = 30;
+
+                        if (type === "attackVida") {
+                          base *= 5;
+                        } else {
+                          if (Math.random() < 0.1) {
+                            base *= 5;
+                          }
+                        }
+                        return [
+                          { type, value: base }
+                        ];
+                      },
+                      img: "../img/jogo/inimigos/animado/ayla/statico/ayla1.png",
+                      tipoDano: "((🔱)🌟❔⚔️)💣",
+                      tipoVida: "🧿",
+                    },
+                  );
+                  PULAR_TODO_TUTORIAL = false;
+                  iniciarTutorial(
+                    ["Ah...",
+                      "*suspiro*",
+                      "Não era para você ver a Alegria e a Traição...",
+                      "Elas permanecem ocultas com o único objetivo de proteger a alma principal.",
+                      "E sim, todas as emoções que você havia derrotado têm ligação com ela. Só derrotando ela você me derrota!",
+                      "Por que explicar? Bom... EU SOU A ALMA PRINCIPAL!!!",
+                      "Sabem como a gente se sente tendo que se fundir em uma só? Ser Ayla...",
+                      "Ayla é a fusão de todas as emoções em um único ser de poder imenso. Afinal, eu só me revelo quando alguém chega próximo à alma principal.",
+                      "E EU SOU AYLA!!!"
+                    ],
+                    playerImgDialogo.src,
+                    null,
+                    "../img/jogo/inimigos/iconBoss/ayla1.png",
                     "inimigo"
                   );
                 }
@@ -4852,7 +4933,7 @@ async function executarTxtBoss() {
             ],
             playerImgDialogo.src,
             null,
-            "../img/jogo/inimigos/iconBoss/bossIra.png",
+            "../img/jogo/inimigos/iconBoss/ayla1.png",
             "inimigo"
           );
 
@@ -4861,7 +4942,7 @@ async function executarTxtBoss() {
             ],
             playerImgDialogo.src,
             null,
-            "../img/jogo/inimigos/iconBoss/bossIra.png"
+            "../img/jogo/inimigos/iconBoss/ayla1.png"
           );
 
           await iniciarTutorial(
@@ -4870,7 +4951,7 @@ async function executarTxtBoss() {
             ],
             playerImgDialogo.src,
             null,
-            "../img/jogo/inimigos/iconBoss/bossIra.png",
+            "../img/jogo/inimigos/iconBoss/ayla1.png",
             "inimigo"
           );
 
@@ -4883,7 +4964,7 @@ async function executarTxtBoss() {
             ],
             playerImgDialogo.src,
             null,
-            "../img/jogo/inimigos/iconBoss/bossIra.png",
+            "../img/jogo/inimigos/iconBoss/ayla1.png",
             "inimigo"
           );
 
@@ -6813,25 +6894,18 @@ async function enemyTurn() {
       }
 
       // Fala da Ayla
-      if (e.name === "Ayla") {
-        setTimeout(() => {
-          const frasesAyla = [
-            "Raiva: COVARDE!",
-            "Medo: Por que atacou alguém indefesa?",
-            "Nojo: Sua fraqueza me da nojo",
-            "Tristeza: A IA me permitiu sentir...",
-            "Amor: Isso doi!",
-            "Ansiedade: VAMOS ACABE COM ELE AGORA! RÁPIDO",
-            "Angustia: Ainda estou aqui...",
-            "Ayla: Vencer minhas emoções não significa NADA!",
-            "Ayla: Juntese a IA, sua tal GAEA não vai te salvar!",
-            "Ayla: Salvar a natureza? Patético!",
-            "Ayla: EU SOU MAIS HUMANA QUE VOCÊ!",
-            "Ayla: Sou a mais forte dentre todas"
-          ];
-          floatText(e.el, frasesAyla[Math.floor(Math.random() * frasesAyla.length)], "violet");
-        }, 500);
-      }
+      // if (e.name === "Ayla") {
+      //   setTimeout(() => {
+      //     const frasesAyla = [
+      //       "Ayla: Vencer minhas emoções não significa NADA!",
+      //       "Ayla: Juntese a IA, sua tal GAEA não vai te salvar!",
+      //       "Ayla: Salvar a natureza? Patético!",
+      //       "Ayla: EU SOU MAIS HUMANA QUE VOCÊ!",
+      //       "Ayla: Sou a mais forte dentre todas"
+      //     ];
+      //     floatText(e.el, frasesAyla[Math.floor(Math.random() * frasesAyla.length)], "violet");
+      //   }, 500);
+      // }
 
       // MORTE DO JOGADOR
       if (playerHP <= 0) {
@@ -6907,6 +6981,16 @@ async function aplicarAnimacao(nomeBoss, acao) {
 
       case nomeBoss === "Belinda" && (acao === "heal" || acao === "spawn"):
         await animateEnemySimpleFrames(e, "belinda");
+        break;
+
+      case nomeBoss === "Ayla":
+        if (acao === "attack") {
+          await animateEnemySimpleFrames(e, "ayla");
+
+        } else if (acao === "attackVida") {
+          const ayla = document.querySelector("#enemies img");
+          await animacaoAylaBrutal(ayla);
+        }
         break;
 
       //================================
@@ -7151,6 +7235,199 @@ function animateNemoraAttack(enemy) {
     }, dashTime);
   });
 };
+
+// AYLA 
+async function animacaoAylaBrutal(inimigoEl) {
+
+  startNemoraFire();
+  if (!inimigoEl) return console.warn("❌ inimigo não encontrado");
+
+  const player = document.querySelector("#playerBarra");
+  if (!player) return console.warn("❌ player não encontrado");
+
+  const screen = document.querySelector("#div3");
+  if (!screen) return console.warn("❌ tela de batalha não encontrada");
+
+
+  await showScreenImage("../img/jogo/inimigos/animado/ayla/efeitos/olharAyla.png", false);
+
+
+  const frames = {
+    idle: "../img/jogo/inimigos/animado/ayla/statico/ayla1.png",
+
+    f11: "../img/jogo/inimigos/animado/ayla/atk/ayla11.png",
+    f22: "../img/jogo/inimigos/animado/ayla/atk/ayla22.png",
+    f33: "../img/jogo/inimigos/animado/ayla/atk/ayla33.png",
+    f44: "../img/jogo/inimigos/animado/ayla/atk/ayla44.png",
+    f55: "../img/jogo/inimigos/animado/ayla/atk/ayla55.png",
+    f66: "../img/jogo/inimigos/animado/ayla/atk/ayla66.png"
+  };
+
+
+  const e = inimigoEl.getBoundingClientRect();
+  const p = player.getBoundingClientRect();
+
+
+  /* ========== FUNÇÃO QUE LIMITA O ZOOM NA TELA ========== */
+  function safeZoomOrigin(x, y) {
+    const margin = 80;
+
+    x = Math.max(margin, Math.min(window.innerWidth - margin, x));
+    y = Math.max(margin, Math.min(window.innerHeight - margin, y));
+
+    return `${x}px ${y}px`;
+  }
+
+
+  /* ========= 1 — ZOOM NA AYLA ========= */
+  screen.style.transition = "transform .45s ease-out";
+
+  screen.style.transformOrigin =
+    safeZoomOrigin(e.left + e.width * 1.2, e.top + e.height / 2);
+
+  screen.style.transform = "scale(1.45)";
+
+  inimigoEl.src = frames.f11;
+  await esperar(500);
+
+
+
+  /* ========= 2 — DESFAZ ZOOM ========= */
+  screen.style.transform = "scale(1)";
+  inimigoEl.src = frames.f22;
+  await esperar(350);
+
+
+
+  /* ========= 3 — ZOOM NO PLAYER ========= */
+  screen.style.transformOrigin =
+    safeZoomOrigin(p.left - p.width * 0.3, p.top + p.height / 2);
+
+  screen.style.transform = "scale(1.45)";
+  await esperar(200);
+
+
+
+  /* ========= 4 — CORRE ========= */
+  const baseX = (p.left - e.left) * 0.6;
+
+  inimigoEl.style.transition = "transform .35s linear";
+  inimigoEl.src = frames.f33;
+  inimigoEl.style.transform = `translateX(${baseX}px)`;
+
+  await esperar(140);
+
+
+
+  /* ========= 5 — ATAQUE LADO A LADO ========= */
+
+  const ESQUERDA = baseX - 400;
+  const DIREITA = baseX + 0;
+
+  inimigoEl.style.transition = "transform .06s linear";
+
+  for (let i = 0; i < 9; i++) {
+
+    // DIREITA DO PLAYER — frame 44
+    inimigoEl.style.transform = `translateX(${DIREITA}px)`;
+    inimigoEl.src = frames.f44;
+    inimigoEl.style.opacity = "0.9";
+
+    criarHitVisualNoPlayer();;
+    await esperar(65);
+
+
+    // ESQUERDA DO PLAYER — frame 55
+    inimigoEl.style.transform = `translateX(${ESQUERDA}px)`;
+    inimigoEl.src = frames.f55;
+    inimigoEl.style.opacity = "1";
+
+    criarHitVisualNoPlayer();;
+    await esperar(65);
+  }
+
+
+
+  /* ========= 6 — VOLTA ========= */
+  screen.style.transform = "scale(1)";
+
+  inimigoEl.style.transition = "transform .35s linear";
+  inimigoEl.style.transform = "translateX(0px)";
+  inimigoEl.src = frames.f66;
+
+  await esperar(300);
+
+
+  /* ========= 7 — IDLE ========= */
+  inimigoEl.src = frames.idle;
+  stopNemoraFire();
+}
+function esperar(ms) {
+  return new Promise(res => setTimeout(res, ms));
+}
+function criarHitVisualNoPlayer() {
+
+  const playerImg = document.getElementById("player");
+  if (!playerImg) return;
+
+  const battlefield = document.getElementById("battlefield");
+  if (!battlefield) return;
+
+
+  /* ========= CRIA O EFEITO ========= */
+  const efeito = document.createElement("img");
+
+  const frames = [
+    "../img/jogo/inimigos/animado/ayla/efeitos/golpe1.png",
+    "../img/jogo/inimigos/animado/ayla/efeitos/golpe2.png",
+    "../img/jogo/inimigos/animado/ayla/efeitos/golpe3.png"
+  ];
+
+  let frameIndex = 0;
+  efeito.src = frames[frameIndex];
+
+  efeito.style.position = "absolute";
+  efeito.style.pointerEvents = "none";
+  efeito.style.zIndex = "9999";
+  efeito.style.width = "130px";
+
+
+  /* ========= POSIÇÃO REAL ========= */
+  const playerBox = playerImg.getBoundingClientRect();
+  const fieldBox = battlefield.getBoundingClientRect();
+
+  const centerX = (playerBox.left - fieldBox.left) + (playerBox.width / 2);
+  const centerY = (playerBox.top - fieldBox.top) + (playerBox.height / 2);
+
+  efeito.style.left = (centerX + 100) + "px";
+  efeito.style.top = (centerY - 15) + "px";
+
+
+  /* ========= ADICIONA ========= */
+  battlefield.appendChild(efeito);
+
+  /* ========= AUMENTA PARA 2.5 ========= */
+  requestAnimationFrame(() => {
+    efeito.style.transform = "scale(2.5)";
+  });
+
+  /* ========= TROCA DE FRAMES ========= */
+
+  const anim = setInterval(() => {
+    frameIndex++;
+
+    if (frameIndex >= frames.length) {
+      clearInterval(anim);
+      efeito.remove();
+      return;
+    }
+
+    efeito.src = frames[frameIndex];
+
+  }, 20); // ← tempo entre frames
+
+}
+
 // ANIMAÇÃO ATK BASICO
 function animateEnemySimpleFrames(enemy, boss) {
   return new Promise(resolve => {
@@ -7195,6 +7472,12 @@ function animateEnemySimpleFrames(enemy, boss) {
         f1: "../img/jogo/inimigos/animado/isla/atk/isla11.png",
         f2: "../img/jogo/inimigos/animado/isla/atk/isla22.png",
         idle: "../img/jogo/inimigos/animado/isla/statico/PetroleoQuen1.png"
+      };
+    } else if (boss === "ayla") {
+      frames = {
+        f1: "../img/jogo/inimigos/animado/ayla/atk/ayla1.png",
+        f2: "../img/jogo/inimigos/animado/ayla/atk/ayla1.png",
+        idle: "../img/jogo/inimigos/animado/ayla/statico/ayla1.png"
       };
     } else {
       frames = {
@@ -7277,6 +7560,7 @@ function animateDamage(el) {
   const isIsla = img.src.includes("/isla/");
   const isIsla2 = img.src.includes("PetroleoQuen");
   const isPeru = img.src.includes("/peru/");
+  const isAyla = img.src.includes("/ayla1");
 
   // ===============================
   //  SE FOR **IA** → animação própria
@@ -7312,6 +7596,10 @@ function animateDamage(el) {
   }
   if (isPeru) {
     animateIAHit(el, img, "peru");
+    return;
+  }
+  if (isAyla) {
+    animateIAHit(el, img, "ayla");
     return;
   }
 
@@ -7660,3 +7948,7 @@ if (pagina === "selecaoMapa.html") {
   mapaCanvas("div9", 7, 7, "#f5fd54ff", "#5db0e7ff", '👻');
   mapaCanvas("div10", 7, 7, "#5db0e7ff", "#e75d5dff", '🤖');
 }
+
+// itensJaPegos.push(34);
+// itensJaPegos.push(35);
+// itensJaPegos.push(36);

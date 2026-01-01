@@ -911,4 +911,31 @@ const normalModels = [
   //     zona: 1
   //   }
   // ],
+  // [
+  //   {
+  //     name: "Ayla",
+  //     hp: 1000,
+  //     dano: 30,
+  //     behavior: () => {
+  //       // escolhe o tipo (80% attack / 20% attackVida)
+  //       const type = Math.random() < 0.1 ? "attack" : "attackVida";
+  //       let base = 30;
+
+  //       if (type === "attackVida") {
+  //         base *= 5;
+  //       } else {
+  //         if (Math.random() < 0.1) {
+  //           base *= 5;
+  //         }
+  //       }
+  //       return [
+  //         { type, value: base }
+  //       ];
+  //     },
+  //     img: "../img/jogo/inimigos/animado/ayla/statico/ayla1.png",
+  //     tipoDano: "((🔱)🌟❔⚔️)💣",
+  //     tipoVida: "🧿",
+  //     zona: 1
+  //   }
+  // ]
 ];

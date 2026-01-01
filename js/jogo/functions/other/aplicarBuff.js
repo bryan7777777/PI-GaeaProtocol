@@ -8,6 +8,7 @@ function aplicarBuff(item) {
 
     case 8: // Escudo
     case 32:
+    case 35:
       playerShieldInit += 10;
       playerShield = playerShieldInit;
       break;
@@ -23,6 +24,7 @@ function aplicarBuff(item) {
     case 25:
     case 28:
     case 30:
+    case 36:
       energyMax += 1;
       energy = energyMax;
       break;
@@ -57,6 +59,7 @@ function aplicarBuff(item) {
       break;
 
     case 31:
+    case 34:
       playerMaxHP += 100;
       break;
   }

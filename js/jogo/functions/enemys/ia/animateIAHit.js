@@ -39,6 +39,13 @@ function animateIAHit(el, img, boss) {
     idle = "../img/jogo/inimigos/animado/peru/statico/peru1.png";
   }
 
+  if (boss === "ayla") {
+    frame1 = "../img/jogo/inimigos/animado/ayla/def/ayla1.png";
+    frame2 = "../img/jogo/inimigos/animado/ayla/def/ayla2.png";
+    frame3 = "../img/jogo/inimigos/animado/ayla/def/ayla1.png";
+    idle = "../img/jogo/inimigos/animado/ayla/statico/ayla1.png";
+  }
+
   if (boss === "pedro") {
     frame1 = "../img/jogo/inimigos/animado/pedro/def/pedro1.png";
     frame2 = "../img/jogo/inimigos/animado/pedro/def/pedro1.png";
