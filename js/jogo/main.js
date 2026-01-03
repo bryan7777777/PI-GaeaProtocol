@@ -7307,7 +7307,7 @@ async function animacaoAylaBrutal(inimigoEl) {
   inimigoEl.src = frames.f33;
   inimigoEl.style.transform = `translateX(${baseX}px)`;
 
-  await esperar(140);
+  await esperar(180);
 
 
 
