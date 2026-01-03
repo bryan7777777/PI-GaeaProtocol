@@ -27,6 +27,7 @@ let playerImgDialogo;
 let nomeInimigo;
 let identificadorBoss;
 let PULAR_TODO_TUTORIAL = false;
+const pagina = location.pathname.split("/").pop();
 
 // FLAGS
 let SoliceApareceu=false;

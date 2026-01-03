@@ -7238,17 +7238,9 @@ function animateNemoraAttack(enemy) {
 
 // AYLA 
 async function animacaoAylaBrutal(inimigoEl) {
-
   startNemoraFire();
-  if (!inimigoEl) return console.warn("❌ inimigo não encontrado");
-
   const player = document.querySelector("#playerBarra");
-  if (!player) return console.warn("❌ player não encontrado");
-
   const screen = document.querySelector("#div3");
-  if (!screen) return console.warn("❌ tela de batalha não encontrada");
-
-
   await showScreenImage("../img/jogo/inimigos/animado/ayla/efeitos/olharAyla.png", false);
 
 
@@ -7309,7 +7301,7 @@ async function animacaoAylaBrutal(inimigoEl) {
 
 
   /* ========= 4 — CORRE ========= */
-  const baseX = (p.left - e.left) * 0.6;
+  const baseX = (p.left - e.left) * 1.4;
 
   inimigoEl.style.transition = "transform .35s linear";
   inimigoEl.src = frames.f33;
@@ -7321,8 +7313,8 @@ async function animacaoAylaBrutal(inimigoEl) {
 
   /* ========= 5 — ATAQUE LADO A LADO ========= */
 
-  const ESQUERDA = baseX - 400;
-  const DIREITA = baseX + 0;
+  const ESQUERDA = baseX + 650;
+  const DIREITA = baseX + 833.3333;
 
   inimigoEl.style.transition = "transform .06s linear";
 
@@ -7934,8 +7926,6 @@ function itensVerd() {
 // CALLING FUNCTIONS
 myMusic.play();
 configurarSelecaoPersonagem();
-
-const pagina = location.pathname.split("/").pop();
 
 if (pagina === "tutorial.html") {
   mapaCanvas("div2", 7, 1, "#45ff45ff", "#ff8834ff", '🐺');
