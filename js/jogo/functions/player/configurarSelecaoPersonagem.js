@@ -221,7 +221,7 @@ function configurarSelecaoPersonagem() {
       mao: 6
     },
     roxo: {
-      nome: "⚙️MALAQUIAS, A INTERFACE CAÓTICA⚙️",
+      nome: "⚙️VINICIUS, A INTERFACE CAÓTICA⚙️",
       dificuldade: "⚙️NÍVEL DE DIFICULDADE: 💀💀⚙️",
       cor: "rgb(141, 7, 231)",
       descricao: "Um engenheiro estratégico, utiliza de seus drones para tudo, saber como usar sua energia é algo vital.",
