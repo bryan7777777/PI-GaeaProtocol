@@ -4,6 +4,7 @@ function aplicarBuff(item) {
     case 7:
     case 33:
       playerMaxHP += 40;
+      playerHP += 40;
       break;
 
     case 8: // Escudo
@@ -46,12 +47,14 @@ function aplicarBuff(item) {
     case 5:
     case 6:
       playerMaxHP += 50;
+      playerHP += 50;
       energyMax += 1;
       energy = energyMax;
       break;
 
     case 14:
       playerMaxHP += 10;
+      playerHP += 10;
       energyMax += 1;
       energy = energyMax;
       playerShieldInit += 5;
@@ -61,6 +64,7 @@ function aplicarBuff(item) {
     case 31:
     case 34:
       playerMaxHP += 100;
+      playerHP += 100;
       break;
   }
   updateHUD();

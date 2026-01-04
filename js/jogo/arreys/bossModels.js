@@ -374,7 +374,7 @@ function bossAtivadoPorItem(inimigo) {
         behavior() {
           return [
             {
-              type: Math.random() < 0.25
+              type: Math.random() < 0.18
                 ? "heal"
                 : Math.random() < 0.7
                   ? "attack"
