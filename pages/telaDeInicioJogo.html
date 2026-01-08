@@ -1,70 +1,85 @@
 <!DOCTYPE html>
-<html lang="pt=br">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>GÆA PROTOCOL</title>
+
   <link rel="stylesheet" href="./../css/reset.css">
-  <link rel="stylesheet" href="./../css/telaDeInicio.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./../css/telaDeInicio.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
   <link rel="shortcut icon" href="../img/site/logo/logo2.png" type="image/x-icon">
 </head>
 
-<body class="container">
-  <div>
-    <h1 id="title" class="glitch" data-text="GÆA PROTOCOL">GÆA PROTOCOL</h1>
-    <div id="menu" class="menu hidden">
-      <a href="./tutorial.html"><button class="glitch-btn" onclick="glitchClick()">Tutorial</button></a>
-      <a href="./selecaoMapa.html"><button class="glitch-btn" onclick="glitchClick()">Novo Jogo</button></a>
+<body>
+
+  <!-- AVISO FULLSCREEN (MOBILE / TABLET) -->
+  <div class="screen-warning">
+    <div class="warning-box">
+      <h1>⚠️ Acesso restrito ⚠️</h1>
+      <p>Esta página é acessível apenas em computadores ou notebooks.</p>
+      <p>Por favor, acesse por uma tela maior.</p>
     </div>
   </div>
-  <div class="fita chuva">
-    <div class="cenario">
-  <div class="chuva"></div>
-</div>
 
-    <h1 class="gren">DEV FRONT DO JOGO:</h1>
-    <div class="devs">
+  <!-- CONTEÚDO DESKTOP -->
+  <div class="desktop-content">
+
+    <div class="container">
+      <h1 id="title" class="glitch" data-text="GÆA PROTOCOL">GÆA PROTOCOL</h1>
+
+      <div id="menu" class="menu">
+        <a href="./tutorial.html">
+          <button class="glitch-btn">Tutorial</button>
+        </a>
+        <a href="./selecaoMapa.html">
+          <button class="glitch-btn">Novo Jogo</button>
+        </a>
+      </div>
+    </div>
+
+    <div id="conquistas">
+      <button class="glitch-btn">Conquistas</button>
+    </div>
+
+    <div class="fita">
+      <h1 class="gren">DEV FRONT DO JOGO</h1>
       <a href="https://github.com/bryan7777777" target="_blank">
-        <p>bryan7777777</p>
+        <p class="dev front">bryan7777777</p>
+      </a> <a href="https://github.com/TiaNemora" target="_blank">
+        <p class="dev front">TiaNemora</p>
       </a>
-      <a href="https://github.com/TiaNemora" target="_blank">
-        <p>TiaNemora</p>
+
+      <h1 class="red">DEV BACK DO JOGO</h1>
+      <a href="https://github.com/VGameleira" target="_blank">
+        <p class="dev back">VGameleira</p>
+      </a> <a href="https://github.com/bryan7777777" target="_blank">
+        <p class="dev back">bryan7777777</p>
+      </a> <a href="https://github.com/TiaNemora" target="_blank">
+        <p class="dev back">TiaNemora</p>
+      </a> <a href="https://github.com/Jakosjimn" target="_blank">
+        <p class="dev back">Jakosjimn</p>
+      </a> <a href="" target="_blank">
+        <p class="dev back">isac====</p>
+      </a> <a href="" target="_blank">
+        <p class="dev back">pedro====</p>
+      </a>
+
+      <h1 class="blue">HISTÓRIA DO JOGO</h1>
+      <a href="https://github.com/VGameleira" target="_blank">
+        <p class="dev historia">VGameleira</p>
+      </a> <a href="https://github.com/sabbato-dev" target="_blank">
+        <p class="dev historia">sabbato-dev</p>
       </a>
     </div>
 
-    <h1 class="red">DEV BACK DO JOGO:</h1>
-    <div class="devs">
-      <a href="https://github.com/VGameleira" target="_blank">
-        <p>VGameleira</p>
-      </a>
-      <a href="https://github.com/Jakosjimn" target="_blank">
-        <p>Jakosjimn</p>
-      </a>
-      <a href="" target="_blank">
-        <p>isac====</p>
-      </a>
-      <a href="" target="_blank">
-        <p>pedro====</p>
-      </a>
-      <a href="https://github.com/bryan7777777" target="_blank">
-        <p>bryan7777777</p>
-      </a>
-      <a href="https://github.com/TiaNemora" target="_blank">
-        <p>TiaNemora</p>
-      </a>
-    </div>
-    <h1 class="blue">HISTORIA DO JOGO:</h1>
-    <div class="devs">
-      <a href="https://github.com/VGameleira" target="_blank">
-        <p>VGameleira</p>
-      </a>
-      <a href="https://github.com/sabbato-dev" target="_blank">
-        <p>sabbato-dev</p>
-      </a>
-    </div>
   </div>
+
 </body>
 
 </html>

@@ -4,158 +4,225 @@
   --fonte-principal: 'Megrim', cursive;
 }
 
-a {
-  text-decoration: none;
-}
+/* =================== BASE =================== */
 
 body {
   margin: 0;
-  background: url('./../img/jogo/background/tvTubo2.png') no-repeat center center fixed;
+  height: 100vh;
+  background: url('./../img/jogo/background/tvTubo2.png') no-repeat center right fixed;
   background-color: black;
   color: var(--cor-principal);
   font-family: var(--fonte-principal);
   overflow: hidden;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+}
+
+/* =================== AVISO FULLSCREEN =================== */
+
+.screen-warning {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #111;
+  color: #fff;
+  z-index: 9999;
+
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Press Start 2P', monospace;
 }
 
-#title {
-  animation: vibrate 0.15s infinite;
-  background-color: rgba(0, 0, 0, 0.5);
-  box-shadow: black 0 0 20px 0;
+
+.warning-box {
+  max-width: 420px;
+  padding: 30px;
 }
 
-.menu {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding-bottom: 15%;
-  rotate: 1deg;
+/* =================== DESKTOP =================== */
+
+.desktop-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
+
+/* =================== CONTAINER PRINCIPAL =================== */
 
 .container {
-  rotate: 1deg;
+  position: absolute;
+  top: 32vh;
+  left: 74vw;
+  transform: rotate(1deg);
+
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  position: relative;
-  background-color: black;
-  width: 17vw;
-  height: 21vh;
-  padding-bottom: auto;
+
+  width: 17.5vw;
+  height: 21.5vh;
   padding-top: 80px;
-  top: 32vh;
-  left: 64.5vw;
   gap: 15px;
 }
 
 .container::before {
-  border-radius: 45px;
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  border-radius: 45px;
+  background-image: linear-gradient(to bottom,
+      transparent 50%,
+      rgba(255, 255, 255, 0.1) 50%);
+  background-size: 100% 10px;
+  animation: scanlines 0.1s infinite;
+}
+
+/* =================== TÍTULO =================== */
+
+#title {
+  rotate: 1deg;
+  margin-top: -30px;
+  font-size: 45px;
+  color: var(--cor-secundaria);
+  animation: vibrate 0.15s infinite;
+  background-color: rgba(17, 17, 17, 0.45);
+  border-radius: 20px;
+  box-shadow: rgba(17, 17, 17, 0.45) 0 0 10px 4px;
+}
+
+/* =================== MENU =================== */
+
+.menu {
+  rotate: 1deg;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* =================== BOTÕES =================== */
+
+.glitch-btn {
+  position: relative;
+  width: 15vw;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  background: rgba(0, 0, 0, 0.5);
+  color: #42f566;
+  border: 2px solid #42f566;
+  border-radius: 15px;
+
+  font-family: 'Megrim', cursive;
+}
+
+.glitch-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: #006c16;
+  border-color: #006c16;
+}
+
+/* =================== CONQUISTAS =================== */
+
+#conquistas {
+  position: absolute;
+  top: 67.5vh;
+  right: 52vw;
+  transform: rotate(-2deg);
+}
+
+#conquistas button {
+  width: 220px;
+  height: 76px;
+  background-color: black;
   background-image: linear-gradient(to bottom, transparent 50%, rgba(255, 255, 255, 0.1) 50%);
   background-size: 100% 10px;
   background-position: 0 0;
   animation: scanlines 0.1s infinite;
 }
 
+#conquistas button:hover {
+  background-color: #42f566;
+  color: #002b09;
+}
+
+/* =================== FITA (CRÉDITOS) =================== */
+
+.fita {
+  position: absolute;
+  width: 20%;
+  height: 94vh;
+
+  margin-top: 3vh;
+  margin-left: 1vw;
+
+  background-image: url("./../img/jogo/background/creditos.png");
+  background-size: cover;
+  background-position: center;
+
+  border-radius: 0 70px 0 70px;
+  border: 2px solid chartreuse;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  font-family: 'Press Start 2P', monospace;
+  color: white;
+  font-size: 20px;
+}
+
+.dev {
+  padding: 14px;
+}
+
+.front:hover,
+.back:hover,
+.historia:hover {
+  background: linear-gradient(to bottom, #001f07 0%, #004d12 50%, #006f16 100%);
+  padding: 12px;
+  border-radius: 0 20px 0 20px;
+  border: solid rgb(30, 205, 30) 2px;
+}
+
+.back:hover {
+  background: linear-gradient(to bottom, #1a0303 0%, #4d0a0a 50%, #8f1d1d 100%);
+  border: solid rgb(220, 60, 60) 2px;
+}
+
+.historia:hover {
+  background: linear-gradient(to bottom, #061a2e 0%, #0b3c6d 50%, #0f5fa8 100%);
+  border: solid rgb(80, 180, 255) 2px;
+}
+
+/* =================== CORES =================== */
+
+.gren {
+  color: #00c728;
+}
+
+.red {
+  color: #cc2929;
+}
+
+.blue {
+  color: #147cdd;
+}
+
+/* =================== ANIMAÇÕES =================== */
+
 @keyframes scanlines {
-  0% {
+  from {
     background-position: 0 0;
   }
 
-  100% {
+  to {
     background-position: 0 10px;
   }
 }
-
-#title {
-  font-size: 45px;
-  position: relative;
-  color: var(--cor-secundaria);
-}
-
-#title.move-up {
-  transform: translateY(-150px);
-  transition: transform 1s ease-in-out;
-}
-
-
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  color: #42ecf5;
-  clip: rect(0, 900px, 0, 0);
-}
-
-.glitch::before {
-  animation: glitchTop 2s infinite linear alternate-reverse;
-  color: #42ecf5;
-  z-index: -1;
-}
-
-.glitch::after {
-  animation: glitchBottom 1.5s infinite linear alternate-reverse;
-  color: #42ecf5;
-  z-index: -2;
-}
-
-@keyframes glitchTop {
-  0% {
-    clip: rect(0, 9999px, 0, 0);
-    transform: translate(1px, -1px);
-  }
-
-  10% {
-    clip: rect(5px, 9999px, 20px, 0);
-    transform: translate(-2px, 2px);
-  }
-
-  20% {
-    clip: rect(10px, 9999px, 15px, 0);
-    transform: translate(1px, 1px);
-  }
-
-  100% {
-    clip: rect(0, 9999px, 0, 0);
-    transform: translate(0, 0);
-  }
-}
-
-@keyframes glitchBottom {
-  0% {
-    clip: rect(0, 9999px, 0, 0);
-    transform: translate(-1px, 1px);
-  }
-
-  10% {
-    clip: rect(15px, 9999px, 25px, 0);
-    transform: translate(2px, -2px);
-  }
-
-  20% {
-    clip: rect(20px, 9999px, 30px, 0);
-    transform: translate(-1px, -1px);
-  }
-
-  100% {
-    clip: rect(0, 9999px, 0, 0);
-    transform: translate(0, 0);
-  }
-}
-
 
 @keyframes vibrate {
 
@@ -177,144 +244,15 @@ body {
   }
 }
 
-.fita{
-  background-image: url("./../img/jogo/background/creditos.png");
-  height: 95vh;
-  width: 120%;
-  border-radius: 0 70px 0 70px;
-  border: solid 2px chartreuse;
-  position: absolute;
-  top: -27vh;
-  left: -63vw;
-  rotate: -1deg;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  font-size: 32px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-  flex-direction: column;
-  gap: 10px;
-}
+/* =================== BLOQUEIO MOBILE =================== */
 
-.fita h1, .fita p{
-  transition: 0.5s;
-}
-
-.fita h1{
-  margin-bottom: 30px;
-  margin-top: 30px;
-}
-
-.fita p{
-  font-size: 28px;
-  padding: 5.5px;
-}
-
-.fita p:hover{
-  color: #f5c542;
-  background-color: #188d3097;
-  border-radius: 0 20px 0 20px ;
-}
-
-.gren{
-  color: #42f566;
-}
-
-.red{
-  color: rgb(255, 118, 118);
-}
-
-.blue{
-  color: #42ecf5;
-}
-
-.glitch-btn {
-  border-radius: 15px;
-  background: rgba(0, 0, 0, 0.5);
-  color: #42f566;
-  border: 2px solid #42f566;
-  padding: 10px 20px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  font-family: 'Megrim', cursive;
-  position: relative;
-  overflow: hidden;
-  width: 15vw;
-}
-
-.glitch-btn:hover {
-  background: rgba(255, 255, 255, 0.8);
-  color: #006c16;
-  border: 2px solid #006c16;
-}
-
-.glitch-btn:active::before,
-.glitch-btn:active::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  width: 100%;
-  animation: glitchButtonClick 0.3s steps(2, end) forwards;
-}
-
-@keyframes glitchButtonClick {
-  0% {
-    transform: translate(0, 0);
+@media (max-width: 1824px) {
+  .screen-warning {
+    display: flex;
+    /* só aqui */
   }
 
-  20% {
-    transform: translate(-2px, 2px);
-  }
-
-  40% {
-    transform: translate(2px, -2px);
-  }
-
-  60% {
-    transform: translate(-1px, 1px);
-  }
-
-  80% {
-    transform: translate(1px, -1px);
-  }
-
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-/* =================== TABLET =================== */
-@media (max-width: 1024px) {
-  .glitch-btn {
-    background: transparent;
-    color: #f5c542;
-    border: 2px solid #f5c542;
-    padding: 10px 20px;
-    font-size: 20px;
-    cursor: pointer;
-    font-family: 'Megrim', cursive;
-    position: relative;
-    overflow: hidden;
-    width: 200px;
-  }
-}
-
-/* =================== CELULAR =================== */
-@media (max-width: 768px) {
-  .glitch-btn {
-    background: transparent;
-    color: #f5c542;
-    border: 2px solid #f5c542;
-    padding: 10px 20px;
-    font-size: 15px;
-    cursor: pointer;
-    font-family: 'Megrim', cursive;
-    position: relative;
-    overflow: hidden;
-    width: 170px;
+  .desktop-content {
+    display: none;
   }
 }
