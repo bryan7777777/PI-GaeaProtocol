@@ -45,6 +45,20 @@ STATS ENEMYS
 ⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
 💫✨🤢🥶💀👾☠️👻🌟⚡♟️ n criado
 
+NOTAS {
+    -ADD + CARDS ELEMENTAIS
+    -TRMNR DE CRR AS CARDS Q EU N TRMNI
+
+    -CTR O BGL DO CARDS
+    -OTMZ O BGL DO CARDS
+    -CTR O BUG DO 2CLICK
+
+    -CRR ANÇ PR MÃ IND/VND
+    -AJST DLGS DS BOSSES PR BTR CM A HSTRA 
+
+    -PXR AS PRT DO FRRIO E MDC ANTG ANTS D ATT O GIT D PC D SENAC (C EU TO LND ISS AGR E N TRI AS PRT... PRNGT C ALG TM O COD ANTG)
+}
+
 PALTAS{
     POO - citar a nova organização para contornar usar type="module" e evitar redefinir o cod inteiro
     ==========
