@@ -23,10 +23,10 @@ function configurarSelecaoPersonagem() {
       mao: 5
     },
     lilia: {
-      nome: "🐼❄️LILIA, AMANTE DE PANDAS E ARMAS❄️🐼",
+      nome: "🐼❄️LILIA, LIDER DO GLACIAL PROTOCOOL❄️🐼",
       dificuldade: "🐼❄️NÍVEL DE DIFICULDADE: 💀💀💀❄️🐼",
       cor: "rgba(255, 128, 251, 1)",
-      descricao: "Ela sabe muito bem se adpatar a tudo, ela pode parecer fraca e indefesa como um panda, mas quando ela se adapta... Ela mostra suas imensas garras, com uma força, vitalidade, energia e pensamento incrivel ela possui um deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, combe marcação para turbinar seu dano e def imensuraveis.",
+      descricao: "Ela sabe muito bem se adpatar a tudo, ela pode parecer fraca e indefesa como um panda, mas quando ela se adapta, ela mostra suas imensas garras, com uma força, vitalidade, energia e pensamento incrivel ela possui um deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, combe marcação para turbinar seu dano e def imensuraveis.",
       hp: "60",
       maxHp: "60",
       energia: "2",

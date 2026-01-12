@@ -737,6 +737,10 @@ function drawCards() {
       case "Chuva Corrosiva":
       case "Chuva Controlada":
       case "Corrosão":
+      case "Inicio Da Água":
+      case "Alma Do Mar.7":
+      case "Aquafluxo":
+      case "Choro Da Vida":
         tipo = "agua";
         break;
       //❄️❄️❄️❄️❄️ FROST ❄️❄️❄️❄️❄️
@@ -2380,6 +2384,78 @@ function drawCards() {
       //🌧️
       else if (card.name === "Mar Denso") {
         marcarInimigos("🌧️", "area", true)
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+      }
+      //🌧️
+      else if (card.name === "Inicio Da Água") {
+        let dano = 0;
+        dano += card.power;
+        markedCount = enemies.filter(e => e.tipoVida === "🌧️").length
+        for (let i = 0; i < markedCount; i++) {
+          dano += Math.floor(lixoReciclado * 0.05);
+        }
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= dano;
+        floatText(enemies[0].el, `-${dano}🌧️`, "red");
+
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+      }
+      else if (card.name === "Choro Da Vida") {
+        let def = 0;
+        def += card.power;
+        def += Math.floor(lixoReciclado * 0.17);
+        playerShield += def;
+
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
+
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+      }
+      //🌧️
+      else if (card.name === "Aquafluxo") {
+        let dano = 0;
+        let armorGain = 0;
+        dano += card.power;
+        markedCount = enemies.filter(e => e.tipoVida === "🌧️").length
+        for (let i = 0; i < markedCount; i++) {
+          energy += 1;
+          armorGain += 1;
+        }
+        animateDamage(enemies[0].el);
+        enemies[0].hp -= dano;
+        floatText(enemies[0].el, `-${dano}🌧️`, "red");
+        glowPlayer("blue");
+        floatText(document.getElementById("player"), `+${armorGain}🔷`, "cyan");
+
+        if (hasItem(20)) {
+          atualizarLixo();
+          atualizarLixo();
+        }
+      }
+      //🌧️
+      else if (card.name === "Alma Do Mar.7") {
+        enemies.forEach(e => {
+          let dano = 0;
+          dano += card.power;
+          dano += Math.floor(lixoReciclado * 0.1);
+          dano += Math.floor(dinheiro * 0.1);
+          if (e.tipoVida === "🌧️") {
+            animateDamage(e.el);
+            e.hp -= dano;
+            floatText(e.el, `-${dano}🌧️`, "red");
+          } else {
+            floatText(e.el, `🌧️`, "red");
+          }
+        });
         if (hasItem(20)) {
           atualizarLixo();
           atualizarLixo();
@@ -6297,20 +6373,33 @@ function criarPlayerNaDiv3() {
       }
       if (mapaBatalha == 19) {
         imgLilia = "./../img/jogo/player/lilia3.png";
-        playerMaxHP += 80;
-        energyMax += 3;
-        energy += 3;
-        maoInicio += 4;
-        limiteMao += 4;
-        playerShieldInit += 15;
+        playerMaxHP += 40;
+        energyMax += 2;
+        energy += 2;
+        playerShieldInit += 20;
         playerShield = playerShieldInit;
+        if (limiteMao == maxMao) {
+
+        } else {
+          let sobra = maxMao - limiteMao;
+          let adicionar = Math.min(3, sobra);
+          maoInicio += adicionar;
+          limiteMao += adicionar;
+        }
       } else if (mapaBatalha == 11) {
         imgLilia = "./../img/jogo/player/lilia2.png";
         playerMaxHP += 20;
-        energyMax += 2;
-        energy += 2;
-        maoInicio += 2;
-        limiteMao += 2;
+        energyMax += 1;
+        energy += 1;
+        if (limiteMao == maxMao) {
+
+        } else {
+          let sobra = maxMao - limiteMao;
+          if (sobra >= 1) {
+            maoInicio += 1;
+            limiteMao += 1;
+          }
+        }
       }
 
       updateHUD();

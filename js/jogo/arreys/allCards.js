@@ -225,6 +225,42 @@ const allCards = [
     type: "agua"
   },
   {
+    name: "Inicio Da Água",
+    cost: 1,
+    basePower: 6,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/arco.png",
+    desc: "Cause 6 de dano, mais 5% de todo o lixo reciclado por cada inimigo marcado com 🌧️",
+    type: "agua"
+  },
+  {
+    name: "Alma Do Mar.7",
+    cost: 1,
+    basePower: 6,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/tuba.png",
+    desc: "Cause 10 de dano a todos os inimigos marcados com 🌧️, mais 10% de todo lixo reciclado e 10% de todo o dinheiro",
+    type: "agua"
+  },
+  {
+    name: "Aquafluxo",
+    cost: 1,
+    basePower: 8,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/aquafluxo.png",
+    desc: "Cause 8 de dano, e ganha por cada inimigos marcados com 🌧️, 1🔷 de energia",
+    type: "agua"
+  },
+  {
+    name: "Choro Da Vida",
+    cost: 1,
+    basePower: 10,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/cachoeira.png",
+    desc: "Ganhe 10 de escudo mais 17% de todo o lixo reciclado",
+    type: "agua"
+  },
+  {
     name: "Gelo Mortal",
     cost: 2,
     basePower: 1,

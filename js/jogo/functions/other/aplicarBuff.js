@@ -40,8 +40,12 @@ function aplicarBuff(item) {
 
     case 11: // mao -
     case 30:
+      if (limiteMao==1) {
+        return
+      } else {
       limiteMao -= 1;
       maoInicio = limiteMao;
+      }
       break;
 
     case 5:
