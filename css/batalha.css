@@ -131,6 +131,38 @@ em{
   width: 30px;
 }
 
+#cards {
+  display: flex;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.card {
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.from-right {
+  transform: translateX(120vw) rotate(12deg);
+  opacity: 0;
+}
+
+.card.show {
+  transform: translateX(0) rotate(0deg);
+  opacity: 1;
+}
+
+.card.shift-left {
+  transform: translateX(-40px) rotate(-4deg);
+  opacity: 0.6;
+}
+
+.card.discarding {
+  transform: translateY(80px) rotate(-10deg);
+  opacity: 0;
+  animation: fadeOut 0.3s ease forwards;
+}
+
+
 /* POPUP inicia invisível */
 #popupOverlayOpcoes {
   position: fixed;

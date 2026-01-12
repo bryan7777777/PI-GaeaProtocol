@@ -41,6 +41,8 @@ let pedroSpawnBoss = true;
 let guinevereSpawnBoss = true;
 let islaSpawnBoss = true;
 let peruSpawnBoss = true;
+let animarCompra = false;
+let bloqueioCliqueCartas = false;
 
 // ARREY
 const deck = [];
