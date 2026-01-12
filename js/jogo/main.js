@@ -723,6 +723,8 @@ function drawCards() {
         case "Ataque De Fogo":
         case "Lança Chamas":
         case "Cauterizar":
+        case "Vida Na Morte":
+        case "Cataclisma":
           tipo = "fire";
           break;
         //⛰️⛰️⛰️⛰️⛰️ TERRA 2 ⛰️⛰️⛰️⛰️⛰️
@@ -745,7 +747,9 @@ function drawCards() {
         case "Chuva Controlada":
         case "Corrosão":
         case "Inicio Da Água":
+        case "Alma Do Mar.2":
         case "Alma Do Mar.7":
+        case "Alma Do Mar.12":
         case "Aquafluxo":
         case "Choro Da Vida":
           tipo = "agua";
@@ -873,7 +877,7 @@ function drawCards() {
 
         setTimeout(() => {
           bloqueioCliqueCartas = false;
-        }, 1000);
+        }, 500);
         if (energy < card.cost || playerHP <= 0 || enemies.length === 0) return;
         energy -= card.cost;
 
@@ -2373,6 +2377,35 @@ function drawCards() {
           }
         }
         //♨️
+        else if (card.name === "Cataclisma") {
+          let dano = card.power;
+          dano += Math.floor(dinheiro / 5) - 1;
+          animateDamage(enemies[0].el);
+          enemies[0].hp -= dano;
+          floatText(enemies[0].el, `-${dano}♨️`, "red");
+          if (hasItem(20)) {
+            atualizarLixo();
+            atualizarLixo();
+          }
+        }
+        //♨️
+        else if (card.name === "Fenix") {
+          let valor = 0;
+          
+          enemies.forEach(e => {
+            if (e.tipoVida === "♨️") {
+              valor += card.power;
+            }
+          });
+
+          playerHP = Math.min(playerHP + valor, playerMaxHP);
+          glowPlayer("cintilante");
+          playerShield += valor;
+          floatText(document.getElementById("player"), `+${valor}💚`, "lime");
+          floatText(document.getElementById("player"), `+${valor}🛡️`, "cyan");
+          marcarInimigos("♨️", "area", true)
+        }
+        //♨️
         else if (card.name === "Lança Chamas") {
           enemies.forEach(e => {
             if (e.tipoVida === "⛰️") {
@@ -2387,6 +2420,22 @@ function drawCards() {
             floatText(e.el, `-${dano}♨️`, "red");
           });
           marcarInimigos("♨️", "area")
+          if (hasItem(20)) {
+            atualizarLixo();
+            atualizarLixo();
+          }
+        }
+        //♨️
+        else if (card.name === "Vida Na Morte") {
+          let dano = 0;
+          dano += card.power;
+          markedCount = enemies.filter(e => e.tipoVida === "♨️").length
+          for (let i = 0; i < markedCount; i++) {
+            dano += Math.floor(lixoReciclado * 0.04);
+          }
+          glowPlayer("green");
+          floatText(document.getElementById("player"), `+${dano}💚`, "lime");
+
           if (hasItem(20)) {
             atualizarLixo();
             atualizarLixo();
@@ -2461,6 +2510,21 @@ function drawCards() {
           }
         }
         //🌧️
+        else if (card.name === "Alma Do Mar.2") {
+          dano = card.power;
+          azagua = deck.filter(c => c.type === "agua").length;
+          dano *= azagua;
+
+          animateDamage(enemies[0].el);
+            enemies[0].hp -= dano;
+            floatText(enemies[0].el, `-${dano}🌧️`, "red");
+
+          if (hasItem(20)) {
+            atualizarLixo();
+            atualizarLixo();
+          }
+        }
+        //🌧️
         else if (card.name === "Alma Do Mar.7") {
           enemies.forEach(e => {
             let dano = 0;
@@ -2475,6 +2539,22 @@ function drawCards() {
               floatText(e.el, `🌧️`, "red");
             }
           });
+          if (hasItem(20)) {
+            atualizarLixo();
+            atualizarLixo();
+          }
+        }
+        //🌧️
+        else if (card.name === "Alma Do Mar.12") {
+          if (playerHP <= playerMaxHP * 0.3) {
+            floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
+            glowPlayer("green");
+            playerHP = Math.min(playerHP + card.power, playerMaxHP);
+          } else {
+            animateDamage(enemies[0].el);
+            enemies[0].hp -= card.power;
+            floatText(enemies[0].el, `-${card.power}🌧️`, "red");
+          }
           if (hasItem(20)) {
             atualizarLixo();
             atualizarLixo();

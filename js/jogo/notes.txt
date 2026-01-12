@@ -43,7 +43,7 @@ STATS ENEMYS
 ⚔️🎭💚 se não puder executar a primeira ação executa a segunda
 ⚔️❓💚 pode executar 2 ações, ou uma ou outra que esta adjacente (50% de chance)
 ⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
-💫✨🤢🥶💀👾☠️👻🌟⚡♟️ n criado
+💫✨🤢🥶💀👾☠️👻🌟⚡♟️🪙♻️🪸 n criado
 
 NOTAS {
     -ADD + CARDS ELEMENTAIS

@@ -35,6 +35,7 @@ const allCards = [
     desc: "Cause dano em area 5/10/15/20/30/40, e gaste energia respectivamente  0/1/2/3/4/5",
     type: "cintilante"
   },
+  // ♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️
   {
     name: "Combustão",
     cost: 0,
@@ -90,6 +91,34 @@ const allCards = [
     type: "fire"
   },
   {
+    name: "Vida Na Morte",
+    cost: 2,
+    basePower: 10,
+    rarity: "fire",
+    img: "../img/jogo/cards/fire/cinzas.jpg",
+    desc: "Cure 10 de vida mais 4% de todo o lixo reciclado ♻️ por inimigos marcados com ♨️",
+    type: "fire"
+  },
+  {
+    name: "Cataclisma",
+    cost: 3,
+    basePower: 20,
+    rarity: "fire",
+    img: "../img/jogo/cards/fire/anelFogo.jpg",
+    desc: "Cause 20 de dano mais 20% de todo o dinheiro 🪙",
+    type: "fire"
+  },
+  {
+    name: "Fenix",
+    cost: 3,
+    basePower: 10,
+    rarity: "fire",
+    img: "../img/jogo/cards/fire/fenix.jpg",
+    desc: "Cure e ganhe escudo em 10 para cada inimigo marcado com ♨️, marca todos com ♨️",
+    type: "fire"
+  },
+  // ⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️
+  {
     name: "Soterrar",
     cost: 0,
     basePower: 0,
@@ -122,7 +151,7 @@ const allCards = [
     basePower: 10,
     rarity: "terra",
     img: "../img/jogo/cards/terra/atkBrutoTerra.jpg",
-    desc: "Cause 10 de dano mais 10% de todo o lixo reciclado ao inimigo, se ele estiver marcado com ⛰️ cause X2",
+    desc: "Cause 10 de dano mais 10% de todo o lixo reciclado ♻️ ao inimigo, se ele estiver marcado com ⛰️ cause X2",
     type: "terra"
   },
   {
@@ -131,7 +160,7 @@ const allCards = [
     basePower: 6,
     rarity: "terra",
     img: "../img/jogo/cards/terra/escudoTerra.jpg",
-    desc: "Ganhe 6 de escudo por cada carta do tipo EARTH e WATHER na mão mais 20% de todo o lixo reciclado",
+    desc: "Ganhe 6 de escudo por cada carta do tipo EARTH e WATHER na mão mais 20% de todo o lixo reciclado ♻️",
     type: "terra"
   },
   {
@@ -140,7 +169,7 @@ const allCards = [
     basePower: 2,
     rarity: "terra",
     img: "../img/jogo/cards/terra/vidaTerra.jpg",
-    desc: "Ganhe 2 de vida por cada carta do tipo EARTH e WATHER na mão mais 10% de todo o lixo reciclado",
+    desc: "Ganhe 2 de vida por cada carta do tipo EARTH e WATHER na mão mais 10% de todo o lixo reciclado ♻️",
     type: "terra"
   },
   {
@@ -149,7 +178,7 @@ const allCards = [
     basePower: 30,
     rarity: "terra",
     img: "../img/jogo/cards/terra/entulhoTerra.jpg",
-    desc: "Cause 30 de dano mais 50% de todo o lixo reciclado ao inimigo se ele estiver marcado com ⛰️",
+    desc: "Cause 30 de dano mais 50% de todo o lixo reciclado♻️ ao inimigo se ele estiver marcado com ⛰️",
     type: "terra"
   },
   {
@@ -170,6 +199,7 @@ const allCards = [
     desc: "Marca todos os inimigos com ⛰️",
     type: "terra"
   },
+  // 🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️
   {
     name: "Jato De Água",
     cost: 0,
@@ -230,7 +260,16 @@ const allCards = [
     basePower: 6,
     rarity: "agua",
     img: "../img/jogo/cards/agua/arco.png",
-    desc: "Cause 6 de dano, mais 5% de todo o lixo reciclado por cada inimigo marcado com 🌧️",
+    desc: "Cause 6 de dano, mais 5% de todo o lixo reciclado ♻️ por cada inimigo marcado com 🌧️",
+    type: "agua"
+  },
+  {
+    name: "Alma Do Mar.2",
+    cost: 3,
+    basePower: 10,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/abisal.jpg",
+    desc: "Cause 10 de dano para cada carta de CONDENSATION 🌧️ na sua mão (essa carta conta também)",
     type: "agua"
   },
   {
@@ -239,7 +278,16 @@ const allCards = [
     basePower: 6,
     rarity: "agua",
     img: "../img/jogo/cards/agua/tuba.png",
-    desc: "Cause 10 de dano a todos os inimigos marcados com 🌧️, mais 10% de todo lixo reciclado e 10% de todo o dinheiro",
+    desc: "Cause 10 de dano a todos os inimigos marcados com 🌧️, mais 10% de todo lixo reciclado ♻️ e 10% de todo o dinheiro 🪙",
+    type: "agua"
+  },
+  {
+    name: "Alma Do Mar.12",
+    cost: 1,
+    basePower: 15,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/peixes.jpg",
+    desc: "Se sua vida for maior que 30% do maximo, cause 15 de dano, se for menor cure 15",
     type: "agua"
   },
   {
@@ -257,9 +305,10 @@ const allCards = [
     basePower: 10,
     rarity: "agua",
     img: "../img/jogo/cards/agua/cachoeira.png",
-    desc: "Ganhe 10 de escudo mais 17% de todo o lixo reciclado",
+    desc: "Ganhe 10 de escudo mais 17% de todo o lixo reciclado ♻️",
     type: "agua"
   },
+  // ❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️
   {
     name: "Gelo Mortal",
     cost: 2,
@@ -386,6 +435,7 @@ const allCards = [
     desc: "Compre 1 carta do seu deck (Exceto eu) por cada inimigo marcado com ❄️",
     type: "frost"
   },
+  // ⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️
   {
     name: "Impacto Bruto",
     cost: 3,
@@ -557,6 +607,7 @@ const allCards = [
     desc: "Cause 30 de dano em area, a cada inimigo no campo receba 15 de dano (max 45).",
     type: "attack"
   },
+  // 🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️
   {
     name: "Defesa",
     cost: 1,
@@ -737,6 +788,7 @@ const allCards = [
     desc: "Causa dano igual à sua armadura atual.",
     type: "defense"
   },
+  // 💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚💚
   {
     name: "Cura",
     cost: 0,
@@ -863,13 +915,14 @@ const allCards = [
     desc: "Compra 2 cartas aleatórias.",
     type: "heal"
   },
+  // ♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️♻️
   {
     name: "Recicladora",
     cost: 1,
     basePower: 8,
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/reciclagem.png",
-    desc: "Cause dano igual a 20% de todo lixo reciclado (Arredondado para baixo).",
+    desc: "Cause dano igual a 20% de todo lixo reciclado ♻️ (Arredondado para baixo).",
     type: "reciclagem"
   },
   {
@@ -878,7 +931,7 @@ const allCards = [
     basePower: 8,
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/armaForte.jpg",
-    desc: "Recicla lixo, para cada lixo reciclado cause dano igual a 5% de todo lixo reciclado.",
+    desc: "Recicla lixo, para cada lixo reciclado ♻️ cause dano igual a 5% de todo lixo reciclado ♻️.",
     type: "reciclagem"
   },
   {
@@ -887,7 +940,7 @@ const allCards = [
     basePower: 8,
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/reevitalizacao.png",
-    desc: "Cure igual a 10% de todo lixo reciclado (Arredondado para baixo).",
+    desc: "Cure igual a 10% de todo lixo reciclado ♻️ (Arredondado para baixo).",
     type: "reciclagem"
   },
   {
@@ -896,7 +949,7 @@ const allCards = [
     basePower: 8,
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/escudoForte.jpg",
-    desc: "Ganhe escudo igual a 25% de todo lixo reciclado (Arredondado para baixo).",
+    desc: "Ganhe escudo igual a 25% de todo lixo reciclado ♻️ (Arredondado para baixo).",
     type: "reciclagem"
   },
   {
@@ -914,7 +967,7 @@ const allCards = [
     basePower: 7,
     rarity: "legend",
     img: "../img/jogo/cards/reciclagem/terror.png",
-    desc: "Cause 7 de dano por cada lixo reciclado, se sua vida estiver em 30 ou menos cause X2.",
+    desc: "Cause 7 de dano por cada lixo reciclado ♻️, se sua vida estiver em 30 ou menos cause X2.",
     type: "reciclagem"
   },
   {
@@ -950,9 +1003,10 @@ const allCards = [
     basePower: 0,
     rarity: "epic",
     img: "../img/jogo/cards/reciclagem/ganhoDeEnergia.png",
-    desc: "Recicla lixo, ganhe 1 de energia a cada 2 lixos reciclados (Arredondado para baixo).",
+    desc: "Recicla lixo, ganhe 1 de energia a cada 2 lixos reciclados ♻️ (Arredondado para baixo).",
     type: "reciclagem"
   },
+  // 🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️
   {
     name: "Entulho",
     cost: 1,
@@ -977,7 +1031,7 @@ const allCards = [
     basePower: 0,
     rarity: "common",
     img: "../img/jogo/cards/lixo/lixoQuimico.png",
-    desc: "Tudo pode ser reciclado, mas certas coisas custão muito caro...",
+    desc: "Tudo pode ser reciclado ♻️, mas certas coisas custão muito caro...",
     type: "lixo"
   },
   {
