@@ -47,13 +47,19 @@ STATS ENEMYS
 
 NOTAS {
     -ADD + CARDS ELEMENTAIS
+
     -TRMNR DE CRR AS CARDS Q EU N TRMNI
 
-    -CTR O BGL DO CARDS
-    -OTMZ O BGL DO CARDS
-    -CTR O BUG DO 2CLICK
+    🔷-CTR O BGL DO CARDS
 
-    -CRR ANÇ PR MÃ IND/VND
+    -OTMZ O BGL DO CARDS FUNC
+
+    🔷-OTMZ O BGL DO CARDS ITNS
+
+    🔷-CTR O BUG DO 2CLICK
+
+    🔷-CRR ANÇ PR MÃ IND/VND
+
     -AJST DLGS DS BOSSES PR BTR CM A HSTRA 
 
     -PXR AS PRT DO FRRIO E MDC ANTG ANTS D ATT O GIT D PC D SENAC (C EU TO LND ISS AGR E N TRI AS PRT... PRNGT C ALG TM O COD ANTG)
@@ -81,4 +87,9 @@ PALTAS{
     BOSS SECRETO - citar sobre como acessar o boss secreto
     ==========
     BOSS REWORCK - citar a possibiidade de um reworck nos boss, devido a seus modelos antigos, está muito dif criar uma animação para eles
+    ==========
+    PRIORIDADE DE TAREFAS - citar qual como e pq priorizei tal coisa
+    ==========
+    BUGS - citar correção de bugs d forma sutil
+    ==========
 }

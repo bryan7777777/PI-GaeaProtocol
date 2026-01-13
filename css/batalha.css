@@ -598,7 +598,9 @@ color: rgb(227, 90, 255);
 
 .card .desc {
   font-size: 14px;
-  padding: 6px;
+  padding: 1px;
+  width: 90%;
+  /* min-height: 50%; */
 }
 
 .card:hover {

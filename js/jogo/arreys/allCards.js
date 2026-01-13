@@ -27,6 +27,15 @@ const allCards = [
     type: "cintilante"
   },
   {
+    name: "Ecosistema Preservado",
+    cost: 3,
+    basePower: 0,
+    rarity: "cintilante",
+    img: "../img/jogo/cards/cintilante/ecosistema.png",
+    desc: "Compre <strong>GÆPROTOCOL</strong>, <strong>Recicladora</strong> e <strong>Essencia Verde</strong> com custo 0 se sua mão for 3 ou menos",
+    type: "cintilante"
+  },
+  {
     name: "Chuva de Laminas",
     cost: 0,
     basePower: 5,
@@ -435,6 +444,24 @@ const allCards = [
     desc: "Compre 1 carta do seu deck (Exceto eu) por cada inimigo marcado com ❄️",
     type: "frost"
   },
+  {
+    name: "Aura Glacial",
+    cost: 3,
+    basePower: 1,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/auraGelida.jpg",
+    desc: "Cause dano igual 12% de todo o lixo reciclado ♻️, aumenta o contador em 1♻️ para cada carta de FROST na mão",
+    type: "frost"
+  },
+  {
+    name: "Terras Glaciais",
+    cost: 2,
+    basePower: 1,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/marcoEstrategico.jpg",
+    desc: "Cause dano igual 5% de todo o dinheiro 🪙 (arredonda para baixo), aumenta o dano em x1 para cada carta de FROST na mão",
+    type: "frost"
+  },
   // ⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️
   {
     name: "Impacto Bruto",
@@ -587,6 +614,15 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/atk/ChuvaDeFragmento.png",
     desc: "Causa 6 de dano em área a todos os inimigos.",
+    type: "attack"
+  },
+  {
+    name: "Lança Granadas",
+    cost: 0,
+    basePower: 3,
+    rarity: "common",
+    img: "../img/jogo/cards/atk/LancaGranadas.png",
+    desc: "Causa 3 de dano em área a todos os inimigos.",
     type: "attack"
   },
   {
@@ -929,9 +965,18 @@ const allCards = [
     name: "Arma Auto Sustentavel",
     cost: 2,
     basePower: 8,
-    rarity: "legend",
+    rarity: "epic",
     img: "../img/jogo/cards/reciclagem/armaForte.jpg",
     desc: "Recicla lixo, para cada lixo reciclado ♻️ cause dano igual a 5% de todo lixo reciclado ♻️.",
+    type: "reciclagem"
+  },
+  {
+    name: "Defesa Critica",
+    cost: 2,
+    basePower: 8,
+    rarity: "epic",
+    img: "../img/jogo/cards/reciclagem/defesaCritica.jpg",
+    desc: "Ganhe escudo igual 5% de todo lixo reciclado ♻️, se sua vida for 30 ou menos, x5 o escudo",
     type: "reciclagem"
   },
   {
@@ -986,6 +1031,24 @@ const allCards = [
     rarity: "rare",
     img: "../img/jogo/cards/reciclagem/atkReciclavel.png",
     desc: "Remove cartas de lixo da mão e causa 5 de dano por cada carta removida.",
+    type: "reciclagem"
+  },
+  {
+    name: "Artilharia Reciclável",
+    cost: 1,
+    basePower: 4,
+    rarity: "rare",
+    img: "../img/jogo/cards/reciclagem/lancaFoguetes.jpg",
+    desc: "Remove cartas de lixo da mão e causa 4 de dano a todos os inimigos por cada carta removida.",
+    type: "reciclagem"
+  },
+  {
+    name: "Fogo Reciclável Pesado",
+    cost: 3,
+    basePower: 5,
+    rarity: "legend",
+    img: "../img/jogo/cards/reciclagem/lancaFoguetesForte.jpg",
+    desc: "Remove cartas de lixo da mão e causa 5 de dano a todos os inimigos por cada carta removida, mais 10% de todo o lixo reciclado.",
     type: "reciclagem"
   },
   {
