@@ -53,6 +53,7 @@ let itensJaPegos = [];
 // STATUS
 let lixoReciclado = 0;
 let dinheiro = 0;
+let alma1 = 5;
 
 // PLAYER
 let playerMaxHP = 100 

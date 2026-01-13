@@ -599,7 +599,8 @@ function checkEnemies() {
             drawCards();
             updateHUD();
             playerShield = playerShieldInit;
-            atualizarDinheiro()
+            atualizarDinheiro();
+            alma1 = 5;
           } else if (mapaBatalha === 7 && enemies.length === 0 && playerHP > 0 && pagina === "tutorial.html") {
             PULAR_TODO_TUTORIAL = false;
             document.getElementById("overlay").style.display = "block";
@@ -748,6 +749,7 @@ function drawCards() {
         case "Chuva Controlada":
         case "Corrosão":
         case "Inicio Da Água":
+        case "Alma Do Mar.1":
         case "Alma Do Mar.2":
         case "Alma Do Mar.7":
         case "Alma Do Mar.12":
@@ -2430,6 +2432,14 @@ function drawCards() {
           floatText(enemies[0].el, `-${dano}🌧️`, "red");
           glowPlayer("blue");
           floatText(document.getElementById("player"), `+${armorGain}🔷`, "cyan");
+        }
+        //🌧️
+        else if (card.name === "Alma Do Mar.1") {
+          animateDamage(enemies[0].el);
+          dano = Math.min(alma1,75);
+          enemies[0].hp -= dano;
+          floatText(enemies[0].el, `-${dano}🌧️`, "red");
+          alma1+=1;
         }
         //🌧️
         else if (card.name === "Alma Do Mar.2") {
@@ -6531,27 +6541,27 @@ const characterDecks = {
     allCards.find(c => c.name === "Brutalidade Da Terra"),
     allCards.find(c => c.name === "Arma Ancestral"),
     allCards.find(c => c.name === "Chuva Isolante"),
-    allCards.find(c => c.name === "Chuva Controlada"),
-    allCards.find(c => c.name === "Chuva Corrosiva"),
+    allCards.find(c => c.name === "Aquafluxo"),
+    allCards.find(c => c.name === "Inicio Da Água"),
     allCards.find(c => c.name === "Lança Chamas"),
-    allCards.find(c => c.name === "Explosão Termica"),
-    allCards.find(c => c.name === "Cauterizar"),
+    allCards.find(c => c.name === "Fenix"),
+    allCards.find(c => c.name === "Vida Na Morte"),
     allCards.find(c => c.name === "Nevasca Mortal"),
     allCards.find(c => c.name === "Baralho Glacial"),
     allCards.find(c => c.name === "Xenofluxo Glacial"),
   ],
   magna: [
+    allCards.find(c => c.name === "Lança Granadas"),
+    allCards.find(c => c.name === "Lança Granadas"),
     allCards.find(c => c.name === "Chuva De Fragmentos"),
-    allCards.find(c => c.name === "Chuva De Fragmentos"),
-    allCards.find(c => c.name === "Explosão"),
     allCards.find(c => c.name === "Explosão"),
     allCards.find(c => c.name === "Fogo Amigo"),
     allCards.find(c => c.name === "Chuva de Laminas"),
     allCards.find(c => c.name === "Lança Chamas"),
     allCards.find(c => c.name === "Lança Chamas"),
+    allCards.find(c => c.name === "Fenix"),
     allCards.find(c => c.name === "Chuva Controlada"),
     allCards.find(c => c.name === "Chuva Controlada"),
-    allCards.find(c => c.name === "Chuva Isolante"),
     allCards.find(c => c.name === "Chuva Isolante"),
   ],
   lucius: [
@@ -6571,14 +6581,15 @@ const characterDecks = {
   azul: [
     allCards.find(c => c.name === "Sistema de reflexão"),
     allCards.find(c => c.name === "Sistema de reflexão"),
-    allCards.find(c => c.name === "Sistema de reflexão"),
     allCards.find(c => c.name === "Escudo Retaliante"),
     allCards.find(c => c.name === "Escudo Retaliante"),
     allCards.find(c => c.name === "Escudo Retaliante"),
-    allCards.find(c => c.name === "Em guarda"),
     allCards.find(c => c.name === "Em guarda"),
     allCards.find(c => c.name === "Em guarda"),
     allCards.find(c => c.name === "Indestrutivel"),
+    allCards.find(c => c.name === "Alma Do Mar.12"),
+    allCards.find(c => c.name === "Choro Da Vida"),
+    allCards.find(c => c.name === "Choro Da Vida"),
     allCards.find(c => c.name === "Destruir Carta"),
   ],
   amarelo: [
@@ -6699,12 +6710,12 @@ const characterDecks = {
     allCards.find(c => c.name === "Arpão"),
     allCards.find(c => c.name === "Arpão"),
     allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Impulso Defensivo"),
+    allCards.find(c => c.name === "Inicio Da Água"),
+    allCards.find(c => c.name === "Aquafluxo"),
     allCards.find(c => c.name === "Mar Denso"),
     allCards.find(c => c.name === "Jato De Água"),
-    allCards.find(c => c.name === "Chuva Isolante"),
-    allCards.find(c => c.name === "Chuva Corrosiva"),
+    allCards.find(c => c.name === "Alma Do Mar.2"),
+    allCards.find(c => c.name === "Alma Do Mar.7"),
     allCards.find(c => c.name === "Corrosão"),
   ],
   fergus: [
@@ -6714,7 +6725,7 @@ const characterDecks = {
     allCards.find(c => c.name === "Arpão"),
     allCards.find(c => c.name === "Arpão"),
     allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Impulso Defensivo"),
+    allCards.find(c => c.name === "Alma Do Mar.1"),
     allCards.find(c => c.name === "Broca Perfurante"),
     allCards.find(c => c.name === "Ceifa"),
     allCards.find(c => c.name === "Desprezo"),
@@ -6725,29 +6736,29 @@ const characterDecks = {
     allCards.find(c => c.name === "Arpão"),
     allCards.find(c => c.name === "Arpão"),
     allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Arpão"),
-    allCards.find(c => c.name === "Arpão"),
     allCards.find(c => c.name === "Impulso Defensivo"),
     allCards.find(c => c.name === "Defesa"),
     allCards.find(c => c.name === "Sistema de reflexão"),
     allCards.find(c => c.name === "Sistema de reflexão"),
+    allCards.find(c => c.name === "Mar Denso"),
+    allCards.find(c => c.name === "Aquafluxo"),
+    allCards.find(c => c.name === "Alma Do Mar.12"),
+    allCards.find(c => c.name === "Alma Do Mar.12"),
     allCards.find(c => c.name === "Destruir Carta"),
   ],
   ferrus: [
-    allCards.find(c => c.name === "Terror Critico"),
+    allCards.find(c => c.name === "Artilharia Reciclável"),
     allCards.find(c => c.name === "Ataque Reciclável"),
-    allCards.find(c => c.name === "Recicladora"),
     allCards.find(c => c.name === "Defesa Reciclável"),
     allCards.find(c => c.name === "Xenofluxo Reciclável"),
-    allCards.find(c => c.name === "Furia"),
-    allCards.find(c => c.name === "Escudo"),
-    allCards.find(c => c.name === "Escudo De Gaea"),
-    allCards.find(c => c.name === "Coração De Gaea"),
+    allCards.find(c => c.name === "Recicladora"),
+    allCards.find(c => c.name === "Vida Na Morte"),
+    allCards.find(c => c.name === "Cataclisma"),
+    allCards.find(c => c.name === "Choro Da Vida"),
+    allCards.find(c => c.name === "Aura Glacial"),
+    allCards.find(c => c.name === "Ferro Velho"),
+    allCards.find(c => c.name === "Ferro Velho"),
     allCards.find(c => c.name === "Restos de mecha"),
-    allCards.find(c => c.name === "Ferro Velho"),
-    allCards.find(c => c.name === "Ferro Velho"),
   ],
   tomoeh: [
     allCards.find(c => c.name === "Beserck"),

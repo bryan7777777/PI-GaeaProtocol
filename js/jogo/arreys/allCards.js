@@ -208,7 +208,7 @@ const allCards = [
     desc: "Marca todos os inimigos com ⛰️",
     type: "terra"
   },
-  // 🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️
+  // 🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️
   {
     name: "Jato De Água",
     cost: 0,
@@ -273,6 +273,15 @@ const allCards = [
     type: "agua"
   },
   {
+    name: "Alma Do Mar.1",
+    cost: 1,
+    basePower: 5,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/baleia.jpg",
+    desc: "Cause 5 de dano, sempre que usada aumenta o dano em 1 permanentemente até o final do jogo (max.75)",
+    type: "agua"
+  },
+  {
     name: "Alma Do Mar.2",
     cost: 3,
     basePower: 10,
@@ -310,7 +319,7 @@ const allCards = [
   },
   {
     name: "Choro Da Vida",
-    cost: 1,
+    cost: 2,
     basePower: 10,
     rarity: "agua",
     img: "../img/jogo/cards/agua/cachoeira.png",
