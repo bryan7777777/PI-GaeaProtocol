@@ -6875,6 +6875,53 @@ const characterDecks = {
   ]
 };
 
+//ANIMAÇÃO PLAYER
+function animarLiliaTransformacao() {
+  if (personagemSelecionado !== "lilia") return;
+
+  const playerImg = document.getElementById("player");
+  if (!playerImg) return;
+
+  const frames = {
+    f1: "./../img/jogo/player/animado/lilia1.png",
+    f2: "./../img/jogo/player/animado/lilia2.png",
+    f3: "./../img/jogo/player/animado/lilia3.png",
+    idle: imgLilia || "./../img/jogo/player/lilia1.png"
+  };
+
+  const delay = 100;
+
+  // 1
+  setTimeout(() => {
+    playerImg.src = frames.f1;
+  }, 0);
+
+  // 2
+  setTimeout(() => {
+    playerImg.src = frames.f2;
+  }, delay);
+
+  // 3
+  setTimeout(() => {
+    playerImg.src = frames.f3;
+  }, delay * 2);
+
+  // 2
+  setTimeout(() => {
+    playerImg.src = frames.f2;
+  }, delay * 3);
+
+  // 1
+  setTimeout(() => {
+    playerImg.src = frames.f1;
+  }, delay * 4);
+
+  // idle
+  setTimeout(() => {
+    playerImg.src = frames.idle;
+  }, delay * 5);
+}
+
 //ENEMYS
 async function enemyTurn() {
   animarCompra = true;
