@@ -46,19 +46,19 @@ STATS ENEMYS
 💫✨🤢🥶💀👾☠️👻🌟⚡♟️🪙♻️🪸 n criado
 
 NOTAS {
-    -ADD + CARDS ELEMENTAIS
+    🔷-ADD + CARDS ELEMENTAIS
 
-    -TRMNR DE CRR AS CARDS Q EU N TRMNI
+    🔷-TRMNR DE CRR AS CARDS Q EU N TRMNI
 
-    🔷-CTR O BGL DO CARDS
+    ✅-CTR O BGL DO CARDS
 
-    -OTMZ O BGL DO CARDS FUNC
+    🔷-OTMZ O BGL DO CARDS FUNC
 
-    🔷-OTMZ O BGL DO CARDS ITNS
+    ✅-OTMZ O BGL DO CARDS ITNS
 
-    🔷-CTR O BUG DO 2CLICK
+    ✅-CTR O BUG DO 2CLICK
 
-    🔷-CRR ANÇ PR MÃ IND/VND
+    ✅-CRR ANÇ PR MÃ IND/VND
 
     -AJST DLGS DS BOSSES PR BTR CM A HSTRA 
 
@@ -91,5 +91,13 @@ PALTAS{
     PRIORIDADE DE TAREFAS - citar qual como e pq priorizei tal coisa
     ==========
     BUGS - citar correção de bugs d forma sutil
+    ==========
+    OTIMIZAÇÃO FORÇADA - citar otimização de cod
+    ==========
+    POSIBILIDADES DE ANIMAÇÃO PLAYER - citar a possibiidade de criar animação para o player
+    ==========
+    RE-IMG - citar futura nessecidade de att e padronizar as img
+    ==========
+    HISTORICO D PROGREÇO - citar como estou slv o progreço das att do jogo
     ==========
 }
