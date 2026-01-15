@@ -1,6 +1,8 @@
-function startNemoraSnow() {
+function startNemoraSnow(soEfeito=true) {
   const container = document.getElementById("nemoraSnow");
-  mudarBackground('def');
+  if (soEfeito) {
+    mudarBackground('def');
+  }
   if (!container) return;
 
   container.style.display = "block";

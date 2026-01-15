@@ -661,7 +661,9 @@ function checkEnemies() {
           }
           if (mapaBatalha == 29) {
             bossFinal();
-            console.log("boss add")
+          }
+          if (mapaBatalha == 7 && enemies.length === 0) {
+            stopNemoraSnow();
           }
         }, 500);
       })(i);
@@ -952,7 +954,7 @@ function drawCards() {
         }
         //  ⚔️⚔️⚔️⚔️⚔️ ATAQUE ⚔️⚔️⚔️⚔️⚔️
         if (card.name === "Ataque") {
-          causarDano(card.power,"unico");
+          causarDano(card.power, "unico");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
@@ -961,12 +963,12 @@ function drawCards() {
           if (alvo.hp <= 30) {
             dano *= 3;
           }
-          causarDano(dano,"ultimo");
+          causarDano(dano, "ultimo");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
         else if (card.name === "Desprezo") {
-          causarDano(card.power,"ultimo");
+          causarDano(card.power, "ultimo");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
@@ -975,7 +977,7 @@ function drawCards() {
           if (deck.length <= 3) {
             dano *= 2;
           }
-          causarDano(dano,"ultimo");
+          causarDano(dano, "ultimo");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
@@ -990,7 +992,7 @@ function drawCards() {
         }
         //⚔️
         else if (card.name === "Ataque Rapido") {
-          causarDano(card.power,"unico");
+          causarDano(card.power, "unico");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
@@ -998,8 +1000,8 @@ function drawCards() {
           let dano = card.power;
           if (enemies[0].hp <= 30) {
             dano = 20;
-          } 
-          causarDano(dano,"unico");
+          }
+          causarDano(dano, "unico");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
@@ -1011,19 +1013,19 @@ function drawCards() {
           if (playerHP <= 30) {
             dano += card.power;
           }
-          causarDano(dano,"unico");
+          causarDano(dano, "unico");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
         else if (card.name === "Vingativo") {
           dano = playerMaxHP - playerHP;
-          causarDano(dano,"unico");
+          causarDano(dano, "unico");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
         else if (card.name === "Liderança") {
-            causarDano(card.power,"unico");
-          
+          causarDano(card.power, "unico");
+
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
           // filtra cartas que NÃO sejam Liderança
           const clonePool = playerDeck.filter(c => c.name !== "Liderança");
@@ -1058,7 +1060,7 @@ function drawCards() {
         }
         //⚔️
         else if (card.name === "Drone de Ataque") {
-          causarDano(card.power,"area");
+          causarDano(card.power, "area");
           deck.push({ ...allCards.find(c => c.name === "Drone Quebrado"), power: 0 });
           const cartasParaAdicionar = enemies.length - 1;
           const espaco = maxMao - deck.length;
@@ -1069,7 +1071,7 @@ function drawCards() {
         }
         //⚔️
         else if (card.name === "Drenagem") {
-          causarDano(card.power,"unico");
+          causarDano(card.power, "unico");
           playerShield += card.power;
           glowPlayer("green");
           playerHP = Math.min(playerHP + card.power, playerMaxHP);
@@ -1078,23 +1080,23 @@ function drawCards() {
         }
 
         else if (card.name === "Explosão") {
-          causarDano(card.power,"area");
+          causarDano(card.power, "area");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
         else if (card.name === "Chuva De Fragmentos") {
-          causarDano(card.power,"area");
+          causarDano(card.power, "area");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
         else if (card.name === "Lança Granadas") {
-          causarDano(card.power,"area");
+          causarDano(card.power, "area");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
         else if (card.name === "Fogo Amigo") {
           enemies.forEach(e => {
-            causarDano(card.power,"area");
+            causarDano(card.power, "area");
             let dano = 15;
             floatText(document.getElementById("player"), `-${dano}⚔️`, "red");
 
@@ -1112,13 +1114,13 @@ function drawCards() {
         }
         //⚔️
         else if (card.name === "Rajada Dupla") {
-          causarDano(card.power,"unico");
-          causarDano(card.power,"unico");
+          causarDano(card.power, "unico");
+          causarDano(card.power, "unico");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
         else if (card.name === "Impacto Bruto") {
-          causarDano(card.power,"unico");
+          causarDano(card.power, "unico");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
@@ -1127,7 +1129,7 @@ function drawCards() {
           if (deck.length <= 3) {
             dano = card.power * 3;
           }
-          causarDano(dano,"unico");
+          causarDano(dano, "unico");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
 
@@ -1232,7 +1234,7 @@ function drawCards() {
             floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
             deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
           } else {
-            causarDano(card.power,"unico");
+            causarDano(card.power, "unico");
             deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
           }
         }
@@ -1276,7 +1278,7 @@ function drawCards() {
             dano *= 3;
           }
           // pega o último inimigo vivo
-          causarDano(dano,"ultimo");
+          causarDano(dano, "ultimo");
           playerShield += 3;
           floatText(document.getElementById("player"), `+3🛡️`, "blue");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
@@ -1298,7 +1300,7 @@ function drawCards() {
         }
         //🛡️
         else if (card.name === "Sistema de reflexão") {
-          causarDano(card.power,"unico");
+          causarDano(card.power, "unico");
           glowPlayer("blue");
           playerShield += (card.power * 2);
           floatText(document.getElementById("player"), `+${(card.power * 2)}🛡️`, "cyan");
@@ -1324,7 +1326,7 @@ function drawCards() {
         }
         //🛡️
         else if (card.name === "Escudo Retaliante") {
-          causarDano(playerShield,"unico");
+          causarDano(playerShield, "unico");
           glowPlayer("blue");
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
@@ -1431,7 +1433,7 @@ function drawCards() {
         }
         //💚
         else if (card.name === "Sobre Carga") {
-          causarDano(card.power*3,"unico");
+          causarDano(card.power * 3, "unico");
           animateDamage(document.getElementById("player"));
           playerHP = Math.min(playerHP - card.power, playerMaxHP);
           floatText(document.getElementById("player"), `-${card.power}💔`, "red");
@@ -1439,8 +1441,8 @@ function drawCards() {
         }
         //💚
         else if (card.name === "Golpe Neural Retaliante") {
-          causarDano(playerHP,"unico");
-          let dano=0;
+          causarDano(playerHP, "unico");
+          let dano = 0;
           if (playerHP < 20) {
             dano = playerHP - 1;
             playerHP = 1;
@@ -1496,7 +1498,7 @@ function drawCards() {
         //  ♻️♻️♻️♻️♻️ RECICLAGEM ♻️♻️♻️♻️♻️
         else if (card.name === "Recicladora") {
           let dano = Math.floor(lixoReciclado / 5);
-          causarDano(dano,"unico");
+          causarDano(dano, "unico");
         }
         //♻️
         else if (card.name === "Arma Auto Sustentavel") {
@@ -1531,7 +1533,7 @@ function drawCards() {
           // aplica efeito imediatamente
           const dano = ganho;
           if (enemies.length > 0) {
-            causarDano(dano,"unico");
+            causarDano(dano, "unico");
           }
           updateHUD();
 
@@ -1566,7 +1568,7 @@ function drawCards() {
         }
         //♻️
         else if (card.name === "Defesa Critica") {
-          let danoCalculado =playerHP >= 30? lixoReciclado * 0.25: lixoReciclado * 0.05;
+          let danoCalculado = playerHP >= 30 ? lixoReciclado * 0.25 : lixoReciclado * 0.05;
           let dano = 0;
 
           if (danoCalculado > 0) {
@@ -1653,7 +1655,7 @@ function drawCards() {
           // aplica efeito imediatamente
           const dano = lixoRemovido * 5;
           if (enemies.length > 0) {
-            causarDano(dano,"unico");
+            causarDano(dano, "unico");
           }
           updateHUD();
 
@@ -1701,7 +1703,7 @@ function drawCards() {
 
           // aplica efeito imediatamente
           const dano = lixoRemovido * 4;
-          causarDano(dano,"area");
+          causarDano(dano, "area");
           updateHUD();
 
           // anima e depois remove todas as cartas marcadas
@@ -1748,10 +1750,10 @@ function drawCards() {
 
           // aplica efeito imediatamente
           if (lixoReciclado > 0) {
-          dano2 = Math.max(1, Math.floor(lixoReciclado * 0.10));
+            dano2 = Math.max(1, Math.floor(lixoReciclado * 0.10));
           }
           const dano = (lixoRemovido * 5);
-          causarDano(dano+dano2,"unico");
+          causarDano(dano + dano2, "unico");
           updateHUD();
 
           // anima e depois remove todas as cartas marcadas
@@ -1935,7 +1937,7 @@ function drawCards() {
           if (playerHP <= 30) totalDamage *= 2;
           // aplica dano (no primeiro inimigo) com animação
           if (enemies.length > 0) {
-            causarDano(totalDamage,"unico");
+            causarDano(totalDamage, "unico");
           }
           // anima a carta usada e, após a animação, remova todas as cartas marcadas
           div.classList.add("card-remove");
@@ -2022,7 +2024,7 @@ function drawCards() {
             if (e.tipoVida === "🌧️") {
               marcarInimigos("❄️", "area")
             }
-            causarDano(dano,"areaEspecial",simbulo="❄️",e)
+            causarDano(dano, "areaEspecial", simbulo = "❄️", e)
           });
         }
         //❄️
@@ -2035,7 +2037,7 @@ function drawCards() {
             } else {
               dano = card.power;
             }
-            causarDano(dano,"areaEspecial",simbulo="❄️",e)
+            causarDano(dano, "areaEspecial", simbulo = "❄️", e)
           });
         }
         //❄️
@@ -2047,7 +2049,7 @@ function drawCards() {
           } else if (alvo.tipoVida === "♨️") {
             dano = card.power * 3;
           }
-          causarDano(dano,"ultimo",simbulo="❄️")
+          causarDano(dano, "ultimo", simbulo = "❄️")
         }
         //❄️
         else if (card.name === "Misil Termico Guiado") {
@@ -2093,7 +2095,7 @@ function drawCards() {
           } else {
             dano = card.power;
           }
-          causarDano(dano,"unico",simbulo="❄️")
+          causarDano(dano, "unico", simbulo = "❄️")
         }
         //❄️
         else if (card.name === "Misil Condensado") {
@@ -2102,7 +2104,7 @@ function drawCards() {
           } else {
             dano = card.power;
           }
-          causarDano(dano,"unico",simbulo="❄️")
+          causarDano(dano, "unico", simbulo = "❄️")
         }
         //❄️
         else if (card.name === "Defesa Condensada") {
@@ -2141,7 +2143,7 @@ function drawCards() {
           dano = Math.floor(lixoReciclado * 0.12);
           frostCount = deck.filter(c => c.type === "frost").length;
 
-          causarDano(dano,"unico",simbulo="❄️")
+          causarDano(dano, "unico", simbulo = "❄️")
 
           lixoReciclado += frostCount - 1;
           glowPlayer("green");
@@ -2154,7 +2156,7 @@ function drawCards() {
           frostCount = deck.filter(c => c.type === "frost").length;
           dano *= frostCount;
 
-          causarDano(dano,"unico",simbulo="❄️")
+          causarDano(dano, "unico", simbulo = "❄️")
         }
         //❄️
         else if (card.name === "Xenofluxo Glacial") {
@@ -2201,7 +2203,7 @@ function drawCards() {
           } else {
             dano = card.power;
           }
-          causarDano(dano,"unico",simbulo="♨️")
+          causarDano(dano, "unico", simbulo = "♨️")
         }
         //♨️
         else if (card.name === "Ataque De Fogo") {
@@ -2212,7 +2214,7 @@ function drawCards() {
           } else {
             dano = card.power;
           }
-          causarDano(dano,"unico",simbulo="♨️")
+          causarDano(dano, "unico", simbulo = "♨️")
         }
         //♨️
         else if (card.name === "Cauterizar") {
@@ -2222,13 +2224,13 @@ function drawCards() {
             dano = card.power;
           }
           marcarInimigos("♨️", "unico")
-          causarDano(dano,"unico",simbulo="♨️")
+          causarDano(dano, "unico", simbulo = "♨️")
         }
         //♨️
         else if (card.name === "Cataclisma") {
           let dano = card.power;
           dano += Math.floor(dinheiro / 5) - 1;
-          causarDano(dano,"unico",simbulo="♨️")
+          causarDano(dano, "unico", simbulo = "♨️")
         }
         //♨️
         else if (card.name === "Fenix") {
@@ -2257,7 +2259,7 @@ function drawCards() {
             } else {
               dano = card.power;
             }
-            causarDano(dano,"areaEspecial",simbulo="♨️",e)
+            causarDano(dano, "areaEspecial", simbulo = "♨️", e)
           });
           marcarInimigos("♨️", "area")
         }
@@ -2288,7 +2290,7 @@ function drawCards() {
           for (let i = 0; i < markedCount; i++) {
             dano += Math.floor(lixoReciclado * 0.05);
           }
-          causarDano(dano,"unico",simbulo="🌧️")
+          causarDano(dano, "unico", simbulo = "🌧️")
         }
         else if (card.name === "Choro Da Vida") {
           let def = 0;
@@ -2309,15 +2311,15 @@ function drawCards() {
             energy += 1;
             armorGain += 1;
           }
-          causarDano(dano,"unico",simbulo="🌧️")
+          causarDano(dano, "unico", simbulo = "🌧️")
           glowPlayer("blue");
           floatText(document.getElementById("player"), `+${armorGain}🔷`, "cyan");
         }
         //🌧️
         else if (card.name === "Alma Do Mar.1") {
-          dano = Math.min(alma1,75);
-          causarDano(dano,"unico",simbulo="🌧️")
-          alma1+=1;
+          dano = Math.min(alma1, 75);
+          causarDano(dano, "unico", simbulo = "🌧️")
+          alma1 += 1;
         }
         //🌧️
         else if (card.name === "Alma Do Mar.2") {
@@ -2325,7 +2327,7 @@ function drawCards() {
           azagua = deck.filter(c => c.type === "agua").length;
           dano *= azagua;
 
-          causarDano(dano,"unico",simbulo="🌧️")
+          causarDano(dano, "unico", simbulo = "🌧️")
         }
         //🌧️
         else if (card.name === "Alma Do Mar.7") {
@@ -2335,7 +2337,7 @@ function drawCards() {
             dano += Math.floor(lixoReciclado * 0.1);
             dano += Math.floor(dinheiro * 0.1);
             if (e.tipoVida === "🌧️") {
-              causarDano(dano,"areaEspecial",simbulo="🌧️",e)
+              causarDano(dano, "areaEspecial", simbulo = "🌧️", e)
             } else {
               floatText(e.el, `🌧️`, "red");
             }
@@ -2348,14 +2350,14 @@ function drawCards() {
             glowPlayer("green");
             playerHP = Math.min(playerHP + card.power, playerMaxHP);
           } else {
-            causarDano(card.power,"unico",simbulo="🌧️")
+            causarDano(card.power, "unico", simbulo = "🌧️")
           }
         }
         //🌧️
         else if (card.name === "Chuva Isolante") {
           enemies.forEach(e => {
             if (e.tipoVida === "♨️") {
-              causarDano(card.power,"areaEspecial",simbulo="🌧️",e)
+              causarDano(card.power, "areaEspecial", simbulo = "🌧️", e)
             } else {
               floatText(e.el, `🌧️`, "red");
             }
@@ -2366,7 +2368,7 @@ function drawCards() {
         else if (card.name === "Chuva Controlada") {
           enemies.forEach(e => {
             if (e.tipoVida === "♨️") {
-              causarDano(card.power,"areaEspecial",simbulo="🌧️",e)
+              causarDano(card.power, "areaEspecial", simbulo = "🌧️", e)
             }
           });
         }
@@ -2374,7 +2376,7 @@ function drawCards() {
         else if (card.name === "Chuva Corrosiva") {
           enemies.forEach(e => {
             if (e.tipoVida === "🌧️") {
-              causarDano(card.power,"areaEspecial",simbulo="🌧️",e)
+              causarDano(card.power, "areaEspecial", simbulo = "🌧️", e)
             } else {
               floatText(e.el, `🌧️`, "red");
             }
@@ -2384,7 +2386,7 @@ function drawCards() {
         //🌧️
         else if (card.name === "Corrosão") {
           if (enemies[0].tipoVida === "🌧️") {
-            causarDano(card.power,"unico",simbulo="🌧️")
+            causarDano(card.power, "unico", simbulo = "🌧️")
           } else {
             floatText(enemies[0].el, `🌧️`, "red");
           }
@@ -2401,7 +2403,7 @@ function drawCards() {
           } else {
             dano = card.power;
           }
-          causarDano(dano,"unico",simbulo="⛰️")
+          causarDano(dano, "unico", simbulo = "⛰️")
         }
         //⛰️
         else if (card.name === "Brutalidade Da Terra") {
@@ -2410,7 +2412,7 @@ function drawCards() {
           } else {
             dano = card.power;
           }
-          causarDano(dano,"unico",simbulo="⛰️")
+          causarDano(dano, "unico", simbulo = "⛰️")
         }
         //⛰️
         else if (card.name === "Força De Gaea") {
@@ -2419,14 +2421,14 @@ function drawCards() {
           if (enemies[0].tipoVida === "⛰️") {
             dano *= 2;
           }
-          causarDano(dano,"unico",simbulo="⛰️")
+          causarDano(dano, "unico", simbulo = "⛰️")
         }
         //⛰️
         else if (card.name === "Tudo Virá Terra") {
           dano = Math.floor(lixoReciclado / 2);
           dano += card.power;
           if (enemies[0].tipoVida === "⛰️") {
-            causarDano(dano,"unico",simbulo="⛰️")
+            causarDano(dano, "unico", simbulo = "⛰️")
           }
         }
         //⛰️
@@ -2463,7 +2465,7 @@ function drawCards() {
             } else {
               dano = card.power;
             }
-            causarDano(dano,"areaEspecial",simbulo="⛰️",e)
+            causarDano(dano, "areaEspecial", simbulo = "⛰️", e)
           });
           marcarInimigos("⛰️", "area")
         }
@@ -2502,7 +2504,7 @@ function drawCards() {
         }
         //✨
         else if (card.name === "Chuva de Laminas") {
-          power1=5;
+          power1 = 5;
           if (energy >= 5) {
             power1 = 40;
             energy -= 5;
@@ -2521,7 +2523,7 @@ function drawCards() {
           } else if (energy === 0) {
             power1 = 5;
           }
-          causarDano(power1,"unico")
+          causarDano(power1, "area")
         }
         //✨
         else if (card.name === "GÆPROTOCOL") {
@@ -2558,7 +2560,7 @@ function drawCards() {
 
           // aplica efeitos (um único efeito agregado)
           if (enemies.length > 0) {
-            causarDano(totalDamage,"unico")
+            causarDano(totalDamage, "unico")
           }
           glowPlayer("cintilante");
           playerShield += totalShield;
@@ -2611,35 +2613,35 @@ function reorganizarMao() {
     card.style.opacity = "1";
   });
 }
-function causarDano(valor,tipo,simbulo="⚔️",areaEspecial){
+function causarDano(valor, tipo, simbulo = "⚔️", areaEspecial) {
   animarLiliaTransformacao();
   switch (tipo) {
     case "unico":
       animateDamage(enemies[0].el);
-          enemies[0].hp -= valor;
-          floatText(enemies[0].el, `-${valor}${simbulo}`, "red");
+      enemies[0].hp -= valor;
+      floatText(enemies[0].el, `-${valor}${simbulo}`, "red");
       break;
     case "ultimo":
       const alvo = [...enemies].reverse().find(e => e.hp > 0);
-          if (alvo) {
-            animateDamage(alvo.el);
-            alvo.hp -= valor;
-            floatText(alvo.el, `-${valor}${simbulo}`, "red");
-          }
+      if (alvo) {
+        animateDamage(alvo.el);
+        alvo.hp -= valor;
+        floatText(alvo.el, `-${valor}${simbulo}`, "red");
+      }
       break;
     case "area":
       enemies.forEach(e => {
-            animateDamage(e.el);
-            e.hp -= valor;
-            floatText(e.el, `-${valor}${simbulo}`, "red");
-          });
+        animateDamage(e.el);
+        e.hp -= valor;
+        floatText(e.el, `-${valor}${simbulo}`, "red");
+      });
       break;
-    case "areaEspecial":  
-            animateDamage(areaEspecial.el);
-            areaEspecial.hp -= valor;
-            floatText(areaEspecial.el, `-${valor}${simbulo}`, "red");
+    case "areaEspecial":
+      animateDamage(areaEspecial.el);
+      areaEspecial.hp -= valor;
+      floatText(areaEspecial.el, `-${valor}${simbulo}`, "red");
       break;
-  
+
     default:
       break;
   }
@@ -6239,6 +6241,7 @@ function criarPlayerNaDiv3() {
         playerHP = 60;
         maoInicio = 4;
         limiteMao = 4;
+        startNemoraSnow(false);
       }
       if (mapaBatalha == 19) {
         imgLilia = "./../img/jogo/player/animado/lilia/statico/lilia3.png";
@@ -6322,10 +6325,11 @@ function criarPlayerNaDiv3() {
       playerMaxHP = 150, energyMax = 3, playerShieldInit = 5;
       playerHP = 150, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.olaf];
+      startNemoraSnow(false);
       break;
     case "olga":
       playerImg.src = "./../img/jogo/player/olga.png";
-
+      startNemoraSnow(false);
       playerDeck = [...characterDecks.olga];
       break;
     case "glacia":
@@ -6334,6 +6338,7 @@ function criarPlayerNaDiv3() {
       maoInicio = 8;
       limiteMao = 8;
       playerDeck = [...characterDecks.glacia];
+      startNemoraSnow(false);
       break;
     default:
       playerImg.src = "./../img/jogo/extra/prototipo.png";
@@ -6757,8 +6762,9 @@ const characterDecks = {
 };
 
 //ANIMAÇÃO ATK PLAYER EM FASE DE TESTE
-function animarLiliaTransformacao() { 
+function animarLiliaTransformacao() {
   if (personagemSelecionado !== "lilia") return;
+  if (mapaBatalha == (11 || 19)) return;
 
   const playerImg = document.getElementById("player");
   if (!playerImg) return;
@@ -6812,6 +6818,7 @@ function animarLiliaTransformacao() {
 //ANIMAÇÃO DEF PLAYER EM FASE DE TESTE
 function playerTomarDanoAnimacao() {
   if (personagemSelecionado !== "lilia") return;
+  if (mapaBatalha == (11 || 19)) return;
 
   const playerImg = document.getElementById("player");
   if (!playerImg) return;
@@ -6887,11 +6894,11 @@ async function enemyTurn() {
         case "attackVida":
         case "morrer":
           playerTomarDanoAnimacao();
-          if (personagemSelecionado !== "lilia"){
+          if (personagemSelecionado !== "lilia") {
             podeSacudir = true;
           }
           break;
-      
+
         default:
           break;
       }
@@ -6916,12 +6923,12 @@ async function enemyTurn() {
           playerShield -= absorbed;
           dano -= absorbed;
 
-          animateDamage(document.getElementById("player"),podeSacudir);
+          animateDamage(document.getElementById("player"), podeSacudir);
           floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
         }
         if (dano > 0) {
           playerHP -= dano;
-          animateDamage(document.getElementById("player"),podeSacudir);
+          animateDamage(document.getElementById("player"), podeSacudir);
           floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
           redScreenGlow(300, 30);
         }
@@ -6949,7 +6956,7 @@ async function enemyTurn() {
       } else if (act.type === "attackVida") {
         playerHP -= act.value;
 
-        animateDamage(document.getElementById("player"),podeSacudir);
+        animateDamage(document.getElementById("player"), podeSacudir);
         floatText(document.getElementById("player"), `-${act.value}🔱`, "orange");
         redScreenGlow(300, 30);
 
@@ -6972,7 +6979,7 @@ async function enemyTurn() {
           floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
           redScreenGlow(300, 30);
         }
-        animateDamage(document.getElementById("player"),podeSacudir);
+        animateDamage(document.getElementById("player"), podeSacudir);
 
         e.turnosRestantes--;
         if (e.turnosRestantes <= 0) {
@@ -7620,20 +7627,20 @@ function animateEnemySimpleFrames(enemy, boss) {
   });
 }
 // ANIMAÇÃO DEF BASICA
-function animateDamage(el,tremida=true) {
+function animateDamage(el, tremida = true) {
 
   // ===============================
   //  ANIMAÇÃO PADRÃO (qualquer inimigo)
   // ===============================
-  if (tremida==true) {
+  if (tremida == true) {
     el.classList.add("shake", "damaged");
     setTimeout(() => el.classList.remove("shake", "damaged"), 400);
   } else {
     el.classList.add("damaged");
     setTimeout(() => el.classList.remove("damaged"), 400);
   }
-  
-  
+
+
 
   const img = el.querySelector("img");
   if (!img) return;
