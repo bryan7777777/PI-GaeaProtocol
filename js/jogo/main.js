@@ -880,6 +880,14 @@ function drawCards() {
           <div class="desc"><strong>${card.name}</strong><br><em>${card.desc}</em></div>
         `;
       div.onclick = () => {
+        if (bloqueioCliqueCartas) return;
+        bloqueioCliqueCartas = true;
+
+        setTimeout(() => {
+          bloqueioCliqueCartas = false;
+        }, 500);
+        if (energy < card.cost || playerHP <= 0 || enemies.length === 0) return;
+        energy -= card.cost;
 
         // APLICAR ITENS POR TIPO
         switch (tipo) {
@@ -939,15 +947,6 @@ function drawCards() {
           default:
             break;
         }
-
-        if (bloqueioCliqueCartas) return;
-        bloqueioCliqueCartas = true;
-
-        setTimeout(() => {
-          bloqueioCliqueCartas = false;
-        }, 500);
-        if (energy < card.cost || playerHP <= 0 || enemies.length === 0) return;
-        energy -= card.cost;
 
         if (hasItem(19) && hasItem(18) && hasItem(5)) {
           curandeiro();
@@ -1135,24 +1134,18 @@ function drawCards() {
 
         //  🛡️🛡️🛡️🛡️🛡️ DEFESA 🛡️🛡️🛡️🛡️🛡️
         else if (card.name === "Defesa") {
-          playerShield += card.power;
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+          allBuffs(card.power, "def");
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
         //🛡️
         else if (card.name === "Campo de Força Fraco") {
-          playerShield += card.power;
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+          allBuffs(card.power, "def");
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
         //🛡️
         else if (card.name === "Tsunami") {
           def = card.power * (deck.length + enemies.length);
-          playerShield += def;
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
+          allBuffs(def, "def");
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
         //🛡️
@@ -1160,46 +1153,31 @@ function drawCards() {
           def = card.power;
           if (deck.length <= 1) {
             def *= 3
-            playerShield += def;
-            playerHP = Math.min(playerHP + def, playerMaxHP);
-            glowPlayer("green");
-            floatText(document.getElementById("player"), `+${def}💚`, "lime");
+            allBuffs(def, "cura");
           } else if (deck.length <= 3) {
-            playerShield += def;
-            playerHP = Math.min(playerHP + def, playerMaxHP);
-            glowPlayer("green");
-            floatText(document.getElementById("player"), `+${def}💚`, "lime");
-          } else {
-            playerShield += def;
+            allBuffs(def, "cura");
           }
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
+          allBuffs(def, "def");
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
         //🛡️
         else if (card.name === "Ultima Defesa") {
           if (deck.length <= 1) {
-            playerShield += card.power;
-            glowPlayer("blue");
-            floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+            allBuffs(card.power, "def");
           }
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
         //🛡️
         else if (card.name === "Campo de Força Instavel") {
           if (deck.length == 4) {
-            playerShield += card.power;
-            glowPlayer("blue");
-            floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+            allBuffs(card.power, "def");
           }
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
         //🛡️
         else if (card.name === "Campo Presurizado") {
           if (deck.length <= 1) {
-            playerShield += card.power;
-            glowPlayer("blue");
-            floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+            allBuffs(card.power, "def");
           }
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
@@ -1209,9 +1187,7 @@ function drawCards() {
           if (deck.length <= 1) {
             def *= 2;
           }
-          playerShield += def;
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
+          allBuffs(def, "def");
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
         //🛡️
@@ -1221,17 +1197,13 @@ function drawCards() {
           } else {
             def = card.power;
           }
-          playerShield += def;
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
+          allBuffs(def, "def");
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
         //🛡️
         else if (card.name === "Defesa Lunar") {
           if (deck.length <= 3) {
-            playerShield += card.power;
-            glowPlayer("blue");
-            floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+            allBuffs(card.power, "def");
             deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
           } else {
             causarDano(card.power, "unico");
@@ -1241,9 +1213,7 @@ function drawCards() {
         //🛡️
         else if (card.name === "Em guarda") {
           if (playerShield > 0) {
-            playerShield += card.power;
-            glowPlayer("blue");
-            floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+            allBuffs(card.power, "def");
           }
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
@@ -1264,11 +1234,8 @@ function drawCards() {
         }
         //🛡️
         else if (card.name === "Impulso Defensivo") {
-          energy += 1;
-          playerShield += 3;
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
-          floatText(document.getElementById("player"), `+${card.power + 2}🛡️`, "cyan");
+          allBuffs(card.power * 3, "def",true);
+          allBuffs(card.power, "energia",true);
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
         //🛡️
@@ -1279,48 +1246,37 @@ function drawCards() {
           }
           // pega o último inimigo vivo
           causarDano(dano, "ultimo");
-          playerShield += 3;
-          floatText(document.getElementById("player"), `+3🛡️`, "blue");
+          allBuffs(card.power, "def");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //🛡️
         else if (card.name === "Escudo") {
-          playerShield += card.power;
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
+          allBuffs(card.power, "def");
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
         //🛡️
         else if (card.name === "Indestrutivel") {
-          escudo = playerShield * 2;
-          playerShield = playerShield * card.power;
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${escudo}🛡️`, "cyan");
+          def = playerShield * (card.power - 1);
+          allBuffs(def, "def");
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
         //🛡️
         else if (card.name === "Sistema de reflexão") {
           causarDano(card.power, "unico");
-          glowPlayer("blue");
-          playerShield += (card.power * 2);
-          floatText(document.getElementById("player"), `+${(card.power * 2)}🛡️`, "cyan");
+          allBuffs(card.power * 2, "def");
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
         //🛡️
         else if (card.name === "PROTOCOL-Campo De Força") {
           if (playerHP <= 30) {
-            playerShield += card.power;
-            floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
-            glowPlayer("blue");
+            allBuffs(card.power, "def");
           }
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
 
         else if (card.name === "Brilhando") {
           if (playerHP == playerMaxHP) {
-            playerShield += card.power;
-            floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
-            glowPlayer("blue");
+            allBuffs(card.power, "def");
           }
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
@@ -1333,30 +1289,22 @@ function drawCards() {
 
         //  💚💚💚💚💚 BUFF 💚💚💚💚💚
         else if (card.name === "Cura") {
-          playerHP = Math.min(playerHP + card.power, playerMaxHP);
-          glowPlayer("green");
-          floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
+          allBuffs(card.power, "cura");
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Ritual") {
           if (deck.length <= 1) {
-            playerHP = Math.min(playerHP + card.power, playerMaxHP);
-            glowPlayer("green");
-            floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
+            allBuffs(card.power, "cura");
           } else {
-            animateDamage(document.getElementById("player"));
-            floatText(document.getElementById("player"), `-${card.power}⚔️`, "red");
-            playerHP -= card.power;
+            allDebuff(card.power, "sofrerDano");
           }
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Cura Forte") {
           if (deck.length <= 1) {
-            playerHP = Math.min(playerHP + card.power, playerMaxHP);
-            glowPlayer("green");
-            floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
+            allBuffs(card.power, "cura");
           }
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
@@ -1367,9 +1315,7 @@ function drawCards() {
             cura = card.power * 3;
           }
           if (deck.length <= 3) {
-            playerHP = Math.min(playerHP + cura, playerMaxHP);
-            glowPlayer("green");
-            floatText(document.getElementById("player"), `+${cura}💚`, "lime");
+            allBuffs(cura, "cura");
           }
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
@@ -1392,90 +1338,58 @@ function drawCards() {
               }
             }
           } else {
-            energy += card.power;
-            floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
-            glowPlayer("green");
+            allBuffs(card.power, "energia");
             deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
           }
         }
         //💚
         else if (card.name === "Xenofluxo") {
-          energy += 1;
-          glowPlayer("green");
-          floatText(document.getElementById("player"), `+${card.power}🔷`, "cyan");
+          allBuffs(card.power, "energia");
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Drone Médico") {
-          glowPlayer("green");
-          floatText(document.getElementById("player"), `+${card.power * enemies.length}💚`, "lime");
+          allBuffs(card.power * enemies.length, "cura");
           deck.push({ ...allCards.find(c => c.name === "Drone Quebrado"), power: 0 });
-
-          for (let i = 0; i < enemies.length; i++) {
-            playerHP = Math.min(playerHP + card.power, playerMaxHP);
-          }
         }
         //💚
         else if (card.name === "Sob-Vigia") {
           if (playerHP > 25) {
             dano = playerHP - 25;
-            playerHP = 25;
-            energy += 1;
-            animateDamage(document.getElementById("player"));
-            floatText(document.getElementById("player"), `-${dano}💔`, "red");
+            allBuffs(1, "energia");
+            allDebuff(dano, "sofrerDano");
           } else {
             dano = 25 - playerHP;
-            playerHP = 25;
-            glowPlayer("green");
-            floatText(document.getElementById("player"), `+${dano}💚`, "lime");
+            allBuffs(dano, "cura");
           }
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Sobre Carga") {
           causarDano(card.power * 3, "unico");
-          animateDamage(document.getElementById("player"));
-          playerHP = Math.min(playerHP - card.power, playerMaxHP);
-          floatText(document.getElementById("player"), `-${card.power}💔`, "red");
+          allDebuff(card.power, "sofrerDano");
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Golpe Neural Retaliante") {
           causarDano(playerHP, "unico");
-          let dano = 0;
-          if (playerHP < 20) {
-            dano = playerHP - 1;
-            playerHP = 1;
-          } else {
-            dano = card.power;
-            playerHP -= card.power;
-          }
-          animateDamage(document.getElementById("player"));
-          floatText(document.getElementById("player"), `-${dano}💔`, "red");
+          allDebuff(card.power, "sofrerDano");
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Impulso") {
-          if (limiteMao < 10) {
-            limiteMao += 1;
-          }
-          glowPlayer("green");
-          floatText(document.getElementById("player"), `+${card.power}➕`, "lime");
+          allBuffs(card.power,"mao");
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Mineração") {
-          energy += 3;
-          glowPlayer("green");
-          floatText(document.getElementById("player"), `+${3}🔷`, "lime");
+          allBuffs(card.power,"energia");
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "PROTOCOL-Reforço Estrutural") {
           if (playerHP <= 30) {
-            playerHP = Math.min(playerHP + card.power, playerMaxHP);
-            floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
-            glowPlayer("green");
+            allBuffs(card.power,"cura");
           }
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
@@ -1553,18 +1467,12 @@ function drawCards() {
         //♻️
         else if (card.name === "Essencia Verde") {
           let dano = Math.floor(lixoReciclado / 10);
-
-          playerHP = Math.min(playerHP + dano, playerMaxHP);
-          glowPlayer("green");
-          floatText(document.getElementById("player"), `+${dano}💚`, "lime");
+          allBuffs(dano,"cura");
         }
         //♻️
         else if (card.name === "Defesa Renovavel") {
           let dano = Math.floor(lixoReciclado / 4);
-
-          playerShield += dano;
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${dano}🛡️`, "cyan");
+          allBuffs(dano,"def");
         }
         //♻️
         else if (card.name === "Defesa Critica") {
@@ -1575,9 +1483,7 @@ function drawCards() {
             dano = Math.max(1, Math.floor(danoCalculado));
           }
 
-          playerShield += dano;
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${dano}🛡️`, "cyan");
+          allBuffs(dano,"def");
         }
         //♻️
         else if (card.name === "Destruir Carta") {
@@ -1846,9 +1752,7 @@ function drawCards() {
           }
 
           const defesa = lixoRemovido * 5;
-          playerShield += defesa;
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${defesa}🛡️`, "cyan");
+          allBuffs(defesa,"def");
           updateHUD();
 
           div.classList.add("card-remove");
@@ -1888,9 +1792,8 @@ function drawCards() {
             return;
           }
 
-          energy += Math.floor(lixoRemovido / 2);
-          glowPlayer("green");
-          floatText(document.getElementById("player"), `+${lixoRemovido}🔷`, "cyan");
+          energyAdd = Math.floor(lixoRemovido / 2);
+          allBuffs(energyAdd,"energia");
           updateHUD();
 
           div.classList.add("card-remove");
@@ -2117,10 +2020,7 @@ function drawCards() {
             armorGain *= markedCount + 1;
           }
 
-          // Aplica armadura
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${armorGain}🛡️`, "cyan");
-          playerShield += armorGain;
+          allBuffs(armorGain,"def");
         }
         //❄️
         else if (card.name === "Coração Frio") {
@@ -2134,9 +2034,7 @@ function drawCards() {
           }
 
           // Aplica armadura
-          glowPlayer("green");
-          floatText(document.getElementById("player"), `+${armorGain}💚`, "lime");
-          playerHP = Math.min(playerHP + armorGain, playerMaxHP);
+          allBuffs(armorGain,"cura");
         }
         //❄️
         else if (card.name === "Aura Glacial") {
@@ -2161,10 +2059,8 @@ function drawCards() {
         //❄️
         else if (card.name === "Xenofluxo Glacial") {
           energiInimigo = enemies.filter(e => e.tipoVida === "❄️").length;
-          energy += 1 * energiInimigo;
-
-          glowPlayer("green");
-          floatText(document.getElementById("player"), `+${energiInimigo}🔷`, "lime");
+          energyAdd = 1 * energiInimigo;
+          allBuffs(ener,"energia");
         }
         //❄️
         else if (card.name === "Baralho Glacial") {
@@ -2235,18 +2131,13 @@ function drawCards() {
         //♨️
         else if (card.name === "Fenix") {
           let valor = 0;
-
           enemies.forEach(e => {
             if (e.tipoVida === "♨️") {
               valor += card.power;
             }
           });
-
-          playerHP = Math.min(playerHP + valor, playerMaxHP);
-          glowPlayer("cintilante");
-          playerShield += valor;
-          floatText(document.getElementById("player"), `+${valor}💚`, "lime");
-          floatText(document.getElementById("player"), `+${valor}🛡️`, "cyan");
+          allBuffs(valor,"def", true);
+          allBuffs(valor,"cura", true);
           marcarInimigos("♨️", "area", true)
         }
         //♨️
@@ -2271,8 +2162,7 @@ function drawCards() {
           for (let i = 0; i < markedCount; i++) {
             dano += Math.floor(lixoReciclado * 0.04);
           }
-          glowPlayer("green");
-          floatText(document.getElementById("player"), `+${dano}💚`, "lime");
+          allBuffs(dano,"cura");
         }
         //  🌧️🌧️🌧️🌧️🌧️ AGUA 🌧️🌧️🌧️🌧️🌧️
         else if (card.name === "Jato De Água") {
@@ -2296,10 +2186,7 @@ function drawCards() {
           let def = 0;
           def += card.power;
           def += Math.floor(lixoReciclado * 0.17);
-          playerShield += def;
-
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
+          allBuffs(def,"def");
         }
         //🌧️
         else if (card.name === "Aquafluxo") {
@@ -2308,12 +2195,10 @@ function drawCards() {
           dano += card.power;
           markedCount = enemies.filter(e => e.tipoVida === "🌧️").length
           for (let i = 0; i < markedCount; i++) {
-            energy += 1;
             armorGain += 1;
           }
+          allBuffs(armorGain,"energia");
           causarDano(dano, "unico", simbulo = "🌧️")
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${armorGain}🔷`, "cyan");
         }
         //🌧️
         else if (card.name === "Alma Do Mar.1") {
@@ -2346,9 +2231,7 @@ function drawCards() {
         //🌧️
         else if (card.name === "Alma Do Mar.12") {
           if (playerHP <= playerMaxHP * 0.3) {
-            floatText(document.getElementById("player"), `+${card.power}💚`, "lime");
-            glowPlayer("green");
-            playerHP = Math.min(playerHP + card.power, playerMaxHP);
+            allBuffs(card.power,"cura");
           } else {
             causarDano(card.power, "unico", simbulo = "🌧️")
           }
@@ -2439,9 +2322,7 @@ function drawCards() {
           def = (terraCount + aguaCount) * card.power;
           def += Math.floor(lixoReciclado * 0.2);
 
-          glowPlayer("blue");
-          floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
-          playerShield += def;
+          allBuffs(def,"def");
         }
         //⛰️
         else if (card.name === "Coração De Gaea") {
@@ -2451,9 +2332,7 @@ function drawCards() {
           def = (terraCount + aguaCount) * card.power;
           def += Math.floor(lixoReciclado * 0.1);
 
-          glowPlayer("green");
-          floatText(document.getElementById("player"), `+${def}💚`, "lime");
-          playerHP = Math.min(playerHP + def, playerMaxHP);
+          allBuffs(def,"cura");
         }
         //⛰️
         else if (card.name === "Chuva Rochosa") {
@@ -2476,15 +2355,10 @@ function drawCards() {
         //  ✨✨✨✨✨ CINTILANTE ✨✨✨✨✨
         else if (card.name === "Guardião") {
           if (playerHP <= 30) {
-            playerShield += card.power;
-            energy += 2;
-            floatText(document.getElementById("player"), `+${card.power}🛡️`, "cyan");
-            floatText(document.getElementById("player"), `+${2}🔷`, "lime");
-            glowPlayer("cintilante");
+            allBuffs(card.power,"def",true);
+            allBuffs(2,"energia",true);
           } else {
-            energy += 1;
-            floatText(document.getElementById("player"), `+${1}🔷`, "lime");
-            glowPlayer("cintilante");
+            allBuffs(1,"energia",true);
           }
         }
         //✨
@@ -2562,11 +2436,8 @@ function drawCards() {
           if (enemies.length > 0) {
             causarDano(totalDamage, "unico")
           }
-          glowPlayer("cintilante");
-          playerShield += totalShield;
-          playerHP = Math.min(playerHP + totalHeal, playerMaxHP);
-          floatText(document.getElementById("player"), `+${totalShield}🛡️`, "cyan");
-          floatText(document.getElementById("player"), `+${totalHeal}💚`, "green");
+          allBuffs(totalShield,"def",true);
+          allBuffs(totalHeal,"cura",true);
 
           // anima a carta usada
           div.classList.add("card-remove");
@@ -2640,6 +2511,74 @@ function causarDano(valor, tipo, simbulo = "⚔️", areaEspecial) {
       animateDamage(areaEspecial.el);
       areaEspecial.hp -= valor;
       floatText(areaEspecial.el, `-${valor}${simbulo}`, "red");
+      break;
+
+    default:
+      break;
+  }
+}
+function allBuffs(valor, tipo, cintilante=false) {
+  glow = "cintilante";
+
+  if (!cintilante) {
+    switch (tipo) {
+      case "cura":
+      case "mao":
+        glow="green";
+        break;
+      case "def":
+      case "energia":
+        glow="blue";
+        break;
+    
+      default:
+        break;
+    }
+  }
+
+  switch (tipo) {
+    case "cura":
+      playerHP = Math.min(playerHP + valor, playerMaxHP);
+      glowPlayer(glow);
+      floatText(document.getElementById("player"), `+${valor}💚`, "lime");
+      break;
+    case "energia":
+      energy += valor;
+      glowPlayer(glow);
+      floatText(document.getElementById("player"), `+${valor}🔷`, "cyan");
+      break;
+    case "def":
+      playerShield += valor;
+      glowPlayer(glow);
+      floatText(document.getElementById("player"), `+${valor}🛡️`, "cyan");
+      break;
+    case "mao":
+      if (limiteMao < 10) {
+        valorAdicionado = Math.min(valor, 10 - limiteMao);
+        limiteMao += valorAdicionado;
+      }
+      glowPlayer(glow);
+      floatText(document.getElementById("player"), `+${valor}🃏`, "lime");
+      break;
+
+    default:
+      break;
+  }
+}
+function allDebuff(valor, tipo) {
+  switch (tipo) {
+    case "sofrerDano":
+      playerHP = Math.max(1, playerHP - valor);
+      animateDamage(document.getElementById("player"));
+      floatText(document.getElementById("player"), `-${dano}💔`, "red");
+      break;
+    case "mao":
+      if (limiteMao > 1) {
+        valorRemovido = Math.min(valor, limiteMao - 1);
+        limiteMao -= valorRemovido;
+      }
+      animateDamage(document.getElementById("player"));
+      floatText(document.getElementById("player"), `-${valor}🃏`, "lime");
       break;
 
     default:

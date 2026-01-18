@@ -649,7 +649,7 @@ const allCards = [
     basePower: 30,
     rarity: "epic",
     img: "../img/jogo/cards/atk/bombardeio.png",
-    desc: "Cause 30 de dano em area, a cada inimigo no campo receba 15 de dano (max 45).",
+    desc: "Cause 30 de dano em area, a cada inimigo no campo receba 15 de dano (max 45) e pode ser letal a você.",
     type: "attack"
   },
   // 🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️🛡️
@@ -849,7 +849,7 @@ const allCards = [
     basePower: 20,
     rarity: "common",
     img: "../img/jogo/cards/buff/ritual.png",
-    desc: "Recupera 20 de vida se eu for a unica carta na mão, caso contrario perca vida.",
+    desc: "Recupera 20 de vida se eu for a unica carta na mão, caso contrario perca vida (não pode ser letal a você).",
     type: "heal"
   },
   {
@@ -948,7 +948,7 @@ const allCards = [
     basePower: 4,
     rarity: "rare",
     img: "../img/jogo/cards/buff/sobreCarga.png",
-    desc: "Perca 4 de vida e cause 12 de dano.",
+    desc: "Perca 4 de vida e cause 12 de dano (não pode ser letal a você).",
     type: "heal"
   },
   {
