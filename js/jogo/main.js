@@ -5982,32 +5982,11 @@ function bloquearSaida(e) {
   e.preventDefault();
   e.stopPropagation();
 }
-
-// EVENTS
 function curaVida() {
   playerHP = Math.min(playerHP + 40, playerMaxHP);
 };
-function curaSacre() {
-  if (playerMaxHP <= 10) {
-    playerMaxHP = 10;
-    updateHUD();
-  } else {
-    playerMaxHP -= 10;
-  }
-  playerHP = Math.min(playerHP + playerMaxHP, playerMaxHP);
-  updateHUD();
-};
 function aumentaVida() {
   playerMaxHP += 10;
-  updateHUD();
-};
-function aumentaSacre() {
-  playerMaxHP += 30;
-  if (playerHP <= 50) {
-    playerHP = 1;
-  } else {
-    playerHP -= 50;
-  }
   updateHUD();
 };
 
