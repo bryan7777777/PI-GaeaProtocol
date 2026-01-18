@@ -92,12 +92,14 @@ PALTAS{
     ==========
     BUGS - citar correção de bugs d forma sutil
     ==========
-    OTIMIZAÇÃO FORÇADA - citar otimização de cod
+    OTIMIZAÇÃO FORÇADA - citar otimização de cod graças a gamb
     ==========
     POSIBILIDADES DE ANIMAÇÃO PLAYER - citar a possibiidade de criar animação para o player
     ==========
     RE-IMG - citar futura nessecidade de att e padronizar as img
     ==========
     HISTORICO D PROGREÇO - citar como estou slv o progreço das att do jogo
+    ==========
+    1.0.0 - (G-ATT/P-ATT/BUG-FIX)
     ==========
 }

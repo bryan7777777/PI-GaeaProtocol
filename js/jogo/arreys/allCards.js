@@ -291,12 +291,30 @@ const allCards = [
     type: "agua"
   },
   {
+    name: "Alma Do Mar.4",
+    cost: 2,
+    basePower: 10,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/orca.jpg",
+    desc: "Cause dano a todos os inimigos igual sua armadura atual distribuidas entre eles (arredonda para baixo).",
+    type: "agua"
+  },
+  {
     name: "Alma Do Mar.7",
     cost: 1,
     basePower: 6,
     rarity: "agua",
     img: "../img/jogo/cards/agua/tuba.png",
     desc: "Cause 10 de dano a todos os inimigos marcados com 🌧️, mais 10% de todo lixo reciclado ♻️ e 10% de todo o dinheiro 🪙",
+    type: "agua"
+  },
+  {
+    name: "Alma Do Mar.9",
+    cost: 1,
+    basePower: 6,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/golf.jpg",
+    desc: "Cause dano igual a 12% de todo o lixo reciclado ♻️, se tiver 3 ou menos cartas na mão 23%, se eu for a unica carta na mão o dano é 45%",
     type: "agua"
   },
   {

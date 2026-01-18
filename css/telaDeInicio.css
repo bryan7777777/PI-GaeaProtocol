@@ -16,6 +16,15 @@ body {
   overflow: hidden;
 }
 
+#versao{
+  font-family: 'Press Start 2P', monospace;
+  color: #00c728;
+  font-size: 24px;
+  position: absolute;
+  top: 95%;
+  left: 92%;
+}
+
 /* =================== AVISO FULLSCREEN =================== */
 
 .screen-warning {

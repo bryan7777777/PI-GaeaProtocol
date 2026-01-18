@@ -753,7 +753,9 @@ function drawCards() {
         case "Inicio Da Água":
         case "Alma Do Mar.1":
         case "Alma Do Mar.2":
+        case "Alma Do Mar.4":
         case "Alma Do Mar.7":
+        case "Alma Do Mar.9":
         case "Alma Do Mar.12":
         case "Aquafluxo":
         case "Choro Da Vida":
@@ -2215,6 +2217,11 @@ function drawCards() {
           causarDano(dano, "unico", simbulo = "🌧️")
         }
         //🌧️
+        else if (card.name === "Alma Do Mar.4") {
+          dano= Math.floor(playerShield/enemies.length);
+          causarDano(dano, "area", simbulo = "🌧️")
+        }
+        //🌧️
         else if (card.name === "Alma Do Mar.7") {
           enemies.forEach(e => {
             let dano = 0;
@@ -2227,6 +2234,17 @@ function drawCards() {
               floatText(e.el, `🌧️`, "red");
             }
           });
+        }
+        //🌧️
+        else if (card.name === "Alma Do Mar.9") {
+          dano = Math.floor(lixoReciclado*0.12);
+          cartas1 = deck.length;
+          if (cartas1 == 1) {
+            dano = Math.floor(lixoReciclado*0.45);
+          } else if (cartas1 <= 3) {
+            dano = Math.floor(lixoReciclado*0.23);
+          }
+          causarDano(dano, "unico", simbulo = "🌧️")
         }
         //🌧️
         else if (card.name === "Alma Do Mar.12") {
