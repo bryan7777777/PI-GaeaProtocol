@@ -6770,44 +6770,47 @@ function animarLiliaTransformacao() {
 //ANIMAÇÃO DEF PLAYER EM FASE DE TESTE
 function playerTomarDanoAnimacao() {
   if (personagemSelecionado !== "lilia") return;
-  if (mapaBatalha == (11 || 19)) return;
 
   const playerImg = document.getElementById("player");
   if (!playerImg) return;
+
   let frames;
 
   if (mapaBatalha >= 19) {
     frames = {
-    hit: "./../img/jogo/player/animado/lilia/def/lilia111.png",
-    idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia3.png"
-  };
-  } else if (mapaBatalha >= 11){
+      hit: "./../img/jogo/player/animado/lilia/def/lilia111.png",
+      idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia3.png"
+    };
+  } else if (mapaBatalha >= 11) {
     frames = {
-    hit: "./../img/jogo/player/animado/lilia/def/lilia1.png",
-    idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia2.png"
-  };
+      hit: "./../img/jogo/player/animado/lilia/def/lilia1.png",
+      idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia2.png"
+    };
   } else {
     frames = {
-    hit: "./../img/jogo/player/animado/lilia/def/lilia1.png",
-    idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia1.png"
-  };
+      hit: "./../img/jogo/player/animado/lilia/def/lilia1.png",
+      idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia1.png"
+    };
   }
-  
-  const pushDistance = -100;   // distância total
-  const pushDuration = 180;    // duração do empurrão
-  const returnDuration = 220;  // duração da volta
+
+  const pushDistance = -100;
+  const pushDuration = 180;
+  const returnDuration = 220;
 
   let start = null;
 
   playerImg.style.transition = "none";
   playerImg.style.transform = "translateX(0)";
-  playerImg.src = frames.hit;
+  playerImg.style.willChange = "transform";
+
+  trocarSpriteComDelay(playerImg, frames.hit, 2, () => {
+    requestAnimationFrame(empurrar);
+  });
 
   function empurrar(timestamp) {
     if (!start) start = timestamp;
     const progress = Math.min((timestamp - start) / pushDuration, 1);
 
-    // easing manual (ease-out)
     const eased = 1 - Math.pow(1 - progress, 3);
     playerImg.style.transform = `translateX(${pushDistance * eased}px)`;
 
@@ -6823,7 +6826,6 @@ function playerTomarDanoAnimacao() {
     if (!start) start = timestamp;
     const progress = Math.min((timestamp - start) / returnDuration, 1);
 
-    // easing in-out
     const eased = progress < 0.5
       ? 2 * progress * progress
       : 1 - Math.pow(-2 * progress + 2, 2) / 2;
@@ -6835,12 +6837,35 @@ function playerTomarDanoAnimacao() {
       requestAnimationFrame(voltar);
     } else {
       playerImg.style.transform = "translateX(0)";
-      playerImg.src = frames.idle;
+      playerImg.style.willChange = "auto";
+
+      trocarSpriteComDelay(playerImg, frames.idle, 1);
     }
   }
-
-  requestAnimationFrame(empurrar);
 }
+function trocarSpriteComDelay(img, src, delayFrames = 2, callback) {
+  if (!src) return;
+
+  const preload = new Image();
+  preload.src = src;
+
+  preload.onload = () => {
+    img.src = src;
+
+    let frames = 0;
+    function esperar() {
+      frames++;
+      if (frames >= delayFrames) {
+        if (callback) callback();
+      } else {
+        requestAnimationFrame(esperar);
+      }
+    }
+    requestAnimationFrame(esperar);
+  };
+}
+
+
 
 //ENEMYS
 async function enemyTurn() {

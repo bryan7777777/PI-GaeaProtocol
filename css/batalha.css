@@ -478,6 +478,11 @@ em{
   transition: filter 0.4s ease;
 }
 
+#player {
+  background: transparent;
+  image-rendering: pixelated; /* se for pixel art */
+}
+
 .enemy img {
   margin-bottom: 2px;
   max-height: 300px;
