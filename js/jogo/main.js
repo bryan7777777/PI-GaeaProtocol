@@ -485,7 +485,7 @@ function checkEnemies() {
                       hp: 1000,
                       dano: 30,
                       behavior: () => {
-                        const type = Math.random() < 0.8 ? "attack" : "attackVida";
+                        const type = Math.random() < 0.86 ? "attack" : "attackVida";
                         let base = 30;
 
                         if (type === "attackVida") {
@@ -2062,7 +2062,7 @@ function drawCards() {
         else if (card.name === "Xenofluxo Glacial") {
           energiInimigo = enemies.filter(e => e.tipoVida === "❄️").length;
           energyAdd = 1 * energiInimigo;
-          allBuffs(ener,"energia");
+          allBuffs(energyAdd,"energia");
         }
         //❄️
         else if (card.name === "Baralho Glacial") {
@@ -6700,17 +6700,33 @@ const characterDecks = {
 //ANIMAÇÃO ATK PLAYER EM FASE DE TESTE
 function animarLiliaTransformacao() {
   if (personagemSelecionado !== "lilia") return;
-  if (mapaBatalha == (11 || 19)) return;
 
   const playerImg = document.getElementById("player");
   if (!playerImg) return;
 
-  const frames = {
+  let frames;
+  if (mapaBatalha >= 19) {
+    frames = {
+    f1: "./../img/jogo/player/animado/lilia/atk/lilia111.png",
+    f2: "./../img/jogo/player/animado/lilia/atk/lilia222.png",
+    f3: "./../img/jogo/player/animado/lilia/atk/lilia333.png",
+    idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia3.png"
+  };
+  } else if (mapaBatalha >= 11){
+    frames = {
+    f1: "./../img/jogo/player/animado/lilia/atk/lilia11.png",
+    f2: "./../img/jogo/player/animado/lilia/atk/lilia22.png",
+    f3: "./../img/jogo/player/animado/lilia/atk/lilia33.png",
+    idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia2.png"
+  };
+  } else {
+    frames = {
     f1: "./../img/jogo/player/animado/lilia/atk/lilia1.png",
     f2: "./../img/jogo/player/animado/lilia/atk/lilia2.png",
     f3: "./../img/jogo/player/animado/lilia/atk/lilia3.png",
     idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia1.png"
   };
+  }
 
   const delay = 100;
 
@@ -6758,12 +6774,25 @@ function playerTomarDanoAnimacao() {
 
   const playerImg = document.getElementById("player");
   if (!playerImg) return;
+  let frames;
 
-  const frames = {
+  if (mapaBatalha >= 19) {
+    frames = {
+    hit: "./../img/jogo/player/animado/lilia/def/lilia111.png",
+    idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia3.png"
+  };
+  } else if (mapaBatalha >= 11){
+    frames = {
+    hit: "./../img/jogo/player/animado/lilia/def/lilia1.png",
+    idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia2.png"
+  };
+  } else {
+    frames = {
     hit: "./../img/jogo/player/animado/lilia/def/lilia1.png",
     idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia1.png"
   };
-
+  }
+  
   const pushDistance = -100;   // distância total
   const pushDuration = 180;    // duração do empurrão
   const returnDuration = 220;  // duração da volta
