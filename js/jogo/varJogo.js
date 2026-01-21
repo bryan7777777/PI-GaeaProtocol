@@ -78,6 +78,9 @@ const closePopupOpcoes = document.getElementById("closePopupOpcoes");
 const popupOverlayDeck = document.getElementById("popupOverlayDeck");
 const closePopupDeck = document.getElementById("closePopupDeck");
 const deckContainer = document.getElementById("deckContainer");
+const topoInfo = document.getElementById("topoInfo");
+const descricaoInfo = document.getElementById("descricaoInfo");
+const imgPersonagem = document.getElementById("imgPersonagem");
 // SELECTOR ALL
 const imagens = document.querySelectorAll("#selecaoPlayer img");
 const personagens = document.querySelectorAll("#selecaoPlayer img");

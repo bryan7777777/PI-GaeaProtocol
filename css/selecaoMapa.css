@@ -1,0 +1,353 @@
+/* ===============================
+   TELA DE SELEÇÃO DE PERSONAGEM
+   =============================== */
+
+#div1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/jogo/background/backgroundMao.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ===============================
+   SETAS DE NAVEGAÇÃO
+   =============================== */
+
+.seta,
+#setaCima,
+#setaBaixo {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  position: relative;
+  z-index: 10;
+  font-size: 24px;
+}
+
+/* ===============================
+   CONTAINER PRINCIPAL
+   =============================== */
+
+#selecaoPlayer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+}
+
+#selecaoPlayer > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* ===============================
+   FACÇÕES / GRUPOS
+   =============================== */
+
+#containerGrupos {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.grupoFaccao {
+  display: none;
+}
+
+.grupoFaccao.ativa,
+.grupoFaccao.ativo {
+  display: block;
+}
+
+.linha-faccao {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ===============================
+   TÍTULOS
+   =============================== */
+
+#selecaoPlayer h1 {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 50px;
+  margin-right: 10px;
+}
+
+.linha-faccao h1 {
+  writing-mode: horizontal-tb;
+  white-space: nowrap;
+  font-size: 20px;
+}
+
+/* ===============================
+   BLOCO DE SELEÇÃO
+   =============================== */
+
+#blocoSelecao {
+  position: relative;
+  width: 18%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.classePersonagem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  border-radius: 0 60px 0 60px;
+}
+
+/* ===============================
+   PERSONAGENS
+   =============================== */
+
+.personagens {
+  display: block;
+}
+
+.personagens img {
+  width: 135px;
+  height: auto;
+  display: block;
+  border-radius: 0 30% 0 30%;
+  border: 4px solid rgb(108, 223, 133);
+  box-shadow: 2px 2px 75px 2px rgb(108, 223, 133);
+  background-color: black;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+/* ===============================
+   PAINEL CENTRAL
+   =============================== */
+
+#painelInfo {
+  width: 57%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 5px solid rgb(108, 223, 133);
+}
+
+#topoInfo {
+  width: 100%;
+  height: 25%;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: rgb(108, 223, 133);
+}
+
+#topoInfo em,
+#topoInfo strong {
+  font-size: 40px;
+}
+
+#meioInfo {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+#imgPersonagem {
+  width: 400px;
+  height: 400px;
+  margin-bottom: 8%;
+}
+
+#fimSelecao {
+  width: 80%;
+  height: 100px;
+  font-size: 80%;
+  background-color: rgba(0, 188, 188, 0.521);
+  border-radius: 0 45px 0 45px;
+  border: 5px solid rgba(0, 255, 255, 0.521);
+  color: aliceblue;
+  padding: 10px;
+  margin-bottom: 1%;
+  transition: 1s;
+}
+
+#fimSelecao:hover {
+  width: 90%;
+  background-color: rgba(2, 114, 0, 0.6);
+  box-shadow: 2px 2px 50px 2px rgba(0, 255, 106, 0.521);
+  border: 5px solid rgb(108, 223, 133);
+}
+
+/* ===============================
+   DESCRIÇÃO LATERAL
+   =============================== */
+
+#descricaoInfo {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  color: rgb(108, 223, 133);
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 5px solid rgb(108, 223, 133);
+}
+
+/* ===============================
+   CORES POR FACÇÃO
+   =============================== */
+
+.mineiros { background-color: rgba(255,251,0,0.2); border:5px solid rgb(255,251,0); }
+#selecaoPlayer #mineiros { color: rgb(255,251,0); }
+
+.porto { background-color: rgba(0,119,255,0.2); border:5px solid rgb(0,157,255); }
+#selecaoPlayer #op { color: rgb(0,157,255); }
+
+.laranjas { background-color: rgba(255,123,0,0.2); border:5px solid rgb(255,145,0); }
+#selecaoPlayer #laranjas { color: rgb(255,153,0); }
+
+.gaea { background-color: rgba(0,255,26,0.2); border:5px solid rgb(0,255,8); }
+#selecaoPlayer #gaea { color: rgb(0,255,8); }
+
+.vermelhos { background-color: rgba(255,0,0,0.2); border:5px solid rgb(255,0,0); }
+#selecaoPlayer #index { color: rgb(255,0,0); }
+
+.semFaccao { background-color: rgba(204,0,255,0.2); border:5px solid rgb(166,0,255); }
+#selecaoPlayer #semFaccao { color: rgb(166,0,255); }
+
+.glacial { background-color: rgba(0,247,255,0.2); border:5px solid rgb(0,247,255); }
+#selecaoPlayer #glacial { color: rgb(0,255,234); }
+
+.eolico { background-color: rgba(255,255,255,0.2); border:5px solid rgb(255,255,255); }
+#selecaoPlayer #eolico { color: rgb(255,255,255); }
+
+/* ===============================
+   ESTADOS: HOVER / SELEÇÃO
+   =============================== */
+
+#wallace,#verde,#gaeaReen,#magnolia,
+#laranja,#cleber,#malaquias,#renata,
+#amarelo,#celso,#felipe,#maria,
+#vermelho,
+#porto,#azul,#mercuri,#fergus,
+#cleide,#magna,#lucius,#marcos,
+#olaf,#olga,#glacia,
+#x,#roxo,#ferrus,#tomoeh,#lilia {
+  transition: transform 0.3s;
+}
+
+#wallace.selecionado, #wallace:hover,
+#verde.selecionado, #verde:hover,
+#gaeaReen.selecionado, #gaeaReen:hover,
+#magnolia.selecionado, #magnolia:hover {
+  border-color: rgb(0,188,16);
+  box-shadow: 2px 2px 75px 2px rgb(3,101,0);
+  transform: scale(1.1);
+}
+
+#laranja.selecionado, #laranja:hover,
+#cleber.selecionado, #cleber:hover,
+#malaquias.selecionado, #malaquias:hover,
+#renata.selecionado, #renata:hover {
+  border-color: rgb(255,128,0);
+  box-shadow: 2px 2px 75px 2px orange;
+  transform: scale(1.1);
+}
+
+#amarelo.selecionado, #amarelo:hover,
+#celso.selecionado, #celso:hover,
+#felipe.selecionado, #felipe:hover,
+#maria.selecionado, #maria:hover {
+  border-color: rgb(231,201,7);
+  box-shadow: 2px 2px 75px 2px rgb(231,201,7);
+  transform: scale(1.1);
+}
+
+#vermelho.selecionado, #vermelho:hover {
+  border-color: rgb(172,0,0);
+  box-shadow: 2px 2px 75px 2px rgb(156,0,0);
+  transform: scale(1.1);
+}
+
+#porto.selecionado, #porto:hover,
+#azul.selecionado, #azul:hover,
+#mercuri.selecionado, #mercuri:hover,
+#fergus.selecionado, #fergus:hover {
+  border-color: rgb(44,64,189);
+  box-shadow: 2px 2px 75px 2px rgb(44,64,189);
+  transform: scale(1.1);
+}
+
+#cleide.selecionado, #cleide:hover,
+#magna.selecionado, #magna:hover,
+#lucius.selecionado, #lucius:hover,
+#marcos.selecionado, #marcos:hover {
+  border-color: white;
+  box-shadow: 2px 2px 75px 2px white;
+  transform: scale(1.1);
+}
+
+#olaf.selecionado, #olaf:hover,
+#olga.selecionado, #olga:hover,
+#glacia.selecionado, #glacia:hover {
+  border-color: rgb(128,240,255);
+  box-shadow: 2px 2px 75px 2px rgb(128,240,255);
+  transform: scale(1.1);
+}
+
+#x.selecionado, #x:hover {
+  border-color: rgb(0,114,129);
+  box-shadow: 2px 2px 75px 2px rgb(0,110,129);
+  transform: scale(1.1);
+}
+
+#roxo.selecionado, #roxo:hover {
+  border-color: rgb(141,7,231);
+  box-shadow: 2px 2px 75px 2px rgb(134,7,231);
+  transform: scale(1.1);
+}
+
+#ferrus.selecionado, #ferrus:hover {
+  border-color: rgb(103,67,0);
+  box-shadow: 2px 2px 75px 2px rgb(101,66,0);
+  transform: scale(1.1);
+}
+
+#tomoeh.selecionado, #tomoeh:hover,
+#lilia.selecionado, #lilia:hover {
+  border-color: rgb(255,147,250);
+  box-shadow: 2px 2px 75px 2px rgb(253,140,240);
+  transform: scale(1.1);
+}
+

@@ -1,0 +1,154 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("selecaoPlayer");
+
+  const setaCima = document.createElement("button");
+  setaCima.classList.add("seta");
+  setaCima.textContent = "▲";
+
+  const setaBaixo = document.createElement("button");
+  setaBaixo.classList.add("seta");
+  setaBaixo.textContent = "▼";
+
+  const containerGrupos = document.createElement("div");
+  containerGrupos.id = "containerGrupos";
+  containerGrupos.classList.add("container-grupos");
+
+  container.appendChild(setaCima);
+  container.appendChild(containerGrupos);
+  container.appendChild(setaBaixo);
+
+  const faccoes = [
+  {
+    nome: "GA.P.",
+    classe: "gaea",
+    personagens: [
+      { id: "verde", img: "capaceteverde.png" },
+      { id: "magnolia", img: "magnolia.jpg" },
+      { id: "wallace", img: "espectroDaFloresta.jpeg" },
+      { id: "gaeaReen", img: "gaeaReen.png" }
+    ]
+  },
+  {
+    nome: "GLE.P.",
+    classe: "mineiros",
+    personagens: [
+      { id: "amarelo", img: "capaceteamarelo.png" },
+      { id: "felipe", img: "felipe.jpg" },
+      { id: "celso", img: "celso.jpg" },
+      { id: "maria", img: "maria.jpg" }
+    ]
+  },
+  {
+    nome: "O.P.",
+    classe: "porto",
+    personagens: [
+      { id: "porto", img: "autoridadeDoPorto.jpg" },
+      { id: "azul", img: "capaceteazul.png" },
+      { id: "fergus", img: "fergus.jpg" },
+      { id: "mercuri", img: "mercuri.jpg" }
+    ]
+  },
+  {
+    nome: "F.P.",
+    classe: "laranjas",
+    personagens: [
+      { id: "laranja", img: "capacetelaranja.png" },
+      { id: "cleber", img: "cleber.jpg" },
+      { id: "malaquias", img: "malaquias.jpg" },
+      { id: "renata", img: "renata.jpg" }
+    ]
+  },
+  {
+    nome: "E.P.",
+    classe: "eolico",
+    personagens: [
+      { id: "marcos", img: "marcos.jpg" },
+      { id: "cleide", img: "cleide.jpg" },
+      { id: "magna", img: "magna.jpg" },
+      { id: "lucius", img: "lucius.jpg" }
+    ]
+  },
+  {
+    nome: "GLA.P.",
+    classe: "glacial",
+    personagens: [
+      { id: "lilia", img: "lilia.png" },
+      { id: "glacia", img: "glacia.jpg" },
+      { id: "olaf", img: "olaf.jpg" },
+      { id: "olga", img: "olga.jpg" }
+    ]
+  },
+  {
+    nome: "SOLITÁRIOS",
+    classe: "semFaccao",
+    personagens: [
+      { id: "x", img: "gemea.jpeg" },
+      { id: "tomoeh", img: "sombraDaMorte.jpeg" },
+      { id: "ferrus", img: "magnusFerrus.png" },
+      { id: "roxo", img: "capaceteroxo.png" }
+    ]
+  }
+];
+
+  let faccaoAtual = 0;
+  const grupos = [];
+
+  faccoes.forEach((f, i) => {
+    const grupo = document.createElement("div");
+    grupo.className = "grupoFaccao" + (i === 0 ? " ativo" : "");
+
+    const classe = document.createElement("div");
+    classe.className = `classePersonagem ${f.classe}`;
+
+    f.personagens.forEach(p => {
+      const div = document.createElement("div");
+      div.className = "personagens";
+
+      const img = document.createElement("img");
+      img.src = `./../img/jogo/pilotos/${p.img}`;
+      img.id = p.id;
+
+      div.appendChild(img);
+      classe.appendChild(div);
+    });
+
+    const titulo = document.createElement("h1");
+    titulo.textContent = f.nome;
+
+    const linha = document.createElement("div");
+    linha.classList.add("linha-faccao");
+
+    linha.appendChild(classe);
+    linha.appendChild(titulo);
+
+    grupo.appendChild(linha);
+    containerGrupos.appendChild(grupo);
+    grupos.push(grupo);
+  });
+
+  function trocarFaccao(dir) {
+    grupos[faccaoAtual].classList.remove("ativo");
+
+    faccaoAtual = (faccaoAtual + dir + grupos.length) % grupos.length;
+
+    const grupoAtual = grupos[faccaoAtual];
+    grupoAtual.classList.add("ativo");
+
+    // 🔥 RESET SEMPRE PARA O PRIMEIRO DO BLOCO
+    const primeiroImg = grupoAtual.querySelector("img");
+    if (primeiroImg) {
+      selecionarPersonagem(primeiroImg.id);
+    }
+  }
+
+  setaCima.onclick = () => trocarFaccao(-1);
+  setaBaixo.onclick = () => trocarFaccao(1);
+
+  configurarSelecaoPersonagem();
+
+  // 🔥 seleção inicial baseada na primeira facção
+  const primeiroImg = grupos[0].querySelector("img");
+  if (primeiroImg) {
+    selecionarPersonagem(primeiroImg.id);
+  }
+});

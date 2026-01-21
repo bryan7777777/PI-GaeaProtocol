@@ -1,16 +1,5 @@
 function configurarSelecaoPersonagem() {
   const personagensInfo = {
-    vermelho: {
-      nome: "♨️VIKLAV, O GENERAL SANGUINARIO♨️",
-      dificuldade: "♨️NÍVEL DE DIFICULDADE: 💀💀💀♨️",
-      cor: "rgb(172, 0, 0)",
-      descricao: "Focado em causar muito dano em área, ele pode ser letal para ambos os lados.",
-      hp: 50,
-      maxHp: 50,
-      energia: 4,
-      escudo: 0,
-      mao: 6
-    },
     olaf: {
       nome: "❄️OLAF, O GUARDIÃO GELIDO❄️",
       dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀💀❄️",
@@ -20,7 +9,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 150,
       energia: 3,
       escudo: 5,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/olaf.png"
     },
     lilia: {
       nome: "🐼❄️LILIA, LIDER DO GLACIAL PROTOCOOL❄️🐼",
@@ -31,7 +21,8 @@ function configurarSelecaoPersonagem() {
       maxHp: "60",
       energia: "2",
       escudo: "0",
-      mao: "4"
+      mao: "4",
+      img: "./../img/jogo/player/lilia.png"
     },
     olga: {
       nome: "❄️OLGA, A PESQUISADORA PRODIGIO❄️",
@@ -42,7 +33,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 90,
       energia: 3,
       escudo: 0,
-      mao: 6
+      mao: 6,
+      img: "./../img/jogo/player/olga.png"
     },
     glacia: {
       nome: "❄️GLACIA, VICE LIDER DOS PESQUISADORES❄️",
@@ -53,7 +45,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 80,
       energia: 4,
       escudo: 0,
-      mao: 8
+      mao: 8,
+      img: "./../img/jogo/player/glacia.png"
     },
     laranja: {
       nome: "🐦‍🔥GABRIEL, O INABALÁVEL🐦‍🔥",
@@ -64,7 +57,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 70,
       energia: 3,
       escudo: 0,
-      mao: 6
+      mao: 6,
+      img: "./../img/jogo/player/corredor.png"
     },
     cleber: {
       nome: "🐦‍🔥CLEBER, PROTETOR DA FAUNA🐦‍🔥",
@@ -75,7 +69,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 160,
       energia: 3,
       escudo: 5,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/cleber.png"
     },
     malaquias: {
       nome: "🐦‍🔥MALAQUIAS, ESPECIALISTA EM REPTEIS🐦‍🔥",
@@ -86,7 +81,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 78,
       energia: 6,
       escudo: 0,
-      mao: 3
+      mao: 3,
+      img: "./../img/jogo/player/malaquias.png"
     },
     renata: {
       nome: "🐦‍🔥RENATA, ESPECIALISTA EM MAMIFEROS🐦‍🔥",
@@ -97,7 +93,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 50,
       energia: 3,
       escudo: 0,
-      mao: 6
+      mao: 6,
+      img: "./../img/jogo/player/renata.png"
     },
     marcos: {
       nome: "🌪️MARCOS, EX BOMBEIRO🌪️",
@@ -108,7 +105,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 120,
       energia: 3,
       escudo: 0,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/marcos.png"
     },
     cleide: {
       nome: "🌪️CLEIDE, A VETERANA🌪️",
@@ -119,7 +117,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 100,
       energia: 3,
       escudo: 0,
-      mao: 7
+      mao: 7,
+      img: "./../img/jogo/player/cleide.png"
     },
     magna: {
       nome: "🌪️MAGNA, A IMPACIENTE🌪️",
@@ -130,7 +129,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 128,
       energia: 4,
       escudo: 0,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/magna.png"
     },
     lucius: {
       nome: "🌪️LUCIUS, IRMÃO DO JÃO🌪️",
@@ -141,7 +141,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 100,
       energia: 3,
       escudo: 0,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/lucius.png"
     },
     azul: {
       nome: "⚓REINOR, O ESCUDO DA HUMANIDADE⚓",
@@ -152,7 +153,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 130,
       energia: 3,
       escudo: 5,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/tank.png"
     },
     amarelo: {
       nome: "⛏️BRUNO, O MINEIRO CHEFE⛏️",
@@ -163,7 +165,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 100,
       energia: 3,
       escudo: 0,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/mineiro.png"
     },
     celso: {
       nome: "⛏️CELSO, O ARQUEOLOGO⛏️",
@@ -174,7 +177,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 75,
       energia: 4,
       escudo: 0,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/celso.png"
     },
     felipe: {
       nome: "⛏️FELIPE, GEO MAPEADOR⛏️",
@@ -185,7 +189,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 130,
       energia: 3,
       escudo: 5,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/felipe.png"
     },
     maria: {
       nome: "⛏️MARIA, ESPECIALISTA EM EXPLOSÕES⛏️",
@@ -196,7 +201,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 110,
       energia: 3,
       escudo: 0,
-      mao: 7
+      mao: 7,
+      img: "./../img/jogo/player/maria.png"
     },
     verde: {
       nome: "🌿JÃO, O CARA🌿",
@@ -207,7 +213,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 100,
       energia: 3,
       escudo: 0,
-      mao: 6
+      mao: 6,
+      img: "./../img/jogo/player/jao.png"
     },
     magnolia: {
       nome: "🌿MAGNOLIA, LIDER DA GAEA🌿",
@@ -218,7 +225,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 120,
       energia: 4,
       escudo: 0,
-      mao: 6
+      mao: 6,
+      img: "./../img/jogo/player/magnolia.png"
     },
     roxo: {
       nome: "⚙️VINICIUS, A INTERFACE CAÓTICA⚙️",
@@ -229,7 +237,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 60,
       energia: 5,
       escudo: 0,
-      mao: 7
+      mao: 7,
+      img: "./../img/jogo/player/cabaDosDrones.png"
     },
     ferrus: {
       nome: "⚒️MAGNUS FERRUS, O PRODÍGIO⚒️",
@@ -240,7 +249,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 160,
       energia: 3,
       escudo: 0,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/sal2.png"
     },
     wallace: {
       nome: "🌿WALLACE, O ESPECTRO DA FLORESTA🌿",
@@ -251,7 +261,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 100,
       energia: 4,
       escudo: 0,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/wallace.png"
     },
     porto: {
       nome: "⚓CLARICE, A AUTORIDADE DO PORTO⚓",
@@ -262,7 +273,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 110,
       energia: 3,
       escudo: 5,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/autoridadeDoPorto.png"
     },
     fergus: {
       nome: "⚓FERGUS, EX AUTORIDADE DO PORTO⚓",
@@ -273,7 +285,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 145,
       energia: 3,
       escudo: 0,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/fergus.png"
     },
     mercuri: {
       nome: "⚓MERCURI, GUARDA PORTO⚓",
@@ -284,7 +297,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 100,
       energia: 3,
       escudo: 0,
-      mao: 5
+      mao: 5,
+      img: "./../img/jogo/player/mercuri.png"
     },
     tomoeh: {
       nome: "🩸TOMOEH, A SOMBRA🩸",
@@ -295,7 +309,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 30,
       energia: 6,
       escudo: 0,
-      mao: 9
+      mao: 9,
+      img: "./../img/jogo/player/sombra.png"
     },
     gaeaReen: {
       nome: "🌿ELIZE, A ESPERANÇA🌿",
@@ -306,7 +321,8 @@ function configurarSelecaoPersonagem() {
       maxHp: 120,
       energia: 4,
       escudo: 0,
-      mao: 6
+      mao: 6,
+      img: "./../img/jogo/player/kalenart.png"
     },
     x: {
       nome: "🔮A ESQUECIDA🔮",
@@ -317,38 +333,60 @@ function configurarSelecaoPersonagem() {
       maxHp: 200,
       energia: 3,
       escudo: 2,
-      mao: 4
+      mao: 4,
+      img: "./../img/jogo/player/x.png"
     }
   };
 
-  imagens.forEach(img => {
+  const personagens = document.querySelectorAll(".personagens img");
+  const imgPreview = document.getElementById("imgPersonagem");
+
+  window.selecionarPersonagem = function (id) {
+    const info = personagensInfo[id];
+    if (!info) return;
+
+    personagens.forEach(p => p.classList.remove("selecionado"));
+
+    const img = document.getElementById(id);
+    if (img) img.classList.add("selecionado");
+
+    personagemSelecionado = id;
+
+    topoInfo.innerHTML = `
+      <em>${info.nome}</em>
+      <em>${info.dificuldade}</em>
+      <span>
+        ❤️ HP: ${info.hp}/${info.maxHp}
+        🛡️ Escudo: ${info.escudo}
+        🤚 Mão: ${info.mao}
+        🔷 Energia: ${info.energia}
+      </span>
+    `;
+
+    descricaoInfo.innerHTML = `
+      <span>DESCRIÇÃO:</span>
+      <span>${info.descricao}</span>
+    `;
+
+    imgPreview.src = info.img;
+    imgPreview.alt = info.nome;
+  };
+
+  personagens.forEach(img => {
     img.addEventListener("click", () => {
-      const info = personagensInfo[img.id];
-      if (!info) return;
-
-      // Atualiza borda e sombra
-      descBox.style.border = `5px solid ${info.cor}`;
-      descBox.style.boxShadow = `0 0 25px ${info.cor}`;
-      descBox.style.padding = "15px";
-      descBox.style.borderRadius = "12px";
-      descBox.style.background = "rgba(0, 0, 0, 0.7)";
-      descBox.style.color = "#fff";
-      descBox.style.transition = "all 0.3s ease";
-
-      // Exibe nome, dificuldade, descrição e status
-      descBox.innerHTML = `
-        <strong style=" margin: 5px 0; color:${info.cor};">${info.nome}</strong>
-        <em style="display:block; margin: 5px 0; color:${info.cor}; font-weight:bold;">${info.dificuldade}</em>
-        <em style="display:block; margin: 5px 0; color:${info.cor}; font-weight:bold;">❤️${info.hp} / ${info.maxHp}, 🛡️${info.escudo}, 🤚${info.mao}, 🔷${info.energia}</em><br><br><br>
-        <span>${info.descricao}</span>
-      `;
-
-      // Atualiza a seleção visual
-      imagens.forEach(el => el.classList.remove("selecionado"));
-      img.classList.add("selecionado");
-
-      // Guarda globalmente o personagem selecionado
-      window.personagemSelecionado = img.id;
+      selecionarPersonagem(img.id);
     });
   });
-};
+}
+
+const btnConfirmar = document.getElementById("fimSelecao");
+
+btnConfirmar.addEventListener("click", () => {
+  if (!personagemSelecionado) {
+    alert("Selecione um personagem antes de confirmar!");
+    return;
+  }
+
+  mostrarTela(2);
+  mapaCanvas("divMapa", fases, caminhos, corMapa1, corMapa2, iconBoss);
+});

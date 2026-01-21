@@ -176,99 +176,7 @@ html, body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   flex-direction: row;
-  gap: 10px;
-  padding: 10px; 
   z-index: 1;  
-}
-
-.classePersonagem{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-  border-radius: 0 60px 0 60px;
-  padding-top: 10px;
-  padding: 20px;
-}
-
-.mineiros{
-  background-color: rgba(255, 251, 0, 0.2);
-  border: solid 5px rgb(255, 251, 0);
-}
-#selecaoPlayer #mineiros{
-  color: rgb(255, 251, 0);
-}
-
-.porto{
-  background-color: rgba(0, 119, 255, 0.2);
-  border: solid 5px rgb(0, 157, 255);
-}
-#selecaoPlayer #op{
-  color: rgb(0, 157, 255);
-}
-
-.laranjas{
-  background-color: rgba(255, 123, 0, 0.2);
-  border: solid 5px rgb(255, 145, 0);
-}
-#selecaoPlayer #laranjas{
-  color: rgb(255, 153, 0);
-}
-
-.gaea{
-  background-color: rgba(0, 255, 26, 0.2);
-  border: solid 5px rgb(0, 255, 8);
-}
-#selecaoPlayer #gaea{
-  color: rgb(0, 255, 8);
-}
-
-.vermelhos{
-  background-color: rgba(255, 0, 0, 0.2);
-  border: solid 5px rgb(255, 0, 0);
-}
-#selecaoPlayer #index{
-  color: rgb(255, 0, 0);
-}
-
-.semFaccao{
-  background-color: rgba(204, 0, 255, 0.2);
-  border: solid 5px rgb(166, 0, 255);
-}
-#selecaoPlayer #semFaccao{
-  color: rgb(166, 0, 255);
-}
-
-.glacial{
-  background-color: rgba(0, 247, 255, 0.2);
-  border: solid 5px rgb(0, 247, 255);
-}
-#selecaoPlayer #glacial{
-  color: rgb(0, 255, 234);
-}
-
-.eolico{
-  background-color: rgba(255, 255, 255, 0.2);
-  border: solid 5px rgb(255, 255, 255);
-}
-#selecaoPlayer #eolico{
-  color: rgb(255, 255, 255);
-}
-
-#selecaoPlayer h1{
-  font-size: 50px;
-}
-
-#blocoSelecao{
-  height: 100%;
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 10px;
 }
 
 #descPersonagem{
@@ -311,11 +219,8 @@ html, body {
   justify-content: center;
   gap: 30px;
   border: 5px solid rgb(108, 223, 133);
-  border-radius: 15px;
   background-color: rgba(0, 0, 0, 0.7);
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 20px;
+  overflow: hidden;
   box-shadow: 0 0 40px rgba(108, 223, 133, 0.5);
 }
 
@@ -426,108 +331,6 @@ button {
 #div1 h1, #popup p{
   text-align: center;
   color: rgb(108, 223, 133);
-}
-
-#selecaoPlayer{
-  width: 75%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-}
-
-/* GAEA */
-#wallace.selecionado, #wallace:hover, #verde.selecionado, #verde:hover, #gaeaReen.selecionado, #gaeaReen:hover, #magnolia.selecionado, #magnolia:hover {
-  border: 4px solid rgb(0, 188, 16);
-  box-shadow: 2px 2px 75px 2px rgb(3, 101, 0);
-  transform: scale(1.1);
-}
-
-/* FAUNA */
-#laranja.selecionado, #laranja:hover, #cleber.selecionado, #cleber:hover, #malaquias.selecionado, #malaquias:hover, #renata.selecionado, #renata:hover {
-  border: 4px solid rgb(255, 128, 0);
-  box-shadow: 2px 2px 75px 2px orange;
-  transform: scale(1.1);
-}
-
-/* GLEBA */
-#amarelo.selecionado, #amarelo:hover, #celso.selecionado, #celso:hover, #felipe.selecionado, #felipe:hover, #maria.selecionado, #maria:hover {
-  border: 4px solid rgb(231, 201, 7);
-  box-shadow: 2px 2px 75px 2px rgb(231, 201, 7);
-  transform: scale(1.1);
-}
-
-/* QUEIMADA */
-#vermelho.selecionado, #vermelho:hover {
-  border: 4px solid rgb(172, 0, 0);
-  box-shadow: 2px 2px 75px 2px rgb(156, 0, 0);
-  transform: scale(1.1);
-}
-
-/* OCEANO */
-#porto.selecionado, #porto:hover, #azul.selecionado, #azul:hover, #mercuri.selecionado, #mercuri:hover, #fergus.selecionado, #fergus:hover {
-  border: 4px solid rgb(44, 64, 189);
-  box-shadow: 2px 2px 75px 2px rgb(44, 64, 189);
-  transform: scale(1.1);
-}
-
-/* EOLICO */
-#cleide.selecionado, #cleide:hover,#magna.selecionado, #magna:hover,#lucius.selecionado, #lucius:hover,#marcos.selecionado, #marcos:hover {
-  border: 4px solid rgb(255, 255, 255);
-  box-shadow: 2px 2px 75px 2px rgb(255, 255, 255);
-  transform: scale(1.1);
-}
-
-/* GLACIAL */
-#olaf.selecionado, #olaf:hover, #olga.selecionado, #olga:hover, #glacia.selecionado, #glacia:hover {
-  border: 4px solid rgb(128, 240, 255);
-  box-shadow: 2px 2px 75px 2px rgb(128, 240, 255);
-  transform: scale(1.1);
-}
-
-/* SOLITARIOS */
-#x.selecionado, #x:hover {
-  border: 4px solid rgb(0, 114, 129);
-  box-shadow: 2px 2px 75px 2px rgb(0, 110, 129);
-  transform: scale(1.1);
-}
-
-#roxo.selecionado, #roxo:hover {
-  border: 4px solid rgb(141, 7, 231);
-  box-shadow: 2px 2px 75px 2px rgb(134, 7, 231);
-  transform: scale(1.1);
-}
-
-#ferrus.selecionado, #ferrus:hover {
-  border: 4px solid rgb(103, 67, 0);
-  box-shadow: 2px 2px 75px 2px rgb(101, 66, 0);
-  transform: scale(1.1);
-}
-
-#tomoeh.selecionado, #tomoeh:hover, #lilia.selecionado, #lilia:hover {
-  border: 4px solid rgb(255, 147, 250);
-  box-shadow: 2px 2px 75px 2px rgb(253, 140, 240);
-  transform: scale(1.1);
-}
-
-.personagens img{
-  height: auto;
-  width: 80%;
-}
-
-.personagens img{
-  height: 200px;
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0px 30% 0px 30%;
-  border: solid 4px rgb(108, 223, 133);
-  box-shadow: 2px 2px 75px 2px rgb(108, 223, 133);
-  transition: 0.5s;
-  background-color: rgb(0, 0, 0);
 }
 
 #fimSelecao, .inventario button, .ferreiro button, #lutaUm, #fimDeJogo, .pular, #lojaUm,.loja-esquerda button, #btnRemoverCarta{
