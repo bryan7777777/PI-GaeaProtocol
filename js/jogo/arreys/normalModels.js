@@ -424,7 +424,7 @@ const normalModels = [
       name: "IA sacerdotisa",
       hp: 24,
       dano: 2,
-      behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 2 : 4 }],
+      behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 6 : 12 }],
       img: "../img/jogo/inimigos/sacerdotisa.png",
       tipoDano: "(💚🎭💊)💥",
       tipoVida: "❤️",

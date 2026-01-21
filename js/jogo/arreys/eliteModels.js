@@ -235,7 +235,7 @@ const eliteModels = [
       name: "IA sacerdotisa",
       hp: 39,
       dano: 2,
-      behavior: () => [{ type: "heal", value: Math.random() < 0.3 ? 2 : 4 }],
+      behavior: () => [{ type: "heal", value: Math.random() < 0.3 ? 6 : 12 }],
       img: "../img/jogo/inimigos/sacerdotisa.png",
       tipoDano: "(💚🎭💊)💥",
       tipoVida: "❤️",

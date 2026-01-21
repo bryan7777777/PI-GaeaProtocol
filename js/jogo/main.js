@@ -1236,8 +1236,8 @@ function drawCards() {
         }
         //🛡️
         else if (card.name === "Impulso Defensivo") {
-          allBuffs(card.power * 3, "def",true);
-          allBuffs(card.power, "energia",true);
+          allBuffs(card.power * 3, "def", true);
+          allBuffs(card.power, "energia", true);
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
         //🛡️
@@ -1337,6 +1337,7 @@ function drawCards() {
                   power: base.basePower ?? base.power ?? 0
                 };
                 deck.push(newCard); // adiciona diretamente
+                glowPlayer("green");
               }
             }
           } else {
@@ -1380,18 +1381,18 @@ function drawCards() {
         }
         //💚
         else if (card.name === "Impulso") {
-          allBuffs(card.power,"mao");
+          allBuffs(card.power, "mao");
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Mineração") {
-          allBuffs(card.power,"energia");
+          allBuffs(card.power, "energia");
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "PROTOCOL-Reforço Estrutural") {
           if (playerHP <= 30) {
-            allBuffs(card.power,"cura");
+            allBuffs(card.power, "cura");
           }
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
@@ -1469,12 +1470,12 @@ function drawCards() {
         //♻️
         else if (card.name === "Essencia Verde") {
           let dano = Math.floor(lixoReciclado / 10);
-          allBuffs(dano,"cura");
+          allBuffs(dano, "cura");
         }
         //♻️
         else if (card.name === "Defesa Renovavel") {
           let dano = Math.floor(lixoReciclado / 4);
-          allBuffs(dano,"def");
+          allBuffs(dano, "def");
         }
         //♻️
         else if (card.name === "Defesa Critica") {
@@ -1485,7 +1486,7 @@ function drawCards() {
             dano = Math.max(1, Math.floor(danoCalculado));
           }
 
-          allBuffs(dano,"def");
+          allBuffs(dano, "def");
         }
         //♻️
         else if (card.name === "Destruir Carta") {
@@ -1754,7 +1755,7 @@ function drawCards() {
           }
 
           const defesa = lixoRemovido * 5;
-          allBuffs(defesa,"def");
+          allBuffs(defesa, "def");
           updateHUD();
 
           div.classList.add("card-remove");
@@ -1795,7 +1796,7 @@ function drawCards() {
           }
 
           energyAdd = Math.floor(lixoRemovido / 2);
-          allBuffs(energyAdd,"energia");
+          allBuffs(energyAdd, "energia");
           updateHUD();
 
           div.classList.add("card-remove");
@@ -2022,7 +2023,7 @@ function drawCards() {
             armorGain *= markedCount + 1;
           }
 
-          allBuffs(armorGain,"def");
+          allBuffs(armorGain, "def");
         }
         //❄️
         else if (card.name === "Coração Frio") {
@@ -2036,7 +2037,7 @@ function drawCards() {
           }
 
           // Aplica armadura
-          allBuffs(armorGain,"cura");
+          allBuffs(armorGain, "cura");
         }
         //❄️
         else if (card.name === "Aura Glacial") {
@@ -2062,7 +2063,7 @@ function drawCards() {
         else if (card.name === "Xenofluxo Glacial") {
           energiInimigo = enemies.filter(e => e.tipoVida === "❄️").length;
           energyAdd = 1 * energiInimigo;
-          allBuffs(energyAdd,"energia");
+          allBuffs(energyAdd, "energia");
         }
         //❄️
         else if (card.name === "Baralho Glacial") {
@@ -2138,8 +2139,8 @@ function drawCards() {
               valor += card.power;
             }
           });
-          allBuffs(valor,"def", true);
-          allBuffs(valor,"cura", true);
+          allBuffs(valor, "def", true);
+          allBuffs(valor, "cura", true);
           marcarInimigos("♨️", "area", true)
         }
         //♨️
@@ -2164,7 +2165,7 @@ function drawCards() {
           for (let i = 0; i < markedCount; i++) {
             dano += Math.floor(lixoReciclado * 0.04);
           }
-          allBuffs(dano,"cura");
+          allBuffs(dano, "cura");
         }
         //  🌧️🌧️🌧️🌧️🌧️ AGUA 🌧️🌧️🌧️🌧️🌧️
         else if (card.name === "Jato De Água") {
@@ -2188,7 +2189,7 @@ function drawCards() {
           let def = 0;
           def += card.power;
           def += Math.floor(lixoReciclado * 0.17);
-          allBuffs(def,"def");
+          allBuffs(def, "def");
         }
         //🌧️
         else if (card.name === "Aquafluxo") {
@@ -2199,7 +2200,7 @@ function drawCards() {
           for (let i = 0; i < markedCount; i++) {
             armorGain += 1;
           }
-          allBuffs(armorGain,"energia");
+          allBuffs(armorGain, "energia");
           causarDano(dano, "unico", simbulo = "🌧️")
         }
         //🌧️
@@ -2218,7 +2219,7 @@ function drawCards() {
         }
         //🌧️
         else if (card.name === "Alma Do Mar.4") {
-          dano= Math.floor(playerShield/enemies.length);
+          dano = Math.floor(playerShield / enemies.length);
           causarDano(dano, "area", simbulo = "🌧️")
         }
         //🌧️
@@ -2237,19 +2238,19 @@ function drawCards() {
         }
         //🌧️
         else if (card.name === "Alma Do Mar.9") {
-          dano = Math.floor(lixoReciclado*0.12);
+          dano = Math.floor(lixoReciclado * 0.12);
           cartas1 = deck.length;
           if (cartas1 == 1) {
-            dano = Math.floor(lixoReciclado*0.45);
+            dano = Math.floor(lixoReciclado * 0.45);
           } else if (cartas1 <= 3) {
-            dano = Math.floor(lixoReciclado*0.23);
+            dano = Math.floor(lixoReciclado * 0.23);
           }
           causarDano(dano, "unico", simbulo = "🌧️")
         }
         //🌧️
         else if (card.name === "Alma Do Mar.12") {
           if (playerHP <= playerMaxHP * 0.3) {
-            allBuffs(card.power,"cura");
+            allBuffs(card.power, "cura");
           } else {
             causarDano(card.power, "unico", simbulo = "🌧️")
           }
@@ -2340,7 +2341,7 @@ function drawCards() {
           def = (terraCount + aguaCount) * card.power;
           def += Math.floor(lixoReciclado * 0.2);
 
-          allBuffs(def,"def");
+          allBuffs(def, "def");
         }
         //⛰️
         else if (card.name === "Coração De Gaea") {
@@ -2350,7 +2351,7 @@ function drawCards() {
           def = (terraCount + aguaCount) * card.power;
           def += Math.floor(lixoReciclado * 0.1);
 
-          allBuffs(def,"cura");
+          allBuffs(def, "cura");
         }
         //⛰️
         else if (card.name === "Chuva Rochosa") {
@@ -2373,10 +2374,10 @@ function drawCards() {
         //  ✨✨✨✨✨ CINTILANTE ✨✨✨✨✨
         else if (card.name === "Guardião") {
           if (playerHP <= 30) {
-            allBuffs(card.power,"def",true);
-            allBuffs(2,"energia",true);
+            allBuffs(card.power, "def", true);
+            allBuffs(2, "energia", true);
           } else {
-            allBuffs(1,"energia",true);
+            allBuffs(1, "energia", true);
           }
         }
         //✨
@@ -2454,8 +2455,8 @@ function drawCards() {
           if (enemies.length > 0) {
             causarDano(totalDamage, "unico")
           }
-          allBuffs(totalShield,"def",true);
-          allBuffs(totalHeal,"cura",true);
+          allBuffs(totalShield, "def", true);
+          allBuffs(totalHeal, "cura", true);
 
           // anima a carta usada
           div.classList.add("card-remove");
@@ -2535,20 +2536,20 @@ function causarDano(valor, tipo, simbulo = "⚔️", areaEspecial) {
       break;
   }
 }
-function allBuffs(valor, tipo, cintilante=false) {
+function allBuffs(valor, tipo, cintilante = false) {
   glow = "cintilante";
 
   if (!cintilante) {
     switch (tipo) {
       case "cura":
       case "mao":
-        glow="green";
+        glow = "green";
         break;
       case "def":
       case "energia":
-        glow="blue";
+        glow = "blue";
         break;
-    
+
       default:
         break;
     }
@@ -2588,7 +2589,7 @@ function allDebuff(valor, tipo) {
     case "sofrerDano":
       playerHP = Math.max(1, playerHP - valor);
       animateDamage(document.getElementById("player"));
-      floatText(document.getElementById("player"), `-${dano}💔`, "red");
+      floatText(document.getElementById("player"), `-${valor}💔`, "red");
       break;
     case "mao":
       if (limiteMao > 1) {
@@ -6707,25 +6708,25 @@ function animarLiliaTransformacao() {
   let frames;
   if (mapaBatalha >= 19) {
     frames = {
-    f1: "./../img/jogo/player/animado/lilia/atk/lilia111.png",
-    f2: "./../img/jogo/player/animado/lilia/atk/lilia222.png",
-    f3: "./../img/jogo/player/animado/lilia/atk/lilia333.png",
-    idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia3.png"
-  };
-  } else if (mapaBatalha >= 11){
+      f1: "./../img/jogo/player/animado/lilia/atk/lilia111.png",
+      f2: "./../img/jogo/player/animado/lilia/atk/lilia222.png",
+      f3: "./../img/jogo/player/animado/lilia/atk/lilia333.png",
+      idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia3.png"
+    };
+  } else if (mapaBatalha >= 11) {
     frames = {
-    f1: "./../img/jogo/player/animado/lilia/atk/lilia11.png",
-    f2: "./../img/jogo/player/animado/lilia/atk/lilia22.png",
-    f3: "./../img/jogo/player/animado/lilia/atk/lilia33.png",
-    idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia2.png"
-  };
+      f1: "./../img/jogo/player/animado/lilia/atk/lilia11.png",
+      f2: "./../img/jogo/player/animado/lilia/atk/lilia22.png",
+      f3: "./../img/jogo/player/animado/lilia/atk/lilia33.png",
+      idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia2.png"
+    };
   } else {
     frames = {
-    f1: "./../img/jogo/player/animado/lilia/atk/lilia1.png",
-    f2: "./../img/jogo/player/animado/lilia/atk/lilia2.png",
-    f3: "./../img/jogo/player/animado/lilia/atk/lilia3.png",
-    idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia1.png"
-  };
+      f1: "./../img/jogo/player/animado/lilia/atk/lilia1.png",
+      f2: "./../img/jogo/player/animado/lilia/atk/lilia2.png",
+      f3: "./../img/jogo/player/animado/lilia/atk/lilia3.png",
+      idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia1.png"
+    };
   }
 
   const delay = 100;
@@ -6783,7 +6784,7 @@ function playerTomarDanoAnimacao() {
     };
   } else if (mapaBatalha >= 11) {
     frames = {
-      hit: "./../img/jogo/player/animado/lilia/def/lilia1.png",
+      hit: "./../img/jogo/player/animado/lilia/def/lilia11.png",
       idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia2.png"
     };
   } else {
@@ -6865,8 +6866,6 @@ function trocarSpriteComDelay(img, src, delayFrames = 2, callback) {
   };
 }
 
-
-
 //ENEMYS
 async function enemyTurn() {
   animarCompra = true;
@@ -6939,8 +6938,24 @@ async function enemyTurn() {
           updateEnemyBars();
         }
 
+        // ADD ANIMAÇÃO D CURA
         target.el.classList.add("healed");
-        setTimeout(() => target.el.classList.remove("healed"), 600);
+
+        const particles = document.createElement("div");
+        particles.className = "heal-particles";
+
+        for (let i = 0; i < 5; i++) {
+          const p = document.createElement("span");
+          p.textContent = "💚";
+          particles.appendChild(p);
+        }
+
+        target.el.appendChild(particles);
+
+        setTimeout(() => {
+          target.el.classList.remove("healed");
+          particles.remove();
+        }, 1200);
 
         // 🔱 ATAQUE DIRETO À VIDA
       } else if (act.type === "attackVida") {
