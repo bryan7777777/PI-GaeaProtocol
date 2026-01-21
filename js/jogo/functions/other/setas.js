@@ -16,79 +16,93 @@ document.addEventListener("DOMContentLoaded", () => {
   container.appendChild(setaCima);
   container.appendChild(containerGrupos);
   container.appendChild(setaBaixo);
+  let faccoes;
 
-  const faccoes = [
-  {
-    nome: "GA.P.",
-    classe: "gaea",
-    personagens: [
-      { id: "verde", img: "capaceteverde.png" },
-      { id: "magnolia", img: "magnolia.jpg" },
-      { id: "wallace", img: "espectroDaFloresta.jpeg" },
-      { id: "gaeaReen", img: "gaeaReen.png" }
+  if (pagina === "tutorial.html") {
+    faccoes = [
+      {
+        nome: "GA.P.",
+        classe: "gaea",
+        personagens: [
+          { id: "verde", img: "capaceteverde.png" },
+        ]
+      },
     ]
-  },
-  {
-    nome: "GLE.P.",
-    classe: "mineiros",
-    personagens: [
-      { id: "amarelo", img: "capaceteamarelo.png" },
-      { id: "felipe", img: "felipe.jpg" },
-      { id: "celso", img: "celso.jpg" },
-      { id: "maria", img: "maria.jpg" }
-    ]
-  },
-  {
-    nome: "O.P.",
-    classe: "porto",
-    personagens: [
-      { id: "porto", img: "autoridadeDoPorto.jpg" },
-      { id: "azul", img: "capaceteazul.png" },
-      { id: "fergus", img: "fergus.jpg" },
-      { id: "mercuri", img: "mercuri.jpg" }
-    ]
-  },
-  {
-    nome: "F.P.",
-    classe: "laranjas",
-    personagens: [
-      { id: "laranja", img: "capacetelaranja.png" },
-      { id: "cleber", img: "cleber.jpg" },
-      { id: "malaquias", img: "malaquias.jpg" },
-      { id: "renata", img: "renata.jpg" }
-    ]
-  },
-  {
-    nome: "E.P.",
-    classe: "eolico",
-    personagens: [
-      { id: "marcos", img: "marcos.jpg" },
-      { id: "cleide", img: "cleide.jpg" },
-      { id: "magna", img: "magna.jpg" },
-      { id: "lucius", img: "lucius.jpg" }
-    ]
-  },
-  {
-    nome: "GLA.P.",
-    classe: "glacial",
-    personagens: [
-      { id: "lilia", img: "lilia.png" },
-      { id: "glacia", img: "glacia.jpg" },
-      { id: "olaf", img: "olaf.jpg" },
-      { id: "olga", img: "olga.jpg" }
-    ]
-  },
-  {
-    nome: "SOLITÁRIOS",
-    classe: "semFaccao",
-    personagens: [
-      { id: "x", img: "gemea.jpeg" },
-      { id: "tomoeh", img: "sombraDaMorte.jpeg" },
-      { id: "ferrus", img: "magnusFerrus.png" },
-      { id: "roxo", img: "capaceteroxo.png" }
-    ]
+  } else {
+    faccoes = [
+      {
+        nome: "GA.P.",
+        classe: "gaea",
+        personagens: [
+          { id: "verde", img: "capaceteverde.png" },
+          { id: "magnolia", img: "magnolia.jpg" },
+          { id: "wallace", img: "espectroDaFloresta.jpeg" },
+          { id: "gaeaReen", img: "gaeaReen.png" }
+        ]
+      },
+      {
+        nome: "GLE.P.",
+        classe: "mineiros",
+        personagens: [
+          { id: "amarelo", img: "capaceteamarelo.png" },
+          { id: "felipe", img: "felipe.jpg" },
+          { id: "celso", img: "celso.jpg" },
+          { id: "maria", img: "maria.jpg" }
+        ]
+      },
+      {
+        nome: "O.P.",
+        classe: "porto",
+        personagens: [
+          { id: "porto", img: "autoridadeDoPorto.jpg" },
+          { id: "azul", img: "capaceteazul.png" },
+          { id: "fergus", img: "fergus.jpg" },
+          { id: "mercuri", img: "mercuri.jpg" }
+        ]
+      },
+      {
+        nome: "F.P.",
+        classe: "laranjas",
+        personagens: [
+          { id: "laranja", img: "capacetelaranja.png" },
+          { id: "cleber", img: "cleber.jpg" },
+          { id: "malaquias", img: "malaquias.jpg" },
+          { id: "renata", img: "renata.jpg" }
+        ]
+      },
+      {
+        nome: "E.P.",
+        classe: "eolico",
+        personagens: [
+          { id: "marcos", img: "marcos.jpg" },
+          { id: "cleide", img: "cleide.jpg" },
+          { id: "magna", img: "magna.jpg" },
+          { id: "lucius", img: "lucius.jpg" }
+        ]
+      },
+      {
+        nome: "GLA.P.",
+        classe: "glacial",
+        personagens: [
+          { id: "lilia", img: "lilia.png" },
+          { id: "glacia", img: "glacia.jpg" },
+          { id: "olaf", img: "olaf.jpg" },
+          { id: "olga", img: "olga.jpg" }
+        ]
+      },
+      {
+        nome: "SOLITÁRIOS",
+        classe: "semFaccao",
+        personagens: [
+          { id: "x", img: "gemea.jpeg" },
+          { id: "tomoeh", img: "sombraDaMorte.jpeg" },
+          { id: "ferrus", img: "magnusFerrus.png" },
+          { id: "roxo", img: "capaceteroxo.png" }
+        ]
+      }
+    ];
   }
-];
+
 
   let faccaoAtual = 0;
   const grupos = [];

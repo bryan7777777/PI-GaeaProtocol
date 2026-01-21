@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="./../css/nemora.css" />
   <link rel="stylesheet" href="./../css/batalha.css">
   <link rel="stylesheet" href="./../css/tutorial.css">
+  <link rel="stylesheet" href="./../css/selecaoMapa.css">
 
   <!-- JS -->
   <!-- VARS -->
@@ -69,6 +70,7 @@
   <script src="./../js/jogo/functions/other/selecaoPlayerUnic.js" defer></script>
 
   <!-- MAIN -->
+   <script src="./../js/jogo/functions/other/setas.js" defer></script>
   <script src="./../js/jogo/main.js" defer></script>
 
 
@@ -78,36 +80,48 @@
 <div id="nemoraFire"></div>
 
 <body>
-    <div id="tutorial-overlay" style="display:none;">
+  <div id="tutorial-overlay" style="display:none;">
     <img id="tutorial-img" src="" alt="">
-  <div id="tutorial-box">
-    <img id="tutorial-img2" src="" alt="">
-    <p id="tutorial-text"></p>
-    <span id="tutorial-hint"><i>-- clique em qualquer lugar para avançar --</i></span>
+    <div id="tutorial-box">
+      <img id="tutorial-img2" src="" alt="">
+      <p id="tutorial-text"></p>
+      <span id="tutorial-hint"><i>-- clique em qualquer lugar para avançar --</i></span>
+    </div>
+    <img id="tutorial-img3" src="" alt="" style="display:none;">
+    <button id="tutorial-skip">PULAR DIALOGO</button>
   </div>
-  <img id="tutorial-img3" src="" alt="" style="display:none;">
-  <button id="tutorial-skip">PULAR DIALOGO</button>
-</div>
   <div id="game">
-    <div class="tela selecaoPlayer" id="div1">
-      <div id="blocoSelecao">
-        <div id="selecaoPlayer">
-          <div>
-            <h1 id="gaea">GAEA PROTOCOOL</h1>
-            <div class="classePersonagem gaea">
-              <div class="personagens"><img id="verde" src="./../img/jogo/pilotos/capaceteverde.png" alt=""></div>
-            </div>
-          </div>
-        </div>
-        <button id="fimSelecao">CONFIRMAR SELEÇÃO DE PERSONAGEM</button>
-      </div>
-      <div id="descPersonagem">
-        <div id="espacoDscr"></div>
-        <h1>SELECIONE UM PERSONAGEM PARA VER SUA DESCRIÇÃO:</h1><br><br>
-        <p>DIFICULDADE</p><br>
-        <p>STATUS BASE</p><br>
-        <p>DESCRIÇÃO DELE</p>
-      </div>
+<div class="tela selecaoPlayer" id="div1">
+
+  <!-- SETAS DE NAVEGAÇÃO DAS FACÇÕES -->
+  
+
+  <!-- ÁREA DE SELEÇÃO (FACÇÕES / GRUPOS) -->
+  <div id="blocoSelecao">
+  <div id="selecaoPlayer">
+  
+</div>
+
+</div>
+
+  <!-- PAINEL CENTRAL DE INFORMAÇÕES -->
+  <div id="painelInfo">
+
+    <!-- TOPO -->
+    <div id="topoInfo"></div>
+
+    <!-- MEIO -->
+    <div id="meioInfo">
+      <img id="imgPersonagem" src="" alt="">
+      <button id="fimSelecao">CONFIRMAR SELEÇÃO DE PERSONAGEM</button>
+    </div>
+
+  </div>
+
+  <!-- DESCRIÇÃO -->
+    <div id="descricaoInfo"></div>
+
+</div>
     </div>
     <div class="tela mapa" id="div2">
       <div id="mapa"></div>
