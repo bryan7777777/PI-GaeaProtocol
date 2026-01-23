@@ -1080,10 +1080,7 @@ function drawCards() {
         //⚔️
         else if (card.name === "Drenagem") {
           causarDano(card.power, "unico");
-          playerShield += card.power;
-          glowPlayer("green");
-          playerHP = Math.min(playerHP + card.power, playerMaxHP);
-          floatText(document.getElementById("player"), `+${card.power}💚`, "lime")
+          allBuffs(card.power,"cura");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });;
         }
 
@@ -1292,7 +1289,6 @@ function drawCards() {
         //🛡️
         else if (card.name === "Escudo Retaliante") {
           causarDano(playerShield, "unico");
-          glowPlayer("blue");
           deck.push({ ...allCards.find(c => c.name === "Escudo quebrado"), power: 0 });
         }
 
@@ -1344,7 +1340,7 @@ function drawCards() {
                   power: base.basePower ?? base.power ?? 0
                 };
                 deck.push(newCard); // adiciona diretamente
-                glowPlayer("green");
+                glowPlayer("energy");
               }
             }
           } else {
@@ -1417,7 +1413,7 @@ function drawCards() {
             };
             deck.push(newCard);
           }
-          glowPlayer("green");
+          glowPlayer("energy");
         }
         //  ♻️♻️♻️♻️♻️ RECICLAGEM ♻️♻️♻️♻️♻️
         else if (card.name === "Recicladora") {
@@ -2054,7 +2050,7 @@ function drawCards() {
           causarDano(dano, "unico", simbulo = "❄️")
 
           lixoReciclado += frostCount - 1;
-          glowPlayer("green");
+          glowPlayer("energy");
           floatText(document.getElementById("player"), `+${frostCount}♻️`, "lime");
           atualizarLixo();
         }
@@ -2088,7 +2084,7 @@ function drawCards() {
                 power: base.basePower ?? base.power ?? 0
               };
               deck.push(newCard);
-              glowPlayer("green");
+              glowPlayer("energy");
             }
           }
         }
@@ -2549,12 +2545,14 @@ function allBuffs(valor, tipo, cintilante = false) {
   if (!cintilante) {
     switch (tipo) {
       case "cura":
-      case "mao":
         glow = "green";
         break;
       case "def":
-      case "energia":
         glow = "blue";
+        break;
+      case "mao":
+      case "energia":
+        glow = "energy";
         break;
 
       default:

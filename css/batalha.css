@@ -1508,6 +1508,187 @@ color: rgb(227, 90, 255);
   }
 }
 
+.lightning-effect {
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+/* núcleo */
+.lightning-core {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    #ffffff 0%,
+    #bdf2ff 35%,
+    #4fdcff 65%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 25px #bdf2ff,
+    0 0 50px #4fdcff,
+    0 0 80px rgba(0, 160, 255, 0.9);
+  animation: coreFlash 0.18s infinite alternate;
+}
+
+/* raio */
+.lightning-bolt {
+  position: absolute;
+  width: 6px;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #dfffff,
+    #ffffff,
+    #6fe6ff,
+    transparent
+  );
+  filter: blur(0.4px);
+  box-shadow:
+    0 0 14px #dfffff,
+    0 0 30px #6fe6ff;
+  transform-origin: top center;
+  animation: boltStrike 0.16s ease-out forwards;
+}
+
+/* faísca */
+.lightning-spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: white;
+  box-shadow:
+    0 0 10px #e8ffff,
+    0 0 18px #6fe6ff;
+  animation: sparkBurst 0.3s linear forwards;
+}
+
+/* ================= ANIMAÇÕES ================= */
+
+@keyframes coreFlash {
+  from { transform: scale(0.8); opacity: 0.8; }
+  to   { transform: scale(1.5); opacity: 1; }
+}
+
+@keyframes boltStrike {
+  0% {
+    transform: translate(-50%, -50%) scaleY(0.2);
+    opacity: 1;
+  }
+  70% {
+    transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scaleY(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkBurst {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0.1);
+    opacity: 0;
+  }
+}
+
+.electric-effect {
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+/* 🔵 anel de energia */
+.electric-ring {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid rgba(120, 200, 255, 0.9);
+  box-shadow:
+    0 0 12px rgba(120, 200, 255, 0.8),
+    0 0 30px rgba(0, 160, 255, 0.6);
+  animation: electricPulse 0.6s ease-out forwards;
+}
+
+/* ⚡ arco elétrico */
+.electric-arc {
+  position: absolute;
+  width: 3px;
+  height: 24px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #8fdcff,
+    white,
+    #8fdcff,
+    transparent
+  );
+  filter: blur(0.3px);
+  box-shadow: 0 0 8px #9fe6ff;
+  transform: translate(-50%, -50%);
+  animation: electricArc 0.4s linear infinite;
+}
+
+/* ⚡ partículas */
+.electric-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  box-shadow:
+    0 0 8px #9fe6ff,
+    0 0 14px rgba(120, 200, 255, 0.9);
+  transform: translate(-50%, -50%);
+  animation: electricParticle 0.6s ease-out forwards;
+}
+
+/* ================= ANIMAÇÕES ================= */
+
+@keyframes electricPulse {
+  from {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes electricArc {
+  0% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y)));
+    opacity: 0;
+  }
+}
+
+@keyframes electricParticle {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0.2);
+    opacity: 0;
+  }
+}
+
 
 /* =================== TABLET =================== */
 @media (max-width: 1024px) {
