@@ -6244,7 +6244,7 @@ function criarPlayerNaDiv3() {
       playerImg.src = "./../img/jogo/player/wallace.png";
       playerMaxHP = 100, energyMax = 4, playerShieldInit = 0;
       playerHP = 100, energy = 4, playerShield = playerShieldInit;
-      dinheiro = 100;
+      dinheiro = 250;
       atualizarDinheiro();
       playerDeck = [...characterDecks.wallace];
       break;
