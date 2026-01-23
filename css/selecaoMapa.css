@@ -18,16 +18,25 @@
    SETAS DE NAVEGAÇÃO
    =============================== */
 
-.seta,
-#setaCima,
-#setaBaixo {
+.seta {
   background: none;
   border: none;
   cursor: pointer;
-  color: white;
-  position: relative;
+  color: rgb(227, 119, 51);
+  position: absolute;
   z-index: 10;
-  font-size: 24px;
+  font-size: 84px;
+  left: 18%;
+  transition: 0.5s;
+}
+
+.setaBaixo {
+  top: 88vh;
+}
+
+.seta:hover{
+  color: rgb(0, 146, 44);
+  scale: calc(1.1);
 }
 
 /* ===============================
@@ -84,7 +93,7 @@
 #selecaoPlayer h1 {
   writing-mode: vertical-rl;
   text-orientation: upright;
-  font-size: 50px;
+  font-size: 42px;
   margin-right: 10px;
 }
 
@@ -150,7 +159,56 @@
   justify-content: space-between;
   gap: 20px;
   background-color: rgba(0, 0, 0, 0.7);
-  border: 5px solid rgb(108, 223, 133);
+  position: relative;
+  overflow: hidden;
+}
+
+#painelInfo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 5px;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgb(108, 223, 133),
+    cyan,
+    rgb(108, 223, 133),
+    transparent
+  );
+  background-size: 300% 300%;
+  animation: flowBorder 6s linear infinite;
+  pointer-events: none;
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+}
+
+#painelInfo::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -20%;
+  width: 100%;
+  height: 80px;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 255, 200, 0.15),
+    rgba(0, 255, 200, 0.35),
+    rgba(0, 255, 200, 0.15),
+    transparent
+  );
+
+  animation: scannerMove 4s linear infinite;
+  pointer-events: none;
 }
 
 #topoInfo {
@@ -184,6 +242,8 @@
   width: 400px;
   height: 400px;
   margin-bottom: 8%;
+  filter: drop-shadow(0 0 20px rgba(0, 255, 200, 0.8));
+  animation: pulseAura 3s ease-in-out infinite;
 }
 
 #fimSelecao {
@@ -197,6 +257,33 @@
   padding: 10px;
   margin-bottom: 1%;
   transition: 1s;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow:
+    0 0 20px rgba(0, 255, 200, 0.4),
+    inset 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+#fimSelecao::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transition: 0.8s;
+}
+
+#fimSelecao:hover::before {
+  left: 120%;
 }
 
 #fimSelecao:hover {
@@ -204,6 +291,57 @@
   background-color: rgba(2, 114, 0, 0.6);
   box-shadow: 2px 2px 50px 2px rgba(0, 255, 106, 0.521);
   border: 5px solid rgb(108, 223, 133);
+  animation: glitch 0.2s linear infinite;
+}
+
+/* ===============================
+   ANIMAÇÕES
+   =============================== */
+
+@keyframes flowBorder {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+@keyframes pulseAura {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(0, 255, 200, 0.6));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 35px rgba(0, 255, 200, 1));
+    transform: scale(1.02);
+  }
+}
+
+@keyframes starsMove {
+  from { background-position: 0 0; }
+  to { background-position: 400px 400px; }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  25% { transform: translate(1px, -1px); }
+  50% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, 1px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes scannerMove {
+  0% {
+    top: -20%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 120%;
+    opacity: 0;
+  }
 }
 
 /* ===============================

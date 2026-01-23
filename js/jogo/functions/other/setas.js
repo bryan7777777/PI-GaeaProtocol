@@ -3,10 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const setaCima = document.createElement("button");
   setaCima.classList.add("seta");
+  setaCima.classList.add("setaCima");
   setaCima.textContent = "▲";
 
   const setaBaixo = document.createElement("button");
   setaBaixo.classList.add("seta");
+  setaBaixo.classList.add("setaBaixo");
   setaBaixo.textContent = "▼";
 
   const containerGrupos = document.createElement("div");
@@ -31,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     faccoes = [
       {
-        nome: "GA.P.",
+        nome: "GAEA PROTOCOOL",
         classe: "gaea",
         personagens: [
           { id: "verde", img: "capaceteverde.png" },
@@ -41,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
       },
       {
-        nome: "GLE.P.",
+        nome: "GLEBA PROTOCOOL",
         classe: "mineiros",
         personagens: [
           { id: "amarelo", img: "capaceteamarelo.png" },
@@ -51,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
       },
       {
-        nome: "O.P.",
+        nome: "OCEAN PROTOCOOL",
         classe: "porto",
         personagens: [
           { id: "porto", img: "autoridadeDoPorto.jpg" },
@@ -61,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
       },
       {
-        nome: "F.P.",
+        nome: "FAUNA PROTOCOOL",
         classe: "laranjas",
         personagens: [
           { id: "laranja", img: "capacetelaranja.png" },
@@ -71,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
       },
       {
-        nome: "E.P.",
+        nome: "WIND PROTOCOOL",
         classe: "eolico",
         personagens: [
           { id: "marcos", img: "marcos.jpg" },
@@ -81,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
       },
       {
-        nome: "GLA.P.",
+        nome: "GLACIAL PROTOCOOL",
         classe: "glacial",
         personagens: [
           { id: "lilia", img: "lilia.png" },
@@ -102,7 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     ];
   }
-
 
   let faccaoAtual = 0;
   const grupos = [];
