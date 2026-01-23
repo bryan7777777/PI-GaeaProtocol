@@ -277,6 +277,7 @@ function checkEnemies() {
               novos.push({
                 name: "Irislidriz",
                 hp: 50,
+                maxHp: 50,
                 dano: 20,
                 behavior: () => [{ type: "attack", value: 20 }],
                 img: "../img/jogo/inimigos/valkFantasmaElite.png",
@@ -289,6 +290,7 @@ function checkEnemies() {
               novos.push({
                 name: "Irislidriz",
                 hp: 40,
+                maxHp: 40,
                 dano: 25,
                 behavior: () => [{ type: "attackVida", value: 30 }],
                 img: "../img/jogo/inimigos/valkFantasma.png",
@@ -342,6 +344,7 @@ function checkEnemies() {
                     {
                       name: "Ansiedade De Ayla",
                       hp: 180,
+                      maxHp: 180,
                       dano: 12,
                       behavior: () => [
                         { type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.7 ? 12 : 24 },
@@ -353,6 +356,7 @@ function checkEnemies() {
                     {
                       name: "Angustia De Ayla",
                       hp: 50,
+                      maxHp: 50,
                       dano: 30,
                       behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attackVida", value: 30 }],
                       img: "../img/jogo/inimigos/ayla/Vulnerabilidade.png",
@@ -380,6 +384,7 @@ function checkEnemies() {
                     {
                       name: "Amor De Ayla",
                       hp: 150,
+                      maxHp: 150,
                       dano: 25,
                       behavior: () => [{ type: Math.random() < 0.5 ? "heal" : "attack", value: 25 }],
                       img: "../img/jogo/inimigos/ayla/amor.png",
@@ -389,6 +394,7 @@ function checkEnemies() {
                     {
                       name: "Tristeza De Ayla",
                       hp: 65,
+                      maxHp: 65,
                       dano: 24,
                       behavior: () => [{ type: "heal", value: Math.random() < 0.7 ? 24 : 48 }],
                       img: "../img/jogo/inimigos/ayla/tristeza.png",
@@ -420,6 +426,7 @@ function checkEnemies() {
                   novos.push({
                     name: "Ira De Ayla",
                     hp: 400,
+                    maxHp: 400,
                     dano: 30,
                     behavior: () => [
                       { type: Math.random() < 0.5 ? "heal" : "attack", value: Math.random() < 0.9 ? 30 : 150 },
@@ -7186,6 +7193,7 @@ function inimigoPassifico() {
 const peaoSpawn = {
   name: "Soldado Real",
   hp: 50,
+  maxHp: 50,
   dano: 10,
   behavior() {
     return [
@@ -7199,6 +7207,7 @@ const peaoSpawn = {
 const bispoSpawn = {
   name: "Sacerdote Real",
   hp: 25,
+  maxHp:25,
   dano: 20,
   behavior() {
     return [
@@ -7212,6 +7221,7 @@ const bispoSpawn = {
 const torreSpawn = {
   name: "Guarda Real",
   hp: 80,
+  maxHp: 80,
   dano: 5,
   behavior() {
     return [
@@ -7225,6 +7235,7 @@ const torreSpawn = {
 const reiSpawn = {
   name: "Rei James",
   hp: 10,
+  maxHp: 10,
   dano: 5,
   behavior() {
     return [
@@ -7238,6 +7249,7 @@ const reiSpawn = {
 const svetlanaSpawn = {
   name: "Ilusão De Svetlana",
   hp: 10,
+  maxHp: 10,
   dano: 30,
   behavior() {
     return [
