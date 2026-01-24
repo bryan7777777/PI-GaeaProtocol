@@ -3039,7 +3039,10 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
         marcarSelecionado();
         centralizarNodo(mapa[i][j].element);
       } else {
-        alert('Você só pode avançar para os pontos conectados na próxima fase.');
+        PULAR_TODO_TUTORIAL = false;
+        iniciarTutorial([
+            "Você já explorou esse local! Você só pode seguir em frente em pontos conectados ao último local que você esteve!",
+          ], "./../img/jogo/gaeazinha.jpg");
       }
     }
 
@@ -8059,3 +8062,5 @@ if (pagina === "selecaoMapa.html") {
 // itensJaPegos.push(34);
 // itensJaPegos.push(35);
 // itensJaPegos.push(36);
+
+// alert("Quantidade atual de cards: " + allCards.length);
