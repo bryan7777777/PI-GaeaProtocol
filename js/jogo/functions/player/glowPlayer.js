@@ -13,7 +13,7 @@ function glowPlayer(color) {
   }
 
   if (color === "energy") {
-    electricBlueLightning(); // ⚡🧊 raio agressivo
+    electricBlueLightning();
   }
 
   if (color === "green") {

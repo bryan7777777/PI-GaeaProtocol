@@ -159,6 +159,7 @@ function checkEnemies() {
     drawNewCards();
     drawCards();
     updateHUD();
+    resetarBuffsPower();
     playerShield = playerShieldInit;
   }
 
@@ -605,6 +606,7 @@ function checkEnemies() {
             drawNewCards();
             drawCards();
             updateHUD();
+            resetarBuffsPower();
             playerShield = playerShieldInit;
             atualizarDinheiro();
             alma1 = 5;
@@ -614,6 +616,7 @@ function checkEnemies() {
             document.getElementById("popupFinal").style.display = "flex";
             document.getElementById("enemies").style.display = "none";
             document.getElementById("lifeBarsContainer").style.display = "none";
+            resetarBuffsPower();
             iniciarTutorial([
               "Minha bênção e aprovação vieram junto com a derrota do boss. Daqui para frente será só você: derrote a IA que corrompeu este mundo e traga a vida de volta a ele. Boa sorte!"
             ], "./../img/jogo/gaeazinha.jpg");
@@ -662,6 +665,7 @@ function checkEnemies() {
             drawNewCards();
             drawCards();
             updateHUD();
+            resetarBuffsPower();
             playerShield = playerShieldInit;
             reviver = 0;
             atualizarDinheiro()
@@ -726,6 +730,7 @@ function drawCards() {
         case "Chuva de Laminas":
         case "Ecosistema Preservado":
         case "Tudo Ou Nada":
+        case "Carga Divina":
           tipo = "cintilante";
           break;
         //♨️♨️♨️♨️♨️ FIRE 2 ♨️♨️♨️♨️♨️
@@ -847,6 +852,12 @@ function drawCards() {
         case "Golpe Neural Retaliante":
         case "Compra Dupla":
         case "Sobre Carga":
+        case "Carga Concentrada":
+        case "Carga Dividida":
+        case "Carga Estratégica":
+        case "Carga Defensiva":
+        case "Carga Ofensiva":
+        case "Carga Vital":
           tipo = "heal";
           break;
         //  ♻️♻️♻️♻️♻️ RECICLAGEM 6 ♻️♻️♻️♻️♻️
@@ -1305,6 +1316,30 @@ function drawCards() {
             allDebuff(card.power, "sofrerDano");
           }
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        }
+        //💚
+        else if (card.name === "Carga Concentrada") {
+          allBuffs(card.power,"power",false,1,"geral");
+        }
+        //💚
+        else if (card.name === "Carga Dividida") {
+          allBuffs(card.power,"power",false,2,"geral");
+        }
+        //💚
+        else if (card.name === "Carga Estratégica") {
+          allBuffs(card.power,"power",false,5,"geral");
+        }
+        //💚
+        else if (card.name === "Carga Defensiva") {
+          allBuffs(card.power,"power",false,2,"def");
+        }
+        //💚
+        else if (card.name === "Carga Ofensiva") {
+          allBuffs(card.power,"power",false,2,"atk");
+        }
+        //💚
+        else if (card.name === "Carga Vital") {
+          allBuffs(card.power,"power",false,2,"cura");
         }
         //💚
         else if (card.name === "Cura Forte") {
@@ -2391,6 +2426,10 @@ function drawCards() {
             deck.push({ ...allCards.find(c => c.name === "Rajada Dupla"), power: 6, cost: 0 });
           }
         }
+        //✨
+        else if (card.name === "Carga Divina") {
+          allBuffs(card.power,"power",true,1,"geral");
+        }
         else if (card.name === "Ecosistema Preservado") {
           if (deck.length <= 3) {
             deck.push({ ...allCards.find(c => c.name === "GÆPROTOCOL"), power: 10, cost: 0 });
@@ -2526,8 +2565,6 @@ function drawCards() {
         }, 300);
         updateHUD();
         updateEnemyBars();
-        // caso a energia seja 0 ele skipa o turno auto
-        // if (energy === 0) enemyTurn();
       };
       cards.appendChild(div);
       if (animarCompra) {
@@ -2544,40 +2581,128 @@ function reorganizarMao() {
     card.style.opacity = "1";
   });
 }
+function calcularPower(valorBase, tipo) {
+  let bonusTotal = 0;
+
+  // buffs do tipo específico
+  buffs[tipo] = buffs[tipo].filter(buff => {
+    bonusTotal += buff.valor;
+    buff.cargas--;
+    return buff.cargas > 0; // mantém só se ainda tiver carga
+  });
+
+  // buffs gerais (se aplicam a todos)
+  buffs.geral = buffs.geral.filter(buff => {
+    bonusTotal += buff.valor;
+    buff.cargas--;
+    return buff.cargas > 0;
+  });
+
+  return valorBase + bonusTotal;
+}
+function resetarBuffsPower() {
+  buffs.atk.length = 0;
+  buffs.def.length = 0;
+  buffs.cura.length = 0;
+  buffs.geral.length = 0;
+
+  // remove todos os buffs visuais
+  const bar = document.querySelector(".buff-bar");
+  if (bar) {
+    bar.remove();
+  }
+}
+function aplicarBuffsPower(val, rodadas, tipo) {
+  const buff = {
+    valor: val,
+    cargas: rodadas
+  };
+
+  buffs[tipo].push(buff);
+  criarBuffVisual(tipo, buff);
+}
+function criarBuffVisual(tipo, buff) {
+  const player = document.getElementById("player");
+  if (!player) return;
+
+  let bar = document.querySelector(".buff-bar");
+  if (!bar) {
+    bar = document.createElement("div");
+    bar.className = "buff-bar";
+    document.body.appendChild(bar);
+  }
+
+  const rect = player.getBoundingClientRect();
+  bar.style.left = `${rect.left - 18}px`; // distância da esquerda
+  bar.style.top  = `${rect.top + rect.height / 2}px`;
+
+  const visual = BUFF_VISUAL[tipo];
+
+  const el = document.createElement("div");
+  el.className = "buff-icon";
+  el.style.borderColor = visual.color;
+
+  const emoji = document.createElement("div");
+  emoji.className = "buff-emoji";
+  emoji.textContent = visual.emoji;
+
+  const text = document.createElement("div");
+  text.className = "buff-text";
+
+  el.appendChild(emoji);
+  el.appendChild(text);
+  bar.appendChild(el);
+
+  // apenas espelha o estado REAL
+  const sync = setInterval(() => {
+    if (buff.cargas <= 0) {
+      el.classList.add("buff-end");
+      setTimeout(() => el.remove(), 300);
+      clearInterval(sync);
+      return;
+    }
+
+    text.textContent = `${buff.valor}/${buff.cargas}`;
+  }, 100);
+}
 function causarDano(valor, tipo, simbulo = "⚔️", areaEspecial) {
   animarLiliaTransformacao();
   switch (tipo) {
     case "unico":
+      dano = calcularPower(valor, "atk");
       animateDamage(enemies[0].el);
-      enemies[0].hp -= valor;
-      floatText(enemies[0].el, `-${valor}${simbulo}`, "red");
+      enemies[0].hp -= dano;
+      floatText(enemies[0].el, `-${dano}${simbulo}`, "red");
       break;
     case "ultimo":
+      dano = calcularPower(valor, "atk");
       const alvo = [...enemies].reverse().find(e => e.hp > 0);
       if (alvo) {
         animateDamage(alvo.el);
-        alvo.hp -= valor;
-        floatText(alvo.el, `-${valor}${simbulo}`, "red");
+        alvo.hp -= dano;
+        floatText(alvo.el, `-${dano}${simbulo}`, "red");
       }
       break;
     case "area":
+      dano = calcularPower(valor, "atk");
       enemies.forEach(e => {
         animateDamage(e.el);
-        e.hp -= valor;
-        floatText(e.el, `-${valor}${simbulo}`, "red");
+        e.hp -= dano;
+        floatText(e.el, `-${dano}${simbulo}`, "red");
       });
       break;
     case "areaEspecial":
+      dano = calcularPower(valor, "atk");
       animateDamage(areaEspecial.el);
-      areaEspecial.hp -= valor;
-      floatText(areaEspecial.el, `-${valor}${simbulo}`, "red");
+      areaEspecial.hp -= dano;
+      floatText(areaEspecial.el, `-${dano}${simbulo}`, "red");
       break;
 
     default:
       break;
   }
 }
-function allBuffs(valor, tipo, cintilante = false) {
+function allBuffs(valor, tipo, cintilante = false, tempo, tipoPower) {
   glow = "cintilante";
 
   if (!cintilante) {
@@ -2590,6 +2715,7 @@ function allBuffs(valor, tipo, cintilante = false) {
         break;
       case "mao":
       case "energia":
+      case "power":
         glow = "energy";
         break;
 
@@ -2600,9 +2726,10 @@ function allBuffs(valor, tipo, cintilante = false) {
 
   switch (tipo) {
     case "cura":
-      playerHP = Math.min(playerHP + valor, playerMaxHP);
+      cura = calcularPower(valor, "cura");
+      playerHP = Math.min(playerHP + cura, playerMaxHP);
       glowPlayer(glow);
-      floatText(document.getElementById("player"), `+${valor}💚`, "lime");
+      floatText(document.getElementById("player"), `+${cura}💚`, "lime");
       break;
     case "energia":
       energy += valor;
@@ -2610,9 +2737,10 @@ function allBuffs(valor, tipo, cintilante = false) {
       floatText(document.getElementById("player"), `+${valor}🔷`, "cyan");
       break;
     case "def":
-      playerShield += valor;
+      def = calcularPower(valor, "def");
+      playerShield += def;
       glowPlayer(glow);
-      floatText(document.getElementById("player"), `+${valor}🛡️`, "cyan");
+      floatText(document.getElementById("player"), `+${def}🛡️`, "cyan");
       break;
     case "mao":
       if (limiteMao < 10) {
@@ -2621,6 +2749,11 @@ function allBuffs(valor, tipo, cintilante = false) {
       }
       glowPlayer(glow);
       floatText(document.getElementById("player"), `+${valor}🃏`, "lime");
+      break;
+    case "power":
+      aplicarBuffsPower(valor,tempo,tipoPower);
+      glowPlayer(glow);
+      floatText(document.getElementById("player"), `+${valor}/${tempo}🔼`, "cyan");
       break;
 
     default:
@@ -6344,11 +6477,11 @@ const characterDecks = {
     allCards.find(c => c.name === "Chuva De Fragmentos"),
     allCards.find(c => c.name === "Impulso Defensivo"),
     allCards.find(c => c.name === "Impulso Defensivo"),
-    allCards.find(c => c.name === "Rajada Dupla"),
-    allCards.find(c => c.name === "Rajada Dupla"),
-    allCards.find(c => c.name === "Rajada Dupla"),
-    allCards.find(c => c.name === "Rajada Dupla"),
-    allCards.find(c => c.name === "Rajada Dupla"),
+    allCards.find(c => c.name === "Carga Divina"),
+    allCards.find(c => c.name === "Carga Divina"),
+    allCards.find(c => c.name === "Carga Divina"),
+    allCards.find(c => c.name === "Carga Divina"),
+    allCards.find(c => c.name === "Carga Divina"),
   ],
   cleber: [
     allCards.find(c => c.name === "Sistema de reflexão"),

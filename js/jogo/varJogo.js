@@ -43,12 +43,26 @@ let islaSpawnBoss = true;
 let peruSpawnBoss = true;
 let animarCompra = false;
 let bloqueioCliqueCartas = false;
+let playerAlive = true;
 
 // ARREY
 const deck = [];
 let enemies = [];
 let floatQueue = [];
 let itensJaPegos = [];
+const buffs = {
+  atk: [],
+  def: [],
+  cura: [],
+  geral: []
+};
+const BUFF_VISUAL = {
+  atk:   { emoji: "⚔️", color: "#ff5555" },
+  def:   { emoji: "🛡️", color: "#55aaff" },
+  cura:  { emoji: "💚", color: "#66ff66" },
+  geral: { emoji: "✨", color: "#ff9ad5" }
+};
+
 
 // STATUS
 let lixoReciclado = 0;

@@ -53,6 +53,15 @@ const allCards = [
     desc: "Seta sua energia para 10, descarta sua mão inteira e compra 10 cartas aleatórias (podem ser cartas de fora do seu deck)",
     type: "cintilante"
   },
+  {
+    name: "Carga Divina",
+    cost: 0,
+    basePower: 20,
+    rarity: "cintilante",
+    img: "../img/jogo/cards/cintilante/cargaDivina.png",
+    desc: "Sua proxima carta nessa batalha tem mais 20 pontos de ação: ataque, defesa ou cura (apenas 1).",
+    type: "cintilante"
+  },
   // ♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️
   {
     name: "Combustão",
@@ -868,6 +877,60 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/buff/Cura.png",
     desc: "Recupera 3 de vida.",
+    type: "heal"
+  },
+  {
+    name: "Carga Concentrada",
+    cost: 2,
+    basePower: 20,
+    rarity: "epic",
+    img: "../img/jogo/cards/buff/allBuff.png",
+    desc: "Sua proxima carta nessa batalha tem mais 20 pontos de ação: ataque, defesa ou cura (apenas 1).",
+    type: "heal"
+  },
+  {
+    name: "Carga Dividida",
+    cost: 2,
+    basePower: 10,
+    rarity: "epic",
+    img: "../img/jogo/cards/buff/allBuff2.png",
+    desc: "Suas proximas 2 cartas nessa batalha tem mais 10 pontos de ação: ataque, defesa ou cura (apenas 1).",
+    type: "heal"
+  },
+  {
+    name: "Carga Estratégica",
+    cost: 3,
+    basePower: 6,
+    rarity: "epic",
+    img: "../img/jogo/cards/buff/allBuff3.png",
+    desc: "Suas proximas 5 cartas nessa batalha tem mais 6 pontos de ação: ataque, defesa ou cura (apenas 1).",
+    type: "heal"
+  },
+  {
+    name: "Carga Defensiva",
+    cost: 1,
+    basePower: 6,
+    rarity: "rare",
+    img: "../img/jogo/cards/buff/defBuff.png",
+    desc: "Suas proximas 2 cartas de escudo nessa batalha tem mais 6 pontos de ação.",
+    type: "heal"
+  },
+  {
+    name: "Carga Ofensiva",
+    cost: 1,
+    basePower: 6,
+    rarity: "rare",
+    img: "../img/jogo/cards/buff/atkBuff.png",
+    desc: "Suas proximas 2 cartas de dano nessa batalha tem mais 6 pontos de ação.",
+    type: "heal"
+  },
+  {
+    name: "Carga Vital",
+    cost: 1,
+    basePower: 6,
+    rarity: "rare",
+    img: "../img/jogo/cards/buff/curaBuff.png",
+    desc: "Suas proximas 2 cartas de cura nessa batalha tem mais 6 pontos de ação.",
     type: "heal"
   },
   {
