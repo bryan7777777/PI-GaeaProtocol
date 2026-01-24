@@ -1120,7 +1120,6 @@ function drawCards() {
         //⚔️
         else if (card.name === "Rajada Dupla") {
           causarDano(card.power, "unico");
-          causarDano(card.power, "unico");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //⚔️
@@ -1665,7 +1664,7 @@ function drawCards() {
             dano2 = Math.max(1, Math.floor(lixoReciclado * 0.10));
           }
           const dano = (lixoRemovido * 5);
-          causarDano(dano + dano2, "unico");
+          causarDano(dano + dano2, "area");
           updateHUD();
 
           // anima e depois remove todas as cartas marcadas

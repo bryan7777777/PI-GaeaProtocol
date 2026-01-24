@@ -619,10 +619,10 @@ const allCards = [
   {
     name: "Rajada Dupla",
     cost: 1,
-    basePower: 6,
+    basePower: 12,
     rarity: "rare",
     img: "../img/jogo/cards/atk/tiroCarregado.png",
-    desc: "Ataca 2 vezes com 6 de dano cada.",
+    desc: "Cause 12 de dano ao inimigo.",
     type: "attack"
   },
   {
