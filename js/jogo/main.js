@@ -2641,6 +2641,7 @@ function criarBuffVisual(tipo, buff) {
   const el = document.createElement("div");
   el.className = "buff-icon";
   el.style.borderColor = visual.color;
+  el.style.borderRadius = visual.border;
 
   const emoji = document.createElement("div");
   emoji.className = "buff-emoji";
