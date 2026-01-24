@@ -58,7 +58,7 @@ function configurarSelecaoPersonagem() {
     },
     amarelo: {
       nome: "⛏️BRUNO, O MINEIRO CHEFE⛏️",
-      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀⛏️",
+      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀💀⛏️",
       cor: "rgb(231, 201, 7)",
       descricao: "Deck focado em cartas de terra, extremamente forte contra água mas fraco contra fogo, versátil e sabe como conseguir xenofluxo.",
       cardFoco: "Focado em cartas de terra e combo com terra, inicia com Mineração.",
@@ -100,7 +100,7 @@ function configurarSelecaoPersonagem() {
     },
     maria: {
       nome: "⛏️MARIA, ESPECIALISTA EM EXPLOSÕES⛏️",
-      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀💀💀⛏️",
+      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀💀⛏️",
       cor: "rgb(231, 201, 7)",
       descricao: "Nem muito forte nem fraco, deck equilibrado com cartas de terra, ela sabe que reciclar agora gera um futuro melhor, focada em escalar reciclagem.",
       cardFoco: "Focada em cartas de reciclagem e terra, inicia com Mineração.",
@@ -198,17 +198,17 @@ function configurarSelecaoPersonagem() {
     },
     malaquias: {
       nome: "🐦‍🔥MALAQUIAS, ESPECIALISTA EM REPTEIS🐦‍🔥",
-      dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀💀💀🐦‍🔥",
+      dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀💀💀💀🐦‍🔥",
       cor: "rgb(255, 128, 0)",
       descricao: "Maluco por compras, se ele pudesse comprava uma casa no shooping só para fazer compras lá, ele curte comprar bastante mas será que ele vai ter saldo para sustentar isso?.",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Foco nas cartas Compra Dupla, Tudo ou nada e Estrategia.",
       hp: 78,
       maxHp: 78,
       energia: 6,
       escudo: 0,
       mao: 3,
       img: "./../img/jogo/player/malaquias.png",
-      lor: "[...]"
+      lor: "Um homem de sorte? Não a sorte que precisa desse homem, além da sua compulção por comprar ele curte apostar, um belo exemplo do tipo de pessoa que tem tudo para perder suas economias... Bom era para ele perder, mas aparentemente ele tem menos chance de perder? Ele não é um \"apostador qualquer\" ele utiliza de muita estrategia para ganhar dinheiro, ele percebeu que para sustentar seu vicio em comprar ele precisaria ser rico, e um mero trabalho jamais daria o dinheiro que ele precisa, além de CLT, dono de multiplas empresas, investidor de risco e mestre do poker, ele é um apostador nato, ele fez tudo isso só para... comprar coisas inuteis que ele nunca vai usar?"
     },
     renata: {
       nome: "🐦‍🔥RENATA, ESPECIALISTA EM MAMIFEROS🐦‍🔥",
@@ -282,7 +282,7 @@ function configurarSelecaoPersonagem() {
     },
     lilia: {
       nome: "🐼❄️LILIA, LIDER DO GLACIAL PROTOCOOL❄️🐼",
-      dificuldade: "🐼❄️NÍVEL DE DIFICULDADE: 💀💀💀❄️🐼",
+      dificuldade: "🐼❄️NÍVEL DE DIFICULDADE: 💀💀💀💀❄️🐼",
       cor: "rgba(255, 128, 251, 1)",
       descricao: "Ela sabe muito bem se adpatar a tudo, ela pode parecer fraca e indefesa como um panda, mas quando ela se adapta, ela mostra suas imensas garras, com uma força, vitalidade, energia e pensamento incrivel ela possui um deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, combe marcação para turbinar seu dano e def imensuraveis.",
       cardFoco: "Focada em cartas de gelo baratas com custo max.2, seus status aumentão ao decorrer das fases.",
@@ -338,7 +338,7 @@ function configurarSelecaoPersonagem() {
     },
     x: {
       nome: "🔮A ESQUECIDA🔮",
-      dificuldade: "🔮NÍVEL DE DIFICULDADE: 💀💀💀💀💀🔮",
+      dificuldade: "🔮NÍVEL DE DIFICULDADE: 💀💀💀💀🔮",
       cor: "rgb(0, 114, 129)",
       descricao: "Seu deck é... Assim como suas memórias... Sempre em neblina, seu deck é aleatório a cada partida",
       cardFoco: "Não possui foco em uma carta principal.",
@@ -425,6 +425,7 @@ function configurarSelecaoPersonagem() {
   <span class="destaqueCard">${info.cardFoco}</span><br>
   <span class="destaqueDesc">HISTÓRIA DO PERSONAGEM:</span>
   <span>${info.lor}</span>
+  <span class="destaqueCard">Confira com mais detalhes o resto da história no site!</span><br>
 `;
 
     imgPreview.src = info.img;

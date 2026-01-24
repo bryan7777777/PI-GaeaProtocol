@@ -725,6 +725,7 @@ function drawCards() {
         case "Armamento Pesado":
         case "Chuva de Laminas":
         case "Ecosistema Preservado":
+        case "Tudo Ou Nada":
           tipo = "cintilante";
           break;
         //♨️♨️♨️♨️♨️ FIRE 2 ♨️♨️♨️♨️♨️
@@ -2419,6 +2420,44 @@ function drawCards() {
             power1 = 5;
           }
           causarDano(power1, "area")
+        }
+        //✨
+        else if (card.name === "Tudo Ou Nada") {
+          allBuffs(card.power, "energia", true);
+          energy=10;
+          const toRemove = new Set();
+          toRemove.add(card);
+
+          for (let i = 0; i < deck.length; i++) {
+            if (deck[i] !== card) {
+              toRemove.add(deck[i]);
+            }
+          }
+          updateHUD();
+          div.classList.add("card-remove");
+
+          setTimeout(() => {
+            // remove a mão inteira
+            for (let i = deck.length - 1; i >= 0; i--) {
+              if (toRemove.has(deck[i])) {
+                deck.splice(i, 1);
+              }
+            }
+            // compra 10 cartas aleatórias COM power correto
+            for (let i = 0; i < 10; i++) {
+              const base =
+                allCards[Math.floor(Math.random() * allCards.length)];
+
+              deck.push({
+                ...base,
+                power: base.basePower ?? 0
+              });
+            }
+            drawCards();
+            updateHUD();
+            checkEnemies();
+          }, 300);
+          return;
         }
         //✨
         else if (card.name === "GÆPROTOCOL") {
@@ -6325,9 +6364,7 @@ const characterDecks = {
     allCards.find(c => c.name === "Destruir Carta"),
   ],
   malaquias: [
-    allCards.find(c => c.name === "Liderança"),
-    allCards.find(c => c.name === "Furia"),
-    allCards.find(c => c.name === "Artilharia Anti Sniper"),
+    allCards.find(c => c.name === "Compra Dupla"),
     allCards.find(c => c.name === "Compra Dupla"),
     allCards.find(c => c.name === "Compra Dupla"),
     allCards.find(c => c.name === "Compra Dupla"),
@@ -6336,7 +6373,9 @@ const characterDecks = {
     allCards.find(c => c.name === "Estratégia"),
     allCards.find(c => c.name === "Estratégia"),
     allCards.find(c => c.name === "Estratégia"),
-    allCards.find(c => c.name === "Armamento Pesado"),
+    allCards.find(c => c.name === "Tudo Ou Nada"),
+    allCards.find(c => c.name === "Tudo Ou Nada"),
+    allCards.find(c => c.name === "Tudo Ou Nada"),
   ],
   renata: [
     allCards.find(c => c.name === "Sob-Vigia"),

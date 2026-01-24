@@ -44,6 +44,15 @@ const allCards = [
     desc: "Cause dano em area 5/10/15/20/30/40, e gaste energia respectivamente  0/1/2/3/4/5",
     type: "cintilante"
   },
+  {
+    name: "Tudo Ou Nada",
+    cost: 3,
+    basePower: 10,
+    rarity: "cintilante",
+    img: "../img/jogo/cards/cintilante/joker.png",
+    desc: "Seta sua energia para 10, descarta sua mão inteira e compra 10 cartas aleatórias (podem ser cartas de fora do seu deck)",
+    type: "cintilante"
+  },
   // ♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️
   {
     name: "Combustão",
