@@ -731,8 +731,9 @@ function drawCards() {
         case "Armamento Pesado":
         case "Chuva de Laminas":
         case "Ecosistema Preservado":
-        case "Tudo Ou Nada":
+        case "Royal Flush":
         case "Carga Divina":
+        case "Tudo Ou Nada":
           tipo = "cintilante";
           break;
         //♨️♨️♨️♨️♨️ FIRE 2 ♨️♨️♨️♨️♨️
@@ -2464,9 +2465,9 @@ function drawCards() {
           causarDano(power1, "area")
         }
         //✨
-        else if (card.name === "Tudo Ou Nada") {
+        else if (card.name === "Royal Flush") {
           allBuffs(card.power, "energia", true);
-          energy = 10;
+          energy = 7;
           const toRemove = new Set();
           toRemove.add(card);
 
@@ -2499,6 +2500,50 @@ function drawCards() {
             updateHUD();
             checkEnemies();
           }, 300);
+          return;
+        }
+        //✨
+        else if (card.name === "Tudo Ou Nada") {
+
+          // energia aleatória entre 1 e 10
+          const energiaRandom = Math.floor(Math.random() * 10) + 1;
+          allBuffs(energiaRandom, "energia", true);
+          energy = energiaRandom;
+
+          updateHUD();
+          div.classList.add("card-remove");
+
+          setTimeout(() => {
+
+            // --- descarta a mão inteira ---
+            deck.length = 0;
+
+            // quantidade de cartas compradas (1 a 10)
+            const qtdCompra = Math.floor(Math.random() * 10) + 1;
+
+            // compra cartas aleatórias (podem ser fora do deck)
+            for (let i = 0; i < qtdCompra; i++) {
+              const base =
+                allCards[Math.floor(Math.random() * allCards.length)];
+
+              deck.push({
+                ...base,
+                power: base.basePower ?? 0
+              });
+            }
+
+            // --- chance de sofrer dano ---
+            if (Math.random() < 0.05) {
+              allDebuff(25, "sofrerDano");
+              deck.length = 0;
+            }
+
+            drawCards();
+            updateHUD();
+            checkEnemies();
+
+          }, 300);
+
           return;
         }
         //✨
@@ -6503,12 +6548,12 @@ const characterDecks = {
     allCards.find(c => c.name === "Compra Dupla"),
     allCards.find(c => c.name === "Compra Dupla"),
     allCards.find(c => c.name === "Compra Dupla"),
+    allCards.find(c => c.name === "Compra Dupla"),
     allCards.find(c => c.name === "Estratégia"),
     allCards.find(c => c.name === "Estratégia"),
     allCards.find(c => c.name === "Estratégia"),
     allCards.find(c => c.name === "Tudo Ou Nada"),
-    allCards.find(c => c.name === "Tudo Ou Nada"),
-    allCards.find(c => c.name === "Tudo Ou Nada"),
+    allCards.find(c => c.name === "Royal Flush"),
   ],
   renata: [
     allCards.find(c => c.name === "Sob-Vigia"),

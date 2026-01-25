@@ -57,7 +57,7 @@ const buffs = {
   geral: []
 };
 const BUFF_VISUAL = {
-  atk:   { emoji: "⚔️", border: "0px", color: "#ff5555" },
+  atk:   { emoji: "⚔️", border: "10px", color: "#ff5555" },
   def:   { emoji: "🛡️", border: "0px 0px 20px 20px", color: "#55aaff" },
   cura:  { emoji: "💚", border: "0px 20px 0px 20px", color: "#66ff66" },
   geral: { emoji: "✨", border: "100px", color: "#ff9ad5" }

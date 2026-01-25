@@ -45,12 +45,12 @@ const allCards = [
     type: "cintilante"
   },
   {
-    name: "Tudo Ou Nada",
-    cost: 3,
+    name: "Royal Flush",
+    cost: 5,
     basePower: 10,
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/joker.png",
-    desc: "Seta sua energia para 10, descarta sua mão inteira e compra 10 cartas aleatórias (podem ser cartas de fora do seu deck)",
+    desc: "Seta sua energia para 10, descarta sua mão inteira e compra 10 cartas aleatórias.",
     type: "cintilante"
   },
   {
@@ -60,6 +60,15 @@ const allCards = [
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/cargaDivina.png",
     desc: "Sua proxima carta nessa batalha tem mais 20 pontos de ação: ataque, defesa ou cura (apenas 1).",
+    type: "cintilante"
+  },
+  {
+    name: "Tudo Ou Nada",
+    cost: 0,
+    basePower: 1,
+    rarity: "cintilante",
+    img: "../img/jogo/cards/cintilante/niquel.png",
+    desc: "Seta sua energia e compra cartas aleatórias entre 1-10. Tem 5% de chance de te causar 25🔱 de dano e zerar sua mão",
     type: "cintilante"
   },
   // ♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️
@@ -957,7 +966,7 @@ const allCards = [
     basePower: 2,
     rarity: "legend",
     img: "../img/jogo/cards/buff/cerebro.png",
-    desc: "Se você tiver 3 cartas ou menos na mão clone 2 cartas (Exceto ela mesma), se tiver mais ganhe 2 de energia.",
+    desc: "Se você tiver 3 cartas ou menos na mão clone 2 cartas do seu deck para a mão (Exceto ela mesma), se tiver mais ganhe 2 de energia.",
     type: "heal"
   },
   {

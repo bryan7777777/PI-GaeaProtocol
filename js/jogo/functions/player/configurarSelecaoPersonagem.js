@@ -201,7 +201,7 @@ function configurarSelecaoPersonagem() {
       dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀💀💀💀🐦‍🔥",
       cor: "rgb(255, 128, 0)",
       descricao: "Maluco por compras, se ele pudesse comprava uma casa no shooping só para fazer compras lá, ele curte comprar bastante mas será que ele vai ter saldo para sustentar isso?.",
-      cardFoco: "Foco nas cartas Compra Dupla, Tudo ou nada e Estrategia.",
+      cardFoco: "Foco na carta Compra Dupla.",
       hp: 78,
       maxHp: 78,
       energia: 6,
