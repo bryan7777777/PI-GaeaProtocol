@@ -980,6 +980,7 @@ function drawCards() {
         //⚔️
         else if (card.name === "Ceifa") {
           let dano = card.power;
+          const alvo = [...enemies].reverse().find(e => e.hp > 0);
           if (alvo.hp <= 30) {
             dano *= 3;
           }
