@@ -621,7 +621,9 @@ function checkEnemies() {
               "Minha bênção e aprovação vieram junto com a derrota do boss. Daqui para frente será só você: derrote a IA que corrompeu este mundo e traga a vida de volta a ele. Boa sorte!"
             ], "./../img/jogo/gaeazinha.jpg");
           } else if (enemies.length === 0 && playerHP > 0) {
-            document.getElementById("overlay").style.display = "block";
+            const overlay = document.getElementById("overlay");
+            overlay.style.display = "block";
+            overlay.classList.add("popup-opacity");
             document.getElementById("popup").style.display = "flex";
 
             if (hasItem(23)) {
@@ -1093,7 +1095,7 @@ function drawCards() {
         //⚔️
         else if (card.name === "Drenagem") {
           causarDano(card.power, "unico");
-          allBuffs(card.power,"cura");
+          allBuffs(card.power, "cura");
           deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });;
         }
 
@@ -1320,27 +1322,27 @@ function drawCards() {
         }
         //💚
         else if (card.name === "Carga Concentrada") {
-          allBuffs(card.power,"power",false,1,"geral");
+          allBuffs(card.power, "power", false, 1, "geral");
         }
         //💚
         else if (card.name === "Carga Dividida") {
-          allBuffs(card.power,"power",false,2,"geral");
+          allBuffs(card.power, "power", false, 2, "geral");
         }
         //💚
         else if (card.name === "Carga Estratégica") {
-          allBuffs(card.power,"power",false,5,"geral");
+          allBuffs(card.power, "power", false, 5, "geral");
         }
         //💚
         else if (card.name === "Carga Defensiva") {
-          allBuffs(card.power,"power",false,2,"def");
+          allBuffs(card.power, "power", false, 2, "def");
         }
         //💚
         else if (card.name === "Carga Ofensiva") {
-          allBuffs(card.power,"power",false,2,"atk");
+          allBuffs(card.power, "power", false, 2, "atk");
         }
         //💚
         else if (card.name === "Carga Vital") {
-          allBuffs(card.power,"power",false,2,"cura");
+          allBuffs(card.power, "power", false, 2, "cura");
         }
         //💚
         else if (card.name === "Cura Forte") {
@@ -2429,7 +2431,7 @@ function drawCards() {
         }
         //✨
         else if (card.name === "Carga Divina") {
-          allBuffs(card.power,"power",true,1,"geral");
+          allBuffs(card.power, "power", true, 1, "geral");
         }
         else if (card.name === "Ecosistema Preservado") {
           if (deck.length <= 3) {
@@ -2464,7 +2466,7 @@ function drawCards() {
         //✨
         else if (card.name === "Tudo Ou Nada") {
           allBuffs(card.power, "energia", true);
-          energy=10;
+          energy = 10;
           const toRemove = new Set();
           toRemove.add(card);
 
@@ -2608,7 +2610,7 @@ function resetarBuffsPower() {
   buffs.geral.length = 0;
 
   // remove todos os buffs visuais
-  const bar = document.querySelector(".buff-bar");
+  const bar = document.querySelector(".buff-icon");
   if (bar) {
     bar.remove();
   }
@@ -2627,15 +2629,11 @@ function criarBuffVisual(tipo, buff) {
   if (!player) return;
 
   let bar = document.querySelector(".buff-bar");
-  if (!bar) {
-    bar = document.createElement("div");
-    bar.className = "buff-bar";
-    document.body.appendChild(bar);
-  }
+  bar.style.display = "grid";
 
   const rect = player.getBoundingClientRect();
   bar.style.left = `${rect.left - 18}px`; // distância da esquerda
-  bar.style.top  = `${rect.top + rect.height / 2}px`;
+  bar.style.top = `${rect.top + rect.height / 2}px`;
 
   const visual = BUFF_VISUAL[tipo];
 
@@ -2753,7 +2751,7 @@ function allBuffs(valor, tipo, cintilante = false, tempo, tipoPower) {
       floatText(document.getElementById("player"), `+${valor}🃏`, "lime");
       break;
     case "power":
-      aplicarBuffsPower(valor,tempo,tipoPower);
+      aplicarBuffsPower(valor, tempo, tipoPower);
       glowPlayer(glow);
       floatText(document.getElementById("player"), `+${valor}/${tempo}🔼`, "cyan");
       break;
@@ -3215,8 +3213,8 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
       } else {
         PULAR_TODO_TUTORIAL = false;
         iniciarTutorial([
-            "Você já explorou esse local! Você só pode seguir em frente em pontos conectados ao último local que você esteve!",
-          ], "./../img/jogo/gaeazinha.jpg");
+          "Você já explorou esse local! Você só pode seguir em frente em pontos conectados ao último local que você esteve!",
+        ], "./../img/jogo/gaeazinha.jpg");
       }
     }
 
@@ -7381,7 +7379,7 @@ const peaoSpawn = {
 const bispoSpawn = {
   name: "Sacerdote Real",
   hp: 25,
-  maxHp:25,
+  maxHp: 25,
   dano: 20,
   behavior() {
     return [

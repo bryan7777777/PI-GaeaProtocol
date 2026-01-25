@@ -1,4 +1,6 @@
 function fecharPopup() {
-  document.getElementById("overlay").style.display = "none";
+  const overlay = document.getElementById("overlay");
+  overlay.style.display = "none";
+  overlay.classList.remove("popup-opacity");
   document.getElementById("popup").style.display = "none";
 };

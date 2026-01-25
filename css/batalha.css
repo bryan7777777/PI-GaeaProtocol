@@ -38,8 +38,8 @@ em{
 }
 
 #popup, #popupFinal, #popupOver {
-  height: 80vh;
-  width: 50vw;
+  height: 90vh;
+  width: 70vw;
   display: none;
   align-items: center;
   justify-content: center;
@@ -56,7 +56,12 @@ em{
   box-shadow: 0 0 25px rgb(4, 255, 0);
   padding: 20px;
   border-radius: 10px;
-  z-index: 5;
+  z-index: 99999;
+}
+
+#popup {
+  height: 80vh;
+  width: 50vw;
 }
 
 #popupFinal{
@@ -78,8 +83,12 @@ em{
   left: 0;
   right: 0;
   bottom: 0;
+  background: rgba(0, 0, 0, 1);
+  z-index: 99999;
+}
+
+#overlay.popup-opacity {
   background: rgba(0, 0, 0, 0.5);
-  z-index: 5;
 }
 
 #lifeBar,
@@ -438,8 +447,7 @@ em{
   gap: 8px;
 
   transform: translate(-50%, -50%);
-  z-index: 9999;
-  pointer-events: none;
+  z-index: 4;
 }
 
 
