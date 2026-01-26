@@ -8301,4 +8301,28 @@ if (pagina === "selecaoMapa.html") {
 // itensJaPegos.push(35);
 // itensJaPegos.push(36);
 
-// alert("Quantidade atual de cards: " + allCards.length);
+// const quantidade0 = allCards.length;
+// const quantidade1 = allCards.filter(card => card.type === "cintilante").length;
+// const quantidade2 = allCards.filter(card => card.type === "attack").length;
+// const quantidade3 = allCards.filter(card => card.type === "heal").length;
+// const quantidade4 = allCards.filter(card => card.type === "defense").length;
+// const quantidade5 = allCards.filter(card => card.type === "lixo").length;
+// const quantidade6 = allCards.filter(card => card.type === "reciclagem").length;
+// const quantidade7 = allCards.filter(card => card.type === "frost").length;
+// const quantidade8 = allCards.filter(card => card.type === "fire").length;
+// const quantidade9 = allCards.filter(card => card.type === "terra").length;
+// const quantidade10 = allCards.filter(card => card.type === "agua").length;
+
+// alert(`
+//   Quantidade TOTAL de cards: ${quantidade0}
+//   Quantidade CINTILANTE: ${quantidade1}
+//   Quantidade ATK: ${quantidade2}
+//   Quantidade CURA: ${quantidade3}
+//   Quantidade DEF: ${quantidade4}
+//   Quantidade LIXO: ${quantidade5}
+//   Quantidade RECICLAGEM: ${quantidade6}
+//   Quantidade FROST: ${quantidade7}
+//   Quantidade FIRE: ${quantidade8}
+//   Quantidade TERRA: ${quantidade9}
+//   Quantidade AGUA: ${quantidade10}
+//   `);

@@ -265,3 +265,14 @@ body {
     display: none;
   }
 }
+
+@media (min-width: 1910px) {
+  .container {
+    top: 36vh;
+    height: 17.2vh;
+  }
+  #conquistas{
+    top: 63.5vh;
+    right: 51.6vw;
+  }
+}
