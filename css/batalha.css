@@ -484,7 +484,14 @@ em{
 }
 
 @keyframes buff-fade {
-  to { transform: scale(0.5); opacity: 0; }
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.6);
+  }
 }
 
 #jogo {

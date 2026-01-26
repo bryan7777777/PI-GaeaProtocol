@@ -50,7 +50,7 @@ const allCards = [
     basePower: 10,
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/joker.png",
-    desc: "Seta sua energia para 10, descarta sua mão inteira e compra 10 cartas aleatórias.",
+    desc: "Seta sua energia para 7, descarta sua mão inteira e compra 10 cartas aleatórias.",
     type: "cintilante"
   },
   {

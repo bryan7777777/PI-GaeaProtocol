@@ -2667,16 +2667,19 @@ function calcularPower(valorBase, tipo) {
   return valorBase + bonusTotal;
 }
 function resetarBuffsPower() {
+  // limpa buffs lógicos
   buffs.atk.length = 0;
   buffs.def.length = 0;
   buffs.cura.length = 0;
   buffs.geral.length = 0;
 
-  // remove todos os buffs visuais
-  const bar = document.querySelector(".buff-icon");
-  if (bar) {
-    bar.remove();
-  }
+  // remove TODOS os buffs visuais com animação
+  document.querySelectorAll(".buff-icon").forEach(buff => {
+    buff.classList.add("buff-end");
+    buff.addEventListener("animationend", () => {
+      buff.remove();
+    }, { once: true });
+  });
 }
 function aplicarBuffsPower(val, rodadas, tipo) {
   const buff = {
@@ -6565,8 +6568,8 @@ const characterDecks = {
     allCards.find(c => c.name === "Compra Dupla"),
     allCards.find(c => c.name === "Compra Dupla"),
     allCards.find(c => c.name === "Compra Dupla"),
-    allCards.find(c => c.name === "Compra Dupla"),
-    allCards.find(c => c.name === "Compra Dupla"),
+    allCards.find(c => c.name === "Estratégia"),
+    allCards.find(c => c.name === "Estratégia"),
     allCards.find(c => c.name === "Estratégia"),
     allCards.find(c => c.name === "Estratégia"),
     allCards.find(c => c.name === "Estratégia"),
