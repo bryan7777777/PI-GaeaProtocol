@@ -855,6 +855,9 @@ function drawCards() {
         case "Golpe Neural Retaliante":
         case "Compra Dupla":
         case "Sobre Carga":
+        case "Fator De Cura":
+        case "Escudo De Bolso":
+        case "Vida De Bolso":
         case "Carga Concentrada":
         case "Carga Dividida":
         case "Carga Estratégica":
@@ -1320,6 +1323,21 @@ function drawCards() {
             allDebuff(card.power, "sofrerDano");
           }
           deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
+        }
+        //💚
+        else if (card.name === "Fator De Cura") {
+          allBuffs(card.power, "power", false, 4, "cura");
+          allDebuff(card.power*2, "sofrerDano");
+        }
+        //💚
+        else if (card.name === "Escudo De Bolso") {
+          allBuffs(playerShield, "power", false, 1, "def");
+          playerShield = 0;
+        }
+        //💚
+        else if (card.name === "Vida De Bolso") {
+          allBuffs(playerHP-1, "power", false, 1, "cura");
+          allDebuff(playerHP-1, "sofrerDano");
         }
         //💚
         else if (card.name === "Carga Concentrada") {

@@ -68,7 +68,7 @@ const allCards = [
     basePower: 1,
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/niquel.png",
-    desc: "Seta sua energia e compra cartas aleatórias entre 1-10. Tem 5% de chance de te causar 25🔱 de dano e zerar sua mão",
+    desc: "Seta sua energia e compra cartas aleatórias entre 1-10. Tem 5% de chance de te causar 25🔱 de dano (não letal) e zerar sua mão",
     type: "cintilante"
   },
   // ♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️
@@ -886,6 +886,33 @@ const allCards = [
     rarity: "common",
     img: "../img/jogo/cards/buff/Cura.png",
     desc: "Recupera 3 de vida.",
+    type: "heal"
+  },
+  {
+    name: "Fator De Cura",
+    cost: 1,
+    basePower: 10,
+    rarity: "rare",
+    img: "../img/jogo/cards/buff/trocaVida.png",
+    desc: "Sacrefique 20 de vida (não letal), suas proximas 4 cartas de cura nessa batalha tem mais 10 pontos de ação.",
+    type: "heal"
+  },
+  {
+    name: "Escudo De Bolso",
+    cost: 0,
+    basePower: 10,
+    rarity: "legend",
+    img: "../img/jogo/cards/buff/armaduraBolso.png",
+    desc: "Zera seu escudo e ganha um buff, sua proxima carta de escudo nessa batalha terá os seus pontos de ação mais a quantidade de escudo sacreficado.",
+    type: "heal"
+  },
+  {
+    name: "Vida De Bolso",
+    cost: 0,
+    basePower: 10,
+    rarity: "legend",
+    img: "../img/jogo/cards/buff/vidaBolso.png",
+    desc: "Seta sua vida para 1 e ganha um buff, sua proxima carta de cura nessa batalha terá os seus pontos de ação mais a quantidade de vida sacreficada.",
     type: "heal"
   },
   {
