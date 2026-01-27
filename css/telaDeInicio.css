@@ -268,11 +268,11 @@ body {
 
 @media (min-width: 1910px) {
   .container {
-    top: 36vh;
+    top: 35vh;
     height: 17.2vh;
   }
   #conquistas{
-    top: 63.5vh;
+    top: 65.5vh;
     right: 51.6vw;
   }
 }

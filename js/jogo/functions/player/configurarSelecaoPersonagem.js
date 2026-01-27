@@ -26,7 +26,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/magnolia.png",
-      lor: "[...]"
+      lor: "Léder do Gaea Protocool (G.P)"
     },
     wallace: {
       nome: "🌿WALLACE, O ESPECTRO DA FLORESTA🌿",
@@ -270,15 +270,15 @@ function configurarSelecaoPersonagem() {
       nome: "🌪️LUCIUS, IRMÃO DO JÃO🌪️",
       dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀💀🌪️",
       cor: "rgba(255, 255, 255, 1)",
-      descricao: "Ninguem sabe onde ele vive, por onde anda, ele vai trabalhar quando ele quer pelo tempo que quer e até hoje se perguntão como ele não foi demitido, se não fosse pelos seus feitos lendários ele provavelmente não estária aqui, digamos que seu deck é algo lendário assim como dito.",
-      cardFoco: "Não possui foco em uma carta principal.",
+      descricao: "Digamos que seu deck é algo lendário",
+      cardFoco: "Foco principal em cartas lendarias.",
       hp: 100,
       maxHp: 100,
       energia: 3,
       escudo: 0,
       mao: 5,
       img: "./../img/jogo/player/lucius.png",
-      lor: "[...]"
+      lor: "Ninguem sabe onde ele vive, por onde anda, ele vai trabalhar quando ele quer pelo tempo que quer e até hoje se perguntão como ele não foi demitido, se não fosse pelos seus feitos lendários ele provavelmente não estária aqui, mas ninguem sabe se são verdade, mas tambem não discordam, afinal nenhum deles tem provas, mas seu irmão Jao é o único quem sabe a verdade e sabe por onde ele anda."
     },
     lilia: {
       nome: "🐼❄️LILIA, LIDER DO GLACIAL PROTOCOOL❄️🐼",
