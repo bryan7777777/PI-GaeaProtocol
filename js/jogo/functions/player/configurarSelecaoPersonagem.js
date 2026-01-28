@@ -26,7 +26,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/magnolia.png",
-      lor: "Léder do Gaea Protocool (G.P)"
+      lor: "Léder do Gaea Protocool (G.P)[...]"
     },
     wallace: {
       nome: "🌿WALLACE, O ESPECTRO DA FLORESTA🌿",

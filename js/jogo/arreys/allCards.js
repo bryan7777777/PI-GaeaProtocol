@@ -46,7 +46,7 @@ const allCards = [
   },
   {
     name: "Royal Flush",
-    cost: 5,
+    cost: 7,
     basePower: 10,
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/joker.png",
