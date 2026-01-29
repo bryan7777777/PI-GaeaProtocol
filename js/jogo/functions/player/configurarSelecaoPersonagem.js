@@ -5,7 +5,7 @@ function configurarSelecaoPersonagem() {
       dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀💀🌿",
       cor: "rgb(0, 188, 16)",
       descricao: "Deck versátil, com um pouco de tudo e status balanceados.",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Não possui foco em uma carta principal. Deck balanceado e equilibrado.",
       hp: 100,
       maxHp: 100,
       energia: 3,
@@ -68,7 +68,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 5,
       img: "./../img/jogo/player/mineiro.png",
-      lor: "[...]"
+      lor: "Lider do GLEBA PROTOCOOL, um ex membro do GAEA, decidiu continuar cuidando do meio ambiente, então decidiu ir para p GLEBA e rapidamente se tornou o lider[...]"
     },
     felipe: {
       nome: "⛏️FELIPE, GEO MAPEADOR⛏️",
@@ -82,7 +82,7 @@ function configurarSelecaoPersonagem() {
       escudo: 5,
       mao: 5,
       img: "./../img/jogo/player/felipe.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     celso: {
       nome: "⛏️CELSO, O ARQUEOLOGO⛏️",
@@ -96,7 +96,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 5,
       img: "./../img/jogo/player/celso.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     maria: {
       nome: "⛏️MARIA, ESPECIALISTA EM EXPLOSÕES⛏️",
@@ -110,7 +110,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 7,
       img: "./../img/jogo/player/maria.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     porto: {
       nome: "⚓CLARICE, A AUTORIDADE DO PORTO⚓",
@@ -173,28 +173,28 @@ function configurarSelecaoPersonagem() {
       dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀🐦‍🔥",
       cor: "rgb(255, 128, 0)",
       descricao: "Agressivo e ágil, perfeito para combates rápidos, causa múltiplos danos em um único alvo.",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Focado na carta Rajada Dupla",
       hp: 70,
       maxHp: 70,
       energia: 3,
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/corredor.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     cleber: {
       nome: "🐦‍🔥CLEBER, PROTETOR DA FAUNA🐦‍🔥",
       dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀🐦‍🔥",
       cor: "rgb(255, 128, 0)",
       descricao: "Focado em defesa, ele fez questão que seu mecha parecesse com um leão, ele até hoje odeia arranhar ele, e sempre abre escudos para não danificar sua pintura, um arranhão para ele é pior que a morte, um leonino orgulhoso talvez? como será que ele lidará com quem joga sujo?.",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Focado na carta Brilhando",
       hp: 160,
       maxHp: 160,
       energia: 3,
       escudo: 5,
       mao: 5,
       img: "./../img/jogo/player/cleber.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     malaquias: {
       nome: "🐦‍🔥MALAQUIAS, ESPECIALISTA EM REPTEIS🐦‍🔥",
@@ -215,56 +215,56 @@ function configurarSelecaoPersonagem() {
       dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀🐦‍🔥",
       cor: "rgb(255, 128, 0)",
       descricao: "Mestre em fotografia, ágil exploradora, porém uma estrategista cautelosa, é capaz de gerar muita energia, como utilizar já é outra historia, .",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Deck focado em gerar energia, e na carta Chuva de laminas.",
       hp: 50,
       maxHp: 50,
       energia: 3,
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/renata.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     marcos: {
       nome: "🌪️MARCOS, EX BOMBEIRO🌪️",
       dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀💀🌪️",
       cor: "rgba(255, 255, 255, 1)",
       descricao: "Após muitos anos trabalhando com queimadas e como bombeiro, ele decidiu se alistar para a aeronautica e seguir carreira, quem diria que suas abilidades com manuseio de fogo e controle dele seriam bem uteis, seu deck é focado em causar dano a inimigos em chamas e marcar com água.",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Focado em cartas de elentais, do tipo fogo e água.",
       hp: 120,
       maxHp: 120,
       energia: 3,
       escudo: 0,
       mao: 5,
       img: "./../img/jogo/player/marcos.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     cleide: {
       nome: "🌪️CLEIDE, A VETERANA🌪️",
       dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀💀💀🌪️",
       cor: "rgba(255, 255, 255, 1)",
       descricao: "Já participou de muitas coisas na vida, mas ainda se lembra de tudo, sabe usar a estratégia ensinada pela Glacia, pela Autoridade do porto e pela Magnolia, muito respeitada por ambos os grupos, seu deck é uma mistura de todos os elementos, usufluir de sinergia é algo vital, mas como lidar com alguém imune a isso?.",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Deck focado em cartas elementais de todos os tipos",
       hp: 100,
       maxHp: 100,
       energia: 3,
       escudo: 0,
       mao: 7,
       img: "./../img/jogo/player/cleide.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     magna: {
       nome: "🌪️MAGNA, A IMPACIENTE🌪️",
       dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀🌪️",
       cor: "rgba(255, 255, 255, 1)",
       descricao: "Ela não curte focar apenas um alvo quando ela pode focar todos, utiliza de muitos golpes em área, perfeita para lidar com grandes grupos porém fraca contra inimigos solo.",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Deck focado em causar muito dano em área e marcação de Fogo",
       hp: 128,
       maxHp: 128,
       energia: 4,
       escudo: 0,
       mao: 5,
       img: "./../img/jogo/player/magna.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     lucius: {
       nome: "🌪️LUCIUS, IRMÃO DO JÃO🌪️",
@@ -299,21 +299,21 @@ function configurarSelecaoPersonagem() {
       dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀❄️",
       cor: "rgb(128, 240, 255)",
       descricao: "Focada em enfraquecer e marcar o inimigo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, ela tem uma margem de visão tão boa e estratégia que sua mão raramente fica vazia, você sabera como gastar sua energia?.",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Deck Focado em cartas de Gelo, extremamente forte sobe condições favoraveis",
       hp: 80,
       maxHp: 80,
       energia: 4,
       escudo: 0,
       mao: 8,
       img: "./../img/jogo/player/glacia.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     olaf: {
       nome: "❄️OLAF, O GUARDIÃO GELIDO❄️",
       dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀💀❄️",
       cor: "rgb(128, 240, 255)",
       descricao: "Focado em usar o gelo como defesa, deck de gelo bem defensivo, porem fraco em atacar.",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Deck Focado em cartas de defesa de Gelo, bem defensivo e fraco no ataque.",
       hp: 150,
       maxHp: 150,
       energia: 3,
@@ -327,70 +327,70 @@ function configurarSelecaoPersonagem() {
       dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀💀❄️",
       cor: "rgb(128, 240, 255)",
       descricao: "Focada em causar muito dano de gelo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, ela é bem fraca na defesa.",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Deck Focado em cartas de ataque de Gelo, bem ofensivo e fraco na defesa.",
       hp: 90,
       maxHp: 90,
       energia: 3,
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/olga.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     x: {
       nome: "🔮A ESQUECIDA🔮",
       dificuldade: "🔮NÍVEL DE DIFICULDADE: 💀💀💀💀🔮",
       cor: "rgb(0, 114, 129)",
       descricao: "Seu deck é... Assim como suas memórias... Sempre em neblina, seu deck é aleatório a cada partida",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Deck aleatório. Não possui foco em uma carta principal.",
       hp: 100,
       maxHp: 200,
       energia: 3,
       escudo: 2,
       mao: 4,
       img: "./../img/jogo/player/x.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     tomoeh: {
       nome: "🩸TOMOEH, A SOMBRA🩸",
       dificuldade: "🩸NÍVEL DE DIFICULDADE: 💀💀💀🩸",
       cor: "rgb(255, 147, 250)",
       descricao: "Uma assassina ágil e mortal, porém frágil. Tente finalizar a batalha rapidamente antes que o pior aconteça...",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Deck focado em causar muito dano, principalmente se sua vida estiver baixa.",
       hp: 30,
       maxHp: 30,
       energia: 6,
       escudo: 0,
       mao: 9,
       img: "./../img/jogo/player/sombra.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     ferrus: {
       nome: "⚒️MAGNUS FERRUS, O PRODÍGIO⚒️",
       dificuldade: "⚒️NÍVEL DE DIFICULDADE: 💀💀⚒️",
       cor: "rgb(103, 67, 0)",
       descricao: "Deck focado em reciclagem, no inicio ele começa bem fraco mas com o tempo ele vai ganhando força com forme o tempo passa, quem diria que reciclar seria bom para todos os lados, por incrivel que pareça no meio do lixo ele achou... ouro? ok ele inicia com 50🪙 ao inves de 0🪙.",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Deck focado em multiplas cartas de reciclagem.",
       hp: 80,
       maxHp: 160,
       energia: 3,
       escudo: 0,
       mao: 5,
       img: "./../img/jogo/player/sal2.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     },
     roxo: {
       nome: "⚙️VINICIUS, A INTERFACE CAÓTICA⚙️",
       dificuldade: "⚙️NÍVEL DE DIFICULDADE: 💀💀⚙️",
       cor: "rgb(141, 7, 231)",
       descricao: "Um engenheiro estratégico, utiliza de seus drones para tudo, saber como usar sua energia é algo vital.",
-      cardFoco: "Não possui foco em uma carta principal.",
+      cardFoco: "Deck de drones, muito forte contra multiplos inimigos porém fraco contra um alvo isolado.",
       hp: 60,
       maxHp: 60,
       energia: 5,
       escudo: 0,
       mao: 7,
       img: "./../img/jogo/player/cabaDosDrones.png",
-      lor: "[...]"
+      lor: "\"Em desenvolvimento\"[...]"
     }
   };
 
