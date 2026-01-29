@@ -306,7 +306,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 8,
       img: "./../img/jogo/player/glacia.png",
-      lor: "\"Em desenvolvimento\"[...]"
+      lor: "Vice líder do GLACIAL PROTOCOOL, foi escolida a dedo pela propria Lilia, seus grandes marcos a fizeram chegar neste posto, grande estrátegista com conhecimento militar e tecnologico avançado, ja trabalhou com mecanica de mechas e foi ela quem ajudou a criar a \"Frost Abisal\", a arma favorita de Lilia, ela témbem auciliou na montage do hexoesqueleto de Lilia, o que a tornou seu braço direito e sua melhor amiga, na qual foi apelidada de Glacia, ela gostou tanto que se auto nomeou assim"
     },
     olaf: {
       nome: "❄️OLAF, O GUARDIÃO GELIDO❄️",
@@ -320,7 +320,7 @@ function configurarSelecaoPersonagem() {
       escudo: 5,
       mao: 5,
       img: "./../img/jogo/player/olaf.png",
-      lor: "[...]"
+      lor: "Ele odeia os \"Friligeloz\", por isso ele resolveu entrar para o GLACIAL PROTOCOOL, após sua familia e seu povo serem exterminados por essas criaturas ele jurou vingança, apenas ele e Olga sobreviveram a esse dia, eles se aproximaram pela nescecidade, vasculharam o local inteiro e vagaram por dias em meio a uma nevasca mortal, com muita sorte foram encontratos por um grupo de patrulha da GLACIAL PROTOCOOL, a lider do grupo Glacia os encontrou em estado critico e os levou até a base deles, após explicar quem são e o que os atacou, eles se uniram ao protocool, Olaf prometeu a Glacia que a protegeria com com sua vida já que ela os salvou, desde então ele se tornou o guarda pessoal da Glacia, não era bom nas pesquisas ja que o grupo era formado por cientistas e pesquisadores, mas quando precisavam da sua força, ele era o cara! Além de ser o encarregado de proteger o grupo."
     },
     olga: {
       nome: "❄️OLGA, A PESQUISADORA PRODIGIO❄️",
@@ -348,7 +348,7 @@ function configurarSelecaoPersonagem() {
       escudo: 2,
       mao: 4,
       img: "./../img/jogo/player/x.png",
-      lor: "\"Em desenvolvimento\"[...]"
+      lor: "\"Em desenvolvimento?\""
     },
     tomoeh: {
       nome: "🩸TOMOEH, A SOMBRA🩸",
