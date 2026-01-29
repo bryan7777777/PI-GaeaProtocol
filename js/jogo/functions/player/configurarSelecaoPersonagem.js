@@ -320,7 +320,7 @@ function configurarSelecaoPersonagem() {
       escudo: 5,
       mao: 5,
       img: "./../img/jogo/player/olaf.png",
-      lor: "Ele odeia os \"Friligeloz\", por isso ele resolveu entrar para o GLACIAL PROTOCOOL, após sua familia e seu povo serem exterminados por essas criaturas ele jurou vingança, apenas ele e Olga sobreviveram a esse dia, eles se aproximaram pela nescecidade, vasculharam o local inteiro e vagaram por dias em meio a uma nevasca mortal, com muita sorte foram encontratos por um grupo de patrulha da GLACIAL PROTOCOOL, a lider do grupo Glacia os encontrou em estado critico e os levou até a base deles, após explicar quem são e o que os atacou, eles se uniram ao protocool, Olaf prometeu a Glacia que a protegeria com com sua vida já que ela os salvou, desde então ele se tornou o guarda pessoal da Glacia, não era bom nas pesquisas ja que o grupo era formado por cientistas e pesquisadores, mas quando precisavam da sua força, ele era o cara! Além de ser o encarregado de proteger o grupo."
+      lor: "Ele odeia os \"Friligeloz\", por isso ele resolveu entrar para o GLACIAL PROTOCOOL. Após sua familia e seu povo serem exterminados por essas criaturas ele jurou vingança, apenas ele e Olga sobreviveram a esse dia, eles se aproximaram pela nescecidade, vasculharam o local inteiro e vagaram por dias em meio a uma nevasca mortal, com muita sorte foram encontratos por um grupo de patrulha da GLACIAL PROTOCOOL, a lider do grupo Glacia os encontrou em estado critico e os levou até a base deles, após explicar quem são e o que os atacou, eles se uniram ao protocool, Olaf prometeu a Glacia que a protegeria com com sua vida já que ela os salvou, desde então ele se tornou o guarda pessoal da Glacia, não era bom nas pesquisas ja que o grupo era formado por cientistas e pesquisadores, mas quando precisavam da sua força, ele era o cara! Além de ser o encarregado de proteger o grupo."
     },
     olga: {
       nome: "❄️OLGA, A PESQUISADORA PRODIGIO❄️",
@@ -334,7 +334,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/olga.png",
-      lor: "\"Em desenvolvimento\"[...]"
+      lor: "Após um ataque dos \"Friligeloz\", o lugar onde ela morava foi completamente destruido, com muito medo ela foi obrigada a se esconder, com muita raiva e medo, ela queria apenas que aquele dia acabasse, até que após ver sua familia sem vida ela acabou desmaiando, e quando havia acordado ela estava sendo carregada por um rapaz no qual nem se quer ela conhecia, após muito tempo vagando eles foram se conhecendo, e juraram vingar todos que aquelas criaturas mataram, após uma nevasca mortal ambos se encontravam quase sem suprimentos, em meio a nevasca proximos da morte, até que um grupo da GLACIAL PROTOCOOL apareceu e os resgatou. Esse dia ecoa em sua memoria até hoje, ela nunca foi capaz de esquecer o que havia escutado daquela criaturas \"Pragas eliminadas, processo de purificação do mundo em 65%\". Depois de muito tempo ela subiu de cargo graças as suas pesquisas inovadoras e acabou compartilhando essa frase para Glacia, na qual ambas chegaram a conclusão de que o erros dos \"outros\" seria problema delas agora!"
     },
     x: {
       nome: "🔮A ESQUECIDA🔮",
