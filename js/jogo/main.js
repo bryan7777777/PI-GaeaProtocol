@@ -7122,7 +7122,6 @@ async function enemyTurn() {
     for (const act of actions) {
       // ANIMAÇÃO
       await aplicarAnimacao(e.name, act.type);
-
       switch (act.type) {
         case "attack":
         case "attackVida":
@@ -7293,6 +7292,11 @@ async function enemyTurn() {
 async function aplicarAnimacao(nomeBoss, acao) {
   const enemiesSnapshot = [...enemies];
   for (const e of enemiesSnapshot) {
+
+    const isBoss = e.name === nomeBoss || e.isBoss === true;
+
+    if (!isBoss) continue;
+
     let target = enemies.find(t => t !== e && t.hp > 0) || e;
 
     switch (true) {
