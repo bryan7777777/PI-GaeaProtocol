@@ -1328,40 +1328,49 @@ function drawCards() {
         else if (card.name === "Fator De Cura") {
           allBuffs(card.power, "power", false, 4, "cura");
           allDebuff(card.power * 2, "sofrerDano");
+          deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Escudo De Bolso") {
           allBuffs(playerShield, "power", false, 1, "def");
           playerShield = 0;
+          deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Vida De Bolso") {
           allBuffs(playerHP - 1, "power", false, 1, "cura");
           allDebuff(playerHP - 1, "sofrerDano");
+          deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Carga Concentrada") {
           allBuffs(card.power, "power", false, 1, "geral");
+          deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Carga Dividida") {
           allBuffs(card.power, "power", false, 2, "geral");
+          deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Carga Estratégica") {
           allBuffs(card.power, "power", false, 5, "geral");
+          deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Carga Defensiva") {
           allBuffs(card.power, "power", false, 2, "def");
+          deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Carga Ofensiva") {
           allBuffs(card.power, "power", false, 2, "atk");
+          deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Carga Vital") {
           allBuffs(card.power, "power", false, 2, "cura");
+          deck.push({ ...allCards.find(c => c.name === "Cura Quebrada"), power: 0 });
         }
         //💚
         else if (card.name === "Cura Forte") {
