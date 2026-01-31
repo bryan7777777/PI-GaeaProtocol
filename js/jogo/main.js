@@ -293,7 +293,7 @@ function checkEnemies() {
                 hp: 40,
                 maxHp: 40,
                 dano: 25,
-                behavior: () => [{ type: "attackVida", value: 30 }],
+                behavior: () => [{ type: "attackVida", value: 25 }],
                 img: "../img/jogo/inimigos/valkFantasma.png",
                 tipoDano: "🔱",
                 tipoVida: "❤️",
