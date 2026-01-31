@@ -6560,8 +6560,8 @@ function criarPlayerNaDiv3() {
       playerImg.src = "./../img/jogo/player/kalenart.png";
       playerDeck = [...characterDecks.gaeaReen];
       playerHP = 120, playerMaxHP = 120
-      energyMax = 400
-      energy = 400
+      energyMax = 4
+      energy = 4
       maoInicio = 6;
       limiteMao = 6;
       break;
@@ -6976,34 +6976,34 @@ const characterDecks = {
     allCards.find(c => c.name === "Xenofluxo Glacial"),
     allCards.find(c => c.name === "Baralho Glacial"),
   ],
-  gaeaReen: [
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-    allCards.find(c => c.name === "Chuva de Laminas"),
-  ],
   // gaeaReen: [
-  //   allCards.find(c => c.name === "Essencia Verde"),
-  //   allCards.find(c => c.name === "Defesa Renovavel"),
-  //   allCards.find(c => c.name === "Arma Auto Sustentavel"),
-  //   allCards.find(c => c.name === "Xenofluxo Reciclável"),
-  //   allCards.find(c => c.name === "Defesa Reciclável"),
-  //   allCards.find(c => c.name === "Ataque Reciclável"),
-  //   allCards.find(c => c.name === "Força De Gaea"),
-  //   allCards.find(c => c.name === "GÆPROTOCOL"),
-  //   allCards.find(c => c.name === "Restos de mecha"),
-  //   allCards.find(c => c.name === "Restos de mecha"),
-  //   allCards.find(c => c.name === "Restos de mecha"),
-  //   allCards.find(c => c.name === "Restos de mecha"),
-  //   allCards.find(c => c.name === "Restos de mecha"),
-  // ]
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  //   allCards.find(c => c.name === "Chuva de Laminas"),
+  // ],
+  gaeaReen: [
+    allCards.find(c => c.name === "Essencia Verde"),
+    allCards.find(c => c.name === "Defesa Renovavel"),
+    allCards.find(c => c.name === "Arma Auto Sustentavel"),
+    allCards.find(c => c.name === "Xenofluxo Reciclável"),
+    allCards.find(c => c.name === "Defesa Reciclável"),
+    allCards.find(c => c.name === "Ataque Reciclável"),
+    allCards.find(c => c.name === "Força De Gaea"),
+    allCards.find(c => c.name === "GÆPROTOCOL"),
+    allCards.find(c => c.name === "Restos de mecha"),
+    allCards.find(c => c.name === "Restos de mecha"),
+    allCards.find(c => c.name === "Restos de mecha"),
+    allCards.find(c => c.name === "Restos de mecha"),
+    allCards.find(c => c.name === "Restos de mecha"),
+  ]
 };
 
 //ANIMAÇÃO ATK PLAYER EM FASE DE TESTE

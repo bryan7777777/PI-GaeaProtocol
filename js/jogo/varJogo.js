@@ -76,7 +76,7 @@ const rarityWeights = [
 
 // STATUS
 let lixoReciclado = 0;
-let dinheiro = 9999999999999999999999999999990;
+let dinheiro = 0;
 let alma1 = 5;
 
 // PLAYER
