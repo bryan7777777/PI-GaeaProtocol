@@ -62,11 +62,21 @@ const BUFF_VISUAL = {
   cura:  { emoji: "💚", border: "0px 20px 0px 20px", color: "#66ff66" },
   geral: { emoji: "✨", border: "100px", color: "#ff9ad5" }
 };
-
+const rarityWeights = [
+  { name: "common", weight: 50 },
+  { name: "rare", weight: 27 },
+  { name: "fire", weight: 10 },
+  { name: "agua", weight: 10 },
+  { name: "terra", weight: 10 },
+  { name: "frost", weight: 10 },
+  { name: "epic", weight: 8 },
+  { name: "legend", weight: 4 },
+  { name: "cintilante", weight: 2 }
+];
 
 // STATUS
 let lixoReciclado = 0;
-let dinheiro = 0;
+let dinheiro = 9999999999999999999999999999990;
 let alma1 = 5;
 
 // PLAYER

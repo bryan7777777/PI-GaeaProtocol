@@ -1327,7 +1327,7 @@ function drawCards() {
         //💚
         else if (card.name === "Fator De Cura") {
           allBuffs(card.power, "power", false, 4, "cura");
-          allDebuff(card.power*2, "sofrerDano");
+          allDebuff(card.power * 2, "sofrerDano");
         }
         //💚
         else if (card.name === "Escudo De Bolso") {
@@ -1336,8 +1336,8 @@ function drawCards() {
         }
         //💚
         else if (card.name === "Vida De Bolso") {
-          allBuffs(playerHP-1, "power", false, 1, "cura");
-          allDebuff(playerHP-1, "sofrerDano");
+          allBuffs(playerHP - 1, "power", false, 1, "cura");
+          allDebuff(playerHP - 1, "sofrerDano");
         }
         //💚
         else if (card.name === "Carga Concentrada") {
@@ -2552,7 +2552,7 @@ function drawCards() {
 
             // --- chance de sofrer dano ---
             if (Math.random() < 0.05) {
-              allDebuff(25, "sofrerDano");
+              allDebuff(50, "sofrerDano");
               deck.length = 0;
             }
 
@@ -5839,13 +5839,7 @@ function abrirLoja() {
   atualizarDinheiro();
 
   /* ================= CARTAS À VENDA ================= */
-  const opcoes = [];
-  const max = Math.min(10, allCards?.length || 0);
-
-  while (opcoes.length < max) {
-    const carta = allCards[Math.floor(Math.random() * allCards.length)];
-    if (!opcoes.includes(carta)) opcoes.push(carta);
-  }
+  const opcoes = gerarPoolRecompensa14();
 
   opcoes.forEach(carta => {
     let preco = 10;
@@ -6171,8 +6165,11 @@ function abrirMedico() {
   const escolhidas = [];
 
   while (escolhidas.length < max) {
-    const carta = cartasCura[Math.floor(Math.random() * cartasCura.length)];
-    if (!escolhidas.includes(carta)) escolhidas.push(carta);
+    const carta = pegarCartaCuraComPeso(cartasCura);
+
+    if (!escolhidas.some(c => c.name === carta.name)) {
+      escolhidas.push(carta);
+    }
   }
 
   escolhidas.forEach(carta => {
@@ -6253,6 +6250,72 @@ function aumentaVida() {
   playerMaxHP += 10;
   updateHUD();
 };
+// SHOOP CONF
+const raridadesGarantidas = [
+  "common",
+  "rare",
+  "fire",
+  "agua",
+  "terra",
+  "frost",
+  "epic",
+  "legend"
+];
+function sortearRaridadePeso() {
+  const total = rarityWeights.reduce((s, r) => s + r.weight, 0);
+  let rand = Math.random() * total;
+
+  for (const r of rarityWeights) {
+    rand -= r.weight;
+    if (rand <= 0) return r.name;
+  }
+
+  return "common";
+}
+function pegarCartaDaRaridade(raridade) {
+  const pool = allCards.filter(c => (c.rarity ?? "common") === raridade);
+  if (pool.length === 0) return null;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+function gerarPoolRecompensa14() {
+  const pool = [];
+
+  // 8 garantidas
+  raridadesGarantidas.forEach(r => {
+    const carta = pegarCartaDaRaridade(r);
+    if (carta) pool.push(carta);
+  });
+
+  // +6 aleatórias por peso
+  while (pool.length < 14) {
+    const raridade = sortearRaridadePeso();
+    const carta = pegarCartaDaRaridade(raridade);
+    if (!carta) continue;
+
+    // evita duplicar exatamente a mesma carta
+    if (!pool.some(c => c.name === carta.name)) {
+      pool.push(carta);
+    }
+  }
+
+  return pool;
+}
+function pegarCartaCuraComPeso(cartasCura) {
+  let tentativas = 0;
+
+  while (tentativas < 20) {
+    const rar = sortearRaridadePeso();
+    const pool = cartasCura.filter(c => (c.rarity ?? "common") === rar);
+
+    if (pool.length) {
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+    tentativas++;
+  }
+
+  // fallback
+  return cartasCura[Math.floor(Math.random() * cartasCura.length)];
+}
 
 // PLAYER
 function criarPlayerNaDiv3() {
@@ -6497,8 +6560,8 @@ function criarPlayerNaDiv3() {
       playerImg.src = "./../img/jogo/player/kalenart.png";
       playerDeck = [...characterDecks.gaeaReen];
       playerHP = 120, playerMaxHP = 120
-      energyMax = 4
-      energy = 4
+      energyMax = 400
+      energy = 400
       maoInicio = 6;
       limiteMao = 6;
       break;
@@ -6913,34 +6976,34 @@ const characterDecks = {
     allCards.find(c => c.name === "Xenofluxo Glacial"),
     allCards.find(c => c.name === "Baralho Glacial"),
   ],
-  // gaeaReen: [
-  //   allCards.find(c => c.name === "Chuva de Laminas"),
-  //   allCards.find(c => c.name === "Chuva de Laminas"),
-  //   allCards.find(c => c.name === "Chuva de Laminas"),
-  //   allCards.find(c => c.name === "Chuva de Laminas"),
-  //   allCards.find(c => c.name === "Chuva de Laminas"),
-  //   allCards.find(c => c.name === "Chuva de Laminas"),
-  //   allCards.find(c => c.name === "Chuva de Laminas"),
-  //   allCards.find(c => c.name === "Chuva de Laminas"),
-  //   allCards.find(c => c.name === "Chuva de Laminas"),
-  //   allCards.find(c => c.name === "Chuva de Laminas"),
-  //   allCards.find(c => c.name === "Chuva de Laminas"),
-  // ],
   gaeaReen: [
-    allCards.find(c => c.name === "Essencia Verde"),
-    allCards.find(c => c.name === "Defesa Renovavel"),
-    allCards.find(c => c.name === "Arma Auto Sustentavel"),
-    allCards.find(c => c.name === "Xenofluxo Reciclável"),
-    allCards.find(c => c.name === "Defesa Reciclável"),
-    allCards.find(c => c.name === "Ataque Reciclável"),
-    allCards.find(c => c.name === "Força De Gaea"),
-    allCards.find(c => c.name === "GÆPROTOCOL"),
-    allCards.find(c => c.name === "Restos de mecha"),
-    allCards.find(c => c.name === "Restos de mecha"),
-    allCards.find(c => c.name === "Restos de mecha"),
-    allCards.find(c => c.name === "Restos de mecha"),
-    allCards.find(c => c.name === "Restos de mecha"),
-  ]
+    allCards.find(c => c.name === "Chuva de Laminas"),
+    allCards.find(c => c.name === "Chuva de Laminas"),
+    allCards.find(c => c.name === "Chuva de Laminas"),
+    allCards.find(c => c.name === "Chuva de Laminas"),
+    allCards.find(c => c.name === "Chuva de Laminas"),
+    allCards.find(c => c.name === "Chuva de Laminas"),
+    allCards.find(c => c.name === "Chuva de Laminas"),
+    allCards.find(c => c.name === "Chuva de Laminas"),
+    allCards.find(c => c.name === "Chuva de Laminas"),
+    allCards.find(c => c.name === "Chuva de Laminas"),
+    allCards.find(c => c.name === "Chuva de Laminas"),
+  ],
+  // gaeaReen: [
+  //   allCards.find(c => c.name === "Essencia Verde"),
+  //   allCards.find(c => c.name === "Defesa Renovavel"),
+  //   allCards.find(c => c.name === "Arma Auto Sustentavel"),
+  //   allCards.find(c => c.name === "Xenofluxo Reciclável"),
+  //   allCards.find(c => c.name === "Defesa Reciclável"),
+  //   allCards.find(c => c.name === "Ataque Reciclável"),
+  //   allCards.find(c => c.name === "Força De Gaea"),
+  //   allCards.find(c => c.name === "GÆPROTOCOL"),
+  //   allCards.find(c => c.name === "Restos de mecha"),
+  //   allCards.find(c => c.name === "Restos de mecha"),
+  //   allCards.find(c => c.name === "Restos de mecha"),
+  //   allCards.find(c => c.name === "Restos de mecha"),
+  //   allCards.find(c => c.name === "Restos de mecha"),
+  // ]
 };
 
 //ANIMAÇÃO ATK PLAYER EM FASE DE TESTE

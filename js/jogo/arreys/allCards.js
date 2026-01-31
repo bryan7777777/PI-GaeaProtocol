@@ -64,11 +64,11 @@ const allCards = [
   },
   {
     name: "Tudo Ou Nada",
-    cost: 0,
+    cost: 3,
     basePower: 1,
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/niquel.png",
-    desc: "Seta sua energia e compra cartas aleatórias entre 1-10. Tem 5% de chance de te causar 25🔱 de dano (não letal) e zerar sua mão",
+    desc: "Seta sua energia e compra cartas aleatórias entre 1-10. Tem 5% de chance de te causar 50🔱 de dano (não letal) e zerar sua mão",
     type: "cintilante"
   },
   // ♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️

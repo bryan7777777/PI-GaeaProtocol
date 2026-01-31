@@ -10,12 +10,43 @@ function gerarCartaRecomp() {
   container.style.flexWrap = "wrap";
   container.style.width = "100%";
 
+function sortearRaridade() {
+  const total = rarityWeights.reduce((s, r) => s + r.weight, 0);
+  let rand = Math.random() * total;
+
+  for (const r of rarityWeights) {
+    rand -= r.weight;
+    if (rand <= 0) return r.name;
+  }
+
+  return "common";
+}
+
+function pegarCartaPorRaridade() {
+  let tentativas = 0;
+
+  while (tentativas < 20) {
+    const raridade = sortearRaridade();
+    const pool = allCards.filter(c => (c.rarity ?? "common") === raridade);
+
+    if (pool.length > 0) {
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+    tentativas++;
+  }
+
+  // fallback
+  return allCards[Math.floor(Math.random() * allCards.length)];
+}
+
   // Seleciona 3 cartas aleatórias do deck geral
   const opcoes = [];
-  while (opcoes.length < 3 && opcoes.length < allCards.length) {
-    const carta = allCards[Math.floor(Math.random() * allCards.length)];
-    if (!opcoes.includes(carta)) opcoes.push(carta);
+while (opcoes.length < 3) {
+  const carta = pegarCartaPorRaridade();
+  if (!opcoes.some(c => c.name === carta.name)) {
+    opcoes.push(carta);
   }
+}
 
   opcoes.forEach(carta => {
     const cardDiv = document.createElement("div");
