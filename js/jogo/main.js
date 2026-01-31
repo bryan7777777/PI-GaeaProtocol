@@ -3812,7 +3812,7 @@ async function executarTxtBoss() {
           await iniciarTutorial(
             [
               "Na verdade, eu já sei.",
-              "Foi porque eu disse que você se deita com iguais, né?"
+              "Foi porque eu disse que você é um maluco obcecado por geladeiras, né?"
             ],
             playerImgDialogo.src,
             null,
