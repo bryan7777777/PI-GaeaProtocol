@@ -44,6 +44,10 @@ let peruSpawnBoss = true;
 let animarCompra = false;
 let bloqueioCliqueCartas = false;
 let playerAlive = true;
+let flagItem37=true;
+let flagItem38=true;
+let flagItem39=true;
+let flagItem40=true;
 
 // ARREY
 const deck = [];

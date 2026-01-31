@@ -678,6 +678,7 @@ function checkEnemies() {
           if (mapaBatalha == 7 && enemies.length === 0) {
             stopNemoraSnow();
           }
+          addSorte();
         }, 500);
       })(i);
     }
@@ -3397,15 +3398,20 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
           drawCards();
           updateHUD();
           tipoFase = tipo;
+          baseBoss=20;
+          baseElite=10;
+          baseComum=5;
+          baseMult=1;
+          ganhoMoney();
           if (tipo == 'boss') {
-            dinheiro += 20;
-            dinheiro += Math.floor(mapaBatalha / 3);
+            dinheiro += baseBoss*baseMult;
+            dinheiro += Math.floor(mapaBatalha / 3)*baseMult;
           } else if (tipo == 'elite' || tipo == 'inimigo2') {
-            dinheiro += 10;
-            dinheiro += Math.floor(mapaBatalha / 3);
+            dinheiro += baseElite*baseMult;
+            dinheiro += Math.floor(mapaBatalha / 3)*baseMult;
           } else if (tipo == 'inimigo') {
-            dinheiro += 5;
-            dinheiro += Math.floor(mapaBatalha / 3);
+            dinheiro += baseComum*baseMult;
+            dinheiro += Math.floor(mapaBatalha / 3)*baseMult;
           }
           if (pagina === "selecaoMapa.html") {
             executarTxtBoss();
@@ -8356,6 +8362,62 @@ function itensVerd() {
     }
   }
 }
+function ganhoMoney() {
+  if (hasItem(3)) {
+    baseElite+=10;
+    baseComum+=10;
+  }
+  if (hasItem(42)) {
+    baseBoss+=50;
+  }
+  if (hasItem(41)) {
+    baseMult+=1;
+  }
+}
+function sorteCards(name, valor, calc = "+") {
+  const rarity = rarityWeights.find(r => r.name === name);
+  if (!rarity) return;
+
+  if (calc === "+") {
+    rarity.weight += valor;
+  } else if (calc === "-") {
+    rarity.weight -= valor;
+  }
+
+  // 🔒 trav 0
+  rarity.weight = Math.max(0, rarity.weight);
+}
+function addSorte(){
+  // BUFF ELEMENTAL
+  if (hasItem(37) && flagItem37) {
+    sorteCards("fire", 40);
+    sorteCards("terra", 40);
+    sorteCards("agua", 40);
+    sorteCards("frost", 40);
+    flagItem37=false;
+  }
+  // NERF COMUM
+  if (hasItem(38) && flagItem38) {
+    sorteCards("common", 35,"-");
+    flagItem38=false;
+  }
+  // BUFF EPIC/LEGEND/CINT
+  if (hasItem(39) && flagItem39) {
+    sorteCards("epic", 17);
+    sorteCards("legend", 10);
+    sorteCards("cintilante", 6);
+    flagItem39=false;
+  }
+  // NERF COMUM/RARE || BUFF EPIC/LEGEND
+  if (hasItem(40) && flagItem40) {
+    sorteCards("common", 15,"-");
+    sorteCards("rare", 15,"-");
+
+    sorteCards("epic", 8);
+    sorteCards("legend", 5);
+    flagItem40=false;
+  }
+}
 
 // CALLING FUNCTIONS
 myMusic.play();
@@ -8375,7 +8437,8 @@ if (pagina === "selecaoMapa.html") {
 
 // itensJaPegos.push(34);
 // itensJaPegos.push(35);
-// itensJaPegos.push(36);
+// itensJaPegos.push(40);
+// itensJaPegos.push(38);
 
 // const quantidade0 = allCards.length;
 // const quantidade1 = allCards.filter(card => card.type === "cintilante").length;

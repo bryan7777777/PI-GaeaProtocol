@@ -1,7 +1,7 @@
 const allItems = [
   { id: 1, name: "Coração De Quartzo", img: "./../img/jogo/itens/Vida2.png", desc: "+40 HP" },
   { id: 2, name: "Gerador De Algas", img: "./../img/jogo/itens/Algas.png", desc: "+1 ENERGIA" },
-  { id: 3, name: "ReeForja", img: "./../img/jogo/itens/Picareta2.png", desc: "+50🪙" },
+  { id: 3, name: "ReeForja", img: "./../img/jogo/itens/Picareta2.png", desc: "Ganhe 10🪙 extras ao derrotar elites e inimigos comuns. Ganhe agora +45🪙." },
   { id: 4, name: "Chip Do Batedor", img: "./../img/jogo/itens/auraLaranja.png", desc: "+1 ENERGIA" },
   { id: 5, name: "Amuleto De Gaea", img: "./../img/jogo/itens/colarDeGaea.png", desc: "+50 HP, +1 ENERGIA" },
   { id: 6, name: "Ecosistema Preservado", img: "./../img/jogo/itens/bolhaPreservada.png", desc: "+50 HP, +1 ENERGIA" },
@@ -35,4 +35,10 @@ const allItems = [
   { id: 34, name: "Aureola Dos Mortos", img: "./../img/jogo/itens/coroaDosMortos.png", desc: "Uma linda replica, quem será que tem a original? +100 HP" },
   { id: 35, name: "Infância Manchada", img: "./../img/jogo/itens/tybers.png", desc: "Tem uma etiqueta escrito que pertence a \"Alegria\". +10 ARMADURA TODO TURNO" },
   { id: 36, name: "Guia Da Alma", img: "./../img/jogo/itens/lampiao.png", desc: "Revela a \"verdade\", esse item precissa de mais 2 outros itens para ativar seu potencial? Seja lá qual for, em seu metal está escrito \"Traição\". +1 ENERGIA" },
+  { id: 37, name: "Sorte Elemental", img: "./../img/jogo/itens/sorteElemental.png", desc: "Todas as cartas elementais tem uma chance de aparecer MUITO maior." },
+  { id: 38, name: "Album Velho", img: "./../img/jogo/itens/albumVelho.png", desc: "Diminui drasticamente a chance de aparecer cartas comuns." },
+  { id: 39, name: "Album De Coleção", img: "./../img/jogo/itens/albumMagico.png", desc: "Cartas épicas, lendárias e cintilante tem uma chance maior de aparecer." },
+  { id: 40, name: "Ás De Copas", img: "./../img/jogo/itens/cartaDaSorte.png", desc: "Diminui a chance de aparecer cartas comuns e raras, e aumenta a chance de cartas épicas e lendárias." },
+  { id: 41, name: "Cripto", img: "./../img/jogo/itens/criptoGaea.png", desc: "Dobra o dinheiro 🪙 recebido em batalhas. Ganhe agora +45🪙." },
+  { id: 42, name: "Investimento", img: "./../img/jogo/itens/criptoGaea.png", desc: "Ganhe 50🪙 extras ao derrotar um boss. Ganhe agora +45🪙." },
 ];

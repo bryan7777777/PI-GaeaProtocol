@@ -15,7 +15,9 @@ function aplicarBuff(item) {
       break;
 
     case 3: // money
-      dinheiro += 50;
+    case 41:
+    case 42:
+      dinheiro += 45;
       atualizarDinheiro();
       break;
 
