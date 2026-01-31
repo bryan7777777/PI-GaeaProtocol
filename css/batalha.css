@@ -38,7 +38,7 @@ em{
 }
 
 #popup, #popupFinal, #popupOver {
-  height: 90vh;
+  height: 80vh;
   width: 70vw;
   display: none;
   align-items: center;
@@ -56,7 +56,7 @@ em{
   box-shadow: 0 0 25px rgb(4, 255, 0);
   padding: 20px;
   border-radius: 10px;
-  z-index: 99999;
+  z-index: 4;
 }
 
 #popup {
@@ -84,11 +84,12 @@ em{
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 1);
-  z-index: 99999;
+  z-index: 4;
 }
 
 #overlay.popup-opacity {
   background: rgba(0, 0, 0, 0.5);
+  z-index: 4;
 }
 
 #lifeBar,
@@ -447,7 +448,7 @@ em{
   gap: 8px;
 
   transform: translate(-50%, -50%);
-  z-index: 4;
+  z-index: 3;
 }
 
 
