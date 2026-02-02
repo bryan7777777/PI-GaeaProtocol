@@ -214,7 +214,7 @@ function configurarSelecaoPersonagem() {
       nome: "🐦‍🔥RENATA, ESPECIALISTA EM MAMIFEROS🐦‍🔥",
       dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀🐦‍🔥",
       cor: "rgb(255, 128, 0)",
-      descricao: "Mestre em fotografia, ágil exploradora, porém uma estrategista cautelosa, é capaz de gerar muita energia, como utilizar já é outra historia, .",
+      descricao: "Ágil exploradora, porém uma estrategista cautelosa, é capaz de gerar muita energia, como utilizar já é outra historia, .",
       cardFoco: "Deck focado em gerar energia, e na carta Chuva de laminas.",
       hp: 50,
       maxHp: 50,
@@ -222,7 +222,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/renata.png",
-      lor: "\"Em desenvolvimento\"[...]"
+      lor: "Especialista em fotografia, um de seus robis favoritos, consequentemente a tornando uma das melhores fotografas se não a melhor, foi recrutada para o FAUNA PROTOCOOL quando estava tirado fotos de diversos animais, devido ao seu vasto conhecimento em mamiferos ela se tornou uma peça essencial para o grupo, principalmente quando se trata de preservar especies de mamiferos."
     },
     marcos: {
       nome: "🌪️MARCOS, EX BOMBEIRO🌪️",
