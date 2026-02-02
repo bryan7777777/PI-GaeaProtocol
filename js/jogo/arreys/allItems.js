@@ -40,5 +40,5 @@ const allItems = [
   { id: 39, name: "Album De Coleção", img: "./../img/jogo/itens/albumMagico.png", desc: "Cartas épicas, lendárias e cintilante tem uma chance maior de aparecer." },
   { id: 40, name: "Ás De Copas", img: "./../img/jogo/itens/cartaDaSorte.png", desc: "Diminui a chance de aparecer cartas comuns e raras, e aumenta a chance de cartas épicas e lendárias." },
   { id: 41, name: "Cripto", img: "./../img/jogo/itens/criptoGaea.png", desc: "Dobra o dinheiro 🪙 recebido em batalhas. Ganhe agora +45🪙." },
-  { id: 42, name: "Investimento", img: "./../img/jogo/itens/criptoGaea.png", desc: "Ganhe 50🪙 extras ao derrotar um boss. Ganhe agora +45🪙." },
+  { id: 42, name: "Investimento", img: "./../img/jogo/itens/investimento.png", desc: "Ganhe 50🪙 extras ao derrotar um boss. Ganhe agora +45🪙." },
 ];
