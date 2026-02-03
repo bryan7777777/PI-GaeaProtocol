@@ -6263,6 +6263,7 @@ function curaVida() {
 };
 function aumentaVida() {
   playerMaxHP += 10;
+  playerHP += 10;
   updateHUD();
 };
 // SHOOP CONF
