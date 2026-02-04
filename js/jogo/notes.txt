@@ -109,3 +109,63 @@ PALTAS{
     1.0.0 - (G-ATT/P-ATT/BUG-FIX)
     ==========
 }
+
+pp{
+    cuidando da interface do user
+}
+
+vini{
+    cuidando do site front
+}
+
+isac{
+    [...]
+}
+
+james{
+    cuidando da interface do user
+}
+
+dados{
+    usuario{
+        id
+        nome usuario
+        email
+        senha
+        dataNascimento
+        data criado
+        qtd de run (AUTO INCREMENTO)
+        qtd de vitorias
+    }
+    conquistas{
+        id
+        nome 
+        desbloqueio OQ DESBLOQUEIA ELA
+        premio QM OU OQ GANHOU
+        concluido BOLEAN
+    }
+    scor{
+        id
+        id user
+        qtd de lixo recilcado por run
+        qtd d lixo reciclado total
+    }
+    scor geral total{
+        id player1
+        id player2
+        id player3
+        id player4
+        id player5
+        id player6
+        ... 10
+    }
+    scor geral run{
+        id player1
+        id player2
+        id player3
+        id player4
+        id player5
+        id player6
+        ... 10
+    }
+}
