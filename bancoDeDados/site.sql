@@ -1,0 +1,102 @@
+CREATE TABLE usuario(
+id_usuario INT  PRIMARY KEY AUTO_INCREMENT UNIQUE ,
+nick VARCHAR(45 ) NOT NULL ,
+emailusuario VARCHAR(50) NOT NULL UNIQUE ,
+senha VARCHAR(50) NOT NULL
+);
+ 
+
+
+CREATE TABLE dashboard(
+id_dash INT PRIMARY KEY AUTO_INCREMENT   ,
+posicao INT  NOT NULL ,
+qtdplay_jogada INT , 
+qtdganho_porjogo INT , 
+pontos INT  NOT NULL ,
+scor_de_lixoreciclado INT ,
+qtd_run INT NOT NULL ,
+datacriada DATE  NOT NULL ,
+id_usuario INT  NOT NULL,
+  CONSTRAINT usuario_dashboard FOREIGN KEY 
+(id_usuario) REFERENCES usuario(id_usuario)
+);
+
+
+ 
+CREATE TABLE liderboard(
+id_Liderboard INT PRIMARY KEY UNIQUE ,
+id_dash INT  NOT NULL,
+  CONSTRAINT dashboard_liderboard FOREIGN KEY 
+(id_dash) REFERENCES dashboard(id_dash)
+);
+ 
+
+
+CREATE TABLE conquistas(
+id_conquista  int PRIMARY KEY, 
+nome  VARCHAR (50) NOT NULL ,
+desbloqueio VARCHAR(100)  NULL ,
+premio VARCHAR(100) NOT NULL ,
+concluido  BIT   
+);
+   
+   
+   
+CREATE TABLE ranktotal (
+id_ranking INT PRIMARY KEY AUTO_INCREMENT,
+pontos INT  NOT NULL,
+id_dash   int not NULL ,
+CONSTRAINT dashboard_ranktotal FOREIGN KEY 
+(id_dash) REFERENCES dashboard(id_dash)
+); 
+
+
+
+CREATE TABLE score_run_do_mapa (
+id_score INT PRIMARY KEY AUTO_INCREMENT,
+nome_run VARCHAR(50) NOT null
+);
+
+
+
+CREATE TABLE score_run_player (
+id INT PRIMARY KEY AUTO_INCREMENT,
+id_score INT NOT NULL,
+id_player INT NOT NULL,
+score INT NOT NULL ,
+ 
+FOREIGN KEY (id_score) REFERENCES score_run_do_mapa(id_score),
+FOREIGN KEY (id_player) REFERENCES usuario(id_usuario)
+);
+
+
+ 
+/*MASSA DE DADOS*/
+/*INSERÇÃO DOS USUARIOS */
+INSERT INTO usuario (nick, emailusuario, senha)
+VALUES
+('james', 'james@email.com', '123456'),
+('gameleira', 'gameleira@email.com', '123456'),
+('pedrofarinha', 'pedrofarinha@email.com', '123456'),
+('nagano', 'nagano@gmail.com', '123456');
+ 
+ 
+
+/*PONTUAÇÃO DO USER (DAASHBOARD)*/
+INSERT INTO dashboard (posicao,qtdplay_jogada,qtdganho_porjogo,pontos,scor_de_lixoreciclado,qtd_run,datacriada,id_usuario)
+VALUES 
+(1,10,5,1200,300,4,CURDATE(),2);
+ 
+
+
+/*PONTUAÇÃO DO USER NO RANKING TOTAL */
+INSERT INTO ranktotal (pontos, id_dash)
+VALUES (1200, 1);
+ 
+
+
+/*CONFERIR RANKING */
+SELECT u.nick,d.pontos,r.id_ranking FROM ranktotal r
+JOIN dashboard d ON r.id_dash = d.id_dash
+JOIN usuario u ON d.id_usuario = u.id_usuario
+ORDER BY d.pontos DESC;
