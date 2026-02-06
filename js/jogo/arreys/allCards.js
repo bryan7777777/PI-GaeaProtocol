@@ -71,14 +71,14 @@ const allCards = [
     desc: "Seta sua energia e compra cartas aleatórias entre 1-10. Tem 5% de chance de te causar 50🔱 de dano (não letal) e zerar sua mão",
     type: "cintilante"
   },
-  // ♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️♨️
+  // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
   {
     name: "Combustão",
     cost: 0,
     basePower: 0,
     rarity: "fire",
     img: "../img/jogo/cards/fire/combustao.png",
-    desc: "Marca o inimigo com ♨️",
+    desc: "Marca o inimigo com 🔥",
     type: "fire"
   },
   {
@@ -87,7 +87,7 @@ const allCards = [
     basePower: 0,
     rarity: "fire",
     img: "../img/jogo/cards/fire/chuvaDeFogo.png",
-    desc: "Marca todos os inimigos com ♨️",
+    desc: "Marca todos os inimigos com 🔥",
     type: "fire"
   },
   {
@@ -96,7 +96,7 @@ const allCards = [
     basePower: 12,
     rarity: "fire",
     img: "../img/jogo/cards/fire/explosaoCalor.png",
-    desc: "Cause 10 de dano ao inimigo, se ele estiver marcado com ♨️ X2 ou ⛰️ X3 o dano",
+    desc: "Cause 10 de dano ao inimigo, se ele estiver marcado com 🔥 X2 ou ⛰️ X3 o dano",
     type: "fire"
   },
   {
@@ -105,7 +105,7 @@ const allCards = [
     basePower: 6,
     rarity: "fire",
     img: "../img/jogo/cards/fire/atkFogo.png",
-    desc: "Cause 6 de dano ao inimigo, se ele estiver marcado com ♨️ X2 ou ⛰️ X3 o dano",
+    desc: "Cause 6 de dano ao inimigo, se ele estiver marcado com 🔥 X2 ou ⛰️ X3 o dano",
     type: "fire"
   },
   {
@@ -114,7 +114,7 @@ const allCards = [
     basePower: 6,
     rarity: "fire",
     img: "../img/jogo/cards/fire/lancaChamas.png",
-    desc: "Cause 6 de dano a todos os inimigos e marca com ♨️, se ele estiver marcado com ♨️ X2 ou ⛰️ X3 o dano",
+    desc: "Cause 6 de dano a todos os inimigos e marca com 🔥, se ele estiver marcado com 🔥 X2 ou ⛰️ X3 o dano",
     type: "fire"
   },
   {
@@ -123,7 +123,7 @@ const allCards = [
     basePower: 20,
     rarity: "fire",
     img: "../img/jogo/cards/fire/cauterizar.png",
-    desc: "Cause 20 de dano ao inimigo e marca com ♨️, se ele estiver marcado com ♨️ X2 o dano",
+    desc: "Cause 20 de dano ao inimigo e marca com 🔥, se ele estiver marcado com 🔥 X2 o dano",
     type: "fire"
   },
   {
@@ -132,7 +132,7 @@ const allCards = [
     basePower: 10,
     rarity: "fire",
     img: "../img/jogo/cards/fire/cinzas.jpg",
-    desc: "Cure 10 de vida mais 4% de todo o lixo reciclado ♻️ por inimigos marcados com ♨️",
+    desc: "Cure 10 de vida mais 4% de todo o lixo reciclado ♻️ por inimigos marcados com 🔥",
     type: "fire"
   },
   {
@@ -150,7 +150,7 @@ const allCards = [
     basePower: 10,
     rarity: "fire",
     img: "../img/jogo/cards/fire/fenix.jpg",
-    desc: "Cure e ganhe escudo em 10 para cada inimigo marcado com ♨️, marca todos com ♨️",
+    desc: "Cure e ganhe escudo em 10 para cada inimigo marcado com 🔥, marca todos com 🔥",
     type: "fire"
   },
   // ⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️⛰️
@@ -169,7 +169,7 @@ const allCards = [
     basePower: 8,
     rarity: "terra",
     img: "../img/jogo/cards/terra/atkTerra.jpg",
-    desc: "Cause 8 de dano ao inimigo, se ele estiver marcado com 🌧️ cause X3",
+    desc: "Cause 8 de dano ao inimigo, se ele estiver marcado com 💧 cause X3",
     type: "terra"
   },
   {
@@ -223,7 +223,7 @@ const allCards = [
     basePower: 5,
     rarity: "terra",
     img: "../img/jogo/cards/terra/chuvaTerra.jpg",
-    desc: "Cause 5 de dano a todos os inimigos e marca com ⛰️, se ele estiver marcado com ⛰️ X2 ou 🌧️ X3 o dano",
+    desc: "Cause 5 de dano a todos os inimigos e marca com ⛰️, se ele estiver marcado com ⛰️ X2 ou 💧 X3 o dano",
     type: "terra"
   },
   {
@@ -235,14 +235,14 @@ const allCards = [
     desc: "Marca todos os inimigos com ⛰️",
     type: "terra"
   },
-  // 🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️🌧️
+  // 💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧
   {
     name: "Jato De Água",
     cost: 0,
     basePower: 0,
     rarity: "agua",
     img: "../img/jogo/cards/agua/jatoAgua.png",
-    desc: "Marca o inimigo com 🌧️",
+    desc: "Marca o inimigo com 💧",
     type: "agua"
   },
   {
@@ -251,7 +251,7 @@ const allCards = [
     basePower: 8,
     rarity: "agua",
     img: "../img/jogo/cards/agua/chuva.png",
-    desc: "Marca os inimigos com 🌧️, se eles estiverem marcados com ♨️ cause 8 de dano",
+    desc: "Marca os inimigos com 💧, se eles estiverem marcados com 🔥 cause 8 de dano",
     type: "agua"
   },
   {
@@ -260,7 +260,7 @@ const allCards = [
     basePower: 12,
     rarity: "agua",
     img: "../img/jogo/cards/agua/chuvaDensa.png",
-    desc: "Causa 12 de dano a inimigos marcados com ♨️",
+    desc: "Causa 12 de dano a inimigos marcados com 🔥",
     type: "agua"
   },
   {
@@ -269,7 +269,7 @@ const allCards = [
     basePower: 22,
     rarity: "agua",
     img: "../img/jogo/cards/agua/chuvaCorrosiva.png",
-    desc: "Marca os inimigos com 🌧️, se eles estiverem marcados com 🌧️ cause 22 de dano",
+    desc: "Marca os inimigos com 💧, se eles estiverem marcados com 💧 cause 22 de dano",
     type: "agua"
   },
   {
@@ -278,7 +278,7 @@ const allCards = [
     basePower: 42,
     rarity: "agua",
     img: "../img/jogo/cards/agua/corrosao.png",
-    desc: "Marca o inimigo com 🌧️, se ele estiver marcado com 🌧️ cause 42 de dano",
+    desc: "Marca o inimigo com 💧, se ele estiver marcado com 💧 cause 42 de dano",
     type: "agua"
   },
   {
@@ -287,7 +287,7 @@ const allCards = [
     basePower: 0,
     rarity: "agua",
     img: "../img/jogo/cards/agua/afogado.png",
-    desc: "Marca todos os inimigos com 🌧️",
+    desc: "Marca todos os inimigos com 💧",
     type: "agua"
   },
   {
@@ -296,7 +296,7 @@ const allCards = [
     basePower: 6,
     rarity: "agua",
     img: "../img/jogo/cards/agua/arco.png",
-    desc: "Cause 6 de dano, mais 5% de todo o lixo reciclado ♻️ por cada inimigo marcado com 🌧️",
+    desc: "Cause 6 de dano, mais 5% de todo o lixo reciclado ♻️ por cada inimigo marcado com 💧",
     type: "agua"
   },
   {
@@ -314,7 +314,7 @@ const allCards = [
     basePower: 10,
     rarity: "agua",
     img: "../img/jogo/cards/agua/abisal.jpg",
-    desc: "Cause 10 de dano para cada carta de CONDENSATION 🌧️ na sua mão (essa carta conta também)",
+    desc: "Cause 10 de dano para cada carta de WATER 💧 na sua mão (essa carta conta também)",
     type: "agua"
   },
   {
@@ -332,7 +332,7 @@ const allCards = [
     basePower: 6,
     rarity: "agua",
     img: "../img/jogo/cards/agua/tuba.png",
-    desc: "Cause 10 de dano a todos os inimigos marcados com 🌧️, mais 10% de todo lixo reciclado ♻️ e 10% de todo o dinheiro 🪙",
+    desc: "Cause 10 de dano a todos os inimigos marcados com 💧, mais 10% de todo lixo reciclado ♻️ e 10% de todo o dinheiro 🪙",
     type: "agua"
   },
   {
@@ -359,7 +359,7 @@ const allCards = [
     basePower: 8,
     rarity: "agua",
     img: "../img/jogo/cards/agua/aquafluxo.png",
-    desc: "Cause 8 de dano, e ganha por cada inimigos marcados com 🌧️, 1🔷 de energia",
+    desc: "Cause 8 de dano, e ganha por cada inimigos marcados com 💧, 1🔷 de energia",
     type: "agua"
   },
   {
@@ -396,7 +396,7 @@ const allCards = [
     basePower: 6,
     rarity: "frost",
     img: "../img/jogo/cards/frost/chuvaDeGranizo.jpg",
-    desc: "Cause 6 dano a todos os inimigos, se estiver  marcado com ❄️ X2 o dano, se estiver marcado com 🌧️ marca com ❄️",
+    desc: "Cause 6 dano a todos os inimigos, se estiver  marcado com ❄️ X2 o dano, se estiver marcado com 💧 marca com ❄️",
     type: "frost"
   },
   {
@@ -405,7 +405,7 @@ const allCards = [
     basePower: 12,
     rarity: "frost",
     img: "../img/jogo/cards/frost/chuvaMortal.jpg",
-    desc: "Cause 12 dano a todos os inimigos, se estiver  marcado com ❄️ ou 🌧️ X2 o dano, se estiver marcado com ♨️ X3",
+    desc: "Cause 12 dano a todos os inimigos, se estiver  marcado com ❄️ ou 💧 X2 o dano, se estiver marcado com 🔥 X3",
     type: "frost"
   },
   {
@@ -414,7 +414,7 @@ const allCards = [
     basePower: 40,
     rarity: "frost",
     img: "../img/jogo/cards/frost/misilGuiado.jpg",
-    desc: "Cause 40 dano a todos os inimigos marcados com ♨️",
+    desc: "Cause 40 dano a todos os inimigos marcados com 🔥",
     type: "frost"
   },
   {
@@ -423,7 +423,7 @@ const allCards = [
     basePower: 6,
     rarity: "frost",
     img: "../img/jogo/cards/frost/golpeTraicoeiro.jpg",
-    desc: "Cause 6 dano ao ultimo inimigo inimigo, se estiver marcado com ❄️ ou 🌧️ X2, se estiver marcado com ♨️ X3",
+    desc: "Cause 6 dano ao ultimo inimigo inimigo, se estiver marcado com ❄️ ou 💧 X2, se estiver marcado com 🔥 X3",
     type: "frost"
   },
   {
