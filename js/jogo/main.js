@@ -3650,7 +3650,7 @@ async function executarTxtBoss() {
       // 11111
       case "Boss Alfa":
         await iniciarTutorial(
-          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é o Chefe dessa zona escolhido pela IA"],
           "./../img/jogo/gaeazinha.jpg",
           null,
           "../img/jogo/inimigos/iconBoss/bossLobo.png",
@@ -3741,7 +3741,7 @@ async function executarTxtBoss() {
         break;
       case "PeruSterminador":
         await iniciarTutorial(
-          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é o Chefe dessa zona escolhido pela IA"],
           "./../img/jogo/gaeazinha.jpg",
           null,
           "../img/jogo/inimigos/iconBoss/peru1.png",
@@ -3984,7 +3984,7 @@ async function executarTxtBoss() {
         break;
       case "Guinevere":
         await iniciarTutorial(
-          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é o Chefe dessa zona escolhido pela IA"],
           "./../img/jogo/gaeazinha.jpg",
           null,
           "../img/jogo/inimigos/iconBoss/guinevere1.png",
@@ -4147,7 +4147,7 @@ async function executarTxtBoss() {
       case "Boss Prj.Kraken":
         if (playerImgDialogo.src.includes("autoridadeDoPorto")) {
           await iniciarTutorial(
-            ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+            ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é o Chefe dessa zona escolhido pela IA"],
             "./../img/jogo/gaeazinha.jpg",
             null,
             "../img/jogo/inimigos/iconBoss/bossKraken.png",
@@ -4239,7 +4239,7 @@ async function executarTxtBoss() {
           );
         } else {
           await iniciarTutorial(
-            ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+            ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é o Chefe dessa zona escolhido pela IA"],
             "./../img/jogo/gaeazinha.jpg",
             null,
             "../img/jogo/inimigos/iconBoss/bossKraken.png",
@@ -4271,7 +4271,7 @@ async function executarTxtBoss() {
         break;
       case "Pedro":
         await iniciarTutorial(
-          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é o Chefe dessa zona escolhido pela IA"],
           "./../img/jogo/gaeazinha.jpg",
           null,
           "../img/jogo/inimigos/iconBoss/pedro1.png",
@@ -4428,7 +4428,7 @@ async function executarTxtBoss() {
         break;
       case "Isla":
         await iniciarTutorial(
-          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é o Chefe dessa zona escolhido pela IA"],
           "./../img/jogo/gaeazinha.jpg",
           null,
           "../img/jogo/inimigos/iconBoss/isla1.png",
@@ -4588,7 +4588,7 @@ async function executarTxtBoss() {
       // 33333
       case "Boss Paladium":
         await iniciarTutorial(
-          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é o Chefe dessa zona escolhido pela IA"],
           "./../img/jogo/gaeazinha.jpg",
           null,
           "../img/jogo/inimigos/iconBoss/bossPaladium.png",
@@ -4757,7 +4757,7 @@ async function executarTxtBoss() {
         break;
       case "Boss Valquiria":
         await iniciarTutorial(
-          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é o Chefe dessa zona escolhido pela IA"],
           "./../img/jogo/gaeazinha.jpg",
           null,
           "../img/jogo/inimigos/iconBoss/bossValquiria.png",
@@ -4841,7 +4841,7 @@ async function executarTxtBoss() {
       case "Solice a Esquecida":
         SoliceApareceu = true;
         await iniciarTutorial(
-          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é o Chefe dessa zona escolhido pela IA"],
           "./../img/jogo/gaeazinha.jpg",
           null,
           "../img/jogo/inimigos/iconBoss/solice.png",
@@ -4988,7 +4988,7 @@ async function executarTxtBoss() {
       // 44444
       case "Medo De Ayla":
         await iniciarTutorial(
-          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é o Chefe dessa zona escolhido pela IA"],
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é o Chefe dessa zona escolhido pela IA"],
           "./../img/jogo/gaeazinha.jpg",
           null,
           "../img/jogo/inimigos/iconBoss/medo.png",
@@ -5281,7 +5281,7 @@ async function executarTxtBoss() {
         break
       case "Svetlana":
         await iniciarTutorial(
-          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é a IA"],
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é a IA"],
           "./../img/jogo/gaeazinha.jpg",
           null,
           "../img/jogo/inimigos/iconBoss/svetlana.png"
@@ -5493,7 +5493,7 @@ async function executarTxtBoss() {
       // 55555
       case "IA":
         await iniciarTutorial(
-          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é a IA"],
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é a IA"],
           "./../img/jogo/gaeazinha.jpg",
           null,
           "../img/jogo/inimigos/iconBoss/ia1.png"
@@ -5580,7 +5580,7 @@ async function executarTxtBoss() {
         break;
       case "Nemora":
         await iniciarTutorial(
-          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Prossivelmenta é...", "Erro de conexão...", "Corra...", "*A transmição se encerra*"],
+          ["Alerta crítico…", "Uma presença ameaçadora foi detectada!", "Possivelmente é...", "Erro de conexão...", "Corra...", "*A transmição se encerra*"],
           "./../img/jogo/gaeazinha.jpg",
           null,
           "../img/jogo/inimigos/iconBoss/nemora1.png",
