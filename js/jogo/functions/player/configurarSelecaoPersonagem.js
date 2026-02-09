@@ -138,7 +138,7 @@ function configurarSelecaoPersonagem() {
       escudo: 5,
       mao: 5,
       img: "./../img/jogo/player/tank.png",
-      lor: "Recrudado pelo ex lider, sempre sonhou em proteger os mais fracos e faz de seu escudo o abrigo daqueles que não podem se defender [...]"
+      lor: "Recrutado pelo ex lider, sempre sonhou em proteger os mais fracos e faz de seu escudo o abrigo daqueles que não podem se defender [...]"
     },
     fergus: {
       nome: "⚓FERGUS, EX AUTORIDADE DO PORTO⚓",
@@ -186,7 +186,7 @@ function configurarSelecaoPersonagem() {
       nome: "🐦‍🔥CLEBER, PROTETOR DA FAUNA🐦‍🔥",
       dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀🐦‍🔥",
       cor: "rgb(255, 128, 0)",
-      descricao: "Focado em defesa, ele fez questão que seu mecha parecesse com um leão, ele até hoje odeia arranhar ele, e sempre abre escudos para não danificar sua pintura, um arranhão para ele é pior que a morte, um leonino orgulhoso talvez? como será que ele lidará com quem joga sujo?.",
+      descricao: "Focado em defesa, ele fez questão que seu mecha parecesse com um leão, ele até hoje odeia arranhar ele, e sempre abre escudos para não danificar sua pintura, um arranhão para ele é pior que a morte, um leonino orgulhoso talvez? como será que ele lidará com quem joga sujo?",
       cardFoco: "Focado na carta Brilhando",
       hp: 160,
       maxHp: 160,
@@ -200,7 +200,7 @@ function configurarSelecaoPersonagem() {
       nome: "🐦‍🔥MALAQUIAS, ESPECIALISTA EM REPTEIS🐦‍🔥",
       dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀💀💀💀🐦‍🔥",
       cor: "rgb(255, 128, 0)",
-      descricao: "Maluco por compras, se ele pudesse comprava uma casa no shooping só para fazer compras lá, ele curte comprar bastante mas será que ele vai ter saldo para sustentar isso?.",
+      descricao: "Maluco por compras, se ele pudesse comprava uma casa no shooping só para fazer compras lá, ele curte comprar bastante mas será que ele vai ter saldo para sustentar isso?",
       cardFoco: "Foco na carta Compra Dupla.",
       hp: 78,
       maxHp: 78,
@@ -208,13 +208,13 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 3,
       img: "./../img/jogo/player/malaquias.png",
-      lor: "Um homem de sorte? Não a sorte que precisa desse homem, além da sua compulção por comprar ele curte apostar, um belo exemplo do tipo de pessoa que tem tudo para perder suas economias... Bom era para ele perder, mas aparentemente ele tem menos chance de perder? Ele não é um \"apostador qualquer\" ele utiliza de muita estrategia para ganhar dinheiro, ele percebeu que para sustentar seu vicio em comprar ele precisaria ser rico, e um mero trabalho jamais daria o dinheiro que ele precisa, além de CLT, dono de multiplas empresas, investidor de risco e mestre do poker, ele é um apostador nato, ele fez tudo isso só para... comprar coisas inuteis que ele nunca vai usar?"
+      lor: "Um homem de sorte? Não, a sorte que precisa desse homem, além da sua compulção por comprar ele curte apostar, um belo exemplo do tipo de pessoa que tem tudo para perder suas economias... Bom era para ele perder, mas aparentemente ele tem menos chance de perder? Ele não é um \"apostador qualquer\" ele utiliza de muita estrategia para ganhar dinheiro, ele percebeu que para sustentar seu vicio em comprar ele precisaria ser rico, e um mero trabalho jamais daria o dinheiro que ele precisa, além de CLT, dono de multiplas empresas, investidor de risco e mestre do poker, ele é um apostador nato, ele fez tudo isso só para... comprar coisas inuteis que ele nunca vai usar?"
     },
     renata: {
       nome: "🐦‍🔥RENATA, ESPECIALISTA EM MAMIFEROS🐦‍🔥",
       dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀🐦‍🔥",
       cor: "rgb(255, 128, 0)",
-      descricao: "Ágil exploradora, porém uma estrategista cautelosa, é capaz de gerar muita energia, como utilizar já é outra historia, .",
+      descricao: "Ágil exploradora, porém uma estrategista cautelosa, é capaz de gerar muita energia, como utilizar já é outra historia.",
       cardFoco: "Deck focado em gerar energia, e na carta Chuva de laminas.",
       hp: 50,
       maxHp: 50,
@@ -222,14 +222,14 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/renata.png",
-      lor: "Especialista em fotografia, um de seus robis favoritos, consequentemente a tornando uma das melhores fotografas se não a melhor, foi recrutada para o FAUNA PROTOCOOL quando estava tirado fotos de diversos animais, devido ao seu vasto conhecimento em mamiferos ela se tornou uma peça essencial para o grupo, principalmente quando se trata de preservar especies de mamiferos."
+      lor: "Especialista em fotografia, um de seus hobbys favoritos, consequentemente a tornando uma das melhores fotografas se não a melhor, foi recrutada para o FAUNA PROTOCOOL quando estava tirado fotos de diversos animais, devido ao seu vasto conhecimento em mamiferos ela se tornou uma peça essencial para o grupo, principalmente quando se trata de preservar especies de mamiferos."
     },
     marcos: {
       nome: "🌪️MARCOS, EX BOMBEIRO🌪️",
       dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀💀🌪️",
       cor: "rgba(255, 255, 255, 1)",
       descricao: "Após muitos anos trabalhando com queimadas e como bombeiro, ele decidiu se alistar para a aeronautica e seguir carreira, quem diria que suas abilidades com manuseio de fogo e controle dele seriam bem uteis, seu deck é focado em causar dano a inimigos em chamas e marcar com água.",
-      cardFoco: "Focado em cartas de elentais, do tipo fogo e água.",
+      cardFoco: "Focado em cartas de elementais, do tipo fogo e água.",
       hp: 120,
       maxHp: 120,
       energia: 3,
@@ -242,7 +242,7 @@ function configurarSelecaoPersonagem() {
       nome: "🌪️CLEIDE, A VETERANA🌪️",
       dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀💀💀🌪️",
       cor: "rgba(255, 255, 255, 1)",
-      descricao: "Já participou de muitas coisas na vida, mas ainda se lembra de tudo, sabe usar a estratégia ensinada pela Glacia, pela Autoridade do porto e pela Magnolia, muito respeitada por ambos os grupos, seu deck é uma mistura de todos os elementos, usufluir de sinergia é algo vital, mas como lidar com alguém imune a isso?.",
+      descricao: "Já participou de muitas coisas na vida, mas ainda se lembra de tudo, sabe usar a estratégia ensinada pela Glacia, pela Autoridade do porto e pela Magnolia, muito respeitada por ambos os grupos, seu deck é uma mistura de todos os elementos, usufluir de sinergia é algo vital, mas como lidar com alguém imune a isso?",
       cardFoco: "Deck focado em cartas elementais de todos os tipos",
       hp: 100,
       maxHp: 100,
@@ -278,7 +278,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 5,
       img: "./../img/jogo/player/lucius.png",
-      lor: "Ninguem sabe onde ele vive, por onde anda, ele vai trabalhar quando ele quer pelo tempo que quer e até hoje se perguntão como ele não foi demitido, se não fosse pelos seus feitos lendários ele provavelmente não estária aqui, mas ninguem sabe se são verdade, mas tambem não discordam, afinal nenhum deles tem provas, mas seu irmão Jao é o único quem sabe a verdade e sabe por onde ele anda."
+      lor: "Ninguem sabe onde ele vive, por onde anda, ele vai trabalhar quando ele quer pelo tempo que quer e até hoje se perguntam como ele não foi demitido, se não fosse pelos seus feitos lendários ele provavelmente não estária aqui, mas ninguem sabe se são verdade, mas tambem não discordam, afinal nenhum deles tem provas, mas seu irmão Jao é o único quem sabe a verdade e sabe por onde ele anda."
     },
     lilia: {
       nome: "🐼❄️LILIA, LIDER DO GLACIAL PROTOCOOL❄️🐼",
@@ -298,7 +298,7 @@ function configurarSelecaoPersonagem() {
       nome: "❄️GLACIA, VICE LIDER DOS PESQUISADORES❄️",
       dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀❄️",
       cor: "rgb(128, 240, 255)",
-      descricao: "Focada em enfraquecer e marcar o inimigo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, ela tem uma margem de visão tão boa e estratégia que sua mão raramente fica vazia, você sabera como gastar sua energia?.",
+      descricao: "Focada em enfraquecer e marcar o inimigo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, ela tem uma margem de visão tão boa e estratégia que sua mão raramente fica vazia, você sabera como gastar sua energia?",
       cardFoco: "Deck Focado em cartas de Gelo, extremamente forte sobe condições favoraveis",
       hp: 80,
       maxHp: 80,
