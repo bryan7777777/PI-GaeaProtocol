@@ -47,13 +47,7 @@ VALUES
 ('pedrofarinha', 'pedrofarinha@email.com', '123456', '2024-08-10', CURDATE(), CURDATE()),
 ('nagano', 'nagano@gmail.com', '123456', '2024-08-10', CURDATE(), CURDATE());
 
-SELECT * FROM userr
-SELECT * FROM userStatus
- 
-/*CONFERIR RANKING */
-SELECT userr.userName, userstatus.lixoTotal FROM userstatus
-JOIN userr ON userr.idUser = .userstatus.idUser
-ORDER BY userstatus.lixoTotal DESC;
+
 
 /*	INSERCOES PEDIDAS*/ 
 /*insercao de usuario no ranking */
@@ -62,4 +56,18 @@ VALUES
 (1, NOW(), 150, 60, 12, 30),   
 (2, NOW(), 90, 35, 7, 20),    
 (3, NOW(), 210, 80, 18, 45),  
-(4, NOW(), 40, 15, 2, 10);   
+(4, NOW(), 40, 15, 2, 10);     
+
+
+
+/*CONFERIR RANKING */
+SELECT userr.userName, userstatus.lixoTotal FROM userstatus
+JOIN userr ON userr.idUser = .userstatus.idUser
+ORDER BY userstatus.lixoTotal DESC;
+
+SELECT userr.userName, userstatus.lixoUnic FROM userstatus
+JOIN userr ON userr.idUser = .userstatus.idUser
+ORDER BY userstatus.lixoUnic DESC;
+
+SELECT * FROM userr
+SELECT * FROM userStatus
