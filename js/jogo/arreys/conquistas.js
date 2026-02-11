@@ -18,6 +18,12 @@ const conquistas = [
         dsc: 'Desbloqueie todos os personagens.'
     },
     {
+        name: 'Mineração',
+        concluido: 0,
+        premio: 'gaeaReen',
+        dsc: 'Pegue uma vez a carta Mineração Sustentavel.'
+    },
+    {
         name: 'Águas mansas',
         concluido: 0,
         premio: 'porto',
