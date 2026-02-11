@@ -1,6 +1,6 @@
 CREATE TABLE userr(
 idUser INT PRIMARY KEY AUTO_INCREMENT UNIQUE ,
-dataNascimento INT NOT NULL, 
+dataNascimento DATE NOT NULL, 
 userName VARCHAR(45) NOT NULL UNIQUE,
 email VARCHAR(45) NOT NULL UNIQUE ,
 senha VARCHAR(45) NOT NULL,
@@ -54,3 +54,12 @@ SELECT * FROM userStatus
 SELECT userr.userName, userstatus.lixoTotal FROM userstatus
 JOIN userr ON userr.idUser = .userstatus.idUser
 ORDER BY userstatus.lixoTotal DESC;
+
+/*	INSERCOES PEDIDAS*/ 
+/*insercao de usuario no ranking */
+INSERT INTO userStatus (idUser, ultimoLoginJogo, lixoTotal, lixoUnic, qtdWin, qtdJogo)
+VALUES
+(1, NOW(), 150, 60, 12, 30),   
+(2, NOW(), 90, 35, 7, 20),    
+(3, NOW(), 210, 80, 18, 45),  
+(4, NOW(), 40, 15, 2, 10);   
