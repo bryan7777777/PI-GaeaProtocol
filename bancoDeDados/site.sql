@@ -1,102 +1,56 @@
-CREATE TABLE usuario(
-id_usuario INT  PRIMARY KEY AUTO_INCREMENT UNIQUE ,
-nick VARCHAR(45 ) NOT NULL ,
-emailusuario VARCHAR(50) NOT NULL UNIQUE ,
-senha VARCHAR(50) NOT NULL
-);
- 
-
-
-CREATE TABLE dashboard(
-id_dash INT PRIMARY KEY AUTO_INCREMENT   ,
-posicao INT  NOT NULL ,
-qtdplay_jogada INT , 
-qtdganho_porjogo INT , 
-pontos INT  NOT NULL ,
-scor_de_lixoreciclado INT ,
-qtd_run INT NOT NULL ,
-datacriada DATE  NOT NULL ,
-id_usuario INT  NOT NULL,
-  CONSTRAINT usuario_dashboard FOREIGN KEY 
-(id_usuario) REFERENCES usuario(id_usuario)
-);
-
-
- 
-CREATE TABLE liderboard(
-id_Liderboard INT PRIMARY KEY UNIQUE ,
-id_dash INT  NOT NULL,
-  CONSTRAINT dashboard_liderboard FOREIGN KEY 
-(id_dash) REFERENCES dashboard(id_dash)
+CREATE TABLE userr(
+idUser INT PRIMARY KEY AUTO_INCREMENT UNIQUE ,
+dataNascimento INT NOT NULL, 
+userName VARCHAR(45) NOT NULL UNIQUE,
+email VARCHAR(45) NOT NULL UNIQUE ,
+senha VARCHAR(45) NOT NULL,
+ultimoLogin DATETIME NOT NULL,
+diaCriado DATETIME NOT NULL
 );
  
 
 
 CREATE TABLE conquistas(
-id_conquista  int PRIMARY KEY, 
-nome  VARCHAR (50) NOT NULL ,
-desbloqueio VARCHAR(100)  NULL ,
-premio VARCHAR(100) NOT NULL ,
-concluido  BIT   
-);
-   
-   
-   
-CREATE TABLE ranktotal (
-id_ranking INT PRIMARY KEY AUTO_INCREMENT,
-pontos INT  NOT NULL,
-id_dash   int not NULL ,
-CONSTRAINT dashboard_ranktotal FOREIGN KEY 
-(id_dash) REFERENCES dashboard(id_dash)
-); 
+idConquista INT PRIMARY KEY AUTO_INCREMENT UNIQUE, 
+idUser INT NOT NULL,
+nomeConquista VARCHAR (50) NOT NULL,
+concluido BIT NOT NULL,
+premio VARCHAR(100) NOT NULL,
+dsc VARCHAR(100) NOT NULL,
+concluidoDia DATETIME,
+progresso INT,
 
-
-
-CREATE TABLE score_run_do_mapa (
-id_score INT PRIMARY KEY AUTO_INCREMENT,
-nome_run VARCHAR(50) NOT null
+FOREIGN KEY (idUser) REFERENCES userr(idUser)
 );
 
 
 
-CREATE TABLE score_run_player (
-id INT PRIMARY KEY AUTO_INCREMENT,
-id_score INT NOT NULL,
-id_player INT NOT NULL,
-score INT NOT NULL ,
+CREATE TABLE userStatus (
+idUserStatus INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+idUser INT NOT NULL,
+ultimoLoginJogo DATETIME NOT NULL,
+lixoTotal INT,
+lixoUnic INT,
+qtdWin INT,
+qtdJogo INT,
  
-FOREIGN KEY (id_score) REFERENCES score_run_do_mapa(id_score),
-FOREIGN KEY (id_player) REFERENCES usuario(id_usuario)
+FOREIGN KEY (idUser) REFERENCES userr(idUser)
 );
 
 
- 
-/*MASSA DE DADOS*/
-/*INSERÇÃO DOS USUARIOS */
-INSERT INTO usuario (nick, emailusuario, senha)
+
+/*INSERÇÃO DOS USUARIOS */  
+INSERT INTO userr (userName, email, senha, dataNascimento, ultimoLogin, diaCriado)
 VALUES
-('james', 'james@email.com', '123456'),
-('gameleira', 'gameleira@email.com', '123456'),
-('pedrofarinha', 'pedrofarinha@email.com', '123456'),
-('nagano', 'nagano@gmail.com', '123456');
+('james', 'james@email.com', '123456', '2024-08-10', CURDATE(), CURDATE()),
+('gameleira', 'gameleira@email.com', '123456', '2024-08-10', CURDATE(), CURDATE()),
+('pedrofarinha', 'pedrofarinha@email.com', '123456', '2024-08-10', CURDATE(), CURDATE()),
+('nagano', 'nagano@gmail.com', '123456', '2024-08-10', CURDATE(), CURDATE());
+
+SELECT * FROM userr
+SELECT * FROM userStatus
  
- 
-
-/*PONTUAÇÃO DO USER (DAASHBOARD)*/
-INSERT INTO dashboard (posicao,qtdplay_jogada,qtdganho_porjogo,pontos,scor_de_lixoreciclado,qtd_run,datacriada,id_usuario)
-VALUES 
-(1,10,5,1200,300,4,CURDATE(),2);
- 
-
-
-/*PONTUAÇÃO DO USER NO RANKING TOTAL */
-INSERT INTO ranktotal (pontos, id_dash)
-VALUES (1200, 1);
- 
-
-
 /*CONFERIR RANKING */
-SELECT u.nick,d.pontos,r.id_ranking FROM ranktotal r
-JOIN dashboard d ON r.id_dash = d.id_dash
-JOIN usuario u ON d.id_usuario = u.id_usuario
-ORDER BY d.pontos DESC;
+SELECT userr.userName, userstatus.lixoTotal FROM userstatus
+JOIN userr ON userr.idUser = .userstatus.idUser
+ORDER BY userstatus.lixoTotal DESC;
