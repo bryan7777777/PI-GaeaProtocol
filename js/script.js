@@ -462,6 +462,7 @@ function reinitializePageEffects() {
   initEnergyLines();
   setupEventListeners();
   setupIntersectionObserver();
+  setupProtocolNavigation();
 }
 
 // ============================================================================
@@ -497,6 +498,75 @@ function closeMobileMenu() {
 }
 
 // ============================================================================
+// 4.5. SISTEMA DE NAVEGAÇÃO DE PROTOCOLOS
+// ============================================================================
+
+/**
+ * Inicializa o sistema de navegação entre protocolos
+ * Configura os botões para alternar entre diferentes seções de protocolo
+ */
+function setupProtocolNavigation() {
+  const protocolButtons = document.querySelectorAll('.protocol-nav-btn');
+  const protocolSections = document.querySelectorAll('.protocol-section');
+
+  // Validação: Verifica se os elementos existem
+  if (protocolButtons.length === 0 || protocolSections.length === 0) {
+    return; // Não está em página de protocool
+  }
+
+  /**
+   * Mostra uma seção específica de protocolo
+   * @param {string} protocolId - ID do protocolo a exibir
+   */
+  function showProtocol(protocolId) {
+    // Esconde todas as seções
+    protocolSections.forEach(section => {
+      section.style.display = 'none';
+    });
+
+    // Remove classe ativa de todos os botões
+    protocolButtons.forEach(button => {
+      button.classList.remove('active');
+    });
+
+    // Mostra a seção selecionada
+    const targetSection = document.getElementById(`${protocolId}-protocol`);
+    if (targetSection) {
+      targetSection.style.display = 'block';
+
+      // Adiciona animação de entrada
+      targetSection.style.animation = 'fadeInUp 0.6s ease-out';
+
+      // Scroll suave para a seção
+      targetSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+
+    // Ativa o botão correspondente
+    const activeButton = document.querySelector(`.protocol-nav-btn[data-protocol="${protocolId}"]`);
+    if (activeButton) {
+      activeButton.classList.add('active');
+    }
+  }
+
+  // Adiciona event listeners aos botões
+  protocolButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const protocolId = this.getAttribute('data-protocol');
+      showProtocol(protocolId);
+    });
+  });
+
+  // Mostra o primeiro protocolo por padrão
+  const firstProtocol = protocolButtons[0]?.getAttribute('data-protocol');
+  if (firstProtocol) {
+    showProtocol(firstProtocol);
+  }
+}
+
+// ============================================================================
 // 5. SISTEMA DE OBSERVAÇÃO E ANIMAÇÕES
 // ============================================================================
 
@@ -521,7 +591,7 @@ function setupIntersectionObserver() {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    
+
     // Inicia observação
     intersectionObserver.observe(el);
   });
@@ -550,11 +620,13 @@ function handleIntersection(entries) {
  * - Overlay para fechar painel
  * - Observer para controle de scroll
  * - Menu mobile
+ * - Navegação de protocolos
  */
 function setupEventListeners() {
   setupOverlayListener();
   setupPanelObserver();
   setupMobileMenuListeners();
+  setupProtocolNavigation();
 }
 
 /**
@@ -562,7 +634,7 @@ function setupEventListeners() {
  */
 function setupOverlayListener() {
   const overlay = document.getElementById('overlay');
-  
+
   if (overlay) {
     // Remove listener anterior para evitar duplicação
     overlay.removeEventListener('click', closePanel);
@@ -577,17 +649,17 @@ function setupOverlayListener() {
  */
 function setupPanelObserver() {
   const sidePanel = document.getElementById('sidePanel');
-  
+
   if (sidePanel) {
     const observer = new MutationObserver(() => {
-      document.body.style.overflow = sidePanel.classList.contains('active') 
-        ? 'hidden' 
+      document.body.style.overflow = sidePanel.classList.contains('active')
+        ? 'hidden'
         : 'auto';
     });
-    
-    observer.observe(sidePanel, { 
-      attributes: true, 
-      attributeFilter: ['class'] 
+
+    observer.observe(sidePanel, {
+      attributes: true,
+      attributeFilter: ['class']
     });
   }
 }
@@ -598,7 +670,7 @@ function setupPanelObserver() {
  */
 function setupMobileMenuListeners() {
   const navLinks = document.getElementById('navLinks');
-  
+
   if (navLinks) {
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', closeMobileMenu);
@@ -691,58 +763,3 @@ if (typeof module !== 'undefined' && module.exports) {
     getRepoBasePath
   };
 }
-
-
-
-    // <!-- Script para navegação entre protocolos -->
-   
-        document.addEventListener('DOMContentLoaded', function() {
-            // Elementos da navegação
-            const protocolButtons = document.querySelectorAll('.protocol-nav-btn');
-            const protocolSections = document.querySelectorAll('.protocol-section');
-            
-            // Função para mostrar uma seção específica
-            function showProtocol(protocolId) {
-                // Esconde todas as seções
-                protocolSections.forEach(section => {
-                    section.style.display = 'none';
-                });
-                
-                // Remove classe ativa de todos os botões
-                protocolButtons.forEach(button => {
-                    button.classList.remove('active');
-                });
-                
-                // Mostra a seção selecionada
-                const targetSection = document.getElementById(`${protocolId}-protocol`);
-                if (targetSection) {
-                    targetSection.style.display = 'block';
-                    
-                    // Adiciona animação de entrada
-                    targetSection.style.animation = 'fadeInUp 0.6s ease-out';
-                    
-                    // Scroll suave para a seção
-                    targetSection.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'start' 
-                    });
-                }
-                
-                // Ativa o botão correspondente
-                const activeButton = document.querySelector(`.protocol-nav-btn[data-protocol="${protocolId}"]`);
-                if (activeButton) {
-                    activeButton.classList.add('active');
-                }
-            }
-            
-            // Adiciona event listeners aos botões
-            protocolButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const protocolId = this.getAttribute('data-protocol');
-                    showProtocol(protocolId);
-                });
-            });
-            
-            // Mostra o primeiro protocolo por padrão
-            showProtocol('gaea');
-        });

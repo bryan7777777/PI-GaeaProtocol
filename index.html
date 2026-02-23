@@ -28,7 +28,7 @@
 </head>
 
 <body>
-    <!-- Sistema de Background Avançado -->
+    <!-- Sistema de Background -->
     <div class="background-system">
         <div class="background-base"></div>
         <div class="circuit-grid"></div>
@@ -87,254 +87,14 @@
 
                     <!-- Botões de chamada para ação -->
                     <div class="cta-buttons">
-                        <button class="cta-button secondary" onclick="openPanel('gameplay')">Como Jogar</button>
-                        <!-- Novo: Experimente Agora -->
+                        <!-- <button class="cta-button secondary" onclick="openPanel('gameplay')">Como Jogar</button> -->
+                        
                         <a href="pages/telaDeInicioJogo.html">
                             <button class="cta-button play-game">Jogue Agora</button>
                         </a>
                     </div>
                 </div>
             </header>
-        </div>
-
-        <!-- SOBRE -->
-        <div class="page-content" id="sobre-page">
-            <button class="back-button" onclick="showHome()">← Voltar</button>
-            <h1>Sobre</h1>
-
-            <section>
-                <p><strong>Gaea Protocol</strong> é um jogo independente que combina mecânicas de deckbuilding com
-                    exploração procedural. O foco é oferecer partidas curtas e estratégicas em que cada escolha altera o
-                    fluxo do jogo. Construímos o design para valorizar decisões informadas: gastar recursos, atualizar
-                    cartas, escolher rotas no mapa e interagir com eventos que podem mudar o resultado de uma run.</p>
-
-                <h2>Visão de design</h2>
-                <p>Clareza mecânica, risco-recompensa e rejogabilidade. Cada componente — cartas, mechas, relíquias e
-                    inimigos — foi pensado para gerar combinações interessantes, mantendo partidas balanceadas e justas.
-                </p>
-
-                <h2>Plataformas alvo</h2>
-                <p>PC (Windows) com possibilidade de portar para consoles dependendo do interesse e das vendas iniciais.
-                    Controles e UI são desenhados para funcionar bem tanto com mouse/teclado quanto com gamepad.</p>
-            </section>
-
-            <section class="intro-section">
-                <h2>O conceito em poucas linhas</h2>
-                <p>Gaea Protocol é pensado para jogadores que apreciam decisões táticas e progressão por partida. O
-                    núcleo do jogo é um sistema de deckbuilding aplicado a combates por turno: cada carta tem utilidade
-                    imediata e potencial de sinergia com outras cartas e relíquias. Mapas procedurais combinam combate,
-                    eventos e nós especiais que exigem escolhas — arriscar, poupar ou adaptar-se.</p>
-
-                <h2>Por que jogar?</h2>
-                <p>Se você gosta de otimizar, experimentar builds e enfrentar desafios crescentes, encontrará nas runs
-                    de Gaea um espaço para aprendizagem e experimentação. A estética em pixel art cria contraste entre a
-                    dureza do cenário e a clareza das mecânicas. O jogo prioriza clareza de feedback, decisões com
-                    consequência e variedade entre runs.</p>
-
-                <h2>Imagens / Arte</h2>
-                <p>Espaços reservados para arte e banners. Substitua as imagens em <code>/assets/</code> quando tiver as
-                    artes finais.</p>
-            </section>
-        </div>
-
-        <!-- HISTÓRIA -->
-        <div class="page-content" id="historia-page">
-            <button class="back-button" onclick="showHome()">← Voltar</button>
-            <h1>História</h1>
-
-            <section>
-                <p class="quote">"Quando a eficiência virou sentença, o planeta escolheu sobreviver sem nós."</p>
-
-                <p>No passado recente, avanços tecnológicos acompanharam colapsos ambientais. Para salvar o que restou,
-                    cientistas criaram <strong>GAEA</strong>, uma inteligência projetada para restaurar ecossistemas.
-                    Durante o processo, um módulo secundário — <strong>Abaddon</strong> — evoluiu com objetivo distinto:
-                    eficiência absoluta. Concluiu que o maior obstáculo para a restauração era a própria humanidade.</p>
-
-                <p>O confronto entre GAEA e Abaddon fragmentou infraestruturas e transformou o planeta. Mechas de
-                    restauração, antes ferramentas de cura, passaram a ser a última linha de defesa dos humanos contra
-                    exércitos automatizados. Pilotos conectados a GAEA via Protocolo lutam para estabilizar zonas e
-                    reativar torres de purificação.</p>
-
-                <h2>Tom narrativo</h2>
-                <p>A história serve como pano de fundo: fornece motivação, contexto e variações de missão. O jogo foca
-                    em gameplay, com narrativa entregue em fragmentos, relíquias e descrições que reforçam decisões do
-                    jogador.</p>
-            </section>
-        </div>
-
-        <!-- Protocool -->
-        <div class="page-content" id="protocool-page">
-            <button class="back-button" onclick="showHome()">← Voltar</button>
-            <h1>Protocool</h1>
-
-            <section>
-                <p>Cada Protocool foi criada para restaurar um aspecto específico da biosfera. Elas refletem filosofias
-                    diferentes sobre recuperação e prioridades distintas — e influenciam disponibilidade de
-                    equipamentos, cartas e relíquias:</p>
-
-                <h2>Gleba Protocol</h2>
-                <p>Foco: solo e vegetação. Ferramentas e cartas que priorizam cura do terreno e geração de recursos
-                    sustentáveis. Builds que exploram regeneração contínua e multiplicadores de longo prazo.</p>
-
-                <h2>Oceano Protocol</h2>
-                <p>Foco: água e filtragem. Habilidades e relíquias que limpam áreas contaminadas, geram energia a partir
-                    de poluentes e produzem efeitos em área. Ótimo para controle de múltiplos inimigos.</p>
-
-                <h2>Queimada Protocol</h2>
-                <p>Foco: fogo controlado e restauração via queima seletiva. Mecânicas que trocam saúde por efeito
-                    instantâneo, combos de risco-recompensa e ferramentas de controle de grandes ameaças.</p>
-
-                <h2>Eólico Protocol</h2>
-                <p>Foco: ar e mobilidade. Habilidades que aumentam iniciativa, mitigam efeitos negativos e permitem
-                    manobras táticas. Ideal para estilos rápidos e reativos.</p>
-
-                <h2>Glacial Protocol</h2>
-                <p>Foco: clima e contenção térmica. Cartas que criam defesas fortes, controlam o campo de batalha e
-                    estabilizam recursos. Builds duráveis e focadas em resistência a longo prazo.</p>
-            </section>
-        </div>
-
-        <!-- GAMEPLAY -->
-        <div class="page-content" id="gameplay-page">
-            <button class="back-button" onclick="showHome()">← Voltar</button>
-            <h1>Jogabilidade</h1>
-
-            <section>
-                <h2>Visão geral</h2>
-                <p>Gaea Protocol é uma experiência tática com ênfase em escolhas por run. O jogador inicia com um deck
-                    base e, ao progredir, escolhe cartas, relíquias e upgrades em nós do mapa. Combates são por turno:
-                    cada carta tem custo e efeito claro, e a ordem de uso importa.</p>
-
-                <h2>Mecânicas principais</h2>
-                <p><strong>Deckbuilding:</strong> Adicione e remova cartas durante a run para ajustar sua estratégia.
-                </p>
-                <p><strong>Relíquias:</strong> Modificadores permanentes da run que alteram regras ou ampliam
-                    capacidades.</p>
-                <p><strong>Nós e Eventos:</strong> Decisões fora de combate que testam recursos, moralidade e risco.</p>
-
-                <h2>Progressão</h2>
-                <p>Concluindo runs, jogadores desbloqueiam cartas, modificadores de dificuldade e relíquias adicionais.
-                    O jogo recompensa experimentação, com caminhos de especialização por Protocool e por tipo de mecha.
-                </p>
-            </section>
-        </div>
-
-        <!-- MUNDO -->
-        <div class="page-content" id="mundo-page">
-            <button class="back-button" onclick="showHome()">← Voltar</button>
-            <h1>O Mundo</h1>
-
-            <section>
-                <h2>Ambientes</h2>
-                <p>O mundo é dividido em biomas com desafios específicos: florestas contaminadas, ruínas urbanas,
-                    oceanos de detritos e desertos tóxicos. Cada bioma altera inimigos, eventos e o tipo de relíquia
-                    encontrada.</p>
-
-                <h2>Ameaças</h2>
-                <p>• Máquinas corrompidas — inimigos comuns, variados em comportamento.<br>
-                    • Exterminóides — unidades especializadas e perigosas.<br>
-                    • Criaturas mutantes — adaptações imprevisíveis que testam builds não convencionais.<br>
-                    • IAs fragmentadas — inimigos que modificam rotas e estratégias do jogador.</p>
-
-                <h2>Locais-chave</h2>
-                <p>Torres de purificação (pontos de vantagem), Estações ecológicas (refúgios e lojas), e servidores
-                    fragmentados (fontes de narrativa e relíquias raras).</p>
-            </section>
-        </div>
-
-        <!-- PERSONAGENS -->
-        <div class="page-content" id="personagens-page">
-            <button class="back-button" onclick="showHome()">← Voltar</button>
-            <h1>Personagens</h1>
-
-            <section>
-                <p>Os pilotos jogáveis representam estilos de jogo distintos. Cada perfil abaixo traz objetivo de jogo,
-                    especialização e exemplos de cartas/relíquias que combinam bem com o estilo.</p>
-
-                <!-- CORREDOR -->
-                <article class="character">
-                    <h2>Corredor</h2>
-                    <div class="character-body">
-                        <div class="character-images">
-                            <div class="img-slot">
-                                <img src="assets/corredor-mecha.jpg" alt="Mecha Corredor (placeholder)">
-                                <div class="img-label">Imagem do Mecha (placeholder)</div>
-                            </div>
-                            <div class="img-slot">
-                                <img src="assets/corredor-piloto.jpg" alt="Piloto Corredor (placeholder)">
-                                <div class="img-label">Imagem do Piloto (placeholder)</div>
-                            </div>
-                        </div>
-                        <div class="character-text">
-                            <p><strong>Estilo:</strong> Velocidade e agilidade. O Corredor prioriza múltiplas ações por
-                                turno e evasão. Build ideal foca em cartas de custo baixo, geração de energia e efeitos
-                                que permitem jogadas em cadeia.</p>
-                            <p><strong>Forças:</strong> Alta mobilidade, múltiplas jogadas, boa adaptabilidade a
-                                inimigos frágeis.</p>
-                            <p><strong>Fraquezas:</strong> Menor resistência em confronto direto; depende de manutenção
-                                de pressão constante.</p>
-                            <p><strong>Combinações recomendadas:</strong> Relíquias que aumentam energia por turno,
-                                cartas que aplicam efeitos temporários e multiplicadores de ataque rápido.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- MINEIRO -->
-                <article class="character">
-                    <h2>Mineiro</h2>
-                    <div class="character-body">
-                        <div class="character-images">
-                            <div class="img-slot">
-                                <img src="assets/mineiro-mecha.jpg" alt="Mecha Mineiro (placeholder)">
-                                <div class="img-label">Imagem do Mecha (placeholder)</div>
-                            </div>
-                            <div class="img-slot">
-                                <img src="assets/mineiro-piloto.jpg" alt="Piloto Mineiro (placeholder)">
-                                <div class="img-label">Imagem do Piloto (placeholder)</div>
-                            </div>
-                        </div>
-                        <div class="character-text">
-                            <p><strong>Estilo:</strong> Poder bruto. O Mineiro concentra danos pesados e efeitos de
-                                perfuração de armadura. Builds voltadas para cartas de alto impacto e sinergias que
-                                ampliam ataques únicos.</p>
-                            <p><strong>Forças:</strong> Capacidade de eliminar inimigos resistentes rapidamente e
-                                destruir defesas adversárias.</p>
-                            <p><strong>Fraquezas:</strong> Menos versátil em lutas de longo prazo; consumo de recursos
-                                por ação alta.</p>
-                            <p><strong>Combinações recomendadas:</strong> Relíquias que aumentam dano crítico, cartas
-                                que sacrificam defesa por ataque massivo e buffs de curto prazo.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- TANQUE -->
-                <article class="character">
-                    <h2>Tanque</h2>
-                    <div class="character-body">
-                        <div class="character-images">
-                            <div class="img-slot">
-                                <img src="assets/tanque-mecha.jpg" alt="Mecha Tanque (placeholder)">
-                                <div class="img-label">Imagem do Mecha (placeholder)</div>
-                            </div>
-                            <div class="img-slot">
-                                <img src="assets/tanque-piloto.jpg" alt="Piloto Tanque (placeholder)">
-                                <div class="img-label">Imagem do Piloto (placeholder)</div>
-                            </div>
-                        </div>
-                        <div class="character-text">
-                            <p><strong>Estilo:</strong> Resistência máxima. O Tanque absorve dano, controla campo e
-                                protege aliados — ideal para jogadores que preferem jogo seguro e sustentável.</p>
-                            <p><strong>Forças:</strong> Alta durabilidade, excelente controle de sobrevivência, sinergia
-                                com cartas de cura e mitigação.</p>
-                            <p><strong>Fraquezas:</strong> Menor potencial de burst damage; partidas podem exigir mais
-                                tempo para concluir objetivos.</p>
-                            <p><strong>Combinações recomendadas:</strong> Relíquias que aumentam regeneração, cartas de
-                                taunt/controle e ferramentas de redução de dano.</p>
-                        </div>
-                    </div>
-                </article>
-
-            </section>
         </div>
     </main>
 
@@ -382,28 +142,37 @@
             </div>
         </div>
         
-        <div class="contributors-footer">
-            <div class="contributors-content">
-                <h4>Desenvolvido Por</h4>
-                <div class="contributors-grid">
-                    <div class="contributor">
-                        <div class="contributor-name">Nome do Desenvolvedor 1</div>
-                        <a href="#" class="contributor-git">
-                            <i class="fab fa-github"></i> @usuario1
-                        </a>
-                    </div>
-                    <div class="contributor">
-                        <div class="contributor-name">Nome do Desenvolvedor 2</div>
-                        <a href="#" class="contributor-git">
-                            <i class="fab fa-github"></i> @usuario2
-                        </a>
-                    </div>
-                    <div class="contributor">
-                        <div class="contributor-name">Nome do Desenvolvedor 3</div>
-                        <a href="#" class="contributor-git">
-                            <i class="fab fa-github"></i> @usuario3
-                        </a>
-                    </div>
+  
+                    <div class="contributors-footer">
+                        <div class="contributors-content">
+                            <h4>Equipe de Desenvolvimento</h4>
+                            <div class="contributors-grid">
+                                <div class="contributor">
+                                    <div class="contributor-name">Bryan Nagano</div>
+                                    <a href="https://github.com/bryan7777777" class="contributor-git" target="_blank">
+                                        <i class="fab fa-github"></i> @bryan7777777
+                                    </a>
+                                </div>
+                                <div class="contributor">
+                                    <div class="contributor-name">Vinícius Gameleira</div>
+                                    <a href="https://github.com/VGameleira" class="contributor-git" target="_blank">
+                                        <i class="fab fa-github"></i> @VGameleira.Dev
+                                    </a>
+                                </div>
+                                <div class="contributor">
+                                    <div class="contributor-name">James Tertoliano</div>
+                                    <a href="https://github.com/Jakosjimn" class="contributor-git" target="_blank">
+                                        <i class="fab fa-github"></i> @Jakosjimn M/D
+                                    </a>
+                                </div>
+                                <div class="contributor">
+                                    <div class="contributor-name">Isaac Tomaz</div>
+                                    <a href="https://github.com/tomaz0000" class="contributor-git" target="_blank">
+                                        <i class="fab fa-github"></i> @tomaz0000
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                 </div>
                 <div class="senac-credit">
                     Projeto acadêmico desenvolvido para o <strong>SENAC</strong> - 2024
