@@ -42,7 +42,7 @@ const conquistas = [
         concluido: 0,
         premio: 'celso',
         personagem: 'Celso',
-        dsc: 'Use uma carta de marção de TERRA.'
+        dsc: 'Use uma carta de marcação de TERRA.'
     },
     {
         name: 'Reciclador nato',
@@ -59,7 +59,7 @@ const conquistas = [
         concluido: 0,
         premio: 'porto',
         personagem: 'Clarice',
-        dsc: 'Use uma carta de marção de ÁGUA.'
+        dsc: 'Use uma carta de marcação de ÁGUA.'
     },
     {
         name: 'Protetor',
