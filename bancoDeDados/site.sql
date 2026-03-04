@@ -1,4 +1,4 @@
-CREATE TABLE userr(
+CREATE TABLE user(
 idUser INT PRIMARY KEY AUTO_INCREMENT UNIQUE ,
 dataNascimento DATE NOT NULL, 
 userName VARCHAR(45) NOT NULL UNIQUE,
@@ -20,7 +20,7 @@ dsc VARCHAR(100) NOT NULL,
 concluidoDia DATETIME,
 progresso INT,
 
-FOREIGN KEY (idUser) REFERENCES userr(idUser)
+FOREIGN KEY (idUser) REFERENCES user(idUser)
 );
 
 
@@ -34,13 +34,13 @@ lixoUnic INT,
 qtdWin INT,
 qtdJogo INT,
  
-FOREIGN KEY (idUser) REFERENCES userr(idUser)
+FOREIGN KEY (idUser) REFERENCES user(idUser)
 );
 
 
 
 /*INSERÇÃO DOS USUARIOS */  
-INSERT INTO userr (userName, email, senha, dataNascimento, ultimoLogin, diaCriado)
+INSERT INTO user (userName, email, senha, dataNascimento, ultimoLogin, diaCriado)
 VALUES
 ('james', 'james@email.com', '123456', '2024-08-10', CURDATE(), CURDATE()),
 ('gameleira', 'gameleira@email.com', '123456', '2024-08-10', CURDATE(), CURDATE()),
@@ -61,13 +61,13 @@ VALUES
 
 
 /*CONFERIR RANKING */
-SELECT userr.userName, userstatus.lixoTotal FROM userstatus
-JOIN userr ON userr.idUser = .userstatus.idUser
+SELECT user.userName, userstatus.lixoTotal FROM userstatus
+JOIN user ON user.idUser = .userstatus.idUser
 ORDER BY userstatus.lixoTotal DESC;
 
-SELECT userr.userName, userstatus.lixoUnic FROM userstatus
-JOIN userr ON userr.idUser = .userstatus.idUser
+SELECT user.userName, userstatus.lixoUnic FROM userstatus
+JOIN user ON user.idUser = .userstatus.idUser
 ORDER BY userstatus.lixoUnic DESC;
 
-SELECT * FROM userr
+SELECT * FROM user
 SELECT * FROM userStatus

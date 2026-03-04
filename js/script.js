@@ -4,7 +4,6 @@
  * e efeitos visuais avançados.
  * 
  * Arquivo: script.js
- * Versão: 1.0.0
  * Autor: Equipe Gaea Protocol
  */
 
