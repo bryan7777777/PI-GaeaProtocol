@@ -101,13 +101,13 @@ function processFloatQueue() {
 function marcarInimigos(elemento, tipo, txt = false) {
   fraqueza = "";
   switch (elemento) {
-    case "♨️":
-      fraqueza = "🌧️";
+    case "🔥":
+      fraqueza = "💧";
       break;
     case "⛰️":
-      fraqueza = "♨️";
+      fraqueza = "🔥";
       break;
-    case "🌧️":
+    case "💧":
       fraqueza = "⛰️";
       break;
 
@@ -737,7 +737,7 @@ function drawCards() {
         case "Tudo Ou Nada":
           tipo = "cintilante";
           break;
-        //♨️♨️♨️♨️♨️ FIRE 2 ♨️♨️♨️♨️♨️
+        //🔥🔥🔥🔥🔥 FIRE 2 🔥🔥🔥🔥🔥
         case "Combustão":
         case "Chuva De Fogo":
         case "Explosão Termica":
@@ -760,7 +760,7 @@ function drawCards() {
         case "Coração De Gaea":
           tipo = "terra";
           break;
-        //🌧️🌧️🌧️🌧️🌧️ AGUA 2 🌧️🌧️🌧️🌧️🌧️
+        //💧💧💧💧💧 AGUA 2 💧💧💧💧💧
         case "Jato De Água":
         case "Mar Denso":
         case "Chuva Isolante":
@@ -1997,7 +1997,7 @@ function drawCards() {
               dano = card.power;
             }
 
-            if (e.tipoVida === "🌧️") {
+            if (e.tipoVida === "💧") {
               marcarInimigos("❄️", "area")
             }
             causarDano(dano, "areaEspecial", simbulo = "❄️", e)
@@ -2006,9 +2006,9 @@ function drawCards() {
         //❄️
         else if (card.name === "Granizo Mortal") {
           enemies.forEach(e => {
-            if (e.tipoVida === "❄️" || e.tipoVida === "🌧️") {
+            if (e.tipoVida === "❄️" || e.tipoVida === "💧") {
               dano = card.power * 2;
-            } else if (e.tipoVida === "♨️") {
+            } else if (e.tipoVida === "🔥") {
               dano = card.power * 3;
             } else {
               dano = card.power;
@@ -2020,9 +2020,9 @@ function drawCards() {
         else if (card.name === "Golpe Traseiro") {
           const alvo = [...enemies].reverse().find(e => e.hp > 0);
           let dano = card.basePower;
-          if (alvo.tipoVida === "❄️" || alvo.tipoVida === "🌧️") {
+          if (alvo.tipoVida === "❄️" || alvo.tipoVida === "💧") {
             dano = card.power * 2;
-          } else if (alvo.tipoVida === "♨️") {
+          } else if (alvo.tipoVida === "🔥") {
             dano = card.power * 3;
           }
           causarDano(dano, "ultimo", simbulo = "❄️")
@@ -2030,7 +2030,7 @@ function drawCards() {
         //❄️
         else if (card.name === "Misil Termico Guiado") {
           enemies.forEach(e => {
-            if (e.tipoVida === "♨️") {
+            if (e.tipoVida === "🔥") {
               animateDamage(e.el);
               e.hp -= card.power;
               floatText(e.el, `-${card.power}❄️`, "red");
@@ -2155,105 +2155,105 @@ function drawCards() {
             }
           }
         }
-        //  ♨️♨️♨️♨️♨️ FIRE ♨️♨️♨️♨️♨️
+        //  🔥🔥🔥🔥🔥 FIRE 🔥🔥🔥🔥🔥
         else if (card.name === "Combustão") {
-          marcarInimigos("♨️", "unico", true)
+          marcarInimigos("🔥", "unico", true)
         }
-        //♨️
+        //🔥
         else if (card.name === "Chuva De Fogo") {
-          marcarInimigos("♨️", "area", true)
+          marcarInimigos("🔥", "area", true)
         }
-        //♨️
+        //🔥
         else if (card.name === "Explosão Termica") {
           if (enemies[0].tipoVida === "⛰️") {
             dano = card.power * 3;
-          } else if (enemies[0].tipoVida === "♨️") {
+          } else if (enemies[0].tipoVida === "🔥") {
             dano = card.power * 2;
           } else {
             dano = card.power;
           }
-          causarDano(dano, "unico", simbulo = "♨️")
+          causarDano(dano, "unico", simbulo = "🔥")
         }
-        //♨️
+        //🔥
         else if (card.name === "Ataque De Fogo") {
           if (enemies[0].tipoVida === "⛰️") {
             dano = card.power * 3;
-          } else if (enemies[0].tipoVida === "♨️") {
+          } else if (enemies[0].tipoVida === "🔥") {
             dano = card.power * 2;
           } else {
             dano = card.power;
           }
-          causarDano(dano, "unico", simbulo = "♨️")
+          causarDano(dano, "unico", simbulo = "🔥")
         }
-        //♨️
+        //🔥
         else if (card.name === "Cauterizar") {
-          if (enemies[0].tipoVida === "♨️") {
+          if (enemies[0].tipoVida === "🔥") {
             dano = card.power * 2;
           } else {
             dano = card.power;
           }
-          marcarInimigos("♨️", "unico")
-          causarDano(dano, "unico", simbulo = "♨️")
+          marcarInimigos("🔥", "unico")
+          causarDano(dano, "unico", simbulo = "🔥")
         }
-        //♨️
+        //🔥
         else if (card.name === "Cataclisma") {
           let dano = card.power;
           dano += Math.floor(dinheiro / 5) - 1;
-          causarDano(dano, "unico", simbulo = "♨️")
+          causarDano(dano, "unico", simbulo = "🔥")
         }
-        //♨️
+        //🔥
         else if (card.name === "Fenix") {
           let valor = 0;
           enemies.forEach(e => {
-            if (e.tipoVida === "♨️") {
+            if (e.tipoVida === "🔥") {
               valor += card.power;
             }
           });
           allBuffs(valor, "def", true);
           allBuffs(valor, "cura", true);
-          marcarInimigos("♨️", "area", true)
+          marcarInimigos("🔥", "area", true)
         }
-        //♨️
+        //🔥
         else if (card.name === "Lança Chamas") {
           enemies.forEach(e => {
             if (e.tipoVida === "⛰️") {
               dano = card.power * 3;
-            } else if (e.tipoVida === "♨️") {
+            } else if (e.tipoVida === "🔥") {
               dano = card.power * 2;
             } else {
               dano = card.power;
             }
-            causarDano(dano, "areaEspecial", simbulo = "♨️", e)
+            causarDano(dano, "areaEspecial", simbulo = "🔥", e)
           });
-          marcarInimigos("♨️", "area")
+          marcarInimigos("🔥", "area")
         }
-        //♨️
+        //🔥
         else if (card.name === "Vida Na Morte") {
           let dano = 0;
           dano += card.power;
-          markedCount = enemies.filter(e => e.tipoVida === "♨️").length
+          markedCount = enemies.filter(e => e.tipoVida === "🔥").length
           for (let i = 0; i < markedCount; i++) {
             dano += Math.floor(lixoReciclado * 0.04);
           }
           allBuffs(dano, "cura");
         }
-        //  🌧️🌧️🌧️🌧️🌧️ AGUA 🌧️🌧️🌧️🌧️🌧️
+        //  💧💧💧💧💧 AGUA 💧💧💧💧💧
         else if (card.name === "Jato De Água") {
-          marcarInimigos("🌧️", "unico", true)
+          marcarInimigos("💧", "unico", true)
         }
-        //🌧️
+        //💧
         else if (card.name === "Mar Denso") {
-          marcarInimigos("🌧️", "area", true)
+          marcarInimigos("💧", "area", true)
         }
-        //🌧️
+        //💧
         else if (card.name === "Inicio Da Água") {
           let dano = 0;
           dano += card.power;
-          markedCount = enemies.filter(e => e.tipoVida === "🌧️").length
+          markedCount = enemies.filter(e => e.tipoVida === "💧").length
           for (let i = 0; i < markedCount; i++) {
             dano += Math.floor(lixoReciclado * 0.05);
           }
-          causarDano(dano, "unico", simbulo = "🌧️")
+          causarDano(dano, "unico", simbulo = "💧")
         }
         else if (card.name === "Choro Da Vida") {
           let def = 0;
@@ -2261,52 +2261,52 @@ function drawCards() {
           def += Math.floor(lixoReciclado * 0.17);
           allBuffs(def, "def");
         }
-        //🌧️
+        //💧
         else if (card.name === "Aquafluxo") {
           let dano = 0;
           let armorGain = 0;
           dano += card.power;
-          markedCount = enemies.filter(e => e.tipoVida === "🌧️").length
+          markedCount = enemies.filter(e => e.tipoVida === "💧").length
           for (let i = 0; i < markedCount; i++) {
             armorGain += 1;
           }
           allBuffs(armorGain, "energia");
-          causarDano(dano, "unico", simbulo = "🌧️")
+          causarDano(dano, "unico", simbulo = "💧")
         }
-        //🌧️
+        //💧
         else if (card.name === "Alma Do Mar.1") {
           dano = Math.min(alma1, 75);
-          causarDano(dano, "unico", simbulo = "🌧️")
+          causarDano(dano, "unico", simbulo = "💧")
           alma1 += 1;
         }
-        //🌧️
+        //💧
         else if (card.name === "Alma Do Mar.2") {
           dano = card.power;
           azagua = deck.filter(c => c.type === "agua").length;
           dano *= azagua;
 
-          causarDano(dano, "unico", simbulo = "🌧️")
+          causarDano(dano, "unico", simbulo = "💧")
         }
-        //🌧️
+        //💧
         else if (card.name === "Alma Do Mar.4") {
           dano = Math.floor(playerShield / enemies.length);
-          causarDano(dano, "area", simbulo = "🌧️")
+          causarDano(dano, "area", simbulo = "💧")
         }
-        //🌧️
+        //💧
         else if (card.name === "Alma Do Mar.7") {
           enemies.forEach(e => {
             let dano = 0;
             dano += card.power;
             dano += Math.floor(lixoReciclado * 0.1);
             dano += Math.floor(dinheiro * 0.1);
-            if (e.tipoVida === "🌧️") {
-              causarDano(dano, "areaEspecial", simbulo = "🌧️", e)
+            if (e.tipoVida === "💧") {
+              causarDano(dano, "areaEspecial", simbulo = "💧", e)
             } else {
-              floatText(e.el, `🌧️`, "red");
+              floatText(e.el, `💧`, "red");
             }
           });
         }
-        //🌧️
+        //💧
         else if (card.name === "Alma Do Mar.9") {
           dano = Math.floor(lixoReciclado * 0.12);
           cartas1 = deck.length;
@@ -2315,54 +2315,54 @@ function drawCards() {
           } else if (cartas1 <= 3) {
             dano = Math.floor(lixoReciclado * 0.23);
           }
-          causarDano(dano, "unico", simbulo = "🌧️")
+          causarDano(dano, "unico", simbulo = "💧")
         }
-        //🌧️
+        //💧
         else if (card.name === "Alma Do Mar.12") {
           if (playerHP <= playerMaxHP * 0.3) {
             allBuffs(card.power, "cura");
           } else {
-            causarDano(card.power, "unico", simbulo = "🌧️")
+            causarDano(card.power, "unico", simbulo = "💧")
           }
         }
-        //🌧️
+        //💧
         else if (card.name === "Chuva Isolante") {
           enemies.forEach(e => {
-            if (e.tipoVida === "♨️") {
-              causarDano(card.power, "areaEspecial", simbulo = "🌧️", e)
+            if (e.tipoVida === "🔥") {
+              causarDano(card.power, "areaEspecial", simbulo = "💧", e)
             } else {
-              floatText(e.el, `🌧️`, "red");
+              floatText(e.el, `💧`, "red");
             }
           });
-          marcarInimigos("🌧️", "area")
+          marcarInimigos("💧", "area")
         }
-        //🌧️
+        //💧
         else if (card.name === "Chuva Controlada") {
           enemies.forEach(e => {
-            if (e.tipoVida === "♨️") {
-              causarDano(card.power, "areaEspecial", simbulo = "🌧️", e)
+            if (e.tipoVida === "🔥") {
+              causarDano(card.power, "areaEspecial", simbulo = "💧", e)
             }
           });
         }
-        //🌧️
+        //💧
         else if (card.name === "Chuva Corrosiva") {
           enemies.forEach(e => {
-            if (e.tipoVida === "🌧️") {
-              causarDano(card.power, "areaEspecial", simbulo = "🌧️", e)
+            if (e.tipoVida === "💧") {
+              causarDano(card.power, "areaEspecial", simbulo = "💧", e)
             } else {
-              floatText(e.el, `🌧️`, "red");
+              floatText(e.el, `💧`, "red");
             }
           });
-          marcarInimigos("🌧️", "area")
+          marcarInimigos("💧", "area")
         }
-        //🌧️
+        //💧
         else if (card.name === "Corrosão") {
-          if (enemies[0].tipoVida === "🌧️") {
-            causarDano(card.power, "unico", simbulo = "🌧️")
+          if (enemies[0].tipoVida === "💧") {
+            causarDano(card.power, "unico", simbulo = "💧")
           } else {
-            floatText(enemies[0].el, `🌧️`, "red");
+            floatText(enemies[0].el, `💧`, "red");
           }
-          marcarInimigos("🌧️", "unico")
+          marcarInimigos("💧", "unico")
         }
         //  ⛰️⛰️⛰️⛰️⛰️ TERRA ⛰️⛰️⛰️⛰️⛰️
         else if (card.name === "Soterrar") {
@@ -2370,7 +2370,7 @@ function drawCards() {
         }
         //⛰️
         else if (card.name === "Arma Ancestral") {
-          if (enemies[0].tipoVida === "🌧️") {
+          if (enemies[0].tipoVida === "💧") {
             dano = card.power * 3;
           } else {
             dano = card.power;
@@ -2426,7 +2426,7 @@ function drawCards() {
         //⛰️
         else if (card.name === "Chuva Rochosa") {
           enemies.forEach(e => {
-            if (e.tipoVida === "🌧️") {
+            if (e.tipoVida === "💧") {
               dano = card.power * 3;
             } else if (e.tipoVida === "⛰️") {
               dano = card.power * 2;
