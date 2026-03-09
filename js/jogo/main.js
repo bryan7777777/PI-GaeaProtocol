@@ -6471,7 +6471,7 @@ function criarPlayerNaDiv3() {
       playerDeck = [...characterDecks.roxo];
       break;
     case "porto":
-      playerImg.src = "./../img/jogo/player/autoridadeDoPorto.png";
+      playerImg.src = "./../img/jogo/player/animado/porto/statico/porto1.png";
       playerMaxHP = 110, energyMax = 3, playerShieldInit = 5;
       playerHP = 110, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.porto];
@@ -7024,13 +7024,24 @@ const characterDecks = {
 
 //ANIMAÇÃO ATK PLAYER EM FASE DE TESTE
 function animarLiliaTransformacao() {
-  if (personagemSelecionado !== "lilia") return;
+  if (personagemSelecionado == "lilia"||personagemSelecionado=="porto"){
 
   const playerImg = document.getElementById("player");
   if (!playerImg) return;
 
   let frames;
-  if (mapaBatalha >= 19) {
+
+  switch (personagemSelecionado) {
+    case "porto":
+      frames = {
+      f1: "./../img/jogo/player/animado/porto/atk/porto2.png",
+      f2: "./../img/jogo/player/animado/porto/atk/porto1.png",
+      f3: "./../img/jogo/player/animado/porto/atk/porto1.png",
+      idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
+    };
+      break;
+    case "lilia":
+      if (mapaBatalha >= 19) {
     frames = {
       f1: "./../img/jogo/player/animado/lilia/atk/lilia111.png",
       f2: "./../img/jogo/player/animado/lilia/atk/lilia222.png",
@@ -7052,6 +7063,12 @@ function animarLiliaTransformacao() {
       idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia1.png"
     };
   }
+      break;
+  
+    default:
+      break;
+  }
+  
 
   const delay = 100;
 
@@ -7091,17 +7108,27 @@ function animarLiliaTransformacao() {
     playerImg.src = frames.idle;
     playerImg.style.transform = "translateX(0)";
   }, delay * 5);
+  }
 }
 //ANIMAÇÃO DEF PLAYER EM FASE DE TESTE
 function playerTomarDanoAnimacao() {
-  if (personagemSelecionado !== "lilia") return;
+  if (personagemSelecionado == "lilia"||personagemSelecionado=="porto") {
 
   const playerImg = document.getElementById("player");
   if (!playerImg) return;
 
   let frames;
 
-  if (mapaBatalha >= 19) {
+  switch (personagemSelecionado) {
+    case "porto":
+    frames = {
+      hit: "./../img/jogo/player/animado/porto/def/porto1.png",
+      idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
+    };
+  
+      break;
+    case "lilia":
+      if (mapaBatalha >= 19) {
     frames = {
       hit: "./../img/jogo/player/animado/lilia/def/lilia111.png",
       idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia3.png"
@@ -7116,6 +7143,11 @@ function playerTomarDanoAnimacao() {
       hit: "./../img/jogo/player/animado/lilia/def/lilia1.png",
       idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia1.png"
     };
+  }
+      break;
+  
+    default:
+      break;
   }
 
   const pushDistance = -100;
@@ -7166,6 +7198,7 @@ function playerTomarDanoAnimacao() {
 
       trocarSpriteComDelay(playerImg, frames.idle, 1);
     }
+  }
   }
 }
 function trocarSpriteComDelay(img, src, delayFrames = 2, callback) {
