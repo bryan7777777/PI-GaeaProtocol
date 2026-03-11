@@ -1,0 +1,101 @@
+
+<?php 
+
+CREATE ioPerfil_perfil FOREIGN KEY (idPerfil)
+REFERENCES perfil(idPerfil)
+);
+
+CREATE TABLE passwordReset (
+idPasswordReset INT PRIMARY KEY AUTO_INCREMENT,
+idUsuario INT NOT NULL,
+token VARCHAR(255) NOT NULL UNIQUE,
+dataSolicitacao DATETIME NOT NULL,
+dataExpiracao DATETIME NOT NULL,
+utilizado BIT NOT NULL,
+CONSTRAINT fk_passwordReset_usuario FOREIGN KEY (idUsuario)TABLE usuario (
+idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+nomeUsuario VARCHAR(50) NOT NULL,
+emailUsuario VARCHAR(100) NOT NULL UNIQUE,
+senhaHash VARCHAR(255) NOT NULL,
+nivelAcesso VARCHAR(20) NOT NULL,
+dataCadastro DATETIME NOT NULL,
+ativo BIT NOT NULL
+);
+
+CREATE TABLE perfil (
+idPerfil INT PRIMARY KEY AUTO_INCREMENT,
+nomePerfil VARCHAR(50) NOT NULL UNIQUE,
+descricaoPerfil VARCHAR(255)
+);
+
+CREATE TABLE usuarioPerfil (
+idUsuarioPerfil INT PRIMARY KEY AUTO_INCREMENT,
+idUsuario INT NOT NULL,
+idPerfil INT NOT NULL,
+CONSTRAINT fk_usuarioPerfil_usuario FOREIGN KEY (idUsuario)
+REFERENCES usuario(idUsuario),
+CONSTRAINT fk_usuar
+REFERENCES usuario(idUsuario)
+);
+
+CREATE TABLE loginLog (
+idLoginLog INT PRIMARY KEY AUTO_INCREMENT,
+idUsuario INT,
+emailTentativa VARCHAR(100),
+dataTentativa DATETIME NOT NULL,
+ipTentativa VARCHAR(45) NOT NULL,
+sucesso BIT NOT NULL,
+CONSTRAINT fk_loginLog_usuario FOREIGN KEY (idUsuario)
+REFERENCES usuario(idUsuario)
+);
+
+CREATE TABLE sessaoUsuario (
+idSessao INT PRIMARY KEY AUTO_INCREMENT,
+idUsuario INT NOT NULL,
+tokenSessao VARCHAR(255) NOT NULL UNIQUE,
+dataCriacao DATETIME NOT NULL,
+dataExpiracao DATETIME NOT NULL,
+ipCriacao VARCHAR(45) NOT NULL,
+CONSTRAINT fk_sessaoUsuario_usuario FOREIGN KEY (idUsuario)
+REFERENCES usuario(idUsuario)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
