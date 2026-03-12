@@ -747,7 +747,98 @@ function exposeGlobalFunctions() {
 // ============================================================================
 
 // Aguarda o DOM estar completamente carregado
-document.addEventListener('DOMContentLoaded', initializeApp);
+document.addEventListener('DOMContentLoaded', function() {
+  initializeApp();
+  initializeAuthSystem();
+});
+
+// ============================================================================
+// SISTEMA DE AUTENTICAÇÃO
+// ============================================================================
+
+/**
+ * Inicializa o sistema de autenticação
+ * Verifica se o usuário está logado e atualiza a UI
+ */
+function initializeAuthSystem() {
+  // Busca dados de sessão do servidor
+  fetch('php/User/checkAuth.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.authenticated) {
+        updateUserUI(data.user);
+      } else {
+        updateGuestUI();
+      }
+    })
+    .catch(error => {
+      console.warn('Erro ao verificar autenticação:', error);
+      updateGuestUI();
+    });
+
+  // Configura listener para dropdown
+  const userMenuTrigger = document.querySelector('.user-menu-trigger');
+  const userDropdown = document.getElementById('userDropdown');
+
+  if (userMenuTrigger && userDropdown) {
+    userMenuTrigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.classList.toggle('active');
+      userDropdown.classList.toggle('active');
+    });
+
+    // Fecha dropdown ao clicar fora
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.auth-user')) {
+        userMenuTrigger.classList.remove('active');
+        userDropdown.classList.remove('active');
+      }
+    });
+  }
+}
+
+/**
+ * Atualiza a UI para usuário logado
+ * @param {Object} user - Dados do usuário
+ */
+function updateUserUI(user) {
+  const authGuest = document.getElementById('authGuest');
+  const authUser = document.getElementById('authUser');
+
+  if (authGuest && authUser) {
+    authGuest.style.display = 'none';
+    authUser.style.display = 'flex';
+
+    // Atualiza dados do usuário
+    const userName = document.getElementById('userName');
+    const userAvatar = document.getElementById('userAvatar');
+
+    if (userName) {
+      userName.textContent = user.nome || user.nomeUsuario || 'Usuário';
+    }
+
+    if (userAvatar && user.avatar) {
+      userAvatar.src = user.avatar;
+    } else if (userAvatar) {
+      userAvatar.src = 'https://via.placeholder.com/32?text=' + 
+                       encodeURIComponent((user.nome || user.nomeUsuario || 'U').charAt(0));
+    }
+  }
+}
+
+/**
+ * Atualiza a UI para visitante (não logado)
+ */
+function updateGuestUI() {
+  const authGuest = document.getElementById('authGuest');
+  const authUser = document.getElementById('authUser');
+
+  if (authGuest && authUser) {
+    authGuest.style.display = 'flex';
+    authUser.style.display = 'none';
+  }
+}
 
 // Exporta funções para testes (se necessário)
 if (typeof module !== 'undefined' && module.exports) {
@@ -759,6 +850,9 @@ if (typeof module !== 'undefined' && module.exports) {
     closePanel,
     showHome,
     toggleMobileMenu,
-    getRepoBasePath
+    getRepoBasePath,
+    initializeAuthSystem,
+    updateUserUI,
+    updateGuestUI
   };
 }

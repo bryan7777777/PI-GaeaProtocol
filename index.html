@@ -63,6 +63,35 @@
                 <!-- <li><a onclick="openPanel('mundo')">O Mundo</a></li> -->
                 <li><a onclick="openPanel('personagens')">Personagens</a></li>
             </ul>
+
+            <!-- Botão de Login/Usuário -->
+            <div class="auth-section">
+                <div id="authGuest" class="auth-guest">
+                    <a href="php/login.php" class="login-btn">
+                        <i class="fas fa-user"></i>
+                        <span>Login</span>
+                    </a>
+                </div>
+                <div id="authUser" class="auth-user" style="display: none;">
+                    <div class="user-menu-trigger">
+                        <img id="userAvatar" src="" alt="Avatar" class="user-avatar">
+                        <span id="userName" class="user-name">Usuário</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="php/User/dashboard.php" class="dropdown-item">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                        <a href="php/User/dashboard.php#perfil" class="dropdown-item">
+                            <i class="fas fa-user-edit"></i> Perfil
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="php/User/logout.php" class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -91,9 +120,6 @@
                         
                         <a href="pages/telaDeInicioJogo.html">
                             <button class="cta-button play-game">Jogue Agora</button>
-                        </a>
-                        <a href="php/index.php">
-                            <button class="cta-button play-game">Login</button>
                         </a>
                     </div>
                 </div>

@@ -11,9 +11,9 @@ if (!$token || !ctype_xdigit($token)) {
 $tokenHash = hash('sha256', $token);
 
 $stmt = $pdo->prepare("
-    SELECT pr.*, u.emailUsuario 
+    SELECT pr.*, u.email 
     FROM password_resets pr
-    JOIN usuario u ON u.idUsuario = pr.idUsuario
+    JOIN user u ON u.idUser = pr.idUser
     WHERE pr.tokenHash = ?
 ");
 $stmt->execute([$tokenHash]);
@@ -63,15 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $novaHash = password_hash($senha, PASSWORD_BCRYPT, ['cost' => 12]);
 
     $pdo->prepare("
-        UPDATE usuario 
-        SET senhaHash = ? 
-        WHERE idUsuario = ?
-    ")->execute([$novaHash, $reset['idUsuario']]);
+        UPDATE user 
+        SET senha = ? 
+        WHERE idUser = ?
+    ")->execute([$novaHash, $reset['idUser']]);
 
     // Invalida sessões
     $pdo->prepare("
-        DELETE FROM sessaoUsuario WHERE idUsuario = ?
-    ")->execute([$reset['idUsuario']]);
+        DELETE FROM password_resets WHERE idUser = ?
+    ")->execute([$reset['idUser']]);
 
     // Remove token
     $pdo->prepare("
@@ -80,3 +80,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     echo "Senha alterada com sucesso.";
 }
+
+// depois do processamento, mostrar formulário ou mensagem
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefinir Senha - Gaea Protocol</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="../js/script.js" defer></script>
+</head>
+<body>
+    <!-- Background animations -->
+    <div class="background-system">
+        <div class="background-base"></div>
+        <div class="circuit-grid"></div>
+        <div class="energy-lines" id="energyLinesContainer"></div>
+        <div class="particles-container" id="particlesContainer"></div>
+        <div class="scanner-effect"></div>
+        <div class="distortion-layer"></div>
+    </div>
+
+    <nav class="top-nav">
+        <div class="logo" onclick="window.location.href='../../index.html'" style="cursor: pointer;">GAEA PROTOCOL</div>
+        <div class="links">
+            <a href="../index.html">VOLTAR AO SITE</a>
+            <a href="login.php">LOGIN</a>
+        </div>
+    </nav>
+
+    <div class="form-container">
+        <div class="form-box">
+            <h1><i class="fas fa-key"></i> Nova Senha</h1>
+            <!-- form contents will be inserted by PHP at runtime if needed -->
+        </div>
+    </div>
+</body>
+</html>

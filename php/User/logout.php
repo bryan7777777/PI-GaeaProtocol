@@ -1,23 +1,33 @@
 <?php
+/**
+ * Script de Logout
+ * Destrói a sessão do usuário com segurança
+ */
 
-// Inicia a sessão segura
-//start_secure_session();
+require_once '../config.php';
+start_secure_session();
 
-session_start();
-// Remove todas as variáveis da sessão
-//session_unset();
-
-$_SESSION = [];
-
-if (isset($_COOKIE[session_name()])) {
-setcookie(session_name(), '', time() - 3600, '/');
+// Log de logout
+if (!empty($_SESSION['user'])) {
+    $usuario_id = $_SESSION['user']['id'];
+    error_log("Logout realizado: Usuário ID {$usuario_id}");
 }
 
-// Destrói completamente a sessão do usuário
+// Limpa todas as variáveis de sessão
+$_SESSION = [];
+
+// Delete o cookie de sessão
+if (isset($_COOKIE[session_name()])) {
+    setcookie(session_name(), '', time() - 3600, '/');
+}
+
+// Destrói completamente a sessão
 session_destroy();
 
-// Redireciona o usuário para a página de login
-header("Location: ../login.php");
+// Redireciona para login com mensagem
+header("Location: ../login.php?logout=sucesso");
+exit;
+
 
 // Encerra o script para garantir o redirecionamento
 exit;

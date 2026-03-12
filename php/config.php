@@ -18,12 +18,19 @@ try {
 }
 
 /* 
-   TABELA NECESSÁRIA (Execute no seu Banco de Dados):
+   Esquema mínimo necessário para recuperação de senha.
+   No arquivo site.sql existem versões completas que incluem
+   colunas de hash, código e contagem de tentativas;
+   use preferencialmente aquele arquivo para criar as tabelas.
+   Exemplo reduzido (apenas para referência):
    CREATE TABLE IF NOT EXISTS password_resets (
-       email VARCHAR(255) NOT NULL,
-       token VARCHAR(255) NOT NULL,
+       idUser INT NOT NULL,
+       tokenHash VARCHAR(255) NOT NULL UNIQUE,
+       codigo VARCHAR(6) NOT NULL,
        expires_at DATETIME NOT NULL,
-       INDEX (email)
+       created_at DATETIME NOT NULL,
+       tentativas INT DEFAULT 0,
+       FOREIGN KEY (idUser) REFERENCES user(idUser)
    );
 */
 
@@ -84,16 +91,6 @@ function sanitize(string $s): string {
     return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
 }
 
-// SIMULAÇÃO DE API DE ENVIO DE EMAIL
-// Em produção, use PHPMailer ou cURL para um serviço como SendGrid/Mailgun
-function send_recovery_email_api(string $email, string $codigo): bool {
-    $assunto = "Código de Recuperação - Gaea Protocol";
-    $mensagem = "Seu código de recuperação é: " . $codigo;
-    
-    // Log para teste (verifique o log do servidor ou a pasta logs)
-    error_log("--- [SIMULAÇÃO EMAIL API] ---\nPara: $email\nAssunto: $assunto\nMensagem: $mensagem\n---------------------------", 3, __DIR__ . '/email_log.txt');
-    
-    // Aqui entraria a lógica de API (Ex: Mailchimp, SendGrid)
-    return true; 
-}
+// Incluir serviço de notificações por email
+require_once __DIR__ . '/email_service.php';
 ?>

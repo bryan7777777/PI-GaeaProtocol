@@ -4,91 +4,134 @@ start_secure_session();
 
 // Se já logado, redireciona
 if (!empty($_SESSION['user'])) {
-  header('Location: User/dashboard.php'); // Altere para sua página protegida
+    header('Location: User/dashboard_premium.php');
     exit;
 }
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Gaea Protocol</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="../js/script.js" defer></script>
 </head>
-
 <body>
+    <!-- background animations container -->
+    <div class="background-system">
+        <div class="background-base"></div>
+        <div class="circuit-grid"></div>
+        <div class="energy-lines" id="energyLinesContainer"></div>
+        <div class="particles-container" id="particlesContainer"></div>
+        <div class="scanner-effect"></div>
+        <div class="distortion-layer"></div>
+    </div>
+
     <nav class="top-nav">
-        <div class="logo">GAEA PROTOCOL</div>
+        <div class="logo" onclick="window.location.href='../../index.html'" style="cursor: pointer;">GAEA PROTOCOL</div>
         <div class="links">
+            <a href="../index.html">VOLTAR AO SITE</a>
             <a href="index.php">CADASTRAR</a>
         </div>
     </nav>
 
     <div class="form-container">
-        <h1>Login</h1>
+        <div class="form-box">
+            <h1><i class="fas fa-lock"></i> Login</h1>
 
-        <?php if (!empty($_GET['success'])): ?>
-            <p style="color: green;">Cadastro realizado. Faça login.</p>
-        <?php endif; ?>
+            <?php if (!empty($_GET['success']) && $_GET['success'] === 'cadastro'): ?>
+                <div class="success-msg">
+                    <i class="fas fa-check-circle"></i>
+                    Cadastro realizado com sucesso! Faça login para continuar.
+                </div>
+            <?php endif; ?>
 
+            <?php if (isset($_GET['logout']) && $_GET['logout'] === 'sucesso'): ?>
+                <div class="success-msg">
+                    <i class="fas fa-check-circle"></i>
+                    Você foi desconectado com sucesso!
+                </div>
+            <?php endif; ?>
 
-        <?php if (!empty($_GET['expired'])): ?>
-            <p class="erro-msg">Sessão expirada.</p>
-        <?php endif; ?>
+            <?php if (!empty($_GET['expired'])): ?>
+                <div class="error-msg">
+                    <i class="fas fa-exclamation-circle"></i>
+                    Sua sessão expirou. Por favor, faça login novamente.
+                </div>
+            <?php endif; ?>
 
+            <?php if (isset($_GET['login']) && $_GET['login'] === 'erro'): ?>
+                <div class="error-msg">
+                    <i class="fas fa-times-circle"></i>
+                    Usuário ou senha inválido(s)!
+                </div>
+            <?php endif; ?>
 
-        <!--    inserir senha e email -->
-        <form method="POST" action="authenticate.php">
-            <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+            <?php if (isset($_GET['error']) && $_GET['error'] === 'schema'): ?>
+                <div class="error-msg">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Erro de configuração: coluna de senha está incorreta. Rode <a href="diagnosico.php">diagnóstico</a>.
+                </div>
+            <?php endif; ?>
 
-            <label>Email</label>
-            <input type="email" name="email" required>
+            <?php if (isset($_GET['error']) && $_GET['error'] === 'default_password'): ?>
+                <div class="error-msg">
+                    <i class="fas fa-lock"></i>
+                    Você está usando a senha padrão. Por favor, <a href="recover.php">restaure sua conta</a>.
+                </div>
+            <?php endif; ?>
 
-            <label>Senha</label>
-            <div class="password-wrapper">
-                <input type="password" name="senha" required>
-                <i class="fas fa-eye toggle-password" onclick="togglePassword(this)"></i>
+            <form method="POST" action="authenticate.php">
+                <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="senha"><i class="fas fa-key"></i> Senha</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="senha" name="senha" placeholder="••••••••" required autocomplete="current-password">
+                        <button type="button" class="toggle-password" onclick="togglePassword(this)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="botao">
+                    <i class="fas fa-sign-in-alt"></i> Entrar
+                </button>
+            </form>
+
+            <div class="form-links">
+                <a href="recover.php" class="link"><i class="fas fa-redo"></i> Esqueceu a senha?</a>
+                <span>|</span>
+                <a href="index.php" class="link"><i class="fas fa-user-plus"></i> Criar conta</a>
             </div>
-
-            <?php
-            if (isset($_GET['login'])  && $_GET['login'] === 'erro') {
-            ?>
-             <div class="text-danger"> Usuario ou senha invalido(s)!</div> 
-            <?php } ?> 
-
-            
-
-
-
-            <button type="submit" class="botao">Entrar</button>
-        </form>
-
-        <div style="margin-top: 15px; text-align: center;">
-            <a href="recover.php" style="color: #fff;">Esqueceu a senha?</a>
         </div>
     </div>
-    <!--  exibir senha  -->
+
     <script>
         function togglePassword(btn) {
             const wrapper = btn.parentElement;
             const input = wrapper.querySelector('input');
+            const icon = btn.querySelector('i');
+            
             if (input.type === 'password') {
                 input.type = 'text';
-                btn.classList.remove('fa-eye');
-                btn.classList.add('fa-eye-slash');
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
             } else {
                 input.type = 'password';
-                btn.classList.remove('fa-eye-slash');
-                btn.classList.add('fa-eye');
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
             }
         }
     </script>
 </body>
-
 </html>
