@@ -3,7 +3,7 @@
 
 // Configurações do Banco de Dados
 $host = getenv('DB_HOST') ?: 'localhost';
-$db_name = getenv('DB_NAME') ?: 'test';
+$db_name = getenv('DB_NAME') ?: 'gaea';
 $db_user = getenv('DB_USER') ?: 'root';
 $db_pass = getenv('DB_PASS') ?: ''; 
 

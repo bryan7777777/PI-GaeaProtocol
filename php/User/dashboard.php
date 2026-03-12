@@ -42,7 +42,7 @@ try {
     // Busca conquistas
     $stmt = $pdo->prepare("
         SELECT * FROM conquistas 
-        WHERE idUser = ? 
+        WHERE i dUser= ? 
         ORDER BY concluidoDia DESC
     ");
     $stmt->execute([$userId]);
