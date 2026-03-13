@@ -7027,7 +7027,7 @@ const characterDecks = {
 
 //ANIMAÇÃO ATK PLAYER EM FASE DE TESTE
 function animarLiliaTransformacao() {
-  if (personagemSelecionado == "lilia"||personagemSelecionado=="porto"){
+  if (personagemSelecionado == "lilia"||personagemSelecionado=="porto"||personagemSelecionado=="gaeaReen"){
 
   const playerImg = document.getElementById("player");
   if (!playerImg) return;
@@ -7041,6 +7041,14 @@ function animarLiliaTransformacao() {
       f2: "./../img/jogo/player/animado/porto/atk/porto1.png",
       f3: "./../img/jogo/player/animado/porto/atk/porto1.png",
       idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
+    };
+      break;
+    case "gaeaReen":
+      frames = {
+      f1: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen2.png",
+      f2: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen1.png",
+      f3: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen1.png",
+      idle: "./../img/jogo/player/animado/gaeaReen/statico/gaeaReen1.png"
     };
       break;
     case "lilia":
@@ -7115,7 +7123,7 @@ function animarLiliaTransformacao() {
 }
 //ANIMAÇÃO DEF PLAYER EM FASE DE TESTE
 function playerTomarDanoAnimacao() {
-  if (personagemSelecionado == "lilia"||personagemSelecionado=="porto") {
+  if (personagemSelecionado == "lilia"||personagemSelecionado=="porto"||personagemSelecionado=="gaeaReen") {
 
   const playerImg = document.getElementById("player");
   if (!playerImg) return;
@@ -7127,6 +7135,13 @@ function playerTomarDanoAnimacao() {
     frames = {
       hit: "./../img/jogo/player/animado/porto/def/porto1.png",
       idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
+    };
+  
+      break;
+    case "gaeaReen":
+    frames = {
+      hit: "./../img/jogo/player/animado/gaeaReen/def/gaeaReen1.png",
+      idle: "./../img/jogo/player/animado/gaeaReen/statico/gaeaReen1.png"
     };
   
       break;
@@ -7242,7 +7257,7 @@ async function enemyTurn() {
         case "attackVida":
         case "morrer":
           playerTomarDanoAnimacao();
-          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto") {
+          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto"||personagemSelecionado == "gaeaReen") {
             podeSacudir = false;
           }
           break;
