@@ -6576,7 +6576,7 @@ function criarPlayerNaDiv3() {
       playerDeck = [...characterDecks.wallace];
       break;
     case "gaeaReen":
-      playerImg.src = "./../img/jogo/player/kalenart.png";
+      playerImg.src = "./../img/jogo/player/animado/gaeaReen/statico/gaeaReen1.png";
       playerDeck = [...characterDecks.gaeaReen];
       playerHP = 120, playerMaxHP = 120
       energyMax = 4
