@@ -7046,8 +7046,8 @@ function animarLiliaTransformacao() {
     case "gaeaReen":
       frames = {
       f1: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen2.png",
-      f2: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen1.png",
-      f3: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen1.png",
+      f2: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen3.png",
+      f3: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen3.png",
       idle: "./../img/jogo/player/animado/gaeaReen/statico/gaeaReen1.png"
     };
       break;
