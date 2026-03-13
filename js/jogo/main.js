@@ -7229,7 +7229,7 @@ function trocarSpriteComDelay(img, src, delayFrames = 2, callback) {
 //ENEMYS
 async function enemyTurn() {
   animarCompra = true;
-  podeSacudir = false;
+  podeSacudir = true;
   await new Promise(res => setTimeout(res, 600));
   const enemiesSnapshot = [...enemies];
   for (const e of enemiesSnapshot) {
@@ -7242,8 +7242,8 @@ async function enemyTurn() {
         case "attackVida":
         case "morrer":
           playerTomarDanoAnimacao();
-          if (personagemSelecionado !== "lilia") {
-            podeSacudir = true;
+          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto") {
+            podeSacudir = false;
           }
           break;
 
