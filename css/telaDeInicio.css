@@ -132,6 +132,11 @@ body {
   border-color: #006c16;
 }
 
+.voltar{
+  margin-bottom: 30px;
+  margin-top: -22px;
+}
+
 /* =================== CONQUISTAS =================== */
 
 #conquistas {
