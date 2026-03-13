@@ -621,6 +621,9 @@ function checkEnemies() {
               "Minha bênção e aprovação vieram junto com a derrota do boss. Daqui para frente será só você: derrote a IA que corrompeu este mundo e traga a vida de volta a ele. Boa sorte!"
             ], "./../img/jogo/gaeazinha.jpg");
           } else if (enemies.length === 0 && playerHP > 0) {
+            // Registrar vitória
+            registrarPartida('Vitória');
+            
             const overlay = document.getElementById("overlay");
             overlay.style.display = "block";
             overlay.classList.add("popup-opacity");

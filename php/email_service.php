@@ -14,10 +14,10 @@
  */
 define('EMAIL_FROM', 'noreply@gaeaprotocol.com');
 define('EMAIL_FROM_NAME', 'Gaea Protocol');
-define('SMTP_HOST', getenv('SMTP_HOST') ?: 'localhost');
-define('SMTP_PORT', getenv('SMTP_PORT') ?: 25);
-define('SMTP_USER', getenv('SMTP_USER') ?: '');
-define('SMTP_PASS', getenv('SMTP_PASS') ?: '');
+define('SMTP_HOST', getenv('SMTP_HOST') ?: 'smtp.gmail.com');
+define('SMTP_PORT', getenv('SMTP_PORT') ?: 587);
+define('SMTP_USER', getenv('SMTP_USER') ?: 'seuemail@gmail.com');
+define('SMTP_PASS', getenv('SMTP_PASS') ?: 'suasenha');
 
 /**
  * Enviar email de recuperação de senha
@@ -307,20 +307,43 @@ function send_welcome_email($email, $username) {
  * @return bool Sucesso ou falha
  */
 function send_email($para, $assunto, $corpo) {
-    // Headers para email HTML
-    $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $headers .= "From: " . EMAIL_FROM_NAME . " <" . EMAIL_FROM . ">\r\n";
-    $headers .= "Reply-To: " . EMAIL_FROM . "\r\n";
-    $headers .= "X-Mailer: Gaea Protocol\r\n";
-    
-    // Tentar enviar via SMTP se configurado
-    if (SMTP_HOST !== 'localhost' && SMTP_USER) {
-        return send_email_smtp($para, $assunto, $corpo);
+    // Tentar usar PHPMailer se disponível
+    if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+        require_once __DIR__ . '/../vendor/autoload.php';
+        
+        try {
+            $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = SMTP_HOST;
+            $mail->SMTPAuth = true;
+            $mail->Username = SMTP_USER;
+            $mail->Password = SMTP_PASS;
+            $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = SMTP_PORT;
+            
+            $mail->setFrom(EMAIL_FROM, EMAIL_FROM_NAME);
+            $mail->addAddress($para);
+            
+            $mail->isHTML(true);
+            $mail->Subject = $assunto;
+            $mail->Body = $corpo;
+            
+            $mail->send();
+            $resultado = true;
+        } catch (Exception $e) {
+            error_log('PHPMailer Error: ' . $mail->ErrorInfo, 3, __DIR__ . '/email_log.txt');
+            $resultado = false;
+        }
+    } else {
+        // Fallback: usar mail() nativo do PHP
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+        $headers .= "From: " . EMAIL_FROM_NAME . " <" . EMAIL_FROM . ">\r\n";
+        $headers .= "Reply-To: " . EMAIL_FROM . "\r\n";
+        $headers .= "X-Mailer: Gaea Protocol\r\n";
+        
+        $resultado = mail($para, $assunto, $corpo, $headers);
     }
-    
-    // Fallback: usar mail() nativo do PHP
-    $resultado = mail($para, $assunto, $corpo, $headers);
     
     // Log do envio
     $log_message = date('Y-m-d H:i:s') . " | TO: $para | SUBJECT: $assunto | STATUS: " . ($resultado ? 'OK' : 'FAIL') . "\n";

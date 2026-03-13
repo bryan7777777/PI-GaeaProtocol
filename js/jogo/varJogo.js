@@ -1,72 +1,77 @@
-// MAPA
-let telaAtual = 1;
-let telaAnterior = null;
-let mapaBatalha = 0;
-let zonaAtual = 1;
-let tipoFase;
-let custoAtualizarBase = 5;
-let custoAtualizarAtual = null;
-let custoRemoverBase = 10;
-let custoRemoverAtual = null;
-let custoAtualizarFerreiro = null;
-const custoAtualizarFerreiroBase = 50;
-let custoCuraMedico = 0;
-let custoVidaMaxMedico = 0;
+// ==========================================
+// VARIAVEIS GLOBAIS DO JOGO GAEA PROTOCOL
+// Este arquivo contém todas as variáveis de estado do jogo
+// ==========================================
 
-// CONFS
-var myMusic = new Audio("./../audio/artblock.ogg");
-myMusic.loop = true;
-let showingFloat = false;
-let nemoraDef = false;
-let nemoraAtk = false;
-let nemoraSnowInterval = null;
-let nemoraFireInterval = null;
-let reviver = 0;
-let aylaPhase = 0;
-let playerImgDialogo;
-let nomeInimigo;
-let identificadorBoss;
-let PULAR_TODO_TUTORIAL = false;
-const pagina = location.pathname.split("/").pop();
+// MAPA - Controla navegação e localização
+let telaAtual = 1; // Tela atual do jogo (1-6)
+let telaAnterior = null; // Tela anterior para voltar
+let mapaBatalha = 0; // ID da batalha atual no mapa
+let zonaAtual = 1; // Zona/progressão atual (1-35+)
+let tipoFase; // Tipo da fase atual (batalha, evento, etc.)
+let custoAtualizarBase = 5; // Custo base para atualizar base
+let custoAtualizarAtual = null; // Custo atual calculado
+let custoRemoverBase = 10; // Custo base para remover cartas
+let custoRemoverAtual = null; // Custo atual calculado
+let custoAtualizarFerreiro = null; // Custo para atualizar ferreiro
+const custoAtualizarFerreiroBase = 50; // Custo base do ferreiro
+let custoCuraMedico = 0; // Custo de cura no médico
+let custoVidaMaxMedico = 0; // Custo para aumentar vida máxima
 
-// FLAGS
-let SoliceApareceu=false;
-let dialogoSolice=false;
-let dialogoAyla=false;
-let primeiraGeracaoItem = true;
-let primeiraAberturaFerreiro = true;
-let belindaSpawnBoss = true;
-let svetlanaSpawnBoss = true;
-let pedroSpawnBoss = true;
-let guinevereSpawnBoss = true;
-let islaSpawnBoss = true;
-let peruSpawnBoss = true;
-let animarCompra = false;
-let bloqueioCliqueCartas = false;
-let playerAlive = true;
-let flagItem37=true;
-let flagItem38=true;
-let flagItem39=true;
-let flagItem40=true;
+// CONFS - Configurações e estado visual/áudio
+var myMusic = new Audio("./../audio/artblock.ogg"); // Música de fundo
+myMusic.loop = true; // Música em loop
+let showingFloat = false; // Se está mostrando texto flutuante
+let nemoraDef = false; // Estado de defesa de Nemora
+let nemoraAtk = false; // Estado de ataque de Nemora
+let nemoraSnowInterval = null; // Intervalo da neve de Nemora
+let nemoraFireInterval = null; // Intervalo do fogo de Nemora
+let reviver = 0; // Contador de revives
+let aylaPhase = 0; // Fase atual de Ayla
+let playerImgDialogo; // Imagem do jogador no diálogo
+let nomeInimigo; // Nome do inimigo atual
+let identificadorBoss; // ID do boss atual
+let PULAR_TODO_TUTORIAL = false; // Flag para pular tutorial
+const pagina = location.pathname.split("/").pop(); // Página atual
 
-// ARREY
-const deck = [];
-let enemies = [];
-let floatQueue = [];
-let itensJaPegos = [];
-const buffs = {
-  atk: [],
-  def: [],
-  cura: [],
-  geral: []
+// FLAGS - Flags booleanas para eventos únicos
+let SoliceApareceu=false; // Se Solice já apareceu
+let dialogoSolice=false; // Se diálogo com Solice foi visto
+let dialogoAyla=false; // Se diálogo com Ayla foi visto
+let primeiraGeracaoItem = true; // Primeira geração de itens
+let primeiraAberturaFerreiro = true; // Primeira abertura do ferreiro
+let belindaSpawnBoss = true; // Spawn de boss Belinda
+let svetlanaSpawnBoss = true; // Spawn de boss Svetlana
+let pedroSpawnBoss = true; // Spawn de boss Pedro
+let guinevereSpawnBoss = true; // Spawn de boss Guinevere
+let islaSpawnBoss = true; // Spawn de boss Isla
+let peruSpawnBoss = true; // Spawn de boss Peru
+let animarCompra = false; // Animação de compra ativa
+let bloqueioCliqueCartas = false; // Bloqueia cliques em cartas
+let playerAlive = true; // Jogador está vivo
+let flagItem37=true; // Flag para item 37
+let flagItem38=true; // Flag para item 38
+let flagItem39=true; // Flag para item 39
+let flagItem40=true; // Flag para item 40
+
+// ARRAYS - Arrays e objetos do jogo
+const deck = []; // Deck completo disponível
+let enemies = []; // Inimigos na batalha atual
+let floatQueue = []; // Fila de textos flutuantes
+let itensJaPegos = []; // IDs de itens já coletados
+const buffs = { // Buffs ativos por tipo
+  atk: [],   // Buffs de ataque
+  def: [],   // Buffs de defesa
+  cura: [],  // Buffs de cura
+  geral: []  // Buffs gerais
 };
-const BUFF_VISUAL = {
+const BUFF_VISUAL = { // Configuração visual dos buffs
   atk:   { emoji: "⚔️", border: "10px", color: "#ff5555" },
   def:   { emoji: "🛡️", border: "0px 0px 20px 20px", color: "#55aaff" },
   cura:  { emoji: "💚", border: "0px 20px 0px 20px", color: "#66ff66" },
   geral: { emoji: "✨", border: "100px", color: "#ff9ad5" }
 };
-const rarityWeights = [
+const rarityWeights = [ // Pesos para raridade de cartas
   { name: "common", weight: 50 },
   { name: "rare", weight: 27 },
   { name: "fire", weight: 10 },
@@ -78,25 +83,29 @@ const rarityWeights = [
   { name: "cintilante", weight: 2 }
 ];
 
-// STATUS
-let lixoReciclado = 0;
-let dinheiro = 0;
-let alma1 = 5;
+// STATUS - Recursos e estatísticas do jogador
+let lixoReciclado = 0; // Lixo reciclado (pontuação principal)
+let dinheiro = 0; // Dinheiro coletado
+let alma1 = 5; // Alma tipo 1 (recurso especial)
 
-// PLAYER
-let playerMaxHP = 100 
-let playerHP = 100
-let energyMax = 3 
-let energy = 3
-let playerShieldInit = 0;
-let playerShield = playerShieldInit;
-let personagemSelecionado = null;
-// buff em itens aumenta esse
-let maoInicio = 5;
-// buff em cards aumenta esse
-let limiteMao = 5;
-// nenhuma mão pode exceder 10, evitar scrol
-let maxMao = 10;
+// PLAYER - Atributos do jogador
+let playerMaxHP = 100; // Vida máxima do jogador
+let playerHP = 100; // Vida atual do jogador
+let energyMax = 3; // Energia máxima
+let energy = 3; // Energia atual
+let playerShieldInit = 0; // Escudo inicial
+let playerShield = playerShieldInit; // Escudo atual
+let personagemSelecionado = null; // Personagem selecionado
+let playerDeck = []; // Deck atual do jogador
+// Buffs em itens aumentam mão inicial
+let maoInicio = 5; // Mão inicial
+// Buffs em cartas aumentam limite de mão
+let limiteMao = 5; // Limite atual de mão
+// Nenhuma mão pode exceder 10 para evitar scroll
+let maxMao = 10; // Máximo absoluto de mão
+
+// TEMPO DE JOGO
+window.gameStartTime = Date.now();
 
 // ALL DOCUMENTS
 //ID 

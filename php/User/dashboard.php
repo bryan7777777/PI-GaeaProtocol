@@ -50,10 +50,10 @@ try {
     
     // Busca ranking
     $stmt = $pdo->prepare("
-        SELECT u.userName, us.lixoTotal, us.lixoUnic, us.qtdWin, us.qtdJogo
+        SELECT u.userName, us.lixoTotal, us.lixoUnic, us.qtdWin, us.qtdJogo, us.pontuacao
         FROM userStatus us
         JOIN user u ON u.idUser = us.idUser
-        ORDER BY us.lixoTotal DESC
+        ORDER BY us.pontuacao DESC
         LIMIT 10
     ");
     $stmt->execute();
@@ -176,6 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
         .top-nav .links {
             display: flex;
             gap: 2rem;
+            margin-left: auto; /* Move links to the right */
         }
         
         .top-nav .links a {
@@ -241,32 +242,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
             background: rgba(44,175,80,0.1);
         }
         
-        /* ===== MAIN DASHBOARD ===== */
-        .dashboard-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .dashboard-header {
-            background: rgba(13,31,24,0.8);
-            border-left: 5px solid #2caf50;
-            padding: 2rem;
+        /* ===== DASHBOARD SECTIONS ===== */
+        .dashboard-section {
+            background: linear-gradient(135deg, rgba(13,31,24,0.9) 0%, rgba(20,48,36,0.9) 100%);
+            border: 1px solid rgba(44,175,80,0.3);
             border-radius: 8px;
+            padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
         }
         
-        .dashboard-header h1 {
-            font-size: 2.2rem;
+        .dashboard-section h2 {
             color: #2caf50;
-            margin-bottom: 0.5rem;
-            font-family: 'Megrim', cursive;
-        }
-        
-        .dashboard-header p {
-            color: #90ee90;
-            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid rgba(44,175,80,0.3);
+            padding-bottom: 0.5rem;
         }
         
         /* ===== TABS ===== */
@@ -327,6 +318,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        
+        .dashboard-header {
+            background: rgba(13,31,24,0.8);
+            border-left: 5px solid #2caf50;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        
+        .dashboard-header h1 {
+            font-size: 2.2rem;
+            color: #2caf50;
+            margin-bottom: 0.5rem;
+            font-family: 'Megrim', cursive;
+        }
+        
+        .dashboard-header p {
+            color: #90ee90;
+            font-size: 1rem;
+        }
+        
+
         
         /* ===== NOTIFICATIONS SECTION ===== */
         .notification-prefs {
@@ -631,20 +645,71 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
         <div class="distortion-layer"></div>
     </div>
 
-    <!-- Top Navigation -->
+    <!-- NAVEGAÇÃO PRINCIPAL -->
     <nav class="top-nav">
-        <div class="logo" onclick="window.location.href='../../index.html'">🌍 GAEA</div>
-        
-        <div class="search-container">
-            <input type="text" class="search-bar" id="searchBar" placeholder="Buscar páginas...">
-            <div class="search-results" id="searchResults"></div>
-        </div>
-        
-        <div class="links">
-            <a href="../../index.html"><i class="fas fa-home"></i> SITE</a>
-            <a href="logout.php"><i class="fas fa-sign-out-alt"></i> SAIR</a>
+        <div class="nav-content">
+            <!-- Logo que clica para voltar home -->
+            <div class="logo-text" onclick="window.location.href='../../index.html'">GAEA PROTOCOL</div>
+
+            <!-- Botão hamburger para mobile -->
+            <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Links de navegação (abrem painel lateral) -->
+            <ul class="nav-links" id="navLinks">
+                <li><a onclick="openPanel('sobre')">Sobre</a></li>
+                <li><a onclick="openPanel('historia')">História</a></li>
+                <li><a onclick="openPanel('personagens')">Personagens</a></li>
+            </ul>
+
+            <!-- Botão de Login/Usuário -->
+            <div class="auth-section">
+                <div id="authUser" class="auth-user">
+                    <div class="user-menu-trigger">
+                        <?php if ($userData && $userData['fotoPerfilBlob']): ?>
+                            <img id="userAvatar" src="../get_avatar.php?id=<?php echo $userId; ?>" alt="Avatar" class="user-avatar">
+                        <?php elseif ($userData && $userData['fotoPerfil'] && strpos($userData['fotoPerfil'], 'icon://') !== 0): ?>
+                            <img id="userAvatar" src="../../<?php echo htmlspecialchars($userData['fotoPerfil']); ?>" alt="Avatar" class="user-avatar">
+                        <?php else: ?>
+                            <img id="userAvatar" src="" alt="Avatar" class="user-avatar" style="display: none;">
+                        <?php endif; ?>
+                        <span id="userName" class="user-name"><?php echo htmlspecialchars($userName); ?></span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="#perfil" class="dropdown-item" onclick="switchTab('perfil', event)">
+                            <i class="fas fa-user-edit"></i> Perfil
+                        </a>
+                        <a href="#partidas" class="dropdown-item" onclick="switchTab('partidas', event)">
+                            <i class="fas fa-gamepad"></i> Partidas
+                        </a>
+                        <a href="#conquistas" class="dropdown-item" onclick="switchTab('conquistas', event)">
+                            <i class="fas fa-trophy"></i> Conquistas
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="logout.php" class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
+
+    <!-- Overlay escuro que aparece quando o painel lateral está ativo -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- PAINEL LATERAL (abre quando clica em um link do menu) -->
+    <aside class="side-panel" id="sidePanel">
+        <!-- Botão para fechar o painel -->
+        <button class="side-panel-close" onclick="closePanel()">x</button>
+
+        <!-- Conteúdo dinâmico do painel (preenchido por JavaScript) -->
+        <div class="side-panel-content" id="panelContent"></div>
+    </aside>
 
     <!-- Main Dashboard -->
     <div class="dashboard-container">
@@ -653,6 +718,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
             <p>Bem-vindo, <strong><?php echo htmlspecialchars($userName); ?></strong>! 🎮</p>
         </div>
         
+        <!-- CONTEÚDO PRINCIPAL -->
         <!-- TAB NAVIGATION -->
         <div class="tabs-container">
             <button class="tab-button active" onclick="switchTab('perfil', event)">
@@ -682,7 +748,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
             <div class="profile-section">
                 <div class="profile-avatar-box">
                     <div class="profile-avatar" id="avatarDisplay">
-                        <?php if ($userData && $userData['fotoPerfil']): ?>
+                        <?php if ($userData && $userData['fotoPerfilBlob']): ?>
+                            <img src="../get_avatar.php?id=<?php echo $userId; ?>" alt="Avatar">
+                        <?php elseif ($userData && $userData['fotoPerfil']): ?>
                             <?php if (strpos($userData['fotoPerfil'], 'icon://') === 0): ?>
                                 <i class="fas <?php echo htmlspecialchars(str_replace('icon://', '', $userData['fotoPerfil'])); ?>"></i>
                             <?php else: ?>
@@ -826,6 +894,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
                             <tr>
                                 <th>Posição</th>
                                 <th>Jogador</th>
+                                <th>Pontuação</th>
+                                <th>Jogos Jogados</th>
                                 <th>Lixo Total</th>
                                 <th>Lixo Único</th>
                                 <th>Vitórias</th>
@@ -839,7 +909,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
                             <tr>
                                 <td><strong><?php echo $i + 1; ?></strong></td>
                                 <td><?php echo htmlspecialchars($r['userName']); ?></td>
-                                <td><strong><?php echo $r['lixoTotal']; ?></strong></td>
+                                <td><strong><?php echo $r['pontuacao'] ?? 0; ?></strong></td>
+                                <td><?php echo $r['qtdJogo']; ?></td>
+                                <td><?php echo $r['lixoTotal']; ?></td>
                                 <td><?php echo $r['lixoUnic']; ?></td>
                                 <td><?php echo $r['qtdWin']; ?></td>
                                 <td><?php echo $winRate; ?>%</td>
@@ -1014,19 +1086,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
             if (!file) return;
             
             if (file.size > 5 * 1024 * 1024) {
-                uploadStatus.innerHTML = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> Arquivo muito grande (máx 5MB)</div>';
+                uploadStatus.innerHTML = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> Arquivo muito grande (máx 5MB).</div>';
+                avatarInput.value = '';
                 return;
             }
             
             if (!file.type.startsWith('image/')) {
-                uploadStatus.innerHTML = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> Selecione uma imagem válida</div>';
+                uploadStatus.innerHTML = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> Selecione uma imagem válida.</div>';
+                avatarInput.value = '';
                 return;
             }
             
+            // Exibe preview instantâneo
             const reader = new FileReader();
-            reader.onload = function(e) {
-                avatarDisplay.innerHTML = `<img src="${e.target.result}" alt="Avatar">`;
-                uploadStatus.innerHTML = '<div class="alert alert-success"><i class="fas fa-spinner"></i> Enviando...</div>';
+            reader.onload = function(evt) {
+                avatarDisplay.innerHTML = `<img src="${evt.target.result}" alt="Avatar">`;
+                uploadStatus.innerHTML = '<div class="alert alert-success"><i class="fas fa-spinner fa-spin"></i> Enviando...</div>';
             };
             reader.readAsDataURL(file);
             
@@ -1037,17 +1112,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
+            .then(response => response.json().catch(() => ({ error: 'Resposta inválida do servidor' })))
             .then(data => {
                 if (data.success) {
                     uploadStatus.innerHTML = '<div class="alert alert-success"><i class="fas fa-check-circle"></i> Avatar atualizado!</div>';
+
+                    // Atualiza o avatar do menu de usuário (usuário logado)
+                    const navAvatar = document.getElementById('userAvatar');
+                    if (navAvatar) {
+                        // Força reload para evitar cache
+                        const userAvatarUrl = navAvatar.getAttribute('src') || '';
+                        const separator = userAvatarUrl.includes('?') ? '&' : '?';
+                        navAvatar.src = `../get_avatar.php?id=<?php echo $userId; ?>${separator}t=${Date.now()}`;
+                        navAvatar.style.display = 'block';
+                    }
+
+                    // Limpa input para permitir o mesmo arquivo ser selecionado novamente
+                    avatarInput.value = '';
+
                     setTimeout(() => uploadStatus.innerHTML = '', 3000);
                 } else {
-                    uploadStatus.innerHTML = `<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> ${data.error}</div>`;
+                    uploadStatus.innerHTML = `<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> ${data.error || 'Erro desconhecido'}</div>`;
                 }
             })
-            .catch(() => {
-                uploadStatus.innerHTML = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> Erro ao fazer upload</div>';
+            .catch(err => {
+                console.error('Erro no upload do avatar:', err);
+                uploadStatus.innerHTML = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> Erro ao fazer upload.</div>';
             });
         });
         
@@ -1068,6 +1158,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
             .then(data => {
                 if (data.success) {
                     uploadStatus.innerHTML = '<div class="alert alert-success"><i class="fas fa-check-circle"></i> Ícone definido!</div>';
+                    // Update nav avatar
+                    const navAvatar = document.getElementById('userAvatar');
+                    if (navAvatar) {
+                        navAvatar.style.display = 'none';
+                    }
                     setTimeout(() => uploadStatus.innerHTML = '', 3000);
                 }
             });
@@ -1079,5 +1174,89 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
             initEnergyLines();
         }
     </script>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>GAEA PROTOCOL</h3>
+                <p>Um deckbuilder roguelike tático onde suas decisões moldam o destino do planeta.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-steam"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a onclick="window.location.href='../../index.html'">Home</a></li>
+                    <li><a onclick="openPanel('sobre')">Sobre</a></li>
+                    <li><a onclick="openPanel('personagens')">Personagens</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Suporte</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Termos de Serviço</a></li>
+                </ul>
+            </div>
+        </div>
+        
+  
+                    <div class="contributors-footer">
+                        <div class="contributors-content">
+                            <h4>Equipe de Desenvolvimento</h4>
+                            <div class="contributors-grid">
+                                <div class="contributor">
+                                    <div class="contributor-name">Bryan Nagano</div>
+                                    <a href="https://github.com/bryan7777777" class="contributor-git" target="_blank">
+                                        <i class="fab fa-github"></i> @bryan7777777
+                                    </a>
+                                </div>
+                                <div class="contributor">
+                                    <div class="contributor-name">Vinícius Gameleira</div>
+                                    <a href="https://github.com/VGameleira" class="contributor-git" target="_blank">
+                                        <i class="fab fa-github"></i> @VGameleira.Dev
+                                    </a>
+                                </div>
+                                <div class="contributor">
+                                    <div class="contributor-name">James Tertoliano</div>
+                                    <a href="https://github.com/Jakosjimn" class="contributor-git" target="_blank">
+                                        <i class="fab fa-github"></i> @Jakosjimn M/D
+                                    </a>
+                                </div>
+                                <div class="contributor">
+                                    <div class="contributor-name">Isaac Tomaz</div>
+                                    <a href="https://github.com/tomaz0000" class="contributor-git" target="_blank">
+                                        <i class="fab fa-github"></i> @tomaz0000
+                                    </a>
+                                </div>
+                                <div class="contributor">
+                                    <div class="contributor-name">Pedro Farinha</div>
+                                    <a href="https://github.com/pedrofarinha" class="contributor-git" target="_blank">
+                                        <i class="fab fa-github"></i> @pedrofarinha
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="senac-credit">
+                    Projeto acadêmico desenvolvido para o <strong>SENAC</strong> - 2024
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gaea Protocol. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
 </body>
 </html>

@@ -75,7 +75,7 @@ try {
         error_log("Login bem-sucedido: {$email}");
 
         // Redireciona para novo dashboard
-        header('Location: User/dashboard_new.php');
+        header('Location: User/dashboard.php');
         exit;
     } else {
         // Log de falha

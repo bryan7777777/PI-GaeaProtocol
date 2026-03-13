@@ -83,8 +83,15 @@ if (!move_uploaded_file($file['tmp_name'], $filePath)) {
 try {
     $relativePath = 'uploads/avatars/' . $fileName;
     
-    $stmt = $pdo->prepare("UPDATE user SET fotoPerfil = ? WHERE idUser = ?");
-    $stmt->execute([$relativePath, $userId]);
+    // Lê o conteúdo do arquivo
+    $imageData = file_get_contents($filePath);
+    
+    // Remove imagem anterior se existir
+    $stmt = $pdo->prepare("UPDATE user SET fotoPerfil = ?, fotoPerfilBlob = ? WHERE idUser = ?");
+    $stmt->execute([$relativePath, $imageData, $userId]);
+    
+    // Remove o arquivo do sistema de arquivos após salvar no banco
+    unlink($filePath);
     
     // Atualiza sessão
     $_SESSION['user']['fotoPerfil'] = $relativePath;
@@ -96,7 +103,7 @@ try {
     ]);
 } catch (PDOException $e) {
     // Remove arquivo se banco falhar
-    unlink($filePath);
+    if (file_exists($filePath)) unlink($filePath);
     http_response_code(500);
     echo json_encode(['error' => 'Erro ao atualizar banco de dados']);
     error_log('Erro upload avatar: ' . $e->getMessage());

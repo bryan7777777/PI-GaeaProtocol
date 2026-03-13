@@ -115,7 +115,7 @@ VALUES
 ('gameleira', 'gameleira@email.com', '$2y$12$8zqpTVMzN4eQqzH9Y0K2wODaVVVkVVVkVVVkVVVkVVVkVVVkVVVkV', '2024-08-10', CURDATE(), CURDATE()),
 ('pedrofarinha', 'pedrofarinha@email.com', '$2y$12$8zqpTVMzN4eQqzH9Y0K2wODaVVVkVVVkVVVkVVVkVVVkVVVkVVVkV', '2024-08-10', CURDATE(), CURDATE()),
 ('nagano', 'nagano@gmail.com', '$2y$12$8zqpTVMzN4eQqzH9Y0K2wODaVVVkVVVkVVVkVVVkVVVkVVVkVVVkV', '2024-08-10', CURDATE(), CURDATE()),
-('admin', 'admin@gaea.com', '$2y$12$8zqpTVMzN4eQqzH9Y0K2wODaVVVkVVVkVVVkVVVkVVVkVVVkVVVkV', NULL, CURDATE(), CURDATE());
+('admin', 'admin@gaea.com', '$2y$12$xjVp7OdADkp6yibixfq7c.UOqdUA0HB2ont29fEIpAE8R2m7yyPyS', NULL, CURDATE(), CURDATE());
 
 
 

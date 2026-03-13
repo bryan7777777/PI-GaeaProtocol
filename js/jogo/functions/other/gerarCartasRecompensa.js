@@ -75,7 +75,7 @@ while (opcoes.length < 3) {
     const nome = document.createElement("div");
     nome.classList.add("titulo");
     nome.textContent = carta.name;
-    nome.style.font.size = "20px";
+    nome.style.fontSize = "20px";
     cardDiv.appendChild(nome);
 
     // Custo da carta

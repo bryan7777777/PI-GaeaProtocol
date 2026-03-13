@@ -50,6 +50,7 @@ if (!$data) {
 $userId = $_SESSION['user']['id'];
 $resultado = strtolower(trim($data['resultado'] ?? ''));
 $lixoColetado = intval($data['lixoColetado'] ?? 0);
+$dinheiroColetado = intval($data['dinheiroColetado'] ?? 0);
 $wavesCompletadas = intval($data['wavesCompletadas'] ?? 0);
 $tempoJogo = intval($data['tempoJogo'] ?? 0);
 $protocoloUsado = trim($data['protocoloUsado'] ?? 'Desconhecido');
@@ -78,14 +79,15 @@ try {
     // Insere partida
     $stmt = $pdo->prepare("
         INSERT INTO partidas 
-        (idUser, dataPartida, resultado, lixoColetado, wavesCompletadas, tempoJogo, protocoloUsado, dificuldade)
-        VALUES (?, NOW(), ?, ?, ?, ?, ?, ?)
+        (idUser, dataPartida, resultado, lixoColetado, dinheiroColetado, wavesCompletadas, tempoJogo, protocoloUsado, dificuldade)
+        VALUES (?, NOW(), ?, ?, ?, ?, ?, ?, ?)
     ");
     
     $stmt->execute([
         $userId,
         $resultado,
         $lixoColetado,
+        $dinheiroColetado,
         $wavesCompletadas,
         $tempoJogo,
         $protocoloUsado,
@@ -109,11 +111,14 @@ try {
                 lixoTotal = lixoTotal + ?,
                 lixoUnic = CASE WHEN ? > 0 THEN lixoUnic + 1 ELSE lixoUnic END,
                 qtdWin = CASE WHEN ? = 'Vitória' THEN qtdWin + 1 ELSE qtdWin END,
-                qtdJogo = qtdJogo + 1
+                qtdJogo = qtdJogo + 1,
+                pontuacao = lixoTotal + ? + (CASE WHEN ? = 'Vitória' THEN qtdWin + 1 ELSE qtdWin END) * 100
             WHERE idUser = ?
         ");
         $stmt->execute([
             $lixoColetado,
+            $lixoColetado,
+            $resultado,
             $lixoColetado,
             $resultado,
             $userId
@@ -121,15 +126,17 @@ try {
     } else {
         // Criar novo status
         $vitarias = ($resultado === 'Vitória') ? 1 : 0;
+        $pontuacao = $lixoColetado + ($vitarias * 100);
         $stmt = $pdo->prepare("
             INSERT INTO userStatus 
-            (idUser, ultimoLoginJogo, lixoTotal, lixoUnic, qtdWin, qtdJogo)
-            VALUES (?, NOW(), ?, 1, ?, 1)
+            (idUser, ultimoLoginJogo, lixoTotal, lixoUnic, qtdWin, qtdJogo, pontuacao)
+            VALUES (?, NOW(), ?, 1, ?, 1, ?)
         ");
         $stmt->execute([
             $userId,
             $lixoColetado,
-            $vitarias
+            $vitarias,
+            $pontuacao
         ]);
     }
     

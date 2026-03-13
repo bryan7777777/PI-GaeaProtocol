@@ -4,7 +4,7 @@ start_secure_session();
 
 // Se já logado, redireciona
 if (!empty($_SESSION['user'])) {
-    header('Location: User/dashboard_premium.php');
+    header('Location: User/dashboard.php');
     exit;
 }
 ?>
@@ -19,6 +19,61 @@ if (!empty($_SESSION['user'])) {
     <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="../js/script.js" defer></script>
+    
+    <style>
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, rgba(10,40,28,0.98) 0%, rgba(13,31,24,0.98) 100%);
+            border-bottom: 2px solid #2caf50;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        
+        .top-nav .logo {
+            font-family: 'Megrim', cursive;
+            font-size: 1.5rem;
+            color: #2caf50;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .top-nav .logo:hover {
+            text-shadow: 0 0 10px rgba(44,175,80,0.5);
+            transform: scale(1.05);
+        }
+        
+        .top-nav .links {
+            display: flex;
+            gap: 2rem;
+            margin-left: auto; /* Move links to the right */
+        }
+        
+        .top-nav .links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .top-nav .links a:hover {
+            color: #2caf50;
+            text-shadow: 0 0 8px rgba(44,175,80,0.3);
+        }
+        
+        body {
+            padding-top: 80px;
+        }
+    </style>
 </head>
 <body>
     <!-- background animations container -->

@@ -26,7 +26,6 @@ function aplicarBuff(item) {
     case 9:
     case 25:
     case 28:
-    case 30:
     case 36:
       energyMax += 1;
       energy = energyMax;
@@ -48,6 +47,7 @@ function aplicarBuff(item) {
       limiteMao -= 1;
       maoInicio = limiteMao;
       }
+      break;
       break;
 
     case 5:

@@ -2,33 +2,32 @@
 <html lang="pt-BR">
 
 <head>
-    <!-- Metadados da página -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    
-    <!-- Meta tags para melhor experiência mobile -->
     <meta name="theme-color" content="#1e3a28">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    <!-- Preconnect para fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <title>Gaea Protocol</title>
-    
-    <!-- Folhas de estilo -->
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
+    <!-- ✅ NOVO: CSS das melhorias (toasts, sidebar fix, resultado da run) -->
+    <link rel="stylesheet" href="css/gameEnhancements.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Megrim&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Script principal -->
+
     <script src="js/script.js" defer></script>
+    <!-- ✅ NOVO: Script das melhorias (deve vir antes do main do jogo) -->
+    <script src="js/gameEnhancements.js" defer></script>
 </head>
 
-<body>
-    <!-- Sistema de Background -->
+<!-- ✅ data-authenticated é preenchido pelo PHP via sessão -->
+<body data-authenticated="<?php echo !empty($_SESSION['user']) ? 'true' : 'false'; ?>">
+
     <div class="background-system">
         <div class="background-base"></div>
         <div class="circuit-grid"></div>
@@ -38,33 +37,26 @@
         <div class="distortion-layer"></div>
     </div>
 
-    <!-- Overlay escuro que aparece quando o painel lateral está ativo -->
+    <!-- ✅ O overlay agora é posição fixed e não empurra conteúdo -->
     <div class="overlay" id="overlay"></div>
 
     <!-- NAVEGAÇÃO PRINCIPAL -->
     <nav>
         <div class="nav-content">
-            <!-- Logo que clica para voltar home -->
             <div class="logo-text" onclick="showHome()">GAEA PROTOCOL</div>
 
-            <!-- Botão hamburger para mobile -->
             <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
-            <!-- Links de navegação (abrem painel lateral) -->
             <ul class="nav-links" id="navLinks">
                 <li><a onclick="openPanel('sobre')">Sobre</a></li>
                 <li><a onclick="openPanel('historia')">História</a></li>
-                <!-- <li><a onclick="openPanel('gameplay')">Gameplay</a></li> -->
-                <!-- <li><a onclick="openPanel('protocool')">Protocool</a></li> -->
-                <!-- <li><a onclick="openPanel('mundo')">O Mundo</a></li> -->
                 <li><a onclick="openPanel('personagens')">Personagens</a></li>
             </ul>
 
-            <!-- Botão de Login/Usuário -->
             <div class="auth-section">
                 <div id="authGuest" class="auth-guest">
                     <a href="php/login.php" class="login-btn">
@@ -97,27 +89,16 @@
 
     <!-- CONTEÚDO PRINCIPAL -->
     <main class="main-content" data-page="home">
-
-        <!-- PÁGINA HOME -->
         <div class="page-content active" id="home">
-            <!-- Seção herói com título e chamada para ação -->
             <header class="hero">
-                <!-- imagem secundária à esquerda (elemento secundário) -->
                 <div class="hero-image">
-                    <img src="img/site/amigos/gaia.png" alt="Gaia (placeholder)">
+                    <img src="img/site/amigos/gaia.png" alt="Gaia">
                 </div>
-
-                <!-- Conteúdo central -->
                 <div class="hero-content">
                     <h1>GAEA PROTOCOL</h1>
                     <p class="subtitle">Deckbuilder Roguelike Tático</p>
-                    <p class="lead">Assuma o controle de pilotos e mechas projetados para restaurar um planeta à beira
-                        do colapso.</p>
-
-                    <!-- Botões de chamada para ação -->
+                    <p class="lead">Assuma o controle de pilotos e mechas projetados para restaurar um planeta à beira do colapso.</p>
                     <div class="cta-buttons">
-                        <!-- <button class="cta-button secondary" onclick="openPanel('gameplay')">Como Jogar</button> -->
-                        
                         <a href="pages/telaDeInicioJogo.html">
                             <button class="cta-button play-game">Jogue Agora</button>
                         </a>
@@ -127,12 +108,9 @@
         </div>
     </main>
 
-    <!-- PAINEL LATERAL (abre quando clica em um link do menu) -->
+    <!-- ✅ PAINEL LATERAL — agora fixed, não abaixa a página -->
     <aside class="side-panel" id="sidePanel">
-        <!-- Botão para fechar o painel -->
-        <button class="side-panel-close" onclick="closePanel()">x</button>
-
-        <!-- Conteúdo dinâmico do painel (preenchido por JavaScript) -->
+        <button class="side-panel-close" onclick="closePanel()">×</button>
         <div class="side-panel-content" id="panelContent"></div>
     </aside>
 
@@ -149,17 +127,13 @@
                     <a href="#"><i class="fab fa-steam"></i></a>
                 </div>
             </div>
-            
             <div class="footer-section">
                 <h4>Links Rápidos</h4>
                 <ul>
                     <li><a onclick="showHome()">Home</a></li>
                     <li><a onclick="openPanel('sobre')">Sobre</a></li>
-                    <!-- <li><a onclick="openPanel('gameplay')">Gameplay</a></li> -->
-                    <!-- <li><a onclick="openPanel('protocool')">Protocool</a></li> -->
                 </ul>
             </div>
-            
             <div class="footer-section">
                 <h4>Recursos</h4>
                 <ul>
@@ -170,50 +144,46 @@
                 </ul>
             </div>
         </div>
-        
-  
-                    <div class="contributors-footer">
-                        <div class="contributors-content">
-                            <h4>Equipe de Desenvolvimento</h4>
-                            <div class="contributors-grid">
-                                <div class="contributor">
-                                    <div class="contributor-name">Bryan Nagano</div>
-                                    <a href="https://github.com/bryan7777777" class="contributor-git" target="_blank">
-                                        <i class="fab fa-github"></i> @bryan7777777
-                                    </a>
-                                </div>
-                                <div class="contributor">
-                                    <div class="contributor-name">Vinícius Gameleira</div>
-                                    <a href="https://github.com/VGameleira" class="contributor-git" target="_blank">
-                                        <i class="fab fa-github"></i> @VGameleira.Dev
-                                    </a>
-                                </div>
-                                <div class="contributor">
-                                    <div class="contributor-name">James Tertoliano</div>
-                                    <a href="https://github.com/Jakosjimn" class="contributor-git" target="_blank">
-                                        <i class="fab fa-github"></i> @Jakosjimn M/D
-                                    </a>
-                                </div>
-                                <div class="contributor">
-                                    <div class="contributor-name">Isaac Tomaz</div>
-                                    <a href="https://github.com/tomaz0000" class="contributor-git" target="_blank">
-                                        <i class="fab fa-github"></i> @tomaz0000
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="senac-credit">
-                    Projeto acadêmico desenvolvido para o <strong>SENAC</strong> - 2024
+
+        <div class="contributors-footer">
+            <div class="contributors-content">
+                <h4>Equipe de Desenvolvimento</h4>
+                <div class="contributors-grid">
+                    <div class="contributor">
+                        <div class="contributor-name">Bryan Nagano</div>
+                        <a href="https://github.com/bryan7777777" class="contributor-git" target="_blank">
+                            <i class="fab fa-github"></i> @bryan7777777
+                        </a>
+                    </div>
+                    <div class="contributor">
+                        <div class="contributor-name">Vinícius Gameleira</div>
+                        <a href="https://github.com/VGameleira" class="contributor-git" target="_blank">
+                            <i class="fab fa-github"></i> @VGameleira.Dev
+                        </a>
+                    </div>
+                    <div class="contributor">
+                        <div class="contributor-name">James Tertoliano</div>
+                        <a href="https://github.com/Jakosjimn" class="contributor-git" target="_blank">
+                            <i class="fab fa-github"></i> @Jakosjimn M/D
+                        </a>
+                    </div>
+                    <div class="contributor">
+                        <div class="contributor-name">Isaac Tomaz</div>
+                        <a href="https://github.com/tomaz0000" class="contributor-git" target="_blank">
+                            <i class="fab fa-github"></i> @tomaz0000
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        
+        <div class="senac-credit">
+            Projeto acadêmico desenvolvido para o <strong>SENAC</strong> - 2024
+        </div>
+
         <div class="footer-bottom">
             <p>&copy; 2024 Gaea Protocol. Todos os direitos reservados.</p>
         </div>
     </footer>
 
 </body>
-
 </html>
