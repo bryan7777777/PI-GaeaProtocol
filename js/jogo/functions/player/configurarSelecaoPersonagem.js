@@ -53,7 +53,7 @@ function configurarSelecaoPersonagem() {
       energia: 4,
       escudo: 0,
       mao: 6,
-      img: "./../img/jogo/player/kalenart.png",
+      img: "./../img/jogo/player/gaeaReen.gif",
       lor: "[...]"
     },
     amarelo: {
@@ -123,7 +123,7 @@ function configurarSelecaoPersonagem() {
       energia: 3,
       escudo: 5,
       mao: 5,
-      img: "./../img/jogo/player/autoridadeDoPorto.png",
+      img: "./../img/jogo/player/autoridadeDoPorto.gif",
       lor: "Assim como seu pai ela assumiu o manto de autoridade do porto, aprendeu bem com seu velho estratégias muito boas de ataque a distancia, mas ela se apaixonou pelo mar assim como sua mãe. [...]"
     },
     azul: {
@@ -291,7 +291,7 @@ function configurarSelecaoPersonagem() {
       energia: "2",
       escudo: "0",
       mao: "4",
-      img: "./../img/jogo/player/lilia.png",
+      img: "./../img/jogo/player/lilia.gif",
       lor: "Lider do GLACIAL PROTOCOOL (GLA.P), dona de muitas lendas, ao mesmo tempo que sabem muito sobre ela também sabem tão pouco, há muitos rumores e historias lendarias dela, uma grande estrategista, dizem que ela ja foi capaz de apenas com mais 3 soldados do GLA.P derrubar um imenso batalhão de mais de 100mil robos corrompidos e destruir uma das principais bases da IA, também falam que ela sozinha já bateu de frente contra multiplos exercitos para salvar seu povo, verdade ou não, esse mitos ecoam por todos do GLA.P e até outros protocools já ouviram dela, ela é muito respeitada por todos, até Magnolia a lider do G.P a respeita muito[...], \"Será que é verdade que ela não precisa de um mecha?\""
     },
     glacia: {

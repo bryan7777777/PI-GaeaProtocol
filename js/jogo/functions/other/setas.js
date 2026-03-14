@@ -36,10 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
         nome: "GAEA PROTOCOOL",
         classe: "gaea",
         personagens: [
+          { id: "gaeaReen", img: "gaeaReen.gif" },
           { id: "verde", img: "capaceteverde.png" },
           { id: "magnolia", img: "magnolia.jpg" },
           { id: "wallace", img: "espectroDaFloresta.jpeg" },
-          { id: "gaeaReen", img: "gaeaReen.png" }
         ]
       },
       {
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nome: "OCEAN PROTOCOOL",
         classe: "porto",
         personagens: [
-          { id: "porto", img: "autoridadeDoPorto.jpg" },
+          { id: "porto", img: "autoridadeDoPorto.gif" },
           { id: "azul", img: "capaceteazul.png" },
           { id: "fergus", img: "fergus.jpg" },
           { id: "mercuri", img: "mercuri.jpg" }
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nome: "GLACIAL PROTOCOOL",
         classe: "glacial",
         personagens: [
-          { id: "lilia", img: "lilia.png" },
+          { id: "lilia", img: "lilia.gif" },
           { id: "glacia", img: "glacia.jpg" },
           { id: "olaf", img: "olaf.jpg" },
           { id: "olga", img: "olga.jpg" }
