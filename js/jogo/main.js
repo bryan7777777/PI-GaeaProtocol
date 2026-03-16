@@ -6410,7 +6410,7 @@ function criarPlayerNaDiv3() {
       limiteMao = 5;
       break;
     case "lucius":
-      playerImg.src = "./../img/jogo/player/lucius.png";
+      playerImg.src = "./../img/jogo/player/animado/lucius/statico/lucius1.png";
       playerMaxHP = 100, energyMax = 3, playerShieldInit = 0;
       playerHP = 100, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.lucius];
@@ -7027,7 +7027,7 @@ const characterDecks = {
 
 //ANIMAÇÃO ATK PLAYER EM FASE DE TESTE
 function animarLiliaTransformacao() {
-  if (personagemSelecionado == "lilia"||personagemSelecionado=="porto"||personagemSelecionado=="gaeaReen"){
+  if (personagemSelecionado == "lilia"||personagemSelecionado=="porto"||personagemSelecionado=="gaeaReen"||personagemSelecionado=="lucius"){
 
   const playerImg = document.getElementById("player");
   if (!playerImg) return;
@@ -7041,6 +7041,14 @@ function animarLiliaTransformacao() {
       f2: "./../img/jogo/player/animado/porto/atk/porto1.png",
       f3: "./../img/jogo/player/animado/porto/atk/porto1.png",
       idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
+    };
+      break;
+    case "lucius":
+      frames = {
+      f1: "./../img/jogo/player/animado/lucius/atk/lucius1.png",
+      f2: "./../img/jogo/player/animado/lucius/atk/lucius2.png",
+      f3: "./../img/jogo/player/animado/lucius/atk/lucius2.png",
+      idle: "./../img/jogo/player/animado/lucius/statico/lucius1.png"
     };
       break;
     case "gaeaReen":
@@ -7123,7 +7131,7 @@ function animarLiliaTransformacao() {
 }
 //ANIMAÇÃO DEF PLAYER EM FASE DE TESTE
 function playerTomarDanoAnimacao() {
-  if (personagemSelecionado == "lilia"||personagemSelecionado=="porto"||personagemSelecionado=="gaeaReen") {
+  if (personagemSelecionado == "lilia"||personagemSelecionado=="porto"||personagemSelecionado=="gaeaReen"||personagemSelecionado=="lucius") {
 
   const playerImg = document.getElementById("player");
   if (!playerImg) return;
@@ -7135,6 +7143,13 @@ function playerTomarDanoAnimacao() {
     frames = {
       hit: "./../img/jogo/player/animado/porto/def/porto1.png",
       idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
+    };
+  
+      break;
+    case "lucius":
+    frames = {
+      hit: "./../img/jogo/player/animado/lucius/def/lucius1.png",
+      idle: "./../img/jogo/player/animado/lucius/statico/lucius1.png"
     };
   
       break;
@@ -7257,7 +7272,7 @@ async function enemyTurn() {
         case "attackVida":
         case "morrer":
           playerTomarDanoAnimacao();
-          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto"||personagemSelecionado == "gaeaReen") {
+          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto"||personagemSelecionado == "gaeaReen"||personagemSelecionado == "lucius") {
             podeSacudir = false;
           }
           break;

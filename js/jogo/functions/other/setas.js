@@ -76,10 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
         nome: "WIND PROTOCOOL",
         classe: "eolico",
         personagens: [
+          { id: "lucius", img: "lucius.gif" },
           { id: "marcos", img: "marcos.jpg" },
           { id: "cleide", img: "cleide.jpg" },
           { id: "magna", img: "magna.jpg" },
-          { id: "lucius", img: "lucius.jpg" }
         ]
       },
       {

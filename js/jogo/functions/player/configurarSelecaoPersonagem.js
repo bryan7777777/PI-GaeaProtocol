@@ -277,7 +277,7 @@ function configurarSelecaoPersonagem() {
       energia: 3,
       escudo: 0,
       mao: 5,
-      img: "./../img/jogo/player/lucius.png",
+      img: "./../img/jogo/player/lucius.gif",
       lor: "Ninguem sabe onde ele vive, por onde anda, ele vai trabalhar quando ele quer pelo tempo que quer e até hoje se perguntam como ele não foi demitido, se não fosse pelos seus feitos lendários ele provavelmente não estária aqui, mas ninguem sabe se são verdade, mas tambem não discordam, afinal nenhum deles tem provas, mas seu irmão Jao é o único quem sabe a verdade e sabe por onde ele anda."
     },
     lilia: {
