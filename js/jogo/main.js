@@ -197,6 +197,12 @@ function checkEnemies() {
 
           enemies.splice(index, 1);
 
+          if (personagemSelecionado == "ferrus") {
+            animarEspelhoFerrus("idle", {
+              idle: "./../img/jogo/player/animado/ferrus/statico/ferrus11.png"
+            });
+          }
+
           if (
             morto.name === "Irislidriz" ||
             morto.name === "Isla" ||
@@ -623,7 +629,7 @@ function checkEnemies() {
           } else if (enemies.length === 0 && playerHP > 0) {
             // Registrar vitória
             registrarPartida('Vitória');
-            
+
             const overlay = document.getElementById("overlay");
             overlay.style.display = "block";
             overlay.classList.add("popup-opacity");
@@ -3401,20 +3407,25 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
           drawCards();
           updateHUD();
           tipoFase = tipo;
-          baseBoss=20;
-          baseElite=10;
-          baseComum=5;
-          baseMult=1;
+          baseBoss = 20;
+          baseElite = 10;
+          baseComum = 5;
+          baseMult = 1;
           ganhoMoney();
+          if (personagemSelecionado == "ferrus") {
+            animarEspelhoFerrus("idle", {
+              idle: "./../img/jogo/player/animado/ferrus/statico/ferrus11.png"
+            });
+          }
           if (tipo == 'boss') {
-            dinheiro += baseBoss*baseMult;
-            dinheiro += Math.floor(mapaBatalha / 3)*baseMult;
+            dinheiro += baseBoss * baseMult;
+            dinheiro += Math.floor(mapaBatalha / 3) * baseMult;
           } else if (tipo == 'elite' || tipo == 'inimigo2') {
-            dinheiro += baseElite*baseMult;
-            dinheiro += Math.floor(mapaBatalha / 3)*baseMult;
+            dinheiro += baseElite * baseMult;
+            dinheiro += Math.floor(mapaBatalha / 3) * baseMult;
           } else if (tipo == 'inimigo') {
-            dinheiro += baseComum*baseMult;
-            dinheiro += Math.floor(mapaBatalha / 3)*baseMult;
+            dinheiro += baseComum * baseMult;
+            dinheiro += Math.floor(mapaBatalha / 3) * baseMult;
           }
           if (pagina === "selecaoMapa.html") {
             executarTxtBoss();
@@ -6544,9 +6555,9 @@ function criarPlayerNaDiv3() {
       playerImg.src = imgLilia;
       break;
     case "ferrus":
-      playerImg.src = "./../img/jogo/player/sal2.png";
-      playerMaxHP = 160, energyMax = 3, playerShieldInit = 0;
-      playerHP = 80, energy = 3, playerShield = playerShieldInit;
+      playerImg.src = "./../img/jogo/player/animado/ferrus/statico/ferrus1.png";
+      playerMaxHP = 160, energyMax = 3, playerShieldInit = 17;
+      playerHP = 32, energy = 3, playerShield = playerShieldInit;
       dinheiro = 50;
       atualizarDinheiro()
       playerDeck = [...characterDecks.ferrus];
@@ -7027,211 +7038,236 @@ const characterDecks = {
 
 //ANIMAÇÃO ATK PLAYER EM FASE DE TESTE
 function animarLiliaTransformacao() {
-  if (personagemSelecionado == "lilia"||personagemSelecionado=="porto"||personagemSelecionado=="gaeaReen"||personagemSelecionado=="lucius"){
+  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus") {
 
-  const playerImg = document.getElementById("player");
-  if (!playerImg) return;
+    const playerImg = document.getElementById("player");
+    if (!playerImg) return;
 
-  let frames;
+    let frames;
 
-  switch (personagemSelecionado) {
-    case "porto":
-      frames = {
-      f1: "./../img/jogo/player/animado/porto/atk/porto2.png",
-      f2: "./../img/jogo/player/animado/porto/atk/porto1.png",
-      f3: "./../img/jogo/player/animado/porto/atk/porto1.png",
-      idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
-    };
-      break;
-    case "lucius":
-      frames = {
-      f1: "./../img/jogo/player/animado/lucius/atk/lucius1.png",
-      f2: "./../img/jogo/player/animado/lucius/atk/lucius2.png",
-      f3: "./../img/jogo/player/animado/lucius/atk/lucius2.png",
-      idle: "./../img/jogo/player/animado/lucius/statico/lucius1.png"
-    };
-      break;
-    case "gaeaReen":
-      frames = {
-      f1: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen2.png",
-      f2: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen3.png",
-      f3: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen3.png",
-      idle: "./../img/jogo/player/animado/gaeaReen/statico/gaeaReen1.png"
-    };
-      break;
-    case "lilia":
-      if (mapaBatalha >= 19) {
-    frames = {
-      f1: "./../img/jogo/player/animado/lilia/atk/lilia111.png",
-      f2: "./../img/jogo/player/animado/lilia/atk/lilia222.png",
-      f3: "./../img/jogo/player/animado/lilia/atk/lilia333.png",
-      idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia3.png"
-    };
-  } else if (mapaBatalha >= 11) {
-    frames = {
-      f1: "./../img/jogo/player/animado/lilia/atk/lilia11.png",
-      f2: "./../img/jogo/player/animado/lilia/atk/lilia22.png",
-      f3: "./../img/jogo/player/animado/lilia/atk/lilia33.png",
-      idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia2.png"
-    };
-  } else {
-    frames = {
-      f1: "./../img/jogo/player/animado/lilia/atk/lilia1.png",
-      f2: "./../img/jogo/player/animado/lilia/atk/lilia2.png",
-      f3: "./../img/jogo/player/animado/lilia/atk/lilia3.png",
-      idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia1.png"
-    };
-  }
-      break;
-  
-    default:
-      break;
-  }
-  
+    switch (personagemSelecionado) {
+      case "porto":
+        frames = {
+          f1: "./../img/jogo/player/animado/porto/atk/porto2.png",
+          f2: "./../img/jogo/player/animado/porto/atk/porto1.png",
+          f3: "./../img/jogo/player/animado/porto/atk/porto1.png",
+          idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
+        };
+        break;
+      case "ferrus":
+        frames = {
+          f1: "./../img/jogo/player/animado/ferrus/atk/ferrus1.png",
+          f2: "./../img/jogo/player/animado/ferrus/atk/ferrus1.png",
+          f3: "./../img/jogo/player/animado/ferrus/atk/ferrus1.png",
+          idle: "./../img/jogo/player/animado/ferrus/statico/ferrus1.png"
+        };
+        animarEspelhoFerrus("atk", {
+          f1: "./../img/jogo/player/animado/ferrus/atk/ferrus11.png",
+          f2: "./../img/jogo/player/animado/ferrus/atk/ferrus11.png",
+          f3: "./../img/jogo/player/animado/ferrus/atk/ferrus22.png",
+          idle: "./../img/jogo/player/animado/ferrus/statico/ferrus11.png"
+        }, { delay: 100 });
+        break;
+      case "lucius":
+        frames = {
+          f1: "./../img/jogo/player/animado/lucius/atk/lucius1.png",
+          f2: "./../img/jogo/player/animado/lucius/atk/lucius2.png",
+          f3: "./../img/jogo/player/animado/lucius/atk/lucius2.png",
+          idle: "./../img/jogo/player/animado/lucius/statico/lucius1.png"
+        };
+        break;
+      case "gaeaReen":
+        frames = {
+          f1: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen2.png",
+          f2: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen3.png",
+          f3: "./../img/jogo/player/animado/gaeaReen/atk/gaeaReen3.png",
+          idle: "./../img/jogo/player/animado/gaeaReen/statico/gaeaReen1.png"
+        };
+        break;
+      case "lilia":
+        if (mapaBatalha >= 19) {
+          frames = {
+            f1: "./../img/jogo/player/animado/lilia/atk/lilia111.png",
+            f2: "./../img/jogo/player/animado/lilia/atk/lilia222.png",
+            f3: "./../img/jogo/player/animado/lilia/atk/lilia333.png",
+            idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia3.png"
+          };
+        } else if (mapaBatalha >= 11) {
+          frames = {
+            f1: "./../img/jogo/player/animado/lilia/atk/lilia11.png",
+            f2: "./../img/jogo/player/animado/lilia/atk/lilia22.png",
+            f3: "./../img/jogo/player/animado/lilia/atk/lilia33.png",
+            idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia2.png"
+          };
+        } else {
+          frames = {
+            f1: "./../img/jogo/player/animado/lilia/atk/lilia1.png",
+            f2: "./../img/jogo/player/animado/lilia/atk/lilia2.png",
+            f3: "./../img/jogo/player/animado/lilia/atk/lilia3.png",
+            idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia1.png"
+          };
+        }
+        break;
 
-  const delay = 100;
+      default:
+        break;
+    }
 
-  // garante suavidade
-  playerImg.style.transition = "transform 0.25s ease-out";
 
-  // 1 → começa indo para trás
-  setTimeout(() => {
-    playerImg.src = frames.f1;
-    playerImg.style.transform = "translateX(-75px)";
-  }, 0);
+    const delay = 100;
 
-  // 2 → continua atrás
-  setTimeout(() => {
-    playerImg.src = frames.f2;
-    playerImg.style.transform = "translateX(-75px)";
-  }, delay);
+    // garante suavidade
+    playerImg.style.transition = "transform 0.25s ease-out";
 
-  // 3 → começa a voltar para a posição original
-  setTimeout(() => {
-    playerImg.src = frames.f3;
-    playerImg.style.transform = "translateX(0)";
-  }, delay * 2);
+    // 1 → começa indo para trás
+    setTimeout(() => {
+      playerImg.src = frames.f1;
+      playerImg.style.transform = "translateX(-75px)";
+    }, 0);
 
-  // 2 → já estabilizando
-  setTimeout(() => {
-    playerImg.src = frames.f2;
-  }, delay * 3);
+    // 2 → continua atrás
+    setTimeout(() => {
+      playerImg.src = frames.f2;
+      playerImg.style.transform = "translateX(-75px)";
+    }, delay);
 
-  // 1
-  setTimeout(() => {
-    playerImg.src = frames.f1;
-  }, delay * 4);
+    // 3 → começa a voltar para a posição original
+    setTimeout(() => {
+      playerImg.src = frames.f3;
+      playerImg.style.transform = "translateX(0)";
+    }, delay * 2);
 
-  // idle → posição totalmente normal
-  setTimeout(() => {
-    playerImg.src = frames.idle;
-    playerImg.style.transform = "translateX(0)";
-  }, delay * 5);
+    // 2 → já estabilizando
+    setTimeout(() => {
+      playerImg.src = frames.f2;
+    }, delay * 3);
+
+    // 1
+    setTimeout(() => {
+      playerImg.src = frames.f1;
+    }, delay * 4);
+
+    // idle → posição totalmente normal
+    setTimeout(() => {
+      playerImg.src = frames.idle;
+      playerImg.style.transform = "translateX(0)";
+    }, delay * 5);
   }
 }
 //ANIMAÇÃO DEF PLAYER EM FASE DE TESTE
 function playerTomarDanoAnimacao() {
-  if (personagemSelecionado == "lilia"||personagemSelecionado=="porto"||personagemSelecionado=="gaeaReen"||personagemSelecionado=="lucius") {
+  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus") {
 
-  const playerImg = document.getElementById("player");
-  if (!playerImg) return;
+    const playerImg = document.getElementById("player");
+    if (!playerImg) return;
 
-  let frames;
+    let frames;
 
-  switch (personagemSelecionado) {
-    case "porto":
-    frames = {
-      hit: "./../img/jogo/player/animado/porto/def/porto1.png",
-      idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
-    };
-  
-      break;
-    case "lucius":
-    frames = {
-      hit: "./../img/jogo/player/animado/lucius/def/lucius1.png",
-      idle: "./../img/jogo/player/animado/lucius/statico/lucius1.png"
-    };
-  
-      break;
-    case "gaeaReen":
-    frames = {
-      hit: "./../img/jogo/player/animado/gaeaReen/def/gaeaReen1.png",
-      idle: "./../img/jogo/player/animado/gaeaReen/statico/gaeaReen1.png"
-    };
-  
-      break;
-    case "lilia":
-      if (mapaBatalha >= 19) {
-    frames = {
-      hit: "./../img/jogo/player/animado/lilia/def/lilia111.png",
-      idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia3.png"
-    };
-  } else if (mapaBatalha >= 11) {
-    frames = {
-      hit: "./../img/jogo/player/animado/lilia/def/lilia11.png",
-      idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia2.png"
-    };
-  } else {
-    frames = {
-      hit: "./../img/jogo/player/animado/lilia/def/lilia1.png",
-      idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia1.png"
-    };
-  }
-      break;
-  
-    default:
-      break;
-  }
+    switch (personagemSelecionado) {
+      case "porto":
+        frames = {
+          hit: "./../img/jogo/player/animado/porto/def/porto1.png",
+          idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
+        };
 
-  const pushDistance = -100;
-  const pushDuration = 180;
-  const returnDuration = 220;
+        break;
+      case "ferrus":
+        frames = {
+          hit: "./../img/jogo/player/animado/ferrus/def/ferrus1.png",
+          idle: "./../img/jogo/player/animado/ferrus/statico/ferrus1.png"
+        };
+        animarEspelhoFerrus("def", {
+          hit: "./../img/jogo/player/animado/ferrus/def/ferrus11.png",
+          hit2: "./../img/jogo/player/animado/ferrus/def/ferrus22.png",
+          idle: "./../img/jogo/player/animado/ferrus/statico/ferrus11.png"
+        }, { delay: 120 });
+        break;
+      case "lucius":
+        frames = {
+          hit: "./../img/jogo/player/animado/lucius/def/lucius1.png",
+          idle: "./../img/jogo/player/animado/lucius/statico/lucius1.png"
+        };
 
-  let start = null;
+        break;
+      case "gaeaReen":
+        frames = {
+          hit: "./../img/jogo/player/animado/gaeaReen/def/gaeaReen1.png",
+          idle: "./../img/jogo/player/animado/gaeaReen/statico/gaeaReen1.png"
+        };
 
-  playerImg.style.transition = "none";
-  playerImg.style.transform = "translateX(0)";
-  playerImg.style.willChange = "transform";
+        break;
+      case "lilia":
+        if (mapaBatalha >= 19) {
+          frames = {
+            hit: "./../img/jogo/player/animado/lilia/def/lilia111.png",
+            idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia3.png"
+          };
+        } else if (mapaBatalha >= 11) {
+          frames = {
+            hit: "./../img/jogo/player/animado/lilia/def/lilia11.png",
+            idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia2.png"
+          };
+        } else {
+          frames = {
+            hit: "./../img/jogo/player/animado/lilia/def/lilia1.png",
+            idle: imgLilia || "./../img/jogo/player/animado/lilia/statico/lilia1.png"
+          };
+        }
+        break;
 
-  trocarSpriteComDelay(playerImg, frames.hit, 2, () => {
-    requestAnimationFrame(empurrar);
-  });
+      default:
+        break;
+    }
 
-  function empurrar(timestamp) {
-    if (!start) start = timestamp;
-    const progress = Math.min((timestamp - start) / pushDuration, 1);
+    const pushDistance = -100;
+    const pushDuration = 180;
+    const returnDuration = 220;
 
-    const eased = 1 - Math.pow(1 - progress, 3);
-    playerImg.style.transform = `translateX(${pushDistance * eased}px)`;
+    let start = null;
 
-    if (progress < 1) {
+    playerImg.style.transition = "none";
+    playerImg.style.transform = "translateX(0)";
+    playerImg.style.willChange = "transform";
+
+    trocarSpriteComDelay(playerImg, frames.hit, 2, () => {
       requestAnimationFrame(empurrar);
-    } else {
-      start = null;
-      requestAnimationFrame(voltar);
+    });
+
+    function empurrar(timestamp) {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / pushDuration, 1);
+
+      const eased = 1 - Math.pow(1 - progress, 3);
+      playerImg.style.transform = `translateX(${pushDistance * eased}px)`;
+
+      if (progress < 1) {
+        requestAnimationFrame(empurrar);
+      } else {
+        start = null;
+        requestAnimationFrame(voltar);
+      }
     }
-  }
 
-  function voltar(timestamp) {
-    if (!start) start = timestamp;
-    const progress = Math.min((timestamp - start) / returnDuration, 1);
+    function voltar(timestamp) {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / returnDuration, 1);
 
-    const eased = progress < 0.5
-      ? 2 * progress * progress
-      : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      const eased = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
 
-    playerImg.style.transform =
-      `translateX(${pushDistance * (1 - eased)}px)`;
+      playerImg.style.transform =
+        `translateX(${pushDistance * (1 - eased)}px)`;
 
-    if (progress < 1) {
-      requestAnimationFrame(voltar);
-    } else {
-      playerImg.style.transform = "translateX(0)";
-      playerImg.style.willChange = "auto";
+      if (progress < 1) {
+        requestAnimationFrame(voltar);
+      } else {
+        playerImg.style.transform = "translateX(0)";
+        playerImg.style.willChange = "auto";
 
-      trocarSpriteComDelay(playerImg, frames.idle, 1);
+        trocarSpriteComDelay(playerImg, frames.idle, 1);
+      }
     }
-  }
   }
 }
 function trocarSpriteComDelay(img, src, delayFrames = 2, callback) {
@@ -7255,6 +7291,99 @@ function trocarSpriteComDelay(img, src, delayFrames = 2, callback) {
     requestAnimationFrame(esperar);
   };
 }
+function animarEspelhoFerrus(tipo, frames, opcoes = {}) {
+  if (personagemSelecionado !== "ferrus") return;
+
+  const player = document.getElementById("player");
+  if (!player) return;
+
+  let espelho = document.getElementById("ferrus-espelho");
+
+  const container = player.parentElement;
+
+  // CRIA SÓ UMA VEZ
+  if (!espelho) {
+    espelho = document.createElement("img");
+    espelho.id = "ferrus-espelho";
+
+    espelho.style.position = "absolute";
+    espelho.style.pointerEvents = "none";
+    espelho.style.zIndex = "0";
+
+    container.appendChild(espelho);
+  }
+
+  // SEMPRE atualiza posição
+  espelho.style.left = player.offsetLeft - -160 + "px";
+  espelho.style.top = player.offsetTop - 75 + "px";
+  espelho.style.width = player.offsetWidth * 1.4 + "px";
+
+  const delay = opcoes.delay || 100;
+
+  // =========================
+  // IDLE
+  // =========================
+  if (tipo === "idle") {
+    espelho.src = frames.idle;
+    espelho.style.transform = "translateX(0)";
+    espelho.style.zIndex = "0";
+    return;
+  }
+
+  // =========================
+  // ATAQUE
+  // =========================
+  if (tipo === "atk") {
+    espelho.style.zIndex = "0";
+
+    espelho.style.transition = "transform 0.6s ease-out";
+
+    setTimeout(() => {
+      espelho.style.transform = "translateX(40vw)";
+    }, 10);
+
+    setTimeout(() => espelho.src = frames.f1, 0);
+    setTimeout(() => espelho.src = frames.f2, delay);
+    setTimeout(() => espelho.src = frames.f3, delay * 2);
+
+    setTimeout(() => {
+      espelho.style.transition = "transform 0.4s ease-in";
+      espelho.style.transform = "translateX(0)";
+    }, delay * 3 + 100);
+
+    // volta pro idle
+    setTimeout(() => {
+      espelho.src = frames.idle;
+      espelho.style.zIndex = "0";
+    }, delay * 4 + 100);
+  }
+
+  // =========================
+  // DEFESA
+  // =========================
+  if (tipo === "def") {
+    espelho.style.zIndex = "2";
+
+    espelho.style.transition = "transform 0.25s ease-out";
+
+    setTimeout(() => {
+      espelho.style.transform = "translateX(-200px)";
+    }, 10);
+
+    setTimeout(() => espelho.src = frames.hit, 0);
+    setTimeout(() => espelho.src = frames.hit2 || frames.hit, delay);
+
+    setTimeout(() => {
+      espelho.style.transform = "translateX(0)";
+    }, delay * 2);
+
+    // volta pra trás + idle
+    setTimeout(() => {
+      espelho.src = frames.idle;
+      espelho.style.zIndex = "0";
+    }, delay * 3);
+  }
+}
 
 //ENEMYS
 async function enemyTurn() {
@@ -7272,7 +7401,7 @@ async function enemyTurn() {
         case "attackVida":
         case "morrer":
           playerTomarDanoAnimacao();
-          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto"||personagemSelecionado == "gaeaReen"||personagemSelecionado == "lucius") {
+          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus") {
             podeSacudir = false;
           }
           break;
@@ -8431,14 +8560,14 @@ function itensVerd() {
 }
 function ganhoMoney() {
   if (hasItem(3)) {
-    baseElite+=10;
-    baseComum+=10;
+    baseElite += 10;
+    baseComum += 10;
   }
   if (hasItem(42)) {
-    baseBoss+=50;
+    baseBoss += 50;
   }
   if (hasItem(41)) {
-    baseMult+=1;
+    baseMult += 1;
   }
 }
 function sorteCards(name, valor, calc = "+") {
@@ -8454,35 +8583,35 @@ function sorteCards(name, valor, calc = "+") {
   // 🔒 trav 0
   rarity.weight = Math.max(0, rarity.weight);
 }
-function addSorte(){
+function addSorte() {
   // BUFF ELEMENTAL
   if (hasItem(37) && flagItem37) {
     sorteCards("fire", 40);
     sorteCards("terra", 40);
     sorteCards("agua", 40);
     sorteCards("frost", 40);
-    flagItem37=false;
+    flagItem37 = false;
   }
   // NERF COMUM
   if (hasItem(38) && flagItem38) {
-    sorteCards("common", 35,"-");
-    flagItem38=false;
+    sorteCards("common", 35, "-");
+    flagItem38 = false;
   }
   // BUFF EPIC/LEGEND/CINT
   if (hasItem(39) && flagItem39) {
     sorteCards("epic", 17);
     sorteCards("legend", 10);
     sorteCards("cintilante", 6);
-    flagItem39=false;
+    flagItem39 = false;
   }
   // NERF COMUM/RARE || BUFF EPIC/LEGEND
   if (hasItem(40) && flagItem40) {
-    sorteCards("common", 15,"-");
-    sorteCards("rare", 15,"-");
+    sorteCards("common", 15, "-");
+    sorteCards("rare", 15, "-");
 
     sorteCards("epic", 8);
     sorteCards("legend", 5);
-    flagItem40=false;
+    flagItem40 = false;
   }
 }
 

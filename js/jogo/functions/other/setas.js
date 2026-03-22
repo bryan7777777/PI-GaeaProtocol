@@ -96,9 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
         nome: "SOLITÁRIOS",
         classe: "semFaccao",
         personagens: [
+          { id: "ferrus", img: "magnusFerrus.gif" },
           { id: "x", img: "gemea.jpeg" },
           { id: "tomoeh", img: "sombraDaMorte.jpeg" },
-          { id: "ferrus", img: "magnusFerrus.png" },
           { id: "roxo", img: "capaceteroxo.png" }
         ]
       }

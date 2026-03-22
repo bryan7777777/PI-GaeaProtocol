@@ -368,14 +368,14 @@ function configurarSelecaoPersonagem() {
       nome: "⚒️MAGNUS FERRUS, O PRODÍGIO⚒️",
       dificuldade: "⚒️NÍVEL DE DIFICULDADE: 💀💀⚒️",
       cor: "rgb(103, 67, 0)",
-      descricao: "Deck focado em reciclagem, no inicio ele começa bem fraco mas com o tempo ele vai ganhando força com forme o tempo passa, quem diria que reciclar seria bom para todos os lados, por incrivel que pareça no meio do lixo ele achou... ouro? ok ele inicia com 50🪙 ao inves de 0🪙.",
+      descricao: "Deck focado em reciclagem, no inicio ele começa bem fraco mas com o tempo ele vai ganhando força com forme o tempo passa, quem diria que reciclar seria bom para todos os lados, por incrivel que pareça no meio do lixo ele achou... ouro? ok ele inicia com 50🪙 ao inves de 0🪙. Ele tembém possui um imenso guadião de sucata no qual luta por ele e o defende com tudo o que pode!",
       cardFoco: "Deck focado em multiplas cartas de reciclagem.",
-      hp: 80,
+      hp: 32,
       maxHp: 160,
       energia: 3,
-      escudo: 0,
+      escudo: 17,
       mao: 5,
-      img: "./../img/jogo/player/sal2.png",
+      img: "./../img/jogo/player/sal2.gif",
       lor: "\"Em desenvolvimento\"[...]"
     },
     roxo: {
