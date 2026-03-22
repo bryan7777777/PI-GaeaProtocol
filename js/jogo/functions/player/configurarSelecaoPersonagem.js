@@ -179,7 +179,7 @@ function configurarSelecaoPersonagem() {
       energia: 3,
       escudo: 0,
       mao: 6,
-      img: "./../img/jogo/player/corredor.png",
+      img: "./../img/jogo/player/gabriel.gif",
       lor: "\"Em desenvolvimento\"[...]"
     },
     cleber: {

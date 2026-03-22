@@ -6365,7 +6365,7 @@ function criarPlayerNaDiv3() {
   // Escolhe status baseado no personagem
   switch (personagemSelecionado) {
     case "laranja":
-      playerImg.src = "./../img/jogo/player/corredor.png";
+      playerImg.src = "./../img/jogo/player/animado/gabriel/statico/gabriel1.png";
       playerMaxHP = 70, energyMax = 3, playerShieldInit = 0;
       playerHP = 70, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.laranja];
@@ -7038,7 +7038,7 @@ const characterDecks = {
 
 //ANIMAÇÃO ATK PLAYER EM FASE DE TESTE
 function animarLiliaTransformacao() {
-  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus") {
+  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus"|| personagemSelecionado == "laranja") {
 
     const playerImg = document.getElementById("player");
     if (!playerImg) return;
@@ -7052,6 +7052,14 @@ function animarLiliaTransformacao() {
           f2: "./../img/jogo/player/animado/porto/atk/porto1.png",
           f3: "./../img/jogo/player/animado/porto/atk/porto1.png",
           idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
+        };
+        break;
+      case "laranja":
+        frames = {
+          f1: "./../img/jogo/player/animado/gabriel/atk/gabriel1.png",
+          f2: "./../img/jogo/player/animado/gabriel/atk/gabriel2.png",
+          f3: "./../img/jogo/player/animado/gabriel/atk/gabriel2.png",
+          idle: "./../img/jogo/player/animado/gabriel/statico/gabriel1.png"
         };
         break;
       case "ferrus":
@@ -7156,7 +7164,7 @@ function animarLiliaTransformacao() {
 }
 //ANIMAÇÃO DEF PLAYER EM FASE DE TESTE
 function playerTomarDanoAnimacao() {
-  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus") {
+  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus"|| personagemSelecionado == "laranja") {
 
     const playerImg = document.getElementById("player");
     if (!playerImg) return;
@@ -7168,6 +7176,13 @@ function playerTomarDanoAnimacao() {
         frames = {
           hit: "./../img/jogo/player/animado/porto/def/porto1.png",
           idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
+        };
+
+        break;
+      case "laranja":
+        frames = {
+          hit: "./../img/jogo/player/animado/gabriel/def/gabriel1.png",
+          idle: "./../img/jogo/player/animado/gabriel/statico/gabriel1.png"
         };
 
         break;
@@ -7401,7 +7416,7 @@ async function enemyTurn() {
         case "attackVida":
         case "morrer":
           playerTomarDanoAnimacao();
-          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus") {
+          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus"|| personagemSelecionado == "laranja") {
             podeSacudir = false;
           }
           break;

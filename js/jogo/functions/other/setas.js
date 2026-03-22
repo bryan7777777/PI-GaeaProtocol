@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (pagina === "tutorial.html") {
     faccoes = [
       {
-        nome: "GA.P.",
+        nome: "GAEA PROTOCOOL",
         classe: "gaea",
         personagens: [
           { id: "verde", img: "capaceteverde.png" },
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nome: "FAUNA PROTOCOOL",
         classe: "laranjas",
         personagens: [
-          { id: "laranja", img: "capacetelaranja.png" },
+          { id: "laranja", img: "gabriel.gif" },
           { id: "cleber", img: "cleber.jpg" },
           { id: "malaquias", img: "malaquias.jpg" },
           { id: "renata", img: "renata.jpg" }
