@@ -67,7 +67,7 @@ function configurarSelecaoPersonagem() {
       energia: 3,
       escudo: 0,
       mao: 5,
-      img: "./../img/jogo/player/mineiro.png",
+      img: "./../img/jogo/player/bruno.gif",
       lor: "Lider do GLEBA PROTOCOOL, um ex membro do GAEA, decidiu continuar cuidando do meio ambiente, então decidiu ir para p GLEBA e rapidamente se tornou o lider[...]"
     },
     felipe: {

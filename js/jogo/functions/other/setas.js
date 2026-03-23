@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nome: "GLEBA PROTOCOOL",
         classe: "mineiros",
         personagens: [
-          { id: "amarelo", img: "capaceteamarelo.png" },
+          { id: "amarelo", img: "bruno.gif" },
           { id: "felipe", img: "felipe.jpg" },
           { id: "celso", img: "celso.jpg" },
           { id: "maria", img: "maria.jpg" }
