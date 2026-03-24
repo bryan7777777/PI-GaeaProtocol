@@ -246,7 +246,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/mergulhador.png",
       tipoDano: "(🔱)💥",
-      tipoVida: "🌧️",
+      tipoVida: "💧️",
       zona: 2
     }
   ],
@@ -260,7 +260,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/marinheiro.png",
       tipoDano: "⚔️",
-      tipoVida: "🌧️",
+      tipoVida: "💧️",
       zona: 2
     },
     {
@@ -272,7 +272,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
-      tipoVida: "🌧️",
+      tipoVida: "💧️",
       zona: 2
     }
   ],
@@ -298,7 +298,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
-      tipoVida: "🌧️",
+      tipoVida: "💧️",
       zona: 2
     }
   ],
@@ -312,7 +312,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
-      tipoVida: "🌧️",
+      tipoVida: "💧️",
       zona: 2
     },
     {
@@ -324,7 +324,7 @@ const normalModels = [
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
-      tipoVida: "🌧️",
+      tipoVida: "💧️",
       zona: 2
     }
   ],
