@@ -3411,6 +3411,32 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
           baseElite = 10;
           baseComum = 5;
           baseMult = 1;
+
+          switch (mapaBatalha) {
+            case mapaBatalha > 7:
+              baseBoss = 25;
+              baseElite = 15;
+              baseComum = 10;
+              break;
+            case mapaBatalha > 14:
+              baseBoss = 30;
+              baseElite = 20;
+              baseComum = 15;
+              break;
+            case mapaBatalha > 21:
+              baseBoss = 32;
+              baseElite = 22;
+              baseComum = 17;
+              break;
+            case mapaBatalha > 28:
+              baseBoss = 100;
+              baseElite = 30;
+              baseComum = 20;
+              break;
+
+            default:
+              break;
+          }
           ganhoMoney();
           if (personagemSelecionado == "ferrus") {
             animarEspelhoFerrus("idle", {
@@ -5875,12 +5901,50 @@ function abrirLoja() {
 
     const rar = carta.rarity?.toLowerCase();
     const tipo = carta.type?.toLowerCase();
+    if (rar === "comum") preco = 5;
+    else if (rar === "rare") preco = 7;
+    else if (rar === "epic") preco = 12;
+    else if (rar === "legend") preco = 15;
+    else if (rar === "cintilante") preco = 30;
+    else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 8;
 
-    if (rar === "rare") preco = 14;
-    else if (rar === "epic") preco = 22;
-    else if (rar === "legend") preco = 30;
-    else if (rar === "cintilante") preco = 50;
-    else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 16;
+    switch (mapaBatalha) {
+      case mapaBatalha > 7:
+        if (rar === "comum") preco = 10;
+        else if (rar === "rare") preco = 14;
+        else if (rar === "epic") preco = 22;
+        else if (rar === "legend") preco = 30;
+        else if (rar === "cintilante") preco = 50;
+        else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 16;
+        break;
+      case mapaBatalha > 14:
+        if (rar === "comum") preco = 12;
+        else if (rar === "rare") preco = 16;
+        else if (rar === "epic") preco = 24;
+        else if (rar === "legend") preco = 32;
+        else if (rar === "cintilante") preco = 52;
+        else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 18;
+        break;
+      case mapaBatalha > 21:
+        if (rar === "comum") preco = 14;
+        else if (rar === "rare") preco = 18;
+        else if (rar === "epic") preco = 26;
+        else if (rar === "legend") preco = 34;
+        else if (rar === "cintilante") preco = 54;
+        else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 20;
+        break;
+      case mapaBatalha > 28:
+        if (rar === "comum") preco = 16;
+        else if (rar === "rare") preco = 20;
+        else if (rar === "epic") preco = 28;
+        else if (rar === "legend") preco = 36;
+        else if (rar === "cintilante") preco = 56;
+        else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 22;
+        break;
+
+      default:
+        break;
+    }
 
     preco += mapaBatalha ?? 0;
 
@@ -6041,7 +6105,25 @@ function abrirFerreiro() {
 
   /* ================= RENDER ================= */
   escolhidos.forEach(item => {
-    const preco = 50 + (mapaBatalha ?? 0);
+    let preco = 25 + (mapaBatalha ?? 0);
+
+    switch (mapaBatalha) {
+      case mapaBatalha > 7:
+        preco = 35 + (mapaBatalha ?? 0);
+        break;
+      case mapaBatalha > 14:
+        preco = 45 + (mapaBatalha ?? 0);
+        break;
+      case mapaBatalha > 21:
+        preco = 55 + (mapaBatalha ?? 0);
+        break;
+      case mapaBatalha > 28:
+        preco = 65 + (mapaBatalha ?? 0);
+        break;
+
+      default:
+        break;
+    }
 
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("itemLoja");
@@ -7038,7 +7120,7 @@ const characterDecks = {
 
 //ANIMAÇÃO ATK PLAYER EM FASE DE TESTE
 function animarLiliaTransformacao() {
-  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus"|| personagemSelecionado == "laranja"|| personagemSelecionado == "amarelo") {
+  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo") {
 
     const playerImg = document.getElementById("player");
     if (!playerImg) return;
@@ -7172,7 +7254,7 @@ function animarLiliaTransformacao() {
 }
 //ANIMAÇÃO DEF PLAYER EM FASE DE TESTE
 function playerTomarDanoAnimacao() {
-  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus"|| personagemSelecionado == "laranja"|| personagemSelecionado == "amarelo") {
+  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo") {
 
     const playerImg = document.getElementById("player");
     if (!playerImg) return;
@@ -7431,7 +7513,7 @@ async function enemyTurn() {
         case "attackVida":
         case "morrer":
           playerTomarDanoAnimacao();
-          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus"|| personagemSelecionado == "laranja"|| personagemSelecionado == "amarelo") {
+          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo") {
             podeSacudir = false;
           }
           break;
