@@ -1,5 +1,5 @@
 function mostrarTela(n) {
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= 11; i++) {
     const tela = document.getElementById(`div${i}`);
     if (tela) {
       if (i === n) {
