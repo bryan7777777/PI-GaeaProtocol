@@ -746,6 +746,9 @@ function drawCards() {
         case "Tudo Ou Nada":
           tipo = "cintilante";
           break;
+        case "teste":
+          tipo = "cria";
+          break;
         //🔥🔥🔥🔥🔥 FIRE 2 🔥🔥🔥🔥🔥
         case "Combustão":
         case "Chuva De Fogo":
@@ -995,6 +998,16 @@ function drawCards() {
         }
         //⚔️
         else if (card.name === "Ceifa") {
+          let dano = card.power;
+          const alvo = [...enemies].reverse().find(e => e.hp > 0);
+          if (alvo.hp <= 30) {
+            dano *= 3;
+          }
+          causarDano(dano, "ultimo");
+          deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        }
+        //⚔️
+        else if (card.name === "teste") {
           let dano = card.power;
           const alvo = [...enemies].reverse().find(e => e.hp > 0);
           if (alvo.hp <= 30) {
@@ -6697,6 +6710,13 @@ function criarPlayerNaDiv3() {
       playerDeck = [...characterDecks.glacia];
       startNemoraSnow(false);
       break;
+    case "criadora":
+      playerImg.src = "./../img/jogo/player/animado/criadora/statico/criadora1.png";
+      playerMaxHP = 85, playerHP = 85, energyMax = 5, energy = 5;
+      maoInicio = 6;
+      limiteMao = 6;
+      playerDeck = [...characterDecks.criadora];
+      break;
     default:
       playerImg.src = "./../img/jogo/extra/prototipo.png";
       playerDeck = [...characterDecks.amarelo];
@@ -7087,6 +7107,20 @@ const characterDecks = {
     allCards.find(c => c.name === "Cemiterio Branco"),
     allCards.find(c => c.name === "Xenofluxo Glacial"),
     allCards.find(c => c.name === "Baralho Glacial"),
+  ],
+  criadora: [
+    cradsCria.find(c => c.name === "teste"),
+    cradsCria.find(c => c.name === "teste"),
+    cradsCria.find(c => c.name === "teste"),
+    cradsCria.find(c => c.name === "teste"),
+    cradsCria.find(c => c.name === "teste"),
+    cradsCria.find(c => c.name === "teste"),
+    cradsCria.find(c => c.name === "teste"),
+    cradsCria.find(c => c.name === "teste"),
+    cradsCria.find(c => c.name === "teste"),
+    cradsCria.find(c => c.name === "teste"),
+    cradsCria.find(c => c.name === "teste"),
+    cradsCria.find(c => c.name === "teste"),
   ],
   // gaeaReen: [
   //   allCards.find(c => c.name === "Chuva de Laminas"),

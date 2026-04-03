@@ -688,7 +688,7 @@ color: rgb(227, 90, 255);
   }
 }
 
-.attack, .defense, .heal, .reciclagem,.lixo,.cintilante,.frost,.fire,.terra,.agua {
+.attack, .defense, .heal, .reciclagem,.lixo,.cintilante,.frost,.fire,.terra,.agua,.cria {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -700,15 +700,23 @@ color: rgb(227, 90, 255);
 .reciclagem {background-image: url("../img/jogo/cards/amarelo1.png");}
 .lixo {background-image: url("../img/jogo/cards/cinza.png");}
 .cintilante {background-image: url("../img/jogo/cards/cintilante1.png");}
+.cria {background-image: url("../img/jogo/cards/cria.png");}
 
 .terra{background-image: url("../img/jogo/cards/terra.png");}
 .fire {background-image: url("../img/jogo/cards/fire.png");}
 .agua{background-image: url("../img/jogo/cards/agua.png");}
 .frost{background-image: url("../img/jogo/cards/frost.png");}
 
-.agua .desc, .fire .desc, .frost .desc, .defense .desc, .attack .desc, .cintilante .desc, .reciclagem .desc, .heal .desc{background-color: #20202079; border-radius: 15px;}
-.agua .titulo, .fire .titulo, .frost .titulo{color: aqua; text-shadow: 0 0 4px #000000;}
+.agua .desc, .fire .desc, .frost .desc, .defense .desc, .attack .desc, .cintilante .desc, .cria .desc, .reciclagem .desc, .heal .desc{background-color: #20202079; border-radius: 15px;}
+.agua .titulo, .fire .titulo, .frost .titulo, .cria strong{color: aqua; text-shadow: 0 0 4px #000000;}
 .legend:hover .desc {background-color: #00000000;}
+
+.cria .energia strong{
+  position: relative;
+  top: -2px;
+  color: #e40101;
+  text-shadow: 0 0 4px #ffffff;
+}
 
 .common {
   box-shadow: 0 0 20px rgb(168, 168, 168);
@@ -1212,13 +1220,22 @@ color: rgb(227, 90, 255);
   border: 3px solid rgb(243, 186, 255);
 }
 
+.cria {
+  box-shadow: 0 0 30px rgb(255, 251, 0);
+  border: 3px solid rgb(253, 255, 186);
+}
+
+.cria img {
+  border: 3px solid rgb(200, 98, 255);
+}
+
 /* efeito de giro do arco-íris */
-.card.cintilante {
+.card.cintilante, .card.cria {
   position: relative;
   overflow: hidden;
 }
 
-.card.cintilante::before {
+.card.cintilante::before, .card.cria::before {
   margin-top: -20px;
   margin-left: -60px;
   width: 300px;
@@ -1244,7 +1261,7 @@ color: rgb(227, 90, 255);
 }
 
 /* Ao passar o mouse na card, o ::before aparece */
-.card.cintilante:hover::before {
+.card.cintilante:hover::before, .card.cria:hover::before {
   opacity: 1;
 }
 

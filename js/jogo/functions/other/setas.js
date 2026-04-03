@@ -101,6 +101,13 @@ document.addEventListener("DOMContentLoaded", () => {
           { id: "tomoeh", img: "sombraDaMorte.jpeg" },
           { id: "roxo", img: "capaceteroxo.png" }
         ]
+      },
+      {
+        nome: "CRIADORES",
+        classe: "criadores",
+        personagens: [
+          { id: "criadora", img: "criadora.gif" },
+        ]
       }
     ];
   }

@@ -391,6 +391,20 @@ function configurarSelecaoPersonagem() {
       mao: 7,
       img: "./../img/jogo/player/cabaDosDrones.png",
       lor: "\"Em desenvolvimento\"[...]"
+    },
+      criadora: {
+      nome: "⚙️teste⚙️",
+      dificuldade: "⚙️NÍVEL DE DIFICULDADE: 💀💀⚙️",
+      cor: "rgb(141, 7, 231)",
+      descricao: "Um engenheiro estratégico, utiliza de seus drones para tudo, saber como usar sua energia é algo vital.",
+      cardFoco: "Deck de drones, muito forte contra multiplos inimigos porém fraco contra um alvo isolado.",
+      hp: 85,
+      maxHp: 85,
+      energia: 5,
+      escudo: 0,
+      mao: 6,
+      img: "./../img/jogo/player/criadora.gif",
+      lor: "\"Em desenvolvimento\"[...]"
     }
   };
 
