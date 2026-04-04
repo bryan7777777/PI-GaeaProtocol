@@ -63,13 +63,24 @@ const buffs = { // Buffs ativos por tipo
   atk: [],   // Buffs de ataque
   def: [],   // Buffs de defesa
   cura: [],  // Buffs de cura
-  geral: []  // Buffs gerais
+  geral: [],  // Buffs gerais
+
+  amarelo: [],
+  azul: [],
+  vermelho: []
 };
+
+const STACK_REAL = ["amarelo", "azul", "vermelho"];
+
 const BUFF_VISUAL = { // Configuração visual dos buffs
   atk:   { emoji: "⚔️", border: "10px", color: "#ff5555" },
   def:   { emoji: "🛡️", border: "0px 0px 20px 20px", color: "#55aaff" },
   cura:  { emoji: "💚", border: "0px 20px 0px 20px", color: "#66ff66" },
-  geral: { emoji: "✨", border: "100px", color: "#ff9ad5" }
+  geral: { emoji: "✨", border: "100px", color: "#ff9ad5" },
+
+  amarelo:  { emoji: "🟡", border: "50%", color: "#ffd700" },
+  azul:     { emoji: "🔵", border: "50%", color: "#3399ff" },
+  vermelho: { emoji: "🔴", border: "50%", color: "#ff4444" }
 };
 const rarityWeights = [ // Pesos para raridade de cartas
   { name: "common", weight: 50 },

@@ -708,14 +708,35 @@ color: rgb(227, 90, 255);
 .frost{background-image: url("../img/jogo/cards/frost.png");}
 
 .agua .desc, .fire .desc, .frost .desc, .defense .desc, .attack .desc, .cintilante .desc, .cria .desc, .reciclagem .desc, .heal .desc{background-color: #20202079; border-radius: 15px;}
-.agua .titulo, .fire .titulo, .frost .titulo, .cria strong{color: aqua; text-shadow: 0 0 4px #000000;}
+.agua .titulo, .fire .titulo, .frost .titulo{color: aqua; text-shadow: 0 0 4px #000000;}
 .legend:hover .desc {background-color: #00000000;}
 
 .cria .energia strong{
   position: relative;
   top: -2px;
-  color: #e40101;
+  right: 3px;
+  color: #1f002e;
   text-shadow: 0 0 4px #ffffff;
+  background-color: rgba(255, 247, 0, 0.5);
+  box-shadow: 0 0 4px rgba(255, 247, 0, 0.5);
+  padding: 2px;
+  border-radius: 5px;
+}
+
+.cria strong{
+  color: #570082;
+  background-color: rgba(255, 247, 0, 0.5);
+  box-shadow: 0 0 8px 0 rgba(255, 247, 0, 0.5);
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.cria .desc em{
+  color: rgb(249, 255, 164);
+}
+
+.cria .desc{
+  background-color: #9b05c5a1;
 }
 
 .common {

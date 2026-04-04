@@ -747,6 +747,16 @@ function drawCards() {
           tipo = "cintilante";
           break;
         case "teste":
+        case "Corante Amarelo":
+        case "Corante Azul":
+        case "Corante Vermelho":
+        case "Tinta Amarelo":
+        case "Tinta Azul":
+        case "Caixa De Corantes":
+        case "Tinta Vermelho":
+        case "Pincel Extraordinario":
+        case "Colorindo":
+        case "Tudo Se Transforma":
           tipo = "cria";
           break;
         //🔥🔥🔥🔥🔥 FIRE 2 🔥🔥🔥🔥🔥
@@ -998,16 +1008,6 @@ function drawCards() {
         }
         //⚔️
         else if (card.name === "Ceifa") {
-          let dano = card.power;
-          const alvo = [...enemies].reverse().find(e => e.hp > 0);
-          if (alvo.hp <= 30) {
-            dano *= 3;
-          }
-          causarDano(dano, "ultimo");
-          deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
-        }
-        //⚔️
-        else if (card.name === "teste") {
           let dano = card.power;
           const alvo = [...enemies].reverse().find(e => e.hp > 0);
           if (alvo.hp <= 30) {
@@ -1503,6 +1503,129 @@ function drawCards() {
             deck.push(newCard);
           }
           glowPlayer("energy");
+        }
+        //  🎨🎨🎨🎨🎨 CRIA 🎨🎨🎨🎨🎨
+        else if (card.name === "teste") {
+          let dano = card.power;
+          const alvo = [...enemies].reverse().find(e => e.hp > 0);
+          if (alvo.hp <= 30) {
+            dano *= 3;
+          }
+          causarDano(dano, "ultimo");
+          deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
+        }
+        //🎨
+        else if (card.name === "Corante Amarelo") {
+          deck.push({ ...cradsCria.find(c => c.name === "Tinta Amarela"), power: 0 });
+        }
+        //🎨
+        else if (card.name === "Corante Azul") {
+          deck.push({ ...cradsCria.find(c => c.name === "Tinta Azul"), power: 0 });
+        }
+        //🎨
+        else if (card.name === "Corante Vermelho") {
+          deck.push({ ...cradsCria.find(c => c.name === "Tinta Vermelha"), power: 0 });
+        }
+        //🎨
+        else if (card.name === "Tinta Amarela") {
+          aplicarBuffsPower(1, 999, "amarelo");
+        }
+        //🎨
+        else if (card.name === "Tinta Azul") {
+          aplicarBuffsPower(1, 999, "azul");
+        }
+        //🎨
+        else if (card.name === "Tinta Vermelha") {
+          aplicarBuffsPower(1, 999, "vermelho");
+        }
+        //🎨
+        else if (card.name === "Caixa De Corantes") {
+          const corantes = ["Corante Amarelo", "Corante Azul", "Corante Vermelho"];
+          for (let i = 0; i < 3; i++) {
+            const nome = corantes[Math.floor(Math.random() * corantes.length)];
+            const carta = cradsCria.find(c => c.name === nome);
+            if (carta) deck.push({ ...carta });
+          }
+        }
+        //🎨
+        else if (card.name === "Pincel Extraordinario") {
+          if (
+            getCargas("amarelo") >= 3 &&
+            getCargas("azul") >= 3 &&
+            getCargas("vermelho") >= 3
+          ) {
+            consumirCargas("amarelo", 3);
+            consumirCargas("azul", 3);
+            consumirCargas("vermelho", 3);
+
+            causarDano(170, "unico");
+          }
+        }
+        //🎨
+        else if (card.name === "Colorindo") {
+          if (
+            getCargas("amarelo") >= 1 &&
+            getCargas("azul") >= 1 &&
+            getCargas("vermelho") >= 1
+          ) {
+            consumirCargas("amarelo", 1);
+            consumirCargas("azul", 1);
+            consumirCargas("vermelho", 1);
+
+            causarDano(20, "area");
+          }
+        }
+        //🎨
+        else if (card.name === "Tudo Se Transforma") {
+          const toRemove = new Set();
+          toRemove.add(card);
+          let transformados = 0;
+
+          for (let j = 0; j < deck.length; j++) {
+            const c = deck[j];
+
+            if (c !== card && c.type === "cria" && c.name.startsWith("Corante")) {
+              toRemove.add(c);
+              transformados++;
+              let cor = "";
+
+              if (c.name.includes("Amarelo")) cor = "Amarela";
+              else if (c.name.includes("Azul")) cor = "Azul";
+              else if (c.name.includes("Vermelho")) cor = "Vermelha";
+              const nova = cradsCria.find(x => x.name === `Tinta ${cor}`);
+
+              if (nova) {
+                deck.push({ ...nova, power: 0 });
+              } else {
+                console.log("ERRO: tinta não encontrada para", c.name);
+              }
+            }
+          }
+          if (transformados === 0) {
+            div.classList.add("card-remove");
+            setTimeout(() => {
+              for (let k = deck.length - 1; k >= 0; k--) {
+                if (deck[k] === card) {
+                  deck.splice(k, 1);
+                  break;
+                }
+              }
+              drawCards();
+              updateHUD();
+            }, 300);
+            return;
+          }
+          div.classList.add("card-remove");
+          setTimeout(() => {
+            for (let k = deck.length - 1; k >= 0; k--) {
+              if (toRemove.has(deck[k])) {
+                deck.splice(k, 1);
+              }
+            }
+            drawCards();
+            updateHUD();
+          }, 300);
+          return;
         }
         //  ♻️♻️♻️♻️♻️ RECICLAGEM ♻️♻️♻️♻️♻️
         else if (card.name === "Recicladora") {
@@ -2699,13 +2822,13 @@ function calcularPower(valorBase, tipo) {
   return valorBase + bonusTotal;
 }
 function resetarBuffsPower() {
-  // limpa buffs lógicos
-  buffs.atk.length = 0;
-  buffs.def.length = 0;
-  buffs.cura.length = 0;
-  buffs.geral.length = 0;
 
-  // remove TODOS os buffs visuais com animação
+  // limpa TODOS os buffs (inclusive tintas)
+  for (let tipo in buffs) {
+    buffs[tipo] = [];
+  }
+
+  // remove visuais
   document.querySelectorAll(".buff-icon").forEach(buff => {
     buff.classList.add("buff-end");
     buff.addEventListener("animationend", () => {
@@ -2714,6 +2837,31 @@ function resetarBuffsPower() {
   });
 }
 function aplicarBuffsPower(val, rodadas, tipo) {
+
+  if (STACK_REAL.includes(tipo)) {
+
+    // 🔥 remove qualquer lixo
+    buffs[tipo] = buffs[tipo].filter(b => b.cargas > 0);
+
+    let existente = buffs[tipo][0];
+
+    if (existente) {
+      existente.cargas += val;
+      return;
+    }
+
+    // 🔥 cria novo buff E VISUAL
+    const buff = {
+      valor: val,
+      cargas: val
+    };
+
+    buffs[tipo] = [buff]; // garante só 1
+    criarBuffVisual(tipo, buff);
+    return;
+  }
+
+  // resto normal
   const buff = {
     valor: val,
     cargas: rodadas
@@ -2760,7 +2908,11 @@ function criarBuffVisual(tipo, buff) {
       return;
     }
 
-    text.textContent = `${buff.valor}/${buff.cargas}`;
+    if (STACK_REAL.includes(tipo)) {
+      text.textContent = `${buff.cargas}`;
+    } else {
+      text.textContent = `${buff.valor}/${buff.cargas}`;
+    }
   }, 100);
 }
 function causarDano(valor, tipo, simbulo = "⚔️", areaEspecial) {
@@ -2877,6 +3029,30 @@ function allDebuff(valor, tipo) {
     default:
       break;
   }
+}
+// MECANICA CRIA
+function getCargas(tipo) {
+  return buffs[tipo]
+    .filter(b => b.cargas > 0)
+    .reduce((total, b) => total + b.cargas, 0);
+}
+function consumirCargas(tipo, quantidade) {
+  let buff = buffs[tipo].find(b => b.cargas > 0);
+  if (!buff) return false;
+
+  if (buff.cargas < quantidade) return false;
+
+  buff.cargas -= quantidade;
+
+  // remove se zerar
+  if (buff.cargas <= 0) {
+    limparBuffsMortos(tipo);
+  }
+
+  return true;
+}
+function limparBuffsMortos(tipo) {
+  buffs[tipo] = buffs[tipo].filter(b => b.cargas > 0);
 }
 
 // MAPA
@@ -7109,18 +7285,16 @@ const characterDecks = {
     allCards.find(c => c.name === "Baralho Glacial"),
   ],
   criadora: [
-    cradsCria.find(c => c.name === "teste"),
-    cradsCria.find(c => c.name === "teste"),
-    cradsCria.find(c => c.name === "teste"),
-    cradsCria.find(c => c.name === "teste"),
-    cradsCria.find(c => c.name === "teste"),
-    cradsCria.find(c => c.name === "teste"),
-    cradsCria.find(c => c.name === "teste"),
-    cradsCria.find(c => c.name === "teste"),
-    cradsCria.find(c => c.name === "teste"),
-    cradsCria.find(c => c.name === "teste"),
-    cradsCria.find(c => c.name === "teste"),
-    cradsCria.find(c => c.name === "teste"),
+    cradsCria.find(c => c.name === "Tudo Se Transforma"),
+    cradsCria.find(c => c.name === "Caixa De Corantes"),
+    cradsCria.find(c => c.name === "Corante Amarelo"),
+    cradsCria.find(c => c.name === "Corante Azul"),
+    cradsCria.find(c => c.name === "Corante Vermelho"),
+    cradsCria.find(c => c.name === "Tinta Amarela"),
+    cradsCria.find(c => c.name === "Tinta Azul"),
+    cradsCria.find(c => c.name === "Tinta Vermelha"),
+    cradsCria.find(c => c.name === "Pincel Extraordinario"),
+    cradsCria.find(c => c.name === "Colorindo"),
   ],
   // gaeaReen: [
   //   allCards.find(c => c.name === "Chuva de Laminas"),
