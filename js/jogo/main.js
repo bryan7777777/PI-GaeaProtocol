@@ -7606,6 +7606,7 @@ const characterDecks = {
     allCards.find(c => c.name === "Baralho Glacial"),
   ],
   criadora: [
+    cardsCria.find(c => c.name === "Bebida Do Sacreficio"),
     cardsCria.find(c => c.name === "Caixa De Corantes"),
     cardsCria.find(c => c.name === "Tinta Roxa"),
     cardsCria.find(c => c.name === "Tinta Verde"),
