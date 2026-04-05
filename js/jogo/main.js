@@ -630,6 +630,7 @@ function checkEnemies() {
             // Registrar vitória
             registrarPartida('Vitória');
 
+            criadoraModo=true;
             const overlay = document.getElementById("overlay");
             overlay.style.display = "block";
             overlay.classList.add("popup-opacity");
@@ -746,15 +747,32 @@ function drawCards() {
         case "Tudo Ou Nada":
           tipo = "cintilante";
           break;
-        case "teste":
+        //🎨🎨🎨🎨🎨 CRIA 🎨🎨🎨🎨🎨
+        case "Trocando De Estilo":
         case "Corante Amarelo":
         case "Corante Azul":
         case "Corante Vermelho":
         case "Tinta Amarelo":
         case "Tinta Azul":
-        case "Caixa De Corantes":
         case "Tinta Vermelho":
+        case "Tinta Roxa":
+        case "Tinta Laranja":
+        case "Tinta Verde":
+        case "Terço Da Criação":
+        case "Arco Da Majestade":
+        case "Chuva Magnifica":
+        case "Majestade Escolhe":
+        case "O Céu... Curva-se":
+        case "As Armas":
+        case "Arsenal De Pigmentos":
+        case "Respingo Da Vida":
+        case "Proteção Da Pureza":
+        case "Sonho Extraordinario":
+        case "Caixa De Corantes":
         case "Pincel Extraordinario":
+        case "Pincelada Gira Sol":
+        case "Magnifco":
+        case "Pincelada Pura":
         case "Colorindo":
         case "Tudo Se Transforma":
           tipo = "cria";
@@ -1505,14 +1523,24 @@ function drawCards() {
           glowPlayer("energy");
         }
         //  🎨🎨🎨🎨🎨 CRIA 🎨🎨🎨🎨🎨
-        else if (card.name === "teste") {
-          let dano = card.power;
-          const alvo = [...enemies].reverse().find(e => e.hp > 0);
-          if (alvo.hp <= 30) {
-            dano *= 3;
+        else if (card.name === "Trocando De Estilo") {
+          switch (criadoraModo) {
+            case true:
+              criadoraModo = false;
+              ["amarelo", "azul", "vermelho","roxa","laranja","verde"].forEach(cor => {
+            aplicarBuffsPower(1, 999, cor);
+          });
+              break;
+
+            case false:
+              criadoraModo = true;
+              allBuffs(card.power, "def");
+              break;
+
+            default:
+              criadoraModo = true;
+              break;
           }
-          causarDano(dano, "ultimo");
-          deck.push({ ...allCards.find(c => c.name === "Arma Quebrada"), power: 0 });
         }
         //🎨
         else if (card.name === "Corante Amarelo") {
@@ -1539,9 +1567,21 @@ function drawCards() {
           aplicarBuffsPower(1, 999, "vermelho");
         }
         //🎨
+        else if (card.name === "Tinta Roxa") {
+          misturarTintas({ azul: 1, vermelho: 1 },"roxa",2);
+        }
+        //🎨
+        else if (card.name === "Tinta Verde") {
+          misturarTintas({ azul: 1, amarelo: 1 },"verde",2);
+        }
+        //🎨
+        else if (card.name === "Tinta Laranja") {
+          misturarTintas({ vermelho: 1, amarelo: 1 },"laranja",2);
+        }
+        //🎨
         else if (card.name === "Caixa De Corantes") {
           const corantes = ["Corante Amarelo", "Corante Azul", "Corante Vermelho"];
-          for (let i = 0; i < 3; i++) {
+          for (let i = 0; i < 5; i++) {
             const nome = corantes[Math.floor(Math.random() * corantes.length)];
             const carta = cradsCria.find(c => c.name === nome);
             if (carta) deck.push({ ...carta });
@@ -1549,16 +1589,122 @@ function drawCards() {
         }
         //🎨
         else if (card.name === "Pincel Extraordinario") {
+          if (criadoraModo) {
+            if (consumirCargas("roxa", 3)) {
+              causarDano(100, "unico");
+              animarLiliaTransformacao(true,"unico");
+            }
+          }
+        }
+        //🎨
+        else if (card.name === "Pincelada Gira Sol") {
+          if (criadoraModo) {
+            if (consumirCargas("amarelo", 1)) {
+              causarDano(card.power, "area");
+              allBuffs(card.power, "def");
+            }
+          }
+        }
+        //🎨
+        else if (card.name === "Pincelada Pura") {
+          if (criadoraModo) {
+            if (consumirCargas("amarelo", 1)) {
+              causarDano(card.power, "unico");
+              allBuffs(card.power, "cura");
+            }
+          }
+        }
+        //🎨
+        else if (card.name === "Magnifco") {
+          if (criadoraModo) {
+            if (consumirCargas("roxa", 1)) {
+              causarDano(card.power, "area");
+            }
+          }
+        }
+        //🎨
+        else if (card.name === "Terço Da Criação") {
+          ["amarelo", "azul", "vermelho","roxa","laranja","verde"].forEach(cor => {
+            aplicarBuffsPower(1, 999, cor);
+          });
+        }
+        //🎨
+        else if (card.name === "Sonho Extraordinario") {
+          if (consumirCargas("azul", 2)) {
+            allBuffs(card.power, "def");
+          }
+        }
+        //🎨
+        else if (card.name === "Proteção Da Pureza") {
           if (
-            getCargas("amarelo") >= 3 &&
-            getCargas("azul") >= 3 &&
-            getCargas("vermelho") >= 3
+            consumirCargas("azul", 2) &&
+            consumirCargas("amarelo", 1)
           ) {
-            consumirCargas("amarelo", 3);
-            consumirCargas("azul", 3);
-            consumirCargas("vermelho", 3);
-
-            causarDano(170, "unico");
+            allBuffs(card.power * 2, "def", true);
+            allBuffs(card.power, "cura", true);
+          }
+        }
+        //🎨
+        else if (card.name === "Respingo Da Vida") {
+          if (consumirCargas("verde", 2)) {
+            allBuffs(card.power, "cura");
+          }
+        }
+        //🎨
+        else if (card.name === "Arco Da Majestade") {
+          if (!criadoraModo) {
+            if (
+            consumirCargas("amarelo", 1) &&
+            consumirCargas("azul", 1) &&
+            consumirCargas("vermelho", 1)
+          ) {
+            causarDano(card.power, "area");
+            animarLiliaTransformacao(true,"area");
+          }
+          }
+          
+        }
+        //🎨
+        else if (card.name === "Chuva Magnifica") {
+          if (!criadoraModo) {
+           if (
+            consumirCargas("vermelho", 5) &&
+            consumirCargas("roxa", 1)
+          ) {
+            causarDano(card.power, "area");
+            animarLiliaTransformacao(true,"area");
+          } 
+          }
+        }
+        //🎨
+        else if (card.name === "Majestade Escolhe") {
+          criadoraModo=false;
+            if (consumirCargas("laranja", 1)) {
+            causarDano(card.power, "ultimo");
+          }
+        }
+        //🎨
+        else if (card.name === "As Armas") {
+          if (!criadoraModo) {
+            if (consumirCargas("vermelho", 1)) {
+            causarDano(card.power, "unico");
+          }
+          }
+        }
+        //🎨
+        else if (card.name === "O Céu... Curva-se") {
+          if (!criadoraModo) {
+            if (consumirCargas("azul", 1)) {
+            causarDano(card.power, "area");
+          }
+          }
+        }
+        //🎨
+        else if (card.name === "Arsenal De Pigmentos") {
+          if (!criadoraModo) {
+            if (consumirCargas("laranja", 1)) {
+            causarDano(card.power, "area");
+          }
           }
         }
         //🎨
@@ -1566,13 +1712,19 @@ function drawCards() {
           if (
             getCargas("amarelo") >= 1 &&
             getCargas("azul") >= 1 &&
-            getCargas("vermelho") >= 1
+            getCargas("vermelho") >= 1 &&
+            getCargas("roxa") >= 1 &&
+            getCargas("laranja") >= 1 &&
+            getCargas("verde") >= 1
           ) {
             consumirCargas("amarelo", 1);
             consumirCargas("azul", 1);
             consumirCargas("vermelho", 1);
+            consumirCargas("verde", 1);
+            consumirCargas("roxa", 1);
+            consumirCargas("laranja", 1);
 
-            causarDano(20, "area");
+            causarDano(card.power, "area");
           }
         }
         //🎨
@@ -3053,6 +3205,23 @@ function consumirCargas(tipo, quantidade) {
 }
 function limparBuffsMortos(tipo) {
   buffs[tipo] = buffs[tipo].filter(b => b.cargas > 0);
+}
+function misturarTintas(req, resultado, ganho) {
+
+  // verifica se tem todas
+  for (let tipo in req) {
+    if (getCargas(tipo) < req[tipo]) return false;
+  }
+
+  // consome
+  for (let tipo in req) {
+    consumirCargas(tipo, req[tipo]);
+  }
+
+  // adiciona resultado
+  aplicarBuffsPower(ganho, 999, resultado);
+
+  return true;
 }
 
 // MAPA
@@ -7287,14 +7456,25 @@ const characterDecks = {
   criadora: [
     cradsCria.find(c => c.name === "Tudo Se Transforma"),
     cradsCria.find(c => c.name === "Caixa De Corantes"),
-    cradsCria.find(c => c.name === "Corante Amarelo"),
-    cradsCria.find(c => c.name === "Corante Azul"),
-    cradsCria.find(c => c.name === "Corante Vermelho"),
-    cradsCria.find(c => c.name === "Tinta Amarela"),
-    cradsCria.find(c => c.name === "Tinta Azul"),
-    cradsCria.find(c => c.name === "Tinta Vermelha"),
+    cradsCria.find(c => c.name === "Tinta Roxa"),
+    cradsCria.find(c => c.name === "Tinta Verde"),
+    cradsCria.find(c => c.name === "Tinta Laranja"),
     cradsCria.find(c => c.name === "Pincel Extraordinario"),
+    cradsCria.find(c => c.name === "Trocando De Estilo"),
     cradsCria.find(c => c.name === "Colorindo"),
+    cradsCria.find(c => c.name === "Terço Da Criação"),
+    cradsCria.find(c => c.name === "Sonho Extraordinario"),
+    cradsCria.find(c => c.name === "Proteção Da Pureza"),
+    cradsCria.find(c => c.name === "Respingo Da Vida"),
+    cradsCria.find(c => c.name === "Arco Da Majestade"),
+    cradsCria.find(c => c.name === "Chuva Magnifica"),
+    cradsCria.find(c => c.name === "Majestade Escolhe"),
+    cradsCria.find(c => c.name === "Pincelada Gira Sol"),
+    cradsCria.find(c => c.name === "Pincelada Pura"),
+    cradsCria.find(c => c.name === "Magnifco"),
+    cradsCria.find(c => c.name === "As Armas"),
+    cradsCria.find(c => c.name === "O Céu... Curva-se"),
+    cradsCria.find(c => c.name === "Arsenal De Pigmentos"),
   ],
   // gaeaReen: [
   //   allCards.find(c => c.name === "Chuva de Laminas"),
@@ -7327,8 +7507,36 @@ const characterDecks = {
 };
 
 //ANIMAÇÃO ATK PLAYER EM FASE DE TESTE
-function animarLiliaTransformacao() {
-  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo") {
+async function animarLiliaTransformacao(anima=false,tipo) {
+  if (personagemSelecionado=="criadora" && anima==true) {
+      switch (tipo) {
+    case "unico":
+      await animacaoConfrontoDD2(enemies[0].el);
+      animateDamage(enemies[0].el);
+      break;
+    case "ultimo":
+      const alvo = [...enemies].reverse().find(e => e.hp > 0);
+      if (alvo) {
+        await animacaoConfrontoDD2(alvo.el);
+        animateDamage(alvo.el);
+      }
+      break;
+    case "area":
+      await Promise.all(
+  enemies.map(e => {
+    animateDamage(e.el);
+    return animacaoConfrontoDD2(e.el);
+  })
+);
+      break;
+
+    default:
+      break;
+  }
+      return;
+    }
+
+  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo"|| personagemSelecionado == "criadora") {
 
     const playerImg = document.getElementById("player");
     if (!playerImg) return;
@@ -7343,6 +7551,23 @@ function animarLiliaTransformacao() {
           f3: "./../img/jogo/player/animado/porto/atk/porto1.png",
           idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
         };
+        break;
+      case "criadora":
+        if (criadoraModo) {
+          frames = {
+          f1: "./../img/jogo/player/animado/criadora/atk/criadora1.png",
+          f2: "./../img/jogo/player/animado/criadora/atk/criadora2.png",
+          f3: "./../img/jogo/player/animado/criadora/atk/criadora2.png",
+          idle: "./../img/jogo/player/animado/criadora/statico/criadora1.png"
+        };
+        } else {
+          frames = {
+          f1: "./../img/jogo/player/animado/criadora/atk/criadora22.png",
+          f2: "./../img/jogo/player/animado/criadora/atk/criadora11.png",
+          f3: "./../img/jogo/player/animado/criadora/atk/criadora11.png",
+          idle: "./../img/jogo/player/animado/criadora/statico/criadora11.png"
+        };
+        }
         break;
       case "amarelo":
         frames = {
@@ -7460,9 +7685,233 @@ function animarLiliaTransformacao() {
     }, delay * 5);
   }
 }
+async function animacaoConfrontoDD2(inimigoEl) {
+
+  bloquearInput(true);
+
+  const player = document.getElementById("player");
+  const enemyImg = inimigoEl.querySelector("img");
+  const screen = document.getElementById("div3");
+
+  if (!player || !enemyImg || !screen) return;
+
+  const pRect = player.getBoundingClientRect();
+  const eRect = enemyImg.getBoundingClientRect();
+
+  const centerX = window.innerWidth / 2;
+
+  const playerMove = centerX - (pRect.left + pRect.width / 2);
+  const enemyMove = centerX - (eRect.left + eRect.width / 2);
+
+  const playerCenter = `translateX(${playerMove}px) scale(1.4)`;
+  const enemyCenter = `translateX(${enemyMove}px) scale(1.4)`;
+
+  player.style.transition = "transform .35s ease";
+  enemyImg.style.transition = "transform .35s ease";
+  screen.style.transition = "transform .4s ease";
+
+  /* ========= ZOOM ========= */
+  screen.style.transform = "scale(1.2)";
+  await esperar(200);
+
+  /* ========= IR PRO CENTRO ========= */
+  player.style.transform = playerCenter;
+  enemyImg.style.transform = enemyCenter;
+
+  await esperar(400);
+
+  /* ========================================================= */
+  /* =================== MODO NORMAL ========================== */
+  /* ========================================================= */
+  if (criadoraModo) {
+
+    const frames = {
+      f1: "./../img/jogo/player/animado/criadora/atk/criadora1.png",
+      f2: "./../img/jogo/player/animado/criadora/atk/criadora2.png",
+      f3: "./../img/jogo/player/animado/criadora/atk/criadora3.png",
+      idle: "./../img/jogo/player/animado/criadora/statico/criadora1.png"
+    };
+
+    for (let i = 0; i < 3; i++) {
+
+      player.style.transform = playerCenter;
+      player.src = frames.f1;
+      await esperar(80);
+
+      player.src = frames.f2;
+      await esperar(80);
+
+      player.src = frames.f3;
+
+      criarEfeitoNoInimigo(inimigoEl);
+      await esperar(120);
+    }
+
+    player.src = frames.idle;
+
+  } else {
+
+    /* ========================================================= */
+    /* =================== MODO CHUVA =========================== */
+    /* ========================================================= */
+
+    const frames = {
+      start: "./../img/jogo/player/animado/criadora/atk/criadora22.png",
+      cast: "./../img/jogo/player/animado/criadora/atk/criadora11.png",
+      idle: "./../img/jogo/player/animado/criadora/statico/criadora11.png"
+    };
+
+    // entra no centro
+    player.src = frames.start;
+    await esperar(150);
+
+    // congela no frame de conjuração
+    player.src = frames.cast;
+
+    // 💥 chuva de efeitos
+    await chuvaDeGolpes(inimigoEl);
+
+    // pequena pausa dramática
+    await esperar(300);
+
+    player.src = frames.idle;
+  }
+
+  /* ========= VOLTA ========= */
+  player.style.transform = "translateX(0px) scale(1)";
+  enemyImg.style.transform = "translateX(0px) scale(1)";
+  screen.style.transform = "scale(1)";
+
+  await esperar(400);
+
+  bloquearInput(false);
+}
+function criarEfeitoNoInimigo(inimigoEl) {
+
+  const enemyImg = inimigoEl.querySelector("img");
+  if (!enemyImg) return;
+
+  const frames = [
+    "../img/jogo/player/animado/criadora/efeitos/criadora1.png",
+    "../img/jogo/player/animado/criadora/efeitos/criadora2.png",
+    "../img/jogo/player/animado/criadora/efeitos/criadora3.png",
+    "../img/jogo/player/animado/criadora/efeitos/criadora4.png",
+  ];
+
+  let frameIndex = 0;
+
+  const efeito = document.createElement("img");
+  efeito.src = frames[0];
+
+  /* ========= GARANTE POSIÇÃO RELATIVA ========= */
+  inimigoEl.style.position = "relative";
+
+  efeito.style.position = "absolute";
+  efeito.style.left = "50%";
+  efeito.style.top = "50%";
+  efeito.style.transform = "translate(-140%, -50%) scale(2.8)"; // 🔥 maior e centralizado
+  efeito.style.pointerEvents = "none";
+  efeito.style.zIndex = "9999";
+  efeito.style.width = "140px";
+
+  inimigoEl.appendChild(efeito);
+
+  /* ========= ANIMAÇÃO ========= */
+  const anim = setInterval(() => {
+    frameIndex++;
+
+    if (frameIndex >= frames.length) {
+      clearInterval(anim);
+      efeito.remove();
+      return;
+    }
+
+    efeito.src = frames[frameIndex];
+
+  }, 35);
+}
+async function chuvaDeGolpes(inimigoEl) {
+
+  const battlefield = document.getElementById("battlefield");
+  if (!battlefield) return;
+
+  const total = 16; // 🔥 mais quantidade = mais impacto
+  const efeitos = [];
+
+  const fieldHeight = battlefield.offsetHeight;
+
+  for (let i = 0; i < total; i++) {
+
+    const efeito = document.createElement("img");
+
+    efeito.src = "../img/jogo/player/animado/criadora/efeitos/criadora11.png";
+
+    efeito.style.position = "absolute";
+    efeito.style.pointerEvents = "none";
+
+    /* 🔥 TAMANHO MAIOR E VARIADO */
+    const scale = 1.5 + Math.random() * 1.2;
+    efeito.style.width = (100 * scale) + "px";
+
+    /* 🔥 POSIÇÃO TOTALMENTE ALEATÓRIA */
+    const startX = -300 - Math.random() * 500; // bem fora da tela
+    const startY = Math.random() * fieldHeight;
+
+    efeito.style.left = startX + "px";
+    efeito.style.top = startY + "px";
+
+    /* 🔥 SOBREPOSIÇÃO (umas na frente das outras) */
+    efeito.style.zIndex = 9000 + Math.floor(Math.random() * 1000);
+
+    battlefield.appendChild(efeito);
+    efeitos.push(efeito);
+  }
+
+  await esperar(50);
+
+  /* ========= MOVIMENTO ========= */
+  efeitos.forEach((efeito) => {
+
+    const duration = 0.5 + Math.random() * 0.4; // velocidades diferentes
+    efeito.style.transition = `transform ${duration}s linear`;
+
+    const moveX = window.innerWidth + 600;
+
+    efeito.style.transform = `translateX(${moveX}px)`;
+  });
+
+  await esperar(900);
+
+  efeitos.forEach(e => e.remove());
+}
+function bloquearInput(travar) {
+  let overlay = document.getElementById("inputBlocker");
+
+  if (travar) {
+    if (overlay) return;
+
+    overlay = document.createElement("div");
+    overlay.id = "inputBlocker";
+
+    Object.assign(overlay.style, {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      zIndex: 999999,
+      background: "transparent",
+      pointerEvents: "all"
+    });
+
+    document.body.appendChild(overlay);
+  } else {
+    if (overlay) overlay.remove();
+  }
+}
 //ANIMAÇÃO DEF PLAYER EM FASE DE TESTE
 function playerTomarDanoAnimacao() {
-  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo") {
+  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo" || personagemSelecionado == "criadora") {
 
     const playerImg = document.getElementById("player");
     if (!playerImg) return;
@@ -7475,6 +7924,20 @@ function playerTomarDanoAnimacao() {
           hit: "./../img/jogo/player/animado/porto/def/porto1.png",
           idle: "./../img/jogo/player/animado/porto/statico/porto1.png"
         };
+
+        break;
+      case "criadora":
+        if (criadoraModo) {
+          frames = {
+            hit: "./../img/jogo/player/animado/criadora/def/criadora1.png",
+            idle: "./../img/jogo/player/animado/criadora/statico/criadora1.png"
+          };
+        } else {
+          frames = {
+            hit: "./../img/jogo/player/animado/criadora/def/criadora11.png",
+            idle: "./../img/jogo/player/animado/criadora/statico/criadora11.png"
+          };
+        }
 
         break;
       case "amarelo":
@@ -7721,7 +8184,7 @@ async function enemyTurn() {
         case "attackVida":
         case "morrer":
           playerTomarDanoAnimacao();
-          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo") {
+          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo" || personagemSelecionado == "criadora") {
             podeSacudir = false;
           }
           break;
