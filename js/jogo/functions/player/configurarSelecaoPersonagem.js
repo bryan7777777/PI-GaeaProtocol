@@ -393,18 +393,18 @@ function configurarSelecaoPersonagem() {
       lor: "\"Em desenvolvimento\"[...]"
     },
       criadora: {
-      nome: "⚙️teste⚙️",
-      dificuldade: "⚙️NÍVEL DE DIFICULDADE: 💀💀⚙️",
+      nome: "🎨Mayumi, A criadoura caida🎨",
+      dificuldade: "🎨NÍVEL DE DIFICULDADE: ☠️☠️☠️☠️☠️🎨",
       cor: "rgb(141, 7, 231)",
-      descricao: "Um engenheiro estratégico, utiliza de seus drones para tudo, saber como usar sua energia é algo vital.",
-      cardFoco: "Deck de drones, muito forte contra multiplos inimigos porém fraco contra um alvo isolado.",
+      descricao: "Uma pintora talentosa e uma arqueira nata, deck focado entroca de estilos e mistura de cores. Sua maior força também é sua maior fraqueza, Mayumi sofre de daltonismo, será que isso lhe impede de ver o fim?",
+      cardFoco: "Deck de cores, focado em troca de modos de combate e combo.",
       hp: 85,
       maxHp: 85,
       energia: 5,
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/criadora.gif",
-      lor: "\"Em desenvolvimento\"[...]"
+      lor: "Mayumi era uma artista extraordinária. Suas obras eram conhecidas por uma beleza quase sobrenatural, repletas de cores vibrantes que encantavam todos que as contemplavam. Já havia servido como artista pessoal do imperador e também como uma arqueira de elite, precisa e implacável.<br><br>Em busca de aperfeiçoamento, partiu em uma jornada que mudaria sua vida. Durante o caminho, encontrou um grupo budista devoto das cores e da percepção do mundo. Permaneceu com eles por muitos anos, aprendendo, evoluindo... até que uma verdade devastadora veio à tona: Mayumi nunca soube, de fato, o que eram cores. Para ela, o mundo sempre foi feito apenas de tons de cinza.<br><br>Mesmo assim, ela pintava. Criava. Sonhava.<br><br>Certo dia, ouviu rumores sobre um elixir milagroso, capaz de conceder, ainda que por breves instantes, a visão das cores verdadeiras. Aquilo deixou de ser apenas um desejo — tornou-se sua missão, seu propósito, sua fé.<br><br>Atravessou vales, sobreviveu a guerras, enfrentou a própria exaustão... mas nunca caiu.<br><br>Até que chegou a um majestoso Palácio de Jade, onde encontrou o Deus do Sol. Diante dele, fez seu pedido: desejava o elixir. Desejava ver, nem que fosse por um instante, as cores que tanto havia pintado.<br><br>O deus respondeu com desprezo. Disse possuir o elixir, mas jamais o entregaria a uma mortal tão \"miserável\".<br><br>Sem hesitar, Mayumi o desafiou.<br><br>O duelo foi breve... e brutal. Em poucos minutos, seu corpo já não respondia, e a morte parecia inevitável. Ainda assim, com o último fio de voz, ela declarou:<br><br>\"Se me deixar viver... eu viverei para te derrotar.\"<br><br>Intrigado — talvez até entediado pela eternidade solitária — o Deus do Sol decidiu poupá-la.<br><br>E assim começou um ciclo.<br><br>Todos os meses, sem falhar, Mayumi retornava. Contava suas batalhas, suas derrotas, suas evoluções. E, a cada encontro, ela estava mais forte. Mais rápida. Mais determinada.<br><br>Com o tempo, o deus passou a esperar por sua presença.<br><br>Até que, em um desses encontros, o inevitável aconteceu.<br><br>Mayumi o superou.<br><br>Diante dela, derrotado, o Deus do Sol sorriu e disse:<br><br>\"Eu não poderia desejar uma oponente melhor.\"<br><br>Então, finalmente, entregou-lhe o elixir. Mas havia um preço: seu efeito duraria apenas por instantes... e qualquer ferimento encerraria sua magia imediatamente.<br><br>Além disso, concedeu a ela uma dádiva — ou talvez uma maldição: imortalidade temporária. Mayumi não envelheceria, mas ainda poderia morrer em batalha. E quando reunisse todas as cores do mundo e consumisse o elixir... tudo chegaria ao fim.<br><br>Sem hesitar, ela aceitou.<br><br>Seu novo objetivo era claro: reunir todas as cores existentes.<br><br>E assim, ela vagou por anos... décadas... talvez séculos. Dormiu por longos períodos, hibernando entre jornadas, esperando o momento certo para continuar.<br><br>Mas, ao despertar de um desses longos sonos, encontrou um mundo diferente.<br><br>Um mundo apagado.<br><br>As cores estavam desaparecendo.<br><br>Foi então que descobriu a existência de uma IA, uma entidade que, pouco a pouco, estava drenando todas as cores do mundo — destruindo aquilo que ela passou a vida inteira buscando.<br><br>Diante disso, Mayumi fez seu último juramento:<br><br>Ela destruiria a IA.<br><br>E, finalmente... veria as cores."
     }
   };
 

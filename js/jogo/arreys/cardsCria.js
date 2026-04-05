@@ -5,7 +5,7 @@ const cardsCria = [
     basePower: 0,
     rarity: "cria",
     img: "../img/jogo/cards/cria/teste.png",
-    desc: "Transfoma todas os corantes em tintas",
+    desc: "Transfoma todos os corantes em tintas",
     type: "cria"
   },
   {
@@ -108,12 +108,48 @@ const cardsCria = [
     type: "cria"
   },
   {
+    name: "Bebida Do Sacreficio",
+    cost: 0,
+    basePower: 20,
+    rarity: "cria",
+    img: "../img/jogo/cards/cria/bebidaDeJade.png",
+    desc: "Permite enxergar temporariamente cores. O ofeito some após sofrer dano",
+    type: "cria"
+  },
+  {
+    name: "Estilo 子",
+    cost: 0,
+    basePower: 6,
+    rarity: "cria",
+    img: "../img/jogo/cards/cria/estiloCria.png",
+    desc: "Alterna o modo pincel para arco, e vice verso. No modo pincel ganhe 1 carga de tinta azul e roxa, e no modo arco ganhe 1 carga de tinta vermelha e laranja",
+    type: "cria"
+  },
+  {
+    name: "Escalada",
+    cost: 1,
+    basePower: 6,
+    rarity: "cria",
+    img: "../img/jogo/cards/cria/escalada.png",
+    desc: "Muda imediatamente para o modo Pincel. Precisa de 1 carga de tinta azul, vermelho e amarelo para causar 6 de dano e ganhar escudo e cura",
+    type: "cria"
+  },
+  {
     name: "Pincel Extraordinario",
     cost: 3,
-    basePower: 0,
+    basePower: 100,
     rarity: "cria",
     img: "../img/jogo/cards/cria/pincel.png",
-    desc: "(Modo Pincel Nescessario) Precisa 3 carga de tinta roxa para causar 100 de dano",
+    desc: "<strong class='criaDestaque'>(Modo Pincel Nescessario)</strong> Precisa 3 carga de tinta roxa para causar 100 de dano",
+    type: "cria"
+  },
+  {
+    name: "A Criação Toma Forma",
+    cost: 2,
+    basePower: 70,
+    rarity: "cria",
+    img: "../img/jogo/cards/cria/criacao.png",
+    desc: "<strong class='criaDestaque'>(Modo Pincel Nescessario)</strong> Precisa 2 carga de todas as tintas para causar 70 de dano em area e ganhar 50 de escudo",
     type: "cria"
   },
   {
@@ -122,7 +158,7 @@ const cardsCria = [
     basePower: 10,
     rarity: "cria",
     img: "../img/jogo/cards/cria/pincelAmarelo.png",
-    desc: "(Modo Pincel Nescessario) Precisa 1 carga de tinta amarela para causar 10 de dano em area e ganhe 10 de escudo",
+    desc: "<strong class='criaDestaque'>(Modo Pincel Nescessario)</strong> Precisa 1 carga de tinta amarela para causar 10 de dano em area e ganhe 10 de escudo",
     type: "cria"
   },
   {
@@ -131,7 +167,7 @@ const cardsCria = [
     basePower: 10,
     rarity: "cria",
     img: "../img/jogo/cards/cria/pincelVerde.png",
-    desc: "(Modo Pincel Nescessario) Precisa 1 carga de tinta verde para causar 10 de dano e cure 10 de vida",
+    desc: "<strong class='criaDestaque'>(Modo Pincel Nescessario)</strong> Precisa 1 carga de tinta verde para causar 10 de dano e cure 10 de vida",
     type: "cria"
   },
   {
@@ -140,16 +176,16 @@ const cardsCria = [
     basePower: 30,
     rarity: "cria",
     img: "../img/jogo/cards/cria/pincelRoxo.png",
-    desc: "(Modo Pincel Nescessario) Precisa 1 carga de tinta roxa para causar 30 de dano em area",
+    desc: "<strong class='criaDestaque'>(Modo Pincel Nescessario)</strong> Precisa 1 carga de tinta roxa para causar 30 de dano em area",
     type: "cria"
   },
   {
     name: "Colorindo",
     cost: 1,
-    basePower: 20,
+    basePower: 30,
     rarity: "cria",
     img: "../img/jogo/cards/cria/paleta.png",
-    desc: "Precisa 1 carga de todas as tintas para causar 20 de dano em area",
+    desc: "Precisa 1 carga de todas as tintas para causar 30 de dano em area",
     type: "cria"
   },
   {
@@ -159,6 +195,33 @@ const cardsCria = [
     rarity: "cria",
     img: "../img/jogo/cards/cria/terco.png",
     desc: "Ganhe 1 carga de todas as cores",
+    type: "cria"
+  },
+  {
+    name: "顔料の起源",
+    cost: 2,
+    basePower: 0,
+    rarity: "cria",
+    img: "../img/jogo/cards/cria/origemDosPigmentos.png",
+    desc: "Ganhe 1 carga de todas as cores e transfoma todos os corantes em tintas",
+    type: "cria"
+  },
+  {
+    name: "Espetaculo Magnifico",
+    cost: 2,
+    basePower: 50,
+    rarity: "cria",
+    img: "../img/jogo/cards/cria/podio.png",
+    desc: "<strong class='criaDestaque'>(Modo Pincel Nescessario)</strong> Precisa de 2 cargas de todas as tintas para causar dano igual sua vida atual mais 50 de dano",
+    type: "cria"
+  },
+  {
+    name: "Criação Nescessaria",
+    cost: 2,
+    basePower: 0,
+    rarity: "cria",
+    img: "../img/jogo/cards/cria/boaIdeia.png",
+    desc: "Precisa de 1 carga de tinta azul, vermelho e amarelo para criar 2 cargas de tinta roxa, laranja e verde",
     type: "cria"
   },
   {
@@ -194,7 +257,7 @@ const cardsCria = [
     basePower: 55,
     rarity: "cria",
     img: "../img/jogo/cards/cria/arcoDaMajestade.png",
-    desc: "(Modo Arco Nescessario) Precisa 1 carga de todas as tintas para causar 55 de dano em area",
+    desc: "<strong class='criaDestaque'>(Modo Arco Nescessario)</strong> Precisa 1 carga de todas as tintas para causar 55 de dano em area",
     type: "cria"
   },
   {
@@ -203,7 +266,7 @@ const cardsCria = [
     basePower: 150,
     rarity: "cria",
     img: "../img/jogo/cards/cria/chuvaFle.png",
-    desc: "(Modo Arco Nescessario) Precisa 5 carga de tinta vermelha e 1 roxa para causar 150 de dano em area",
+    desc: "<strong class='criaDestaque'>(Modo Arco Nescessario)</strong> Precisa 5 carga de tinta vermelha e 1 roxa para causar 150 de dano em area",
     type: "cria"
   },
   {
@@ -221,7 +284,7 @@ const cardsCria = [
     basePower: 20,
     rarity: "cria",
     img: "../img/jogo/cards/cria/flechaVermelha.png",
-    desc: "(Modo Arco Nescessario) Precisa 1 carga de tinta vermelha para causar 20 de dano",
+    desc: "<strong class='criaDestaque'>(Modo Arco Nescessario)</strong> Precisa 1 carga de tinta vermelha para causar 20 de dano",
     type: "cria"
   },
   {
@@ -230,7 +293,7 @@ const cardsCria = [
     basePower: 10,
     rarity: "cria",
     img: "../img/jogo/cards/cria/flechaAzul.png",
-    desc: "(Modo Arco Nescessario) Precisa 1 carga de tinta azul para causar 10 de dano em area",
+    desc: "<strong class='criaDestaque'>(Modo Arco Nescessario)</strong> Precisa 1 carga de tinta azul para causar 10 de dano em area",
     type: "cria"
   },
   {
@@ -239,7 +302,7 @@ const cardsCria = [
     basePower: 25,
     rarity: "cria",
     img: "../img/jogo/cards/cria/flechaLaranja.png",
-    desc: "(Modo Arco Nescessario) Precisa 1 carga de tinta laranja para causar 25 de dano em area",
+    desc: "<strong class='criaDestaque'>(Modo Arco Nescessario)</strong> Precisa 1 carga de tinta laranja para causar 25 de dano em area",
     type: "cria"
   },
 ];

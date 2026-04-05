@@ -724,15 +724,32 @@ color: rgb(227, 90, 255);
 }
 
 #recompensa .cria .energia{
-  color: #4fdcff;
+  color: #00eeff;
+  margin-top: -85%;
+  margin-bottom: 73%;
+  text-shadow: 0 0 8px #000000;
+}
+
+.itemLoja .heal .energia{
+  color: #00eeff;
+  margin-top: -89%;
+  margin-bottom: 70%;
+}
+
+.cria .titulo{
+  background-color: #9b05c5be;
+  border-radius: 20px;
+  height: 12%;
 }
 
 .cria strong{
-  color: #570082;
-  background-color: rgba(255, 247, 0, 0.5);
-  box-shadow: 0 0 8px 0 rgba(255, 247, 0, 0.5);
+  color: #00eeff;
   padding: 2px 6px;
   border-radius: 10px;
+}
+
+.cria .criaDestaque{
+  color: #9affab;
 }
 
 .cria .desc em{
@@ -740,7 +757,7 @@ color: rgb(227, 90, 255);
 }
 
 .cria .desc{
-  background-color: #9b05c5a1;
+  background-color: #9b05c5be;
 }
 
 .common {

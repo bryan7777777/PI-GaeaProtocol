@@ -747,6 +747,13 @@ function drawCards() {
           break;
         //🎨🎨🎨🎨🎨 CRIA 🎨🎨🎨🎨🎨
         case "Trocando De Estilo":
+        case "Estilo 子":
+        case "顔料の起源":
+        case "A Criação Toma Forma":
+        case "Escalada":
+        case "Criação Nescessaria":
+        case "Espetaculo Magnifico":
+        case "Bebida Do Sacreficio":
         case "Corante Amarelo":
         case "Corante Azul":
         case "Corante Vermelho":
@@ -1543,6 +1550,82 @@ function drawCards() {
           }
         }
         //🎨
+        else if (card.name === "Estilo 子") {
+          switch (criadoraModo) {
+            case true:
+              trocarFramePlayer();
+              criadoraModo = false;
+              ["vermelho","laranja"].forEach(cor => {
+                aplicarBuffsPower(1, 999, cor);
+              });
+              break;
+
+            case false:
+              trocarFramePlayer();
+              criadoraModo = true;
+              ["roxa","azul"].forEach(cor => {
+                aplicarBuffsPower(1, 999, cor);
+              });
+              break;
+
+            default:
+              criadoraModo = true;
+              break;
+          }
+        }
+        //🎨
+        else if (card.name === "Bebida Do Sacreficio") {
+          togglePretoBranco();
+        }
+        //🎨
+        else if (card.name === "Escalada") {
+          if (!criadoraModo) {
+            trocarFramePlayer();
+          }
+          criadoraModo = true;
+          if (consumirCargas("azul", 1) &&
+            consumirCargas("amarelo", 1) &&
+            consumirCargas("vermelho", 1)) {
+
+            causarDano(card.power, "unico");
+            allBuffs(card.power, "def", true);
+            allBuffs(card.power, "cura", true);
+          }
+        }
+        //🎨
+        else if (card.name === "A Criação Toma Forma") {
+          if (criadoraModo) {
+            if (
+              consumirCargas("amarelo", 1) &&
+              consumirCargas("azul", 1) &&
+              consumirCargas("vermelho", 1) &&
+              consumirCargas("roxa", 1) &&
+              consumirCargas("laranja", 1) &&
+              consumirCargas("verde", 1)
+            ) {
+              causarDano(card.power, "area");
+              animarLiliaTransformacao(true, "area");
+              allBuffs(card.power, "def");
+            }
+          }
+        }
+        //🎨
+        else if (card.name === "Espetaculo Magnifico") {
+          if (criadoraModo) {
+            if (
+              consumirCargas("amarelo", 2) &&
+              consumirCargas("azul", 2) &&
+              consumirCargas("vermelho", 2) &&
+              consumirCargas("roxa", 2) &&
+              consumirCargas("laranja", 2) &&
+              consumirCargas("verde", 2)
+            ) {
+              causarDano(playerHP+card.power, "unico");
+              animarLiliaTransformacao(true, "area");
+            }
+          }
+        }
+        //🎨
         else if (card.name === "Corante Amarelo") {
           deck.push({ ...cardsCria.find(c => c.name === "Tinta Amarela"), power: 0 });
         }
@@ -1579,6 +1662,12 @@ function drawCards() {
           misturarTintas({ vermelho: 1, amarelo: 1 }, "laranja", 2);
         }
         //🎨
+        else if (card.name === "Criação Nescessaria") {
+          misturarTintas({ vermelho: 1, amarelo: 1 }, "laranja", 2);
+          misturarTintas({ azul: 1, amarelo: 0 }, "verde", 2);
+          misturarTintas({ azul: 0, vermelho: 0 }, "roxa", 2);
+        }
+        //🎨
         else if (card.name === "Caixa De Corantes") {
           const corantes = ["Corante Amarelo", "Corante Azul", "Corante Vermelho"];
           for (let i = 0; i < 5; i++) {
@@ -1591,7 +1680,7 @@ function drawCards() {
         else if (card.name === "Pincel Extraordinario") {
           if (criadoraModo) {
             if (consumirCargas("roxa", 3)) {
-              causarDano(100, "unico");
+              causarDano(card.power, "unico");
               animarLiliaTransformacao(true, "unico");
             }
           }
@@ -1656,7 +1745,10 @@ function drawCards() {
             if (
               consumirCargas("amarelo", 1) &&
               consumirCargas("azul", 1) &&
-              consumirCargas("vermelho", 1)
+              consumirCargas("vermelho", 1) &&
+              consumirCargas("roxa", 1) &&
+              consumirCargas("laranja", 1) &&
+              consumirCargas("verde", 1)
             ) {
               causarDano(card.power, "area");
               animarLiliaTransformacao(true, "area");
@@ -1731,7 +1823,12 @@ function drawCards() {
           }
         }
         //🎨
-        else if (card.name === "Tudo Se Transforma") {
+        else if (card.name === "Tudo Se Transforma" || card.name === "顔料の起源") {
+          if (card.name === "顔料の起源") {
+            ["amarelo", "azul", "vermelho", "roxa", "laranja", "verde"].forEach(cor => {
+            aplicarBuffsPower(1, 999, cor);
+          });
+          }
           const toRemove = new Set();
           toRemove.add(card);
           let transformados = 0;
@@ -2994,8 +3091,7 @@ function resetarBuffsPower() {
 function aplicarBuffsPower(val, rodadas, tipo) {
 
   if (STACK_REAL.includes(tipo)) {
-
-    // 🔥 remove qualquer lixo
+    // remove qualquer lixo
     buffs[tipo] = buffs[tipo].filter(b => b.cargas > 0);
 
     let existente = buffs[tipo][0];
@@ -3004,8 +3100,7 @@ function aplicarBuffsPower(val, rodadas, tipo) {
       existente.cargas += val;
       return;
     }
-
-    // 🔥 cria novo buff E VISUAL
+    // cria novo buff E VISUAL
     const buff = {
       valor: val,
       cargas: val
@@ -7117,6 +7212,7 @@ function criarPlayerNaDiv3() {
       limiteMao = 6;
       playerDeck = [...characterDecks.criadora];
       deckCria=true;
+      ativarPretoBranco();
       break;
     default:
       playerImg.src = "./../img/jogo/extra/prototipo.png";
@@ -7514,8 +7610,8 @@ const characterDecks = {
     cardsCria.find(c => c.name === "Tinta Roxa"),
     cardsCria.find(c => c.name === "Tinta Verde"),
     cardsCria.find(c => c.name === "Tinta Laranja"),
-    cardsCria.find(c => c.name === "Terço Da Criação"),
-    cardsCria.find(c => c.name === "Trocando De Estilo"),
+    cardsCria.find(c => c.name === "Estilo 子"),
+    cardsCria.find(c => c.name === "Estilo 子"),
     cardsCria.find(c => c.name === "Pincel Extraordinario"),
     cardsCria.find(c => c.name === "Arco Da Majestade"),
     cardsCria.find(c => c.name === "Proteção Da Pureza"),
@@ -8293,6 +8389,9 @@ async function enemyTurn() {
           animateDamage(document.getElementById("player"), podeSacudir);
           floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
           redScreenGlow(300, 30);
+          if (personagemSelecionado=="criadora") {
+            ativarPretoBranco();
+          }
         }
         // 💚 CURA
       } else if (act.type === "heal") {
@@ -8337,7 +8436,9 @@ async function enemyTurn() {
         animateDamage(document.getElementById("player"), podeSacudir);
         floatText(document.getElementById("player"), `-${act.value}🔱`, "orange");
         redScreenGlow(300, 30);
-
+        if (personagemSelecionado=="criadora") {
+            ativarPretoBranco();
+          }
         // 💀 MORTE
       } else if (act.type === "morrer") {
 
@@ -8356,6 +8457,9 @@ async function enemyTurn() {
           playerHP -= dano;
           floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
           redScreenGlow(300, 30);
+          if (personagemSelecionado=="criadora") {
+            ativarPretoBranco();
+          }
         }
         animateDamage(document.getElementById("player"), podeSacudir);
 

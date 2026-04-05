@@ -83,12 +83,12 @@ const BUFF_VISUAL = { // Configuração visual dos buffs
   cura:  { emoji: "💚", border: "0px 20px 0px 20px", color: "#66ff66" },
   geral: { emoji: "✨", border: "100px", color: "#ff9ad5" },
 
-  amarelo:  { emoji: "黄色", border: "50%", color: "#ffd700" },
-  azul:     { emoji: "青", border: "50%", color: "#3399ff" },
-  vermelho: { emoji: "赤", border: "50%", color: "#ff4444" },
-  roxa:     { emoji: "紫", border: "50%", color: "#a855f7" },
-  verde:    { emoji: "緑", border: "50%", color: "#22c55e" },
-  laranja:  { emoji: "オレンジ", border: "50%", color: "#f97316" }
+  amarelo:  { emoji: "黄色", border: "50%",        color: "#ffd700" }, // círculo
+  azul:     { emoji: "青",   border: "50% 50% 0 0",         color: "#3399ff" }, // quadrado
+  vermelho: { emoji: "赤",   border: "0 50% 50% 50%",        color: "#ff4444" }, // leve arredondado
+  roxa:     { emoji: "紫",   border: "35%",        color: "#a855f7" }, // rounded
+  verde:    { emoji: "緑",   border: "50% 0 50% 0", color: "#22c55e" }, // forma diferente
+  laranja:  { emoji: "オレンジ", border: "0%", color: "#f97316" } // outra forma
 };
 const rarityWeights = [ // Pesos para raridade de cartas
   { name: "common", weight: 50 },
