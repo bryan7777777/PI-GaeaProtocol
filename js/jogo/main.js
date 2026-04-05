@@ -1544,15 +1544,15 @@ function drawCards() {
         }
         //🎨
         else if (card.name === "Corante Amarelo") {
-          deck.push({ ...cradsCria.find(c => c.name === "Tinta Amarela"), power: 0 });
+          deck.push({ ...cardsCria.find(c => c.name === "Tinta Amarela"), power: 0 });
         }
         //🎨
         else if (card.name === "Corante Azul") {
-          deck.push({ ...cradsCria.find(c => c.name === "Tinta Azul"), power: 0 });
+          deck.push({ ...cardsCria.find(c => c.name === "Tinta Azul"), power: 0 });
         }
         //🎨
         else if (card.name === "Corante Vermelho") {
-          deck.push({ ...cradsCria.find(c => c.name === "Tinta Vermelha"), power: 0 });
+          deck.push({ ...cardsCria.find(c => c.name === "Tinta Vermelha"), power: 0 });
         }
         //🎨
         else if (card.name === "Tinta Amarela") {
@@ -1583,7 +1583,7 @@ function drawCards() {
           const corantes = ["Corante Amarelo", "Corante Azul", "Corante Vermelho"];
           for (let i = 0; i < 5; i++) {
             const nome = corantes[Math.floor(Math.random() * corantes.length)];
-            const carta = cradsCria.find(c => c.name === nome);
+            const carta = cardsCria.find(c => c.name === nome);
             if (carta) deck.push({ ...carta });
           }
         }
@@ -1747,7 +1747,7 @@ function drawCards() {
               if (c.name.includes("Amarelo")) cor = "Amarela";
               else if (c.name.includes("Azul")) cor = "Azul";
               else if (c.name.includes("Vermelho")) cor = "Vermelha";
-              const nova = cradsCria.find(x => x.name === `Tinta ${cor}`);
+              const nova = cardsCria.find(x => x.name === `Tinta ${cor}`);
 
               if (nova) {
                 deck.push({ ...nova, power: 0 });
