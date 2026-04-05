@@ -1,4 +1,4 @@
-const cradsCria = [
+const cardsCria = [
   {
     name: "Tudo Se Transforma",
     cost: 0,

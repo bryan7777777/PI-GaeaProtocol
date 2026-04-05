@@ -23,10 +23,16 @@ function sortearRaridade() {
 }
 
 function pegarCartaPorRaridade() {
+  if (deckCria) {
+    if (!cardsCria || cardsCria.length === 0) return null;
+    return cardsCria[Math.floor(Math.random() * cardsCria.length)];
+  }
+
   let tentativas = 0;
 
   while (tentativas < 20) {
     const raridade = sortearRaridade();
+
     const pool = allCards.filter(c => (c.rarity ?? "common") === raridade);
 
     if (pool.length > 0) {
@@ -35,7 +41,6 @@ function pegarCartaPorRaridade() {
     tentativas++;
   }
 
-  // fallback
   return allCards[Math.floor(Math.random() * allCards.length)];
 }
 
@@ -62,6 +67,7 @@ while (opcoes.length < 3) {
       case "reciclagem": cardDiv.classList.add("reciclagem"); break;
       case "lixo": cardDiv.classList.add("lixo"); break;
       case "cintilante": cardDiv.classList.add("cintilante"); break;
+      case "cria": cardDiv.classList.add("cria"); break;
     }
 
     // Imagem da carta

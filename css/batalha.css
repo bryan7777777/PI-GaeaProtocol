@@ -723,6 +723,10 @@ color: rgb(227, 90, 255);
   border-radius: 5px;
 }
 
+#recompensa .cria .energia{
+  color: #4fdcff;
+}
+
 .cria strong{
   color: #570082;
   background-color: rgba(255, 247, 0, 0.5);

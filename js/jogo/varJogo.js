@@ -54,6 +54,7 @@ let flagItem38=true; // Flag para item 38
 let flagItem39=true; // Flag para item 39
 let flagItem40=true; // Flag para item 40
 let criadoraModo=true;
+let deckCria=false;
 
 // ARRAYS - Arrays e objetos do jogo
 const deck = []; // Deck completo disponível
