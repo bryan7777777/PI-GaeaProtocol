@@ -1670,7 +1670,8 @@ function drawCards() {
         //🎨
         else if (card.name === "Caixa De Corantes") {
           const corantes = ["Corante Amarelo", "Corante Azul", "Corante Vermelho"];
-          for (let i = 0; i < 5; i++) {
+          num = 11 - deck.length;
+          for (let i = 0; i < Math.min(num, 5); i++) {
             const nome = corantes[Math.floor(Math.random() * corantes.length)];
             const carta = cardsCria.find(c => c.name === nome);
             if (carta) deck.push({ ...carta });
