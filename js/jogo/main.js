@@ -1698,7 +1698,7 @@ function drawCards() {
         //🎨
         else if (card.name === "Pincelada Pura") {
           if (criadoraModo) {
-            if (consumirCargas("amarelo", 1)) {
+            if (consumirCargas("verde", 1)) {
               causarDano(card.power, "unico");
               allBuffs(card.power, "cura");
             }
