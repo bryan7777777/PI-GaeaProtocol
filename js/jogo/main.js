@@ -9635,6 +9635,7 @@ if (pagina === "selecaoMapa.html") {
 // const quantidade8 = allCards.filter(card => card.type === "fire").length;
 // const quantidade9 = allCards.filter(card => card.type === "terra").length;
 // const quantidade10 = allCards.filter(card => card.type === "agua").length;
+// const quantidade11 = criaCards.filter(card => card.type === "cria").length;
 
 // alert(`
 //   Quantidade TOTAL de cards: ${quantidade0}
@@ -9648,4 +9649,5 @@ if (pagina === "selecaoMapa.html") {
 //   Quantidade FIRE: ${quantidade8}
 //   Quantidade TERRA: ${quantidade9}
 //   Quantidade AGUA: ${quantidade10}
+//   Quantidade CRIA: ${quantidade11}
 //   `);
