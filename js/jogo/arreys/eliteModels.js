@@ -149,7 +149,7 @@ const eliteModels = [
       ],
       img: "../img/jogo/inimigos/marinheiro.png",
       tipoDano: "⚔️",
-      tipoVida: "💧️",
+      tipoVida: "💧",
       zona: 2
     },
     {
@@ -161,7 +161,7 @@ const eliteModels = [
       ],
       img: "../img/jogo/inimigos/marinheiroDeLixo.png",
       tipoDano: "⚔️",
-      tipoVida: "💧️",
+      tipoVida: "💧",
       zona: 2
     },
     {
@@ -173,7 +173,7 @@ const eliteModels = [
       ],
       img: "../img/jogo/inimigos/capitao.png",
       tipoDano: "🔱",
-      tipoVida: "💧️",
+      tipoVida: "💧",
       zona: 2
     }
   ],
@@ -201,7 +201,7 @@ const eliteModels = [
       ],
       img: "../img/jogo/inimigos/amalgama.png",
       tipoDano: "(🔱❓💊)💥",
-      tipoVida: "💧️",
+      tipoVida: "💧",
       zona: 2
     }
   ],

@@ -86,7 +86,7 @@ const bossModels = [
       ],
       img: "../img/jogo/inimigos/tentaculoKraken.png",
       tipoDano: "(⚔️)💥",
-      tipoVida: "💧️",
+      tipoVida: "💧",
       zona: 2
     },
     {
@@ -96,7 +96,7 @@ const bossModels = [
       behavior: () => [{ type: Math.random() < 0.5 ? "attack" : "attackVida", value: Math.random() < 0.7 ? 8 : 16 }],
       img: "../img/jogo/inimigos/bossKraken.png",
       tipoDano: "(⚔️❓🔱)💥",
-      tipoVida: "💧️",
+      tipoVida: "💧",
       zona: 2
     },
     {
@@ -108,7 +108,7 @@ const bossModels = [
       ],
       img: "../img/jogo/inimigos/tentaculoKraken.png",
       tipoDano: "(⚔️)💥",
-      tipoVida: "💧️",
+      tipoVida: "💧",
       zona: 2
     }
   ],
