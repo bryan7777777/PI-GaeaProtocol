@@ -1583,9 +1583,14 @@ function drawCards() {
             trocarFramePlayer();
           }
           criadoraModo = true;
-          if (consumirCargas("azul", 1) &&
-            consumirCargas("amarelo", 1) &&
-            consumirCargas("vermelho", 1)) {
+          if (
+            getCargas("amarelo") >= 1 &&
+            getCargas("azul") >= 1 &&
+            getCargas("vermelho") >= 1
+          ) {
+              consumirCargas("amarelo", 1);
+              consumirCargas("azul", 1);
+              consumirCargas("vermelho", 1);
 
             causarDano(card.power, "unico");
             allBuffs(card.power, "def", true);
@@ -1596,13 +1601,19 @@ function drawCards() {
         else if (card.name === "A Criação Toma Forma") {
           if (criadoraModo) {
             if (
-              consumirCargas("amarelo", 1) &&
-              consumirCargas("azul", 1) &&
-              consumirCargas("vermelho", 1) &&
-              consumirCargas("roxa", 1) &&
-              consumirCargas("laranja", 1) &&
-              consumirCargas("verde", 1)
-            ) {
+            getCargas("amarelo") >= 1 &&
+            getCargas("azul") >= 1 &&
+            getCargas("vermelho") >= 1 &&
+            getCargas("roxa") >= 1 &&
+            getCargas("laranja") >= 1 &&
+            getCargas("verde") >= 1
+          ) {
+              consumirCargas("amarelo", 1);
+              consumirCargas("azul", 1);
+              consumirCargas("vermelho", 1);
+              consumirCargas("roxa", 1);
+              consumirCargas("laranja", 1);
+              consumirCargas("verde", 1);
               causarDano(card.power, "area");
               animarLiliaTransformacao(true, "area");
               allBuffs(card.power, "def");
@@ -1613,13 +1624,19 @@ function drawCards() {
         else if (card.name === "Espetaculo Magnifico") {
           if (criadoraModo) {
             if (
-              consumirCargas("amarelo", 2) &&
-              consumirCargas("azul", 2) &&
-              consumirCargas("vermelho", 2) &&
-              consumirCargas("roxa", 2) &&
-              consumirCargas("laranja", 2) &&
-              consumirCargas("verde", 2)
-            ) {
+            getCargas("amarelo") >= 2 &&
+            getCargas("azul") >= 2 &&
+            getCargas("vermelho") >= 2 &&
+            getCargas("roxa") >= 2 &&
+            getCargas("laranja") >= 2 &&
+            getCargas("verde") >= 2
+          ) {
+              consumirCargas("amarelo", 2);
+              consumirCargas("azul", 2);
+              consumirCargas("vermelho", 2);
+              consumirCargas("roxa", 2);
+              consumirCargas("laranja", 2);
+              consumirCargas("verde", 2);
               causarDano(playerHP+card.power, "unico");
               animarLiliaTransformacao(true, "area");
             }
@@ -1727,9 +1744,11 @@ function drawCards() {
         //🎨
         else if (card.name === "Proteção Da Pureza") {
           if (
-            consumirCargas("azul", 2) &&
-            consumirCargas("amarelo", 1)
+            getCargas("amarelo") >= 1 &&
+            getCargas("azul") >= 2
           ) {
+            consumirCargas("azul", 2);
+            consumirCargas("amarelo", 1);
             allBuffs(card.power * 2, "def", true);
             allBuffs(card.power, "cura", true);
           }
@@ -1744,13 +1763,19 @@ function drawCards() {
         else if (card.name === "Arco Da Majestade") {
           if (!criadoraModo) {
             if (
-              consumirCargas("amarelo", 1) &&
-              consumirCargas("azul", 1) &&
-              consumirCargas("vermelho", 1) &&
-              consumirCargas("roxa", 1) &&
-              consumirCargas("laranja", 1) &&
-              consumirCargas("verde", 1)
-            ) {
+            getCargas("amarelo") >= 1 &&
+            getCargas("azul") >= 1 &&
+            getCargas("vermelho") >= 1 &&
+            getCargas("roxa") >= 1 &&
+            getCargas("laranja") >= 1 &&
+            getCargas("verde") >= 1
+          ) {
+              consumirCargas("amarelo", 1);
+              consumirCargas("azul", 1);
+              consumirCargas("vermelho", 1);
+              consumirCargas("roxa", 1);
+              consumirCargas("laranja", 1);
+              consumirCargas("verde", 1);
               causarDano(card.power, "area");
               animarLiliaTransformacao(true, "area");
             }
@@ -1761,9 +1786,11 @@ function drawCards() {
         else if (card.name === "Chuva Magnifica") {
           if (!criadoraModo) {
             if (
-              consumirCargas("vermelho", 5) &&
-              consumirCargas("roxa", 1)
-            ) {
+            getCargas("vermelho") >= 5 &&
+            getCargas("roxa") >= 1 
+          ) {
+              consumirCargas("vermelho", 5);
+              consumirCargas("roxa", 1);
               causarDano(card.power, "area");
               animarLiliaTransformacao(true, "area");
             }
