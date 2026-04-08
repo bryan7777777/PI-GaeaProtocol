@@ -753,7 +753,7 @@ function drawCards() {
         case "Escalada":
         case "Criação Nescessaria":
         case "Espetaculo Magnifico":
-        case "Bebida Do Sacreficio":
+        case "Bebida Do Sacrificio":
         case "Corante Amarelo":
         case "Corante Azul":
         case "Corante Vermelho":
@@ -1574,7 +1574,7 @@ function drawCards() {
           }
         }
         //🎨
-        else if (card.name === "Bebida Do Sacreficio") {
+        else if (card.name === "Bebida Do Sacrificio") {
           togglePretoBranco();
         }
         //🎨
@@ -7634,7 +7634,7 @@ const characterDecks = {
     allCards.find(c => c.name === "Baralho Glacial"),
   ],
   criadora: [
-    cardsCria.find(c => c.name === "Bebida Do Sacreficio"),
+    cardsCria.find(c => c.name === "Bebida Do Sacrificio"),
     cardsCria.find(c => c.name === "Caixa De Corantes"),
     cardsCria.find(c => c.name === "Caixa De Corantes"),
     cardsCria.find(c => c.name === "Tudo Se Transforma"),
