@@ -108,7 +108,7 @@ const cardsCria = [
     type: "cria"
   },
   {
-    name: "Bebida Do Sacreficio",
+    name: "Bebida Do Sacrificio",
     cost: 0,
     basePower: 20,
     rarity: "cria",
