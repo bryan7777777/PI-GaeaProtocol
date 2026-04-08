@@ -631,7 +631,7 @@ const allCards = [
     basePower: 7,
     rarity: "epic",
     img: "../img/jogo/cards/atk/rebeldia.jpeg",
-    desc: "Cause 7 de dano, +7 sem sem escudo, +7 com 30 ou menos de vida.",
+    desc: "Cause 7 de dano, +7 se estiver sem escudo, +7 com 30 ou menos de vida.",
     type: "attack"
   },
   {
