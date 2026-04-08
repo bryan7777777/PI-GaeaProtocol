@@ -8772,7 +8772,7 @@ const svetlanaSpawn = {
 function animateNemoraAttack(enemy) {
   if (nemoraAtk == true && enemies[0].hp < 350) {
     enemies[0].dano += 10;
-  } else if (nemoraAtk == true || enemies[0].hp < 700) {
+  } else if (nemoraAtk == true || enemies[0].hp < 850) {
     enemies[0].dano += 5;
   }
 

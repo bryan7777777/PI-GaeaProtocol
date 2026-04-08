@@ -735,9 +735,9 @@ const normalModels = [
   // [
   //   {
   //     name: "Nemora",
-  //     hp: 400,
-  //     maxHp: 400,
-  //     dano: 40,
+  //     hp: 850,
+  //     maxHp: 850,
+  //     dano: 60,
   //     behavior() {
   //       return [
   //         {

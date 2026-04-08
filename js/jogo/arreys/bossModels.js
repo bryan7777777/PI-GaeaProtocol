@@ -349,9 +349,9 @@ function bossAtivadoPorItem(inimigo) {
     if (SoliceApareceu && dialogoAyla) {
       bossModels.push([{
         name: "Nemora",
-        hp: 700,
-        maxHp: 700,
-        dano: 40,
+        hp: 1250,
+        maxHp: 1250,
+        dano: 60,
         behavior() {
           return [
             {
