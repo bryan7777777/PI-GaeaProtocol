@@ -9619,6 +9619,12 @@ if (pagina === "tutorial.html") {
   mapaCanvas("div2", 7, 1, "#45ff45ff", "#ff8834ff", '🐺');
 }
 
+// if ("💧" === "💧️") {
+//   alert("ok");
+// } else {
+//   alert("f");
+// }
+
 // itensJaPegos.push(34);
 // itensJaPegos.push(35);
 // itensJaPegos.push(40);
