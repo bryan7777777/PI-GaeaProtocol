@@ -7252,6 +7252,14 @@ function criarPlayerNaDiv3() {
   playerImgDialogo = document.getElementById(personagemSelecionado);
   // Insere como primeiro elemento da div3
   div3.insertBefore(playerImg, div3.firstChild);
+
+  if (pagina === "selecaoMapa.html") {
+  mapaCanvas("div2", 7, 3, "#45ff45ff", "#ff8834ff", '🐺');
+  mapaCanvas("div7", 7, 3, "#60ff34ff", "#34ffe1ff", '🦑');
+  mapaCanvas("div8", 7, 5, "#fbfbfbff", "#737373ff", '🗽');
+  mapaCanvas("div9", 7, 7, "#f5fd54ff", "#5db0e7ff", '👻');
+  mapaCanvas("div10", 7, 7, "#5db0e7ff", "#e75d5dff", '🤖');
+}
 };
 // ARREY PLAYER DECK
 const characterDecks = {
@@ -8002,7 +8010,7 @@ function criarEfeitoNoInimigo(inimigoEl) {
 
   }, 35);
 }
-async function chuvaDeGolpes(inimigoEl) {
+async function chuvaDeGolpes() {
 
   const battlefield = document.getElementById("battlefield");
   if (!battlefield) return;
@@ -9609,14 +9617,6 @@ configurarSelecaoPersonagem();
 
 if (pagina === "tutorial.html") {
   mapaCanvas("div2", 7, 1, "#45ff45ff", "#ff8834ff", '🐺');
-}
-
-if (pagina === "selecaoMapa.html") {
-  mapaCanvas("div2", 7, 3, "#45ff45ff", "#ff8834ff", '🐺');
-  mapaCanvas("div7", 7, 3, "#60ff34ff", "#34ffe1ff", '🦑');
-  mapaCanvas("div8", 7, 5, "#fbfbfbff", "#737373ff", '🗽');
-  mapaCanvas("div9", 7, 7, "#f5fd54ff", "#5db0e7ff", '👻');
-  mapaCanvas("div10", 7, 7, "#5db0e7ff", "#e75d5dff", '🤖');
 }
 
 // itensJaPegos.push(34);
