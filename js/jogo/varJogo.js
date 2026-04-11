@@ -55,6 +55,7 @@ let flagItem39=true; // Flag para item 39
 let flagItem40=true; // Flag para item 40
 let criadoraModo=true;
 let deckCria=false;
+let cleopatraOP=false;
 
 // ARRAYS - Arrays e objetos do jogo
 const deck = []; // Deck completo disponível
@@ -74,9 +75,9 @@ const buffs = { // Buffs ativos por tipo
   verde: [],
   laranja: []
 };
+let aliado = null;
 
 const STACK_REAL = ["amarelo", "azul", "vermelho", "roxa", "verde", "laranja"];
-
 const BUFF_VISUAL = { // Configuração visual dos buffs
   atk:   { emoji: "⚔️", border: "10px", color: "#ff5555" },
   def:   { emoji: "🛡️", border: "0px 0px 20px 20px", color: "#55aaff" },
@@ -84,11 +85,11 @@ const BUFF_VISUAL = { // Configuração visual dos buffs
   geral: { emoji: "✨", border: "100px", color: "#ff9ad5" },
 
   amarelo:  { emoji: "黄色", border: "50%",        color: "#ffd700" }, // círculo
-  azul:     { emoji: "青",   border: "50% 50% 0 0",         color: "#3399ff" }, // quadrado
-  vermelho: { emoji: "赤",   border: "0 50% 50% 50%",        color: "#ff4444" }, // leve arredondado
-  roxa:     { emoji: "紫",   border: "35%",        color: "#a855f7" }, // rounded
-  verde:    { emoji: "緑",   border: "50% 0 50% 0", color: "#22c55e" }, // forma diferente
-  laranja:  { emoji: "オレンジ", border: "0%", color: "#f97316" } // outra forma
+  azul:     { emoji: "青",   border: "50% 50% 0 0",         color: "#3399ff" }, // lapide
+  vermelho: { emoji: "赤",   border: "0 50% 50% 50%",        color: "#ff4444" }, // gota
+  roxa:     { emoji: "紫",   border: "35%",        color: "#a855f7" }, // quadradinho
+  verde:    { emoji: "緑",   border: "50% 0 50% 0", color: "#22c55e" }, // folha
+  laranja:  { emoji: "オレンジ", border: "0%", color: "#f97316" } // quadrado
 };
 const rarityWeights = [ // Pesos para raridade de cartas
   { name: "common", weight: 50 },

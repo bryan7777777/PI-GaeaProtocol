@@ -63,21 +63,47 @@ function animateIAHit(el, img, boss) {
   }
 
   function retaliar() {
-    let dano = 5;
-    if (playerShield > 0) {
-      let absorbed = Math.min(dano, playerShield);
-      playerShield -= absorbed;
-      dano -= absorbed;
-      animateDamage(document.getElementById("player"));
-      floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
+    let alvo = aliado && aliado.hp > 0 ? aliado : null;
+
+    if (alvo) {
+      let dano = 5;
+
+      if (alvo.shield > 0) {
+        let absorbed = Math.min(dano, alvo.shield);
+        alvo.shield -= absorbed;
+        dano -= absorbed;
+        floatText(alvo.el, `-${absorbed}🛡️`, "orange");
+      }
+      if (dano > 0) {
+        alvo.hp -= dano;
+        animateDamage(alvo.el, true);
+        floatText(alvo.el, `-${dano}⚔️`, "orange");
+      }
+      if (alvo.hp <= 0) {
+        matarAliado();
+      }
+      atualizarAliadoHUD();
+    } else {
+      let dano = 5;
+
+      if (playerShield > 0) {
+        let absorbed = Math.min(dano, playerShield);
+        playerShield -= absorbed;
+        dano -= absorbed;
+
+        animateDamage(document.getElementById("player"), podeSacudir);
+        floatText(document.getElementById("player"), `-${absorbed}🛡️`, "orange");
+      }
+      if (dano > 0) {
+        playerHP -= dano;
+        animateDamage(document.getElementById("player"), podeSacudir);
+        floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
+        redScreenGlow(300, 30);
+        if (personagemSelecionado == "criadora") {
+          ativarPretoBranco();
+        }
+      }
     }
-    if (dano > 0) {
-      playerHP -= dano;
-      animateDamage(document.getElementById("player"));
-      floatText(document.getElementById("player"), `-${dano}⚔️`, "orange");
-      redScreenGlow(300, 30);
-    }
-    updateHUD();
   }
 
   const speed = 150;
