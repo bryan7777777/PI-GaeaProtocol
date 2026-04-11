@@ -1496,6 +1496,7 @@ function drawCards() {
         //  ☀️☀️☀️☀️☀️ DESERT ☀️☀️☀️☀️☀️
         else if (card.name === "Proteção De Anubis") {
           allDebuff(card.power, "sofrerDano");
+          animarLiliaTransformacao();
           invocarAliado({
             hp: 25,
             dano: 6,
@@ -1507,6 +1508,7 @@ function drawCards() {
         //☀️
         else if (card.name === "Proteção De Sekhmet") {
           allDebuff(card.power, "sofrerDano");
+          animarLiliaTransformacao();
           invocarAliado({
             hp: 25,
             dano: 20,
@@ -1552,6 +1554,7 @@ function drawCards() {
         //☀️
         else if (card.name === "Respeito Influente" || card.name === "Mandato Divino") {
           if (aliado) {
+            animarLiliaTransformacao();
             for (let i = 0; i < card.power; i++) {
               aliadoTurn();
             }
@@ -1573,9 +1576,8 @@ function drawCards() {
         else if (card.name === "Ascenção") {
           if (!cleopatraOP) {
             trocarFramePlayer(personagemSelecionado);
-            allBuffs(card.power*2, "def", true);
-            allBuffs(card.power*2, "cura", true);
-            causarDano(card.power,"area");
+            allBuffs(card.power, "def", true);
+            allBuffs(card.power, "cura", true);
           }
         }
         //  🎨🎨🎨🎨🎨 CRIA 🎨🎨🎨🎨🎨
@@ -7901,7 +7903,7 @@ async function animarLiliaTransformacao(anima = false, tipo) {
     return;
   }
 
-  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo" || personagemSelecionado == "criadora") {
+  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo" || personagemSelecionado == "criadora" || personagemSelecionado == "cleopatra") {
 
     const playerImg = document.getElementById("player");
     if (!playerImg) return;
@@ -7931,6 +7933,22 @@ async function animarLiliaTransformacao(anima = false, tipo) {
             f2: "./../img/jogo/player/animado/criadora/atk/criadora11.png",
             f3: "./../img/jogo/player/animado/criadora/atk/criadora11.png",
             idle: "./../img/jogo/player/animado/criadora/statico/criadora11.png"
+          };
+        }
+      case "cleopatra":
+        if (!cleopatraOP) {
+          frames = {
+            f1: "./../img/jogo/player/animado/cleopatra/atk/cleopatra1.png",
+            f2: "./../img/jogo/player/animado/cleopatra/atk/cleopatra1.png",
+            f3: "./../img/jogo/player/animado/cleopatra/atk/cleopatra1.png",
+            idle: "./../img/jogo/player/animado/cleopatra/statico/cleopatra1.png"
+          };
+        } else {
+          frames = {
+            f1: "./../img/jogo/player/animado/cleopatra/atk/cleopatra111.png",
+            f2: "./../img/jogo/player/animado/cleopatra/atk/cleopatra111.png",
+            f3: "./../img/jogo/player/animado/cleopatra/atk/cleopatra111.png",
+            idle: "./../img/jogo/player/animado/cleopatra/statico/cleopatra111.png"
           };
         }
         break;
@@ -8325,7 +8343,7 @@ function bloquearInput(travar) {
 }
 //ANIMAÇÃO DEF PLAYER EM FASE DE TESTE
 function playerTomarDanoAnimacao() {
-  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo" || personagemSelecionado == "criadora") {
+  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo" || personagemSelecionado == "criadora" || personagemSelecionado == "cleopatra") {
 
     const playerImg = document.getElementById("player");
     if (!playerImg) return;
@@ -8350,6 +8368,20 @@ function playerTomarDanoAnimacao() {
           frames = {
             hit: "./../img/jogo/player/animado/criadora/def/criadora11.png",
             idle: "./../img/jogo/player/animado/criadora/statico/criadora11.png"
+          };
+        }
+
+        break;
+      case "cleopatra":
+        if (!cleopatraOP) {
+          frames = {
+            hit: "./../img/jogo/player/animado/cleopatra/def/cleopatra1.png",
+            idle: "./../img/jogo/player/animado/cleopatra/statico/cleopatra1.png"
+          };
+        } else {
+          frames = {
+            hit: "./../img/jogo/player/animado/cleopatra/def/cleopatra111.png",
+            idle: "./../img/jogo/player/animado/cleopatra/statico/cleopatra111.png"
           };
         }
 
@@ -8599,7 +8631,7 @@ async function enemyTurn() {
         case "attackVida":
         case "morrer":
           playerTomarDanoAnimacao();
-          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo" || personagemSelecionado == "criadora") {
+          if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo" || personagemSelecionado == "criadora" || personagemSelecionado == "cleopatra") {
             podeSacudir = false;
           }
           break;

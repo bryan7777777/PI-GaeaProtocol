@@ -134,10 +134,10 @@ const cardsDesert = [
   {
     name: "Ascenção",
     cost: 4,
-    basePower: 25,
+    basePower: 50,
     rarity: "desert",
     img: "../img/jogo/cards/desert/ascencao.png",
-    desc: "Entra em modo ascendido. Ganhe 50 de escudo e cura e cause 25 de dano em area. <strong class='desertDestaque'>(Apenas uma vez por batalha)</strong>",
+    desc: "Entra em modo ascendido. Ganhe 50 de escudo e cura. <strong class='desertDestaque'>(Apenas uma vez por batalha)</strong>",
     type: "desert"
   },
 ]
