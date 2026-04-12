@@ -23,11 +23,16 @@ function sortearRaridade() {
 }
 
 function pegarCartaPorRaridade() {
+  console.log("personagem:", personagemSelecionado);
+console.log("deckCria:", deckCria);
   if (deckCria) {
     if (!cardsCria || cardsCria.length === 0) return null;
     return cardsCria[Math.floor(Math.random() * cardsCria.length)];
+  } else if(personagemSelecionado === "cleopatra"){
+    if (!cardsDesert || cardsDesert.length === 0) return null;
+    return cardsDesert[Math.floor(Math.random() * cardsDesert.length)];
   }
-
+  
   let tentativas = 0;
 
   while (tentativas < 20) {

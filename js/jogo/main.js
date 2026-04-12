@@ -1495,60 +1495,94 @@ function drawCards() {
         }
         //  ☀️☀️☀️☀️☀️ DESERT ☀️☀️☀️☀️☀️
         else if (card.name === "Proteção De Anubis") {
-          allDebuff(card.power, "sofrerDano");
-          animarLiliaTransformacao();
-          invocarAliado({
-            hp: 25,
-            dano: 6,
-            shield: 5,
-            shieldInit: 5,
-            img: "../img/jogo/player/animado/cleopatra/aliado/anubis1.png"
-          });
+          if (!cleopatraOP) {
+            allDebuff(card.power, "sofrerDano");
+            animarLiliaTransformacao();
+            invocarAliado({
+              id: 1,
+              hp: 5,
+              dano: 6,
+              shield: 5,
+              shieldInit: 5,
+              img: "../img/jogo/player/animado/cleopatra/aliado/anubis1.png"
+            });
+          }
         }
         //☀️
         else if (card.name === "Proteção De Sekhmet") {
-          allDebuff(card.power, "sofrerDano");
-          animarLiliaTransformacao();
-          invocarAliado({
-            hp: 25,
-            dano: 20,
-            shield: 0,
-            shieldInit: 0,
-            img: "../img/jogo/player/animado/cleopatra/aliado/sekhmet1.png"
-          });
+          if (!cleopatraOP) {
+            allDebuff(card.power, "sofrerDano");
+            animarLiliaTransformacao();
+            invocarAliado({
+              id: 2,
+              hp: 5,
+              dano: 12,
+              shield: 0,
+              shieldInit: 0,
+              img: "../img/jogo/player/animado/cleopatra/aliado/sekhmet1.png"
+            });
+          }
+        }
+        //☀️
+        else if (card.name === "Proteção De Rá") {
+          if (!cleopatraOP) {
+            allDebuff(card.power, "sofrerDano");
+            animarLiliaTransformacao();
+            invocarAliado({
+              id: 3,
+              hp: 25,
+              dano: 6,
+              shield: 0,
+              shieldInit: 0,
+              img: "../img/jogo/player/animado/cleopatra/aliado/ra1.png"
+            });
+          }
+
         }
         //☀️
         else if (card.name === "Furia Dos Deuses") {
           //atk,hp,def,init
-          aliadosBuff(card.power,card.power+5,card.power+5,0);
+          if (aliado.id === 1) {
+            aliadosBuff(card.power, card.power + 5, card.power + 5, 0);
+          }
         }
         //☀️
         else if (card.name === "Coração Digno") {
           allDebuff(card.power, "sofrerDano");
-          aliadosBuff(0,card.power,0,0);
+          aliadosBuff(0, card.power, 0, 0);
         }
         //☀️
         else if (card.name === "Proteção De Sangue") {
-          allDebuff(card.power-12, "sofrerDano");
-          aliadosBuff(0,0,card.power,5);
+          allDebuff(card.power - 12, "sofrerDano");
+          aliadosBuff(0, 0, card.power, 5);
         }
         //☀️
         else if (card.name === "\"Eu Protejerei Você\"") {
-          aliadosBuff(0,0,card.power,0);
+          if (aliado.id === 1) {
+            aliadosBuff(0, 0, card.power, 0);
+          }
         }
         //☀️
         else if (card.name === "Fortificação Divina") {
-          aliadosBuff(card.power,0,0,0);
+          aliadosBuff(card.power, 0, 0, 0);
         }
         //☀️
         else if (card.name === "O Sol Sempre Hergue-se" || card.name === "Em Nome De Rá") {
-          allBuffs(card.power, "energia");
+          if (aliado.id === 3) {
+            allBuffs(card.power, "energia");
+          }
         }
         //☀️
         else if (card.name === "Justiça De Meet") {
           if (aliado) {
             matarAliado();
             causarDano(card.power, "area");
+          }
+        }
+        //☀️
+        else if (card.name === "Descanço") {
+          if (aliado) {
+            matarAliado();
           }
         }
         //☀️
@@ -1563,19 +1597,27 @@ function drawCards() {
         //☀️
         else if (card.name === "Vigia Da Lua") {
           if (aliado) {
-            causarDano(aliado.shield,"unico");
+            causarDano(aliado.shield, "unico");
           }
         }
         //☀️
         else if (card.name === "Penitencia Do Sol") {
           if (aliado) {
-            causarDano(aliado.dano,"area");
+            causarDano(aliado.dano, "area");
           }
         }
         //☀️
         else if (card.name === "Ascenção") {
           if (!cleopatraOP) {
             trocarFramePlayer(personagemSelecionado);
+            allBuffs(card.power, "def", true);
+            allBuffs(card.power, "cura", true);
+          }
+        }
+        //☀️
+        else if (card.name === "Gande Governate") {
+          if (cleopatraOP) {
+            causarDano(card.power, "area");
             allBuffs(card.power, "def", true);
             allBuffs(card.power, "cura", true);
           }
@@ -1929,8 +1971,6 @@ function drawCards() {
 
               if (nova) {
                 deck.push({ ...nova, power: 0 });
-              } else {
-                console.log("ERRO: tinta não encontrada para", c.name);
               }
             }
           }
@@ -3402,7 +3442,7 @@ function misturarTintas(req, resultado, ganho) {
 
   return true;
 }
-function aliadosBuff(atk=0,hp=0,def=0,defInit=0){
+function aliadosBuff(atk = 0, hp = 0, def = 0, defInit = 0) {
   if (!aliado) return;
 
   aliado.dano += atk;
@@ -3412,7 +3452,7 @@ function aliadosBuff(atk=0,hp=0,def=0,defInit=0){
 
   aliado.el.classList.add("shield-reset");
   setTimeout(() => aliado.el.classList.remove("shield-reset"), 400);
-  
+
   if (atk > 0) {
     floatText(aliado.el, `+${atk}⚔️`, "yellow");
   }
@@ -6460,7 +6500,6 @@ function abrirLoja() {
 
   if (deckCria) {
     if (!cardsCria || cardsCria.length === 0) {
-      console.error("cardsCria vazio!");
       opcoes = [];
     } else {
       opcoes = [];
@@ -6475,6 +6514,18 @@ function abrirLoja() {
         }
       }
     }
+  } else if (personagemSelecionado === "cleopatra"){
+    opcoes = [];
+
+      while (opcoes.length < 14 && opcoes.length < cardsDesert.length) {
+        const carta = cardsDesert[Math.floor(Math.random() * cardsDesert.length)];
+
+        if (!carta) continue;
+
+        if (!opcoes.some(c => c.name === carta.name)) {
+          opcoes.push(carta);
+        }
+      }
   } else {
     opcoes = gerarPoolRecompensa14();
   }
@@ -6859,7 +6910,6 @@ function abrirMedico() {
 
   if (deckCria) {
     const max = Math.min(6, cardsCria.length);
-
     let tentativas = 0;
 
     while (escolhidas.length < max && tentativas < 50) {
@@ -6873,16 +6923,35 @@ function abrirMedico() {
       if (!escolhidas.some(c => c.name === carta.name)) {
         escolhidas.push(carta);
       }
-
       tentativas++;
     }
 
-    // fallback (caso tenha poucas cartas)
     while (escolhidas.length < max) {
       const carta = cardsCria[Math.floor(Math.random() * cardsCria.length)];
       if (carta) escolhidas.push(carta);
     }
+  } else if (personagemSelecionado === "cleopatra") {
+    const max = Math.min(6, cardsDesert.length);
+    let tentativas = 0;
 
+    while (escolhidas.length < max && tentativas < 50) {
+      const carta = cardsDesert[Math.floor(Math.random() * cardsDesert.length)];
+
+      if (!carta) {
+        tentativas++;
+        continue;
+      }
+
+      if (!escolhidas.some(c => c.name === carta.name)) {
+        escolhidas.push(carta);
+      }
+      tentativas++;
+    }
+
+    while (escolhidas.length < max) {
+      const carta = cardsDesert[Math.floor(Math.random() * cardsDesert.length)];
+      if (carta) escolhidas.push(carta);
+    }
   } else {
     const cartasCura = allCards.filter(c => c.type === "heal");
     const max = Math.min(6, cartasCura.length);
@@ -7326,7 +7395,9 @@ function criarPlayerNaDiv3() {
       playerMaxHP = 100, playerHP = 100, energyMax = 5, energy = 5;
       maoInicio = 6;
       limiteMao = 6;
+      dinheiro = 250;
       playerDeck = [...characterDecks.cleopatra];
+      atualizarDinheiro();
       mudarEnergia("☀️");
       break;
     default:
@@ -7747,19 +7818,11 @@ const characterDecks = {
     cardsCria.find(c => c.name === "O Céu... Curva-se"),
   ],
   cleopatra: [
-    cardsDesert.find(c => c.name === "Proteção De Anubis"),
-    cardsDesert.find(c => c.name === "Proteção De Sekhmet"),
     cardsDesert.find(c => c.name === "Furia Dos Deuses"),
-    cardsDesert.find(c => c.name === "Coração Digno"),
-    cardsDesert.find(c => c.name === "Proteção De Sangue"),
-    cardsDesert.find(c => c.name === "\"Eu Protejerei Você\""),
+    cardsDesert.find(c => c.name === "Gande Governate"),
+    cardsDesert.find(c => c.name === "Proteção De Rá"),
+    cardsDesert.find(c => c.name === "Descanço"),
     cardsDesert.find(c => c.name === "O Sol Sempre Hergue-se"),
-    cardsDesert.find(c => c.name === "Justiça De Meet"),
-    cardsDesert.find(c => c.name === "Respeito Influente"),
-    cardsDesert.find(c => c.name === "Em Nome De Rá"),
-    cardsDesert.find(c => c.name === "Mandato Divino"),
-    cardsDesert.find(c => c.name === "Vigia Da Lua"),
-    cardsDesert.find(c => c.name === "Penitencia Do Sol"),
     cardsDesert.find(c => c.name === "Ascenção"),
   ],
   // gaeaReen: [
@@ -7848,7 +7911,7 @@ function resetarAliado() {
 
   matarAliado();
 }
-function aliadoTurn(){
+function aliadoTurn() {
   if (aliado && enemies.length > 0) {
     let alvo = enemies[0];
 
@@ -7875,7 +7938,7 @@ function aliadoTurn(){
 
 //ANIMAÇÃO ATK PLAYER EM FASE DE TESTE
 async function animarLiliaTransformacao(anima = false, tipo) {
-  if (personagemSelecionado == "criadora" && anima == true) {
+  if (personagemSelecionado === "criadora" && anima == true) {
     switch (tipo) {
       case "unico":
         await animacaoConfrontoDD2(enemies[0].el);
@@ -7903,7 +7966,7 @@ async function animarLiliaTransformacao(anima = false, tipo) {
     return;
   }
 
-  if (personagemSelecionado == "lilia" || personagemSelecionado == "porto" || personagemSelecionado == "gaeaReen" || personagemSelecionado == "lucius" || personagemSelecionado == "ferrus" || personagemSelecionado == "laranja" || personagemSelecionado == "amarelo" || personagemSelecionado == "criadora" || personagemSelecionado == "cleopatra") {
+  if (personagemSelecionado === "lilia" || personagemSelecionado === "porto" || personagemSelecionado === "gaeaReen" || personagemSelecionado === "lucius" || personagemSelecionado === "ferrus" || personagemSelecionado === "laranja" || personagemSelecionado === "amarelo" || personagemSelecionado === "criadora" || personagemSelecionado === "cleopatra") {
 
     const playerImg = document.getElementById("player");
     if (!playerImg) return;
@@ -7935,6 +7998,7 @@ async function animarLiliaTransformacao(anima = false, tipo) {
             idle: "./../img/jogo/player/animado/criadora/statico/criadora11.png"
           };
         }
+        break;
       case "cleopatra":
         if (!cleopatraOP) {
           frames = {
@@ -8267,7 +8331,7 @@ async function chuvaDeGolpes() {
 
   efeitos.forEach(e => e.remove());
 }
-function trocarFramePlayer(player, reset=false) {
+function trocarFramePlayer(player, reset = false) {
   const playerImg = document.getElementById("player");
   if (!playerImg) return;
 
@@ -8275,37 +8339,37 @@ function trocarFramePlayer(player, reset=false) {
   switch (player) {
     case "criadora":
       if (!criadoraModo) {
-    frames = {
-      f1: "./../img/jogo/player/animado/criadora/statico/criadora111.png",
-      idle: "./../img/jogo/player/animado/criadora/statico/criadora1.png"
-    };
-  } else {
-    frames = {
-      f1: "./../img/jogo/player/animado/criadora/statico/criadora111.png",
-      idle: "./../img/jogo/player/animado/criadora/statico/criadora11.png"
-    };
-  }
+        frames = {
+          f1: "./../img/jogo/player/animado/criadora/statico/criadora111.png",
+          idle: "./../img/jogo/player/animado/criadora/statico/criadora1.png"
+        };
+      } else {
+        frames = {
+          f1: "./../img/jogo/player/animado/criadora/statico/criadora111.png",
+          idle: "./../img/jogo/player/animado/criadora/statico/criadora11.png"
+        };
+      }
       break;
     case "cleopatra":
       if (!cleopatraOP) {
-    frames = {
-      f1: "./../img/jogo/player/animado/cleopatra/statico/cleopatra11.png",
-      idle: "./../img/jogo/player/animado/cleopatra/statico/cleopatra111.png"
-    };
-    shakeScreenNatural(10, 400);
-    cleopatraOP=true;
-  } 
+        frames = {
+          f1: "./../img/jogo/player/animado/cleopatra/statico/cleopatra11.png",
+          idle: "./../img/jogo/player/animado/cleopatra/statico/cleopatra111.png"
+        };
+        shakeScreenNatural(10, 400);
+        cleopatraOP = true;
+      }
       if (cleopatraOP && reset) {
-    frames = {
-      f1: "./../img/jogo/player/animado/cleopatra/statico/cleopatra11.png",
-      idle: "./../img/jogo/player/animado/cleopatra/statico/cleopatra1.png"
-    };
-    cleopatraOP=false;
-  } 
+        frames = {
+          f1: "./../img/jogo/player/animado/cleopatra/statico/cleopatra11.png",
+          idle: "./../img/jogo/player/animado/cleopatra/statico/cleopatra1.png"
+        };
+        cleopatraOP = false;
+      }
       break;
-  
+
     default:
-      break;
+      return;
   }
 
   // troca pro frame 1

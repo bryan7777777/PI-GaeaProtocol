@@ -731,8 +731,8 @@ color: rgb(227, 90, 255);
   text-shadow: 0 0 8px #000000;
 }
 
-.itemLoja .heal .energia{
-  color: #00eeff;
+.itemLoja .cria .energia{
+  color: #848484;
   margin-top: -89%;
   margin-bottom: 70%;
 }

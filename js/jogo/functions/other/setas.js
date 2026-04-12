@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
         classe: "criadores",
         personagens: [
           { id: "criadora", img: "criadora.gif" },
-          // { id: "cleopatra", img: "cleopatra.png" },
+          { id: "cleopatra", img: "cleopatra.png" },
         ]
       }
     ];
