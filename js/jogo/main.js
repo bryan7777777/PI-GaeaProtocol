@@ -1543,6 +1543,7 @@ function drawCards() {
         else if (card.name === "Furia Dos Deuses") {
           //atk,hp,def,init
           if (aliado.id === 1) {
+            aplicarBuffsPower(2, 999, "lua");
             aliadosBuff(card.power, card.power + 5, card.power + 5, 0);
           }
         }
@@ -1559,6 +1560,7 @@ function drawCards() {
         //☀️
         else if (card.name === "\"Eu Protejerei Você\"") {
           if (aliado.id === 1) {
+            aplicarBuffsPower(2, 999, "lua");
             aliadosBuff(0, 0, card.power, 0);
           }
         }
@@ -1570,11 +1572,18 @@ function drawCards() {
         else if (card.name === "O Sol Sempre Hergue-se" || card.name === "Em Nome De Rá") {
           if (aliado.id === 3) {
             allBuffs(card.power, "energia");
+            aplicarBuffsPower(card.power, 999, "sol");
           }
         }
         //☀️
         else if (card.name === "Justiça De Meet") {
-          if (aliado) {
+          if (
+            aliado &&
+            getCargas("lua") >= 1 &&
+            getCargas("sol") >= 1 
+          ) {
+            consumirCargas("lua", 1);
+            consumirCargas("sol", 1);
             matarAliado();
             causarDano(card.power, "area");
           }
@@ -1582,12 +1591,18 @@ function drawCards() {
         //☀️
         else if (card.name === "Descanço") {
           if (aliado) {
+            aplicarBuffsPower(1, 999, "lua");
+            aplicarBuffsPower(1, 999, "sol");
             matarAliado();
           }
         }
         //☀️
         else if (card.name === "Respeito Influente" || card.name === "Mandato Divino") {
-          if (aliado) {
+          if (
+            aliado && 
+            getCargas("lua") >= card.power
+          ) {
+            consumirCargas("lua", card.power);
             animarLiliaTransformacao();
             for (let i = 0; i < card.power; i++) {
               aliadoTurn();
@@ -1597,12 +1612,24 @@ function drawCards() {
         //☀️
         else if (card.name === "Vigia Da Lua") {
           if (aliado) {
+            aplicarBuffsPower(card.power, 999, "lua");
             causarDano(aliado.shield, "unico");
+          }
+        }
+        //☀️
+        else if (card.name === "Arma Divina") {
+          if (
+            cleopatraOP &&
+            getCargas("sol") >= 1
+          ) {
+            consumirCargas("sol", 1)
+            causarDano(card.power, "unico");
           }
         }
         //☀️
         else if (card.name === "Penitencia Do Sol") {
           if (aliado) {
+            aplicarBuffsPower(card.power, 999, "sol");
             causarDano(aliado.dano, "area");
           }
         }
@@ -1616,10 +1643,28 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "Gande Governate") {
-          if (cleopatraOP) {
+          if (
+            cleopatraOP && 
+            getCargas("sol") >= 1
+          ) {
+            consumirCargas("sol", 1);
             causarDano(card.power, "area");
             allBuffs(card.power, "def", true);
             allBuffs(card.power, "cura", true);
+          }
+        }
+        //☀️
+        else if (card.name === "Arsenal Anti Herege") {
+          if (cleopatraOP) {
+            causarDano(card.power, "area");
+            allBuffs(card.power, "def");
+          }
+        }
+        //☀️
+        else if (card.name === "Julgamento Superior") {
+          if (cleopatraOP) {
+            aplicarBuffsPower(card.power, 999, "lua");
+            aplicarBuffsPower(card.power, 999, "sol");
           }
         }
         //  🎨🎨🎨🎨🎨 CRIA 🎨🎨🎨🎨🎨
@@ -3242,15 +3287,23 @@ function aplicarBuffsPower(val, rodadas, tipo) {
   criarBuffVisual(tipo, buff);
 }
 function criarBuffVisual(tipo, buff) {
-  const player = document.getElementById("player");
-  if (!player) return;
-
   let bar = document.querySelector(".buff-bar");
-  bar.style.display = "grid";
 
-  const rect = player.getBoundingClientRect();
-  bar.style.left = `${rect.left - 18}px`; // distância da esquerda
-  bar.style.top = `${rect.top + rect.height / 2}px`;
+  // garante que a barra exista
+  if (!bar) {
+    bar = document.createElement("div");
+    bar.className = "buff-bar";
+    document.body.appendChild(bar);
+  }
+
+  // 🔥 posição fixa no topo central
+  bar.style.position = "fixed";
+  bar.style.top = "10%";
+  bar.style.left = "50%";
+  bar.style.transform = "translateX(-50%)";
+  bar.style.display = "flex";
+  bar.style.gap = "8px";
+  bar.style.zIndex = "0";
 
   const visual = BUFF_VISUAL[tipo];
 
@@ -3270,7 +3323,7 @@ function criarBuffVisual(tipo, buff) {
   el.appendChild(text);
   bar.appendChild(el);
 
-  // apenas espelha o estado REAL
+  // sincroniza estado
   const sync = setInterval(() => {
     if (buff.cargas <= 0) {
       el.classList.add("buff-end");
@@ -7818,7 +7871,7 @@ const characterDecks = {
     cardsCria.find(c => c.name === "O Céu... Curva-se"),
   ],
   cleopatra: [
-    cardsDesert.find(c => c.name === "Furia Dos Deuses"),
+    cardsDesert.find(c => c.name === "Julgamento Superior"),
     cardsDesert.find(c => c.name === "Gande Governate"),
     cardsDesert.find(c => c.name === "Proteção De Rá"),
     cardsDesert.find(c => c.name === "Descanço"),

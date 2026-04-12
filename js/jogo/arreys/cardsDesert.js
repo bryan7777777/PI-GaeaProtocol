@@ -35,7 +35,7 @@ const cardsDesert = [
     basePower: 10,
     rarity: "desert",
     img: "../img/jogo/cards/desert/furia.png",
-    desc: "<strong class='desertDestaque'>(ANUBIS)</strong> Aumenta os status do aliado. O ataque em 10 e ganha 15 pontos de vida e escudo",
+    desc: "<strong class='desertDestaque'>(ANUBIS)</strong> Aumenta os status do aliado. O ataque em 10 e ganha 15 pontos de vida e escudo. Ganhe 2 carga lunar.",
     type: "desert"
   },
   {
@@ -44,7 +44,7 @@ const cardsDesert = [
     basePower: 20,
     rarity: "desert",
     img: "../img/jogo/cards/desert/protecao.png",
-    desc: "<strong class='desertDestaque'>(ANUBIS)</strong> O aliado ganha 20 de escudo",
+    desc: "<strong class='desertDestaque'>(ANUBIS)</strong> O aliado ganha 20 de escudo. Ganhe 2 cargas lunar",
     type: "desert"
   },
 
@@ -56,7 +56,7 @@ const cardsDesert = [
     basePower: 1,
     rarity: "desert",
     img: "../img/jogo/cards/desert/sol.png",
-    desc: "<strong class='desertDestaque'>(RÁ)</strong> Ganhe 1 de energia",
+    desc: "<strong class='desertDestaque'>(RÁ)</strong> Ganhe 1 de energia e 1 carga solar",
     type: "desert"
   },
   {
@@ -65,7 +65,7 @@ const cardsDesert = [
     basePower: 3,
     rarity: "desert",
     img: "../img/jogo/cards/desert/ra.png",
-    desc: "<strong class='desertDestaque'>(RÁ)</strong> Ganhe 3 de energia",
+    desc: "<strong class='desertDestaque'>(RÁ)</strong> Ganhe 3 de energia e 3 cargas solar",
     type: "desert"
   },
 
@@ -104,7 +104,7 @@ const cardsDesert = [
     basePower: 35,
     rarity: "desert",
     img: "../img/jogo/cards/desert/meet.png",
-    desc: "<strong class='desertDestaque'>(ALIADO)</strong> Dispensa o aliado para causar 35 de dano em area",
+    desc: "<strong class='desertDestaque'>(ALIADO)</strong> Precisa de 1 carga lunar e solar. Dispensa o aliado para causar 35 de dano em area",
     type: "desert"
   },
   {
@@ -113,7 +113,7 @@ const cardsDesert = [
     basePower: 0,
     rarity: "desert",
     img: "../img/jogo/cards/desert/caixao.png",
-    desc: "<strong class='desertDestaque'>(ALIADO)</strong> Dispensa o aliado.",
+    desc: "<strong class='desertDestaque'>(ALIADO)</strong> Dispensa o aliado. Ganhe 1 carga lunar e solar",
     type: "desert"
   },
   {
@@ -122,7 +122,7 @@ const cardsDesert = [
     basePower: 2,
     rarity: "desert",
     img: "../img/jogo/cards/desert/respeito.png",
-    desc: "<strong class='desertDestaque'>(ALIADO)</strong> Seu aliado ataca 2 vezes",
+    desc: "<strong class='desertDestaque'>(ALIADO)</strong> Precisa de 2 carga lunar. Seu aliado ataca 2 vezes.",
     type: "desert"
   },
   {
@@ -131,25 +131,25 @@ const cardsDesert = [
     basePower: 1,
     rarity: "desert",
     img: "../img/jogo/cards/desert/mandato.png",
-    desc: "<strong class='desertDestaque'>(ALIADO)</strong> Seu aliado ataca 1 veze",
+    desc: "<strong class='desertDestaque'>(ALIADO)</strong> Precisa de 1 carga lunar Seu aliado ataca 1 veze.",
     type: "desert"
   },
   {
     name: "Vigia Da Lua",
     cost: 1,
-    basePower: 1,
+    basePower: 2,
     rarity: "desert",
     img: "../img/jogo/cards/desert/vigia.png",
-    desc: "<strong class='desertDestaque'>(ALIADO)</strong> Cause dano igual a armadura do aliado",
+    desc: "<strong class='desertDestaque'>(ALIADO)</strong> Cause dano igual a armadura do aliado. Ganhe 2 acumulos lunar",
     type: "desert"
   },
   {
     name: "Penitencia Do Sol",
     cost: 1,
-    basePower: 1,
+    basePower: 2,
     rarity: "desert",
     img: "../img/jogo/cards/desert/penitencia.png",
-    desc: "<strong class='desertDestaque'>(ALIADO)</strong> Cause dano igual ao ataque do aliado em area",
+    desc: "<strong class='desertDestaque'>(ALIADO)</strong> Cause dano igual ao ataque do aliado em area. ganhe 2 acumulos solar",
     type: "desert"
   },
 
@@ -170,7 +170,34 @@ const cardsDesert = [
     basePower: 20,
     rarity: "desert",
     img: "../img/jogo/cards/desert/governante.png",
-    desc: "<strong class='desertDestaque'>(Ascenção nescessaria)</strong> Ganhe 20 de escudo e cura e cause 20 de dano em area",
+    desc: "<strong class='desertDestaque'>(Ascenção nescessaria)</strong> Precisa de 1 carga solar. Ganhe 20 de escudo e cura e cause 20 de dano em area",
+    type: "desert"
+  },
+  {
+    name: "Arma Divina",
+    cost: 1,
+    basePower: 12,
+    rarity: "desert",
+    img: "../img/jogo/cards/desert/armaDivina.png",
+    desc: "<strong class='desertDestaque'>(Ascenção nescessaria)</strong> Precisa de 1 carga solar. Cause 12 de dano.",
+    type: "desert"
+  },
+  {
+    name: "Arsenal Anti Herege",
+    cost: 2,
+    basePower: 20,
+    rarity: "desert",
+    img: "../img/jogo/cards/desert/arsenalDeArmas.png",
+    desc: "<strong class='desertDestaque'>(Ascenção nescessaria)</strong> Ganhe 20 de escudo e cause 20 de dano em area.",
+    type: "desert"
+  },
+  {
+    name: "Julgamento Superior",
+    cost: 2,
+    basePower: 3,
+    rarity: "desert",
+    img: "../img/jogo/cards/desert/cleo.png",
+    desc: "<strong class='desertDestaque'>(Ascenção nescessaria)</strong> Ganhe 3 acumulos lunar e solar.",
     type: "desert"
   },
 ]
