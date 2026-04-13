@@ -1,0 +1,275 @@
+{
+  "info": {
+    "_postman_id": "achievements-api-collection",
+    "name": "Gaea Protocol - API de Conquistas",
+    "description": "Collection para testar a API REST de Conquistas (Achievements)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET - Listar Todas as Conquistas",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/php/api/conquistas.php?usuario_id={{usuario_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["php", "api", "conquistas.php"],
+          "query": [
+            {
+              "key": "usuario_id",
+              "value": "{{usuario_id}}"
+            }
+          ]
+        },
+        "description": "Retorna todas as 27 conquistas com status de desbloqueio para o usuário"
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Sem usuarios_id (erro 400)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/php/api/conquistas.php",
+          "host": ["{{base_url}}"],
+          "path": ["php", "api", "conquistas.php"]
+        },
+        "description": "Teste: deve retornar 400 (usuario_id obrigatório)"
+      },
+      "response": []
+    },
+    {
+      "name": "GET - usuario_id inválido (erro 400)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/php/api/conquistas.php?usuario_id=abc",
+          "host": ["{{base_url}}"],
+          "path": ["php", "api", "conquistas.php"],
+          "query": [
+            {
+              "key": "usuario_id",
+              "value": "abc"
+            }
+          ]
+        },
+        "description": "Teste: deve retornar 400 (usuario_id deve ser numérico)"
+      },
+      "response": []
+    },
+    {
+      "name": "POST - Registrar 3 Conquistas",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario_id\": {{usuario_id}},\n  \"conquistas_desbloqueadas\": [1, 5, 19],\n  \"numero_partida\": 123\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/php/api/conquistas.php",
+          "host": ["{{base_url}}"],
+          "path": ["php", "api", "conquistas.php"]
+        },
+        "description": "Registra 3 conquistas (1=CAÇADOR, 5=UM SEGREDO, 19=O COMEÇO)"
+      },
+      "response": []
+    },
+    {
+      "name": "POST - Registrar com Duplicata",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario_id\": {{usuario_id}},\n  \"conquistas_desbloqueadas\": [1, 5, 19, 20],\n  \"numero_partida\": 124\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/php/api/conquistas.php",
+          "host": ["{{base_url}}"],
+          "path": ["php", "api", "conquistas.php"]
+        },
+        "description": "Testa validação de duplicata - algumas podem ter sido já desbloqueadas"
+      },
+      "response": []
+    },
+    {
+      "name": "POST - Registrar Todas as 27",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario_id\": {{usuario_id}},\n  \"conquistas_desbloqueadas\": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27],\n  \"numero_partida\": 999\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/php/api/conquistas.php",
+          "host": ["{{base_url}}"],
+          "path": ["php", "api", "conquistas.php"]
+        },
+        "description": "Registra todas as 27 conquistas (teste de stress)"
+      },
+      "response": []
+    },
+    {
+      "name": "POST - Sem usuario_id (erro 400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"conquistas_desbloqueadas\": [1, 2, 3]\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/php/api/conquistas.php",
+          "host": ["{{base_url}}"],
+          "path": ["php", "api", "conquistas.php"]
+        },
+        "description": "Teste: deve retornar 400 (usuario_id obrigatório)"
+      },
+      "response": []
+    },
+    {
+      "name": "POST - Sem conquistas_desbloqueadas (OK vazio)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario_id\": {{usuario_id}}\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/php/api/conquistas.php",
+          "host": ["{{base_url}}"],
+          "path": ["php", "api", "conquistas.php"]
+        },
+        "description": "Teste: deve retornar 200 com arrays vazios"
+      },
+      "response": []
+    },
+    {
+      "name": "POST - IDs inválidos (erro 400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario_id\": {{usuario_id}},\n  \"conquistas_desbloqueadas\": [100, 200, 999]\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/php/api/conquistas.php",
+          "host": ["{{base_url}}"],
+          "path": ["php", "api", "conquistas.php"]
+        },
+        "description": "Teste: deve retornar 400 (IDs fora do range 1-27)"
+      },
+      "response": []
+    },
+    {
+      "name": "POST - conquistas_desbloqueadas não é array (erro 400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario_id\": {{usuario_id}},\n  \"conquistas_desbloqueadas\": \"abc\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/php/api/conquistas.php",
+          "host": ["{{base_url}}"],
+          "path": ["php", "api", "conquistas.php"]
+        },
+        "description": "Teste: deve retornar 400 (conquistas_desbloqueadas deve ser array)"
+      },
+      "response": []
+    },
+    {
+      "name": "PUT (método não permitido, erro 405)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "{{base_url}}/php/api/conquistas.php",
+          "host": ["{{base_url}}"],
+          "path": ["php", "api", "conquistas.php"]
+        },
+        "description": "Teste: deve retornar 405 (PUT não permitido)"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost",
+      "type": "string"
+    },
+    {
+      "key": "usuario_id",
+      "value": "1",
+      "type": "string"
+    }
+  ]
+}
