@@ -1645,9 +1645,9 @@ function drawCards() {
         else if (card.name === "Gande Governate") {
           if (
             cleopatraOP && 
-            getCargas("sol") >= 1
+            getCargas("sol") >= 3
           ) {
-            consumirCargas("sol", 1);
+            consumirCargas("sol", 3);
             causarDano(card.power, "area");
             allBuffs(card.power, "def", true);
             allBuffs(card.power, "cura", true);
@@ -1655,7 +1655,8 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "Arsenal Anti Herege") {
-          if (cleopatraOP) {
+          if (cleopatraOP && getCargas("sol") >= 2 ) {
+            consumirCargas("sol", 2);
             causarDano(card.power, "area");
             allBuffs(card.power, "def");
           }

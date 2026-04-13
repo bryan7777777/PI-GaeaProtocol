@@ -170,7 +170,7 @@ const cardsDesert = [
     basePower: 20,
     rarity: "desert",
     img: "../img/jogo/cards/desert/governante.png",
-    desc: "<strong class='desertDestaque'>(Ascenção nescessaria)</strong> Precisa de 1 carga solar. Ganhe 20 de escudo e cura e cause 20 de dano em area",
+    desc: "<strong class='desertDestaque'>(Ascenção nescessaria)</strong> Precisa de 3 carga solar. Ganhe 20 de escudo e cura e cause 20 de dano em area",
     type: "desert"
   },
   {
@@ -188,7 +188,7 @@ const cardsDesert = [
     basePower: 20,
     rarity: "desert",
     img: "../img/jogo/cards/desert/arsenalDeArmas.png",
-    desc: "<strong class='desertDestaque'>(Ascenção nescessaria)</strong> Ganhe 20 de escudo e cause 20 de dano em area.",
+    desc: "<strong class='desertDestaque'>(Ascenção nescessaria)</strong> Precisa de 2 carga solar. Ganhe 20 de escudo e cause 20 de dano em area.",
     type: "desert"
   },
   {
