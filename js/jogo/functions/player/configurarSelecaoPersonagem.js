@@ -26,13 +26,13 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/magnolia.png",
-      lor: "Léder do Gaea Protocool (G.P)[...]"
+      lor: "Léder do Gaea Protocol (G.P)[...]"
     },
     wallace: {
       nome: "🌿WALLACE, O ESPECTRO DA FLORESTA🌿",
       dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀💀🌿",
       cor: "rgb(0, 188, 16)",
-      descricao: "Possui um deck bem leve e fraco, ele tem GÆA PROTOCOOL, ele inicia com 250🪙 ao inves de 0🪙",
+      descricao: "Possui um deck bem leve e fraco, ele tem GÆA PROTOCOL, ele inicia com 250🪙 ao inves de 0🪙",
       cardFoco: "Começa com ataques e defesas basicas e fracas, com o intuito de moldar seu deck.",
       hp: 100,
       maxHp: 100,
@@ -47,7 +47,7 @@ function configurarSelecaoPersonagem() {
       dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀🌿",
       cor: "rgb(0, 188, 16)",
       descricao: "Deck focado em sustentabilidade, reciclagem é a melhor coisa a se fazer para o mundo e para melhorar suas cartas, deck focado em reciclagem e melhoria de cartas, no inicio é dificil mas no final ajuda todos.",
-      cardFoco: "Ela inicia com GÆA PROTOCOOL, diversas cartas de reciclagem e varios lixos.",
+      cardFoco: "Ela inicia com GÆA PROTOCOL, diversas cartas de reciclagem e varios lixos.",
       hp: 120,
       maxHp: 120,
       energia: 4,
@@ -68,7 +68,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 5,
       img: "./../img/jogo/player/bruno.gif",
-      lor: "Lider do GLEBA PROTOCOOL, um ex membro do GAEA, decidiu continuar cuidando do meio ambiente, então decidiu ir para p GLEBA e rapidamente se tornou o lider[...]"
+      lor: "Líder do GLEBA PROTOCOL, um ex-membro do GAEA, decidiu continuar cuidando do meio ambiente, então decidiu ir para o GLEBA e rapidamente se tornou o líder[...]"
     },
     felipe: {
       nome: "⛏️FELIPE, GEO MAPEADOR⛏️",
@@ -116,7 +116,7 @@ function configurarSelecaoPersonagem() {
       nome: "⚓CLARICE, A AUTORIDADE DO PORTO⚓",
       dificuldade: "⚓NÍVEL DE DIFICULDADE: 💀💀⚓",
       cor: "rgba(69, 89, 222, 1)",
-      descricao: "Deck hibrido com água e cartas de ataque na linha de trás, um deck extremamente forte para se defender e atacar ao mesmo tempo, fraco contra os tipos terra porém extremamente forte quando se combado com água",
+      descricao: "Deck híbrido com água e cartas de ataque na linha de trás, um deck extremamente forte para se defender e atacar ao mesmo tempo, fraco contra os tipos terra porém extremamente forte quando se combado com água",
       cardFoco: "Carta principal é o Arpão e possui diversas cartas de água",
       hp: 110,
       maxHp: 110,
@@ -124,7 +124,7 @@ function configurarSelecaoPersonagem() {
       escudo: 5,
       mao: 5,
       img: "./../img/jogo/player/autoridadeDoPorto.gif",
-      lor: "Assim como seu pai ela assumiu o manto de autoridade do porto, aprendeu bem com seu velho estratégias muito boas de ataque a distancia, mas ela se apaixonou pelo mar assim como sua mãe. [...]"
+      lor: "Assim como seu pai ela assumiu o manto de autoridade do porto, aprendeu bem com seu velho estratégias muito boas de ataque a distância, mas ela se apaixonou pelo mar assim como sua mãe. [...]"
     },
     azul: {
       nome: "⚓REINOR, O ESCUDO DA HUMANIDADE⚓",
@@ -180,7 +180,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/gabriel.gif",
-      lor: "\"Em desenvolvimento\"[...]"
+      lor: "Salva animais com velocidade e precisão de situações inesperadas, combate à caça e ao tráfico animal."
     },
     cleber: {
       nome: "🐦‍🔥CLEBER, PROTETOR DA FAUNA🐦‍🔥",
@@ -222,7 +222,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/renata.png",
-      lor: "Especialista em fotografia, um de seus hobbys favoritos, consequentemente a tornando uma das melhores fotografas se não a melhor, foi recrutada para o FAUNA PROTOCOOL quando estava tirado fotos de diversos animais, devido ao seu vasto conhecimento em mamiferos ela se tornou uma peça essencial para o grupo, principalmente quando se trata de preservar especies de mamiferos."
+      lor: "Especialista em fotografia, um de seus hobbys favoritos, consequentemente a tornando uma das melhores fotografas se não a melhor, foi recrutada para o FAUNA PROTOCOL quando estava tirado fotos de diversos animais, devido ao seu vasto conhecimento em mamiferos ela se tornou uma peça essencial para o grupo, principalmente quando se trata de preservar especies de mamiferos."
     },
     marcos: {
       nome: "🌪️MARCOS, EX BOMBEIRO🌪️",
@@ -278,13 +278,13 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 5,
       img: "./../img/jogo/player/lucius.gif",
-      lor: "Ninguem sabe onde ele vive, por onde anda, ele vai trabalhar quando ele quer pelo tempo que quer e até hoje se perguntam como ele não foi demitido, se não fosse pelos seus feitos lendários ele provavelmente não estária aqui, mas ninguem sabe se são verdade, mas tambem não discordam, afinal nenhum deles tem provas, mas seu irmão Jao é o único quem sabe a verdade e sabe por onde ele anda."
+      lor: "Ninguém sabe onde ele vive, por onde anda, ele vai trabalhar quando ele quer, pelo tempo que ele quer e até hoje se perguntam como ele não foi demitido. Se não fosse pelos seus feitos lendários ele provavelmente não estaria aqui, mas ninguém sabe se são verdade, mas tambem não discordam, afinal nenhum deles tem provas, mas seu irmão Jão é o único quem sabe a verdade e sabe por onde ele anda."
     },
     lilia: {
-      nome: "🐼❄️LILIA, LIDER DO GLACIAL PROTOCOOL❄️🐼",
+      nome: "🐼❄️LILIA, LÍDER DO GLACIAL PROTOCOL❄️🐼",
       dificuldade: "🐼❄️NÍVEL DE DIFICULDADE: 💀💀💀💀❄️🐼",
       cor: "rgba(255, 128, 251, 1)",
-      descricao: "Ela sabe muito bem se adpatar a tudo, ela pode parecer fraca e indefesa como um panda, mas quando ela se adapta, ela mostra suas imensas garras, com uma força, vitalidade, energia e pensamento incrivel ela possui um deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, combe marcação para turbinar seu dano e def imensuraveis.",
+      descricao: "Ela sabe muito bem se adaptar a tudo, ela pode parecer fraca e indefesa como um panda, mas quando ela se adapta, ela mostra suas imensas garras, com uma força, vitalidade, energia e pensamento incrível ela possui um deck de gelo capaz de causar muito estrago se usado sob condições favoráveis, combe marcação para turbinar seu dano e defesa imensuráveis.",
       cardFoco: "Focada em cartas de gelo baratas com custo max.2, seus status aumentão ao decorrer das fases.",
       hp: "60",
       maxHp: "60",
@@ -292,10 +292,10 @@ function configurarSelecaoPersonagem() {
       escudo: "0",
       mao: "4",
       img: "./../img/jogo/player/lilia.gif",
-      lor: "Lider do GLACIAL PROTOCOOL (GLA.P), dona de muitas lendas, ao mesmo tempo que sabem muito sobre ela também sabem tão pouco, há muitos rumores e historias lendarias dela, uma grande estrategista, dizem que ela ja foi capaz de apenas com mais 3 soldados do GLA.P derrubar um imenso batalhão de mais de 100mil robos corrompidos e destruir uma das principais bases da IA, também falam que ela sozinha já bateu de frente contra multiplos exercitos para salvar seu povo, verdade ou não, esse mitos ecoam por todos do GLA.P e até outros protocools já ouviram dela, ela é muito respeitada por todos, até Magnolia a lider do G.P a respeita muito[...], \"Será que é verdade que ela não precisa de um mecha?\""
+      lor: "Líder do GLACIAL PROTOCOL (GLA.P), dona de muitas lendas, ao mesmo tempo que sabem muito sobre ela também sabem tão pouco, há muitos rumores e histórias lendárias dela, uma grande estrategista, dizem que ela já foi capaz de apenas com mais 3 soldados do GLA.P derrubar um imenso batalhão de mais de 100mil robos corrompidos e destruir uma das principais bases da IA, também falam que ela sozinha já bateu de frente contra multiplos exercitos para salvar seu povo, verdade ou não, esse mitos ecoam por todos do GLA.P e até outros protocols já ouviram dela, ela é muito respeitada por todos, até Magnolia a lider do G.P a respeita muito[...], \"Será que é verdade que ela não precisa de um mecha?\""
     },
     glacia: {
-      nome: "❄️GLACIA, VICE LIDER DOS PESQUISADORES❄️",
+      nome: "❄️GLACIA, VICE LÍDER DOS PESQUISADORES❄️",
       dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀❄️",
       cor: "rgb(128, 240, 255)",
       descricao: "Focada em enfraquecer e marcar o inimigo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, ela tem uma margem de visão tão boa e estratégia que sua mão raramente fica vazia, você sabera como gastar sua energia?",
@@ -306,7 +306,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 8,
       img: "./../img/jogo/player/glacia.png",
-      lor: "Vice líder do GLACIAL PROTOCOOL, foi escolida a dedo pela propria Lilia, seus grandes marcos a fizeram chegar neste posto, grande estrátegista com conhecimento militar e tecnologico avançado, ja trabalhou com mecanica de mechas e foi ela quem ajudou a criar a \"Frost Abisal\", a arma favorita de Lilia, ela témbem auciliou na montage do hexoesqueleto de Lilia, o que a tornou seu braço direito e sua melhor amiga, na qual foi apelidada de Glacia, ela gostou tanto que se auto nomeou assim"
+      lor: "Vice líder do GLACIAL PROTOCOL, foi escolida a dedo pela propria Lilia, seus grandes marcos a fizeram chegar neste posto, grande estrátegista com conhecimento militar e tecnologico avançado, ja trabalhou com mecanica de mechas e foi ela quem ajudou a criar a \"Frost Abisal\", a arma favorita de Lilia, ela témbem auciliou na montage do hexoesqueleto de Lilia, o que a tornou seu braço direito e sua melhor amiga, na qual foi apelidada de Glacia, ela gostou tanto que se auto nomeou assim"
     },
     olaf: {
       nome: "❄️OLAF, O GUARDIÃO GELIDO❄️",
@@ -320,7 +320,7 @@ function configurarSelecaoPersonagem() {
       escudo: 5,
       mao: 5,
       img: "./../img/jogo/player/olaf.png",
-      lor: "Ele odeia os \"Friligeloz\", por isso ele resolveu entrar para o GLACIAL PROTOCOOL. Após sua familia e seu povo serem exterminados por essas criaturas ele jurou vingança, apenas ele e Olga sobreviveram a esse dia, eles se aproximaram pela nescecidade, vasculharam o local inteiro e vagaram por dias em meio a uma nevasca mortal, com muita sorte foram encontratos por um grupo de patrulha da GLACIAL PROTOCOOL, a lider do grupo Glacia os encontrou em estado critico e os levou até a base deles, após explicar quem são e o que os atacou, eles se uniram ao protocool, Olaf prometeu a Glacia que a protegeria com com sua vida já que ela os salvou, desde então ele se tornou o guarda pessoal da Glacia, não era bom nas pesquisas ja que o grupo era formado por cientistas e pesquisadores, mas quando precisavam da sua força, ele era o cara! Além de ser o encarregado de proteger o grupo."
+      lor: "Ele odeia os \"Friligeloz\", por isso ele resolveu entrar para o GLACIAL PROTOCOL. Após sua familia e seu povo serem exterminados por essas criaturas ele jurou vingança, apenas ele e Olga sobreviveram a esse dia, eles se aproximaram pela nescecidade, vasculharam o local inteiro e vagaram por dias em meio a uma nevasca mortal, com muita sorte foram encontratos por um grupo de patrulha da GLACIAL PROTOCOL, a lider do grupo Glacia os encontrou em estado critico e os levou até a base deles, após explicar quem são e o que os atacou, eles se uniram ao protocol, Olaf prometeu a Glacia que a protegeria com com sua vida já que ela os salvou, desde então ele se tornou o guarda pessoal da Glacia, não era bom nas pesquisas ja que o grupo era formado por cientistas e pesquisadores, mas quando precisavam da sua força, ele era o cara! Além de ser o encarregado de proteger o grupo."
     },
     olga: {
       nome: "❄️OLGA, A PESQUISADORA PRODIGIO❄️",
@@ -334,7 +334,7 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/olga.png",
-      lor: "Após um ataque dos \"Friligeloz\", o lugar onde ela morava foi completamente destruido, com muito medo ela foi obrigada a se esconder, com muita raiva e medo, ela queria apenas que aquele dia acabasse, até que após ver sua familia sem vida ela acabou desmaiando, e quando havia acordado ela estava sendo carregada por um rapaz no qual nem se quer ela conhecia, após muito tempo vagando eles foram se conhecendo, e juraram vingar todos que aquelas criaturas mataram, após uma nevasca mortal ambos se encontravam quase sem suprimentos, em meio a nevasca proximos da morte, até que um grupo da GLACIAL PROTOCOOL apareceu e os resgatou. Esse dia ecoa em sua memoria até hoje, ela nunca foi capaz de esquecer o que havia escutado daquela criaturas \"Pragas eliminadas, processo de purificação do mundo em 65%\". Depois de muito tempo ela subiu de cargo graças as suas pesquisas inovadoras e acabou compartilhando essa frase para Glacia, na qual ambas chegaram a conclusão de que o erros dos \"outros\" seria problema delas agora!"
+      lor: "Após um ataque dos \"Friligeloz\", o lugar onde ela morava foi completamente destruido, com muito medo ela foi obrigada a se esconder, com muita raiva e medo, ela queria apenas que aquele dia acabasse, até que após ver sua familia sem vida ela acabou desmaiando, e quando havia acordado ela estava sendo carregada por um rapaz no qual nem se quer ela conhecia, após muito tempo vagando eles foram se conhecendo, e juraram vingar todos que aquelas criaturas mataram, após uma nevasca mortal ambos se encontravam quase sem suprimentos, em meio a nevasca proximos da morte, até que um grupo da GLACIAL PROTOCOL apareceu e os resgatou. Esse dia ecoa em sua memoria até hoje, ela nunca foi capaz de esquecer o que havia escutado daquela criaturas \"Pragas eliminadas, processo de purificação do mundo em 65%\". Depois de muito tempo ela subiu de cargo graças as suas pesquisas inovadoras e acabou compartilhando essa frase para Glacia, na qual ambas chegaram a conclusão de que o erros dos \"outros\" seria problema delas agora!"
     },
     x: {
       nome: "🔮A ESQUECIDA🔮",
@@ -368,8 +368,8 @@ function configurarSelecaoPersonagem() {
       nome: "⚒️MAGNUS FERRUS, O PRODÍGIO⚒️",
       dificuldade: "⚒️NÍVEL DE DIFICULDADE: 💀💀⚒️",
       cor: "rgb(103, 67, 0)",
-      descricao: "Deck focado em reciclagem, no inicio ele começa bem fraco mas com o tempo ele vai ganhando força com forme o tempo passa, quem diria que reciclar seria bom para todos os lados, por incrivel que pareça no meio do lixo ele achou... ouro? ok ele inicia com 50🪙 ao inves de 0🪙. Ele tembém possui um imenso guadião de sucata no qual luta por ele e o defende com tudo o que pode!",
-      cardFoco: "Deck focado em multiplas cartas de reciclagem.",
+      descricao: "Deck focado em reciclagem, no início ele começa bem fraco mas com o tempo ele vai ganhando força conforme o tempo passa, quem diria que reciclar seria bom para todos os lados, por incrivel que pareça no meio do lixo ele achou... ouro? Ele inicia com 50🪙 ao inves de 0🪙, também possui um imenso guardião de sucata no qual luta por ele e o defende com tudo o que pode!",
+      cardFoco: "Deck focado em múltiplas cartas de reciclagem.",
       hp: 32,
       maxHp: 160,
       energia: 3,
