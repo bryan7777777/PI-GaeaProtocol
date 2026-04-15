@@ -10080,7 +10080,7 @@ if (pagina === "tutorial.html") {
 // itensJaPegos.push(40);
 // itensJaPegos.push(38);
 
-// const quantidade0 = allCards.length;
+// const quantidade0 = allCards.length+cardsCria.length+cardsDesert.length;
 // const quantidade1 = allCards.filter(card => card.type === "cintilante").length;
 // const quantidade2 = allCards.filter(card => card.type === "attack").length;
 // const quantidade3 = allCards.filter(card => card.type === "heal").length;
@@ -10091,7 +10091,8 @@ if (pagina === "tutorial.html") {
 // const quantidade8 = allCards.filter(card => card.type === "fire").length;
 // const quantidade9 = allCards.filter(card => card.type === "terra").length;
 // const quantidade10 = allCards.filter(card => card.type === "agua").length;
-// const quantidade11 = criaCards.filter(card => card.type === "cria").length;
+// const quantidade11 = cardsCria.filter(card => card.type === "cria").length;
+// const quantidade12 = cardsDesert.filter(card => card.type === "desert").length;
 
 // alert(`
 //   Quantidade TOTAL de cards: ${quantidade0}
@@ -10106,4 +10107,5 @@ if (pagina === "tutorial.html") {
 //   Quantidade TERRA: ${quantidade9}
 //   Quantidade AGUA: ${quantidade10}
 //   Quantidade CRIA: ${quantidade11}
+//   Quantidade DESERT: ${quantidade12}
 //   `);
