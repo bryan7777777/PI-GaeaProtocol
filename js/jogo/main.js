@@ -3297,14 +3297,33 @@ function criarBuffVisual(tipo, buff) {
     document.body.appendChild(bar);
   }
 
-  // 🔥 posição fixa no topo central
-  bar.style.position = "fixed";
+  // posição fixa no topo central
+  if (personagemSelecionado === "criadora") {
+    bar.style.position = "fixed";
+  bar.style.top = "62.5%";
+  bar.style.left = "28%";
+  bar.style.transform = "translateX(-50%)";
+  bar.style.display = "flex";
+  bar.style.gap = "8px";
+  bar.style.zIndex = "0";
+  } else if (personagemSelecionado === "cleopatra"){
+    bar.style.position = "fixed";
+  bar.style.top = "62.5%";
+  bar.style.left = "34%";
+  bar.style.transform = "translateX(-50%)";
+  bar.style.display = "flex";
+  bar.style.gap = "8px";
+  bar.style.zIndex = "0";
+  } else {
+    bar.style.position = "fixed";
   bar.style.top = "10%";
   bar.style.left = "50%";
   bar.style.transform = "translateX(-50%)";
   bar.style.display = "flex";
   bar.style.gap = "8px";
   bar.style.zIndex = "0";
+  }
+
 
   const visual = BUFF_VISUAL[tipo];
 
@@ -7797,7 +7816,7 @@ const characterDecks = {
     allCards.find(c => c.name === "Defesa"),
     allCards.find(c => c.name === "Defesa"),
     allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "GÆPROTOCOL"),
+    allCards.find(c => c.name === "Destruir Carta"),
     allCards.find(c => c.name === "Destruir Carta"),
   ],
   olaf: [

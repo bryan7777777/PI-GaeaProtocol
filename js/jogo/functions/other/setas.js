@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (pagina === "tutorial.html") {
     faccoes = [
       {
-        nome: "GAEA PROTOCOOL",
+        nome: "GAEA PROTOCOL",
         classe: "gaea",
         personagens: [
           { id: "verde", img: "capaceteverde.png" },
@@ -33,75 +33,53 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     faccoes = [
       {
-        nome: "GAEA PROTOCOOL",
+        nome: "CONSELHO DA GAEA",
         classe: "gaea",
         personagens: [
           { id: "gaeaReen", img: "gaeaReen.gif" },
-          { id: "verde", img: "capaceteverde.png" },
-          { id: "magnolia", img: "magnolia.jpg" },
-          { id: "wallace", img: "espectroDaFloresta.jpeg" },
-        ]
-      },
-      {
-        nome: "GLEBA PROTOCOOL",
-        classe: "mineiros",
-        personagens: [
-          { id: "amarelo", img: "bruno.gif" },
-          { id: "felipe", img: "felipe.jpg" },
-          { id: "celso", img: "celso.jpg" },
-          { id: "maria", img: "maria.jpg" }
-        ]
-      },
-      {
-        nome: "OCEAN PROTOCOOL",
-        classe: "porto",
-        personagens: [
-          { id: "porto", img: "autoridadeDoPorto.gif" },
-          { id: "azul", img: "capaceteazul.png" },
-          { id: "fergus", img: "fergus.jpg" },
-          { id: "mercuri", img: "mercuri.jpg" }
-        ]
-      },
-      {
-        nome: "FAUNA PROTOCOOL",
-        classe: "laranjas",
-        personagens: [
           { id: "laranja", img: "gabriel.gif" },
-          { id: "cleber", img: "cleber.jpg" },
-          { id: "malaquias", img: "malaquias.jpg" },
-          { id: "renata", img: "renata.jpg" }
-        ]
-      },
-      {
-        nome: "WIND PROTOCOOL",
-        classe: "eolico",
-        personagens: [
+          { id: "amarelo", img: "bruno.gif" },
           { id: "lucius", img: "lucius.gif" },
-          { id: "marcos", img: "marcos.jpg" },
-          { id: "cleide", img: "cleide.jpg" },
-          { id: "magna", img: "magna.jpg" },
-        ]
-      },
-      {
-        nome: "GLACIAL PROTOCOOL",
-        classe: "glacial",
-        personagens: [
+          { id: "porto", img: "autoridadeDoPorto.gif" },
           { id: "lilia", img: "lilia.gif" },
-          { id: "glacia", img: "glacia.jpg" },
-          { id: "olaf", img: "olaf.jpg" },
-          { id: "olga", img: "olga.jpg" }
+          { id: "ferrus", img: "magnusFerrus.gif" },
+          
         ]
       },
       {
-        nome: "SOLITÁRIOS",
-        classe: "semFaccao",
+        nome: "GAEA PROTOCOL",
+        classe: "gaea conselho",
         personagens: [
-          { id: "ferrus", img: "magnusFerrus.gif" },
+          { id: "verde", img: "capaceteverde.png" },
+          { id: "wallace", img: "espectroDaFloresta.jpeg" },
+          { id: "malaquias", img: "malaquias.jpg" },
           { id: "x", img: "gemea.jpeg" },
-          { id: "tomoeh", img: "sombraDaMorte.jpeg" },
-          { id: "roxo", img: "capaceteroxo.png" }
         ]
       },
+      // {
+      //   nome: "OCEAN PROTOCOL",
+      //   classe: "porto",
+      //   personagens: [
+          
+      //     // { id: "azul", img: "capaceteazul.png" },
+      //     // { id: "fergus", img: "fergus.jpg" },
+      //     // { id: "mercuri", img: "mercuri.jpg" }
+      //        { id: "felipe", img: "felipe.jpg" },
+          //    { id: "celso", img: "celso.jpg" },
+          //    { id: "maria", img: "maria.jpg" }
+          //    { id: "renata", img: "renata.jpg" }
+          //    { id: "cleber", img: "cleber.jpg" },
+          //    { id: "marcos", img: "marcos.jpg" },
+      //     // { id: "cleide", img: "cleide.jpg" },
+      //     // { id: "magna", img: "magna.jpg" },
+      //        { id: "glacia", img: "glacia.jpg" },
+      //     // { id: "olaf", img: "olaf.jpg" },
+      //     // { id: "olga", img: "olga.jpg" }
+      //        { id: "tomoeh", img: "sombraDaMorte.jpeg" },
+      //     // { id: "roxo", img: "capaceteroxo.png" }
+      //        { id: "magnolia", img: "magnolia.jpg" },
+      //   ]
+      // },
       {
         nome: "CRIADORES",
         classe: "criadores",
