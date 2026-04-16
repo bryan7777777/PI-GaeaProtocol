@@ -3811,7 +3811,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
           // Primeira fase: início fixo no centro
           else if (i === 0) {
-            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'quiz' : 'invalido';
+            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
           }
           // Última fase: boss fixo no centro
           else if (i === numFases - 1) {
