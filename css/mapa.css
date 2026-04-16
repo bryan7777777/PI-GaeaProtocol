@@ -265,8 +265,59 @@ html, body {
 }
 
 #div11{
-  background-image: url(../img/jogo/background/mapa5.png); 
+  background-image: url(../img/jogo/background/quest2.png); 
   z-index: 0;
+}
+
+.quiz {
+  display: flex;
+  flex-direction: row;
+}
+
+#quiz-esquerda{
+  border: solid 5px aqua;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#quiz-container {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 250px;
+  padding: 15px;
+  background: #222;
+  color: white;
+  border-radius: 10px;
+  font-family: Arial;
+}
+
+.quiz-btn {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.quiz-btn:hover {
+  opacity: 0.8;
+}
+
+#quiz-esquerda img{
+  max-width: 100%;
+}
+
+#quiz-direita{
+  border: solid 5px aqua;
+  height: 100%;
+  width: 70%;
 }
 
 #div3 { 

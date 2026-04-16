@@ -3607,6 +3607,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
   .inimigo  { background: #d33; border: 3px groove rgba(241, 75, 75, 1); }
   .loot     { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
   .loja     { background: #0d8; border: 3px groove rgba(102, 255, 97, 1);}
+  .quiz     { background: rgb(255, 138, 210); border: 3px groove rgb(255, 138, 210);}
   .ferreiro { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
   .hospital2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
   .inimigo2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
@@ -3761,7 +3762,8 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
         { tipo: 'hospital2', peso: 7 },
         { tipo: 'inimigo2', peso: 8 },
         { tipo: 'loja', peso: 6 },
-        { tipo: 'ferreiro', peso: 7 }
+        { tipo: 'ferreiro', peso: 7 },
+        { tipo: 'quiz', peso: 18 }
       ];
 
       // Sorteio ponderado de tipo
@@ -3809,7 +3811,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
           // Primeira fase: início fixo no centro
           else if (i === 0) {
-            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
+            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'quiz' : 'invalido';
           }
           // Última fase: boss fixo no centro
           else if (i === numFases - 1) {
@@ -3895,6 +3897,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
             boss: iconBoss,
             inimigo: '💀',
             loja: '🪙',
+            quiz: '📚',
             elite: '☠️',
             ferreiro: '❓',
             hospital2: '❓',
@@ -4136,6 +4139,12 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
         case 'loja':
           mostrarTela(4); // Tela da loja (div4)
           abrirLoja()
+          tipoFase = tipo;
+          break;
+
+        case 'quiz':
+          mostrarTela(11); // Tela da loja (div4)
+          // abrirQuiz();
           tipoFase = tipo;
           break;
 
