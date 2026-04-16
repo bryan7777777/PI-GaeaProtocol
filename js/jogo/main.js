@@ -4144,7 +4144,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
         case 'quiz':
           mostrarTela(11); // Tela da loja (div4)
-          // abrirQuiz();
+          abrirQuiz();
           tipoFase = tipo;
           break;
 
@@ -7127,6 +7127,125 @@ function aumentaVida() {
   playerHP += 10;
   updateHUD();
 };
+function abrirQuiz() {
+  const quizContainer = document.getElementById("quiz-direita");
+
+  function embaralhar(array) {
+    return array.sort(() => Math.random() - 0.5);
+  }
+
+  function mostrarInicio() {
+    quizContainer.innerHTML = `
+      <pre>
+========================================
+        DESAFIO DA INTELIGÊNCIA ARTIFICIAL
+========================================
+
+Olá, humano.
+
+Eu sou uma Inteligência Artificial avançada, e hoje decidi te propor um desafio.
+
+Você acredita ser capaz de me vencer em um quiz de conhecimento?
+
+Regras do desafio:
+1. Será apenas uma pergunta.
+2. Cada pergunta terá apenas uma resposta correta.
+3. Cada pergunta terá 4 alternativas.
+4. Responder certo resulta em uma recompensa generosa (ITEM).
+5. Responder errado resulta em uma penalidade (-30HP).
+</pre>
+
+      <button class="quiz-btn" id="btn-sim">Sim</button>
+      <button class="quiz-btn" id="btn-nao">Não</button>
+    `;
+
+    document.getElementById("btn-sim").addEventListener("click", iniciarQuiz);
+    document.getElementById("btn-nao").addEventListener("click", recusarQuiz);
+  }
+
+  function iniciarQuiz() {
+    const perguntaAleatoria = perguntas[Math.floor(Math.random() * perguntas.length)];
+    const respostas = embaralhar([...perguntaAleatoria.respostas]);
+
+    quizContainer.innerHTML = `
+      <div class="quiz-pergunta">
+        <img class="quiz-img" src="${perguntaAleatoria.img}">
+        <p class="quiz-texto"></p>
+      </div>
+
+      <div class="quiz-respostas"></div>
+    `;
+
+    const perguntaTexto = quizContainer.querySelector(".quiz-texto");
+    const respostasDiv = quizContainer.querySelector(".quiz-respostas");
+
+    perguntaTexto.textContent = perguntaAleatoria.pergunta;
+
+    respostas.forEach(resposta => {
+      const btn = document.createElement("button");
+      btn.classList.add("quiz-btn");
+      btn.textContent = resposta;
+
+      btn.addEventListener("click", () => {
+        if (resposta === perguntaAleatoria.correta) {
+          acertou();
+        } else {
+          mostrarPopupErro(
+            perguntaAleatoria.pergunta,
+            perguntaAleatoria.correta,
+            "-30 HP"
+          );
+        }
+      });
+
+      respostasDiv.appendChild(btn);
+    });
+  }
+
+  function acertou() {
+  gerarItens(true);
+}
+
+  function recusarQuiz() {
+    quizContainer.innerHTML = `<p>Quiz cancelado</p>`;
+    irParaDiv2();
+  }
+
+  mostrarInicio();
+}
+function mostrarPopupErro(pergunta, respostaCorreta, penalidade = "-10 HP") {
+  const overlay = document.createElement("div");
+  overlay.classList.add("quiz-overlay");
+
+  const popup = document.createElement("div");
+  popup.classList.add("quiz-popup");
+
+  const msg = document.createElement("p");
+  msg.innerHTML = `
+    ❌ Você errou!<br><br>
+    ✅ Resposta correta:<br>
+    <strong>${respostaCorreta}</strong><br><br><br><br>
+    💡 Não desista o ambiente precisa de você! Na próxima você consegui!<br><br><br><br>
+    ⚠️ Consequência:<br>
+    <span class="penalidade">${penalidade}</span>
+  `;
+
+  const btnVoltar = document.createElement("button");
+  btnVoltar.textContent = "Voltar para o mapa";
+  btnVoltar.classList.add("quiz-btn");
+
+  btnVoltar.onclick = () => {
+    overlay.remove();
+    allDebuff(30, "sofrerDano");
+
+    irParaDiv2();
+  };
+
+  popup.appendChild(msg);
+  popup.appendChild(btnVoltar);
+  overlay.appendChild(popup);
+  document.body.appendChild(overlay);
+}
 // SHOOP CONF
 const raridadesGarantidas = [
   "common",
@@ -9780,16 +9899,18 @@ function animateDamage(el, tremida = true) {
 };
 
 // ITENS
-function gerarItens() {
-  const container = document.getElementById("recompensa");
+function gerarItens(modoQuiz = false) {
+  const container = modoQuiz
+    ? document.getElementById("quiz-direita")
+    : document.getElementById("recompensa");
+
   const inventario = document.getElementById("itens");
 
   if (!container) {
-    console.error("ERRO: div #recompensa NÃO ENCONTRADA!");
+    console.error("ERRO: container não encontrado!");
     return;
   }
 
-  // quantidade de itens
   let numItens = hasItem(21) ? 4 : 3;
 
   container.innerHTML = "";
@@ -9813,7 +9934,6 @@ function gerarItens() {
 
   const escolhidos = [];
 
-  /* 🔒 PRIMEIRA VEZ: garante os itens 26, 31 e 33 */
   if (primeiraGeracaoItem) {
     [26, 31, 33].forEach(id => {
       const item = itensDisponiveis.find(i => i.id === id);
@@ -9825,7 +9945,6 @@ function gerarItens() {
     primeiraGeracaoItem = false;
   }
 
-  /* 🎲 COMPLETA ALEATORIAMENTE */
   while (escolhidos.length < quantidade) {
     const item = itensDisponiveis[
       Math.floor(Math.random() * itensDisponiveis.length)
@@ -9843,7 +9962,6 @@ function gerarItens() {
     box.style.cursor = "pointer";
     box.style.transition = "0.2s";
 
-    // brilho verde ao passar o mouse
     box.addEventListener("mouseenter", () => {
       box.style.filter = "drop-shadow(0 0 10px #00ff3389)";
     });
@@ -9868,7 +9986,6 @@ function gerarItens() {
     desc.style.fontSize = "14px";
     desc.style.opacity = "0.8";
 
-    /* 📦 EVENTO DE PEGAR ITEM */
     box.addEventListener("click", () => {
       itensJaPegos.push(item.id);
 
@@ -9877,7 +9994,6 @@ function gerarItens() {
       invImg.style.margin = "5px";
       invImg.style.cursor = "pointer";
 
-      /* 🧠 TOOLTIP NO INVENTÁRIO */
       invImg.addEventListener("mouseenter", () => {
         tooltip.textContent = `(${item.name}) ${item.desc}`;
         tooltip.style.display = "block";
@@ -9895,8 +10011,16 @@ function gerarItens() {
       inventario.appendChild(invImg);
 
       aplicarBuff(item);
-      fecharPopup();
-      irParaDiv2();
+
+      if (!modoQuiz) {
+        fecharPopup();
+        irParaDiv2();
+      } else {
+        // se for quiz, limpa e volta pro mapa
+        document.getElementById("quiz-direita").innerHTML = "";
+        irParaDiv2();
+      }
+
       updateHUD();
     });
 
