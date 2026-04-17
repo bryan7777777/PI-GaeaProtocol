@@ -108,7 +108,7 @@ if (!empty($_SESSION['user'])) {
                 </div>
 
                 <button type="submit" class="botao">
-                    <i class="fas fa-sign-in-alt"></i> Entrar
+                    <a href="./pages/dashboard.php"></a><i class="fas fa-sign-in-alt"></i> Entrar
                 </button>
             </form>
 
