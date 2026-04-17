@@ -3788,7 +3788,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
           if (pagina === "tutorial.html") {
             if (i === numFases - 3) {
-              tipo = 'hospital2';
+              tipo = 'quiz2';
             } else if (i === numFases - 4) {
               tipo = 'ferreiro';
             } else if (i === numFases - 5) {
@@ -4035,9 +4035,15 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
             "Após vencer uma luta, você receberá ouro. Quanto mais avançar, mais ouro ganhará. Elites e bosses fornecem quantias ainda maiores.",
             "O ouro que você ganha pode ser gasto aqui para comprar cartas ou pagar para descartar.",
             "O custo das cartas e upgrades vai aumentando conforme você progride, então não pare de coletar ouro!",
-            "No momento, você não tem ouro suficiente para comprar nada. Então, vamos voltar para o mapa!",
-            "Mas sinta-se a vontade para olhar a loja!"
+            "IMPORTANTE: Sempre haverá 1 carta de cada tipo, comum/ raro/ fogo/ água/ terra/ gelo/ epico/ lendario",
+            "As únicas que dependem da sorte são as cintilantes, mas as demais que citei sempre vão estar na loja, permitindo e garantindo uma boa variedade, assim você pode montar o deck que quiser!",
+            "No momento, você não tem ouro suficiente para comprar nada. Deixe-me te ajudar!",
+            "Aqui! Pegue essas 50🪙, sinta-se a vontade para olhar a loja e experimente comprar algo!",
+            "Você pode descartar alguma carta caso queira e lembre-se, você tem que ter no minimo 10 cartas no deck! O comerciante não vai permitir que você descarte mais caso tenha só 10 cartas.",
+            "Ou você pode atualizar a loja! Sempre que atualizar ou descartar o proximo custo será x2, use suas moedas com sabedoria!"
           ], "./../img/jogo/gaeazinha.jpg");
+          dinheiro += 50;
+          atualizarDinheiro();
         } else if (tipo == "elite") {
           iniciarTutorial([
             "Uma batalha de elite!",
@@ -4052,12 +4058,16 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
             "Assim como a loja o ferreiro e os hospitais também vão aumentar seus preços com forme você progride!",
             "Mas, caso não queira ou não tenha dinheiro, pode simplesmente clicar em voltar para o mapa!"
           ], "./../img/jogo/gaeazinha.jpg");
-        } else if (tipo == "hospital2") {
+        } else if (tipo == "quiz2") {
           iniciarTutorial([
             "Eventos acontecem de forma aleatória. Em um momento você está em um ferreiro e, no outro, pode acabar em uma emboscada. Portanto, não fique confiante demais!",
-            "Mas, neste caso, você deu sorte e encontrou um hospital!",
-            "Nele você pode comprar cartas de BUFF, se curar e aumentar sua vida maxima",
-            "Quando você se curar ou aumentar sua vida você volta para o mapa, então certifique-se de ter feito tudo o que tinha para fazer antes de se curar!"
+            "Mas, neste caso, você deu sorte e encontrou um evento de QUIZ!",
+            "Nele você tem duas opções, ou aceita o desafio proposto por um aliado da IA ou recusa",
+            "Ele sempre dirá os termos do desafio, mas em resumo acerte e ganhe um item de sua escolha ou erre e perca vida!",
+            "O assunto tem a ver com o meio ambiente, fauna, poluição e diversos assuntos em relação a natureza!",
+            "Não tenha medo, tente! Se não acertar você pode tentar de novo quando achar um outro evento!",
+            "Aproposito, caso você \"erre\" e esteja com pouca vida tipo 10, você não morre, você ficará com 1 de vida!",
+            "Lembre-se, é errando que se aprende, não desista, eu acredito em você!",
           ], "./../img/jogo/gaeazinha.jpg");
         } else if (tipo == "hospital") {
           iniciarTutorial([
@@ -4322,44 +4332,58 @@ async function executarTutorialCompleto() {
     "Há um menu no canto superior direito onde você pode ver mais detalhes.",
     "Você também possui seus próprios status: Vida e Armadura.",
     "Use suas cartas para derrotar os inimigos.",
-    "Existem 10 tipos de cartas, mas falarei apenas de 5!"
+    "Existem 10 tipos de cartas!"
   ], "./../img/jogo/gaeazinha.jpg");
 
   await iniciarTutorial(
-    ["VERMELHAS / ATAQUE (⚔️) — focadas em causar dano."],
+    ["VERMELHAS / ATAQUE (⚔️) — focadas em causar dano (Cria lixo após o uso)."],
     "./../img/jogo/gaeazinha.jpg",
     "./../img/jogo/cards/vermelho.png"
   );
 
   await iniciarTutorial(
-    ["AZUIS / DEFESA (🛡️) — focadas em fornecer escudo."],
+    ["AZUIS / DEFESA (🛡️) — focadas em fornecer escudo (Cria lixo após o uso)."],
     "./../img/jogo/gaeazinha.jpg",
     "./../img/jogo/cards/azul.png"
   );
 
   await iniciarTutorial(
-    ["VERDES / BUFFS (💚) — focadas em buffs e cura."],
+    ["VERDES / BUFFS (💚) — focadas em buffs e cura (Cria lixo após o uso)."],
     "./../img/jogo/gaeazinha.jpg",
     "./../img/jogo/cards/verd.png"
   );
 
   await iniciarTutorial(
-    ["AMARELAS / RECICLAGEM (♻️) — focadas em reciclar as cinzas."],
+    ["AMARELAS / RECICLAGEM (♻️) — focadas em reciclar as cinzas (Não cria lixo após o uso)."],
     "./../img/jogo/gaeazinha.jpg",
     "./../img/jogo/cards/amarelo1.png"
   );
 
   await iniciarTutorial(
-    ["CINZAS / LIXO (🗑️) — todas são consideradas LIXO."],
+    ["CINZAS / LIXO (🗑️) — todas são consideradas LIXO (Não cria lixo após o uso, mas algumas especificas podem criar)."],
     "./../img/jogo/gaeazinha.jpg",
     "./../img/jogo/cards/cinza.png"
   );
 
+  await iniciarTutorial(
+    ["CINTILANTE (✨) — cartas extremamente raras e muito poderosas (Não cria lixo após o uso)."],
+    "./../img/jogo/gaeazinha.jpg",
+    "./../img/jogo/cards/cintilante1.png"
+  );
+
+  await iniciarTutorial(
+    ["ELEMENTAIS ([❄️] [💧→⛰️→🔥]) — focadas em marcar inimigos e se beneficiar dessas marcações, possui um sistema de combo entre os elementos e um sistema de fraqueza entre os elementos (Não cria lixo após o uso)."],
+    "./../img/jogo/gaeazinha.jpg",
+    "./../img/jogo/cards/modeloElemental.png"
+  );
+
   await iniciarTutorial([
-    "O restante cabe a você descobrir!",
     "Cartas geram lixo sempre que usadas.",
+    "E o lixo sempre é gerado primeiro, tenha em mente isso, pois você pode acabar em uma enrrascada.",
+    "Já que o lixo gera primeiro, cartas de spawn/compra sempre vem o lixo primeiro e as demais cartas excedentes são descartadas, então se sua mão estiver cheia o lixo cobrirá o lugar de uma carta ultil! Cuidado!",
     "Você pode ter no máximo 10 cartas na mão.",
     "Reciclar cartas aumenta seu contador.",
+    "Vou deixar você lidar com esses inimigos, assim você pode olhar e entender melhor as cartas.",
     "Boa sorte, piloto!"
   ], "./../img/jogo/gaeazinha.jpg");
 
