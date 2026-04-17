@@ -761,18 +761,88 @@ document.addEventListener('DOMContentLoaded', function() {
  * Verifica se o usuário está logado e atualiza a UI
  */
 function initializeAuthSystem() {
+  // Detecta base path dinamicamente - versão melhorada
+  let basePath = '';
+  
+  // Método 1: Detecta do URL da página - mais simples e confiável
+  const pathname = window.location.pathname;
+  console.log('[Auth] 1. Pathname:', pathname);
+  
+  if (pathname.includes('/PI-GaeaProtocol/')) {
+    basePath = '/PI-GaeaProtocol';
+    console.log('[Auth] 2a. Detectado via pathname');
+  } else if (pathname.startsWith('/gaea')) {
+    basePath = '/gaea';
+    console.log('[Auth] 2b. Detectado como /gaea');
+  }
+  
+  // Se ainda não detectou, tenta do script src
+  if (!basePath) {
+    console.log('[Auth] 3. Tentando detectar via script src...');
+    const scripts = document.querySelectorAll('script[src]');
+    console.log('[Auth] Scripts carregados:', scripts.length);
+    for (const script of scripts) {
+      console.log('[Auth]   - Script:', script.src);
+      if (script.src.includes('/PI-GaeaProtocol/')) {
+        basePath = '/PI-GaeaProtocol';
+        console.log('[Auth] 4. Detectado via script src');
+        break;
+      }
+    }
+  }
+  
+  // Fallback: tentar /PI-GaeaProtocol se ainda estiver vazio
+  if (!basePath) {
+    basePath = '/PI-GaeaProtocol';
+    console.log('[Auth] 5. Usando fallback: /PI-GaeaProtocol');
+  }
+  
+  console.log('[Auth] 6. basePath final:', basePath);
+  const checkAuthUrl = basePath + '/php/User/checkAuth.php';
+  console.log('[Auth] 7. URL de autenticação:', checkAuthUrl);
+  console.log('[Auth] 8. Fazendo fetch para:', checkAuthUrl);
+  
   // Busca dados de sessão do servidor
-  fetch('php/User/checkAuth.php')
-    .then(response => response.json())
+  fetch(checkAuthUrl)
+    .then(response => {
+      console.log('[Auth] 9. Resposta recebida:', response.status, response.statusText);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      return response.json();
+    })
     .then(data => {
-      if (data.authenticated) {
-        updateUserUI(data.user);
+      console.log('[Auth] 10. Dados JSON parseados:', data);
+      if (data.authenticated && data.dados && data.dados.user) {
+        const user = data.dados.user;
+        console.log('[Auth] 11. Usuário autenticado:', user.nome || user.nomeUsuario);
+        console.log('[Auth] 11b. Objeto user completo:', JSON.stringify(user));
+        
+        // Guardar userId no localStorage para uso no jogo
+        // Testa os nomes de campo mais comuns retornados pelo PHP
+        const userId = user.idUsuario ?? user.id ?? user.userId ?? user.user_id ?? user.ID ?? null;
+        const userName = user.nome ?? user.nomeUsuario ?? user.name ?? user.username ?? 'Usuário';
+        
+        if (userId) {
+          localStorage.setItem('userId', String(userId));
+          localStorage.setItem('userName', userName);
+          console.log('[Auth] 12. userId salvo no localStorage:', userId);
+        } else {
+          console.warn('[Auth] 12. ⚠️ Nenhum campo de ID encontrado no objeto user. Verifique o log 11b acima.');
+        }
+        
+        updateUserUI(user);
       } else {
+        console.log('[Auth] 12. Usuário não autenticado');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userName');
         updateGuestUI();
       }
     })
     .catch(error => {
-      console.warn('Erro ao verificar autenticação:', error);
+      console.error('[Auth] ✗ Erro ao verificar autenticação:', error);
+      console.error('[Auth]   Tipo do erro:', error.name);
+      console.error('[Auth]   Mensagem:', error.message);
       updateGuestUI();
     });
 

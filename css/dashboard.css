@@ -88,7 +88,8 @@
    ============================================================ */
 .jogador-header {
     grid-column: 1 / -1;
-    background: linear-gradient(135deg, var(--bg-panel) 0%, rgba(0, 255, 136, 0.05) 100%);
+    /* CSS CORRIGIDO: Aumentar alpha 0.05 → 0.20 para melhor legibilidade */
+    background: linear-gradient(135deg, var(--bg-panel) 0%, rgba(0, 255, 136, 0.20) 100%);
     border: 2px solid var(--primary);
     border-radius: 8px;
     padding: 30px;
@@ -168,7 +169,8 @@
 }
 
 .stat-card {
-    background: rgba(0, 255, 136, 0.05);
+    /* CSS CORRIGIDO: Aumentar alpha 0.05 → 0.15 para melhor legibilidade */
+    background: rgba(0, 255, 136, 0.15);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 20px;
@@ -239,7 +241,8 @@
 }
 
 .dashboard-table thead {
-    background: rgba(0, 255, 136, 0.1);
+    /* CSS CORRIGIDO: Aumentar alpha 0.1 → 0.18 para melhor legibilidade */
+    background: rgba(0, 255, 136, 0.18);
     border-bottom: 2px solid var(--border);
 }
 

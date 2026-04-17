@@ -1,0 +1,163 @@
+#nemoraSnow {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 999999;
+  display: none;
+}
+
+.nemora-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(200, 255, 255, 0.9);
+  border-radius: 50%;
+  animation: nemoraFall linear forwards;
+}
+
+/* de cima até baixo, deslocando sempre para a esquerda */
+@keyframes nemoraFall {
+  0% {
+    transform: translateY(-10vh) translateX(10vw);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) translateX(-30vw);
+    opacity: 0;
+  }
+}
+
+#nemoraFire {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 999999;
+  display: none;
+}
+
+.nemora-fire-particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle, #ffec8a, #ff7b00, #ff0000);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: nemoraFireRise linear forwards;
+  filter: blur(1px);
+}
+
+@keyframes nemoraFireRise {
+  0% {
+    transform: translateY(100vh) scale(0.8);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50vh) scale(1.2);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-10vh) scale(0.4);
+    opacity: 0;
+  }
+}
+
+/* ================================
+   BASE DO BACKGROUND
+================================ */
+#jogo {
+  transition: background-image 0.6s ease-in-out, background 0.6s ease-in-out;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ================================
+   CLASSE PRINCIPAL DO GLITCH
+================================ */
+.screen-glitch {
+  position: relative;
+  overflow: hidden;
+  animation:
+    glitchScreen 0.12s steps(2, end),
+    glitchGlobal 0.12s infinite;
+}
+
+@keyframes glitchScreen {
+  0%   { filter: hue-rotate(20deg) contrast(140%); transform: skewX(3deg); }
+  50%  { filter: hue-rotate(-20deg) contrast(180%); transform: skewX(-3deg); }
+  100% { filter: none; transform: none; }
+}
+
+@keyframes glitchGlobal {
+  0%   { transform: translate(0,0); }
+  50%  { transform: translate(-3px, 2px); }
+  100% { transform: translate(2px, -1px); }
+}
+
+/* ================================
+   BLOCOS GLITCH RGB (novo)
+================================ */
+.glitch-chunk {
+  position: fixed;
+  background: linear-gradient(
+    to right,
+    rgba(0, 255, 255, 0.7),
+    rgba(255, 0, 255, 0.7),
+    rgba(0, 0, 0, 0.9)
+  );
+  opacity: 0;
+  transform: skewX(-20deg);
+  filter: blur(1px);
+  pointer-events: none;
+  z-index: 999999;
+
+  animation: glitchChunk 0.18s ease-out forwards;
+}
+
+/* animação dos blocos novos */
+@keyframes glitchChunk {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px) skewX(-20deg);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(10px) skewX(-20deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(40px) skewX(-20deg);
+  }
+}
+
+body.screen-glitch::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
+  background: repeating-linear-gradient(
+    transparent 0px,
+    transparent 3px,
+    rgba(255,255,255,0.04) 4px
+  );
+
+  mix-blend-mode: overlay;
+  animation: screenGlitch 0.28s infinite;
+}
+
+@keyframes screenGlitch {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(-4px, 2px) skew(-2deg); }
+  40% { transform: translate(4px, -2px) skew(2deg); }
+  60% { transform: translate(-2px, -1px); }
+  80% { transform: translate(2px, 1px); }
+  100% { transform: translate(0,0); }
+}

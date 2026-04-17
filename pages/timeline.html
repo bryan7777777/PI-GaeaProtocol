@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline de Conquistas - Gaea Protocol</title>
+    <link rel="stylesheet" href="../css/timeline.css">
+    <link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+    <div class="timeline-container">
+        <!-- HEADER -->
+        <header class="timeline-header">
+            <h1>Sua Jornada de Conquistas</h1>
+            <div id="user-info" class="user-info-header">
+                <span id="user-name">Carregando...</span>
+                <span id="user-level" class="level-badge">--</span>
+            </div>
+        </header>
+
+        <!-- PROGRESSO -->
+        <section class="progress-section">
+            <div class="progress-info">
+                <h2>Progresso Geral</h2>
+                <div class="progress-stats">
+                    <div class="stat">
+                        <span class="stat-label">Conquistas</span>
+                        <span id="stat-count" class="stat-value">0/27</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Percentual</span>
+                        <span id="stat-percent" class="stat-value">0%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Pontos</span>
+                        <span id="stat-points" class="stat-value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-bar-container">
+                <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+                <div class="progress-labels">
+                    <span>0%</span>
+                    <span>25%</span>
+                    <span>50%</span>
+                    <span>75%</span>
+                    <span>100%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMELINE PRINCIPAL -->
+        <section class="timeline-main">
+            <h2>Histórico de Conquistas</h2>
+            
+            <div id="timeline-list" class="timeline-list">
+                <div class="timeline-loading">
+                    <p>Carregando suas conquistas...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRÓXIMOS OBJETIVOS -->
+        <section class="objectives-section">
+            <h2>Próximos Objetivos</h2>
+            
+            <div id="objectives-grid" class="objectives-grid">
+                <!-- Preenchida dinamicamente -->
+            </div>
+        </section>
+
+        <!-- FILTROS -->
+        <section class="filters-section">
+            <h3>Filtrar por Categoria</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filtrarPorCategoria('todas')">
+                    Todas (27)
+                </button>
+                <button class="filter-btn" onclick="filtrarPorCategoria('boss')">
+                    👑 Boss
+                </button>
+                <button class="filter-btn" onclick="filtrarPorCategoria('reciclagem')">
+                    ♻️ Reciclagem
+                </button>
+                <button class="filter-btn" onclick="filtrarPorCategoria('vida')">
+                    ❤️ Vida
+                </button>
+                <button class="filter-btn" onclick="filtrarPorCategoria('escudo')">
+                    🛡️ Escudo
+                </button>
+                <button class="filter-btn" onclick="filtrarPorCategoria('sinergia')">
+                    ⚡ Sinergia
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- MODAL: Detalhes de Conquista -->
+    <div id="modal-conquista" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="fecharModal()">✕</button>
+            
+            <div class="conquista-modal-header">
+                <div id="conquista-icone-grande" class="icone-grande">🏆</div>
+                <div class="conquista-info">
+                    <h2 id="conquista-nome">Nome</h2>
+                    <p id="conquista-descricao">Descrição</p>
+                </div>
+            </div>
+
+            <div class="conquista-modal-details">
+                <div class="detail-item">
+                    <span class="label">Categoria</span>
+                    <span id="conquista-categoria" class="value">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Data de Desbloqueio</span>
+                    <span id="conquista-data" class="value">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Pontos Bônus</span>
+                    <span id="conquista-pontos" class="value">+0</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Tempo Atrás</span>
+                    <span id="conquista-tempo" class="value">-</span>
+                </div>
+            </div>
+
+            <div class="conquista-modal-footer">
+                <button onclick="fecharModal()" class="btn-primary">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/timeline.js"></script>
+</body>
+</html>

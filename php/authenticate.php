@@ -31,8 +31,8 @@ if (empty($email) || empty($senha) || !filter_var($email, FILTER_VALIDATE_EMAIL)
 try {
     // Busca usuário no banco
     $stmt = $pdo->prepare(
-        "SELECT idUser, userName, email, senha 
-         FROM user 
+        "SELECT idUsuario, nomeUsuario, email, senhaHash 
+         FROM usuarios 
          WHERE email = ?
          LIMIT 1"
     );
@@ -41,29 +41,23 @@ try {
     $user = $stmt->fetch();
 
     // se a coluna senha estiver truncada a hash será menor que o esperado
-    if ($user && strlen($user['senha']) < 60) {
+    if ($user && strlen($user['senhaHash']) < 60) {
         error_log("Hash truncado detectado para {$email}");
         header('Location: login.php?error=schema');
         exit;
     }
 
     // Verifica se encontrou usuário e se a senha está correta
-    // Se o hash é o padrão da seed (igual para todos), redireciona para redefinir
-    if ($user && ($user['senha'] === '$2y$12$8zqpTVMzN4eQqzH9Y0K2wODaVVVkVVVkVVVkVVVkVVVkVVVkVVVkV' || password_verify($senha, $user['senha']))) {
-        // Se é hash padrão da seed, força redefinição
-        if ($user['senha'] === '$2y$12$8zqpTVMzN4eQqzH9Y0K2wODaVVVkVVVkVVVkVVVkVVVkVVVkVVVkV') {
-            error_log("Tentativa de login com senha padrão detectada para {$email}");
-            header('Location: login.php?error=default_password');
-            exit;
-        }
-        
+    if ($user && password_verify($senha, $user['senhaHash'])) {
         // Regenera ID de sessão para evitar roubo
         session_regenerate_id(true);
 
         // Cria array de sessão do usuário
         $_SESSION['user'] = [
-            'id' => $user['idUser'],
-            'nome' => $user['userName'],
+            'idUsuario' => $user['idUsuario'],
+            'id' => $user['idUsuario'],
+            'nomeUsuario' => $user['nomeUsuario'],
+            'nome' => $user['nomeUsuario'],
             'email' => $user['email'],
             'nivelAcesso' => 'usuario',
             'last_activity' => time(),
@@ -74,12 +68,12 @@ try {
         // Log de sucesso
         error_log("Login bem-sucedido: {$email}");
 
-        // Redireciona para novo dashboard
-        header('Location: User/dashboard.php');
+        // CORRIGIDO: Redirect para pages/dashboard.php (antes era User/dashboard.php)
+        header('Location: /PI-GaeaProtocol/pages/dashboard.php');
         exit;
     } else {
         // Log de falha
-        error_log("Falha de login: {$email}");
+        error_log("Falha de login para: {$email}");
         header('Location: login.php?login=erro');
         exit;
     }

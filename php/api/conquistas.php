@@ -20,27 +20,15 @@
 // 1. INICIALIZAÇÃO E VALIDAÇÃO
 // ============================================================
 
+// Incluir config ANTES de headers e session
+require_once(__DIR__ . '/../config.php');
+
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
 
 // Iniciar sessão
 session_start();
-
-// Incluir config
-require_once(__DIR__ . '/../config.php');
-require_once(__DIR__ . '/../authenticate.php');
-
-// Função de resposta JSON
-function responder($status, $dados = [], $httpCode = 200) {
-    http_response_code($httpCode);
-    echo json_encode([
-        'status' => $status,
-        'timestamp' => date('Y-m-d H:i:s'),
-        ...$dados
-    ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-    exit;
-}
 
 // ============================================================
 // 2. DEFINIÇÃO DE CONQUISTAS (27 total)
@@ -329,7 +317,7 @@ function handleGET() {
     }
     
     // Validar autenticação
-    if (empty($_SESSION['user']) || $_SESSION['user']['idUser'] != $usuario_id) {
+    if (empty($_SESSION['user']) || $_SESSION['user']['idUsuario'] != $usuario_id) {
         responder('erro', ['mensagem' => 'Não autorizado'], 401);
     }
     
@@ -337,10 +325,10 @@ function handleGET() {
         // Query: Obter conquistas desbloqueadas do usuário
         $stmt = $pdo->prepare('
             SELECT 
-                cd.idConquista,
-                cd.dataDesbloqueio
-            FROM conquistas_desbloqueadas cd
-            WHERE cd.idUser = :user_id
+                uc.idConquista,
+                uc.dataDesbloqueio
+            FROM usuario_conquistas uc
+            WHERE uc.idUsuario = :user_id
         ');
         
         $stmt->execute([':user_id' => $usuario_id]);
@@ -441,7 +429,7 @@ function handlePOST() {
     }
     
     // Validar que o usuário está desbloqueando suas próprias conquistas
-    if ($_SESSION['user']['idUser'] != $usuario_id) {
+    if ($_SESSION['user']['idUsuario'] != $usuario_id) {
         responder('erro', ['mensagem' => 'Tentativa de spoofing detectada'], 403);
     }
     
@@ -489,8 +477,8 @@ function handlePOST() {
         $placeholders = implode(',', array_fill(0, count($conquistasValidos), '?'));
         $stmt = $pdo->prepare("
             SELECT idConquista 
-            FROM conquistas_desbloqueadas 
-            WHERE idUser = ? AND idConquista IN ($placeholders)
+            FROM usuario_conquistas 
+            WHERE idUsuario = ? AND idConquista IN ($placeholders)
         ");
         
         $params = array_merge([$usuario_id], $conquistasValidos);
@@ -506,32 +494,26 @@ function handlePOST() {
         
         // 3. Inserir novas conquistas (evitando duplicatas com IGNORE)
         $stmt = $pdo->prepare("
-            INSERT IGNORE INTO conquistas_desbloqueadas 
-            (idUser, idConquista, numeroPartida, dataDesbloqueio)
-            VALUES (?, ?, ?, NOW())
+            INSERT INTO usuario_conquistas 
+            (idUsuario, idConquista, dataDesbloqueio)
+            VALUES (?, ?, NOW())
         ");
         
         foreach ($novas_conquistas as $id_conquista) {
             $stmt->execute([
                 $usuario_id,
-                $id_conquista,
-                $numero_partida
+                $id_conquista
             ]);
         }
         
-        // 4. Atualizar contador em userStatus
+        // 4. Atualizar contador em usuarios
         $stmt = $pdo->prepare("
-            UPDATE userStatus 
-            SET conquistasDesbloqueadas = (
-                SELECT COUNT(*) 
-                FROM conquistas_desbloqueadas 
-                WHERE idUser = ?
-            ),
-            dataUltimaConquista = NOW()
-            WHERE idUser = ?
+            UPDATE usuarios 
+            SET usuarioAtivo = TRUE
+            WHERE idUsuario = ?
         ");
         
-        $stmt->execute([$usuario_id, $usuario_id]);
+        $stmt->execute([$usuario_id]);
         
         // Confirmar transação
         $pdo->commit();

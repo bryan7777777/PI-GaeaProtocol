@@ -245,19 +245,17 @@ try {
     // 1. INSERIR NA TABELA PARTIDAS
     $stmt_partida = $pdo->prepare("
         INSERT INTO partidas (
-            idUser, 
-            dataPartida, 
+            idUsuario, 
             resultado, 
             pontuacao, 
-            duracao_segundos, 
-            data_hora
+            duracaoSegundos, 
+            wavesCompletadas
         ) VALUES (
             :usuario_id,
-            NOW(),
             :resultado,
             :pontuacao,
             :duracao_segundos,
-            :data_hora
+            :waves
         )
     ");
 
@@ -266,7 +264,7 @@ try {
         ':resultado' => $resultado,
         ':pontuacao' => $pontuacao,
         ':duracao_segundos' => $duracao_segundos,
-        ':data_hora' => $data_hora
+        ':waves' => $rodadas_sobrevividas ?? 0
     ]);
 
     // Obter ID da partida inserida
@@ -307,76 +305,24 @@ try {
     ]);
 
     // 3. ATUALIZAR ESTATÍSTICAS ACUMULADAS DO USUÁRIO
-    // Verificar se já existe registro em userStatus
-    $stmt_check = $pdo->prepare("SELECT idUserStatus FROM userStatus WHERE idUser = :usuario_id LIMIT 1");
-    $stmt_check->execute([':usuario_id' => $usuario_id_sessao]);
-    $user_status_existe = $stmt_check->fetch();
-
-    if (!$user_status_existe) {
-        // Criar novo registro se não existir
-        $stmt_insert_status = $pdo->prepare("
-            INSERT INTO userStatus (
-                idUser,
-                ultimoLoginJogo,
-                lixoTotal,
-                qtdWin,
-                qtdJogo,
-                total_vitorias,
-                pontuacao_total,
-                dano_total_acumulado,
-                cura_total_acumulada,
-                lixo_total_acumulado
-            ) VALUES (
-                :usuario_id,
-                NOW(),
-                :lixo_reciclado,
-                :vitoria,
-                1,
-                :vitoria,
-                :pontuacao,
-                :dano_total,
-                :cura_total,
-                :lixo_reciclado
-            )
-        ");
-
-        $vitoria_int = ($resultado === 'Vitoria') ? 1 : 0;
-
-        $stmt_insert_status->execute([
-            ':usuario_id' => $usuario_id_sessao,
-            ':lixo_reciclado' => $lixo_reciclado,
-            ':vitoria' => $vitoria_int,
-            ':pontuacao' => $pontuacao,
-            ':dano_total' => $dano_total,
-            ':cura_total' => $cura_total
-        ]);
-    } else {
-        // Atualizar registro existente
-        $vitoria_int = ($resultado === 'Vitoria') ? 1 : 0;
-
-        $stmt_update_status = $pdo->prepare("
-            UPDATE userStatus SET
-                ultimoLoginJogo = NOW(),
-                lixoTotal = lixoTotal + :lixo_reciclado,
-                qtdWin = qtdWin + :vitoria,
-                qtdJogo = qtdJogo + 1,
-                total_vitorias = total_vitorias + :vitoria,
-                pontuacao_total = pontuacao_total + :pontuacao,
-                dano_total_acumulado = dano_total_acumulado + :dano_total,
-                cura_total_acumulada = cura_total_acumulada + :cura_total,
-                lixo_total_acumulado = lixo_total_acumulado + :lixo_reciclado
-            WHERE idUser = :usuario_id
-        ");
-
-        $stmt_update_status->execute([
-            ':usuario_id' => $usuario_id_sessao,
-            ':lixo_reciclado' => $lixo_reciclado,
-            ':vitoria' => $vitoria_int,
-            ':pontuacao' => $pontuacao,
-            ':dano_total' => $dano_total,
-            ':cura_total' => $cura_total
-        ]);
-    }
+    $vitoria_int = ($resultado === 'vitoria') ? 1 : 0;
+    
+    $stmt_update = $pdo->prepare("
+        UPDATE usuarios SET
+            lixoReciclado = lixoReciclado + :lixo_reciclado,
+            totalVitorias = totalVitorias + :vitoria,
+            totalPartidas = totalPartidas + 1,
+            pontuacaoTotal = pontuacaoTotal + :pontuacao,
+            ultimoAcesso = NOW()
+        WHERE idUsuario = :usuario_id
+    ");
+    
+    $stmt_update->execute([
+        ':usuario_id' => $usuario_id_sessao,
+        ':lixo_reciclado' => $lixo_reciclado,
+        ':vitoria' => $vitoria_int,
+        ':pontuacao' => $pontuacao
+    ]);
 
     // Confirmar transação
     $pdo->commit();

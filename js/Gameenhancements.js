@@ -319,7 +319,11 @@ const RunResult = (() => {
 
   async function _registrarPartida({ vitoria, lixoReciclado, mapaBatalha, tempoMs, personagem }) {
     try {
-      await fetch('/php/registrar_partida.php', {
+      // Detecta base path
+      const pathname = window.location.pathname;
+      let basePath = pathname.includes('/PI-GaeaProtocol/') ? '/PI-GaeaProtocol' : '/PI-GaeaProtocol';
+      
+      await fetch(basePath + '/php/registrar_partida.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -1,0 +1,278 @@
+/* ============================================================================
+   RESPONSIVIDADE - Mobile, Tablet, Desktop
+   ============================================================================ */
+
+/* ============================================================================
+   MOBILE (< 640px)
+   ============================================================================ */
+
+@media (max-width: 640px) {
+    :root {
+        --font-size-3xl: 1.5rem;   /* Reduzir títulos em mobile */
+        --font-size-4xl: 1.875rem;
+        --font-size-5xl: 2.25rem;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .header-logo .logo-text {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .header-nav {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-secondary);
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition-normal);
+        z-index: var(--z-fixed);
+        padding: 0;
+    }
+    
+    .header-nav.active {
+        max-height: 300px;
+        border-bottom: 1px solid var(--border-light);
+        padding: var(--spacing-md) 0;
+    }
+    
+    .nav-link {
+        width: 100%;
+        padding: var(--spacing-md) var(--spacing-lg);
+        text-align: left;
+        border-radius: 0;
+    }
+    
+    .nav-link::after {
+        display: none;
+    }
+    
+    .header-auth {
+        width: 100%;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .auth-section {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .hero-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-grid,
+    .characters-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    section {
+        padding: var(--spacing-2xl) var(--spacing-md);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+}
+
+/* ============================================================================
+   TABLET (641px - 1024px)
+   ============================================================================ */
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    :root {
+        --font-size-4xl: 2rem;
+        --font-size-5xl: 2.5rem;
+    }
+    
+    .about-grid,
+    .characters-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================================================================
+   LAPTOP / DESKTOP (1025px+)
+   ============================================================================ */
+
+@media (min-width: 1025px) {
+    .header-content {
+        flex-direction: row;
+        padding: var(--spacing-lg) var(--spacing-2xl);
+    }
+    
+    .header-logo {
+        flex-shrink: 0;
+    }
+    
+    .header-nav {
+        display: flex !important;
+        max-height: none !important;
+        overflow: visible !important;
+        position: static !important;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+    
+    .hamburger {
+        display: none !important;
+    }
+    
+    .about-grid,
+    .characters-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ============================================================================
+   WIDE / ULTRA (1400px+)
+   ============================================================================ */
+
+@media (min-width: 1400px) {
+    .container,
+    .container-lg {
+        max-width: 1400px;
+    }
+    
+    section {
+        padding: var(--spacing-3xl) var(--spacing-2xl);
+    }
+}
+
+/* ============================================================================
+   ORIENTAÇÃO: LANDSCAPE
+   ============================================================================ */
+
+@media (orientation: landscape) and (max-height: 600px) {
+    section {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+    
+    .hero-buttons {
+        margin: var(--spacing-lg) 0;
+    }
+    
+    .stat-box {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+}
+
+/* ============================================================================
+   REDUÇÃO DE MOVIMENTO (Acessibilidade)
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ============================================================================
+   MODO ESCURO (prefers-color-scheme)
+   ============================================================================ */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: var(--color-white);
+        color: var(--color-gray-900);
+    }
+}
+
+/* ============================================================================
+   TELAS PEQUENAS (Smartwatches, etc)
+   ============================================================================ */
+
+@media (max-width: 320px) {
+    :root {
+        --spacing-md: 0.75rem;
+        --spacing-lg: 1rem;
+        --font-size-2xl: 1.25rem;
+    }
+    
+    .header-logo .logo-text {
+        font-size: var(--font-size-xl);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+}
+
+/* ============================================================================
+   IMPRESSORA (Print Styles)
+   ============================================================================ */
+
+@media print {
+    .header,
+    .footer,
+    .hamburger,
+    .btn,
+    .modal-overlay {
+        display: none !important;
+    }
+    
+    body {
+        background-color: var(--color-white);
+        color: var(--color-black);
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+    
+    section {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+}
+
+/* ============================================================================
+   FIM DA RESPONSIVIDADE
+   ============================================================================ */

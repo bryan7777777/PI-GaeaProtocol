@@ -17,13 +17,23 @@
 class DashboardManager {
     constructor() {
         this.usuarioId = this.obterUsuarioId();
-        this.apiUrl = '/php/api/dashboard.php';
+        // Detecta base path dinamicamente
+        let basePath = window.location.pathname.includes('/PI-GaeaProtocol/') ? '/PI-GaeaProtocol' : '';
+        if (!basePath) {
+            basePath = '/PI-GaeaProtocol'; // Fallback
+        }
+        this.apiUrl = basePath + '/php/api/dashboard.php';
         this.atualizacaoIntervalo = 30000; // 30 segundos
         this.intervaloId = null;
         
-        this.dados = null;
+        // Dados extraídos da API
+        this.jogador = null;
+        this.historicoPartidas = null;
+        this.conquistas = null;
+        this.rankingMundial = null;
+        this.rankingPessoal = null;
         
-        console.log('[Dashboard] ✓ Manager inicializado', { usuarioId: this.usuarioId });
+        console.log('[Dashboard] ✓ Manager inicializado', { usuarioId: this.usuarioId, apiUrl: this.apiUrl });
     }
 
     /**
@@ -76,7 +86,17 @@ class DashboardManager {
                 throw new Error(this.dados.mensagem || 'Erro ao carregar dados');
             }
 
-            console.log('[Dashboard] ✓ Dados carregados com sucesso', this.dados);
+            // Extrair dados reais da resposta
+            const dadosReais = this.dados.dados;
+            
+            console.log('[Dashboard] ✓ Dados carregados com sucesso', dadosReais);
+            
+            // Guardar os dados para usar na renderização
+            this.jogador = dadosReais.jogador;
+            this.historicoPartidas = dadosReais.historico_partidas;
+            this.conquistas = dadosReais.conquistas;
+            this.rankingMundial = dadosReais.ranking_mundial;
+            this.rankingPessoal = dadosReais.ranking_pessoal;
             
             this.renderizar();
             
@@ -90,7 +110,7 @@ class DashboardManager {
      * Renderizar tudo
      */
     renderizar() {
-        if (!this.dados) return;
+        if (!this.jogador) return;
 
         this.renderizarPainelJogador();
         this.renderizarHistoricoPartidas();
@@ -103,10 +123,10 @@ class DashboardManager {
      * Painel do Jogador
      */
     renderizarPainelJogador() {
-        const jogador = this.dados.jogador;
+        const jogador = this.jogador;
         const container = document.getElementById('painel-jogador');
         
-        if (!container) return;
+        if (!container || !jogador) return;
 
         const html = `
             <div class="jogador-avatar">
@@ -199,7 +219,7 @@ class DashboardManager {
         const container = document.getElementById('historico-partidas');
         if (!container) return;
 
-        if (this.dados.historico_partidas.length === 0) {
+        if (this.historicoPartidas.length === 0) {
             container.innerHTML = '<div class="empty-state">Nenhuma partida registrada.</div>';
             return;
         }
@@ -221,7 +241,7 @@ class DashboardManager {
                     <tbody>
         `;
 
-        this.dados.historico_partidas.forEach(partida => {
+        this.historicoPartidas.forEach(partida => {
             const classResultado = partida.resultado_tipo === 'vitoria' ? 'vitoria' : 'derrota';
             
             html += `
@@ -260,7 +280,7 @@ class DashboardManager {
         const container = document.getElementById('conquistas');
         if (!container) return;
 
-        const conquistas = this.dados.conquistas;
+        const conquistas = this.conquistas;
         
         let html = `
             <div style="margin-bottom: 20px;">
@@ -311,14 +331,14 @@ class DashboardManager {
         const container = document.getElementById('ranking-mundial');
         if (!container) return;
 
-        if (this.dados.ranking_mundial.jogadores.length === 0) {
+        if (this.rankingMundial.jogadores.length === 0) {
             container.innerHTML = '<div class="empty-state">Nenhum outro jogador registrado.</div>';
             return;
         }
 
         let html = '';
 
-        this.dados.ranking_mundial.jogadores.forEach(jogador => {
+        this.rankingMundial.jogadores.forEach(jogador => {
             const medalhas = {
                 1: '🥇',
                 2: '🥈',
@@ -362,8 +382,8 @@ class DashboardManager {
         const container = document.getElementById('ranking-pessoal');
         if (!container) return;
 
-        const ranking = this.dados.ranking_pessoal;
-        const jogador = this.dados.jogador;
+        const ranking = this.rankingPessoal;
+        const jogador = this.jogador;
 
         let medalha = `#${ranking.posicao}`;
         if (ranking.posicao === 1) medalha = '🥇';

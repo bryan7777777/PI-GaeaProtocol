@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gaea Protocol - Login">
+    <meta name="theme-color" content="#4caf50">
+    <title>Login - Gaea Protocol</title>
+    
+    <!-- CSS Design System  (ORDEM IMPORTANTE) -->
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/pages/login.css">
+    <link rel="stylesheet" href="../css/utilities.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo-text">GAEA</h1>
+            <nav class="header-nav">
+                <a href="/" class="nav-link">← Voltar para Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="loginContainer">
+        <div class="login-box">
+            <!-- Title -->
+            <h2>🔓 Entrar</h2>
+            <div class="login-subtitle">Acesse sua conta Gaea Protocol</div>
+
+            <!-- Login Form -->
+            <form onsubmit="handleLogin(event)" id="loginForm">
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="seu@email.com"
+                        required
+                        autocomplete="email">
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="••••••••"
+                        required
+                        autocomplete="current-password">
+                </div>
+
+                <!-- Error Message -->
+                <div id="errorMessage" class="error-message">
+                    <span id="errorText"></span>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary btn-large width-100pct margin-y-20">
+                    🔓 Entrar
+                </button>
+
+                <!-- Remember Me -->
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Lembrar-me neste computador</label>
+                </div>
+            </form>
+
+            <!-- Divider -->
+            <div class="login-divider"><span>Links Rápidos</span></div>
+
+            <!-- Links Alternativos -->
+            <div class="login-links">
+                <a href="index.html">← Home</a>
+                <a href="#">Esqueceu a senha?</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Gaea Protocol</h3>
+                <ul>
+                    <li><a href="../pages/historia.html">História</a></li>
+                    <li><a href="../pages/mundo.html">O Mundo</a></li>
+                    <li><a href="../pages/personagens.html">Personagens</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Comunidade</h3>
+                <ul>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li"><a href="#">Reddit</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacidade</a></li>
+                    <li><a href="#">Termos de Serviço</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer-text">© 2024-2026 Gaea Protocol. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        /**
+         * Handle Login Form Submit
+         */
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+            const errorText = document.getElementById('errorText');
+            
+            try {
+                // Preparar dados como FormData
+                const formData = new FormData();
+                formData.append('email', email);
+                formData.append('senha', password);
+                
+                // Obter CSRF token (gera um na sessão)
+                const csrfResponse = await fetch('/PI-GaeaProtocol/php/login.php', {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+                
+                // Extrair token do HTML (procura por input hidden com name="csrf_token")
+                const htmlText = await csrfResponse.text();
+                const tokenMatch = htmlText.match(/name="csrf_token"\s+value="([^"]+)"/);
+                const token = tokenMatch ? tokenMatch[1] : '';
+                
+                if (token) {
+                    formData.append('csrf_token', token);
+                }
+                
+                // Send login request
+                const response = await fetch('/PI-GaeaProtocol/php/authenticate.php', {
+                    method: 'POST',
+                    credentials: 'include',
+                    body: formData
+                });
+                
+                // Verificar se foi redirecionado (status 200-299 é sucesso)
+                if (response.ok || response.status === 404) {
+                    // Se resposta é texto, significa que houve redirecionamento ou erro
+                    const contentType = response.headers.get('content-type');
+                    if (contentType && contentType.includes('application/json')) {
+                        const result = await response.json();
+                        if (result.success) {
+                            window.location.href = '/PI-GaeaProtocol/pages/dashboard.php';
+                        } else {
+                            errorText.textContent = result.message || 'Erro ao fazer login.';
+                            errorDiv.style.display = 'block';
+                        }
+                    } else {
+                        // Assumir que foi sucesso se redirecionou (authenticate.php faz redirect)
+                        window.location.href = '/PI-GaeaProtocol/pages/dashboard.php';
+                    }
+                } else {
+                    errorText.textContent = 'Erro ao fazer login. Verifique suas credenciais.';
+                    errorDiv.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                errorText.textContent = 'Erro de conexão. Tente novamente.';
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        // Focus email field on load
+        window.addEventListener('load', () => {
+            document.getElementById('email').focus();
+        });
+    </script>
+</body>
+</html>

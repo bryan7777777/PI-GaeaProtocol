@@ -1,0 +1,273 @@
+/* ============================================================================
+   GAEA PROTOCOL - ESTILOS DA PÁGINA PERSONAGENS
+   ============================================================================ */
+
+#personagens-page,
+.personagens-page {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.back-button {
+    display: inline-block;
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    background: rgba(122, 156, 110, 0.2);
+    border: 2px solid #7a9c6e;
+    color: #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.back-button:hover {
+    background: rgba(255, 179, 71, 0.15);
+    border-color: #ffb347;
+    color: #ffb347;
+    transform: translateX(-5px);
+}
+
+/* Navegação de Protocolos */
+.protocol-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: rgba(30, 43, 34, 0.5);
+    border-radius: 8px;
+}
+
+.protocol-nav-btn {
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: 2px solid #7a9c6e;
+    color: #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Megrim", cursive;
+    font-weight: bold;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+    font-size: 0.95rem;
+}
+
+.protocol-nav-btn:hover,
+.protocol-nav-btn.active {
+    background: rgba(255, 179, 71, 0.15);
+    border-color: #ffb347;
+    color: #ffb347;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 179, 71, 0.2);
+}
+
+/* Seção de Protocolo */
+.protocol-section {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.protocol-section.active {
+    display: block;
+}
+
+.protocol-title {
+    font-family: "Megrim", cursive;
+    font-size: 2rem;
+    color: #ffb347;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 2rem 0 0.5rem;
+    text-shadow: 0 0 8px rgba(255, 179, 71, 0.2);
+}
+
+.protocol-subtitle {
+    font-size: 1.1rem;
+    color: #c8e0b8;
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+/* Grid de Personagens */
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* Card de Personagem */
+.character-card {
+    background: rgba(30, 43, 34, 0.8);
+    border: 2px solid #7a9c6e;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.character-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 179, 71, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.character-card:hover::before {
+    opacity: 1;
+}
+
+.character-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: #ffb347;
+    box-shadow: 0 15px 40px rgba(255, 179, 71, 0.3),
+                inset 0 0 20px rgba(255, 179, 71, 0.05);
+    background: rgba(30, 43, 34, 0.95);
+}
+
+.character-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+    filter: brightness(0.9);
+}
+
+.character-card:hover .character-image {
+    filter: brightness(1.1) drop-shadow(0 0 10px rgba(255, 179, 71, 0.4));
+}
+
+.character-name {
+    font-family: "Megrim", cursive;
+    font-size: 1.5rem;
+    color: #ffb347;
+    margin: 1rem 0 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.character-role {
+    color: #c8e0b8;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    font-style: italic;
+}
+
+.character-description {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    min-height: 60px;
+}
+
+/* Stats */
+.character-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    background: rgba(45, 64, 54, 0.5);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0.5rem;
+    background: rgba(30, 43, 34, 0.7);
+    border-radius: 3px;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    color: #7a9c6e;
+    font-weight: bold;
+}
+
+.character-card:hover .stat-value {
+    color: #ffb347;
+}
+
+/* Dificuldade */
+.difficulty-stars {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.star-empty {
+    color: #666;
+}
+
+.star-filled {
+    color: #ffb347;
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 1024px) {
+    .character-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .protocol-navigation {
+        gap: 0.5rem;
+    }
+
+    .protocol-nav-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .character-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .character-image {
+        height: 200px;
+    }
+
+    .character-name {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .character-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .protocol-navigation {
+        flex-direction: column;
+    }
+
+    .protocol-nav-btn {
+        width: 100%;
+    }
+}

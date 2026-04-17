@@ -16,20 +16,20 @@
  * ============================================================
  */
 
+// Incluir config ANTES de session_start() para aplicar configurações corretas
+require_once(__DIR__ . '/../php/config.php');
+
+// Iniciar sessão com configurações seguras
 session_start();
 
 // Validar autenticação
 if (empty($_SESSION['user'])) {
-    header('Location: /index.html');
+    header('Location: /PI-GaeaProtocol/index.html');
     exit;
 }
 
-// Incluir config
-require_once(__DIR__ . '/../php/config.php');
-require_once(__DIR__ . '/../php/authenticate.php');
-
-$usuario_id = $_SESSION['user']['idUser'];
-$usuario_nome = $_SESSION['user']['userName'];
+$usuario_id = $_SESSION['user']['idUsuario'] ?? $_SESSION['user']['id'];
+$usuario_nome = $_SESSION['user']['nomeUsuario'] ?? $_SESSION['user']['nome'];
 
 ?>
 <!DOCTYPE html>
@@ -39,9 +39,10 @@ $usuario_nome = $_SESSION['user']['userName'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Gaea Protocol</title>
     
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/PI-GaeaProtocol/css/reset.css">
+    <link rel="stylesheet" href="/PI-GaeaProtocol/css/style.css">
+    <link rel="stylesheet" href="/PI-GaeaProtocol/css/dashboard.css">
+    <link rel="stylesheet" href="/PI-GaeaProtocol/css/utilities.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,7 +67,7 @@ $usuario_nome = $_SESSION['user']['userName'];
     <!-- Navigation -->
     <nav>
         <div class="nav-content">
-            <div class="logo-text" onclick="window.location.href='/index.html'">GAEA PROTOCOL</div>
+            <div class="logo-text" onclick="window.location.href='/PI-GaeaProtocol/index.html'">GAEA PROTOCOL</div>
 
             <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
                 <span></span>
@@ -75,9 +76,9 @@ $usuario_nome = $_SESSION['user']['userName'];
             </button>
 
             <ul class="nav-links" id="navLinks">
-                <li><a href="/index.html">Início</a></li>
-                <li><a href="/pages/dashboard.php">Dashboard</a></li>
-                <li><a href="/pages/telaDeInicioJogo.html">Jogar</a></li>
+                <li><a href="/PI-GaeaProtocol/index.html">Início</a></li>
+                <li><a href="/PI-GaeaProtocol/pages/dashboard.php">Dashboard</a></li>
+                <li><a href="/PI-GaeaProtocol/pages/telaDeInicioJogo.html">Jogar</a></li>
             </ul>
 
             <div class="auth-section">
@@ -98,7 +99,7 @@ $usuario_nome = $_SESSION['user']['userName'];
         </div>
 
         <!-- Stats Rápidas -->
-        <div id="stats-cards" class="stats-4-grid" style="margin: 20px 0;">
+        <div id="stats-cards" class="stats-4-grid margin-y-20">
             <div class="loading">Carregando estatísticas...</div>
         </div>
 
@@ -150,18 +151,18 @@ $usuario_nome = $_SESSION['user']['userName'];
     </div>
 
     <!-- Scripts -->
-    <script src="/js/script.js"></script>
-    <script src="/js/dashboard.js"></script>
+    <script src="/PI-GaeaProtocol/js/script.js"></script>
+    <script src="/PI-GaeaProtocol/js/dashboard.js"></script>
 
     <!-- Script de logout -->
     <script>
         function logout() {
-            fetch('/php/User/logout.php', { 
+            fetch('/PI-GaeaProtocol/php/User/logout.php', { 
                 method: 'POST',
                 credentials: 'include'
             })
             .then(() => {
-                window.location.href = '/index.html';
+                window.location.href = '/PI-GaeaProtocol/index.html';
             });
         }
 
