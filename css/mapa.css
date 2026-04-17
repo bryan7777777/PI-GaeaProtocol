@@ -275,13 +275,15 @@ html, body {
 }
 
 #quiz-esquerda{
-  border: solid 5px rgb(0, 255, 170);
-  height: 100%;
+  border: groove 5px rgb(0, 255, 170);
+  height: auto;
   width: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #00802b3d;
+  background: #3d3d3dbb;
+  border-radius: 55px 0 0 55px;
+  padding-left: 30px;
 }
 
 #quiz-esquerda img{
@@ -295,9 +297,11 @@ html, body {
   justify-content: center;
   right: 20px;
   top: 50%;
-  width: 260px;
+  border: groove 5px rgb(0, 255, 170);
+  height: 100%;
+  width: 70%;
   padding: 15px;
-  background: #00802b3d;
+  background: #3d3d3dbb;
   color: rgb(255, 255, 255);
   font-family: Arial;
   gap: 10px;
@@ -310,11 +314,12 @@ html, body {
   justify-content: center;
   height: 100%;
   width: 100%;
-  background: #496e2fce;
+  background: #57be0d89;
   padding: 15px;
   border-radius: 10px;
   margin-bottom: 15px;
   text-align: center;
+  border: #00ff99 groove 4px;
 }
 
 .quiz-img {
@@ -347,12 +352,6 @@ html, body {
 
 .quiz-btn:hover {
   opacity: 0.8;
-}
-
-#quiz-direita{
-  border: solid 5px rgb(0, 255, 170);
-  height: 100%;
-  width: 70%;
 }
 
 .quiz-overlay {

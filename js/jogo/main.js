@@ -3608,6 +3608,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
   .loot     { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
   .loja     { background: #0d8; border: 3px groove rgba(102, 255, 97, 1);}
   .quiz     { background: rgb(255, 138, 210); border: 3px groove rgb(255, 138, 210);}
+  .quiz2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
   .ferreiro { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
   .hospital2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
   .inimigo2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
@@ -3763,7 +3764,8 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
         { tipo: 'inimigo2', peso: 8 },
         { tipo: 'loja', peso: 6 },
         { tipo: 'ferreiro', peso: 7 },
-        { tipo: 'quiz', peso: 18 }
+        { tipo: 'quiz', peso: 16 },
+        { tipo: 'quiz2', peso: 8 }
       ];
 
       // Sorteio ponderado de tipo
@@ -3896,13 +3898,14 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
           el.textContent = {
             boss: iconBoss,
             inimigo: '💀',
+            elite: '☠️',
             loja: '🪙',
             quiz: '📚',
-            elite: '☠️',
+            hospital: '💚',
             ferreiro: '❓',
             hospital2: '❓',
             inimigo2: '❓',
-            hospital: '💚',
+            quiz2: '❓',
           }[nodo.tipo] || '';
 
           el.addEventListener('click', () => clicarNodo(i, j));
@@ -4143,6 +4146,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
           break;
 
         case 'quiz':
+        case 'quiz2':
           mostrarTela(11); // Tela da loja (div4)
           abrirQuiz();
           tipoFase = tipo;
@@ -9900,6 +9904,10 @@ function animateDamage(el, tremida = true) {
 
 // ITENS
 function gerarItens(modoQuiz = false) {
+  let gerador = 3;
+  if (modoQuiz) {
+    gerador = 7;
+  }
   const container = modoQuiz
     ? document.getElementById("quiz-direita")
     : document.getElementById("recompensa");
@@ -9911,7 +9919,7 @@ function gerarItens(modoQuiz = false) {
     return;
   }
 
-  let numItens = hasItem(21) ? 4 : 3;
+  let numItens = hasItem(21) ? gerador+=1 : gerador;
 
   container.innerHTML = "";
   container.style.display = "flex";
