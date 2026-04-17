@@ -1,0 +1,179 @@
+/* ============================================================================
+   GAEA PROTOCOL - ESTILOS DA PÁGINA HISTÓRIA
+   ============================================================================ */
+
+#historia-page,
+.historia-page {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.historia-page h1,
+#historia-page h1 {
+    font-family: "Megrim", cursive;
+    font-size: 2.5rem;
+    color: #ffb347;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(255, 179, 71, 0.2);
+    margin-bottom: 2rem;
+}
+
+.historia-section {
+    background: rgba(30, 43, 34, 0.7);
+    border-left: 4px solid #7a9c6e;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 4px;
+    line-height: 1.8;
+}
+
+.historia-section h2 {
+    font-family: "Megrim", cursive;
+    font-size: 1.8rem;
+    color: #ffb347;
+    margin: 0 0 1rem;
+    letter-spacing: 1px;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(255, 179, 71, 0.2);
+}
+
+.historia-section p {
+    color: #e0e0e0;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.historia-section strong {
+    color: #c8e0b8;
+    font-weight: bold;
+}
+
+/* Timeline visual */
+.historia-timeline {
+    position: relative;
+    padding: 2rem 0;
+    margin: 2rem 0;
+}
+
+.historia-timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #ffb347, #7a9c6e, transparent);
+}
+
+.timeline-item {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(30, 43, 34, 0.6);
+    border-radius: 4px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: calc(50% - 8px);
+    top: 30px;
+    width: 16px;
+    height: 16px;
+    background: #ffb347;
+    border: 3px solid #0d1f18;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.timeline-item.alternate {
+    margin-left:: 50%;
+}
+
+.timeline-date {
+    color: #ffb347;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-title {
+    color: #c8e0b8;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+}
+
+.timeline-description {
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Destacados */
+.highlight-box {
+    background: rgba(255, 179, 71, 0.05);
+    border-left: 4px solid #ffb347;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+}
+
+.highlight-box strong {
+    color: #ffb347;
+}
+
+.quote-large {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #c8e0b8;
+    text-align: center;
+    padding: 2rem;
+    border-top: 2px solid rgba(122, 156, 110, 0.3);
+    border-bottom: 2px solid rgba(122, 156, 110, 0.3);
+    margin: 2rem 0;
+    line-height: 1.8;
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 768px) {
+    .historia-page h1 {
+        font-size: 2rem;
+    }
+
+    .historia-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .historia-timeline::before {
+        left: 0;
+    }
+
+    .timeline-item::before {
+        left: -20px;
+    }
+
+    .historia-section {
+        padding: 1rem;
+    }
+
+    .quote-large {
+        font-size: 1.2rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .historia-page h1 {
+        font-size: 1.5rem;
+    }
+
+    .historia-section h2 {
+        font-size: 1.3rem;
+    }
+
+    .historia-section p {
+        font-size: 0.95rem;
+    }
+}

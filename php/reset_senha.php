@@ -63,15 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $novaHash = password_hash($senha, PASSWORD_BCRYPT, ['cost' => 12]);
 
     $pdo->prepare("
-        UPDATE user 
-        SET senha = ? 
-        WHERE idUser = ?
-    ")->execute([$novaHash, $reset['idUser']]);
+        UPDATE usuarios 
+        SET senhaHash = ? 
+        WHERE idUsuario = ?
+    ")->execute([$novaHash, $reset['idUsuario']]);
 
     // Invalida sessões
     $pdo->prepare("
-        DELETE FROM password_resets WHERE idUser = ?
-    ")->execute([$reset['idUser']]);
+        DELETE FROM password_resets WHERE idUsuario = ?
+    ")->execute([$reset['idUsuario']]);
 
     // Remove token
     $pdo->prepare("

@@ -20,28 +20,14 @@
  * ============================================================
  */
 
+require_once(__DIR__ . '/../config.php');
+
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
 header('Cache-Control: no-cache, no-store, must-revalidate');
 
 session_start();
-
-require_once(__DIR__ . '/../config.php');
-require_once(__DIR__ . '/../authenticate.php');
-
-// ============================================================
-// FUNÇÃO DE RESPOSTA
-// ============================================================
-function responder($status, $dados = [], $httpCode = 200) {
-    http_response_code($httpCode);
-    echo json_encode([
-        'status' => $status,
-        'timestamp' => date('Y-m-d H:i:s'),
-        ...$dados
-    ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-    exit;
-}
 
 // ============================================================
 // VALIDAÇÃO
@@ -57,7 +43,7 @@ if (!$usuario_id || $usuario_id <= 0) {
 }
 
 // Validar autenticação
-if (empty($_SESSION['user']) || $_SESSION['user']['idUser'] != $usuario_id) {
+if (empty($_SESSION['user']) || $_SESSION['user']['idUsuario'] != $usuario_id) {
     responder('erro', ['mensagem' => 'Não autorizado'], 401);
 }
 
@@ -66,26 +52,28 @@ try {
     // 1. PAINEL DO JOGADOR
     // ============================================================
     
-    $stmt = $pdo->prepare('
+    $stmt = $pdo->prepare("
         SELECT 
-            u.userName,
-            u.idUser,
-            COALESCE(us.pontuacao, 0) as pontuacao_total,
-            COALESCE(us.total_partidas, 0) as total_partidas,
-            COALESCE(us.total_vitorias, 0) as total_vitorias,
-            COALESCE(us.total_derrotas, 0) as total_derrotas,
-            COALESCE(us.maior_streak, 0) as maior_streak,
-            COALESCE(us.dinheiro_total_acumulado, 0) as dinheiro_total,
-            COALESCE(us.dinheiro_total_gasto, 0) as dinheiro_gasto,
-            COALESCE(us.lixoTotal, 0) as lixo_reciclado,
-            COALESCE(us.cartas_jogadas_total, 0) as cartas_jogadas,
-            COALESCE(us.conquistasDesbloqueadas, 0) as conquistas_desbloqueadas,
-            IFNULL(us.nivel, 1) as nivel,
-            us.ultimoLogin
-        FROM user u
-        LEFT JOIN userStatus us ON u.idUser = us.idUser
-        WHERE u.idUser = :usuario_id
-    ');
+            u.nomeUsuario,
+            u.idUsuario,
+            COALESCE(u.pontuacaoTotal, 0) as pontuacao_total,
+            COALESCE(COUNT(DISTINCT p.idPartida), 0) as total_partidas,
+            COALESCE(SUM(CASE WHEN p.resultado = 'vitoria' THEN 1 ELSE 0 END), 0) as total_vitorias,
+            COALESCE(SUM(CASE WHEN p.resultado = 'derrota' THEN 1 ELSE 0 END), 0) as total_derrotas,
+            COALESCE(u.maiorStreak, 0) as maior_streak,
+            0 as dinheiro_total,
+            0 as dinheiro_gasto,
+            COALESCE(u.lixoReciclado, 0) as lixo_reciclado,
+            COALESCE(MAX(p.pontuacao), 0) as cartas_jogadas,
+            COUNT(DISTINCT uc.idConquista) as conquistas_desbloqueadas,
+            IFNULL(u.tipoUsuario, 'jogador') as nivel,
+            u.ultimoAcesso
+        FROM usuarios u
+        LEFT JOIN usuario_conquistas uc ON u.idUsuario = uc.idUsuario
+        LEFT JOIN partidas p ON u.idUsuario = p.idUsuario
+        WHERE u.idUsuario = :usuario_id
+        GROUP BY u.idUsuario, u.nomeUsuario, u.pontuacaoTotal, u.maiorStreak, u.lixoReciclado, u.tipoUsuario, u.ultimoAcesso
+    ");
     
     $stmt->execute([':usuario_id' => $usuario_id]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -101,8 +89,8 @@ try {
         : 0;
     
     $painel_jogador = [
-        'nome' => $usuario['userName'],
-        'usuario_id' => $usuario['idUser'],
+        'nome' => $usuario['nomeUsuario'],
+        'usuario_id' => $usuario['idUsuario'],
         'nivel' => intval($usuario['nivel']),
         'pontuacao_total' => intval($usuario['pontuacao_total']),
         'total_partidas' => $total_partidas,
@@ -115,30 +103,29 @@ try {
         'lixo_reciclado' => intval($usuario['lixo_reciclado']),
         'cartas_jogadas' => intval($usuario['cartas_jogadas']),
         'conquistas_desbloqueadas' => intval($usuario['conquistas_desbloqueadas']),
-        'ultimo_login' => $usuario['ultimoLogin']
+        'ultimo_login' => $usuario['ultimoAcesso']
     ];
     
     // ============================================================
     // 2. HISTÓRICO DE PARTIDAS (10 últimas)
     // ============================================================
     
-    $stmt = $pdo->prepare('
+    $stmt = $pdo->prepare("
         SELECT 
             p.idPartida,
             p.resultado,
             p.pontuacao,
-            p.duracao_segundos,
-            p.data_hora,
-            COALESCE(ep.cartas_jogadas, 0) as cartas_jogadas,
-            COALESCE(ep.lixo_reciclado, 0) as lixo_reciclado,
-            COALESCE(ep.dano_total, 0) as dano_total,
-            COALESCE(ep.cura_total, 0) as cura_total
+            p.duracaoSegundos,
+            p.dataPartida as data_hora,
+            0 as cartas_jogadas,
+            p.lixoColetado as lixo_reciclado,
+            0 as dano_total,
+            0 as cura_total
         FROM partidas p
-        LEFT JOIN estatisticas_partida ep ON p.idPartida = ep.idPartida
-        WHERE p.idUser = :usuario_id
-        ORDER BY p.data_hora DESC
+        WHERE p.idUsuario = :usuario_id
+        ORDER BY p.dataPartida DESC
         LIMIT 10
-    ');
+    ");
     
     $stmt->execute([':usuario_id' => $usuario_id]);
     $partidas_brutas = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -168,24 +155,24 @@ try {
     // 3. CONQUISTAS (COM STATUS)
     // ============================================================
     
-    $stmt = $pdo->prepare('
+    $stmt = $pdo->prepare("
         SELECT 
             c.idConquista,
-            c.nome,
-            c.descricao,
-            c.categoria,
-            c.personagem,
+            c.nomeConquista as nome,
+            c.descricaoConquista as descricao,
+            'geral' as categoria,
+            '' as personagem,
             CASE 
-                WHEN cd.idDesbloqueio IS NOT NULL THEN 1 
+                WHEN uc.idConquista IS NOT NULL THEN 1 
                 ELSE 0 
             END as desbloqueada,
-            cd.dataDesbloqueio
+            uc.dataDesbloqueio
         FROM conquistas c
-        LEFT JOIN conquistas_desbloqueadas cd 
-            ON c.idConquista = cd.idConquista 
-            AND cd.idUser = :usuario_id
+        LEFT JOIN usuario_conquistas uc 
+            ON c.idConquista = uc.idConquista 
+            AND uc.idUsuario = :usuario_id
         ORDER BY c.idConquista
-    ');
+    ");
     
     $stmt->execute([':usuario_id' => $usuario_id]);
     $conquistas_brutas = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -195,7 +182,7 @@ try {
     $total_desbloqueadas = 0;
     
     foreach ($conquistas_brutas as $conquista) {
-        $desbloqueada = boolval($conquista['desbloqueada']);
+        $desbloqueada = !is_null($conquista['dataDesbloqueio']);
         if ($desbloqueada) $total_desbloqueadas++;
         $total_conquistas++;
         
@@ -218,20 +205,21 @@ try {
     // 4. RANKING MUNDIAL (TOP 10)
     // ============================================================
     
-    $stmt = $pdo->prepare('
+    $stmt = $pdo->prepare("
         SELECT 
-            u.idUser,
-            u.userName,
-            COALESCE(us.pontuacao, 0) as pontuacao_total,
-            COALESCE(us.total_partidas, 0) as total_partidas,
-            COALESCE(us.total_vitorias, 0) as total_vitorias,
-            IFNULL(us.nivel, 1) as nivel
-        FROM user u
-        LEFT JOIN userStatus us ON u.idUser = us.idUser
-        WHERE u.idUser != :usuario_id
-        ORDER BY COALESCE(us.pontuacao, 0) DESC
+            u.idUsuario,
+            u.nomeUsuario,
+            COALESCE(u.pontuacaoTotal, 0) as pontuacao_total,
+            COALESCE(COUNT(DISTINCT p.idPartida), 0) as total_partidas,
+            COALESCE(SUM(CASE WHEN p.resultado = 'vitoria' THEN 1 ELSE 0 END), 0) as total_vitorias,
+            IFNULL(u.tipoUsuario, 'jogador') as nivel
+        FROM usuarios u
+        LEFT JOIN partidas p ON u.idUsuario = p.idUsuario
+        WHERE u.idUsuario != :usuario_id
+        GROUP BY u.idUsuario, u.nomeUsuario, u.pontuacaoTotal, u.tipoUsuario
+        ORDER BY COALESCE(u.pontuacaoTotal, 0) DESC
         LIMIT 10
-    ');
+    ");
     
     $stmt->execute([':usuario_id' => $usuario_id]);
     $ranking_mundial_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -246,8 +234,8 @@ try {
         
         $ranking_mundial[] = [
             'posicao' => $posicao,
-            'usuario_id' => intval($jogador['idUser']),
-            'nome' => $jogador['userName'],
+            'usuario_id' => intval($jogador['idUsuario']),
+            'nome' => $jogador['nomeUsuario'],
             'pontuacao' => intval($jogador['pontuacao_total']),
             'nivel' => intval($jogador['nivel']),
             'win_rate_percentual' => $win_rate,
@@ -260,16 +248,16 @@ try {
     // 5. RANKING PESSOAL (POSIÇÃO DO USUÁRIO)
     // ============================================================
     
-    $stmt = $pdo->prepare('
+    $stmt = $pdo->prepare("
         SELECT 
             COUNT(*) + 1 as posicao
-        FROM userStatus us
-        WHERE us.pontuacao > (
-            SELECT COALESCE(us2.pontuacao, 0)
-            FROM userStatus us2
-            WHERE us2.idUser = :usuario_id
+        FROM usuarios u
+        WHERE u.pontuacaoTotal > (
+            SELECT COALESCE(u2.pontuacaoTotal, 0)
+            FROM usuarios u2
+            WHERE u2.idUsuario = :usuario_id
         )
-    ');
+    ");
     
     $stmt->execute([':usuario_id' => $usuario_id]);
     $ranking_pessoal = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -301,8 +289,27 @@ try {
     ], 200);
 
 } catch (PDOException $e) {
-    error_log('Erro ao buscar dashboard: ' . $e->getMessage());
-    responder('erro', ['mensagem' => 'Erro ao buscar dados do dashboard'], 500);
+    $msg = 'Erro ao buscar dashboard: ' . $e->getMessage();
+    $code = $e->getCode();
+    error_log($msg);
+    error_log('SQL State: ' . $e->errorInfo[0]);
+    error_log('Error Code: ' . $code);
+    
+    // Se for erro de SQL, retornar com mais detalhes (apenas em desenvolvimento)
+    responder('erro', [
+        'mensagem' => 'Erro ao buscar dados do dashboard',
+        'debug' => [
+            'sqlstate' => $e->errorInfo[0] ?? 'Unknown',
+            'code' => $code,
+            'msg_curta' => substr($e->getMessage(), 0, 100)
+        ]
+    ], 500);
+} catch (Exception $e) {
+    error_log('Erro geral no dashboard: ' . $e->getMessage());
+    responder('erro', [
+        'mensagem' => 'Erro ao buscar dados do dashboard',
+        'tipo' => get_class($e)
+    ], 500);
 }
 
 ?>

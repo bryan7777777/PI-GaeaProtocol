@@ -31,12 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             try {
                 $stmt = $pdo->prepare(
-                    'INSERT INTO user 
-                    (userName, email, senha, dataNascimento, ultimoLogin, diaCriado)
-                    VALUES (?, ?, ?, ?, NOW(), NOW())'
+                    'INSERT INTO usuarios 
+                    (nomeUsuario, email, senhaHash, dataCadastro, ultimoAcesso)
+                    VALUES (?, ?, ?, NOW(), NOW())'
                 );
 
-                $stmt->execute([$nome, $email, $senha_hash, $dataNascimento]);
+                $stmt->execute([$nome, $email, $senha_hash]);
 
                 header('Location: login.php?success=cadastro');
                 exit;
@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Cadastro - Gaea Protocol</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/utilities.css">
     <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="../js/script.js" defer></script>
@@ -78,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
 <nav class="top-nav">
-    <div class="logo" onclick="window.location.href='../../index.html'" style="cursor: pointer;">GAEA PROTOCOL</div>
+    <div class="logo cursor-pointer" onclick="window.location.href='../../index.html'">GAEA PROTOCOL</div>
     <div class="links">
         <a href="../index.html">VOLTAR AO SITE</a>
         <a href="login.php">LOGIN</a>

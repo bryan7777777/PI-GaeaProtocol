@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Avatar - Gaea Protocol</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            background: linear-gradient(135deg, #0a1f15 0%, #051210 100%);
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .header h1 {
+            font-family: 'Megrim', cursive;
+            font-size: 2.5rem;
+            color: #2caf50;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(44, 175, 80, 0.3);
+        }
+        
+        .header p {
+            color: #b0b0b0;
+            font-size: 1rem;
+        }
+        
+        .avatares-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .avatar-card {
+            background: linear-gradient(135deg, rgba(44, 175, 80, 0.1) 0%, rgba(44, 175, 80, 0.05) 100%);
+            border: 2px solid rgba(44, 175, 80, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .avatar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .avatar-card:hover {
+            border-color: #2caf50;
+            box-shadow: 0 0 20px rgba(44, 175, 80, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .avatar-card:hover::before {
+            left: 100%;
+        }
+        
+        .avatar-card.selected {
+            background: linear-gradient(135deg, rgba(44, 175, 80, 0.3) 0%, rgba(44, 175, 80, 0.15) 100%);
+            border-color: #2caf50;
+            box-shadow: 0 0 20px rgba(44, 175, 80, 0.5), inset 0 0 10px rgba(44, 175, 80, 0.2);
+        }
+        
+        .avatar-circle {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .avatar-name {
+            font-weight: bold;
+            color: #2caf50;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .avatar-desc {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+        }
+        
+        .avatar-check {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #2caf50;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .avatar-card.selected .avatar-check {
+            display: flex;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-confirm {
+            background: #2caf50;
+            color: white;
+        }
+        
+        .btn-confirm:hover {
+            background: #25a145;
+            box-shadow: 0 0 15px rgba(44, 175, 80, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .btn-confirm:disabled {
+            background: #6b7280;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        
+        .btn-cancel {
+            background: rgba(107, 114, 128, 0.3);
+            color: #e0e0e0;
+            border: 1px solid rgba(107, 114, 128, 0.5);
+        }
+        
+        .btn-cancel:hover {
+            background: rgba(107, 114, 128, 0.5);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #2caf50;
+        }
+        
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(44, 175, 80, 0.3);
+            border-top-color: #2caf50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .mensagem {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .mensagem.sucesso {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        
+        .mensagem.erro {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Seleção de Avatar</h1>
+            <p>Escolha um avatar que represente seu personagem</p>
+        </div>
+        
+        <div id="mensagem"></div>
+        
+        <div id="loading" class="loading hidden">
+            Carregando avatares...
+        </div>
+        
+        <div id="conteudo">
+            <div class="avatares-grid" id="avatares-grid"></div>
+            
+            <div class="controls">
+                <button class="btn-confirm" id="btn-confirmar" onclick="confirmarAvatar()" disabled>
+                    Confirmar Seleção
+                </button>
+                <button class="btn-cancel" onclick="voltar()">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let avatarSelecionado = null;
+        
+        // Carrega avatares predefinidos ao abrir a página
+        document.addEventListener('DOMContentLoaded', carregarAvatares);
+        
+        async function carregarAvatares() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('conteudo').style.display = 'none';
+            
+            try {
+                const response = await fetch('../php/api/get_predefined_avatars.php');
+                const data = await response.json();
+                
+                if (!data.success) {
+                    mostrarMensagem('Erro ao carregar avatares', 'erro');
+                    return;
+                }
+                
+                renderizarAvatares(data.avatares);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('conteudo').style.display = 'block';
+                
+            } catch (erro) {
+                console.error('Erro:', erro);
+                mostrarMensagem('Erro ao carregar avatares: ' + erro.message, 'erro');
+            }
+        }
+        
+        function renderizarAvatares(avatares) {
+            const grid = document.getElementById('avatares-grid');
+            grid.innerHTML = '';
+            
+            const mapEmoji = {
+                'fa-shield': '🛡️',
+                'fa-wand-magic-sparkles': '✨',
+                'fa-bow': '🏹',
+                'fa-heart': '❤️',
+                'fa-mask': '🎭',
+                'fa-leaf': '🍃',
+                'fa-skull': '💀',
+                'fa-music': '🎵',
+                'fa-fire': '🔥',
+                'fa-compass': '🧭',
+                'fa-wrench': '🔧',
+                'fa-cross': '✝️'
+            };
+            
+            avatares.forEach(avatar => {
+                const card = document.createElement('div');
+                card.className = 'avatar-card';
+                card.onclick = () => selecionarAvatar(avatar.id, card);
+                
+                const emoji = mapEmoji[avatar.icone] || '👤';
+                
+                card.innerHTML = `
+                    <div class="avatar-check">✓</div>
+                    <div class="avatar-circle" style="background:${avatar.cor}20;border-color:${avatar.cor};">
+                        ${emoji}
+                    </div>
+                    <div class="avatar-name">${avatar.nome}</div>
+                    <div class="avatar-desc">${avatar.descricao}</div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        function selecionarAvatar(avatarId, card) {
+            // Remove seleção anterior
+            document.querySelectorAll('.avatar-card').forEach(c => c.classList.remove('selected'));
+            
+            // Marca novo como selecionado
+            card.classList.add('selected');
+            avatarSelecionado = avatarId;
+            
+            // Habilita botão confirmar
+            document.getElementById('btn-confirmar').disabled = false;
+        }
+        
+        async function confirmarAvatar() {
+            if (!avatarSelecionado) {
+                mostrarMensagem('Selecione um avatar primeiro', 'erro');
+                return;
+            }
+            
+            const btn = document.getElementById('btn-confirmar');
+            btn.disabled = true;
+            btn.textContent = 'Salvando...';
+            
+            try {
+                const formData = new FormData();
+                formData.append('predefined_avatar', avatarSelecionado);
+                
+                const response = await fetch('../php/upload_avatar.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    mostrarMensagem('Avatar alterado com sucesso!', 'sucesso');
+                    setTimeout(() => voltar(), 1500);
+                } else {
+                    mostrarMensagem('Erro: ' + (data.error || 'Não foi possível salvar'), 'erro');
+                    btn.disabled = false;
+                    btn.textContent = 'Confirmar Seleção';
+                }
+            } catch (erro) {
+                console.error('Erro:', erro);
+                mostrarMensagem('Erro ao salvar avatar: ' + erro.message, 'erro');
+                btn.disabled = false;
+                btn.textContent = 'Confirmar Seleção';
+            }
+        }
+        
+        function mostrarMensagem(texto, tipo) {
+            const container = document.getElementById('mensagem');
+            container.className = `mensagem ${tipo}`;
+            container.textContent = texto;
+            container.style.display = 'block';
+            
+            if (tipo === 'sucesso') {
+                setTimeout(() => container.style.display = 'none', 3000);
+            }
+        }
+        
+        function voltar() {
+            // Se veio do dashboard, volta para ele
+            if (document.referrer.includes('dashboard')) {
+                window.location.href = document.referrer;
+            } else {
+                // Caso contrário, volta ao site principal
+                window.location.href = '../index.html';
+            }
+        }
+    </script>
+</body>
+</html>

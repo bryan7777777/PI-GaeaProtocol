@@ -1,4 +1,21 @@
 // TUDO o que esta aqui é pq n da para dxar fora da main (mt trampo)
+// FASE 2: SISTEMA DE BUFF STACKING UNIFICADO
+// Regura de Buff:
+// - Dano/Defesa: SOMA todos (atk: [5,3] = +8 total)
+// - Elemento: Acumula em array (fogo: [1,1,1] = 3x multiplicador)
+// - Especial: ÚLTIMO sobrescreve (Carga Divina 2x = última wins)
+// Para implementar no código: ao chamar buff, checar tipo antes de aplicar
+const buffStackingConfig = {
+  SOMA: ["atk", "def", "cura", "amarelo", "azul", "vermelho", "roxa", "verde", "laranja"],
+  ULTIMO: ["actionShift", "nextCardBonus"]
+};
+// FASE 2: SISTEMA DE ESCUDO PERSISTENTE
+// Escudo Comportamento:
+// - Ganhado por carta: playerShield += valor
+// - Persiste entre turnos (não reseta)
+// - Ao inimigo atacar: playerShield = Max(0, playerShield-1)
+// - Escudo >= HP? HP protegido até escudo chegar 0
+// - NUNCA regenera (não volta subir)
 // ALL ADDEVENTLISTENER (CLICLK)
 document.getElementById('lutaUm').addEventListener('click', irParaDiv2);
 document.getElementById('lojaUm').addEventListener('click', irParaDiv2);
@@ -603,6 +620,7 @@ function checkEnemies() {
 
           // Checagem se acabou a batalha
           if (mapaBatalha === 35 && enemies.length === 0 && playerHP > 0) {
+            registrarPartida('Vitória');
             document.getElementById("overlay").style.display = "block";
             document.getElementById("popupFinal").style.display = "flex";
             limiteMao = maoInicio;
@@ -628,7 +646,7 @@ function checkEnemies() {
             ], "./../img/jogo/gaeazinha.jpg");
           } else if (enemies.length === 0 && playerHP > 0) {
             // Registrar vitória
-            registrarPartida('Vitória');
+            // registrarPartida('Vitória');
             const overlay = document.getElementById("overlay");
             overlay.style.display = "block";
             overlay.classList.add("popup-opacity");
@@ -927,7 +945,7 @@ function drawCards() {
         }, 500);
         if (energy < card.cost || playerHP <= 0 || enemies.length === 0) return;
         energy -= card.cost;
-
+        cartasJogadas++;
         // APLICAR ITENS POR TIPO
         switch (tipo) {
           case "cintilante":
@@ -1580,7 +1598,7 @@ function drawCards() {
           if (
             aliado &&
             getCargas("lua") >= 1 &&
-            getCargas("sol") >= 1 
+            getCargas("sol") >= 1
           ) {
             consumirCargas("lua", 1);
             consumirCargas("sol", 1);
@@ -1599,7 +1617,7 @@ function drawCards() {
         //☀️
         else if (card.name === "Respeito Influente" || card.name === "Mandato Divino") {
           if (
-            aliado && 
+            aliado &&
             getCargas("lua") >= card.power
           ) {
             consumirCargas("lua", card.power);
@@ -1644,7 +1662,7 @@ function drawCards() {
         //☀️
         else if (card.name === "Gande Governate") {
           if (
-            cleopatraOP && 
+            cleopatraOP &&
             getCargas("sol") >= 3
           ) {
             consumirCargas("sol", 3);
@@ -1655,7 +1673,7 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "Arsenal Anti Herege") {
-          if (cleopatraOP && getCargas("sol") >= 2 ) {
+          if (cleopatraOP && getCargas("sol") >= 2) {
             consumirCargas("sol", 2);
             causarDano(card.power, "area");
             allBuffs(card.power, "def");
@@ -3525,6 +3543,13 @@ function aliadosBuff(atk = 0, hp = 0, def = 0, defInit = 0) {
 // MAPA
 function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
   const container = document.getElementById(dv);
+
+  // Se o container não existe (ex: estamos no dashboard), retornar
+  if (!container) {
+    console.warn(`[Mapa] Container "${dv}" não encontrado, pulando mapa`);
+    return;
+  }
+
   const shadow = container.attachShadow({ mode: "open" });
 
   // Define CSS isolado
@@ -6568,18 +6593,18 @@ function abrirLoja() {
         }
       }
     }
-  } else if (personagemSelecionado === "cleopatra"){
+  } else if (personagemSelecionado === "cleopatra") {
     opcoes = [];
 
-      while (opcoes.length < 14 && opcoes.length < cardsDesert.length) {
-        const carta = cardsDesert[Math.floor(Math.random() * cardsDesert.length)];
+    while (opcoes.length < 14 && opcoes.length < cardsDesert.length) {
+      const carta = cardsDesert[Math.floor(Math.random() * cardsDesert.length)];
 
-        if (!carta) continue;
+      if (!carta) continue;
 
-        if (!opcoes.some(c => c.name === carta.name)) {
-          opcoes.push(carta);
-        }
+      if (!opcoes.some(c => c.name === carta.name)) {
+        opcoes.push(carta);
       }
+    }
   } else {
     opcoes = gerarPoolRecompensa14();
   }
@@ -10043,7 +10068,14 @@ function addSorte() {
 }
 
 // CALLING FUNCTIONS
-myMusic.play();
+try {
+  myMusic.play().catch(error => {
+    console.warn('[Audio] Autoplay bloqueado pelo navegador:', error.message);
+  });
+} catch (error) {
+  console.warn('[Audio] Erro ao tentar tocar música:', error.message);
+}
+
 configurarSelecaoPersonagem();
 
 if (pagina === "tutorial.html") {

@@ -1,0 +1,283 @@
+:root {
+  --cor-principal: #006f16;
+  --cor-secundaria: #42f566;
+  --fonte-principal: 'Megrim', cursive;
+}
+
+/* =================== BASE =================== */
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: url('./../img/jogo/background/tvTubo2.png') no-repeat center right fixed;
+  background-color: black;
+  color: var(--cor-principal);
+  font-family: var(--fonte-principal);
+  overflow: hidden;
+}
+
+#versao{
+  font-family: 'Press Start 2P', monospace;
+  color: #00c728;
+  font-size: 24px;
+  position: absolute;
+  top: 95%;
+  left: 89%;
+}
+
+/* =================== AVISO FULLSCREEN =================== */
+
+.screen-warning {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #111;
+  color: #fff;
+  z-index: 9999;
+
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Press Start 2P', monospace;
+}
+
+
+.warning-box {
+  max-width: 420px;
+  padding: 30px;
+}
+
+/* =================== DESKTOP =================== */
+
+.desktop-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* =================== CONTAINER PRINCIPAL =================== */
+
+.container {
+  position: absolute;
+  top: 32vh;
+  left: 74vw;
+  transform: rotate(1deg);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  width: 17.5vw;
+  height: 21.5vh;
+  padding-top: 80px;
+  gap: 15px;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 45px;
+  background-image: linear-gradient(to bottom,
+      transparent 50%,
+      rgba(255, 255, 255, 0.1) 50%);
+  background-size: 100% 10px;
+  animation: scanlines 0.1s infinite;
+}
+
+/* =================== TÍTULO =================== */
+
+#title {
+  rotate: 1deg;
+  margin-top: -30px;
+  font-size: 45px;
+  color: var(--cor-secundaria);
+  animation: vibrate 0.15s infinite;
+  background-color: rgba(17, 17, 17, 0.45);
+  border-radius: 20px;
+  box-shadow: rgba(17, 17, 17, 0.45) 0 0 10px 4px;
+}
+
+/* =================== MENU =================== */
+
+.menu {
+  rotate: 1deg;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* =================== BOTÕES =================== */
+
+.glitch-btn {
+  position: relative;
+  width: 15vw;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  background: rgba(0, 0, 0, 0.5);
+  color: #42f566;
+  border: 2px solid #42f566;
+  border-radius: 15px;
+
+  font-family: 'Megrim', cursive;
+}
+
+.glitch-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: #006c16;
+  border-color: #006c16;
+}
+
+.voltar{
+  margin-bottom: 30px;
+  margin-top: -22px;
+}
+
+/* =================== CONQUISTAS =================== */
+
+#conquistas {
+  position: absolute;
+  top: 67.5vh;
+  right: 52vw;
+  transform: rotate(-2deg);
+}
+
+#conquistas button {
+  width: 220px;
+  height: 76px;
+  background-color: black;
+  background-image: linear-gradient(to bottom, transparent 50%, rgba(255, 255, 255, 0.1) 50%);
+  background-size: 100% 10px;
+  background-position: 0 0;
+  animation: scanlines 0.1s infinite;
+}
+
+#conquistas button:hover {
+  background-color: #42f566;
+  color: #002b09;
+}
+
+/* =================== FITA (CRÉDITOS) =================== */
+
+.fita {
+  position: absolute;
+  width: 20%;
+  height: 94vh;
+
+  margin-top: 3vh;
+  margin-left: 1vw;
+
+  background-image: url("./../img/jogo/background/creditos.png");
+  background-size: cover;
+  background-position: center;
+
+  border-radius: 0 70px 0 70px;
+  border: 2px solid chartreuse;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  font-family: 'Press Start 2P', monospace;
+  color: white;
+  font-size: 20px;
+}
+
+.dev {
+  padding: 14px;
+}
+
+.front:hover,
+.back:hover,
+.historia:hover {
+  background: linear-gradient(to bottom, #001f07 0%, #004d12 50%, #006f16 100%);
+  padding: 12px;
+  border-radius: 0 20px 0 20px;
+  border: solid rgb(30, 205, 30) 2px;
+}
+
+.back:hover {
+  background: linear-gradient(to bottom, #1a0303 0%, #4d0a0a 50%, #8f1d1d 100%);
+  border: solid rgb(220, 60, 60) 2px;
+}
+
+.historia:hover {
+  background: linear-gradient(to bottom, #061a2e 0%, #0b3c6d 50%, #0f5fa8 100%);
+  border: solid rgb(80, 180, 255) 2px;
+}
+
+/* =================== CORES =================== */
+
+.gren {
+  color: #00c728;
+}
+
+.red {
+  color: #cc2929;
+}
+
+.blue {
+  color: #147cdd;
+}
+
+/* =================== ANIMAÇÕES =================== */
+
+@keyframes scanlines {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 10px;
+  }
+}
+
+@keyframes vibrate {
+
+  0%,
+  100% {
+    transform: translate(0);
+  }
+
+  25% {
+    transform: translate(1px, -1px);
+  }
+
+  50% {
+    transform: translate(-1px, 1px);
+  }
+
+  75% {
+    transform: translate(1px, 1px);
+  }
+}
+
+/* =================== BLOQUEIO MOBILE =================== */
+
+@media (max-width: 1825px) {
+  .screen-warning {
+    display: flex;
+    /* só aqui */
+  }
+
+  .desktop-content {
+    display: none;
+  }
+}
+
+@media (min-width: 1910px) {
+  .container {
+    top: 35vh;
+    height: 17.2vh;
+  }
+  #conquistas{
+    top: 65.5vh;
+    right: 51.6vw;
+  }
+}

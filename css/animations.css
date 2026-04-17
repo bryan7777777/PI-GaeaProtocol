@@ -1,0 +1,205 @@
+/* ============================================================================
+   GAEA PROTOCOL - ANIMAÇÕES GLOBAIS
+   ============================================================================ */
+
+/* Fade In - Entrada suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide In Left */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide In Right */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Pulse - Pulsação contínua */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Glow - Brilho cresente */
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary);
+    }
+    50% {
+        text-shadow: 0 0 10px var(--color-primary), 0 0 20px var(--color-primary);
+    }
+}
+
+/* Float - Flutuação suave */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Float Image - Flutuação para imagens */
+@keyframes floatImage {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Scale In - Entrada com zoom */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Shimmer - Brilho deslizante */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* Bounce In - Entrada com salto */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Shake - Tremor */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Color Change - Mudança de cor */
+@keyframes colorChange {
+    0%, 100% {
+        color: var(--color-primary);
+    }
+    50% {
+        color: var(--color-accent);
+    }
+}
+
+/* Rotate - Rotação contínua */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Background Shift - Fundo se movendo */
+@keyframes backgroundShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ============================================================================
+   Classes de Animação Reutilizáveis
+   ============================================================================ */
+
+.animate-fadeIn {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.animate-slideIn {
+    animation: slideInLeft 0.6s ease-in-out;
+}
+
+.animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-scaleIn {
+    animation: scaleIn 0.5s ease-out;
+}
+
+.animate-bounceIn {
+    animation: bounceIn 0.8s ease-out;
+}
+
+.animate-shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+.animate-rotate {
+    animation: rotate 2s linear infinite;
+}

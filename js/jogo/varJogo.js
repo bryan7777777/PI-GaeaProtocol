@@ -57,6 +57,13 @@ let criadoraModo=true;
 let deckCria=false;
 let cleopatraOP=false;
 
+// MAPA CONFIGURAÇÃO - Variáveis para mapa do jogo
+let fases = 10; // Número de fases/níveis no mapa
+let caminhos = 3; // Número de caminhos por fase
+let corMapa1 = '#2caf50'; // Cor primária do mapa
+let corMapa2 = '#1b5e20'; // Cor secundária do mapa
+let iconBoss = '../img/jogo/inimigos/iconBoss/'; // Caminho para ícones de boss
+
 // ARRAYS - Arrays e objetos do jogo
 const deck = []; // Deck completo disponível
 let enemies = []; // Inimigos na batalha atual
@@ -110,19 +117,40 @@ const rarityWeights = [ // Pesos para raridade de cartas
 ];
 
 // STATUS - Recursos e estatísticas do jogador
-let lixoReciclado = 0; // Lixo reciclado (pontuação principal)
+// FASE 1: LIXO RECICLADO (♻️) SISTEMA DOCUMENTADO
+let lixoReciclado = 0; // Funciona assim:
+  // - Inicia em 0 por batalha
+  // - Aumenta: Reciclador(+20), Morte inimigo(+5)
+  // - NÃO consumido, apenas consultado
+  // - Máx: 1000 por batalha, reseta entre batalhas
 let dinheiro = 0; // Dinheiro coletado
 let alma1 = 5; // Alma tipo 1 (recurso especial)
 
 // PLAYER - Atributos do jogador
 let playerMaxHP = 100; // Vida máxima do jogador
 let playerHP = 100; // Vida atual do jogador
-let energyMax = 3; // Energia máxima
-let energy = 3; // Energia atual
+let energyMax = 4; // Energia máxima (FASE 1: Aumentado de 3 para 4)
+let energy = 4; // Energia atual (FASE 1: Aumentado de 3 para 4)
 let playerShieldInit = 0; // Escudo inicial
 let playerShield = playerShieldInit; // Escudo atual
 let personagemSelecionado = null; // Personagem selecionado
 let playerDeck = []; // Deck atual do jogador
+// FASE 1: ENERGIA CUSTOMIZADA POR PILOTO - Varia conforme personagem
+const energyByPilot = {
+  "João": 3, "Magnolia": 4, "Wallace": 4, "Elize": 4,
+  "Bruno": 3, "Felipe": 3, "Celso": 4, "Maria": 4,
+  "Clarice": 3, "Reinor": 4, "Fergus": 4, "Mercuri": 5,
+  "Gabriel": 4, "Cleber": 4, "Malaquias": 6, "Renata": 4,
+  "Marcos": 4, "Cleide": 4, "Magna": 4, "Lucius": 4,
+  "Lilia": 2, "Glacia": 3, "Olaf": 4, "Olga": 3,
+  "A Esquecida": 3, "Tomoeh": 4, "Magnus Ferrus": 4, "Vinicius": 5
+};
+function aplicarEnergiaPiloto() {
+  if (!personagemSelecionado) return;
+  const novaEnergia = energyByPilot[personagemSelecionado] || 4;
+  energyMax = novaEnergia;
+  energy = novaEnergia;
+}
 // Buffs em itens aumentam mão inicial
 let maoInicio = 5; // Mão inicial
 // Buffs em cartas aumentam limite de mão

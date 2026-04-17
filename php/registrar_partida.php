@@ -1,196 +1,156 @@
 <?php
 /**
  * API para Registrar Partidas
- * Endpoint POST que registra uma nova partida no banco
- * 
- * Uso:
- * POST /php/registrar_partida.php
- * Content-Type: application/json
- * 
- * Body:
- * {
- *   "resultado": "Vitória|Derrota",
- *   "lixoColetado": 150,
- *   "wavesCompletadas": 10,
- *   "tempoJogo": 1800,
- *   "protocoloUsado": "Gleba",
- *   "dificuldade": "Normal"
- * }
+ *
+ * CORRIGIDO: header JSON sempre no topo, erros PHP suprimidos,
+ *            cartas_jogadas lido e salvo, validação server-side de vitória,
+ *            ob_start() para capturar output acidental.
  */
 
-require_once 'config.php';
-start_secure_session();
+// CORRIGIDO: Captura qualquer output acidental (espaços, warnings, etc)
+ob_start();
 
+// CORRIGIDO: Content-Type JSON antes de qualquer output
 header('Content-Type: application/json');
+// CORRIGIDO: Erros PHP não vazam HTML para o JS
+ini_set('display_errors', 0);
+error_reporting(0);
 
-// Verifica autenticação
-if (empty($_SESSION['user'])) {
-    http_response_code(401);
-    echo json_encode(['error' => 'Não autenticado']);
-    exit;
-}
 
-// Verifica se é POST
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['error' => 'Método não permitido']);
-    exit;
-}
-
-// Recebe dados JSON
-$data = json_decode(file_get_contents('php://input'), true);
-
-if (!$data) {
-    http_response_code(400);
-    echo json_encode(['error' => 'JSON inválido']);
-    exit;
-}
-
-// Extrai dados
-$userId = $_SESSION['user']['id'];
-$resultado = strtolower(trim($data['resultado'] ?? ''));
-$lixoColetado = intval($data['lixoColetado'] ?? 0);
-$dinheiroColetado = intval($data['dinheiroColetado'] ?? 0);
-$wavesCompletadas = intval($data['wavesCompletadas'] ?? 0);
-$tempoJogo = intval($data['tempoJogo'] ?? 0);
-$protocoloUsado = trim($data['protocoloUsado'] ?? 'Desconhecido');
-$dificuldade = trim($data['dificuldade'] ?? 'Normal');
-
-// Validações
-if (!in_array($resultado, ['vitória', 'derrota'])) {
-    http_response_code(400);
-    echo json_encode(['error' => 'Resultado deve ser "Vitória" ou "Derrota"']);
-    exit;
-}
-
-if ($lixoColetado < 0 || $wavesCompletadas < 0 || $tempoJogo < 0) {
-    http_response_code(400);
-    echo json_encode(['error' => 'Valores numéricos não podem ser negativos']);
-    exit;
-}
-
-// Capitaliza resultado para padronização
-$resultado = ucfirst($resultado);
-
+require_once __DIR__ . '/email_service.php';
 try {
-    // Inicia transação
-    $pdo->beginTransaction();
-    
+    require_once 'config.php';
+    start_secure_session();
+
+    // Verifica autenticação
+    if (empty($_SESSION['user'])) {
+        ob_end_clean();
+        http_response_code(401);
+        echo json_encode(['success' => false, 'error' => 'Não autenticado']);
+        exit;
+    }
+
+    // Verifica método
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        ob_end_clean();
+        http_response_code(405);
+        echo json_encode(['success' => false, 'error' => 'Método não permitido']);
+        exit;
+    }
+
+    // Recebe e decodifica JSON
+    $rawInput = file_get_contents('php://input');
+    $data = json_decode($rawInput, true);
+
+    if (!$data) {
+        ob_end_clean();
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'JSON inválido']);
+        exit;
+    }
+
+    // Extrai dados da requisição
+    $userId          = $_SESSION['user']['id'];
+    $resultado       = strtolower(trim($data['resultado'] ?? ''));
+    $lixoColetado    = max(0, intval($data['lixoColetado']    ?? 0));
+    $wavesCompletadas= max(0, intval($data['wavesCompletadas'] ?? 0));
+    $tempoJogo       = max(0, intval($data['tempoJogo']        ?? 0));
+    $protocoloUsado  = trim($data['protocoloUsado'] ?? 'Desconhecido');
+    $dificuldade     = trim($data['dificuldade']    ?? 'Normal');
+    $faseAtual       = max(0, intval($data['fase_atual']       ?? 0));
+    $pontuacao       = max(0, intval($data['pontuacao']        ?? 0));
+
+    // CORRIGIDO: cartas_jogadas lido do payload e sanitizado
+    $cartasJogadas   = max(0, intval($data['cartas_jogadas']   ?? 0));
+
+    // Validação de resultado
+    if (!in_array($resultado, ['vitória', 'derrota', 'vitoria'])) {
+        ob_end_clean();
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'Resultado inválido']);
+        exit;
+    }
+
+    // CORRIGIDO: Normaliza para banco com tudo minúsculo (vitoria/derrota)
+    $resultadoDb = (strpos($resultado, 'vit') !== false) ? 'vitoria' : 'derrota';
+
+    // CORRIGIDO: Validação server-side — vitória só aceita se fase_atual >= total de fases (35)
+    $totalFases = 35;
+    if ($resultadoDb === 'vitoria' && $faseAtual < $totalFases) {
+        // Registra como derrota se as fases não foram completadas
+        error_log("[Partida] Vitória rejeitada: fase_atual={$faseAtual} < {$totalFases}");
+        $resultadoDb = 'derrota';
+    }
+
     // Insere partida
+    $pdo->beginTransaction();
+
     $stmt = $pdo->prepare("
-        INSERT INTO partidas 
-        (idUser, dataPartida, resultado, lixoColetado, dinheiroColetado, wavesCompletadas, tempoJogo, protocoloUsado, dificuldade)
-        VALUES (?, NOW(), ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO partidas
+            (idUsuario, resultado, pontuacao, lixoColetado, wavesCompletadas, duracaoSegundos, dificuldade)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     ");
-    
     $stmt->execute([
         $userId,
-        $resultado,
+        $resultadoDb,
+        $pontuacao,
         $lixoColetado,
-        $dinheiroColetado,
         $wavesCompletadas,
         $tempoJogo,
-        $protocoloUsado,
         $dificuldade
     ]);
-    
+
     $idPartida = $pdo->lastInsertId();
-    
-    // Atualiza userStatus
-    $stmt = $pdo->prepare("
-        SELECT idUserStatus FROM userStatus WHERE idUser = ?
+
+    // CORRIGIDO: Tenta inserir cartas_jogadas na tabela de estatísticas (se existir)
+    try {
+        $stmtStats = $pdo->prepare("
+            INSERT INTO estatisticas_partida
+                (idPartida, cartas_jogadas, lixo_reciclado, rodadas_sobrevividas)
+            VALUES (?, ?, ?, ?)
+        ");
+        $stmtStats->execute([
+            $idPartida,
+            $cartasJogadas,
+            $lixoColetado,
+            $wavesCompletadas
+        ]);
+    } catch (Exception $eStats) {
+        // Tabela de estatísticas pode não existir — não bloqueia o registro principal
+        error_log('[Partida] Aviso: estatisticas_partida não pôde ser inserida: ' . $eStats->getMessage());
+    }
+
+    // Atualiza totais do usuário
+    $vitoria = ($resultadoDb === 'vitoria') ? 1 : 0;
+    $stmtUser = $pdo->prepare("
+        UPDATE usuarios SET
+            totalPartidas  = totalPartidas  + 1,
+            totalVitorias  = totalVitorias  + ?,
+            pontuacaoTotal = pontuacaoTotal + ?,
+            lixoReciclado  = lixoReciclado  + ?,
+            ultimoAcesso   = NOW()
+        WHERE idUsuario = ?
     ");
-    $stmt->execute([$userId]);
-    $status = $stmt->fetch();
-    
-    if ($status) {
-        // Usuário já tem status - atualizar
-        $stmt = $pdo->prepare("
-            UPDATE userStatus SET
-                ultimoLoginJogo = NOW(),
-                lixoTotal = lixoTotal + ?,
-                lixoUnic = CASE WHEN ? > 0 THEN lixoUnic + 1 ELSE lixoUnic END,
-                qtdWin = CASE WHEN ? = 'Vitória' THEN qtdWin + 1 ELSE qtdWin END,
-                qtdJogo = qtdJogo + 1,
-                pontuacao = lixoTotal + ? + (CASE WHEN ? = 'Vitória' THEN qtdWin + 1 ELSE qtdWin END) * 100
-            WHERE idUser = ?
-        ");
-        $stmt->execute([
-            $lixoColetado,
-            $lixoColetado,
-            $resultado,
-            $lixoColetado,
-            $resultado,
-            $userId
-        ]);
-    } else {
-        // Criar novo status
-        $vitarias = ($resultado === 'Vitória') ? 1 : 0;
-        $pontuacao = $lixoColetado + ($vitarias * 100);
-        $stmt = $pdo->prepare("
-            INSERT INTO userStatus 
-            (idUser, ultimoLoginJogo, lixoTotal, lixoUnic, qtdWin, qtdJogo, pontuacao)
-            VALUES (?, NOW(), ?, 1, ?, 1, ?)
-        ");
-        $stmt->execute([
-            $userId,
-            $lixoColetado,
-            $vitarias,
-            $pontuacao
-        ]);
-    }
-    
-    // Commit transação
+    $stmtUser->execute([$vitoria, $pontuacao, $lixoColetado, $userId]);
+
     $pdo->commit();
-    
-    // ===== ENVIAR NOTIFICAÇÃO POR EMAIL =====
-    // Busca dados do usuário para enviar notificação
-    $stmt = $pdo->prepare("SELECT nome, email FROM user WHERE idUser = ?");
-    $stmt->execute([$userId]);
-    $userData = $stmt->fetch();
-    
-    if ($userData && !empty($userData['email'])) {
-        $partidaData = [
-            'lixoColetado' => $lixoColetado,
-            'wavesCompletadas' => $wavesCompletadas,
-            'tempoJogo' => $tempoJogo,
-            'dificuldade' => $dificuldade,
-            'protocoloUsado' => $protocoloUsado
-        ];
-        
-        // Enviar notificação apropriada
-        if ($resultado === 'Vitória') {
-            send_victory_notification($userData['email'], $userData['nome'], $partidaData);
-        } else {
-            send_defeat_notification($userData['email'], $userData['nome'], $partidaData);
-        }
-    }
-    // ===== FIM DE NOTIFICAÇÃO =====
-    
-    // Resposta de sucesso
-    http_response_code(201);
+
+    ob_end_clean();
     echo json_encode([
-        'success' => true,
-        'message' => 'Partida registrada com sucesso',
-        'idPartida' => $idPartida,
-        'data' => [
-            'resultado' => $resultado,
-            'lixoColetado' => $lixoColetado,
-            'wavesCompletadas' => $wavesCompletadas,
-            'tempoJogo' => $tempoJogo,
-            'protocoloUsado' => $protocoloUsado,
-            'dificuldade' => $dificuldade
-        ]
+        'success'   => true,
+        'idPartida' => intval($idPartida),
+        'resultado' => $resultadoDb,
+        'cartas_jogadas' => $cartasJogadas
     ]);
-    
-} catch (PDOException $e) {
-    // Rollback em caso de erro
-    if ($pdo->inTransaction()) {
+
+} catch (Exception $e) {
+    ob_end_clean();
+    if (isset($pdo) && $pdo->inTransaction()) {
         $pdo->rollBack();
     }
-    
-    error_log('Erro ao registrar partida: ' . $e->getMessage());
+    error_log('[Partida] Erro: ' . $e->getMessage());
+    // CORRIGIDO: Retorna JSON mesmo em caso de exceção
     http_response_code(500);
-    echo json_encode(['error' => 'Erro ao registrar partida']);
-    exit;
+    echo json_encode(['success' => false, 'erro' => $e->getMessage()]);
 }
+exit;

@@ -23,6 +23,6 @@ if (!$userId) {
 }
 
 // Redirecionar para o novo dashboard
-header('Location: ../../pages/dashboard.php');
+header('Location: /PI-GaeaProtocol/pages/dashboard.php');
 exit;
 ?>

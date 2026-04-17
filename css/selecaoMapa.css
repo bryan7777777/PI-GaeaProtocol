@@ -119,7 +119,7 @@
 
 .classePersonagem {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 12px;
@@ -137,7 +137,7 @@
 }
 
 .personagens img {
-  width: 135px;
+  width: 95px;
   height: auto;
   display: block;
   border-radius: 0 30% 0 30%;
@@ -146,6 +146,10 @@
   background-color: black;
   cursor: pointer;
   transition: 0.5s;
+}
+
+.criadores .personagens img, .conselho .personagens img {
+  width: 144px;
 }
 
 /* ===============================

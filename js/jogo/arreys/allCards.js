@@ -46,11 +46,11 @@ const allCards = [
   },
   {
     name: "Royal Flush",
-    cost: 7,
+    cost: 4,
     basePower: 10,
     rarity: "cintilante",
     img: "../img/jogo/cards/cintilante/joker.png",
-    desc: "Seta sua energia para 7, descarta sua mão inteira e compra 10 cartas aleatórias.",
+    desc: "FASE 1 FIX: Custo reduzido de 7 para 4 (menos arriscado). Descartar mão, comprar 8 aleatórias.",
     type: "cintilante"
   },
   {
@@ -305,7 +305,9 @@ const allCards = [
     basePower: 5,
     rarity: "agua",
     img: "../img/jogo/cards/agua/baleia.jpg",
-    desc: "Cause 5 de dano, sempre que usada aumenta o dano em 1 permanentemente até o final do jogo (max.75)",
+    desc: "Cause 5 de dano. FASE 1 FIX: Máximo 5 usos por batalha (+1 dano permanente por uso = +5 total).",
+    maxUsesPerBattle: 5,
+    usesThisBattle: 0,
     type: "agua"
   },
   {
@@ -341,7 +343,8 @@ const allCards = [
     basePower: 6,
     rarity: "agua",
     img: "../img/jogo/cards/agua/golf.jpg",
-    desc: "Cause dano igual a 12% de todo o lixo reciclado ♻️, se tiver 3 ou menos cartas na mão 23%, se eu for a unica carta na mão o dano é 45%",
+    desc: "FASE 1 FIX: Cause dano = 12% lixo (18% se mao<=3, máximo 25%).",
+    maxDamagePercent: 25,
     type: "agua"
   },
   {
@@ -490,6 +493,42 @@ const allCards = [
     type: "frost"
   },
   {
+    name: "Prisão de Gelo",
+    cost: 2,
+    basePower: 8,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/prisao.png",
+    desc: "FASE 1: Marca com ❄️. Se marcado, inimigo não ataca próximo turno (sinergia Gelo).",
+    type: "frost"
+  },
+  {
+    name: "Avalancha Congelante",
+    cost: 3,
+    basePower: 15,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/avalancha.png",
+    desc: "FASE 1: Cause 15 dano + 1 por inimigo com ❄️ (X2 se 2+ congelados).",
+    type: "frost"
+  },
+  {
+    name: "Escudo de Gelo Permanente",
+    cost: 2,
+    basePower: 5,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/escudoGelo.png",
+    desc: "FASE 1: Ganhe 5 escudo × cartas FROST na mão. Escudo não diminui em turno.",
+    type: "frost"
+  },
+  {
+    name: "Ressurreição Congelada",
+    cost: 3,
+    basePower: 0,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/ressurreicao.png",
+    desc: "FASE 1: Se vida <= 20% max, cure 20 e marca todos inimigos ❄️.",
+    type: "frost"
+  },
+  {
     name: "Baralho Glacial",
     cost: 1,
     basePower: 1,
@@ -514,6 +553,42 @@ const allCards = [
     rarity: "frost",
     img: "../img/jogo/cards/frost/marcoEstrategico.jpg",
     desc: "Cause dano igual 5% de todo o dinheiro 🪙 (arredonda para baixo), aumenta o dano em x1 para cada carta de FROST na mão",
+    type: "frost"
+  },
+  {
+    name: "Chama Crescente",
+    cost: 1,
+    basePower: 8,
+    rarity: "fire",
+    img: "../img/jogo/cards/fire/chamaCrescente.png",
+    desc: "FASE 2: SINERGIA FOGO - Cause 5 dano × (número inimigos 🔥). Coletora elemento.",
+    type: "fire"
+  },
+  {
+    name: "Tremor da Terra",
+    cost: 2,
+    basePower: 15,
+    rarity: "terra",
+    img: "../img/jogo/cards/terra/tremor.png",
+    desc: "FASE 2: SINERGIA TERRA - Cause 15 dano + 5 por inimigo ⛰️. Coletora elemento.",
+    type: "terra"
+  },
+  {
+    name: "Ondufluxo Aquático",
+    cost: 1,
+    basePower: 10,
+    rarity: "agua",
+    img: "../img/jogo/cards/agua/ondufluxo.png",
+    desc: "FASE 2: SINERGIA ÁGUA - Cause 2 dano × (inimigos 💧). Compre 1 se 2+ marcados.",
+    type: "agua"
+  },
+  {
+    name: "Prisma de Gelo Total",
+    cost: 2,
+    basePower: 12,
+    rarity: "frost",
+    img: "../img/jogo/cards/frost/prisma.png",
+    desc: "FASE 2: SINERGIA GELO - Ganhe 2 escudo × (inimigos ❄️). Marca todos se 2+ já marcados.",
     type: "frost"
   },
   // ⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️
