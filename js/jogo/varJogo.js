@@ -56,6 +56,9 @@ let flagItem40=true; // Flag para item 40
 let criadoraModo=true;
 let deckCria=false;
 let cleopatraOP=false;
+let anubis=true;
+let ra=true;
+let sekhmet=true;
 
 // MAPA CONFIGURAÇÃO - Variáveis para mapa do jogo
 let fases = 10; // Número de fases/níveis no mapa

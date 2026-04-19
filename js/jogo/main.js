@@ -660,6 +660,9 @@ function checkEnemies() {
             }
 
             matarAliado();
+            anubis = true;
+            ra = true;
+            sekhmet = true;
             trocarFramePlayer(personagemSelecionado, true);
 
             if (tipoFase == "elite" || tipoFase == "boss" || tipoFase == "inimigo2") {
@@ -1513,56 +1516,107 @@ function drawCards() {
         }
         //  ☀️☀️☀️☀️☀️ DESERT ☀️☀️☀️☀️☀️
         else if (card.name === "Proteção De Anubis") {
-          if (!cleopatraOP) {
+          if (!cleopatraOP && anubis) {
             allDebuff(card.power, "sofrerDano");
             animarLiliaTransformacao();
             invocarAliado({
               id: 1,
-              hp: 5,
+              hp: 55,
               dano: 6,
               shield: 5,
               shieldInit: 5,
               img: "../img/jogo/player/animado/cleopatra/aliado/anubis1.png"
             });
+            anubis = false;
           }
         }
         //☀️
         else if (card.name === "Proteção De Sekhmet") {
-          if (!cleopatraOP) {
+          if (!cleopatraOP && sekhmet) {
             allDebuff(card.power, "sofrerDano");
             animarLiliaTransformacao();
             invocarAliado({
               id: 2,
-              hp: 5,
-              dano: 12,
+              hp: 25,
+              dano: 20,
               shield: 0,
               shieldInit: 0,
               img: "../img/jogo/player/animado/cleopatra/aliado/sekhmet1.png"
             });
           }
+          sekhmet = false;
         }
         //☀️
         else if (card.name === "Proteção De Rá") {
-          if (!cleopatraOP) {
+          if (!cleopatraOP && ra) {
             allDebuff(card.power, "sofrerDano");
             animarLiliaTransformacao();
             invocarAliado({
               id: 3,
-              hp: 25,
-              dano: 6,
+              hp: 60,
+              dano: 8,
               shield: 0,
               shieldInit: 0,
               img: "../img/jogo/player/animado/cleopatra/aliado/ra1.png"
             });
           }
-
+          ra = false;
         }
         //☀️
         else if (card.name === "Furia Dos Deuses") {
           //atk,hp,def,init
-          if (aliado.id === 1) {
-            aplicarBuffsPower(2, 999, "lua");
+          if (aliado.id === 1 && getCargas("lua") >= 2) {
+            consumirCargas("lua", 2);
             aliadosBuff(card.power, card.power + 5, card.power + 5, 0);
+          }
+        }
+        //☀️
+        else if (card.name === "Amor de Isis") {
+          if (
+            aliado &&
+            getCargas("lua") >= card.power &&
+            getCargas("sol") >= card.power
+          ) {
+            consumirCargas("lua", card.power);
+            consumirCargas("sol", card.power);
+            aliadosBuff(0, playerHP, 0, 0);
+          }
+        }
+        //☀️
+        else if (card.name === "Beleza Do Deserto") {
+          if (aliado) {
+            let sol = getCargas("sol");
+            let lua = getCargas("lua");
+
+            consumirCargas("sol", sol);
+            consumirCargas("lua", lua);
+
+            aliadosBuff(0, sol * 10, lua * 10, 0);
+          }
+        }
+        //☀️
+        else if (card.name === "Conselho de Hathor") {
+          if (aliado === 2 && getCargas("lua") >= 1 && getCargas("sol") >= 1) {
+            consumirCargas("sol", 1);
+            consumirCargas("lua", 1);
+            aliadosBuff(card.power, card.power, card.power, card.power);
+          }
+        }
+        //☀️
+        else if (card.name === "Construtora Da Guerra") {
+          if (aliado && getCargas("lua") >= card.power && getCargas("sol") >= card.power) {
+            consumirCargas("sol", card.power);
+            consumirCargas("lua", card.power);
+            causarDano(aliado.dano * 2, "area");
+          }
+        }
+        //☀️
+        else if (card.name === "Era") {
+          if (aliado && getCargas("lua") >= card.power && getCargas("sol") >= card.power) {
+            consumirCargas("sol", card.power);
+            consumirCargas("lua", card.power);
+            causarDano(aliado.dano * 10, "area");
+            matarAliado();
           }
         }
         //☀️
@@ -1577,8 +1631,8 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "\"Eu Protejerei Você\"") {
-          if (aliado.id === 1) {
-            aplicarBuffsPower(2, 999, "lua");
+          if (aliado.id === 1 && getCargas("lua") >= 2) {
+            consumirCargas("lua", 2);
             aliadosBuff(0, 0, card.power, 0);
           }
         }
@@ -1588,29 +1642,40 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "O Sol Sempre Hergue-se" || card.name === "Em Nome De Rá") {
-          if (aliado.id === 3) {
+          if (aliado.id === 3 && getCargas("sol") >= card.power) {
+            consumirCargas("sol", card.power);
             allBuffs(card.power, "energia");
-            aplicarBuffsPower(card.power, 999, "sol");
+          }
+        }
+        //☀️
+        else if (card.name === "Deus Do Sol") {
+          let sol = getCargas("sol");
+          if (aliado.id === 3 && sol > 0) {
+            consumirCargas("sol", sol);
+            causarDano((aliado.hp * 0.1) * sol, "unico");
+          }
+        }
+        //☀️
+        else if (card.name === "Ira De Rá") {
+          if (aliado.id === 3 && getCargas("sol") >= card.power) {
+            consumirCargas("sol", card.power);
+            causarDano(aliado.hp * 0.5, "unico");
           }
         }
         //☀️
         else if (card.name === "Justiça De Meet") {
-          if (
-            aliado &&
-            getCargas("lua") >= 1 &&
-            getCargas("sol") >= 1
-          ) {
-            consumirCargas("lua", 1);
-            consumirCargas("sol", 1);
+          if (aliado) {
+            causarDano(card.power*(getCargas("sol") + getCargas("lua")), "area");
             matarAliado();
-            causarDano(card.power, "area");
+            consumirCargas("lua", getCargas("lua"));
+            consumirCargas("sol", getCargas("sol"));
           }
         }
         //☀️
         else if (card.name === "Descanço") {
           if (aliado) {
-            aplicarBuffsPower(1, 999, "lua");
-            aplicarBuffsPower(1, 999, "sol");
+            aplicarBuffsPower(5, 999, "lua");
+            aplicarBuffsPower(5, 999, "sol");
             matarAliado();
           }
         }
@@ -1635,21 +1700,29 @@ function drawCards() {
           }
         }
         //☀️
-        else if (card.name === "Arma Divina") {
-          if (
-            cleopatraOP &&
-            getCargas("sol") >= 1
-          ) {
-            consumirCargas("sol", 1)
-            causarDano(card.power, "unico");
-          }
-        }
-        //☀️
         else if (card.name === "Penitencia Do Sol") {
           if (aliado) {
             aplicarBuffsPower(card.power, 999, "sol");
             causarDano(aliado.dano, "area");
           }
+        }
+        //☀️
+        else if (card.name === "Arma Divina") {
+          valor=card.power;
+          if (cleopatraOP) {
+            valor=card.power*2;
+          }
+          aplicarBuffsPower(2, 999, "sol");
+          causarDano(valor, "unico");
+        }
+        //☀️
+        else if (card.name === "Proteção Divina") {
+          valor=card.power;
+          if (cleopatraOP) {
+            valor=card.power*2;
+          }
+          aplicarBuffsPower(2, 999, "lua");
+          allBuffs(valor, "def");
         }
         //☀️
         else if (card.name === "Ascenção") {
@@ -1661,11 +1734,9 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "Gande Governate") {
-          if (
-            cleopatraOP &&
-            getCargas("sol") >= 3
-          ) {
-            consumirCargas("sol", 3);
+          if (cleopatraOP) {
+            aplicarBuffsPower(1, 999, "sol");
+            aplicarBuffsPower(1, 999, "lua");
             causarDano(card.power, "area");
             allBuffs(card.power, "def", true);
             allBuffs(card.power, "cura", true);
@@ -1673,10 +1744,22 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "Arsenal Anti Herege") {
-          if (cleopatraOP && getCargas("sol") >= 2) {
-            consumirCargas("sol", 2);
-            causarDano(card.power, "area");
+          valor=card.power;
+          if (cleopatraOP) {
+            valor=card.power*2;
+          }
+          causarDano(valor, "area");
+          allBuffs(valor, "def");
+        }
+        //☀️
+        else if (card.name === "Ira De Cleopatra") {
+          if (cleopatraOP) {
+            aplicarBuffsPower(2, 999, "sol");
+            aplicarBuffsPower(2, 999, "lua");
+            causarDano(card.power * (getCargas("lua") + getCargas("sol")), "area");
             allBuffs(card.power, "def");
+            consumirCargas("lua", getCargas("lua"));
+            consumirCargas("sol", getCargas("sol"));
           }
         }
         //☀️
@@ -1684,6 +1767,25 @@ function drawCards() {
           if (cleopatraOP) {
             aplicarBuffsPower(card.power, 999, "lua");
             aplicarBuffsPower(card.power, 999, "sol");
+          }
+        }
+        //☀️
+        else if (card.name === "Os Portões Se Abrem") {
+          if (aliado) {
+            // sacrifica aliado
+            matarAliado();
+
+            let sol = getCargas("sol");
+            let lua = getCargas("lua");
+
+            let totalCargas = sol + lua;
+
+            // consome tudo
+            consumirCargas("sol", sol);
+            consumirCargas("lua", lua);
+
+            // dano absurdo em área
+            causarDano(card.power * totalCargas, "area");
           }
         }
         //  🎨🎨🎨🎨🎨 CRIA 🎨🎨🎨🎨🎨
@@ -3318,28 +3420,28 @@ function criarBuffVisual(tipo, buff) {
   // posição fixa no topo central
   if (personagemSelecionado === "criadora") {
     bar.style.position = "fixed";
-  bar.style.top = "62.5%";
-  bar.style.left = "28%";
-  bar.style.transform = "translateX(-50%)";
-  bar.style.display = "flex";
-  bar.style.gap = "8px";
-  bar.style.zIndex = "0";
-  } else if (personagemSelecionado === "cleopatra"){
+    bar.style.top = "62.5%";
+    bar.style.left = "28%";
+    bar.style.transform = "translateX(-50%)";
+    bar.style.display = "flex";
+    bar.style.gap = "8px";
+    bar.style.zIndex = "0";
+  } else if (personagemSelecionado === "cleopatra") {
     bar.style.position = "fixed";
-  bar.style.top = "62.5%";
-  bar.style.left = "34%";
-  bar.style.transform = "translateX(-50%)";
-  bar.style.display = "flex";
-  bar.style.gap = "8px";
-  bar.style.zIndex = "0";
+    bar.style.top = "62.5%";
+    bar.style.left = "34%";
+    bar.style.transform = "translateX(-50%)";
+    bar.style.display = "flex";
+    bar.style.gap = "8px";
+    bar.style.zIndex = "0";
   } else {
     bar.style.position = "fixed";
-  bar.style.top = "10%";
-  bar.style.left = "50%";
-  bar.style.transform = "translateX(-50%)";
-  bar.style.display = "flex";
-  bar.style.gap = "8px";
-  bar.style.zIndex = "0";
+    bar.style.top = "10%";
+    bar.style.left = "50%";
+    bar.style.transform = "translateX(-50%)";
+    bar.style.display = "flex";
+    bar.style.gap = "8px";
+    bar.style.zIndex = "0";
   }
 
 
@@ -3838,7 +3940,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
           // Primeira fase: início fixo no centro
           else if (i === 0) {
-            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
+            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'quiz' : 'invalido';
           }
           // Última fase: boss fixo no centro
           else if (i === numFases - 1) {
@@ -7182,6 +7284,8 @@ function aumentaVida() {
 };
 function abrirQuiz() {
   const quizContainer = document.getElementById("quiz-direita");
+  quizContainer.style.display = "flex";
+  quizContainer.style.flexDirection = "column";
 
   function embaralhar(array) {
     return array.sort(() => Math.random() - 0.5);
@@ -7256,8 +7360,8 @@ Regras do desafio:
   }
 
   function acertou() {
-  gerarItens(true);
-}
+    gerarItens(true);
+  }
 
   function recusarQuiz() {
     quizContainer.innerHTML = `<p>Quiz cancelado</p>`;
@@ -7266,7 +7370,7 @@ Regras do desafio:
 
   mostrarInicio();
 }
-function mostrarPopupErro(pergunta, respostaCorreta, penalidade = "-10 HP") {
+function mostrarPopupErro(pergunta, respostaCorreta, penalidade = "-30 HP") {
   const overlay = document.createElement("div");
   overlay.classList.add("quiz-overlay");
 
@@ -8072,12 +8176,18 @@ const characterDecks = {
     cardsCria.find(c => c.name === "O Céu... Curva-se"),
   ],
   cleopatra: [
-    cardsDesert.find(c => c.name === "Julgamento Superior"),
-    cardsDesert.find(c => c.name === "Gande Governate"),
+    cardsDesert.find(c => c.name === "Proteção De Anubis"),
+    cardsDesert.find(c => c.name === "Proteção De Sekhmet"),
     cardsDesert.find(c => c.name === "Proteção De Rá"),
+    cardsDesert.find(c => c.name === "Arma Divina"),
+    cardsDesert.find(c => c.name === "Arma Divina"),
+    cardsDesert.find(c => c.name === "Proteção Divina"),
+    cardsDesert.find(c => c.name === "Proteção Divina"),
+    cardsDesert.find(c => c.name === "Arsenal Anti Herege"),
+    cardsDesert.find(c => c.name === "Penitencia Do Sol"),
+    cardsDesert.find(c => c.name === "Vigia Da Lua"),
+    cardsDesert.find(c => c.name === "Mandato Divino"),
     cardsDesert.find(c => c.name === "Descanço"),
-    cardsDesert.find(c => c.name === "O Sol Sempre Hergue-se"),
-    cardsDesert.find(c => c.name === "Ascenção"),
   ],
   // gaeaReen: [
   //   allCards.find(c => c.name === "Chuva de Laminas"),
@@ -8190,7 +8300,7 @@ function aliadoTurn() {
   }
 }
 
-//ANIMAÇÃO ATK PLAYER EM FASE DE TESTE
+//ANIMAÇÃO ATK PLAYER
 async function animarLiliaTransformacao(anima = false, tipo) {
   if (personagemSelecionado === "criadora" && anima == true) {
     switch (tipo) {
@@ -8536,7 +8646,7 @@ async function chuvaDeGolpes() {
   const battlefield = document.getElementById("battlefield");
   if (!battlefield) return;
 
-  const total = 16; // 🔥 mais quantidade = mais impacto
+  const total = 16; // mais quantidade = mais impacto
   const efeitos = [];
 
   const fieldHeight = battlefield.offsetHeight;
@@ -9957,6 +10067,7 @@ function gerarItens(modoQuiz = false) {
   if (modoQuiz) {
     gerador = 7;
   }
+
   const container = modoQuiz
     ? document.getElementById("quiz-direita")
     : document.getElementById("recompensa");
@@ -9968,16 +10079,44 @@ function gerarItens(modoQuiz = false) {
     return;
   }
 
-  let numItens = hasItem(21) ? gerador+=1 : gerador;
+  let numItens = hasItem(21) ? gerador += 1 : gerador;
 
+  // ================= RESET =================
   container.innerHTML = "";
+
+  // 🔥 CONTAINER PRINCIPAL (COLUMN)
   container.style.display = "flex";
-  container.style.flexDirection = "row";
+  container.style.flexDirection = "column";
   container.style.justifyContent = "center";
   container.style.alignItems = "center";
   container.style.gap = "20px";
   container.style.width = "100%";
 
+  // ================= IA TEXT =================
+  let txtBloco = null;
+
+  if (modoQuiz) {
+    txtBloco = document.createElement("div");
+    txtBloco.textContent = "🎉IA: RESPOSTA CORRETA! Escolha sua recompensa, humano... 🎉";
+
+    txtBloco.style.color = "white";
+    txtBloco.style.fontSize = "40px";
+    txtBloco.style.opacity = "0.8";
+    txtBloco.style.fontFamily = "monospace";
+    txtBloco.style.textAlign = "center";
+    txtBloco.style.textShadow = "0 0 10px #00ff99";
+  }
+
+  // ================= ROW DAS RECOMPENSAS =================
+  const rewardsRow = document.createElement("div");
+
+  rewardsRow.style.display = "flex";
+  rewardsRow.style.flexDirection = "row";
+  rewardsRow.style.justifyContent = "center";
+  rewardsRow.style.alignItems = "center";
+  rewardsRow.style.gap = "20px";
+
+  // ================= ITENS =================
   const itensDisponiveis = allItems.filter(
     i => !itensJaPegos.includes(i.id)
   );
@@ -10012,7 +10151,7 @@ function gerarItens(modoQuiz = false) {
     }
   }
 
-  /* ================= RENDERIZAÇÃO ================= */
+  // ================= RENDER =================
   escolhidos.forEach(item => {
     const box = document.createElement("div");
     box.classList.add("item-box");
@@ -10042,6 +10181,10 @@ function gerarItens(modoQuiz = false) {
     desc.style.marginTop = "4px";
     desc.style.fontSize = "14px";
     desc.style.opacity = "0.8";
+
+    box.appendChild(img);
+    box.appendChild(nome);
+    box.appendChild(desc);
 
     box.addEventListener("click", () => {
       itensJaPegos.push(item.id);
@@ -10073,7 +10216,6 @@ function gerarItens(modoQuiz = false) {
         fecharPopup();
         irParaDiv2();
       } else {
-        // se for quiz, limpa e volta pro mapa
         document.getElementById("quiz-direita").innerHTML = "";
         irParaDiv2();
       }
@@ -10081,11 +10223,16 @@ function gerarItens(modoQuiz = false) {
       updateHUD();
     });
 
-    box.appendChild(img);
-    box.appendChild(nome);
-    box.appendChild(desc);
-    container.appendChild(box);
+    // 👉 ENTRA NO ROW
+    rewardsRow.appendChild(box);
   });
+
+  // ================= APPEND FINAL =================
+  if (modoQuiz && txtBloco) {
+    container.appendChild(txtBloco);
+  }
+
+  container.appendChild(rewardsRow);
 }
 function checkItemBoss() {
   if (hasItem(28)) {
