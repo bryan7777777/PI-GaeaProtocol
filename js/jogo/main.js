@@ -35,15 +35,15 @@ document.getElementById("fimSelecao").addEventListener("click", () => {
   irParaDiv2();      // vai para o mapa ou próxima tela
   console.log("Selecionado:", personagemSelecionado);
   if (pagina === "tutorial.html") {
+    PULAR_TODO_TUTORIAL = false;
     iniciarTutorial([
-      "Boas-vindas, piloto, ao GÆA PROTOCOL!",
-      "Aqui você aprenderá o básico. Eu serei sua tutora, você pode me chamar de GAEA.",
-      "Este é o início da sua jornada para restaurar a natureza corrompida por uma IA.",
+      "Esse é o mapa!",
       "Escolha seus caminhos com cuidado — cada decisão importa. Os caminhos são interligados por linhas, e apenas aqueles conectados são acessíveis.",
-      "Existem diversos pontos: hospitais, combates normais, combates contra elites, lojas, eventos e combates contra o boss.",
+      "Existem diversos pontos: hospitais(💚), combates normais(💀), combates contra elites(☠️), lojas(🪙), eventos(❓) e combates contra o boss(🐺...).",
       "Os pontos de evento só ficam coloridos quando estão acessíveis e, após concluir o evento, não será possível voltar — apenas avançar!",
       "O jogo é um roguelike, ou seja, os mapas e inimigos sempre serão aleatórios. Cada jogatina será única!",
-      "Prepare-se para lutar contra inimigos poderosos e coletar relíquias e cartas muito fortes!"
+      "Prepare-se para lutar contra inimigos poderosos e coletar relíquias e cartas muito fortes!",
+      "Clique no Ponto vermelho (💀) para iniciar sua jornada!"
     ], "./../img/jogo/gaeazinha.jpg");
   }
 });
@@ -56,6 +56,22 @@ document.querySelectorAll('.inventario').forEach(el => {
 document.querySelectorAll('.pular').forEach(el => {
   el.addEventListener('click', irParaDiv2);
 });
+if (pagina === "tutorial.html") {
+  iniciarTutorial([
+            "Ola seja bem vindo(a) ao GAEA PROTOCOL!",
+      "Aqui você aprenderá o básico. Eu serei sua tutora, você pode me chamar de GAEA.",
+      "Este é o início da sua jornada para restaurar a natureza corrompida por uma IA.",
+      "Mas vamos pelo começo",
+      "Há sua esquerda tem um painel de seleção de personagens nele você pode escolher tanto o grupo quanto os personagens desse grupo.",
+      "Nesse momento você só tem o piloto Jão desbloqueado no tutorial. Mas relaxe no modo normal haverá varios outros pilotos incriveis com mecanicas distintas!",
+      "No meio da tela tem a interface do piloto, seu nome e titulo, nivel de dificuldade (quanto mais 💀, maior a dificuldade), status basicos ❤️/🛡️/🤚/🔷 do piloto. E abaixo disso a imagem do piloto e ao lado dela suas passivas.",
+      "Passivas com a borda na cor vermelha são negativas, na cor verde são beneficas e amarelo significa que pode ser bom ou ruim, depende de como você vai interpretar e usar elas!",
+      "Caso tenha problemas em distinguir as cores, você pode sempre passar o mouse por cima!",
+      "Passando o mouse por cima aparece a descrição da passiva, seja boa ou ruim, leia com atenção pois ela pode mudar totalmente a forma como você vai jogar!",
+      "Na direita tem o estilo de jogo do personagem, cartas nas quais seu deck é focado e um trecho da historia do personagem.",
+      "Sinta-se a vontade para olhar e ler mais sobre o seu piloto! Voltaremos a nós falar após você clicar em \"Confirmar Seleção De Personagem\""
+          ], "./../img/jogo/gaeazinha.jpg");
+}
 // INTERNAL FUNCTIONS LIBRARY
 // CONFS
 function floatText(target, text, color) {
@@ -4541,6 +4557,12 @@ async function executarTutorialCompleto() {
     ["ELEMENTAIS ([❄️] [💧→⛰️→🔥]) — focadas em marcar inimigos e se beneficiar dessas marcações, possui um sistema de combo entre os elementos e um sistema de fraqueza entre os elementos (Não cria lixo após o uso)."],
     "./../img/jogo/gaeazinha.jpg",
     "./../img/jogo/cards/modeloElemental.png"
+  );
+
+  await iniciarTutorial(
+    ["ATENÇÃO: Todas as cartas possuem seus devidos custos de energia (🔷) na parte superior direita. Esse cristal (🔷) imenso ao lado do botão \"Pular Turno\" representa a quantidade de energia que você possiu, Ao usar uma carta você gasta dessa energia. Sua energia recarrega após passar seu turno. É possivel aumentar tanto a energia inicial quanto temporariamente."],
+    "./../img/jogo/gaeazinha.jpg",
+    "./../img/jogo/cards/modeloBasico.png"
   );
 
   await iniciarTutorial([
