@@ -12,7 +12,15 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/jao.png",
-      lor: "\"Um cara é um humano mas também é um cara, e caras tem trabalho, caras que trabalham fazem muita coisa, e eu faço muita coisa, por isso eu sou o cara\". [...]<br><br> -Jão o cara"
+      lor: "\"Um cara é um humano mas também é um cara, e caras tem trabalho, caras que trabalham fazem muita coisa, e eu faço muita coisa, por isso eu sou o cara\". [...]<br><br> -Jão o cara",
+      extras: [
+        {
+          img: "./../img/jogo/itens/peruEsterminador.png",
+          titulo: "Óculos Supimpa",
+          desc: "Inicia com o item \"Óculos Supimpa\".",
+          cor: "lime"
+        }
+      ]
     },
     wallace: {
       nome: "🌿WALLACE, O ESPECTRO DA FLORESTA🌿",
@@ -28,13 +36,13 @@ function configurarSelecaoPersonagem() {
       img: "./../img/jogo/player/wallace.png",
       lor: "Ex soldado da gaea, após achar um mecha de construção abandonado decidiu por conta propria ajudar, mesmo que aposentado e debilitado ele nunca deixou de acreditar em um futuro melhor [...] mas suas economias durante sua carreira podem ajudar com isso [...]",
       extras: [
-  {
-    img: "./../img/jogo/itens/criptoGaea.png",
-    titulo: "Financiamento",
-    desc: "Inicia com ouro adicional: 250🪙",
-    cor: "lime"
-  }
-]
+        {
+          img: "./../img/jogo/itens/criptoGaea.png",
+          titulo: "Financiamento",
+          desc: "Inicia com ouro adicional: 250🪙",
+          cor: "lime"
+        }
+      ]
     },
     gaeaReen: {
       nome: "🌿ELIZE, A ESPERANÇA🌿",
@@ -50,13 +58,25 @@ function configurarSelecaoPersonagem() {
       img: "./../img/jogo/player/gaeaReen.gif",
       lor: "[...]",
       extras: [
-  {
-    img: "./../img/jogo/cards/cintilante/gaea.png",
-    titulo: "GÆA",
-    desc: "Inicia com a carta \"Gaea Protocol\"",
-    cor: "lime"
-  }
-]
+        {
+          img: "./../img/jogo/cards/cintilante/gaea.png",
+          titulo: "GÆA",
+          desc: "Inicia com a carta \"Gaea Protocol\"",
+          cor: "lime"
+        },
+        {
+          img: "./../img/jogo/itens/peluciaDeGaea.png",
+          titulo: "GÆA",
+          desc: "Inicia com o item \"Gaeazinha\"",
+          cor: "lime"
+        },
+        {
+          img: "./../img/jogo/itens/coroaDeGaea.png",
+          titulo: "GÆA",
+          desc: "Inicia com o item \"Coroa Da Gaea\"",
+          cor: "lime"
+        }
+      ]
     },
     amarelo: {
       nome: "⛏️BRUNO, O MINEIRO CHEFE⛏️",
@@ -70,7 +90,15 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 5,
       img: "./../img/jogo/player/bruno.gif",
-      lor: "Líder do GLEBA PROTOCOL, um ex-membro do GAEA, decidiu continuar cuidando do meio ambiente, então decidiu ir para o GLEBA e rapidamente se tornou o líder[...]"
+      lor: "Líder do GLEBA PROTOCOL, um ex-membro do GAEA, decidiu continuar cuidando do meio ambiente, então decidiu ir para o GLEBA e rapidamente se tornou o líder[...]",
+      extras: [
+        {
+          img: "./../img/jogo/itens/sorteElemental.png",
+          titulo: "Elementarista",
+          desc: "Inicia com o item \"Sorte Elemental\".",
+          cor: "lime"
+        }
+      ]
     },
     porto: {
       nome: "⚓CLARICE, A AUTORIDADE DO PORTO⚓",
@@ -84,7 +112,15 @@ function configurarSelecaoPersonagem() {
       escudo: 5,
       mao: 5,
       img: "./../img/jogo/player/autoridadeDoPorto.gif",
-      lor: "Assim como seu pai ela assumiu o manto de autoridade do porto, aprendeu bem com seu velho estratégias muito boas de ataque a distância, mas ela se apaixonou pelo mar assim como sua mãe. [...]"
+      lor: "Assim como seu pai ela assumiu o manto de autoridade do porto, aprendeu bem com seu velho estratégias muito boas de ataque a distância, mas ela se apaixonou pelo mar assim como sua mãe. [...]",
+      extras: [
+        {
+          img: "./../img/jogo/itens/sorteElemental.png",
+          titulo: "Elementarista",
+          desc: "Inicia com o item \"Sorte Elemental\".",
+          cor: "lime"
+        }
+      ]
     },
     laranja: {
       nome: "🐦‍🔥GABRIEL, O INABALÁVEL🐦‍🔥",
@@ -98,7 +134,15 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/gabriel.gif",
-      lor: "Salva animais com velocidade e precisão de situações inesperadas, combate à caça e ao tráfico animal."
+      lor: "Salva animais com velocidade e precisão de situações inesperadas, combate à caça e ao tráfico animal.",
+      extras: [
+        {
+          img: "./../img/jogo/itens/olhoKraken.png",
+          titulo: "Alto Dano",
+          desc: "Inicia com o item \"Olho Do Kraken\".",
+          cor: "lime"
+        }
+      ]
     },
     malaquias: {
       nome: "🐦‍🔥MALAQUIAS, ESPECIALISTA EM REPTEIS🐦‍🔥",
@@ -114,13 +158,13 @@ function configurarSelecaoPersonagem() {
       img: "./../img/jogo/player/malaquias.png",
       lor: "Um homem de sorte? Não, a sorte que precisa desse homem, além da sua compulção por comprar ele curte apostar, um belo exemplo do tipo de pessoa que tem tudo para perder suas economias... Bom era para ele perder, mas aparentemente ele tem menos chance de perder? Ele não é um \"apostador qualquer\" ele utiliza de muita estrategia para ganhar dinheiro, ele percebeu que para sustentar seu vicio em comprar ele precisaria ser rico, e um mero trabalho jamais daria o dinheiro que ele precisa, além de CLT, dono de multiplas empresas, investidor de risco e mestre do poker, ele é um apostador nato, ele fez tudo isso só para... comprar coisas inuteis que ele nunca vai usar?",
       extras: [
-  {
-    img: "./../img/jogo/cards/cintilante/niquel.png",
-    titulo: "Pessoa De Sorte",
-    desc: "Seu deck é formado por cartas de spawn e sorte.",
-    cor: "yellow"
-  }
-]
+        {
+          img: "./../img/jogo/cards/cintilante/niquel.png",
+          titulo: "Pessoa De Sorte",
+          desc: "Seu deck é formado por cartas de spawn e sorte.",
+          cor: "yellow"
+        }
+      ]
     },
     lucius: {
       nome: "🌪️LUCIUS, IRMÃO DO JÃO🌪️",
@@ -136,13 +180,13 @@ function configurarSelecaoPersonagem() {
       img: "./../img/jogo/player/lucius.gif",
       lor: "Ninguém sabe onde ele vive, por onde anda, ele vai trabalhar quando ele quer, pelo tempo que ele quer e até hoje se perguntam como ele não foi demitido. Se não fosse pelos seus feitos lendários ele provavelmente não estaria aqui, mas ninguém sabe se são verdade, mas tambem não discordam, afinal nenhum deles tem provas, mas seu irmão Jão é o único quem sabe a verdade e sabe por onde ele anda.",
       extras: [
-  {
-    img: "./../img/jogo/itens/albumMagico.png",
-    titulo: "Legendary",
-    desc: "Seu deck é formado por cartas Lendaria",
-    cor: "yellow"
-  }
-]
+        {
+          img: "./../img/jogo/itens/albumMagico.png",
+          titulo: "Legendary",
+          desc: "Seu deck é formado por cartas Lendaria",
+          cor: "yellow"
+        }
+      ]
     },
     lilia: {
       nome: "🐼❄️LILIA, LÍDER DO GLACIAL PROTOCOL❄️🐼",
@@ -158,19 +202,25 @@ function configurarSelecaoPersonagem() {
       img: "./../img/jogo/player/lilia.gif",
       lor: "Líder do GLACIAL PROTOCOL (GLA.P), dona de muitas lendas, ao mesmo tempo que sabem muito sobre ela também sabem tão pouco, há muitos rumores e histórias lendárias dela, uma grande estrategista, dizem que ela já foi capaz de apenas com mais 3 soldados do GLA.P derrubar um imenso batalhão de mais de 100mil robos corrompidos e destruir uma das principais bases da IA, também falam que ela sozinha já bateu de frente contra multiplos exercitos para salvar seu povo, verdade ou não, esse mitos ecoam por todos do GLA.P e até outros protocols já ouviram dela, ela é muito respeitada por todos, até Magnolia a lider do G.P a respeita muito[...], \"Será que é verdade que ela não precisa de um mecha?\"",
       extras: [
-  {
-    img: "./../img/jogo/passivas/fria.png",
-    titulo: "Fria Como A Neve",
-    desc: "Seu deck é formado por cartas de Gelo",
-    cor: "yellow"
-  },
-  {
-    img: "./../img/jogo/passivas/adaptacao.png",
-    titulo: "Adaptação",
-    desc: "Conforme Lilia avaça pelas fasses ela fica mais forte e ganha \"ALL STATS UP\" (❤️⬆️/🛡️⬆️/🤚⬆️/🔷⬆️)",
-    cor: "lime"
-  }
-]
+        {
+          img: "./../img/jogo/passivas/fria.png",
+          titulo: "Fria Como A Neve",
+          desc: "Seu deck é formado por cartas de Gelo",
+          cor: "yellow"
+        },
+        {
+          img: "./../img/jogo/passivas/adaptacao.png",
+          titulo: "Adaptação",
+          desc: "Conforme Lilia avaça pelas fasses ela fica mais forte e ganha \"ALL STATS UP\" (❤️⬆️/🛡️⬆️/🤚⬆️/🔷⬆️)",
+          cor: "lime"
+        },
+        {
+          img: "./../img/jogo/itens/sorteElemental.png",
+          titulo: "Elementarista",
+          desc: "Inicia com o item \"Sorte Elemental\".",
+          cor: "lime"
+        }
+      ]
     },
     x: {
       nome: "🔮A ESQUECIDA🔮",
@@ -186,13 +236,19 @@ function configurarSelecaoPersonagem() {
       img: "./../img/jogo/player/x.png",
       lor: "\"Em desenvolvimento?\"",
       extras: [
-  {
-    img: "./../img/jogo/passivas/aminesia.png",
-    titulo: "Neblina",
-    desc: "Seu deck é gerado aleatoriamente a cada nova partida",
-    cor: "red"
-  }
-]
+        {
+          img: "./../img/jogo/cards/atk/fraqueza.png",
+          titulo: "Coração Fraco",
+          desc: "Inicia com 1/2 da sua vida maxima.",
+          cor: "red"
+        },
+        {
+          img: "./../img/jogo/passivas/aminesia.png",
+          titulo: "Neblina",
+          desc: "Seu deck é gerado aleatoriamente a cada nova partida",
+          cor: "red"
+        }
+      ]
     },
     ferrus: {
       nome: "⚒️MAGNUS FERRUS, O PRODÍGIO⚒️",
@@ -208,15 +264,27 @@ function configurarSelecaoPersonagem() {
       img: "./../img/jogo/player/sal2.gif",
       lor: "\"Em desenvolvimento\"[...]",
       extras: [
-  {
-    img: "./../img/jogo/passivas/ferrus11.png",
-    titulo: "Gigante De Ferro",
-    desc: "Magnus possui um mecha protetor.<br>Ele tem uma armadura inicia bem alta devido ao seu guardião.",
-    cor: "lime"
-  },
-]
+        {
+          img: "./../img/jogo/cards/atk/fraqueza.png",
+          titulo: "Coração Fraco",
+          desc: "Inicia com 1/4 da sua vida maxima.",
+          cor: "red"
+        },
+        {
+          img: "./../img/jogo/passivas/ferrus11.png",
+          titulo: "Gigante De Ferro",
+          desc: "Magnus possui um mecha protetor.<br>Ele tem uma armadura inicia bem alta devido ao seu guardião.",
+          cor: "lime"
+        },
+        {
+          img: "./../img/jogo/itens/criptoGaea.png",
+          titulo: "Financiamento",
+          desc: "Inicia com ouro adicional: 50🪙",
+          cor: "lime"
+        }
+      ]
     },
-      criadora: {
+    criadora: {
       nome: "🎨Mayumi, A criadoura caida🎨",
       dificuldade: "🎨NÍVEL DE DIFICULDADE: ☠️☠️☠️☠️☠️🎨",
       cor: "rgb(141, 7, 231)",
@@ -230,27 +298,27 @@ function configurarSelecaoPersonagem() {
       img: "./../img/jogo/player/criadora.gif",
       lor: "Mayumi era uma artista extraordinária. Suas obras eram conhecidas por uma beleza quase sobrenatural, descritas por outros como repletas de cores vibrantes que encantavam todos que as contemplavam.<br><br>Mas havia uma verdade silenciosa — invisível para o mundo.<br><br>Mayumi era portadora de acromatopsia.<br><br>Ela nunca havia visto uma única cor em toda a sua vida.<br><br>Para ela, o mundo sempre existiu apenas em tons de cinza — sombras, luz e contraste. Nada além disso.<br><br>E ainda assim... ela pintava cores que nunca viu.<br><br>Desde jovem, serviu como artista e arqueira de elite para um governante regional de renome, guiando-se não por cor, mas por forma, movimento e intenção. Sua fama se espalhou, e ela era respeitada tanto pelo talento artístico quanto pela precisão mortal em combate.<br><br>Em busca de aperfeiçoamento, partiu em uma jornada que mudaria sua vida. Durante o caminho, encontrou um grupo budista devoto das cores e da percepção do mundo, permanecendo com eles por muitos anos, aprendendo, evoluindo... tentando compreender algo que, para ela, não existia.<br><br>Foi então que a verdade se tornou impossível de ignorar.<br><br>Enquanto falavam de vermelho, azul e dourado... Mayumi percebeu que nunca havia entendido o que essas palavras realmente significavam.<br><br>Não era falta de conhecimento.<br><br>Era ausência de experiência.<br><br>Mesmo assim, ela continuou criando. Continuou sonhando.<br><br>Certo dia, ouviu rumores sobre um elixir milagroso, capaz de conceder, ainda que por breves instantes, a visão das cores verdadeiras — algo impossível para alguém como ela.<br><br>Aquilo deixou de ser apenas um desejo.<br><br>Tornou-se obsessão.<br><br>Sua missão. Seu propósito. Sua fé.<br><br>Atravessou vales, sobreviveu a guerras, enfrentou a própria exaustão... mas nunca caiu.<br><br>Até que chegou a um majestoso palácio de luz, onde encontrou o Deus do Sol. Diante dele, fez seu pedido: desejava o elixir.<br><br>Desejava, ao menos uma vez na vida, ver aquilo que sempre pintou sem jamais conhecer.<br><br>O deus respondeu com desprezo. Disse possuir o elixir, mas jamais o entregaria a uma mortal tão determinada e “miserável”.<br><br>Sem hesitar, Mayumi o desafiou.<br><br>O duelo foi breve... e brutal. Em poucos minutos, seu corpo já não respondia, e a morte parecia inevitável. Ainda assim, com o último fio de voz, declarou:<br><br>“Se me deixar viver... eu viverei para te derrotar.”<br><br>Intrigado — talvez até entediado pela eternidade solitária — o Deus do Sol decidiu poupá-la.<br><br>E assim começou um ciclo.<br><br>Todos os meses, sem falhar, Mayumi retornava. Contava suas batalhas, suas derrotas, suas evoluções. E, a cada encontro, estava mais forte. Mais rápida. Mais determinada.<br><br>Até que, finalmente, a superou.<br><br>Diante dela, derrotado, o Deus do Sol sorriu e disse:<br><br>“Eu não poderia desejar uma oponente melhor.”<br><br>Então, finalmente, entregou-lhe o elixir. Mas havia um preço: seu efeito duraria apenas por instantes... e qualquer ferimento encerraria sua magia imediatamente.<br><br>Além disso, concedeu a ela uma dádiva — ou talvez uma maldição: imortalidade temporária. Mayumi não envelheceria, mas ainda poderia morrer em batalha. E quando reunisse todas as cores do mundo e consumisse o elixir... tudo chegaria ao fim.<br><br>Sem hesitar, ela aceitou.<br><br>Seu novo objetivo era claro: reunir todas as cores existentes — mesmo sem jamais tê-las visto.<br><br>Ela vagou por anos... décadas... até que o mundo começou a mudar.<br><br>Ao despertar de um longo sono, encontrou um futuro distópico, um mundo apagado. As cores estavam desaparecendo.<br><br>Foi então que descobriu a existência de uma IA, uma entidade que, pouco a pouco, estava drenando todas as cores do mundo — destruindo aquilo que ela passou a vida inteira tentando compreender.<br><br>Diante disso, Mayumi fez seu último juramento:<br><br>Ela destruiria a IA.<br><br>E, finalmente... veria as cores.",
       extras: [
-  {
-    img: "./../img/jogo/cards/cria/trocandoDeModo.png",
-    titulo: "Acromatopsia",
-    desc: "Mayumi é incapaz de ver cores de forma natural",
-    cor: "red"
-  },
-  {
-    img: "./../img/jogo/cards/cria/estiloCria.png",
-    titulo: "Estilo Cria",
-    desc: "Mayumi é capaz de alterna entre dois modos:<br> modo pincel e modo arco",
-    cor: "yellow"
-  },
-  {
-    img: "./../img/jogo/cards/cria/paleta.png",
-    titulo: "Artista Magnifica",
-    desc: "Ela possui a capacidade de ganhar e gastar cargas de tinta",
-    cor: "yellow"
-  }
-]
+        {
+          img: "./../img/jogo/cards/cria/trocandoDeModo.png",
+          titulo: "Acromatopsia",
+          desc: "Mayumi é incapaz de ver cores de forma natural",
+          cor: "red"
+        },
+        {
+          img: "./../img/jogo/cards/cria/estiloCria.png",
+          titulo: "Estilo Cria",
+          desc: "Mayumi é capaz de alterna entre dois modos:<br> modo pincel e modo arco",
+          cor: "yellow"
+        },
+        {
+          img: "./../img/jogo/cards/cria/paleta.png",
+          titulo: "Artista Magnifica",
+          desc: "Ela possui a capacidade de ganhar e gastar cargas de tinta",
+          cor: "yellow"
+        }
+      ]
     },
-      cleopatra: {
+    cleopatra: {
       nome: "☀️Cleopatra VIII, A Reencarnação Divina☀️",
       dificuldade: "☀️NÍVEL DE DIFICULDADE: ☠️☠️☠️☠️☠️☀️",
       cor: "rgb(141, 7, 231)",
@@ -264,25 +332,25 @@ function configurarSelecaoPersonagem() {
       img: "./../img/jogo/player/animado/cleopatra/statico/cleopatra1.png",
       lor: "...",
       extras: [
-  {
-    img: "./../img/jogo/cards/desert/era.png",
-    titulo: "Confusão",
-    desc: "Todos os iconis de eventos são substituidos por ❓",
-    cor: "red"
-  },
-  {
-    img: "./../img/jogo/cards/desert/monarca.png",
-    titulo: "Deusa Dos Deuses",
-    desc: "Cleopatra pode invocar aliados para defender ela e atacar",
-    cor: "lime"
-  },
-  {
-    img: "./../img/jogo/cards/desert/cleo.png",
-    titulo: "Sol e Lua",
-    desc: "Cleopatra possui a capacidade de gerar cargas,<br>porém varias cartas de aliados nescecitam de cargas",
-    cor: "yellow"
-  }
-]
+        {
+          img: "./../img/jogo/cards/desert/era.png",
+          titulo: "Confusão",
+          desc: "Todos os iconis de eventos são substituidos por ❓",
+          cor: "red"
+        },
+        {
+          img: "./../img/jogo/cards/desert/monarca.png",
+          titulo: "Deusa Dos Deuses",
+          desc: "Cleopatra pode invocar aliados para defender ela e atacar",
+          cor: "lime"
+        },
+        {
+          img: "./../img/jogo/cards/desert/cleo.png",
+          titulo: "Sol e Lua",
+          desc: "Cleopatra possui a capacidade de gerar cargas,<br>porém varias cartas de aliados nescecitam de cargas",
+          cor: "yellow"
+        }
+      ]
     }
   };
 
@@ -311,7 +379,7 @@ function configurarSelecaoPersonagem() {
       </span>
     `;
 
-   descricaoInfo.innerHTML = `
+    descricaoInfo.innerHTML = `
   <span class="destaqueDesc">DESCRIÇÃO DO DECK:</span>
   <span>${info.descricao}</span>
   <span class="destaqueCard">${info.cardFoco}</span><br>
@@ -324,23 +392,23 @@ function configurarSelecaoPersonagem() {
     imgPreview.alt = info.nome;
 
     const extrasContainer = document.getElementById("extrasPersonagem");
-extrasContainer.innerHTML = "";
+    extrasContainer.innerHTML = "";
 
-// se NÃO tiver extras → esconde o bloco inteiro
-if (!info.extras || info.extras.length === 0) {
-  extrasContainer.style.display = "none";
-  return;
-}
+    // se NÃO tiver extras → esconde o bloco inteiro
+    if (!info.extras || info.extras.length === 0) {
+      extrasContainer.style.display = "none";
+      return;
+    }
 
-// se tiver → mostra
-extrasContainer.style.display = "flex";
+    // se tiver → mostra
+    extrasContainer.style.display = "flex";
 
-// limita a no máximo 3 (segurança)
-info.extras.slice(0, 3).forEach(extra => {
-  const div = document.createElement("div");
-  div.classList.add("extra-item");
+    // limita a no máximo 3 (segurança)
+    info.extras.slice(0, 3).forEach(extra => {
+      const div = document.createElement("div");
+      div.classList.add("extra-item");
 
-  div.innerHTML = `
+      div.innerHTML = `
     <div class="img-wrap" style="border-color:${extra.cor}">
       <img src="${extra.img}">
       <span class="tooltip">${extra.desc}</span>
@@ -350,8 +418,8 @@ info.extras.slice(0, 3).forEach(extra => {
     </span>
   `;
 
-  extrasContainer.appendChild(div);
-});
+      extrasContainer.appendChild(div);
+    });
   };
 
   personagens.forEach(img => {

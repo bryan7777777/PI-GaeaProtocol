@@ -7533,6 +7533,7 @@ function criarPlayerNaDiv3() {
       playerDeck = [...characterDecks.laranja];
       maoInicio = 6;
       limiteMao = 6;
+      empurrarItemParaInventario(12);
       break;
     case "malaquias":
       playerImg.src = "./../img/jogo/player/malaquias.png";
@@ -7553,6 +7554,7 @@ function criarPlayerNaDiv3() {
     case "amarelo":
       playerImg.src = "./../img/jogo/player/animado/bruno/statico/bruno1.png";
       playerDeck = [...characterDecks.amarelo];
+      empurrarItemParaInventario(37);
       break;
     case "verde":
       playerImg.src = "./../img/jogo/player/jao.png";
@@ -7567,6 +7569,7 @@ function criarPlayerNaDiv3() {
       playerDeck = [...characterDecks.porto];
       maoInicio = 5;
       limiteMao = 5;
+      empurrarItemParaInventario(37);
       break;
     case "lilia":
       if (mapaBatalha == 0) {
@@ -7577,6 +7580,8 @@ function criarPlayerNaDiv3() {
         maoInicio = 4;
         limiteMao = 4;
         startNemoraSnow(false);
+      empurrarItemParaInventario(37);
+
       }
       if (mapaBatalha == 19) {
         imgLilia = "./../img/jogo/player/animado/lilia/statico/lilia3.png";
@@ -7646,6 +7651,8 @@ function criarPlayerNaDiv3() {
       energy = 4
       maoInicio = 6;
       limiteMao = 6;
+      empurrarItemParaInventario(21);
+      empurrarItemParaInventario(19);
       break;
     case "criadora":
       playerImg.src = "./../img/jogo/player/animado/criadora/statico/criadora1.png";
@@ -10021,6 +10028,56 @@ function gerarItens(modoQuiz = false) {
   }
 
   container.appendChild(rewardsRow);
+}
+function empurrarItemParaInventario(itemId) {
+  const inventario = document.getElementById("itens");
+  const item = allItems.find(i => i.id === itemId);
+
+  if (!item) {
+    console.warn("Item não encontrado:", itemId);
+    return;
+  }
+
+  // evita duplicar
+  if (itensJaPegos.includes(itemId)) return;
+
+  itensJaPegos.push(itemId);
+
+  const invImg = document.createElement("img");
+  invImg.src = item.img;
+  invImg.style.margin = "5px";
+  invImg.style.cursor = "pointer";
+  invImg.style.width = "60px";
+  invImg.style.transition = "0.2s";
+
+  // hover tooltip
+  invImg.addEventListener("mouseenter", () => {
+    tooltip.textContent = `(${item.name}) ${item.desc}`;
+    tooltip.style.display = "block";
+  });
+
+  invImg.addEventListener("mousemove", ev => {
+    tooltip.style.left = ev.clientX + 15 + "px";
+    tooltip.style.top = ev.clientY + 15 + "px";
+  });
+
+  invImg.addEventListener("mouseleave", () => {
+    tooltip.style.display = "none";
+  });
+
+  // efeito de entrada (EMPURRADO)
+  invImg.style.transform = "translateX(-20px)";
+  invImg.style.opacity = "0";
+
+  setTimeout(() => {
+    invImg.style.transform = "translateX(0)";
+    invImg.style.opacity = "1";
+  }, 50);
+
+  inventario.appendChild(invImg);
+
+  aplicarBuff(item);
+  updateHUD();
 }
 function checkItemBoss() {
   if (hasItem(28)) {
