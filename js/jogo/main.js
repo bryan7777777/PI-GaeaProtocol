@@ -1516,7 +1516,7 @@ function drawCards() {
         }
         //  ☀️☀️☀️☀️☀️ DESERT ☀️☀️☀️☀️☀️
         else if (card.name === "Proteção De Anubis") {
-          if (!cleopatraOP && anubis) {
+          if (!cleopatraOP && anubis && !aliado) {
             allDebuff(card.power, "sofrerDano");
             animarLiliaTransformacao();
             invocarAliado({
@@ -1532,7 +1532,7 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "Proteção De Sekhmet") {
-          if (!cleopatraOP && sekhmet) {
+          if (!cleopatraOP && sekhmet && !aliado) {
             allDebuff(card.power, "sofrerDano");
             animarLiliaTransformacao();
             invocarAliado({
@@ -1548,7 +1548,7 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "Proteção De Rá") {
-          if (!cleopatraOP && ra) {
+          if (!cleopatraOP && ra && !aliado) {
             allDebuff(card.power, "sofrerDano");
             animarLiliaTransformacao();
             invocarAliado({
@@ -1708,6 +1708,7 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "Arma Divina") {
+          chuvaDeGolpes(1);
           valor=card.power;
           if (cleopatraOP) {
             valor=card.power*2;
@@ -1744,6 +1745,7 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "Arsenal Anti Herege") {
+          chuvaDeGolpes(10);
           valor=card.power;
           if (cleopatraOP) {
             valor=card.power*2;
@@ -1773,6 +1775,7 @@ function drawCards() {
         else if (card.name === "Os Portões Se Abrem") {
           if (aliado) {
             // sacrifica aliado
+            chuvaDeGolpes(30);
             matarAliado();
 
             let sol = getCargas("sol");
@@ -1853,6 +1856,7 @@ function drawCards() {
             consumirCargas("azul", 1);
             consumirCargas("vermelho", 1);
 
+            chuvaDeGolpes(1);
             causarDano(card.power, "unico");
             allBuffs(card.power, "def", true);
             allBuffs(card.power, "cura", true);
@@ -1875,8 +1879,8 @@ function drawCards() {
               consumirCargas("roxa", 1);
               consumirCargas("laranja", 1);
               consumirCargas("verde", 1);
+              chuvaDeGolpes();
               causarDano(card.power, "area");
-              animarLiliaTransformacao(true, "area");
               allBuffs(card.power, "def");
             }
           }
@@ -1898,6 +1902,7 @@ function drawCards() {
               consumirCargas("roxa", 2);
               consumirCargas("laranja", 2);
               consumirCargas("verde", 2);
+              chuvaDeGolpes(20, true);
               causarDano(playerHP + card.power, "unico");
               animarLiliaTransformacao(true, "area");
             }
@@ -1960,7 +1965,7 @@ function drawCards() {
           if (criadoraModo) {
             if (consumirCargas("roxa", 3)) {
               causarDano(card.power, "unico");
-              animarLiliaTransformacao(true, "unico");
+              chuvaDeGolpes(5,true);
             }
           }
         }
@@ -1970,6 +1975,7 @@ function drawCards() {
             if (consumirCargas("amarelo", 1)) {
               causarDano(card.power, "area");
               allBuffs(card.power, "def");
+              chuvaDeGolpes(3);
             }
           }
         }
@@ -1979,6 +1985,7 @@ function drawCards() {
             if (consumirCargas("verde", 1)) {
               causarDano(card.power, "unico");
               allBuffs(card.power, "cura");
+              chuvaDeGolpes(1);
             }
           }
         }
@@ -1987,6 +1994,7 @@ function drawCards() {
           if (criadoraModo) {
             if (consumirCargas("roxa", 1)) {
               causarDano(card.power, "area");
+              chuvaDeGolpes(3);
             }
           }
         }
@@ -2037,8 +2045,8 @@ function drawCards() {
               consumirCargas("roxa", 1);
               consumirCargas("laranja", 1);
               consumirCargas("verde", 1);
+              chuvaDeGolpes(20);
               causarDano(card.power, "area");
-              animarLiliaTransformacao(true, "area");
             }
           }
 
@@ -2053,7 +2061,7 @@ function drawCards() {
               consumirCargas("vermelho", 5);
               consumirCargas("roxa", 1);
               causarDano(card.power, "area");
-              animarLiliaTransformacao(true, "area");
+              chuvaDeGolpes(20);
             }
           }
         }
@@ -2065,6 +2073,7 @@ function drawCards() {
           criadoraModo = false;
           if (consumirCargas("laranja", 1)) {
             causarDano(card.power, "ultimo");
+            chuvaDeGolpes(1);
           }
         }
         //🎨
@@ -2072,6 +2081,7 @@ function drawCards() {
           if (!criadoraModo) {
             if (consumirCargas("vermelho", 1)) {
               causarDano(card.power, "unico");
+              chuvaDeGolpes(1);
             }
           }
         }
@@ -2080,6 +2090,7 @@ function drawCards() {
           if (!criadoraModo) {
             if (consumirCargas("azul", 1)) {
               causarDano(card.power, "area");
+              chuvaDeGolpes(5);
             }
           }
         }
@@ -2088,6 +2099,7 @@ function drawCards() {
           if (!criadoraModo) {
             if (consumirCargas("laranja", 1)) {
               causarDano(card.power, "area");
+              chuvaDeGolpes(3);
             }
           }
         }
@@ -2108,6 +2120,7 @@ function drawCards() {
             consumirCargas("roxa", 1);
             consumirCargas("laranja", 1);
 
+            chuvaDeGolpes(5);
             causarDano(card.power, "area");
           }
         }
@@ -3673,6 +3686,28 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
   const shadow = container.attachShadow({ mode: "open" });
 
+  let extraCSS = "";
+
+if (personagemSelecionado === "cleopatra") {
+  extraCSS = `
+  .loot, .inimigo, .loja, .quiz, .quiz2, .ferreiro, .hospital2, .inimigo2, .elite, .hospital, .boss { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  `;
+} else {
+  extraCSS = `
+    .inimigo  { background: #d33; border: 3px groove rgba(241, 75, 75, 1); }
+  .loot     { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  .loja     { background: #0d8; border: 3px groove rgba(102, 255, 97, 1);}
+  .quiz     { background: rgb(255, 138, 210); border: 3px groove rgb(255, 138, 210);}
+  .quiz2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  .ferreiro { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  .hospital2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  .inimigo2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  .elite    { background: #a3f; border: 3px groove rgba(173, 98, 226, 1);}
+  .hospital { background: #0d8; border: 3px groove rgba(102, 255, 97, 1);}
+  .boss     { background: #000; border: 3px groove rgba(241, 75, 75, 1); }
+  `;
+}
+
   // Define CSS isolado
   const style = `
   // body {
@@ -3731,17 +3766,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
     border:solid 2px rgba(141, 235, 104, 1);
   }
   .nodo:hover { transform: scale(1.1); }
-  .inimigo  { background: #d33; border: 3px groove rgba(241, 75, 75, 1); }
-  .loot     { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
-  .loja     { background: #0d8; border: 3px groove rgba(102, 255, 97, 1);}
-  .quiz     { background: rgb(255, 138, 210); border: 3px groove rgb(255, 138, 210);}
-  .quiz2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
-  .ferreiro { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
-  .hospital2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
-  .inimigo2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
-  .elite    { background: #a3f; border: 3px groove rgba(173, 98, 226, 1);}
-  .hospital { background: #0d8; border: 3px groove rgba(102, 255, 97, 1);}
-  .boss     { background: #000; border: 3px groove rgba(241, 75, 75, 1); }
+  ${extraCSS}
   .invalido { opacity: 0; pointer-events: none; }
   .nodo.inacessivel {
     background-color: #444 !important;
@@ -3940,7 +3965,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
           // Primeira fase: início fixo no centro
           else if (i === 0) {
-            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'quiz' : 'invalido';
+            tipo = (j === Math.floor(caminhosPorFase / 2)) ? 'inimigo' : 'invalido';
           }
           // Última fase: boss fixo no centro
           else if (i === numFases - 1) {
@@ -4022,7 +4047,21 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
           const el = document.createElement('div');
           el.classList.add('nodo', nodo.tipo);
           el.dataset.pos = `${i}-${j}`;
-          el.textContent = {
+          if (personagemSelecionado === "cleopatra") {
+            el.textContent = {
+            boss: '❓',
+            inimigo: '❓',
+            elite: '❓',
+            loja: '❓',
+            quiz: '❓',
+            hospital: '❓',
+            ferreiro: '❓',
+            hospital2: '❓',
+            inimigo2: '❓',
+            quiz2: '❓',
+          }[nodo.tipo] || '';
+          } else {
+            el.textContent = {
             boss: iconBoss,
             inimigo: '💀',
             elite: '☠️',
@@ -4034,7 +4073,7 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
             inimigo2: '❓',
             quiz2: '❓',
           }[nodo.tipo] || '';
-
+          }
           el.addEventListener('click', () => clicarNodo(i, j));
           colDiv.appendChild(el);
           nodo.element = el;
@@ -7756,7 +7795,6 @@ function criarPlayerNaDiv3() {
       dinheiro = 250;
       playerDeck = [...characterDecks.cleopatra];
       atualizarDinheiro();
-      mudarEnergia("☀️");
       break;
     default:
       playerImg.src = "./../img/jogo/extra/prototipo.png";
@@ -8301,35 +8339,7 @@ function aliadoTurn() {
 }
 
 //ANIMAÇÃO ATK PLAYER
-async function animarLiliaTransformacao(anima = false, tipo) {
-  if (personagemSelecionado === "criadora" && anima == true) {
-    switch (tipo) {
-      case "unico":
-        await animacaoConfrontoDD2(enemies[0].el);
-        animateDamage(enemies[0].el);
-        break;
-      case "ultimo":
-        const alvo = [...enemies].reverse().find(e => e.hp > 0);
-        if (alvo) {
-          await animacaoConfrontoDD2(alvo.el);
-          animateDamage(alvo.el);
-        }
-        break;
-      case "area":
-        await Promise.all(
-          enemies.map(e => {
-            animateDamage(e.el);
-            return animacaoConfrontoDD2(e.el);
-          })
-        );
-        break;
-
-      default:
-        break;
-    }
-    return;
-  }
-
+async function animarLiliaTransformacao() {
   if (personagemSelecionado === "lilia" || personagemSelecionado === "porto" || personagemSelecionado === "gaeaReen" || personagemSelecionado === "lucius" || personagemSelecionado === "ferrus" || personagemSelecionado === "laranja" || personagemSelecionado === "amarelo" || personagemSelecionado === "criadora" || personagemSelecionado === "cleopatra") {
 
     const playerImg = document.getElementById("player");
@@ -8496,107 +8506,6 @@ async function animarLiliaTransformacao(anima = false, tipo) {
     }, delay * 5);
   }
 }
-async function animacaoConfrontoDD2(inimigoEl) {
-
-  bloquearInput(true);
-
-  const player = document.getElementById("player");
-  const enemyImg = inimigoEl.querySelector("img");
-  const screen = document.getElementById("div3");
-
-  if (!player || !enemyImg || !screen) return;
-
-  const pRect = player.getBoundingClientRect();
-  const eRect = enemyImg.getBoundingClientRect();
-
-  const centerX = window.innerWidth / 2;
-
-  const playerMove = centerX - (pRect.left + pRect.width / 2);
-  const enemyMove = centerX - (eRect.left + eRect.width / 2);
-
-  const playerCenter = `translateX(${playerMove}px) scale(1.4)`;
-  const enemyCenter = `translateX(${enemyMove}px) scale(1.4)`;
-
-  player.style.transition = "transform .35s ease";
-  enemyImg.style.transition = "transform .35s ease";
-  screen.style.transition = "transform .4s ease";
-
-  /* ========= ZOOM ========= */
-  screen.style.transform = "scale(1.2)";
-  await esperar(200);
-
-  /* ========= IR PRO CENTRO ========= */
-  player.style.transform = playerCenter;
-  enemyImg.style.transform = enemyCenter;
-
-  await esperar(400);
-
-  /* ========================================================= */
-  /* =================== MODO NORMAL ========================== */
-  /* ========================================================= */
-  if (criadoraModo) {
-
-    const frames = {
-      f1: "./../img/jogo/player/animado/criadora/atk/criadora1.png",
-      f2: "./../img/jogo/player/animado/criadora/atk/criadora2.png",
-      f3: "./../img/jogo/player/animado/criadora/atk/criadora3.png",
-      idle: "./../img/jogo/player/animado/criadora/statico/criadora1.png"
-    };
-
-    for (let i = 0; i < 3; i++) {
-
-      player.style.transform = playerCenter;
-      player.src = frames.f1;
-      await esperar(80);
-
-      player.src = frames.f2;
-      await esperar(80);
-
-      player.src = frames.f3;
-
-      criarEfeitoNoInimigo(inimigoEl);
-      await esperar(120);
-    }
-
-    player.src = frames.idle;
-
-  } else {
-
-    /* ========================================================= */
-    /* =================== MODO CHUVA =========================== */
-    /* ========================================================= */
-
-    const frames = {
-      start: "./../img/jogo/player/animado/criadora/atk/criadora22.png",
-      cast: "./../img/jogo/player/animado/criadora/atk/criadora11.png",
-      idle: "./../img/jogo/player/animado/criadora/statico/criadora11.png"
-    };
-
-    // entra no centro
-    player.src = frames.start;
-    await esperar(150);
-
-    // congela no frame de conjuração
-    player.src = frames.cast;
-
-    // 💥 chuva de efeitos
-    await chuvaDeGolpes(inimigoEl);
-
-    // pequena pausa dramática
-    await esperar(300);
-
-    player.src = frames.idle;
-  }
-
-  /* ========= VOLTA ========= */
-  player.style.transform = "translateX(0px) scale(1)";
-  enemyImg.style.transform = "translateX(0px) scale(1)";
-  screen.style.transform = "scale(1)";
-
-  await esperar(400);
-
-  bloquearInput(false);
-}
 function criarEfeitoNoInimigo(inimigoEl) {
 
   const enemyImg = inimigoEl.querySelector("img");
@@ -8641,12 +8550,15 @@ function criarEfeitoNoInimigo(inimigoEl) {
 
   }, 35);
 }
-async function chuvaDeGolpes() {
+async function chuvaDeGolpes(qtd = 0, pd = false) {
 
   const battlefield = document.getElementById("battlefield");
   if (!battlefield) return;
 
-  const total = 16; // mais quantidade = mais impacto
+  let total = 16;
+  if (qtd > 0) {
+    total = qtd;
+  }
   const efeitos = [];
 
   const fieldHeight = battlefield.offsetHeight;
@@ -8655,7 +8567,15 @@ async function chuvaDeGolpes() {
 
     const efeito = document.createElement("img");
 
-    efeito.src = "../img/jogo/player/animado/criadora/efeitos/criadora11.png";
+    if (personagemSelecionado==="cleopatra") {
+      efeito.src = "../img/jogo/player/animado/cleopatra/efeitos/cleo1.png";
+    } else if (!criadoraModo) {
+      efeito.src = "../img/jogo/player/animado/criadora/efeitos/criadora11.png";
+    } else if (pd){
+      efeito.src = "../img/jogo/player/animado/criadora/efeitos/criadora2.png";
+    } else {
+      efeito.src = "../img/jogo/player/animado/criadora/efeitos/criadora4.png";
+    }
 
     efeito.style.position = "absolute";
     efeito.style.pointerEvents = "none";
