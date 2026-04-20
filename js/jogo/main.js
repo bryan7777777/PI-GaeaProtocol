@@ -7534,14 +7534,6 @@ function criarPlayerNaDiv3() {
       maoInicio = 6;
       limiteMao = 6;
       break;
-    case "cleber":
-      playerImg.src = "./../img/jogo/player/cleber.png";
-      playerMaxHP = 160, energyMax = 3, playerShieldInit = 5;
-      playerHP = 160, energy = 3, playerShield = playerShieldInit;
-      playerDeck = [...characterDecks.cleber];
-      maoInicio = 5;
-      limiteMao = 5;
-      break;
     case "malaquias":
       playerImg.src = "./../img/jogo/player/malaquias.png";
       playerMaxHP = 78, energyMax = 6, playerShieldInit = 0;
@@ -7549,38 +7541,6 @@ function criarPlayerNaDiv3() {
       playerDeck = [...characterDecks.malaquias];
       maoInicio = 3;
       limiteMao = 3;
-      break;
-    case "renata":
-      playerImg.src = "./../img/jogo/player/renata.png";
-      playerMaxHP = 50, energyMax = 3, playerShieldInit = 0;
-      playerHP = 50, energy = 3, playerShield = playerShieldInit;
-      playerDeck = [...characterDecks.renata];
-      maoInicio = 6;
-      limiteMao = 6;
-      break;
-    case "marcos":
-      playerImg.src = "./../img/jogo/player/marcos.png";
-      playerMaxHP = 120, energyMax = 3, playerShieldInit = 0;
-      playerHP = 120, energy = 3, playerShield = playerShieldInit;
-      playerDeck = [...characterDecks.marcos];
-      maoInicio = 5;
-      limiteMao = 5;
-      break;
-    case "cleide":
-      playerImg.src = "./../img/jogo/player/cleide.png";
-      playerMaxHP = 100, energyMax = 3, playerShieldInit = 0;
-      playerHP = 100, energy = 3, playerShield = playerShieldInit;
-      playerDeck = [...characterDecks.cleide];
-      maoInicio = 7;
-      limiteMao = 7;
-      break;
-    case "magna":
-      playerImg.src = "./../img/jogo/player/magna.png";
-      playerMaxHP = 128, energyMax = 4, playerShieldInit = 0;
-      playerHP = 128, energy = 4, playerShield = playerShieldInit;
-      playerDeck = [...characterDecks.magna];
-      maoInicio = 5;
-      limiteMao = 5;
       break;
     case "lucius":
       playerImg.src = "./../img/jogo/player/animado/lucius/statico/lucius1.png";
@@ -7590,32 +7550,9 @@ function criarPlayerNaDiv3() {
       maoInicio = 5;
       limiteMao = 5;
       break;
-    case "azul":
-      playerImg.src = "./../img/jogo/player/tank.png";
-      playerMaxHP = 130, energyMax = 3, playerShieldInit = 5;
-      playerHP = 130, energy = 3, playerShield = playerShieldInit;
-      playerDeck = [...characterDecks.azul];
-      break;
     case "amarelo":
       playerImg.src = "./../img/jogo/player/animado/bruno/statico/bruno1.png";
       playerDeck = [...characterDecks.amarelo];
-      break;
-    case "celso":
-      playerImg.src = "./../img/jogo/player/celso.png";
-      playerMaxHP = 75, playerHP = 75, energyMax = 4, energy = 4;
-      playerDeck = [...characterDecks.celso];
-      break;
-    case "felipe":
-      playerImg.src = "./../img/jogo/player/felipe.png";
-      playerMaxHP = 130, playerHP = 130, playerShieldInit = 5
-      playerDeck = [...characterDecks.felipe];
-      break;
-    case "maria":
-      playerImg.src = "./../img/jogo/player/maria.png";
-      playerMaxHP = 110, playerHP = 110;
-      maoInicio = 7;
-      limiteMao = 7;
-      playerDeck = [...characterDecks.maria];
       break;
     case "verde":
       playerImg.src = "./../img/jogo/player/jao.png";
@@ -7623,50 +7560,11 @@ function criarPlayerNaDiv3() {
       maoInicio = 6;
       limiteMao = 6;
       break;
-    case "magnolia":
-      playerImg.src = "./../img/jogo/player/magnolia.png";
-      playerDeck = [...characterDecks.magnolia];
-      playerMaxHP = 120, playerHP = 120, energyMax = 4, energy = 4;
-      maoInicio = 6;
-      limiteMao = 6;
-      break;
-    case "vermelho":
-      playerImg.src = "./../img/jogo/player/mechaBeserck.png";
-      playerMaxHP = 50, energyMax = 4, playerShieldInit = 0;
-      playerHP = 50, energy = 4, playerShield = playerShieldInit;
-      playerDeck = [...characterDecks.vermelho];
-      maoInicio = 6;
-      limiteMao = 6;
-      break;
-    case "roxo":
-      playerImg.src = "./../img/jogo/player/cabaDosDrones.png";
-      playerMaxHP = 60, energyMax = 5, playerShieldInit = 0;
-      playerHP = 60, energy = 5, playerShield = playerShieldInit;
-      maoInicio = 7;
-      limiteMao = 7;
-      playerDeck = [...characterDecks.roxo];
-      break;
     case "porto":
       playerImg.src = "./../img/jogo/player/animado/porto/statico/porto1.png";
       playerMaxHP = 110, energyMax = 3, playerShieldInit = 5;
       playerHP = 110, energy = 3, playerShield = playerShieldInit;
       playerDeck = [...characterDecks.porto];
-      maoInicio = 5;
-      limiteMao = 5;
-      break;
-    case "fergus":
-      playerImg.src = "./../img/jogo/player/fergus.png";
-      playerMaxHP = 145, energyMax = 3, playerShieldInit = 0;
-      playerHP = 145, energy = 3, playerShield = playerShieldInit;
-      playerDeck = [...characterDecks.fergus];
-      maoInicio = 5;
-      limiteMao = 5;
-      break;
-    case "mercuri":
-      playerImg.src = "./../img/jogo/player/mercuri.png";
-      playerMaxHP = 100, energyMax = 3, playerShieldInit = 0;
-      playerHP = 100, energy = 3, playerShield = playerShieldInit;
-      playerDeck = [...characterDecks.mercuri];
       maoInicio = 5;
       limiteMao = 5;
       break;
@@ -7724,14 +7622,6 @@ function criarPlayerNaDiv3() {
       atualizarDinheiro()
       playerDeck = [...characterDecks.ferrus];
       break;
-    case "tomoeh":
-      playerImg.src = "./../img/jogo/player/sombra.png";
-      playerMaxHP = 30, energyMax = 6, playerShieldInit = 0;
-      playerHP = 30, energy = 6, playerShield = playerShieldInit;
-      playerDeck = [...characterDecks.tomoeh];
-      maoInicio = 9;
-      limiteMao = 9;
-      break;
     case "x":
       playerImg.src = "./../img/jogo/player/x.png";
       playerMaxHP = 200, energyMax = 3, playerShieldInit = 2;
@@ -7757,26 +7647,6 @@ function criarPlayerNaDiv3() {
       maoInicio = 6;
       limiteMao = 6;
       break;
-    case "olaf":
-      playerImg.src = "./../img/jogo/player/olaf.png";
-      playerMaxHP = 150, energyMax = 3, playerShieldInit = 5;
-      playerHP = 150, energy = 3, playerShield = playerShieldInit;
-      playerDeck = [...characterDecks.olaf];
-      startNemoraSnow(false);
-      break;
-    case "olga":
-      playerImg.src = "./../img/jogo/player/olga.png";
-      startNemoraSnow(false);
-      playerDeck = [...characterDecks.olga];
-      break;
-    case "glacia":
-      playerImg.src = "./../img/jogo/player/glacia.png";
-      playerMaxHP = 80, playerHP = 80, energyMax = 4, energy = 4;
-      maoInicio = 8;
-      limiteMao = 8;
-      playerDeck = [...characterDecks.glacia];
-      startNemoraSnow(false);
-      break;
     case "criadora":
       playerImg.src = "./../img/jogo/player/animado/criadora/statico/criadora1.png";
       playerMaxHP = 85, playerHP = 85, energyMax = 5, energy = 5;
@@ -7792,9 +7662,7 @@ function criarPlayerNaDiv3() {
       playerMaxHP = 100, playerHP = 100, energyMax = 5, energy = 5;
       maoInicio = 6;
       limiteMao = 6;
-      dinheiro = 250;
       playerDeck = [...characterDecks.cleopatra];
-      atualizarDinheiro();
       break;
     default:
       playerImg.src = "./../img/jogo/extra/prototipo.png";

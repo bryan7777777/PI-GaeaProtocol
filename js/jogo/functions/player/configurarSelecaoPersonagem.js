@@ -14,20 +14,6 @@ function configurarSelecaoPersonagem() {
       img: "./../img/jogo/player/jao.png",
       lor: "\"Um cara é um humano mas também é um cara, e caras tem trabalho, caras que trabalham fazem muita coisa, e eu faço muita coisa, por isso eu sou o cara\". [...]<br><br> -Jão o cara"
     },
-    magnolia: {
-      nome: "🌿MAGNOLIA, LIDER DA GAEA🌿",
-      dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀🌿",
-      cor: "rgb(0, 188, 16)",
-      descricao: "Deck versátil com diversas cartas de terra, tem estatus bem maiores que muitos soldados da gaea, status balanceados e fortes.",
-      cardFoco: "Tem o foco principal em cartas de terra.",
-      hp: 120,
-      maxHp: 120,
-      energia: 4,
-      escudo: 0,
-      mao: 6,
-      img: "./../img/jogo/player/magnolia.png",
-      lor: "Léder do Gaea Protocol (G.P)[...]"
-    },
     wallace: {
       nome: "🌿WALLACE, O ESPECTRO DA FLORESTA🌿",
       dificuldade: "🌿NÍVEL DE DIFICULDADE: 💀💀🌿",
@@ -40,7 +26,15 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 5,
       img: "./../img/jogo/player/wallace.png",
-      lor: "Ex soldado da gaea, após achar um mecha de construção abandonado decidiu por conta propria ajudar, mesmo que aposentado e debilitado ele nunca deixou de acreditar em um futuro melhor [...] mas suas economias durante sua carreira podem ajudar com isso [...]"
+      lor: "Ex soldado da gaea, após achar um mecha de construção abandonado decidiu por conta propria ajudar, mesmo que aposentado e debilitado ele nunca deixou de acreditar em um futuro melhor [...] mas suas economias durante sua carreira podem ajudar com isso [...]",
+      extras: [
+  {
+    img: "./../img/jogo/itens/criptoGaea.png",
+    titulo: "Financiamento",
+    desc: "Inicia com ouro adicional: 250🪙",
+    cor: "lime"
+  }
+]
     },
     gaeaReen: {
       nome: "🌿ELIZE, A ESPERANÇA🌿",
@@ -54,7 +48,15 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 6,
       img: "./../img/jogo/player/gaeaReen.gif",
-      lor: "[...]"
+      lor: "[...]",
+      extras: [
+  {
+    img: "./../img/jogo/cards/cintilante/gaea.png",
+    titulo: "GÆA",
+    desc: "Inicia com a carta \"Gaea Protocol\"",
+    cor: "lime"
+  }
+]
     },
     amarelo: {
       nome: "⛏️BRUNO, O MINEIRO CHEFE⛏️",
@@ -70,48 +72,6 @@ function configurarSelecaoPersonagem() {
       img: "./../img/jogo/player/bruno.gif",
       lor: "Líder do GLEBA PROTOCOL, um ex-membro do GAEA, decidiu continuar cuidando do meio ambiente, então decidiu ir para o GLEBA e rapidamente se tornou o líder[...]"
     },
-    felipe: {
-      nome: "⛏️FELIPE, GEO MAPEADOR⛏️",
-      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀💀⛏️",
-      cor: "rgb(231, 201, 7)",
-      descricao: "Deck focado em cartas de terra, seu foco é usar a terra para se proteger, fraco no ataque, versátil e sabe como conseguir xenofluxo.",
-      cardFoco: "Focado em cartas de terra na parte defensiva, tem cartas de ataque basicas e fracas, inicia com Mineração.",
-      hp: 130,
-      maxHp: 130,
-      energia: 3,
-      escudo: 5,
-      mao: 5,
-      img: "./../img/jogo/player/felipe.png",
-      lor: "\"Em desenvolvimento\"[...]"
-    },
-    celso: {
-      nome: "⛏️CELSO, O ARQUEOLOGO⛏️",
-      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀💀⛏️",
-      cor: "rgb(231, 201, 7)",
-      descricao: "Deck focado em cartas de terra, seu foco é usar a terra para atacar, fraco na defesa, versátil e sabe como conseguir xenofluxo.",
-      cardFoco: "Focado em cartas de terra na parte de ataque, tem cartas de defesa basicas e fracas, inicia com Mineração.",
-      hp: 75,
-      maxHp: 75,
-      energia: 4,
-      escudo: 0,
-      mao: 5,
-      img: "./../img/jogo/player/celso.png",
-      lor: "\"Em desenvolvimento\"[...]"
-    },
-    maria: {
-      nome: "⛏️MARIA, ESPECIALISTA EM EXPLOSÕES⛏️",
-      dificuldade: "⛏️NÍVEL DE DIFICULDADE: 💀💀⛏️",
-      cor: "rgb(231, 201, 7)",
-      descricao: "Nem muito forte nem fraco, deck equilibrado com cartas de terra, ela sabe que reciclar agora gera um futuro melhor, focada em escalar reciclagem.",
-      cardFoco: "Focada em cartas de reciclagem e terra, inicia com Mineração.",
-      hp: 110,
-      maxHp: 110,
-      energia: 3,
-      escudo: 0,
-      mao: 7,
-      img: "./../img/jogo/player/maria.png",
-      lor: "\"Em desenvolvimento\"[...]"
-    },
     porto: {
       nome: "⚓CLARICE, A AUTORIDADE DO PORTO⚓",
       dificuldade: "⚓NÍVEL DE DIFICULDADE: 💀💀⚓",
@@ -125,48 +85,6 @@ function configurarSelecaoPersonagem() {
       mao: 5,
       img: "./../img/jogo/player/autoridadeDoPorto.gif",
       lor: "Assim como seu pai ela assumiu o manto de autoridade do porto, aprendeu bem com seu velho estratégias muito boas de ataque a distância, mas ela se apaixonou pelo mar assim como sua mãe. [...]"
-    },
-    azul: {
-      nome: "⚓REINOR, O ESCUDO DA HUMANIDADE⚓",
-      dificuldade: "⚓NÍVEL DE DIFICULDADE: 💀⚓",
-      cor: "rgba(69, 89, 222, 1)",
-      descricao: "Focado em defesa, extremamente defensivo, utiliza de seus escudos para se proteger e causar muito dano, deck extremamente defensivo e seu potencial de ataque é baseado no seu escudo.",
-      cardFoco: "Sua carta principal é Escudo Retaliante para causar dano, e possui em maioria no seu deck cartas de defesa.",
-      hp: 130,
-      maxHp: 130,
-      energia: 3,
-      escudo: 5,
-      mao: 5,
-      img: "./../img/jogo/player/tank.png",
-      lor: "Recrutado pelo ex lider, sempre sonhou em proteger os mais fracos e faz de seu escudo o abrigo daqueles que não podem se defender [...]"
-    },
-    fergus: {
-      nome: "⚓FERGUS, EX AUTORIDADE DO PORTO⚓",
-      dificuldade: "⚓NÍVEL DE DIFICULDADE: 💀💀⚓",
-      cor: "rgba(69, 89, 222, 1)",
-      descricao: "Deck principalmente focado em causar dano na linha de trás, possui um escalonamento fraco e defesa levemente fraca, seu potencial principal é retaliar a linha de trás",
-      cardFoco: "Carta principal é o Arpão, inicia com Alma Do Mar.1 e diversas cartas de ataque focadas em atacar o ultimo alvo",
-      hp: 145,
-      maxHp: 145,
-      energia: 3,
-      escudo: 0,
-      mao: 5,
-      img: "./../img/jogo/player/fergus.png",
-      lor: "Após conquistar todos os mares, extremamente respeitado ele foi, um deles ele renomeou em homenagem a sua amada filha e esposa, conquistou todos os mares com sua estrategia famosa de focar na linha de trás, aposentado ou não esse velho ainda está na ativa, enquanto ele não matar o KRAKEN e vingar sua esposa ele continuara na ativa! [...]"
-    },
-    mercuri: {
-      nome: "⚓MERCURI, GUARDA PORTO⚓",
-      dificuldade: "⚓NÍVEL DE DIFICULDADE: 💀⚓",
-      cor: "rgba(69, 89, 222, 1)",
-      descricao: "Estrategista em causar dano na linha de trás, sabe se defender bem e usa isso a seu favor, contem diversas cartas de combo com água o que o torna fraco contra terra.",
-      cardFoco: "Suas cartas principais são cartas de defesa, tem uma parte do deck com cartas de água focada principalmente em buff.",
-      hp: 100,
-      maxHp: 100,
-      energia: 3,
-      escudo: 0,
-      mao: 5,
-      img: "./../img/jogo/player/mercuri.png",
-      lor: "Grande estrategista aprendeu tudo o que sabe com a ex autoridade do porto, era o braço direito dele, após ver os lindos mares ficarem poluidos ele não pensou duas vezes em fazer algo para ajudar. [...]"
     },
     laranja: {
       nome: "🐦‍🔥GABRIEL, O INABALÁVEL🐦‍🔥",
@@ -182,20 +100,6 @@ function configurarSelecaoPersonagem() {
       img: "./../img/jogo/player/gabriel.gif",
       lor: "Salva animais com velocidade e precisão de situações inesperadas, combate à caça e ao tráfico animal."
     },
-    cleber: {
-      nome: "🐦‍🔥CLEBER, PROTETOR DA FAUNA🐦‍🔥",
-      dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀🐦‍🔥",
-      cor: "rgb(255, 128, 0)",
-      descricao: "Focado em defesa, ele fez questão que seu mecha parecesse com um leão, ele até hoje odeia arranhar ele, e sempre abre escudos para não danificar sua pintura, um arranhão para ele é pior que a morte, um leonino orgulhoso talvez? como será que ele lidará com quem joga sujo?",
-      cardFoco: "Focado na carta Brilhando",
-      hp: 160,
-      maxHp: 160,
-      energia: 3,
-      escudo: 5,
-      mao: 5,
-      img: "./../img/jogo/player/cleber.png",
-      lor: "\"Em desenvolvimento\"[...]"
-    },
     malaquias: {
       nome: "🐦‍🔥MALAQUIAS, ESPECIALISTA EM REPTEIS🐦‍🔥",
       dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀💀💀💀💀🐦‍🔥",
@@ -208,63 +112,15 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 3,
       img: "./../img/jogo/player/malaquias.png",
-      lor: "Um homem de sorte? Não, a sorte que precisa desse homem, além da sua compulção por comprar ele curte apostar, um belo exemplo do tipo de pessoa que tem tudo para perder suas economias... Bom era para ele perder, mas aparentemente ele tem menos chance de perder? Ele não é um \"apostador qualquer\" ele utiliza de muita estrategia para ganhar dinheiro, ele percebeu que para sustentar seu vicio em comprar ele precisaria ser rico, e um mero trabalho jamais daria o dinheiro que ele precisa, além de CLT, dono de multiplas empresas, investidor de risco e mestre do poker, ele é um apostador nato, ele fez tudo isso só para... comprar coisas inuteis que ele nunca vai usar?"
-    },
-    renata: {
-      nome: "🐦‍🔥RENATA, ESPECIALISTA EM MAMIFEROS🐦‍🔥",
-      dificuldade: "🐦‍🔥NÍVEL DE DIFICULDADE: 💀🐦‍🔥",
-      cor: "rgb(255, 128, 0)",
-      descricao: "Ágil exploradora, porém uma estrategista cautelosa, é capaz de gerar muita energia, como utilizar já é outra historia.",
-      cardFoco: "Deck focado em gerar energia, e na carta Chuva de laminas.",
-      hp: 50,
-      maxHp: 50,
-      energia: 3,
-      escudo: 0,
-      mao: 6,
-      img: "./../img/jogo/player/renata.png",
-      lor: "Especialista em fotografia, um de seus hobbys favoritos, consequentemente a tornando uma das melhores fotografas se não a melhor, foi recrutada para o FAUNA PROTOCOL quando estava tirado fotos de diversos animais, devido ao seu vasto conhecimento em mamiferos ela se tornou uma peça essencial para o grupo, principalmente quando se trata de preservar especies de mamiferos."
-    },
-    marcos: {
-      nome: "🌪️MARCOS, EX BOMBEIRO🌪️",
-      dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀💀🌪️",
-      cor: "rgba(255, 255, 255, 1)",
-      descricao: "Após muitos anos trabalhando com queimadas e como bombeiro, ele decidiu se alistar para a aeronautica e seguir carreira, quem diria que suas abilidades com manuseio de fogo e controle dele seriam bem uteis, seu deck é focado em causar dano a inimigos em chamas e marcar com água.",
-      cardFoco: "Focado em cartas de elementais, do tipo fogo e água.",
-      hp: 120,
-      maxHp: 120,
-      energia: 3,
-      escudo: 0,
-      mao: 5,
-      img: "./../img/jogo/player/marcos.png",
-      lor: "\"Em desenvolvimento\"[...]"
-    },
-    cleide: {
-      nome: "🌪️CLEIDE, A VETERANA🌪️",
-      dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀💀💀🌪️",
-      cor: "rgba(255, 255, 255, 1)",
-      descricao: "Já participou de muitas coisas na vida, mas ainda se lembra de tudo, sabe usar a estratégia ensinada pela Glacia, pela Autoridade do porto e pela Magnolia, muito respeitada por ambos os grupos, seu deck é uma mistura de todos os elementos, usufluir de sinergia é algo vital, mas como lidar com alguém imune a isso?",
-      cardFoco: "Deck focado em cartas elementais de todos os tipos",
-      hp: 100,
-      maxHp: 100,
-      energia: 3,
-      escudo: 0,
-      mao: 7,
-      img: "./../img/jogo/player/cleide.png",
-      lor: "\"Em desenvolvimento\"[...]"
-    },
-    magna: {
-      nome: "🌪️MAGNA, A IMPACIENTE🌪️",
-      dificuldade: "🌪️NÍVEL DE DIFICULDADE: 💀🌪️",
-      cor: "rgba(255, 255, 255, 1)",
-      descricao: "Ela não curte focar apenas um alvo quando ela pode focar todos, utiliza de muitos golpes em área, perfeita para lidar com grandes grupos porém fraca contra inimigos solo.",
-      cardFoco: "Deck focado em causar muito dano em área e marcação de Fogo",
-      hp: 128,
-      maxHp: 128,
-      energia: 4,
-      escudo: 0,
-      mao: 5,
-      img: "./../img/jogo/player/magna.png",
-      lor: "\"Em desenvolvimento\"[...]"
+      lor: "Um homem de sorte? Não, a sorte que precisa desse homem, além da sua compulção por comprar ele curte apostar, um belo exemplo do tipo de pessoa que tem tudo para perder suas economias... Bom era para ele perder, mas aparentemente ele tem menos chance de perder? Ele não é um \"apostador qualquer\" ele utiliza de muita estrategia para ganhar dinheiro, ele percebeu que para sustentar seu vicio em comprar ele precisaria ser rico, e um mero trabalho jamais daria o dinheiro que ele precisa, além de CLT, dono de multiplas empresas, investidor de risco e mestre do poker, ele é um apostador nato, ele fez tudo isso só para... comprar coisas inuteis que ele nunca vai usar?",
+      extras: [
+  {
+    img: "./../img/jogo/cards/cintilante/niquel.png",
+    titulo: "Pessoa De Sorte",
+    desc: "Seu deck é formado por cartas de spawn e sorte.",
+    cor: "yellow"
+  }
+]
     },
     lucius: {
       nome: "🌪️LUCIUS, IRMÃO DO JÃO🌪️",
@@ -278,7 +134,15 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 5,
       img: "./../img/jogo/player/lucius.gif",
-      lor: "Ninguém sabe onde ele vive, por onde anda, ele vai trabalhar quando ele quer, pelo tempo que ele quer e até hoje se perguntam como ele não foi demitido. Se não fosse pelos seus feitos lendários ele provavelmente não estaria aqui, mas ninguém sabe se são verdade, mas tambem não discordam, afinal nenhum deles tem provas, mas seu irmão Jão é o único quem sabe a verdade e sabe por onde ele anda."
+      lor: "Ninguém sabe onde ele vive, por onde anda, ele vai trabalhar quando ele quer, pelo tempo que ele quer e até hoje se perguntam como ele não foi demitido. Se não fosse pelos seus feitos lendários ele provavelmente não estaria aqui, mas ninguém sabe se são verdade, mas tambem não discordam, afinal nenhum deles tem provas, mas seu irmão Jão é o único quem sabe a verdade e sabe por onde ele anda.",
+      extras: [
+  {
+    img: "./../img/jogo/itens/albumMagico.png",
+    titulo: "Legendary",
+    desc: "Seu deck é formado por cartas Lendaria",
+    cor: "yellow"
+  }
+]
     },
     lilia: {
       nome: "🐼❄️LILIA, LÍDER DO GLACIAL PROTOCOL❄️🐼",
@@ -292,49 +156,21 @@ function configurarSelecaoPersonagem() {
       escudo: "0",
       mao: "4",
       img: "./../img/jogo/player/lilia.gif",
-      lor: "Líder do GLACIAL PROTOCOL (GLA.P), dona de muitas lendas, ao mesmo tempo que sabem muito sobre ela também sabem tão pouco, há muitos rumores e histórias lendárias dela, uma grande estrategista, dizem que ela já foi capaz de apenas com mais 3 soldados do GLA.P derrubar um imenso batalhão de mais de 100mil robos corrompidos e destruir uma das principais bases da IA, também falam que ela sozinha já bateu de frente contra multiplos exercitos para salvar seu povo, verdade ou não, esse mitos ecoam por todos do GLA.P e até outros protocols já ouviram dela, ela é muito respeitada por todos, até Magnolia a lider do G.P a respeita muito[...], \"Será que é verdade que ela não precisa de um mecha?\""
-    },
-    glacia: {
-      nome: "❄️GLACIA, VICE LÍDER DOS PESQUISADORES❄️",
-      dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀❄️",
-      cor: "rgb(128, 240, 255)",
-      descricao: "Focada em enfraquecer e marcar o inimigo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, ela tem uma margem de visão tão boa e estratégia que sua mão raramente fica vazia, você sabera como gastar sua energia?",
-      cardFoco: "Deck Focado em cartas de Gelo, extremamente forte sobe condições favoraveis",
-      hp: 80,
-      maxHp: 80,
-      energia: 4,
-      escudo: 0,
-      mao: 8,
-      img: "./../img/jogo/player/glacia.png",
-      lor: "Vice líder do GLACIAL PROTOCOL, foi escolida a dedo pela propria Lilia, seus grandes marcos a fizeram chegar neste posto, grande estrátegista com conhecimento militar e tecnologico avançado, ja trabalhou com mecanica de mechas e foi ela quem ajudou a criar a \"Frost Abisal\", a arma favorita de Lilia, ela témbem auciliou na montage do hexoesqueleto de Lilia, o que a tornou seu braço direito e sua melhor amiga, na qual foi apelidada de Glacia, ela gostou tanto que se auto nomeou assim"
-    },
-    olaf: {
-      nome: "❄️OLAF, O GUARDIÃO GELIDO❄️",
-      dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀💀❄️",
-      cor: "rgb(128, 240, 255)",
-      descricao: "Focado em usar o gelo como defesa, deck de gelo bem defensivo, porem fraco em atacar.",
-      cardFoco: "Deck Focado em cartas de defesa de Gelo, bem defensivo e fraco no ataque.",
-      hp: 150,
-      maxHp: 150,
-      energia: 3,
-      escudo: 5,
-      mao: 5,
-      img: "./../img/jogo/player/olaf.png",
-      lor: "Ele odeia os \"Friligeloz\", por isso ele resolveu entrar para o GLACIAL PROTOCOL. Após sua familia e seu povo serem exterminados por essas criaturas ele jurou vingança, apenas ele e Olga sobreviveram a esse dia, eles se aproximaram pela nescecidade, vasculharam o local inteiro e vagaram por dias em meio a uma nevasca mortal, com muita sorte foram encontratos por um grupo de patrulha da GLACIAL PROTOCOL, a lider do grupo Glacia os encontrou em estado critico e os levou até a base deles, após explicar quem são e o que os atacou, eles se uniram ao protocol, Olaf prometeu a Glacia que a protegeria com com sua vida já que ela os salvou, desde então ele se tornou o guarda pessoal da Glacia, não era bom nas pesquisas ja que o grupo era formado por cientistas e pesquisadores, mas quando precisavam da sua força, ele era o cara! Além de ser o encarregado de proteger o grupo."
-    },
-    olga: {
-      nome: "❄️OLGA, A PESQUISADORA PRODIGIO❄️",
-      dificuldade: "❄️NÍVEL DE DIFICULDADE: 💀💀💀❄️",
-      cor: "rgb(128, 240, 255)",
-      descricao: "Focada em causar muito dano de gelo, deck de gelo capaz de causar muito estrago se usado sob condições favoraveis, ela é bem fraca na defesa.",
-      cardFoco: "Deck Focado em cartas de ataque de Gelo, bem ofensivo e fraco na defesa.",
-      hp: 90,
-      maxHp: 90,
-      energia: 3,
-      escudo: 0,
-      mao: 6,
-      img: "./../img/jogo/player/olga.png",
-      lor: "Após um ataque dos \"Friligeloz\", o lugar onde ela morava foi completamente destruido, com muito medo ela foi obrigada a se esconder, com muita raiva e medo, ela queria apenas que aquele dia acabasse, até que após ver sua familia sem vida ela acabou desmaiando, e quando havia acordado ela estava sendo carregada por um rapaz no qual nem se quer ela conhecia, após muito tempo vagando eles foram se conhecendo, e juraram vingar todos que aquelas criaturas mataram, após uma nevasca mortal ambos se encontravam quase sem suprimentos, em meio a nevasca proximos da morte, até que um grupo da GLACIAL PROTOCOL apareceu e os resgatou. Esse dia ecoa em sua memoria até hoje, ela nunca foi capaz de esquecer o que havia escutado daquela criaturas \"Pragas eliminadas, processo de purificação do mundo em 65%\". Depois de muito tempo ela subiu de cargo graças as suas pesquisas inovadoras e acabou compartilhando essa frase para Glacia, na qual ambas chegaram a conclusão de que o erros dos \"outros\" seria problema delas agora!"
+      lor: "Líder do GLACIAL PROTOCOL (GLA.P), dona de muitas lendas, ao mesmo tempo que sabem muito sobre ela também sabem tão pouco, há muitos rumores e histórias lendárias dela, uma grande estrategista, dizem que ela já foi capaz de apenas com mais 3 soldados do GLA.P derrubar um imenso batalhão de mais de 100mil robos corrompidos e destruir uma das principais bases da IA, também falam que ela sozinha já bateu de frente contra multiplos exercitos para salvar seu povo, verdade ou não, esse mitos ecoam por todos do GLA.P e até outros protocols já ouviram dela, ela é muito respeitada por todos, até Magnolia a lider do G.P a respeita muito[...], \"Será que é verdade que ela não precisa de um mecha?\"",
+      extras: [
+  {
+    img: "./../img/jogo/passivas/fria.png",
+    titulo: "Fria Como A Neve",
+    desc: "Seu deck é formado por cartas de Gelo",
+    cor: "yellow"
+  },
+  {
+    img: "./../img/jogo/passivas/adaptacao.png",
+    titulo: "Adaptação",
+    desc: "Conforme Lilia avaça pelas fasses ela fica mais forte e ganha \"ALL STATS UP\" (❤️⬆️/🛡️⬆️/🤚⬆️/🔷⬆️)",
+    cor: "lime"
+  }
+]
     },
     x: {
       nome: "🔮A ESQUECIDA🔮",
@@ -348,21 +184,15 @@ function configurarSelecaoPersonagem() {
       escudo: 2,
       mao: 4,
       img: "./../img/jogo/player/x.png",
-      lor: "\"Em desenvolvimento?\""
-    },
-    tomoeh: {
-      nome: "🩸TOMOEH, A SOMBRA🩸",
-      dificuldade: "🩸NÍVEL DE DIFICULDADE: 💀💀💀🩸",
-      cor: "rgb(255, 147, 250)",
-      descricao: "Uma assassina ágil e mortal, porém frágil. Tente finalizar a batalha rapidamente antes que o pior aconteça...",
-      cardFoco: "Deck focado em causar muito dano, principalmente se sua vida estiver baixa.",
-      hp: 30,
-      maxHp: 30,
-      energia: 6,
-      escudo: 0,
-      mao: 9,
-      img: "./../img/jogo/player/sombra.png",
-      lor: "\"Em desenvolvimento\"[...]"
+      lor: "\"Em desenvolvimento?\"",
+      extras: [
+  {
+    img: "./../img/jogo/passivas/aminesia.png",
+    titulo: "Neblina",
+    desc: "Seu deck é gerado aleatoriamente a cada nova partida",
+    cor: "red"
+  }
+]
     },
     ferrus: {
       nome: "⚒️MAGNUS FERRUS, O PRODÍGIO⚒️",
@@ -376,21 +206,15 @@ function configurarSelecaoPersonagem() {
       escudo: 17,
       mao: 5,
       img: "./../img/jogo/player/sal2.gif",
-      lor: "\"Em desenvolvimento\"[...]"
-    },
-    roxo: {
-      nome: "⚙️VINICIUS, A INTERFACE CAÓTICA⚙️",
-      dificuldade: "⚙️NÍVEL DE DIFICULDADE: 💀💀⚙️",
-      cor: "rgb(141, 7, 231)",
-      descricao: "Um engenheiro estratégico, utiliza de seus drones para tudo, saber como usar sua energia é algo vital.",
-      cardFoco: "Deck de drones, muito forte contra multiplos inimigos porém fraco contra um alvo isolado.",
-      hp: 60,
-      maxHp: 60,
-      energia: 5,
-      escudo: 0,
-      mao: 7,
-      img: "./../img/jogo/player/cabaDosDrones.png",
-      lor: "\"Em desenvolvimento\"[...]"
+      lor: "\"Em desenvolvimento\"[...]",
+      extras: [
+  {
+    img: "./../img/jogo/passivas/ferrus11.png",
+    titulo: "Gigante De Ferro",
+    desc: "Magnus possui um mecha protetor.<br>Ele tem uma armadura inicia bem alta devido ao seu guardião.",
+    cor: "lime"
+  },
+]
     },
       criadora: {
       nome: "🎨Mayumi, A criadoura caida🎨",
