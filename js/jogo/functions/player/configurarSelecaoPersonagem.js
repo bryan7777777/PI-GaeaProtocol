@@ -285,7 +285,7 @@ function configurarSelecaoPersonagem() {
       ]
     },
     criadora: {
-      nome: "🎨Mayumi, A criadoura caida🎨",
+      nome: "🎨Mayumi, A criadora caida🎨",
       dificuldade: "🎨NÍVEL DE DIFICULDADE: ☠️☠️☠️☠️☠️🎨",
       cor: "rgb(141, 7, 231)",
       descricao: "Uma pintora talentosa e uma arqueira nata, deck focado em trocar de estilos e mistura de cores. Sua maior força também é sua maior fraqueza, Mayumi sofre de daltonismo, especificamente acromatopsia, um tipo extremamente raro, acredita-se que ela viveu no Período 600–1000 d.C. (período Asuka a Heian, Japão), não se sabe ao certo, será que isso lhe impede de ver o fim?",
