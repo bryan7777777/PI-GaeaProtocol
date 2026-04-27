@@ -35,15 +35,15 @@ document.getElementById("fimSelecao").addEventListener("click", () => {
   irParaDiv2();      // vai para o mapa ou próxima tela
   console.log("Selecionado:", personagemSelecionado);
   if (pagina === "tutorial.html") {
-    PULAR_TODO_TUTORIAL = false;
     iniciarTutorial([
-      "Esse é o mapa!",
+      "Boas-vindas, piloto, ao GÆA PROTOCOL!",
+      "Aqui você aprenderá o básico. Eu serei sua tutora, você pode me chamar de GAEA.",
+      "Este é o início da sua jornada para restaurar a natureza corrompida por uma IA.",
       "Escolha seus caminhos com cuidado — cada decisão importa. Os caminhos são interligados por linhas, e apenas aqueles conectados são acessíveis.",
-      "Existem diversos pontos: hospitais(💚), combates normais(💀), combates contra elites(☠️), lojas(🪙), eventos(❓) e combates contra o boss(🐺...).",
+      "Existem diversos pontos: hospitais, combates normais, combates contra elites, lojas, eventos e combates contra o boss.",
       "Os pontos de evento só ficam coloridos quando estão acessíveis e, após concluir o evento, não será possível voltar — apenas avançar!",
       "O jogo é um roguelike, ou seja, os mapas e inimigos sempre serão aleatórios. Cada jogatina será única!",
-      "Prepare-se para lutar contra inimigos poderosos e coletar relíquias e cartas muito fortes!",
-      "Clique no Ponto vermelho (💀) para iniciar sua jornada!"
+      "Prepare-se para lutar contra inimigos poderosos e coletar relíquias e cartas muito fortes!"
     ], "./../img/jogo/gaeazinha.jpg");
   }
 });
@@ -56,22 +56,6 @@ document.querySelectorAll('.inventario').forEach(el => {
 document.querySelectorAll('.pular').forEach(el => {
   el.addEventListener('click', irParaDiv2);
 });
-if (pagina === "tutorial.html") {
-  iniciarTutorial([
-            "Ola seja bem vindo(a) ao GAEA PROTOCOL!",
-      "Aqui você aprenderá o básico. Eu serei sua tutora, você pode me chamar de GAEA.",
-      "Este é o início da sua jornada para restaurar a natureza corrompida por uma IA.",
-      "Mas vamos pelo começo",
-      "Há sua esquerda tem um painel de seleção de personagens nele você pode escolher tanto o grupo quanto os personagens desse grupo.",
-      "Nesse momento você só tem o piloto Jão desbloqueado no tutorial. Mas relaxe no modo normal haverá varios outros pilotos incriveis com mecanicas distintas!",
-      "No meio da tela tem a interface do piloto, seu nome e titulo, nivel de dificuldade (quanto mais 💀, maior a dificuldade), status basicos ❤️/🛡️/🤚/🔷 do piloto. E abaixo disso a imagem do piloto e ao lado dela suas passivas.",
-      "Passivas com a borda na cor vermelha são negativas, na cor verde são beneficas e amarelo significa que pode ser bom ou ruim, depende de como você vai interpretar e usar elas!",
-      "Caso tenha problemas em distinguir as cores, você pode sempre passar o mouse por cima!",
-      "Passando o mouse por cima aparece a descrição da passiva, seja boa ou ruim, leia com atenção pois ela pode mudar totalmente a forma como você vai jogar!",
-      "Na direita tem o estilo de jogo do personagem, cartas nas quais seu deck é focado e um trecho da historia do personagem.",
-      "Sinta-se a vontade para olhar e ler mais sobre o seu piloto! Voltaremos a nós falar após você clicar em \"Confirmar Seleção De Personagem\""
-          ], "./../img/jogo/gaeazinha.jpg");
-}
 // INTERNAL FUNCTIONS LIBRARY
 // CONFS
 function floatText(target, text, color) {
@@ -676,9 +660,6 @@ function checkEnemies() {
             }
 
             matarAliado();
-            anubis = true;
-            ra = true;
-            sekhmet = true;
             trocarFramePlayer(personagemSelecionado, true);
 
             if (tipoFase == "elite" || tipoFase == "boss" || tipoFase == "inimigo2") {
@@ -1532,107 +1513,56 @@ function drawCards() {
         }
         //  ☀️☀️☀️☀️☀️ DESERT ☀️☀️☀️☀️☀️
         else if (card.name === "Proteção De Anubis") {
-          if (!cleopatraOP && anubis && !aliado) {
+          if (!cleopatraOP) {
             allDebuff(card.power, "sofrerDano");
             animarLiliaTransformacao();
             invocarAliado({
               id: 1,
-              hp: 55,
+              hp: 5,
               dano: 6,
               shield: 5,
               shieldInit: 5,
               img: "../img/jogo/player/animado/cleopatra/aliado/anubis1.png"
             });
-            anubis = false;
           }
         }
         //☀️
         else if (card.name === "Proteção De Sekhmet") {
-          if (!cleopatraOP && sekhmet && !aliado) {
+          if (!cleopatraOP) {
             allDebuff(card.power, "sofrerDano");
             animarLiliaTransformacao();
             invocarAliado({
               id: 2,
-              hp: 25,
-              dano: 20,
+              hp: 5,
+              dano: 12,
               shield: 0,
               shieldInit: 0,
               img: "../img/jogo/player/animado/cleopatra/aliado/sekhmet1.png"
             });
           }
-          sekhmet = false;
         }
         //☀️
         else if (card.name === "Proteção De Rá") {
-          if (!cleopatraOP && ra && !aliado) {
+          if (!cleopatraOP) {
             allDebuff(card.power, "sofrerDano");
             animarLiliaTransformacao();
             invocarAliado({
               id: 3,
-              hp: 60,
-              dano: 8,
+              hp: 25,
+              dano: 6,
               shield: 0,
               shieldInit: 0,
               img: "../img/jogo/player/animado/cleopatra/aliado/ra1.png"
             });
           }
-          ra = false;
+
         }
         //☀️
         else if (card.name === "Furia Dos Deuses") {
           //atk,hp,def,init
-          if (aliado.id === 1 && getCargas("lua") >= 2) {
-            consumirCargas("lua", 2);
+          if (aliado.id === 1) {
+            aplicarBuffsPower(2, 999, "lua");
             aliadosBuff(card.power, card.power + 5, card.power + 5, 0);
-          }
-        }
-        //☀️
-        else if (card.name === "Amor de Isis") {
-          if (
-            aliado &&
-            getCargas("lua") >= card.power &&
-            getCargas("sol") >= card.power
-          ) {
-            consumirCargas("lua", card.power);
-            consumirCargas("sol", card.power);
-            aliadosBuff(0, playerHP, 0, 0);
-          }
-        }
-        //☀️
-        else if (card.name === "Beleza Do Deserto") {
-          if (aliado) {
-            let sol = getCargas("sol");
-            let lua = getCargas("lua");
-
-            consumirCargas("sol", sol);
-            consumirCargas("lua", lua);
-
-            aliadosBuff(0, sol * 10, lua * 10, 0);
-          }
-        }
-        //☀️
-        else if (card.name === "Conselho de Hathor") {
-          if (aliado === 2 && getCargas("lua") >= 1 && getCargas("sol") >= 1) {
-            consumirCargas("sol", 1);
-            consumirCargas("lua", 1);
-            aliadosBuff(card.power, card.power, card.power, card.power);
-          }
-        }
-        //☀️
-        else if (card.name === "Construtora Da Guerra") {
-          if (aliado && getCargas("lua") >= card.power && getCargas("sol") >= card.power) {
-            consumirCargas("sol", card.power);
-            consumirCargas("lua", card.power);
-            causarDano(aliado.dano * 2, "area");
-          }
-        }
-        //☀️
-        else if (card.name === "Era") {
-          if (aliado && getCargas("lua") >= card.power && getCargas("sol") >= card.power) {
-            consumirCargas("sol", card.power);
-            consumirCargas("lua", card.power);
-            causarDano(aliado.dano * 10, "area");
-            matarAliado();
           }
         }
         //☀️
@@ -1647,8 +1577,8 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "\"Eu Protejerei Você\"") {
-          if (aliado.id === 1 && getCargas("lua") >= 2) {
-            consumirCargas("lua", 2);
+          if (aliado.id === 1) {
+            aplicarBuffsPower(2, 999, "lua");
             aliadosBuff(0, 0, card.power, 0);
           }
         }
@@ -1658,40 +1588,29 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "O Sol Sempre Hergue-se" || card.name === "Em Nome De Rá") {
-          if (aliado.id === 3 && getCargas("sol") >= card.power) {
-            consumirCargas("sol", card.power);
+          if (aliado.id === 3) {
             allBuffs(card.power, "energia");
-          }
-        }
-        //☀️
-        else if (card.name === "Deus Do Sol") {
-          let sol = getCargas("sol");
-          if (aliado.id === 3 && sol > 0) {
-            consumirCargas("sol", sol);
-            causarDano((aliado.hp * 0.1) * sol, "unico");
-          }
-        }
-        //☀️
-        else if (card.name === "Ira De Rá") {
-          if (aliado.id === 3 && getCargas("sol") >= card.power) {
-            consumirCargas("sol", card.power);
-            causarDano(aliado.hp * 0.5, "unico");
+            aplicarBuffsPower(card.power, 999, "sol");
           }
         }
         //☀️
         else if (card.name === "Justiça De Meet") {
-          if (aliado) {
-            causarDano(card.power*(getCargas("sol") + getCargas("lua")), "area");
+          if (
+            aliado &&
+            getCargas("lua") >= 1 &&
+            getCargas("sol") >= 1
+          ) {
+            consumirCargas("lua", 1);
+            consumirCargas("sol", 1);
             matarAliado();
-            consumirCargas("lua", getCargas("lua"));
-            consumirCargas("sol", getCargas("sol"));
+            causarDano(card.power, "area");
           }
         }
         //☀️
         else if (card.name === "Descanço") {
           if (aliado) {
-            aplicarBuffsPower(5, 999, "lua");
-            aplicarBuffsPower(5, 999, "sol");
+            aplicarBuffsPower(1, 999, "lua");
+            aplicarBuffsPower(1, 999, "sol");
             matarAliado();
           }
         }
@@ -1716,30 +1635,21 @@ function drawCards() {
           }
         }
         //☀️
+        else if (card.name === "Arma Divina") {
+          if (
+            cleopatraOP &&
+            getCargas("sol") >= 1
+          ) {
+            consumirCargas("sol", 1)
+            causarDano(card.power, "unico");
+          }
+        }
+        //☀️
         else if (card.name === "Penitencia Do Sol") {
           if (aliado) {
             aplicarBuffsPower(card.power, 999, "sol");
             causarDano(aliado.dano, "area");
           }
-        }
-        //☀️
-        else if (card.name === "Arma Divina") {
-          chuvaDeGolpes(1);
-          valor=card.power;
-          if (cleopatraOP) {
-            valor=card.power*2;
-          }
-          aplicarBuffsPower(2, 999, "sol");
-          causarDano(valor, "unico");
-        }
-        //☀️
-        else if (card.name === "Proteção Divina") {
-          valor=card.power;
-          if (cleopatraOP) {
-            valor=card.power*2;
-          }
-          aplicarBuffsPower(2, 999, "lua");
-          allBuffs(valor, "def");
         }
         //☀️
         else if (card.name === "Ascenção") {
@@ -1751,9 +1661,11 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "Gande Governate") {
-          if (cleopatraOP) {
-            aplicarBuffsPower(1, 999, "sol");
-            aplicarBuffsPower(1, 999, "lua");
+          if (
+            cleopatraOP &&
+            getCargas("sol") >= 3
+          ) {
+            consumirCargas("sol", 3);
             causarDano(card.power, "area");
             allBuffs(card.power, "def", true);
             allBuffs(card.power, "cura", true);
@@ -1761,23 +1673,10 @@ function drawCards() {
         }
         //☀️
         else if (card.name === "Arsenal Anti Herege") {
-          chuvaDeGolpes(10);
-          valor=card.power;
-          if (cleopatraOP) {
-            valor=card.power*2;
-          }
-          causarDano(valor, "area");
-          allBuffs(valor, "def");
-        }
-        //☀️
-        else if (card.name === "Ira De Cleopatra") {
-          if (cleopatraOP) {
-            aplicarBuffsPower(2, 999, "sol");
-            aplicarBuffsPower(2, 999, "lua");
-            causarDano(card.power * (getCargas("lua") + getCargas("sol")), "area");
+          if (cleopatraOP && getCargas("sol") >= 2) {
+            consumirCargas("sol", 2);
+            causarDano(card.power, "area");
             allBuffs(card.power, "def");
-            consumirCargas("lua", getCargas("lua"));
-            consumirCargas("sol", getCargas("sol"));
           }
         }
         //☀️
@@ -1785,26 +1684,6 @@ function drawCards() {
           if (cleopatraOP) {
             aplicarBuffsPower(card.power, 999, "lua");
             aplicarBuffsPower(card.power, 999, "sol");
-          }
-        }
-        //☀️
-        else if (card.name === "Os Portões Se Abrem") {
-          if (aliado) {
-            // sacrifica aliado
-            chuvaDeGolpes(30);
-            matarAliado();
-
-            let sol = getCargas("sol");
-            let lua = getCargas("lua");
-
-            let totalCargas = sol + lua;
-
-            // consome tudo
-            consumirCargas("sol", sol);
-            consumirCargas("lua", lua);
-
-            // dano absurdo em área
-            causarDano(card.power * totalCargas, "area");
           }
         }
         //  🎨🎨🎨🎨🎨 CRIA 🎨🎨🎨🎨🎨
@@ -1872,7 +1751,6 @@ function drawCards() {
             consumirCargas("azul", 1);
             consumirCargas("vermelho", 1);
 
-            chuvaDeGolpes(1);
             causarDano(card.power, "unico");
             allBuffs(card.power, "def", true);
             allBuffs(card.power, "cura", true);
@@ -1895,8 +1773,8 @@ function drawCards() {
               consumirCargas("roxa", 1);
               consumirCargas("laranja", 1);
               consumirCargas("verde", 1);
-              chuvaDeGolpes();
               causarDano(card.power, "area");
+              animarLiliaTransformacao(true, "area");
               allBuffs(card.power, "def");
             }
           }
@@ -1918,7 +1796,6 @@ function drawCards() {
               consumirCargas("roxa", 2);
               consumirCargas("laranja", 2);
               consumirCargas("verde", 2);
-              chuvaDeGolpes(20, true);
               causarDano(playerHP + card.power, "unico");
               animarLiliaTransformacao(true, "area");
             }
@@ -1981,7 +1858,7 @@ function drawCards() {
           if (criadoraModo) {
             if (consumirCargas("roxa", 3)) {
               causarDano(card.power, "unico");
-              chuvaDeGolpes(5,true);
+              animarLiliaTransformacao(true, "unico");
             }
           }
         }
@@ -1991,7 +1868,6 @@ function drawCards() {
             if (consumirCargas("amarelo", 1)) {
               causarDano(card.power, "area");
               allBuffs(card.power, "def");
-              chuvaDeGolpes(3);
             }
           }
         }
@@ -2001,7 +1877,6 @@ function drawCards() {
             if (consumirCargas("verde", 1)) {
               causarDano(card.power, "unico");
               allBuffs(card.power, "cura");
-              chuvaDeGolpes(1);
             }
           }
         }
@@ -2010,7 +1885,6 @@ function drawCards() {
           if (criadoraModo) {
             if (consumirCargas("roxa", 1)) {
               causarDano(card.power, "area");
-              chuvaDeGolpes(3);
             }
           }
         }
@@ -2061,8 +1935,8 @@ function drawCards() {
               consumirCargas("roxa", 1);
               consumirCargas("laranja", 1);
               consumirCargas("verde", 1);
-              chuvaDeGolpes(20);
               causarDano(card.power, "area");
+              animarLiliaTransformacao(true, "area");
             }
           }
 
@@ -2077,7 +1951,7 @@ function drawCards() {
               consumirCargas("vermelho", 5);
               consumirCargas("roxa", 1);
               causarDano(card.power, "area");
-              chuvaDeGolpes(20);
+              animarLiliaTransformacao(true, "area");
             }
           }
         }
@@ -2089,7 +1963,6 @@ function drawCards() {
           criadoraModo = false;
           if (consumirCargas("laranja", 1)) {
             causarDano(card.power, "ultimo");
-            chuvaDeGolpes(1);
           }
         }
         //🎨
@@ -2097,7 +1970,6 @@ function drawCards() {
           if (!criadoraModo) {
             if (consumirCargas("vermelho", 1)) {
               causarDano(card.power, "unico");
-              chuvaDeGolpes(1);
             }
           }
         }
@@ -2106,7 +1978,6 @@ function drawCards() {
           if (!criadoraModo) {
             if (consumirCargas("azul", 1)) {
               causarDano(card.power, "area");
-              chuvaDeGolpes(5);
             }
           }
         }
@@ -2115,7 +1986,6 @@ function drawCards() {
           if (!criadoraModo) {
             if (consumirCargas("laranja", 1)) {
               causarDano(card.power, "area");
-              chuvaDeGolpes(3);
             }
           }
         }
@@ -2136,7 +2006,6 @@ function drawCards() {
             consumirCargas("roxa", 1);
             consumirCargas("laranja", 1);
 
-            chuvaDeGolpes(5);
             causarDano(card.power, "area");
           }
         }
@@ -3446,33 +3315,14 @@ function criarBuffVisual(tipo, buff) {
     document.body.appendChild(bar);
   }
 
-  // posição fixa no topo central
-  if (personagemSelecionado === "criadora") {
-    bar.style.position = "fixed";
-    bar.style.top = "62.5%";
-    bar.style.left = "28%";
-    bar.style.transform = "translateX(-50%)";
-    bar.style.display = "flex";
-    bar.style.gap = "8px";
-    bar.style.zIndex = "0";
-  } else if (personagemSelecionado === "cleopatra") {
-    bar.style.position = "fixed";
-    bar.style.top = "62.5%";
-    bar.style.left = "34%";
-    bar.style.transform = "translateX(-50%)";
-    bar.style.display = "flex";
-    bar.style.gap = "8px";
-    bar.style.zIndex = "0";
-  } else {
-    bar.style.position = "fixed";
-    bar.style.top = "10%";
-    bar.style.left = "50%";
-    bar.style.transform = "translateX(-50%)";
-    bar.style.display = "flex";
-    bar.style.gap = "8px";
-    bar.style.zIndex = "0";
-  }
-
+  // 🔥 posição fixa no topo central
+  bar.style.position = "fixed";
+  bar.style.top = "10%";
+  bar.style.left = "50%";
+  bar.style.transform = "translateX(-50%)";
+  bar.style.display = "flex";
+  bar.style.gap = "8px";
+  bar.style.zIndex = "0";
 
   const visual = BUFF_VISUAL[tipo];
 
@@ -3702,28 +3552,6 @@ function mapaCanvas(dv, fases, caminhos, corMapa1, corMapa2, iconBoss) {
 
   const shadow = container.attachShadow({ mode: "open" });
 
-  let extraCSS = "";
-
-if (personagemSelecionado === "cleopatra") {
-  extraCSS = `
-  .loot, .inimigo, .loja, .quiz, .quiz2, .ferreiro, .hospital2, .inimigo2, .elite, .hospital, .boss { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
-  `;
-} else {
-  extraCSS = `
-    .inimigo  { background: #d33; border: 3px groove rgba(241, 75, 75, 1); }
-  .loot     { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
-  .loja     { background: #0d8; border: 3px groove rgba(102, 255, 97, 1);}
-  .quiz     { background: rgb(255, 138, 210); border: 3px groove rgb(255, 138, 210);}
-  .quiz2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
-  .ferreiro { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
-  .hospital2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
-  .inimigo2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
-  .elite    { background: #a3f; border: 3px groove rgba(173, 98, 226, 1);}
-  .hospital { background: #0d8; border: 3px groove rgba(102, 255, 97, 1);}
-  .boss     { background: #000; border: 3px groove rgba(241, 75, 75, 1); }
-  `;
-}
-
   // Define CSS isolado
   const style = `
   // body {
@@ -3782,7 +3610,15 @@ if (personagemSelecionado === "cleopatra") {
     border:solid 2px rgba(141, 235, 104, 1);
   }
   .nodo:hover { transform: scale(1.1); }
-  ${extraCSS}
+  .inimigo  { background: #d33; border: 3px groove rgba(241, 75, 75, 1); }
+  .loot     { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  .loja     { background: #0d8; border: 3px groove rgba(102, 255, 97, 1);}
+  .ferreiro { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  .hospital2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  .inimigo2 { background: #fd0; border: 3px groove rgba(255, 234, 97, 1);}
+  .elite    { background: #a3f; border: 3px groove rgba(173, 98, 226, 1);}
+  .hospital { background: #0d8; border: 3px groove rgba(102, 255, 97, 1);}
+  .boss     { background: #000; border: 3px groove rgba(241, 75, 75, 1); }
   .invalido { opacity: 0; pointer-events: none; }
   .nodo.inacessivel {
     background-color: #444 !important;
@@ -3931,9 +3767,7 @@ if (personagemSelecionado === "cleopatra") {
         { tipo: 'hospital2', peso: 7 },
         { tipo: 'inimigo2', peso: 8 },
         { tipo: 'loja', peso: 6 },
-        { tipo: 'ferreiro', peso: 7 },
-        { tipo: 'quiz', peso: 16 },
-        { tipo: 'quiz2', peso: 8 }
+        { tipo: 'ferreiro', peso: 7 }
       ];
 
       // Sorteio ponderado de tipo
@@ -3956,7 +3790,7 @@ if (personagemSelecionado === "cleopatra") {
 
           if (pagina === "tutorial.html") {
             if (i === numFases - 3) {
-              tipo = 'quiz2';
+              tipo = 'hospital2';
             } else if (i === numFases - 4) {
               tipo = 'ferreiro';
             } else if (i === numFases - 5) {
@@ -4063,33 +3897,17 @@ if (personagemSelecionado === "cleopatra") {
           const el = document.createElement('div');
           el.classList.add('nodo', nodo.tipo);
           el.dataset.pos = `${i}-${j}`;
-          if (personagemSelecionado === "cleopatra") {
-            el.textContent = {
-            boss: '❓',
-            inimigo: '❓',
-            elite: '❓',
-            loja: '❓',
-            quiz: '❓',
-            hospital: '❓',
-            ferreiro: '❓',
-            hospital2: '❓',
-            inimigo2: '❓',
-            quiz2: '❓',
-          }[nodo.tipo] || '';
-          } else {
-            el.textContent = {
+          el.textContent = {
             boss: iconBoss,
             inimigo: '💀',
-            elite: '☠️',
             loja: '🪙',
-            quiz: '📚',
-            hospital: '💚',
+            elite: '☠️',
             ferreiro: '❓',
             hospital2: '❓',
             inimigo2: '❓',
-            quiz2: '❓',
+            hospital: '💚',
           }[nodo.tipo] || '';
-          }
+
           el.addEventListener('click', () => clicarNodo(i, j));
           colDiv.appendChild(el);
           nodo.element = el;
@@ -4217,15 +4035,9 @@ if (personagemSelecionado === "cleopatra") {
             "Após vencer uma luta, você receberá ouro. Quanto mais avançar, mais ouro ganhará. Elites e bosses fornecem quantias ainda maiores.",
             "O ouro que você ganha pode ser gasto aqui para comprar cartas ou pagar para descartar.",
             "O custo das cartas e upgrades vai aumentando conforme você progride, então não pare de coletar ouro!",
-            "IMPORTANTE: Sempre haverá 1 carta de cada tipo, comum/ raro/ fogo/ água/ terra/ gelo/ epico/ lendario",
-            "As únicas que dependem da sorte são as cintilantes, mas as demais que citei sempre vão estar na loja, permitindo e garantindo uma boa variedade, assim você pode montar o deck que quiser!",
-            "No momento, você não tem ouro suficiente para comprar nada. Deixe-me te ajudar!",
-            "Aqui! Pegue essas 50🪙, sinta-se a vontade para olhar a loja e experimente comprar algo!",
-            "Você pode descartar alguma carta caso queira e lembre-se, você tem que ter no minimo 10 cartas no deck! O comerciante não vai permitir que você descarte mais caso tenha só 10 cartas.",
-            "Ou você pode atualizar a loja! Sempre que atualizar ou descartar o proximo custo será x2, use suas moedas com sabedoria!"
+            "No momento, você não tem ouro suficiente para comprar nada. Então, vamos voltar para o mapa!",
+            "Mas sinta-se a vontade para olhar a loja!"
           ], "./../img/jogo/gaeazinha.jpg");
-          dinheiro += 50;
-          atualizarDinheiro();
         } else if (tipo == "elite") {
           iniciarTutorial([
             "Uma batalha de elite!",
@@ -4240,16 +4052,12 @@ if (personagemSelecionado === "cleopatra") {
             "Assim como a loja o ferreiro e os hospitais também vão aumentar seus preços com forme você progride!",
             "Mas, caso não queira ou não tenha dinheiro, pode simplesmente clicar em voltar para o mapa!"
           ], "./../img/jogo/gaeazinha.jpg");
-        } else if (tipo == "quiz2") {
+        } else if (tipo == "hospital2") {
           iniciarTutorial([
             "Eventos acontecem de forma aleatória. Em um momento você está em um ferreiro e, no outro, pode acabar em uma emboscada. Portanto, não fique confiante demais!",
-            "Mas, neste caso, você deu sorte e encontrou um evento de QUIZ!",
-            "Nele você tem duas opções, ou aceita o desafio proposto por um aliado da IA ou recusa",
-            "Ele sempre dirá os termos do desafio, mas em resumo acerte e ganhe um item de sua escolha ou erre e perca vida!",
-            "O assunto tem a ver com o meio ambiente, fauna, poluição e diversos assuntos em relação a natureza!",
-            "Não tenha medo, tente! Se não acertar você pode tentar de novo quando achar um outro evento!",
-            "Aproposito, caso você \"erre\" e esteja com pouca vida tipo 10, você não morre, você ficará com 1 de vida!",
-            "Lembre-se, é errando que se aprende, não desista, eu acredito em você!",
+            "Mas, neste caso, você deu sorte e encontrou um hospital!",
+            "Nele você pode comprar cartas de BUFF, se curar e aumentar sua vida maxima",
+            "Quando você se curar ou aumentar sua vida você volta para o mapa, então certifique-se de ter feito tudo o que tinha para fazer antes de se curar!"
           ], "./../img/jogo/gaeazinha.jpg");
         } else if (tipo == "hospital") {
           iniciarTutorial([
@@ -4280,31 +4088,31 @@ if (personagemSelecionado === "cleopatra") {
           drawCards();
           updateHUD();
           tipoFase = tipo;
-          baseBoss = 20;
-          baseElite = 10;
-          baseComum = 5;
+          baseBoss = 25;
+          baseElite = 12;
+          baseComum = 6;
           baseMult = 1;
 
           switch (mapaBatalha) {
             case mapaBatalha > 7:
-              baseBoss = 25;
-              baseElite = 15;
-              baseComum = 10;
+              baseBoss = 35;
+              baseElite = 20;
+              baseComum = 12;
               break;
             case mapaBatalha > 14:
-              baseBoss = 30;
-              baseElite = 20;
-              baseComum = 15;
+              baseBoss = 45;
+              baseElite = 28;
+              baseComum = 18;
               break;
             case mapaBatalha > 21:
-              baseBoss = 32;
-              baseElite = 22;
-              baseComum = 17;
+              baseBoss = 55;
+              baseElite = 35;
+              baseComum = 24;
               break;
             case mapaBatalha > 28:
-              baseBoss = 100;
-              baseElite = 30;
-              baseComum = 20;
+              baseBoss = 120;
+              baseElite = 45;
+              baseComum = 30;
               break;
 
             default:
@@ -4334,13 +4142,6 @@ if (personagemSelecionado === "cleopatra") {
         case 'loja':
           mostrarTela(4); // Tela da loja (div4)
           abrirLoja()
-          tipoFase = tipo;
-          break;
-
-        case 'quiz':
-        case 'quiz2':
-          mostrarTela(11); // Tela da loja (div4)
-          abrirQuiz();
           tipoFase = tipo;
           break;
 
@@ -4514,64 +4315,44 @@ async function executarTutorialCompleto() {
     "Há um menu no canto superior direito onde você pode ver mais detalhes.",
     "Você também possui seus próprios status: Vida e Armadura.",
     "Use suas cartas para derrotar os inimigos.",
-    "Existem 10 tipos de cartas!"
+    "Existem 10 tipos de cartas, mas falarei apenas de 5!"
   ], "./../img/jogo/gaeazinha.jpg");
 
   await iniciarTutorial(
-    ["VERMELHAS / ATAQUE (⚔️) — focadas em causar dano (Cria lixo após o uso)."],
+    ["VERMELHAS / ATAQUE (⚔️) — focadas em causar dano."],
     "./../img/jogo/gaeazinha.jpg",
     "./../img/jogo/cards/vermelho.png"
   );
 
   await iniciarTutorial(
-    ["AZUIS / DEFESA (🛡️) — focadas em fornecer escudo (Cria lixo após o uso)."],
+    ["AZUIS / DEFESA (🛡️) — focadas em fornecer escudo."],
     "./../img/jogo/gaeazinha.jpg",
     "./../img/jogo/cards/azul.png"
   );
 
   await iniciarTutorial(
-    ["VERDES / BUFFS (💚) — focadas em buffs e cura (Cria lixo após o uso)."],
+    ["VERDES / BUFFS (💚) — focadas em buffs e cura."],
     "./../img/jogo/gaeazinha.jpg",
     "./../img/jogo/cards/verd.png"
   );
 
   await iniciarTutorial(
-    ["AMARELAS / RECICLAGEM (♻️) — focadas em reciclar as cinzas (Não cria lixo após o uso)."],
+    ["AMARELAS / RECICLAGEM (♻️) — focadas em reciclar as cinzas."],
     "./../img/jogo/gaeazinha.jpg",
     "./../img/jogo/cards/amarelo1.png"
   );
 
   await iniciarTutorial(
-    ["CINZAS / LIXO (🗑️) — todas são consideradas LIXO (Não cria lixo após o uso, mas algumas especificas podem criar)."],
+    ["CINZAS / LIXO (🗑️) — todas são consideradas LIXO."],
     "./../img/jogo/gaeazinha.jpg",
     "./../img/jogo/cards/cinza.png"
   );
 
-  await iniciarTutorial(
-    ["CINTILANTE (✨) — cartas extremamente raras e muito poderosas (Não cria lixo após o uso)."],
-    "./../img/jogo/gaeazinha.jpg",
-    "./../img/jogo/cards/cintilante1.png"
-  );
-
-  await iniciarTutorial(
-    ["ELEMENTAIS ([❄️] [💧→⛰️→🔥]) — focadas em marcar inimigos e se beneficiar dessas marcações, possui um sistema de combo entre os elementos e um sistema de fraqueza entre os elementos (Não cria lixo após o uso)."],
-    "./../img/jogo/gaeazinha.jpg",
-    "./../img/jogo/cards/modeloElemental.png"
-  );
-
-  await iniciarTutorial(
-    ["ATENÇÃO: Todas as cartas possuem seus devidos custos de energia (🔷) na parte superior direita. Esse cristal (🔷) imenso ao lado do botão \"Pular Turno\" representa a quantidade de energia que você possiu, Ao usar uma carta você gasta dessa energia. Sua energia recarrega após passar seu turno. É possivel aumentar tanto a energia inicial quanto temporariamente."],
-    "./../img/jogo/gaeazinha.jpg",
-    "./../img/jogo/cards/modeloBasico.png"
-  );
-
   await iniciarTutorial([
+    "O restante cabe a você descobrir!",
     "Cartas geram lixo sempre que usadas.",
-    "E o lixo sempre é gerado primeiro, tenha em mente isso, pois você pode acabar em uma enrrascada.",
-    "Já que o lixo gera primeiro, cartas de spawn/compra sempre vem o lixo primeiro e as demais cartas excedentes são descartadas, então se sua mão estiver cheia o lixo cobrirá o lugar de uma carta ultil! Cuidado!",
     "Você pode ter no máximo 10 cartas na mão.",
     "Reciclar cartas aumenta seu contador.",
-    "Vou deixar você lidar com esses inimigos, assim você pode olhar e entender melhor as cartas.",
     "Boa sorte, piloto!"
   ], "./../img/jogo/gaeazinha.jpg");
 
@@ -6738,7 +6519,7 @@ function abrirLoja() {
           dinheiro -= custoPago;
           atualizarDinheiro();
 
-          custoRemoverAtual *= 2; // 🔁 dobra custo
+          custoRemoverAtual = Math.round(custoRemoverAtual * 1.5); // 🔁 aumenta 50%
           btnRemoverCarta.textContent = `Remover carta (${custoRemoverAtual}🪙)`;
 
           popup.remove();
@@ -6770,7 +6551,7 @@ function abrirLoja() {
     dinheiro -= custoAtualizarAtual;
     atualizarDinheiro();
 
-    custoAtualizarAtual *= 2; // 🔁 dobra
+    custoAtualizarAtual = Math.round(custoAtualizarAtual * 1.5); // 🔁 aumenta 50%
     abrirLoja(); // 🔄 aqui PODE atualizar a loja
   };
 
@@ -6834,45 +6615,45 @@ function abrirLoja() {
 
     const rar = carta.rarity?.toLowerCase();
     const tipo = carta.type?.toLowerCase();
-    if (rar === "comum") preco = 5;
-    else if (rar === "rare") preco = 7;
-    else if (rar === "epic") preco = 12;
-    else if (rar === "legend") preco = 15;
-    else if (rar === "cintilante") preco = 30;
-    else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 8;
+    if (rar === "comum") preco = 4;
+    else if (rar === "rare") preco = 6;
+    else if (rar === "epic") preco = 10;
+    else if (rar === "legend") preco = 12;
+    else if (rar === "cintilante") preco = 25;
+    else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 7;
 
     switch (mapaBatalha) {
       case mapaBatalha > 7:
-        if (rar === "comum") preco = 10;
-        else if (rar === "rare") preco = 14;
-        else if (rar === "epic") preco = 22;
-        else if (rar === "legend") preco = 30;
-        else if (rar === "cintilante") preco = 50;
-        else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 16;
+        if (rar === "comum") preco = 8;
+        else if (rar === "rare") preco = 11;
+        else if (rar === "epic") preco = 18;
+        else if (rar === "legend") preco = 25;
+        else if (rar === "cintilante") preco = 42;
+        else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 13;
         break;
       case mapaBatalha > 14:
-        if (rar === "comum") preco = 12;
-        else if (rar === "rare") preco = 16;
-        else if (rar === "epic") preco = 24;
-        else if (rar === "legend") preco = 32;
-        else if (rar === "cintilante") preco = 52;
-        else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 18;
+        if (rar === "comum") preco = 10;
+        else if (rar === "rare") preco = 13;
+        else if (rar === "epic") preco = 20;
+        else if (rar === "legend") preco = 27;
+        else if (rar === "cintilante") preco = 44;
+        else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 15;
         break;
       case mapaBatalha > 21:
-        if (rar === "comum") preco = 14;
-        else if (rar === "rare") preco = 18;
-        else if (rar === "epic") preco = 26;
-        else if (rar === "legend") preco = 34;
-        else if (rar === "cintilante") preco = 54;
-        else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 20;
+        if (rar === "comum") preco = 12;
+        else if (rar === "rare") preco = 15;
+        else if (rar === "epic") preco = 22;
+        else if (rar === "legend") preco = 30;
+        else if (rar === "cintilante") preco = 46;
+        else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 17;
         break;
       case mapaBatalha > 28:
-        if (rar === "comum") preco = 16;
-        else if (rar === "rare") preco = 20;
-        else if (rar === "epic") preco = 28;
-        else if (rar === "legend") preco = 36;
-        else if (rar === "cintilante") preco = 56;
-        else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 22;
+        if (rar === "comum") preco = 12;
+        else if (rar === "rare") preco = 15;
+        else if (rar === "epic") preco = 22;
+        else if (rar === "legend") preco = 30;
+        else if (rar === "cintilante") preco = 46;
+        else if (["fire", "agua", "terra", "frost"].includes(tipo)) preco = 17;
         break;
 
       default:
@@ -6985,7 +6766,7 @@ function abrirFerreiro() {
     dinheiro -= custoAtualizarFerreiro;
     atualizarDinheiro();
 
-    custoAtualizarFerreiro *= 2;
+    custoAtualizarFerreiro = Math.round(custoAtualizarFerreiro * 1.5);
     abrirFerreiro(); // 🔄 recarrega SEM sair
   });
 
@@ -7343,127 +7124,6 @@ function aumentaVida() {
   playerHP += 10;
   updateHUD();
 };
-function abrirQuiz() {
-  const quizContainer = document.getElementById("quiz-direita");
-  quizContainer.style.display = "flex";
-  quizContainer.style.flexDirection = "column";
-
-  function embaralhar(array) {
-    return array.sort(() => Math.random() - 0.5);
-  }
-
-  function mostrarInicio() {
-    quizContainer.innerHTML = `
-      <pre>
-========================================
-        DESAFIO DA INTELIGÊNCIA ARTIFICIAL
-========================================
-
-Olá, humano.
-
-Eu sou uma Inteligência Artificial avançada, e hoje decidi te propor um desafio.
-
-Você acredita ser capaz de me vencer em um quiz de conhecimento?
-
-Regras do desafio:
-1. Será apenas uma pergunta.
-2. Cada pergunta terá apenas uma resposta correta.
-3. Cada pergunta terá 4 alternativas.
-4. Responder certo resulta em uma recompensa generosa (ITEM).
-5. Responder errado resulta em uma penalidade (-30HP).
-</pre>
-
-      <button class="quiz-btn" id="btn-sim">Sim</button>
-      <button class="quiz-btn" id="btn-nao">Não</button>
-    `;
-
-    document.getElementById("btn-sim").addEventListener("click", iniciarQuiz);
-    document.getElementById("btn-nao").addEventListener("click", recusarQuiz);
-  }
-
-  function iniciarQuiz() {
-    const perguntaAleatoria = perguntas[Math.floor(Math.random() * perguntas.length)];
-    const respostas = embaralhar([...perguntaAleatoria.respostas]);
-
-    quizContainer.innerHTML = `
-      <div class="quiz-pergunta">
-        <img class="quiz-img" src="${perguntaAleatoria.img}">
-        <p class="quiz-texto"></p>
-      </div>
-
-      <div class="quiz-respostas"></div>
-    `;
-
-    const perguntaTexto = quizContainer.querySelector(".quiz-texto");
-    const respostasDiv = quizContainer.querySelector(".quiz-respostas");
-
-    perguntaTexto.textContent = perguntaAleatoria.pergunta;
-
-    respostas.forEach(resposta => {
-      const btn = document.createElement("button");
-      btn.classList.add("quiz-btn");
-      btn.textContent = resposta;
-
-      btn.addEventListener("click", () => {
-        if (resposta === perguntaAleatoria.correta) {
-          acertou();
-        } else {
-          mostrarPopupErro(
-            perguntaAleatoria.pergunta,
-            perguntaAleatoria.correta,
-            "-30 HP"
-          );
-        }
-      });
-
-      respostasDiv.appendChild(btn);
-    });
-  }
-
-  function acertou() {
-    gerarItens(true);
-  }
-
-  function recusarQuiz() {
-    quizContainer.innerHTML = `<p>Quiz cancelado</p>`;
-    irParaDiv2();
-  }
-
-  mostrarInicio();
-}
-function mostrarPopupErro(pergunta, respostaCorreta, penalidade = "-30 HP") {
-  const overlay = document.createElement("div");
-  overlay.classList.add("quiz-overlay");
-
-  const popup = document.createElement("div");
-  popup.classList.add("quiz-popup");
-
-  const msg = document.createElement("p");
-  msg.innerHTML = `
-    ❌ Você errou!<br><br>
-    ✅ Resposta correta:<br>
-    <strong>${respostaCorreta}</strong><br><br><br><br>
-    💡 Não desista o ambiente precisa de você! Na próxima você consegui!<br><br><br><br>
-    ⚠️ Consequência:<br>
-    <span class="penalidade">${penalidade}</span>
-  `;
-
-  const btnVoltar = document.createElement("button");
-  btnVoltar.textContent = "Voltar para o mapa";
-  btnVoltar.classList.add("quiz-btn");
-
-  btnVoltar.onclick = () => {
-    overlay.remove();
-    allDebuff(30, "sofrerDano");
-
-    irParaDiv2();
-  };
-
-  popup.appendChild(msg);
-  popup.appendChild(btnVoltar);
-  overlay.appendChild(popup);
-  document.body.appendChild(overlay);
-}
 // SHOOP CONF
 const raridadesGarantidas = [
   "common",
@@ -7555,7 +7215,14 @@ function criarPlayerNaDiv3() {
       playerDeck = [...characterDecks.laranja];
       maoInicio = 6;
       limiteMao = 6;
-      empurrarItemParaInventario(12);
+      break;
+    case "cleber":
+      playerImg.src = "./../img/jogo/player/cleber.png";
+      playerMaxHP = 160, energyMax = 3, playerShieldInit = 5;
+      playerHP = 160, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.cleber];
+      maoInicio = 5;
+      limiteMao = 5;
       break;
     case "malaquias":
       playerImg.src = "./../img/jogo/player/malaquias.png";
@@ -7565,6 +7232,38 @@ function criarPlayerNaDiv3() {
       maoInicio = 3;
       limiteMao = 3;
       break;
+    case "renata":
+      playerImg.src = "./../img/jogo/player/renata.png";
+      playerMaxHP = 50, energyMax = 3, playerShieldInit = 0;
+      playerHP = 50, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.renata];
+      maoInicio = 6;
+      limiteMao = 6;
+      break;
+    case "marcos":
+      playerImg.src = "./../img/jogo/player/marcos.png";
+      playerMaxHP = 120, energyMax = 3, playerShieldInit = 0;
+      playerHP = 120, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.marcos];
+      maoInicio = 5;
+      limiteMao = 5;
+      break;
+    case "cleide":
+      playerImg.src = "./../img/jogo/player/cleide.png";
+      playerMaxHP = 100, energyMax = 3, playerShieldInit = 0;
+      playerHP = 100, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.cleide];
+      maoInicio = 7;
+      limiteMao = 7;
+      break;
+    case "magna":
+      playerImg.src = "./../img/jogo/player/magna.png";
+      playerMaxHP = 128, energyMax = 4, playerShieldInit = 0;
+      playerHP = 128, energy = 4, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.magna];
+      maoInicio = 5;
+      limiteMao = 5;
+      break;
     case "lucius":
       playerImg.src = "./../img/jogo/player/animado/lucius/statico/lucius1.png";
       playerMaxHP = 100, energyMax = 3, playerShieldInit = 0;
@@ -7573,16 +7272,61 @@ function criarPlayerNaDiv3() {
       maoInicio = 5;
       limiteMao = 5;
       break;
+    case "azul":
+      playerImg.src = "./../img/jogo/player/tank.png";
+      playerMaxHP = 130, energyMax = 3, playerShieldInit = 5;
+      playerHP = 130, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.azul];
+      break;
     case "amarelo":
       playerImg.src = "./../img/jogo/player/animado/bruno/statico/bruno1.png";
       playerDeck = [...characterDecks.amarelo];
-      empurrarItemParaInventario(37);
+      break;
+    case "celso":
+      playerImg.src = "./../img/jogo/player/celso.png";
+      playerMaxHP = 75, playerHP = 75, energyMax = 4, energy = 4;
+      playerDeck = [...characterDecks.celso];
+      break;
+    case "felipe":
+      playerImg.src = "./../img/jogo/player/felipe.png";
+      playerMaxHP = 130, playerHP = 130, playerShieldInit = 5
+      playerDeck = [...characterDecks.felipe];
+      break;
+    case "maria":
+      playerImg.src = "./../img/jogo/player/maria.png";
+      playerMaxHP = 110, playerHP = 110;
+      maoInicio = 7;
+      limiteMao = 7;
+      playerDeck = [...characterDecks.maria];
       break;
     case "verde":
       playerImg.src = "./../img/jogo/player/jao.png";
       playerDeck = [...characterDecks.verde];
       maoInicio = 6;
       limiteMao = 6;
+      break;
+    case "magnolia":
+      playerImg.src = "./../img/jogo/player/magnolia.png";
+      playerDeck = [...characterDecks.magnolia];
+      playerMaxHP = 120, playerHP = 120, energyMax = 4, energy = 4;
+      maoInicio = 6;
+      limiteMao = 6;
+      break;
+    case "vermelho":
+      playerImg.src = "./../img/jogo/player/mechaBeserck.png";
+      playerMaxHP = 50, energyMax = 4, playerShieldInit = 0;
+      playerHP = 50, energy = 4, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.vermelho];
+      maoInicio = 6;
+      limiteMao = 6;
+      break;
+    case "roxo":
+      playerImg.src = "./../img/jogo/player/cabaDosDrones.png";
+      playerMaxHP = 60, energyMax = 5, playerShieldInit = 0;
+      playerHP = 60, energy = 5, playerShield = playerShieldInit;
+      maoInicio = 7;
+      limiteMao = 7;
+      playerDeck = [...characterDecks.roxo];
       break;
     case "porto":
       playerImg.src = "./../img/jogo/player/animado/porto/statico/porto1.png";
@@ -7591,7 +7335,22 @@ function criarPlayerNaDiv3() {
       playerDeck = [...characterDecks.porto];
       maoInicio = 5;
       limiteMao = 5;
-      empurrarItemParaInventario(37);
+      break;
+    case "fergus":
+      playerImg.src = "./../img/jogo/player/fergus.png";
+      playerMaxHP = 145, energyMax = 3, playerShieldInit = 0;
+      playerHP = 145, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.fergus];
+      maoInicio = 5;
+      limiteMao = 5;
+      break;
+    case "mercuri":
+      playerImg.src = "./../img/jogo/player/mercuri.png";
+      playerMaxHP = 100, energyMax = 3, playerShieldInit = 0;
+      playerHP = 100, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.mercuri];
+      maoInicio = 5;
+      limiteMao = 5;
       break;
     case "lilia":
       if (mapaBatalha == 0) {
@@ -7602,8 +7361,6 @@ function criarPlayerNaDiv3() {
         maoInicio = 4;
         limiteMao = 4;
         startNemoraSnow(false);
-      empurrarItemParaInventario(37);
-
       }
       if (mapaBatalha == 19) {
         imgLilia = "./../img/jogo/player/animado/lilia/statico/lilia3.png";
@@ -7649,6 +7406,14 @@ function criarPlayerNaDiv3() {
       atualizarDinheiro()
       playerDeck = [...characterDecks.ferrus];
       break;
+    case "tomoeh":
+      playerImg.src = "./../img/jogo/player/sombra.png";
+      playerMaxHP = 30, energyMax = 6, playerShieldInit = 0;
+      playerHP = 30, energy = 6, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.tomoeh];
+      maoInicio = 9;
+      limiteMao = 9;
+      break;
     case "x":
       playerImg.src = "./../img/jogo/player/x.png";
       playerMaxHP = 200, energyMax = 3, playerShieldInit = 2;
@@ -7673,8 +7438,26 @@ function criarPlayerNaDiv3() {
       energy = 4
       maoInicio = 6;
       limiteMao = 6;
-      empurrarItemParaInventario(21);
-      empurrarItemParaInventario(19);
+      break;
+    case "olaf":
+      playerImg.src = "./../img/jogo/player/olaf.png";
+      playerMaxHP = 150, energyMax = 3, playerShieldInit = 5;
+      playerHP = 150, energy = 3, playerShield = playerShieldInit;
+      playerDeck = [...characterDecks.olaf];
+      startNemoraSnow(false);
+      break;
+    case "olga":
+      playerImg.src = "./../img/jogo/player/olga.png";
+      startNemoraSnow(false);
+      playerDeck = [...characterDecks.olga];
+      break;
+    case "glacia":
+      playerImg.src = "./../img/jogo/player/glacia.png";
+      playerMaxHP = 80, playerHP = 80, energyMax = 4, energy = 4;
+      maoInicio = 8;
+      limiteMao = 8;
+      playerDeck = [...characterDecks.glacia];
+      startNemoraSnow(false);
       break;
     case "criadora":
       playerImg.src = "./../img/jogo/player/animado/criadora/statico/criadora1.png";
@@ -7691,7 +7474,10 @@ function criarPlayerNaDiv3() {
       playerMaxHP = 100, playerHP = 100, energyMax = 5, energy = 5;
       maoInicio = 6;
       limiteMao = 6;
+      dinheiro = 250;
       playerDeck = [...characterDecks.cleopatra];
+      atualizarDinheiro();
+      mudarEnergia("☀️");
       break;
     default:
       playerImg.src = "./../img/jogo/extra/prototipo.png";
@@ -8036,7 +7822,7 @@ const characterDecks = {
     allCards.find(c => c.name === "Defesa"),
     allCards.find(c => c.name === "Defesa"),
     allCards.find(c => c.name === "Defesa"),
-    allCards.find(c => c.name === "Destruir Carta"),
+    allCards.find(c => c.name === "GÆPROTOCOL"),
     allCards.find(c => c.name === "Destruir Carta"),
   ],
   olaf: [
@@ -8111,18 +7897,12 @@ const characterDecks = {
     cardsCria.find(c => c.name === "O Céu... Curva-se"),
   ],
   cleopatra: [
-    cardsDesert.find(c => c.name === "Proteção De Anubis"),
-    cardsDesert.find(c => c.name === "Proteção De Sekhmet"),
+    cardsDesert.find(c => c.name === "Julgamento Superior"),
+    cardsDesert.find(c => c.name === "Gande Governate"),
     cardsDesert.find(c => c.name === "Proteção De Rá"),
-    cardsDesert.find(c => c.name === "Arma Divina"),
-    cardsDesert.find(c => c.name === "Arma Divina"),
-    cardsDesert.find(c => c.name === "Proteção Divina"),
-    cardsDesert.find(c => c.name === "Proteção Divina"),
-    cardsDesert.find(c => c.name === "Arsenal Anti Herege"),
-    cardsDesert.find(c => c.name === "Penitencia Do Sol"),
-    cardsDesert.find(c => c.name === "Vigia Da Lua"),
-    cardsDesert.find(c => c.name === "Mandato Divino"),
     cardsDesert.find(c => c.name === "Descanço"),
+    cardsDesert.find(c => c.name === "O Sol Sempre Hergue-se"),
+    cardsDesert.find(c => c.name === "Ascenção"),
   ],
   // gaeaReen: [
   //   allCards.find(c => c.name === "Chuva de Laminas"),
@@ -8235,8 +8015,36 @@ function aliadoTurn() {
   }
 }
 
-//ANIMAÇÃO ATK PLAYER
-async function animarLiliaTransformacao() {
+//ANIMAÇÃO ATK PLAYER EM FASE DE TESTE
+async function animarLiliaTransformacao(anima = false, tipo) {
+  if (personagemSelecionado === "criadora" && anima == true) {
+    switch (tipo) {
+      case "unico":
+        await animacaoConfrontoDD2(enemies[0].el);
+        animateDamage(enemies[0].el);
+        break;
+      case "ultimo":
+        const alvo = [...enemies].reverse().find(e => e.hp > 0);
+        if (alvo) {
+          await animacaoConfrontoDD2(alvo.el);
+          animateDamage(alvo.el);
+        }
+        break;
+      case "area":
+        await Promise.all(
+          enemies.map(e => {
+            animateDamage(e.el);
+            return animacaoConfrontoDD2(e.el);
+          })
+        );
+        break;
+
+      default:
+        break;
+    }
+    return;
+  }
+
   if (personagemSelecionado === "lilia" || personagemSelecionado === "porto" || personagemSelecionado === "gaeaReen" || personagemSelecionado === "lucius" || personagemSelecionado === "ferrus" || personagemSelecionado === "laranja" || personagemSelecionado === "amarelo" || personagemSelecionado === "criadora" || personagemSelecionado === "cleopatra") {
 
     const playerImg = document.getElementById("player");
@@ -8403,6 +8211,107 @@ async function animarLiliaTransformacao() {
     }, delay * 5);
   }
 }
+async function animacaoConfrontoDD2(inimigoEl) {
+
+  bloquearInput(true);
+
+  const player = document.getElementById("player");
+  const enemyImg = inimigoEl.querySelector("img");
+  const screen = document.getElementById("div3");
+
+  if (!player || !enemyImg || !screen) return;
+
+  const pRect = player.getBoundingClientRect();
+  const eRect = enemyImg.getBoundingClientRect();
+
+  const centerX = window.innerWidth / 2;
+
+  const playerMove = centerX - (pRect.left + pRect.width / 2);
+  const enemyMove = centerX - (eRect.left + eRect.width / 2);
+
+  const playerCenter = `translateX(${playerMove}px) scale(1.4)`;
+  const enemyCenter = `translateX(${enemyMove}px) scale(1.4)`;
+
+  player.style.transition = "transform .35s ease";
+  enemyImg.style.transition = "transform .35s ease";
+  screen.style.transition = "transform .4s ease";
+
+  /* ========= ZOOM ========= */
+  screen.style.transform = "scale(1.2)";
+  await esperar(200);
+
+  /* ========= IR PRO CENTRO ========= */
+  player.style.transform = playerCenter;
+  enemyImg.style.transform = enemyCenter;
+
+  await esperar(400);
+
+  /* ========================================================= */
+  /* =================== MODO NORMAL ========================== */
+  /* ========================================================= */
+  if (criadoraModo) {
+
+    const frames = {
+      f1: "./../img/jogo/player/animado/criadora/atk/criadora1.png",
+      f2: "./../img/jogo/player/animado/criadora/atk/criadora2.png",
+      f3: "./../img/jogo/player/animado/criadora/atk/criadora3.png",
+      idle: "./../img/jogo/player/animado/criadora/statico/criadora1.png"
+    };
+
+    for (let i = 0; i < 3; i++) {
+
+      player.style.transform = playerCenter;
+      player.src = frames.f1;
+      await esperar(80);
+
+      player.src = frames.f2;
+      await esperar(80);
+
+      player.src = frames.f3;
+
+      criarEfeitoNoInimigo(inimigoEl);
+      await esperar(120);
+    }
+
+    player.src = frames.idle;
+
+  } else {
+
+    /* ========================================================= */
+    /* =================== MODO CHUVA =========================== */
+    /* ========================================================= */
+
+    const frames = {
+      start: "./../img/jogo/player/animado/criadora/atk/criadora22.png",
+      cast: "./../img/jogo/player/animado/criadora/atk/criadora11.png",
+      idle: "./../img/jogo/player/animado/criadora/statico/criadora11.png"
+    };
+
+    // entra no centro
+    player.src = frames.start;
+    await esperar(150);
+
+    // congela no frame de conjuração
+    player.src = frames.cast;
+
+    // 💥 chuva de efeitos
+    await chuvaDeGolpes(inimigoEl);
+
+    // pequena pausa dramática
+    await esperar(300);
+
+    player.src = frames.idle;
+  }
+
+  /* ========= VOLTA ========= */
+  player.style.transform = "translateX(0px) scale(1)";
+  enemyImg.style.transform = "translateX(0px) scale(1)";
+  screen.style.transform = "scale(1)";
+
+  await esperar(400);
+
+  bloquearInput(false);
+}
 function criarEfeitoNoInimigo(inimigoEl) {
 
   const enemyImg = inimigoEl.querySelector("img");
@@ -8447,15 +8356,12 @@ function criarEfeitoNoInimigo(inimigoEl) {
 
   }, 35);
 }
-async function chuvaDeGolpes(qtd = 0, pd = false) {
+async function chuvaDeGolpes() {
 
   const battlefield = document.getElementById("battlefield");
   if (!battlefield) return;
 
-  let total = 16;
-  if (qtd > 0) {
-    total = qtd;
-  }
+  const total = 16; // 🔥 mais quantidade = mais impacto
   const efeitos = [];
 
   const fieldHeight = battlefield.offsetHeight;
@@ -8464,15 +8370,7 @@ async function chuvaDeGolpes(qtd = 0, pd = false) {
 
     const efeito = document.createElement("img");
 
-    if (personagemSelecionado==="cleopatra") {
-      efeito.src = "../img/jogo/player/animado/cleopatra/efeitos/cleo1.png";
-    } else if (!criadoraModo) {
-      efeito.src = "../img/jogo/player/animado/criadora/efeitos/criadora11.png";
-    } else if (pd){
-      efeito.src = "../img/jogo/player/animado/criadora/efeitos/criadora2.png";
-    } else {
-      efeito.src = "../img/jogo/player/animado/criadora/efeitos/criadora4.png";
-    }
+    efeito.src = "../img/jogo/player/animado/criadora/efeitos/criadora11.png";
 
     efeito.style.position = "absolute";
     efeito.style.pointerEvents = "none";
@@ -9879,61 +9777,26 @@ function animateDamage(el, tremida = true) {
 };
 
 // ITENS
-function gerarItens(modoQuiz = false) {
-  let gerador = 3;
-  if (modoQuiz) {
-    gerador = 7;
-  }
-
-  const container = modoQuiz
-    ? document.getElementById("quiz-direita")
-    : document.getElementById("recompensa");
-
+function gerarItens() {
+  const container = document.getElementById("recompensa");
   const inventario = document.getElementById("itens");
 
   if (!container) {
-    console.error("ERRO: container não encontrado!");
+    console.error("ERRO: div #recompensa NÃO ENCONTRADA!");
     return;
   }
 
-  let numItens = hasItem(21) ? gerador += 1 : gerador;
+  // quantidade de itens
+  let numItens = hasItem(21) ? 4 : 3;
 
-  // ================= RESET =================
   container.innerHTML = "";
-
-  // 🔥 CONTAINER PRINCIPAL (COLUMN)
   container.style.display = "flex";
-  container.style.flexDirection = "column";
+  container.style.flexDirection = "row";
   container.style.justifyContent = "center";
   container.style.alignItems = "center";
   container.style.gap = "20px";
   container.style.width = "100%";
 
-  // ================= IA TEXT =================
-  let txtBloco = null;
-
-  if (modoQuiz) {
-    txtBloco = document.createElement("div");
-    txtBloco.textContent = "🎉IA: RESPOSTA CORRETA! Escolha sua recompensa, humano... 🎉";
-
-    txtBloco.style.color = "white";
-    txtBloco.style.fontSize = "40px";
-    txtBloco.style.opacity = "0.8";
-    txtBloco.style.fontFamily = "monospace";
-    txtBloco.style.textAlign = "center";
-    txtBloco.style.textShadow = "0 0 10px #00ff99";
-  }
-
-  // ================= ROW DAS RECOMPENSAS =================
-  const rewardsRow = document.createElement("div");
-
-  rewardsRow.style.display = "flex";
-  rewardsRow.style.flexDirection = "row";
-  rewardsRow.style.justifyContent = "center";
-  rewardsRow.style.alignItems = "center";
-  rewardsRow.style.gap = "20px";
-
-  // ================= ITENS =================
   const itensDisponiveis = allItems.filter(
     i => !itensJaPegos.includes(i.id)
   );
@@ -9947,6 +9810,7 @@ function gerarItens(modoQuiz = false) {
 
   const escolhidos = [];
 
+  /* 🔒 PRIMEIRA VEZ: garante os itens 26, 31 e 33 */
   if (primeiraGeracaoItem) {
     [26, 31, 33].forEach(id => {
       const item = itensDisponiveis.find(i => i.id === id);
@@ -9958,6 +9822,7 @@ function gerarItens(modoQuiz = false) {
     primeiraGeracaoItem = false;
   }
 
+  /* 🎲 COMPLETA ALEATORIAMENTE */
   while (escolhidos.length < quantidade) {
     const item = itensDisponiveis[
       Math.floor(Math.random() * itensDisponiveis.length)
@@ -9968,13 +9833,14 @@ function gerarItens(modoQuiz = false) {
     }
   }
 
-  // ================= RENDER =================
+  /* ================= RENDERIZAÇÃO ================= */
   escolhidos.forEach(item => {
     const box = document.createElement("div");
     box.classList.add("item-box");
     box.style.cursor = "pointer";
     box.style.transition = "0.2s";
 
+    // brilho verde ao passar o mouse
     box.addEventListener("mouseenter", () => {
       box.style.filter = "drop-shadow(0 0 10px #00ff3389)";
     });
@@ -9999,10 +9865,7 @@ function gerarItens(modoQuiz = false) {
     desc.style.fontSize = "14px";
     desc.style.opacity = "0.8";
 
-    box.appendChild(img);
-    box.appendChild(nome);
-    box.appendChild(desc);
-
+    /* 📦 EVENTO DE PEGAR ITEM */
     box.addEventListener("click", () => {
       itensJaPegos.push(item.id);
 
@@ -10011,6 +9874,7 @@ function gerarItens(modoQuiz = false) {
       invImg.style.margin = "5px";
       invImg.style.cursor = "pointer";
 
+      /* 🧠 TOOLTIP NO INVENTÁRIO */
       invImg.addEventListener("mouseenter", () => {
         tooltip.textContent = `(${item.name}) ${item.desc}`;
         tooltip.style.display = "block";
@@ -10028,78 +9892,16 @@ function gerarItens(modoQuiz = false) {
       inventario.appendChild(invImg);
 
       aplicarBuff(item);
-
-      if (!modoQuiz) {
-        fecharPopup();
-        irParaDiv2();
-      } else {
-        document.getElementById("quiz-direita").innerHTML = "";
-        irParaDiv2();
-      }
-
+      fecharPopup();
+      irParaDiv2();
       updateHUD();
     });
 
-    // 👉 ENTRA NO ROW
-    rewardsRow.appendChild(box);
+    box.appendChild(img);
+    box.appendChild(nome);
+    box.appendChild(desc);
+    container.appendChild(box);
   });
-
-  // ================= APPEND FINAL =================
-  if (modoQuiz && txtBloco) {
-    container.appendChild(txtBloco);
-  }
-
-  container.appendChild(rewardsRow);
-}
-function empurrarItemParaInventario(itemId) {
-  const inventario = document.getElementById("itens");
-  const item = allItems.find(i => i.id === itemId);
-
-  if (!item) {
-    console.warn("Item não encontrado:", itemId);
-    return;
-  }
-
-  // evita duplicar
-  if (itensJaPegos.includes(itemId)) return;
-
-  itensJaPegos.push(itemId);
-
-  const invImg = document.createElement("img");
-  invImg.src = item.img;
-  invImg.style.margin = "5px";
-  invImg.style.cursor = "pointer";
-  invImg.style.width = "60px";
-  invImg.style.transition = "0.2s";
-
-  // hover tooltip
-  invImg.addEventListener("mouseenter", () => {
-    tooltip.textContent = `(${item.name}) ${item.desc}`;
-    tooltip.style.display = "block";
-  });
-
-  invImg.addEventListener("mousemove", ev => {
-    tooltip.style.left = ev.clientX + 15 + "px";
-    tooltip.style.top = ev.clientY + 15 + "px";
-  });
-
-  invImg.addEventListener("mouseleave", () => {
-    tooltip.style.display = "none";
-  });
-
-  // efeito de entrada (EMPURRADO)
-  invImg.style.transform = "translateX(-20px)";
-  invImg.style.opacity = "0";
-
-  setTimeout(() => {
-    invImg.style.transform = "translateX(0)";
-    invImg.style.opacity = "1";
-  }, 50);
-
-  inventario.appendChild(invImg);
-
-  aplicarBuff(item);
-  updateHUD();
 }
 function checkItemBoss() {
   if (hasItem(28)) {
@@ -10210,14 +10012,14 @@ function itensVerd() {
 }
 function ganhoMoney() {
   if (hasItem(3)) {
-    baseElite += 10;
-    baseComum += 10;
+    baseElite += 15;
+    baseComum += 15;
   }
   if (hasItem(42)) {
-    baseBoss += 50;
+    baseBoss += 35;
   }
   if (hasItem(41)) {
-    baseMult += 1;
+    baseMult += 0.5;
   }
 }
 function sorteCards(name, valor, calc = "+") {
@@ -10291,7 +10093,7 @@ if (pagina === "tutorial.html") {
 // itensJaPegos.push(40);
 // itensJaPegos.push(38);
 
-// const quantidade0 = allCards.length+cardsCria.length+cardsDesert.length;
+// const quantidade0 = allCards.length;
 // const quantidade1 = allCards.filter(card => card.type === "cintilante").length;
 // const quantidade2 = allCards.filter(card => card.type === "attack").length;
 // const quantidade3 = allCards.filter(card => card.type === "heal").length;
@@ -10302,8 +10104,7 @@ if (pagina === "tutorial.html") {
 // const quantidade8 = allCards.filter(card => card.type === "fire").length;
 // const quantidade9 = allCards.filter(card => card.type === "terra").length;
 // const quantidade10 = allCards.filter(card => card.type === "agua").length;
-// const quantidade11 = cardsCria.filter(card => card.type === "cria").length;
-// const quantidade12 = cardsDesert.filter(card => card.type === "desert").length;
+// const quantidade11 = criaCards.filter(card => card.type === "cria").length;
 
 // alert(`
 //   Quantidade TOTAL de cards: ${quantidade0}
@@ -10318,5 +10119,4 @@ if (pagina === "tutorial.html") {
 //   Quantidade TERRA: ${quantidade9}
 //   Quantidade AGUA: ${quantidade10}
 //   Quantidade CRIA: ${quantidade11}
-//   Quantidade DESERT: ${quantidade12}
 //   `);
