@@ -32,6 +32,7 @@
   <script src="../js/jogo/arreys/allCards.js" defer></script>
   <script src="../js/jogo/arreys/cardsCria.js" defer></script>
   <script src="../js/jogo/arreys/cardsDesert.js" defer></script>
+  <script src="../js/jogo/arreys/cardsAgatha.js" defer></script>
   <script src="../js/jogo/arreys/allItems.js" defer></script>
   <script src="../js/jogo/arreys/normalModels.js" defer></script>
   <script src="../js/jogo/arreys/eliteModels.js" defer></script>
@@ -80,6 +81,7 @@
   <script src="../js/jogo/functions/divsTransition/irParaDiv11.js" defer></script>
   <script src="../js/jogo/functions/divsTransition/voltarAnterior.js" defer></script>
   <script src="../js/jogo/functions/other/selecaoPlayerUnic.js" defer></script>
+  <script src="../js/jogo/functions/other/agatha.js" defer></script>
 
   <!-- MAIN -->
   <script src="../js/jogo/functions/other/setas.js" defer></script>
@@ -349,18 +351,40 @@
       </header>
       <div id="jogo">
         <div id="battlefield">
-          <div class="buff-bar"></div>
-          <div id="player-area">
-            <div id="box-control">
-            <p id="lifeBar">❤️ <strong><span id="hp"></span></strong></p>
-            </div>
-            
-          </div>
-          <div id="inimigo-area">
-            <div id="enemies"></div>
-            <div id="lifeBarsContainer"></div>
-          </div>
+
+  <div class="buff-bar"></div>
+
+  <div id="player-area">
+
+    <div id="box-control">
+      <p id="lifeBar">❤️ <strong><span id="hp"></span></strong></p>
+    </div>
+
+    <!-- 🎵 RHYTHM GAME AGORA AQUI -->
+    <div id="rhythmGame">
+
+      <div id="ui">
+        <div id="feverBar">
+          <div id="feverFill"></div>
         </div>
+        <div id="judge"></div>
+      </div>
+
+      <div class="lane" data-key="a"><div class="hit-line"></div><div class="key">A</div></div>
+      <div class="lane" data-key="s"><div class="hit-line"></div><div class="key">S</div></div>
+      <div class="lane" data-key="d"><div class="hit-line"></div><div class="key">D</div></div>
+      <div class="lane" data-key="f"><div class="hit-line"></div><div class="key">F</div></div>
+
+    </div>
+
+  </div>
+
+  <div id="inimigo-area">
+    <div id="enemies"></div>
+    <div id="lifeBarsContainer"></div>
+  </div>
+
+</div>
 
         <div id="hud">
           <div><span id="icon-energy">🔷</span><strong><span id="energy">3</span></strong></div>

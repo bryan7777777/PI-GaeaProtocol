@@ -1893,6 +1893,152 @@ color: rgb(227, 90, 255);
   filter: brightness(1.5);
 }
 
+/* ========================= */
+/* BATTLEFIELD OVERLAY */
+/* ========================= */
+
+#rhythmGame{
+  right: 22%;
+  top: 10%;
+width:85%;
+max-width:1100px;
+height:720px;
+position:absolute;
+display:none;
+justify-content:center;
+overflow:hidden;
+border-radius:18px;
+z-index: 99;
+
+/* pode manter seu visual roxo aqui se quiser */
+}
+
+/* ========================= */
+/* LANES */
+/* ========================= */
+.lane{
+flex:1;
+max-width: 120px;
+position:relative;
+border-left:1px solid rgba(180,0,255,0.15);
+border-right:1px solid rgba(180,0,255,0.15);
+border-top:1px solid rgba(180,0,255,0.15);
+
+transition:.1s;
+}
+
+.lane:hover{
+background:rgba(140,0,255,0.05);
+}
+
+/* KEY */
+.key{
+position:absolute;
+bottom:0;
+width:100%;
+height:18%;
+border-radius: 100%;
+
+background:rgba(30, 0, 50, 0.8);
+border-top:2px solid rgba(200,0,255,0.4);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:28px;
+font-weight:bold;
+color:#d8a7ff;
+
+text-shadow:0 0 10px rgba(200,0,255,0.6);
+}
+
+/* HIT LINE */
+.hit-line{
+position:absolute;
+bottom:18%;
+width:100%;
+height:3px;
+
+background:linear-gradient(90deg, transparent, #b300ff, transparent);
+opacity:.6;
+
+box-shadow:0 0 10px #b300ff;
+animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse{
+0%,100%{opacity:.4;}
+50%{opacity:1;}
+}
+
+/* NOTES */
+.note{
+width:80%;
+height:22px;
+background:linear-gradient(90deg,#b300ff,#6a00ff);
+position:absolute;
+left:10%;
+border-radius:12px;
+
+box-shadow:
+0 0 12px rgba(179,0,255,0.8),
+0 0 25px rgba(120,0,255,0.4);
+}
+
+/* ========================= */
+/* FEVER UI */
+/* ========================= */
+#ui{
+position:absolute;
+top:12px;
+left:12px;
+z-index:10;
+}
+
+#feverBar{
+width:260px;
+height:10px;
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(180,0,255,0.3);
+border-radius:10px;
+overflow:hidden;
+}
+
+#feverFill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#7a00ff,#d100ff,#ff4dff);
+box-shadow:0 0 15px #b300ff;
+transition:.1s;
+}
+
+/* JUDGE TEXT */
+#judge{
+margin-top:10px;
+font-size:24px;
+height:28px;
+color:#fff;
+text-shadow:0 0 10px rgba(180,0,255,0.7);
+}
+
+.perfect{color:#d100ff;}
+.good{color:#8f00ff;}
+.miss{color:#ff4d6d;}
+
+/* FEVER MODE */
+body.fever{
+background:radial-gradient(circle at center, #2a003d, #050008);
+}
+
+/* KEY EFFECT */
+.effect{
+transform:scale(.95);
+background:#fff !important;
+color:#000 !important;
+box-shadow:0 0 20px #fff;
+}
+
 /* =================== TABLET =================== */
 @media (max-width: 1024px) {
   #jogo {

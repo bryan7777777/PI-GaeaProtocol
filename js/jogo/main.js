@@ -1807,6 +1807,11 @@ function drawCards() {
             causarDano(card.power * totalCargas, "area");
           }
         }
+        //☀️
+        else if (card.name === "Teste") {
+         // CADA NOTA TEM 0.3s (A CD 3 NOTAS DROPA 1s)
+         gerarNotas(25);
+        }
         //  🎨🎨🎨🎨🎨 CRIA 🎨🎨🎨🎨🎨
         else if (card.name === "Trocando De Estilo") {
           switch (criadoraModo) {
@@ -7693,6 +7698,14 @@ function criarPlayerNaDiv3() {
       limiteMao = 6;
       playerDeck = [...characterDecks.cleopatra];
       break;
+    case "agatha":
+      playerImg.src = "./../img/jogo/player/agatha.gif";
+      playerMaxHP = 100, playerHP = 100, energyMax = 5, energy = 5;
+      maoInicio = 6;
+      limiteMao = 6;
+      playerDeck = [...characterDecks.agatha];
+      mudarEnergia("🎵");
+      break;
     default:
       playerImg.src = "./../img/jogo/extra/prototipo.png";
       playerDeck = [...characterDecks.amarelo];
@@ -8123,6 +8136,18 @@ const characterDecks = {
     cardsDesert.find(c => c.name === "Vigia Da Lua"),
     cardsDesert.find(c => c.name === "Mandato Divino"),
     cardsDesert.find(c => c.name === "Descanço"),
+  ],
+  agatha: [
+    cardsAgatha.find(c => c.name === "Teste"),
+    cardsAgatha.find(c => c.name === "Teste"),
+    cardsAgatha.find(c => c.name === "Teste"),
+    cardsAgatha.find(c => c.name === "Teste"),
+    cardsAgatha.find(c => c.name === "Teste"),
+    cardsAgatha.find(c => c.name === "Teste"),
+    cardsAgatha.find(c => c.name === "Teste"),
+    cardsAgatha.find(c => c.name === "Teste"),
+    cardsAgatha.find(c => c.name === "Teste"),
+    cardsAgatha.find(c => c.name === "Teste"),
   ],
   // gaeaReen: [
   //   allCards.find(c => c.name === "Chuva de Laminas"),
