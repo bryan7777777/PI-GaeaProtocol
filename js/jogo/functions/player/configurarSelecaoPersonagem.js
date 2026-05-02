@@ -285,7 +285,7 @@ function configurarSelecaoPersonagem() {
       ]
     },
     criadora: {
-      nome: "🎨Mayumi, A criadora caida🎨",
+      nome: "🎨Mayumi, A Criadora Limitada🎨",
       dificuldade: "🎨NÍVEL DE DIFICULDADE: ☠️☠️☠️☠️☠️🎨",
       cor: "rgb(141, 7, 231)",
       descricao: "Uma pintora talentosa e uma arqueira nata, deck focado em trocar de estilos e mistura de cores. Sua maior força também é sua maior fraqueza, Mayumi sofre de daltonismo, especificamente acromatopsia, um tipo extremamente raro, acredita-se que ela viveu no Período 600–1000 d.C. (período Asuka a Heian, Japão), não se sabe ao certo, será que isso lhe impede de ver o fim?",
@@ -319,7 +319,7 @@ function configurarSelecaoPersonagem() {
       ]
     },
     cleopatra: {
-      nome: "☀️Cleopatra VIII, A Reencarnação Divina☀️",
+      nome: "☀️Cleopatra VIII, A Criadora Incompreendida☀️",
       dificuldade: "☀️NÍVEL DE DIFICULDADE: ☠️☠️☠️☠️☠️☀️",
       cor: "rgb(141, 7, 231)",
       descricao: "Seu nome original era Aparna, mas após um ocorrido que ela diz ser a \"escolhida\", ela se auto intitulou Cleopatra VIII, e recebe ajuda dos deuses antigos do egito para ajudar ela em sua jornada, sendo capaz de os invocar e até entrar em estado divino para lutar.",
@@ -353,35 +353,29 @@ function configurarSelecaoPersonagem() {
       ]
     },
     agatha: {
-      nome: "☀️Agatha☀️",
-      dificuldade: "☀️NÍVEL DE DIFICULDADE: ☠️☠️☠️☠️☠️☀️",
+      nome: "🎵Agatha, A Criadora Oprimida🎵",
+      dificuldade: "🎵NÍVEL DE DIFICULDADE: ☠️☠️☠️☠️☠️🎵",
       cor: "rgb(141, 7, 231)",
-      descricao: "Seu nome original era Aparna, mas após um ocorrido que ela diz ser a \"escolhida\", ela se auto intitulou Cleopatra VIII, e recebe ajuda dos deuses antigos do egito para ajudar ela em sua jornada, sendo capaz de os invocar e até entrar em estado divino para lutar.",
-      cardFoco: "Deck focado em spawn de aliados, buff de aliados e geração de cargas.",
+      descricao: "[...]",
+      cardFoco: "[...]",
       hp: 100,
       maxHp: 100,
       energia: 5,
       escudo: 0,
       mao: 6,
-      img: "./../img/jogo/player/agatha2.gif",
-      lor: "Aparna sempre foi apaixonada por animes. Seu maior sonho? Viajar entre realidades, provar comidas impossíveis… e, por algum motivo, dirigir um caminhão.<br><br>Mas sonhos curiosos costumam levar a caminhos perigosos.<br><br>Em um dia aparentemente comum, ela decidiu explorar uma área da cidade que sua família sempre proibiu — um lugar abandonado, esquecido… e temido. A curiosidade falou mais alto.<br><br>Dois minutos.<br>Foi o tempo que levou para tudo dar errado.<br><br>Ela foi cercada.<br>Homens desconhecidos, olhares frios, intenções claras.<br><br>Aparna correu.<br>Desviou.<br>Lutou como pôde.<br><br>Mas não saiu ilesa.<br>Um corte profundo rasgou sua pele, e o sangue começou a escorrer sem parar.<br><br>Com a visão ficando turva, ela encontrou refúgio em uma fábrica abandonada.<br>Ou pelo menos… era o que parecia.<br><br>Lá dentro, havia pessoas.<br>Cientistas.<br>Guardas.<br>E um símbolo… o mesmo dos homens que a perseguiam.<br><br>Ela se escondeu e escutou.<br><br>Eles falavam sobre algo impossível.<br>Sobre trazer de volta uma divindade…<br>Em um corpo robótico.<br><br>Assim como haviam feito com uma IA.<br><br>Mesmo fraca, sangrando, quase desmaiando… Aparna queria ver mais.<br><br>Subiu pelas vigas enferrujadas no topo da fábrica.<br>Cada movimento era dor.<br>Cada segundo, um risco.<br><br>E então… ela viu.<br><br>Um corpo metálico…<br>Majestoso…<br>Imponente…<br><br>Sem dúvidas… inspirado em Cleopatra VII.<br><br>Aparna ficou fascinada.<br><br>Até que…<br>Uma gota de sangue caiu.<br><br>Direto na cabeça de um dos guardas.<br><br>Silêncio.<br><br>— Ela está ali!<br><br>Tudo aconteceu rápido.<br>Os cientistas entraram em desespero.<br>A máquina precisava ser ativada imediatamente.<br>Uma tempestade de raios rugia do lado de fora.<br><br>Os guardas começaram a subir.<br><br>Aparna… não aguentava mais.<br><br>A perda de sangue venceu.<br><br>E ela caiu.<br><br>Direto… sobre o corpo da divindade mecânica.<br><br>Escuridão.<br><br>...<br><br>Quando abriu os olhos…<br>o mundo havia mudado.<br><br>A fábrica estava destruída.<br>Reduzida a cinzas.<br><br>E então…<br>ela ouviu uma voz.<br><br>— Aparna...<br><br>— Quem está aí?! Eu não tenho medo!<br><br>— Cleopatra VII. Eu escolhi você… como minha herdeira espiritual.<br><br>— ...o quê?<br><br>— Seu sacrifício foi belo. Você entregou sua vida tentando me trazer de volta a este mundo.<br><br>— Ah… claro… era exatamente isso que eu tava fazendo...<br><br>— Eu sei que estava. E por isso… concedo a você meus poderes… e o auxílio dos deuses do Egito, para erguer novamente nosso glorioso império.<br><br>— Tá… mas… que poderes são esses?<br><br>— Muitos. Eles variam… de Cleopatra para Cleopatra.<br><br>Aparna, em pensamento, só conseguia repetir:<br>'por favor que seja um stand… por favor que seja um stand…'<br><br>— Você precisará descobrir sozinha como usá-los…<br>Mas pode invocar os deuses… sempre que precisar.<br><br>Com um leve deboche, Aparna responde:<br><br>— Ah claro… então Anubis, aparece aí pra gente trocar uma ideia.<br><br>Das cinzas…<br>algo surgiu.<br><br>Um robô.<br>Com a forma de Anubis.<br><br>— Aqui estou, Vizir.<br><br>Aparna ficou em choque.<br><br>— Ué… então os deuses são robôs?!<br><br>— Somos seres divinos… incompreendidos por sua visão limitada.<br><br>— ...ah…<br><br>— Assumi a forma que seu coração desejava.<br><br>O silêncio durou um segundo.<br><br>Então…<br>Aparna começou a pular de alegria.<br><br>Ela caiu de joelhos.<br>Agradeceu.<br><br>— Eu vou honrar isso… eu juro!<br><br>Decidiu naquele momento:<br>Seu nome também seria Cleopatra.<br><br>Não apenas como homenagem…<br>Mas como renascimento.<br><br>E assim…<br>ela partiu em sua jornada.<br><br>Para descobrir seus poderes.<br>Seu destino.<br><br>E talvez…<br>finalmente…<br>viajar entre dimensões.",
+      img: "./../img/jogo/player/animado/agatha/agathaDefalt.png",
+      lor: "[...]",
       extras: [
         {
           img: "./../img/jogo/cards/desert/era.png",
-          titulo: "Confusão",
-          desc: "Todos os iconis de eventos são substituidos por ❓",
-          cor: "red"
-        },
-        {
-          img: "./../img/jogo/cards/desert/monarca.png",
-          titulo: "Deusa Dos Deuses",
-          desc: "Cleopatra pode invocar aliados para defender ela e atacar",
+          titulo: "Fervor",
+          desc: "A barra de Fervor quando cheia coloca a personagem em estado de Fervor (Lar/Trauma).<br>Errar as notas tira a personagem do estado de Fervor<br><br>Esse estado se mantem até o proximo \"Palco\" independente de qual seja.<br>Caso desativado e reativado no mesmo \"Palco\" ele volta para o Fervor que estava e não o novo,<br> só entre em um novo Fervor caso o personagem sai do \"Palco\" sem nenhum Fervor ativo.",
           cor: "lime"
         },
         {
-          img: "./../img/jogo/cards/desert/cleo.png",
-          titulo: "Sol e Lua",
-          desc: "Cleopatra possui a capacidade de gerar cargas,<br>porém varias cartas de aliados nescecitam de cargas",
+          img: "./../img/jogo/cards/desert/monarca.png",
+          titulo: "Palco",
+          desc: "Invoque um Palco no qual cai notas com as teclas: A S D F.<br> Acertar notas proporciona pontos para a ação, errar pode te tirar do estado de Fervor.<br>Perfect: +2<br>Good: +1<br>Miss: -2<br><br>Fervor Lar: Aumenta a quantidade de pontos em x2 enquanto estiver nesse estado, errar remove os pontos.<br><br>Fervor Trauma: Aumenta a quantidade de pontos em x5, aumenta a velocidade das notas, errar causa<br>um dano forte direto a vida podendo ser LETAL (-50❤️).",
           cor: "yellow"
         }
       ]

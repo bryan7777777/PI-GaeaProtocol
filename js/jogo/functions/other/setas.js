@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         personagens: [
           { id: "criadora", img: "criadora.gif" },
           { id: "cleopatra", img: "cleopatra.png" },
-          { id: "agatha", img: "capaceteverde.png" },
+          { id: "agatha", img: "agatha.png" },
         ]
       }
     ];

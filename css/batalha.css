@@ -1898,17 +1898,17 @@ color: rgb(227, 90, 255);
 /* ========================= */
 
 #rhythmGame{
-  right: 22%;
-  top: 10%;
-width:85%;
-max-width:1100px;
-height:720px;
+  right: 1px;
+  top: 9%;
+width:100%;
+height:90%;
 position:absolute;
 display:none;
 justify-content:center;
 overflow:hidden;
 border-radius:18px;
 z-index: 99;
+background-color: rgba(40, 0, 61, 0.482);
 
 /* pode manter seu visual roxo aqui se quiser */
 }
@@ -1937,7 +1937,6 @@ position:absolute;
 bottom:0;
 width:100%;
 height:18%;
-border-radius: 100%;
 
 background:rgba(30, 0, 50, 0.8);
 border-top:2px solid rgba(200,0,255,0.4);
@@ -1993,7 +1992,7 @@ box-shadow:
 position:absolute;
 top:12px;
 left:12px;
-z-index:10;
+z-index:1;
 }
 
 #feverBar{
@@ -2013,32 +2012,71 @@ box-shadow:0 0 15px #b300ff;
 transition:.1s;
 }
 
-/* JUDGE TEXT */
-#judge{
-margin-top:10px;
-font-size:24px;
-height:28px;
-color:#fff;
-text-shadow:0 0 10px rgba(180,0,255,0.7);
+.judge-popup {
+position: fixed;
+font-size: 18px;
+font-weight: bold;
+pointer-events: none;
+z-index: 99;
+animation: popupAnim 0.6s ease-out forwards;
+text-shadow: 0 0 8px rgba(0,0,0,0.6);
 }
 
-.perfect{color:#d100ff;}
-.good{color:#8f00ff;}
-.miss{color:#ff4d6d;}
-
-/* FEVER MODE */
-body.fever{
-background:radial-gradient(circle at center, #2a003d, #050008);
+.judge-popup.perfect {
+color: #00ff6a;
 }
 
-/* KEY EFFECT */
-.effect{
-transform:scale(.95);
-background:#fff !important;
-color:#000 !important;
-box-shadow:0 0 20px #fff;
+.judge-popup.good {
+color: #ffd000;
 }
 
+.judge-popup.miss {
+color: #ff2b2b;
+}
+
+@keyframes popupAnim {
+0% {
+transform: translate(-50%, -50%) scale(0.6) rotate(0deg);
+opacity: 0;
+}
+
+30% {
+opacity: 1;
+}
+
+100% {
+transform: translate(-50%, -120%) scale(1.2) rotate(var(--rot, 0deg));
+opacity: 0;
+}
+}
+
+#agathaSakura {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  display: none;
+  z-index: 9999;
+}
+
+.sakura-leaf {
+  position: absolute;
+  background: pink;
+  border-radius: 0 25px 0 25px;
+  opacity: 0.85;
+
+  animation: sakuraFall linear forwards;
+}
+
+@keyframes sakuraFall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(var(--drift), 110vh) rotate(360deg);
+  }
+}
 /* =================== TABLET =================== */
 @media (max-width: 1024px) {
   #jogo {

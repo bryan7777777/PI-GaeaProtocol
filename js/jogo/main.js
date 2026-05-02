@@ -663,6 +663,8 @@ function checkEnemies() {
           } else if (enemies.length === 0 && playerHP > 0) {
             // Registrar vitória
             // registrarPartida('Vitória');
+            feverActive = false;
+            disableFever();
             const overlay = document.getElementById("overlay");
             overlay.style.display = "block";
             overlay.classList.add("popup-opacity");
@@ -1807,10 +1809,15 @@ function drawCards() {
             causarDano(card.power * totalCargas, "area");
           }
         }
-        //☀️
+        //  🎵🎵🎵🎵🎵 AGATHA 🎵🎵🎵🎵🎵
         else if (card.name === "Teste") {
          // CADA NOTA TEM 0.3s (A CD 3 NOTAS DROPA 1s)
-         gerarNotas(25);
+         gerarNotas(25, "tra",false, "unico");
+        }
+        //🎵
+        else if (card.name === "Teste2") {
+         // CADA NOTA TEM 0.3s (A CD 3 NOTAS DROPA 1s)
+         gerarNotas(25, "lar", true, "def");
         }
         //  🎨🎨🎨🎨🎨 CRIA 🎨🎨🎨🎨🎨
         else if (card.name === "Trocando De Estilo") {
@@ -7699,7 +7706,7 @@ function criarPlayerNaDiv3() {
       playerDeck = [...characterDecks.cleopatra];
       break;
     case "agatha":
-      playerImg.src = "./../img/jogo/player/agatha.gif";
+      playerImg.src = "./../img/jogo/player/animado/agatha/agathaDefalt.png";
       playerMaxHP = 100, playerHP = 100, energyMax = 5, energy = 5;
       maoInicio = 6;
       limiteMao = 6;
@@ -8143,11 +8150,11 @@ const characterDecks = {
     cardsAgatha.find(c => c.name === "Teste"),
     cardsAgatha.find(c => c.name === "Teste"),
     cardsAgatha.find(c => c.name === "Teste"),
-    cardsAgatha.find(c => c.name === "Teste"),
-    cardsAgatha.find(c => c.name === "Teste"),
-    cardsAgatha.find(c => c.name === "Teste"),
-    cardsAgatha.find(c => c.name === "Teste"),
-    cardsAgatha.find(c => c.name === "Teste"),
+    cardsAgatha.find(c => c.name === "Teste2"),
+    cardsAgatha.find(c => c.name === "Teste2"),
+    cardsAgatha.find(c => c.name === "Teste2"),
+    cardsAgatha.find(c => c.name === "Teste2"),
+    cardsAgatha.find(c => c.name === "Teste2"),
   ],
   // gaeaReen: [
   //   allCards.find(c => c.name === "Chuva de Laminas"),
@@ -8553,6 +8560,24 @@ function trocarFramePlayer(player, reset = false) {
         frames = {
           f1: "./../img/jogo/player/animado/criadora/statico/criadora111.png",
           idle: "./../img/jogo/player/animado/criadora/statico/criadora11.png"
+        };
+      }
+      break;
+    case "agatha":
+      if (reset) {
+        frames = {
+          f1: "./../img/jogo/player/animado/agatha/agathaDefalt.png",
+          idle: "./../img/jogo/player/animado/agatha/agathaDefalt.png"
+        };
+      } else if (feverMode == "tra") {
+        frames = {
+          f1: "./../img/jogo/player/animado/agatha/agatha3.gif",
+          idle: "./../img/jogo/player/animado/agatha/agatha3.gif"
+        };
+      } else {
+        frames = {
+          f1: "./../img/jogo/player/animado/agatha/agatha.gif",
+          idle: "./../img/jogo/player/animado/agatha/agatha.gif"
         };
       }
       break;

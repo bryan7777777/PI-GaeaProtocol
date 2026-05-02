@@ -662,7 +662,7 @@
   transform: scale(1.1);
 }
 
-#criadora.selecionado, #criadora:hover, #cleopatra.selecionado, #cleopatra:hover {
+#criadora.selecionado, #criadora:hover, #cleopatra.selecionado, #cleopatra:hover, #agatha.selecionado, #agatha:hover {
   border-color: rgb(240, 237, 20);
   box-shadow: 2px 2px 75px 2px rgba(159, 54, 212, 0.623);
   transform: scale(1.1);
