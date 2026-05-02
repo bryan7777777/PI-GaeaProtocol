@@ -10,8 +10,9 @@ let feverMode = "";
 let previousBackground = "";
 
 // =====================
-// PONTUAÇÃO
 let pontuacao = 0;
+let sessionAtiva = false;
+window._rhythmContext = {};
 
 // =====================
 const targetX = [-140, -50, 50, 140];
@@ -28,10 +29,14 @@ function toggleRhythmGame(ativo) {
 }
 
 // =====================
-// FINALIZA A PONTUAÇÃO
-function finalizarPontuacao(acao, tipo) {
-  let total = Math.max(0, pontuacao);;
+function getNoteSpeed() {
+  return (feverActive && feverMode === "tra") ? 6 : 4;
+}
 
+// =====================
+// FINALIZA PONTUAÇÃO
+function finalizarPontuacao(acao, tipo) {
+  let total = Math.max(0, pontuacao);
   pontuacao = 0;
 
   if (tipo === "cura" || tipo === "def" || tipo === "energia") {
@@ -44,7 +49,7 @@ function finalizarPontuacao(acao, tipo) {
     causarDano(total, tipo);
     updateHUD();
     updateEnemyBars();
-    checkEnemies()
+    checkEnemies();
   }
 }
 
@@ -55,13 +60,10 @@ function gerarNotas(qtd, modoFever, acao, tipo) {
 
   agathaTeclado(true);
 
+  sessionAtiva = true;
+
   notes = [];
   pontuacao = 0;
-
-  // =====================
-  // MULTIPLICADORES DE TEMPO
-  let tempoNota = feverActive&&feverMode=="tra" ? 0.27 : 0.33;
-  let tempoExtra = 3;
 
   for (let i = 0; i < qtd; i++) {
     const lane = lanes[Math.floor(Math.random() * lanes.length)];
@@ -78,17 +80,24 @@ function gerarNotas(qtd, modoFever, acao, tipo) {
     });
   }
 
-  const tempoTotal = qtd * tempoNota;
-  const tempoFinal = (tempoTotal + tempoExtra) * 1000;
+  window._rhythmContext = { acao, tipo };
+}
 
-  setTimeout(() => {
+// =====================
+// CHECA FINAL DA SESSÃO
+function checkFimSessao() {
+  if (!sessionAtiva) return;
 
-    finalizarPontuacao(acao, tipo);
+  if (notes.length === 0) {
+    sessionAtiva = false;
+
+    const ctx = window._rhythmContext || {};
+
+    finalizarPontuacao(ctx.acao, ctx.tipo);
 
     toggleRhythmGame(false);
     agathaTeclado(false);
-
-  }, tempoFinal);
+  }
 }
 
 // =====================
@@ -100,14 +109,11 @@ function startFever() {
   fever = 100;
 
   feverFill.style.width = "100%";
-
   document.body.classList.add("fever");
 
   const jogo = document.getElementById("jogo");
-
   previousBackground = jogo.style.backgroundImage;
 
-  // BACKGROUND + EFFECT
   if (feverMode === "lar") {
     jogo.style.backgroundImage =
       "url('../img/jogo/background/agathaLar.png')";
@@ -116,7 +122,6 @@ function startFever() {
     trocarFramePlayer("agatha");
 
   } else {
-
     jogo.style.backgroundImage =
       "url('../img/jogo/background/agathaTra.png')";
 
@@ -134,7 +139,6 @@ function disableFever() {
   fever = 0;
 
   feverFill.style.width = "0%";
-
   document.body.classList.remove("fever");
 
   stopAgathaSakura();
@@ -158,23 +162,13 @@ function checkFever() {
   fever = Math.max(0, Math.min(100, fever));
   feverFill.style.width = fever + "%";
 
-  if (fever >= 100) {
-    startFever();
-  }
+  if (fever >= 100) startFever();
 }
 
 // =====================
-// MULTIPLICADOR
 function getMultiplicador() {
-
-  if (feverActive && feverMode === "lar") {
-    return 2;
-  }
-
-  if (feverActive && feverMode === "tra") {
-    return 5;
-  }
-
+  if (feverActive && feverMode === "lar") return 2;
+  if (feverActive && feverMode === "tra") return 5;
   return 1;
 }
 
@@ -203,17 +197,22 @@ function updateFeverWave() {
 }
 
 // =====================
+// LOOP PRINCIPAL
 function loop() {
   updateFeverWave();
+
+  const speed = getNoteSpeed();
 
   for (let i = notes.length - 1; i >= 0; i--) {
     let n = notes[i];
 
-    n.y += feverActive&&feverMode=="tra" ? 6:4;
+    n.y += speed;
     n.el.style.top = n.y + "px";
 
     if (n.y > 620) miss(i);
   }
+
+  checkFimSessao(); // 👈 FECHAMENTO CORRETO
 
   requestAnimationFrame(loop);
 }
@@ -226,9 +225,7 @@ document.addEventListener("keydown", e => {
 
 // =====================
 function hit(k) {
-  const lane =
-    [...lanes].find(l => l.dataset.key === k);
-
+  const lane = [...lanes].find(l => l.dataset.key === k);
   if (!lane) return;
 
   flash(lane);
@@ -246,7 +243,6 @@ function hit(k) {
 }
 
 // =====================
-// POPUP SYSTEM
 function show(text, type, x, y) {
   const el = document.createElement("div");
 
@@ -266,13 +262,10 @@ function show(text, type, x, y) {
 
 // =====================
 function getNoteX(note) {
-  const lane =
-    [...lanes].find(l => l.dataset.key === note.key);
-
+  const lane = [...lanes].find(l => l.dataset.key === note.key);
   if (!lane) return 0;
 
   const rect = lane.getBoundingClientRect();
-
   return rect.left + rect.width / 2;
 }
 
@@ -282,12 +275,12 @@ function perfect(i) {
 
   pontuacao += 2 * getMultiplicador();
 
-  show("PERFECT "+pontuacao, "perfect", getNoteX(n), n.y);
+  show("PERFECT " + pontuacao, "perfect", getNoteX(n), n.y);
 
   remove(i);
 
   fever += 6;
-  
+
   checkFever();
   checkFeverFail();
 }
@@ -296,13 +289,13 @@ function perfect(i) {
 function good(i) {
   const n = notes[i];
 
-  show("GOOD "+pontuacao, "good", getNoteX(n), n.y);
+  pontuacao += 1 * getMultiplicador();
+
+  show("GOOD " + pontuacao, "good", getNoteX(n), n.y);
 
   remove(i);
 
   fever += 3;
-
-  pontuacao += 1 * getMultiplicador();
 
   checkFever();
   checkFeverFail();
@@ -313,7 +306,7 @@ function miss(i) {
   const n = notes[i];
 
   if (n) {
-    show("MISS "+pontuacao, "miss", getNoteX(n), n.y);
+    show("MISS " + pontuacao, "miss", getNoteX(n), n.y);
   }
 
   if (notes[i]) {
@@ -325,13 +318,14 @@ function miss(i) {
 
   pontuacao -= 2 * getMultiplicador();
 
-  // MODO TRA
   if (feverMode === "tra" && feverActive) {
     allDebuff(50, "sofrerDano");
+
     if (playerHP == 1) {
-        playerHP --
-        agathaTeclado(false)
+      playerHP--;
+      agathaTeclado(false);
     }
+
     updateHUD();
     updateEnemyBars();
     checkEnemies();
