@@ -688,7 +688,7 @@ color: rgb(227, 90, 255);
   }
 }
 
-.attack, .defense, .heal, .reciclagem,.lixo,.cintilante,.frost,.fire,.terra,.agua,.cria,.desert {
+.attack, .defense, .heal, .reciclagem,.lixo,.cintilante,.frost,.fire,.terra,.agua,.cria,.desert,.music {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -702,13 +702,14 @@ color: rgb(227, 90, 255);
 .cintilante {background-image: url("../img/jogo/cards/cintilante1.png");}
 .cria {background-image: url("../img/jogo/cards/cria.png");}
 .desert {background-image: url("../img/jogo/cards/desert.png");}
+.music {background-image: url("../img/jogo/cards/music.png");}
 
 .terra{background-image: url("../img/jogo/cards/terra.png");}
 .fire {background-image: url("../img/jogo/cards/fire.png");}
 .agua{background-image: url("../img/jogo/cards/agua.png");}
 .frost{background-image: url("../img/jogo/cards/frost.png");}
 
-.agua .desc, .fire .desc, .frost .desc, .defense .desc, .attack .desc, .cintilante .desc, .desert .desc, .cria .desc, .reciclagem .desc, .heal .desc{background-color: #20202079; border-radius: 15px;}
+.agua .desc, .fire .desc, .frost .desc, .defense .desc, .attack .desc, .cintilante .desc, .desert .desc, .cria .desc, .reciclagem .desc, .heal .desc, .music .desc{background-color: #20202079; border-radius: 15px;}
 .agua .titulo, .fire .titulo, .frost .titulo{color: aqua; text-shadow: 0 0 4px #000000;}
 .legend:hover .desc {background-color: #00000000;}
 
@@ -1285,13 +1286,22 @@ color: rgb(227, 90, 255);
   border: 3px solid rgb(255, 98, 98);
 }
 
+.music {
+  box-shadow: 0 0 30px rgb(128, 0, 255);
+  border: 3px solid rgb(231, 186, 255);
+}
+
+.music img {
+  border: 3px solid rgb(169, 98, 255);
+}
+
 /* efeito de giro do arco-íris */
-.card.cintilante, .card.cria, .card.desert {
+.card.cintilante, .card.cria, .card.desert, .card.music {
   position: relative;
   overflow: hidden;
 }
 
-.card.cintilante::before, .card.cria::before, .card.desert::before {
+.card.cintilante::before, .card.cria::before, .card.desert::before, .card.music::before {
   margin-top: -20px;
   margin-left: -60px;
   width: 300px;
@@ -1317,7 +1327,7 @@ color: rgb(227, 90, 255);
 }
 
 /* Ao passar o mouse na card, o ::before aparece */
-.card.cintilante:hover::before, .card.cria:hover::before, .card.desert:hover::before {
+.card.cintilante:hover::before, .card.cria:hover::before, .card.desert:hover::before, .card.music:hover::before {
   opacity: 1;
 }
 
@@ -1894,160 +1904,196 @@ color: rgb(227, 90, 255);
 }
 
 /* ========================= */
-/* BATTLEFIELD OVERLAY */
+/* GAME AREA */
 /* ========================= */
 
 #rhythmGame{
   right: 1px;
   top: 9%;
-width:100%;
-height:90%;
-position:absolute;
-display:none;
-justify-content:center;
-overflow:hidden;
-border-radius:18px;
-z-index: 99;
-background-color: rgba(40, 0, 61, 0.482);
-
-/* pode manter seu visual roxo aqui se quiser */
+  width:100%;
+  height:90%;
+  position:absolute;
+  display:none;
+  justify-content:center;
+  overflow:hidden;
+  border-radius:18px;
+  z-index: 99;
+  background-color: rgba(40, 0, 61, 0.482);
 }
 
 /* ========================= */
 /* LANES */
 /* ========================= */
-.lane{
-flex:1;
-max-width: 120px;
-position:relative;
-border-left:1px solid rgba(180,0,255,0.15);
-border-right:1px solid rgba(180,0,255,0.15);
-border-top:1px solid rgba(180,0,255,0.15);
 
-transition:.1s;
+.lane{
+  flex:1;
+  max-width: 120px;
+  position:relative;
+  border-left:1px solid rgba(180,0,255,0.15);
+  border-right:1px solid rgba(180,0,255,0.15);
+  border-top:1px solid rgba(180,0,255,0.15);
+  transition:.1s;
 }
 
 .lane:hover{
-background:rgba(140,0,255,0.05);
+  background:rgba(140,0,255,0.05);
 }
 
+/* ========================= */
 /* KEY */
+/* ========================= */
+
 .key{
-position:absolute;
-bottom:0;
-width:100%;
-height:18%;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:18%;
+  border-radius: 0 0 100% 100%;
 
-background:rgba(30, 0, 50, 0.8);
-border-top:2px solid rgba(200,0,255,0.4);
+  background:rgba(30, 0, 50, 0.8);
+  border-top:2px solid rgba(200,0,255,0.4);
 
-display:flex;
-justify-content:center;
-align-items:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 
-font-size:28px;
-font-weight:bold;
-color:#d8a7ff;
+  font-size:28px;
+  font-weight:bold;
+  color:#d8a7ff;
 
-text-shadow:0 0 10px rgba(200,0,255,0.6);
+  text-shadow:0 0 10px rgba(200,0,255,0.6);
 }
 
+/* ========================= */
 /* HIT LINE */
+/* ========================= */
+
 .hit-line{
-position:absolute;
-bottom:18%;
-width:100%;
-height:3px;
+  position:absolute;
+  bottom:18%;
+  width:100%;
+  height:3px;
 
-background:linear-gradient(90deg, transparent, #b300ff, transparent);
-opacity:.6;
+  background:linear-gradient(90deg, transparent, #b300ff, transparent);
+  opacity:.6;
 
-box-shadow:0 0 10px #b300ff;
-animation:pulse 1.2s infinite;
+  box-shadow:0 0 10px #b300ff;
+  animation:pulse 1.2s infinite;
 }
 
 @keyframes pulse{
-0%,100%{opacity:.4;}
-50%{opacity:1;}
+  0%,100%{opacity:.4;}
+  50%{opacity:1;}
 }
 
-/* NOTES */
-.note{
-width:80%;
-height:22px;
-background:linear-gradient(90deg,#b300ff,#6a00ff);
-position:absolute;
-left:10%;
-border-radius:12px;
+/* ========================= */
+/* BASE NOTE */
+/* ========================= */
 
-box-shadow:
-0 0 12px rgba(179,0,255,0.8),
-0 0 25px rgba(120,0,255,0.4);
+.note{
+  width:80%;
+  height:22px;
+  position:absolute;
+  left:10%;
+  border-radius:12px;
+  transition:0.2s;
+}
+
+/* ========================= */
+/* NORMAL */
+/* ========================= */
+
+.note.normal{
+  background:linear-gradient(90deg,#b300ff,#6a00ff);
+  box-shadow:0 0 12px rgba(179,0,255,0.8);
+}
+
+/* ========================= */
+/* FEVER LAR (rosa/vermelho) */
+/* ========================= */
+
+.note.lar{
+  background:linear-gradient(90deg,#ff2a6d,#ff4d4d,#ff0080);
+
+  box-shadow:
+  0 0 10px rgba(255,0,120,0.8),
+  0 0 25px rgba(255,60,120,0.5),
+  0 0 40px rgba(255,0,0,0.3);
+
+  filter: saturate(1.3);
+}
+
+/* ========================= */
+/* FEVER TRA (raio-x / azul / branco) */
+/* ========================= */
+
+.note.tra{
+  background:linear-gradient(90deg,#e6f7ff,#a8d8ff,#ffffff);
+
+  box-shadow:
+  0 0 10px rgba(180,220,255,0.8),
+  0 0 25px rgba(120,200,255,0.5),
+  0 0 40px rgba(200,240,255,0.3);
+
+  filter: brightness(1.2) contrast(1.1);
+  animation:xrayPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes xrayPulse{
+  0%,100%{transform:scale(1);opacity:1;}
+  50%{transform:scale(1.05);opacity:0.85;}
 }
 
 /* ========================= */
 /* FEVER UI */
 /* ========================= */
+
 #ui{
-position:absolute;
-top:12px;
-left:12px;
-z-index:1;
+  position:absolute;
+  top:12px;
+  left:12px;
+  z-index:1;
 }
 
 #feverBar{
-width:260px;
-height:10px;
-background:rgba(255,255,255,0.08);
-border:1px solid rgba(180,0,255,0.3);
-border-radius:10px;
-overflow:hidden;
+  width:260px;
+  height:10px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(180,0,255,0.3);
+  border-radius:10px;
+  overflow:hidden;
 }
 
 #feverFill{
-height:100%;
-width:0%;
-background:linear-gradient(90deg,#7a00ff,#d100ff,#ff4dff);
-box-shadow:0 0 15px #b300ff;
-transition:.1s;
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#7a00ff,#d100ff,#ff4dff);
+  box-shadow:0 0 15px #b300ff;
+  transition:.1s;
 }
+
+/* ========================= */
+/* POPUPS */
+/* ========================= */
 
 .judge-popup {
-position: fixed;
-font-size: 18px;
-font-weight: bold;
-pointer-events: none;
-z-index: 99;
-animation: popupAnim 0.6s ease-out forwards;
-text-shadow: 0 0 8px rgba(0,0,0,0.6);
+  position: fixed;
+  font-size: 18px;
+  font-weight: bold;
+  pointer-events: none;
+  z-index: 99;
+  animation: popupAnim 0.6s ease-out forwards;
+  text-shadow: 0 0 8px rgba(0,0,0,0.6);
 }
 
-.judge-popup.perfect {
-color: #00ff6a;
-}
-
-.judge-popup.good {
-color: #ffd000;
-}
-
-.judge-popup.miss {
-color: #ff2b2b;
-}
+.judge-popup.perfect { color: #00ff6a; }
+.judge-popup.good { color: #ffd000; }
+.judge-popup.miss { color: #ff2b2b; }
 
 @keyframes popupAnim {
-0% {
-transform: translate(-50%, -50%) scale(0.6) rotate(0deg);
-opacity: 0;
-}
-
-30% {
-opacity: 1;
-}
-
-100% {
-transform: translate(-50%, -120%) scale(1.2) rotate(var(--rot, 0deg));
-opacity: 0;
-}
+  0% {transform: translate(-50%, -50%) scale(0.6); opacity: 0;}
+  30% {opacity: 1;}
+  100% {transform: translate(-50%, -120%) scale(1.2); opacity: 0;}
 }
 
 #agathaSakura {

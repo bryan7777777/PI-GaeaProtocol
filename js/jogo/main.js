@@ -1810,12 +1810,12 @@ function drawCards() {
           }
         }
         //  🎵🎵🎵🎵🎵 AGATHA 🎵🎵🎵🎵🎵
-        else if (card.name === "Teste") {
+        else if (card.name === "Clave De Sol") {
          // CADA NOTA TEM 0.3s (A CD 3 NOTAS DROPA 1s)
          gerarNotas(25, "tra",false, "unico");
         }
         //🎵
-        else if (card.name === "Teste2") {
+        else if (card.name === "Clave De Dó") {
          // CADA NOTA TEM 0.3s (A CD 3 NOTAS DROPA 1s)
          gerarNotas(25, "lar", true, "def");
         }
@@ -8145,16 +8145,16 @@ const characterDecks = {
     cardsDesert.find(c => c.name === "Descanço"),
   ],
   agatha: [
-    cardsAgatha.find(c => c.name === "Teste"),
-    cardsAgatha.find(c => c.name === "Teste"),
-    cardsAgatha.find(c => c.name === "Teste"),
-    cardsAgatha.find(c => c.name === "Teste"),
-    cardsAgatha.find(c => c.name === "Teste"),
-    cardsAgatha.find(c => c.name === "Teste2"),
-    cardsAgatha.find(c => c.name === "Teste2"),
-    cardsAgatha.find(c => c.name === "Teste2"),
-    cardsAgatha.find(c => c.name === "Teste2"),
-    cardsAgatha.find(c => c.name === "Teste2"),
+    cardsMusic.find(c => c.name === "Clave De Dó"),
+    cardsMusic.find(c => c.name === "Clave De Dó"),
+    cardsMusic.find(c => c.name === "Clave De Dó"),
+    cardsMusic.find(c => c.name === "Clave De Dó"),
+    cardsMusic.find(c => c.name === "Clave De Dó"),
+    cardsMusic.find(c => c.name === "Clave De Sol"),
+    cardsMusic.find(c => c.name === "Clave De Sol"),
+    cardsMusic.find(c => c.name === "Clave De Sol"),
+    cardsMusic.find(c => c.name === "Clave De Sol"),
+    cardsMusic.find(c => c.name === "Clave De Sol"),
   ],
   // gaeaReen: [
   //   allCards.find(c => c.name === "Chuva de Laminas"),

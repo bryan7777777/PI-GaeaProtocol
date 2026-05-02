@@ -367,13 +367,13 @@ function configurarSelecaoPersonagem() {
       lor: "[...]",
       extras: [
         {
-          img: "./../img/jogo/cards/desert/era.png",
+          img: "./../img/jogo/passivas/fervor.png",
           titulo: "Fervor",
           desc: "A barra de Fervor quando cheia coloca a personagem em estado de Fervor (Lar/Trauma).<br>Errar as notas tira pontos de Fervor, zerar a barra remove o Fervor.<br><br>Esse estado se mantem até o proximo \"Palco\" independente de qual seja.<br>Caso desativado e reativado no mesmo \"Palco\" ele volta para o Fervor que estava e não o novo,<br> só entre em um novo Fervor caso o personagem sai do \"Palco\" sem nenhum Fervor ativo.",
           cor: "lime"
         },
         {
-          img: "./../img/jogo/cards/desert/monarca.png",
+          img: "./../img/jogo/passivas/palco.png",
           titulo: "Palco",
           desc: "Invoque um Palco no qual cai notas com as teclas: A S D F. <br>Abrir um Palco coloca seu Fervor em 0 mas não tira o estado de Fervor. <br>(Caso erre as primeira nota, Agatha sai do Fervor)<br> Acertar notas proporciona pontos para a ação, e pontos de Fervor.<br>Perfect: +2<br>Good: +1<br>Miss: -2<br><br>Fervor Lar: Aumenta a quantidade de pontos em x2 enquanto estiver nesse estado.<br><br>Fervor Trauma: Aumenta a quantidade de pontos em x5, aumenta a velocidade das notas, errar causa<br>um dano forte direto a vida podendo ser LETAL (-50❤️).",
           cor: "yellow"

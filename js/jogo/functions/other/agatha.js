@@ -34,6 +34,33 @@ function getNoteSpeed() {
 }
 
 // =====================
+function getMultiplicador() {
+  if (feverActive && feverMode === "lar") return 2;
+  if (feverActive && feverMode === "tra") return 5;
+  return 1;
+}
+
+// =====================
+// ATUALIZA VISUAL DAS NOTAS
+function updateNoteStyle() {
+  for (let n of notes) {
+    n.el.classList.remove("lar", "tra", "normal");
+
+    if (feverActive) {
+      n.el.classList.add(feverMode);
+    } else {
+      n.el.classList.add("normal");
+    }
+  }
+}
+
+// =====================
+function toggleRhythmGame(ativo) {
+  document.getElementById("rhythmGame").style.display =
+    ativo ? "flex" : "none";
+}
+
+// =====================
 // FINALIZA PONTUAÇÃO
 function finalizarPontuacao(acao, tipo) {
   let total = Math.max(0, pontuacao);
@@ -69,7 +96,7 @@ function gerarNotas(qtd, modoFever, acao, tipo) {
     const lane = lanes[Math.floor(Math.random() * lanes.length)];
 
     const note = document.createElement("div");
-    note.className = "note";
+    note.className = "note normal";
 
     lane.appendChild(note);
 
@@ -80,11 +107,13 @@ function gerarNotas(qtd, modoFever, acao, tipo) {
     });
   }
 
+  updateNoteStyle();
+
   window._rhythmContext = { acao, tipo };
 }
 
 // =====================
-// CHECA FINAL DA SESSÃO
+// CHECA FIM DA SESSÃO
 function checkFimSessao() {
   if (!sessionAtiva) return;
 
@@ -101,7 +130,6 @@ function checkFimSessao() {
 }
 
 // =====================
-// START FERVOR
 function startFever() {
   if (feverActive) return;
 
@@ -128,10 +156,11 @@ function startFever() {
     stopAgathaSakura();
     trocarFramePlayer("agatha");
   }
+
+  updateNoteStyle();
 }
 
 // =====================
-// END FERVOR
 function disableFever() {
   trocarFramePlayer("agatha", true);
 
@@ -150,6 +179,8 @@ function disableFever() {
     l._x = 0;
     l.style.transform = "translateX(0px)";
   });
+
+  updateNoteStyle();
 }
 
 // =====================
@@ -163,13 +194,6 @@ function checkFever() {
   feverFill.style.width = fever + "%";
 
   if (fever >= 100) startFever();
-}
-
-// =====================
-function getMultiplicador() {
-  if (feverActive && feverMode === "lar") return 2;
-  if (feverActive && feverMode === "tra") return 5;
-  return 1;
 }
 
 // =====================
@@ -197,25 +221,61 @@ function updateFeverWave() {
 }
 
 // =====================
-// LOOP PRINCIPAL
 function loop() {
+
   updateFeverWave();
 
   const speed = getNoteSpeed();
 
   for (let i = notes.length - 1; i >= 0; i--) {
+
     let n = notes[i];
 
     n.y += speed;
+
     n.el.style.top = n.y + "px";
 
-    if (n.y > 620) miss(i);
+    // =========================
+    // HIT LINE REAL
+    // =========================
+
+    const lane =
+      [...lanes].find(l => l.dataset.key === n.key);
+
+    if (!lane) continue;
+
+    const hitLine =
+      lane.querySelector(".hit-line");
+
+    if (!hitLine) continue;
+
+    const hitRect =
+      hitLine.getBoundingClientRect();
+
+    const hitY =
+      hitRect.top + (hitRect.height / 2);
+
+    // posição real da nota
+    const noteRect =
+      n.el.getBoundingClientRect();
+
+    const noteY =
+      noteRect.top + (noteRect.height / 2);
+
+    // =========================
+    // MISS WINDOW
+    // =========================
+
+    if (noteY > hitY + 30) {
+      miss(i);
+    }
   }
 
-  checkFimSessao(); // 👈 FECHAMENTO CORRETO
+  checkFimSessao();
 
   requestAnimationFrame(loop);
 }
+
 loop();
 
 // =====================
@@ -225,20 +285,60 @@ document.addEventListener("keydown", e => {
 
 // =====================
 function hit(k) {
-  const lane = [...lanes].find(l => l.dataset.key === k);
+
+  const lane =
+    [...lanes].find(l => l.dataset.key === k);
+
   if (!lane) return;
 
   flash(lane);
 
+  // =========================
+  // PEGA POSIÇÃO REAL DA HIT LINE
+  // =========================
+
+  const hitLine =
+    lane.querySelector(".hit-line");
+
+  if (!hitLine) return;
+
+  const hitRect =
+    hitLine.getBoundingClientRect();
+
+  // centro vertical da linha
+  const hitY =
+    hitRect.top + (hitRect.height / 2);
+
+  // =========================
+
   for (let i = 0; i < notes.length; i++) {
+
     let n = notes[i];
 
     if (n.key !== k) continue;
 
-    let d = Math.abs(n.y - 585);
+    // posição real da nota na tela
+    const noteRect =
+      n.el.getBoundingClientRect();
 
-    if (d < 25) return perfect(i);
-    if (d < 60) return good(i);
+    const noteY =
+      noteRect.top + (noteRect.height / 2);
+
+    // distância REAL entre nota e linha
+    let d =
+      Math.abs(noteY - hitY);
+
+    // =========================
+    // HIT WINDOWS
+    // =========================
+
+    if (d < 20) {
+      return perfect(i);
+    }
+
+    if (d < 55) {
+      return good(i);
+    }
   }
 }
 
