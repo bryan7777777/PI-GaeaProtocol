@@ -51,14 +51,17 @@ function finalizarPontuacao(acao, tipo) {
 // =====================
 // GERAR NOTAS
 function gerarNotas(qtd, modoFever, acao, tipo) {
-    if (!feverActive) feverMode = modoFever;
-    
+  if (!feverActive) feverMode = modoFever;
+
   agathaTeclado(true);
 
   notes = [];
-
-  // RESET PONTUAÇÃO
   pontuacao = 0;
+
+  // =====================
+  // MULTIPLICADORES DE TEMPO
+  let tempoNota = feverActive&&feverMode=="tra" ? 0.27 : 0.33;
+  let tempoExtra = 3;
 
   for (let i = 0; i < qtd; i++) {
     const lane = lanes[Math.floor(Math.random() * lanes.length)];
@@ -75,8 +78,8 @@ function gerarNotas(qtd, modoFever, acao, tipo) {
     });
   }
 
-  const tempoTotal = qtd * 0.33;
-  const tempoFinal = (tempoTotal + 3) * 1000;
+  const tempoTotal = qtd * tempoNota;
+  const tempoFinal = (tempoTotal + tempoExtra) * 1000;
 
   setTimeout(() => {
 
@@ -206,7 +209,7 @@ function loop() {
   for (let i = notes.length - 1; i >= 0; i--) {
     let n = notes[i];
 
-    n.y += 4;
+    n.y += feverActive&&feverMode=="tra" ? 6:4;
     n.el.style.top = n.y + "px";
 
     if (n.y > 620) miss(i);
