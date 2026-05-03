@@ -1809,15 +1809,21 @@ function drawCards() {
             causarDano(card.power * totalCargas, "area");
           }
         }
-        //  🎵🎵🎵🎵🎵 AGATHA 🎵🎵🎵🎵🎵
+        //  🎵🎵🎵🎵🎵 MUSIC 🎵🎵🎵🎵🎵
         else if (card.name === "Clave De Sol") {
-         // CADA NOTA TEM 0.3s (A CD 3 NOTAS DROPA 1s)
-         gerarNotas(25, "tra",false, "unico");
+         gerarNotas(card.power, "tra",false, "unico", 1);
         }
         //🎵
         else if (card.name === "Clave De Dó") {
-         // CADA NOTA TEM 0.3s (A CD 3 NOTAS DROPA 1s)
-         gerarNotas(25, "lar", true, "def");
+         gerarNotas(card.power, "lar", false, "def", 2);
+        }
+        //🎵
+        else if (card.name === "Clave De Fá") {
+         gerarNotas(card.power, "tra", false, "cura", 2);
+        }
+        //🎵
+        else if (card.name === "Partitura"||card.name === "Semibreve"||card.name === "Colcheia"||card.name === "Fusa"||card.name === "Seminima"||card.name === "Semifusa") {
+         aplicarBuffsPower(card.power, 999, "music");
         }
         //  🎨🎨🎨🎨🎨 CRIA 🎨🎨🎨🎨🎨
         else if (card.name === "Trocando De Estilo") {
@@ -3467,7 +3473,7 @@ function criarBuffVisual(tipo, buff) {
     bar.style.display = "flex";
     bar.style.gap = "8px";
     bar.style.zIndex = "0";
-  } else if (personagemSelecionado === "cleopatra") {
+  } else if (personagemSelecionado === "cleopatra" || personagemSelecionado === "agatha") {
     bar.style.position = "fixed";
     bar.style.top = "62.5%";
     bar.style.left = "34%";
@@ -3700,6 +3706,11 @@ function aliadosBuff(atk = 0, hp = 0, def = 0, defInit = 0) {
     floatText(aliado.el, `+${defInit}🔼🛡️🔼`, "yellow");
   }
   atualizarAliadoHUD();
+}
+function checkNotes(){
+  let music = getCargas("music");
+  consumirCargas("music", music);
+  return music;
 }
 
 // MAPA
@@ -7707,9 +7718,9 @@ function criarPlayerNaDiv3() {
       break;
     case "agatha":
       playerImg.src = "./../img/jogo/player/animado/agatha/agathaDefalt.png";
-      playerMaxHP = 100, playerHP = 100, energyMax = 5, energy = 5;
-      maoInicio = 6;
-      limiteMao = 6;
+      playerMaxHP = 60, playerHP = 60, energyMax = 4, energy = 4;
+      maoInicio = 8;
+      limiteMao = 8;
       playerDeck = [...characterDecks.agatha];
       mudarEnergia("🎵");
       break;
@@ -8147,14 +8158,16 @@ const characterDecks = {
   agatha: [
     cardsMusic.find(c => c.name === "Clave De Dó"),
     cardsMusic.find(c => c.name === "Clave De Dó"),
-    cardsMusic.find(c => c.name === "Clave De Dó"),
-    cardsMusic.find(c => c.name === "Clave De Dó"),
-    cardsMusic.find(c => c.name === "Clave De Dó"),
+    cardsMusic.find(c => c.name === "Clave De Fá"),
+    cardsMusic.find(c => c.name === "Clave De Fá"),
     cardsMusic.find(c => c.name === "Clave De Sol"),
     cardsMusic.find(c => c.name === "Clave De Sol"),
-    cardsMusic.find(c => c.name === "Clave De Sol"),
-    cardsMusic.find(c => c.name === "Clave De Sol"),
-    cardsMusic.find(c => c.name === "Clave De Sol"),
+    cardsMusic.find(c => c.name === "Partitura"),
+    cardsMusic.find(c => c.name === "Semibreve"),
+    cardsMusic.find(c => c.name === "Colcheias"),
+    cardsMusic.find(c => c.name === "Fusa"),
+    cardsMusic.find(c => c.name === "Seminima"),
+    cardsMusic.find(c => c.name === "SemiFusa"),
   ],
   // gaeaReen: [
   //   allCards.find(c => c.name === "Chuva de Laminas"),

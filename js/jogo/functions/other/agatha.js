@@ -62,8 +62,8 @@ function toggleRhythmGame(ativo) {
 
 // =====================
 // FINALIZA PONTUAÇÃO
-function finalizarPontuacao(acao, tipo) {
-  let total = Math.max(0, pontuacao);
+function finalizarPontuacao(acao, tipo, divisor) {
+  let total = Math.max(0, pontuacao/divisor);
   pontuacao = 0;
 
   if (tipo === "cura" || tipo === "def" || tipo === "energia") {
@@ -82,8 +82,10 @@ function finalizarPontuacao(acao, tipo) {
 
 // =====================
 // GERAR NOTAS
-function gerarNotas(qtd, modoFever, acao, tipo) {
+function gerarNotas(qtd, modoFever, acao, tipo, divisor) {
   if (!feverActive) feverMode = modoFever;
+
+  qtd+=checkNotes();
 
   agathaTeclado(true);
 
@@ -109,7 +111,7 @@ function gerarNotas(qtd, modoFever, acao, tipo) {
 
   updateNoteStyle();
 
-  window._rhythmContext = { acao, tipo };
+  window._rhythmContext = { acao, tipo, divisor };
 }
 
 // =====================
@@ -122,7 +124,7 @@ function checkFimSessao() {
 
     const ctx = window._rhythmContext || {};
 
-    finalizarPontuacao(ctx.acao, ctx.tipo);
+    finalizarPontuacao(ctx.acao, ctx.tipo, ctx.divisor);
 
     toggleRhythmGame(false);
     agathaTeclado(false);

@@ -86,11 +86,13 @@ const buffs = { // Buffs ativos por tipo
   laranja: [],
 
   lua: [],
-  sol: []
+  sol: [],
+
+  music: []
 };
 let aliado = null;
 
-const STACK_REAL = ["amarelo", "azul", "vermelho", "roxa", "verde", "laranja", "lua", "sol"];
+const STACK_REAL = ["amarelo", "azul", "vermelho", "roxa", "verde", "laranja", "lua", "sol","music"];
 const BUFF_VISUAL = { // Configuração visual dos buffs
   atk:   { emoji: "⚔️", border: "10px", color: "#ff5555" },
   def:   { emoji: "🛡️", border: "0px 0px 20px 20px", color: "#55aaff" },
@@ -105,7 +107,9 @@ const BUFF_VISUAL = { // Configuração visual dos buffs
   laranja:  { emoji: "オレンジ", border: "0%", color: "#f97316" }, // quadrado
 
   lua:    { emoji: "🌙",   border: "50% 50% 0 0",         color: "#3399ff" }, 
-  sol:  { emoji: "☀️", border: "50%",        color: "#ffd700" } 
+  sol:  { emoji: "☀️", border: "50%",        color: "#ffd700" },
+
+  music:  { emoji: "🎶", border: "70% 30% 70% 30%",        color: "#a855f7" } 
 };
 const rarityWeights = [ // Pesos para raridade de cartas
   { name: "common", weight: 50 },
