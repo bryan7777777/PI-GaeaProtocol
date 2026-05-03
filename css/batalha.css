@@ -1970,14 +1970,14 @@ color: rgb(227, 90, 255);
 
 .hit-line{
   position:absolute;
-  bottom:18%;
+  bottom:28%;
   width:100%;
-  height:3px;
+  height:4px;
 
-  background:linear-gradient(90deg, transparent, #b300ff, transparent);
+  background:linear-gradient(90deg, #ffffff, #00ff3c, #ffffff);
   opacity:.6;
 
-  box-shadow:0 0 10px #b300ff;
+  box-shadow:0 0 10px #00ffbf;
   animation:pulse 1.2s infinite;
 }
 
@@ -1992,7 +1992,7 @@ color: rgb(227, 90, 255);
 
 .note{
   width:80%;
-  height:22px;
+  height:32px;
   position:absolute;
   left:10%;
   border-radius:12px;
@@ -2013,7 +2013,7 @@ color: rgb(227, 90, 255);
 /* ========================= */
 
 .note.lar{
-  background:linear-gradient(90deg,#ff2a6d,#ff4d4d,#ff0080);
+  background:linear-gradient(90deg,#f589ff,#ff87c5,#ff5faf);
 
   box-shadow:
   0 0 10px rgba(255,0,120,0.8),
@@ -2122,6 +2122,134 @@ color: rgb(227, 90, 255);
   100% {
     transform: translate(var(--drift), 110vh) rotate(360deg);
   }
+}
+
+#hospitalMelancholy{
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  z-index: 99;
+
+  display: none;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(120,140,170,0.08),
+      rgba(20,25,35,0.35)
+    );
+}
+
+/* ========================= */
+/* PARTÍCULAS */
+/* ========================= */
+
+.hospital-particle{
+  position: absolute;
+
+  animation:
+    hospitalFall linear forwards;
+}
+
+/* ========================= */
+/* POEIRA */
+/* ========================= */
+
+.hospital-particle.dust{
+
+  border-radius: 50%;
+
+  background:
+    rgba(210,220,255,0.7);
+
+  filter: blur(1px);
+}
+
+/* ========================= */
+/* NÉVOA */
+/* ========================= */
+
+.hospital-particle.fog{
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(180,200,255,0.10) 0%,
+      rgba(120,140,180,0.04) 40%,
+      transparent 75%
+    );
+
+  filter: blur(20px);
+}
+
+/* ========================= */
+/* CINZAS */
+/* ========================= */
+
+.hospital-particle.ash{
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(220,230,255,0.5),
+      rgba(120,130,150,0.2)
+    );
+
+  border-radius: 30%;
+  filter: blur(0.5px);
+}
+
+/* ========================= */
+/* ANIMAÇÃO */
+/* ========================= */
+
+@keyframes hospitalFall{
+
+  0%{
+    transform:
+      translate(0,0)
+      rotate(0deg);
+
+    opacity: 0;
+  }
+
+  10%{
+    opacity: 1;
+  }
+
+  100%{
+    transform:
+      translate(var(--drift), 115vh)
+      rotate(180deg);
+
+    opacity: 0;
+  }
+
+}
+
+/* ========================= */
+/* VINHETA ESCURA */
+/* ========================= */
+
+#hospitalMelancholy::after{
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle,
+      transparent 35%,
+      rgba(0,0,0,0.85) 100%
+    );
+
+  pointer-events: none;
 }
 /* =================== TABLET =================== */
 @media (max-width: 1024px) {

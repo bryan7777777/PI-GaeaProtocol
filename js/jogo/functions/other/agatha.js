@@ -147,6 +147,7 @@ function startFever() {
       "url('../img/jogo/background/agathaLar.png')";
 
     startAgathaSakura();
+    stopHospitalMelancholy();
     trocarFramePlayer("agatha");
 
   } else {
@@ -154,6 +155,7 @@ function startFever() {
       "url('../img/jogo/background/agathaTra.png')";
 
     stopAgathaSakura();
+    startHospitalMelancholy();
     trocarFramePlayer("agatha");
   }
 
@@ -170,6 +172,7 @@ function disableFever() {
   feverFill.style.width = "0%";
   document.body.classList.remove("fever");
 
+  stopHospitalMelancholy();
   stopAgathaSakura();
 
   const jogo = document.getElementById("jogo");
