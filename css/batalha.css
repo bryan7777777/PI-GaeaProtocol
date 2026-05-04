@@ -2066,7 +2066,7 @@ color: rgb(227, 90, 255);
 
 #feverFill{
   height:100%;
-  width:100%;
+  width:0;
   background:linear-gradient(90deg,#7a00ff,#d100ff,#ff4dff);
   box-shadow:0 0 15px #b300ff;
   transition:.1s;
