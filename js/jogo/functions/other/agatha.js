@@ -30,7 +30,13 @@ function toggleRhythmGame(ativo) {
 
 // =====================
 function getNoteSpeed() {
-  return (feverActive && feverMode === "tra") ? 6 : 4;
+  if (feverActive && feverMode === "tra") {
+    return 8;
+  } else if (feverActive && feverMode === "lar") {
+    return 5;
+  } else {
+    return 4;
+  }
 }
 
 // =====================

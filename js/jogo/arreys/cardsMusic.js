@@ -74,7 +74,7 @@ const cardsMusic = [
     type: "music"
   },
   {
-    name: "SemiFusa",
+    name: "Semifusa",
     cost: 2,
     basePower: 16,
     rarity: "music",

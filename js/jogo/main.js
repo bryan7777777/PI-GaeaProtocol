@@ -1822,7 +1822,7 @@ function drawCards() {
          gerarNotas(card.power, "tra", false, "cura", 2);
         }
         //🎵
-        else if (card.name === "Partitura"||card.name === "Semibreve"||card.name === "Colcheia"||card.name === "Fusa"||card.name === "Seminima"||card.name === "Semifusa") {
+        else if (card.name === "Partitura"||card.name === "Semibreve"||card.name === "Colcheias"||card.name === "Fusa"||card.name === "Seminima"||card.name === "Semifusa") {
          aplicarBuffsPower(card.power, 999, "music");
         }
         //  🎨🎨🎨🎨🎨 CRIA 🎨🎨🎨🎨🎨
@@ -8167,7 +8167,7 @@ const characterDecks = {
     cardsMusic.find(c => c.name === "Colcheias"),
     cardsMusic.find(c => c.name === "Fusa"),
     cardsMusic.find(c => c.name === "Seminima"),
-    cardsMusic.find(c => c.name === "SemiFusa"),
+    cardsMusic.find(c => c.name === "Semifusa"),
   ],
   // gaeaReen: [
   //   allCards.find(c => c.name === "Chuva de Laminas"),
