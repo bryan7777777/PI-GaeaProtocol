@@ -375,7 +375,7 @@ function configurarSelecaoPersonagem() {
         {
           img: "./../img/jogo/passivas/palco.png",
           titulo: "Palco",
-          desc: "Invoque um Palco no qual cai notas com as teclas: A S D F. <br>Abrir um Palco coloca seu Fervor em 0 mas não tira o estado de Fervor. <br>(Caso erre as primeira nota, Agatha sai do Fervor)<br> Acertar notas proporciona pontos para a ação, e pontos de Fervor.<br>Perfect: +2<br>Good: +1<br>Miss: -2<br><br>Fervor Lar: Aumenta a quantidade de pontos em x2 enquanto estiver nesse estado. Aumente a velocidade<br>das teclas em 25%.<br><br>Fervor Trauma: Aumenta a quantidade de pontos em x5. Aumenta a velocidade das notas 100%, errar causa<br>um dano forte direto a vida podendo ser LETAL (-50❤️).",
+          desc: "Invoque um Palco no qual cai notas com as teclas: A S D F. <br>Abrir um Palco coloca seu Fervor em 0 mas não tira o estado de Fervor. <br>(Caso erre as primeira nota, Agatha sai do Fervor)<br> Acertar notas proporciona pontos para a ação, e pontos de Fervor.<br>Perfect: +2<br>Good: +1<br>Miss: -2<br><br>Fervor Lar: Aumenta a quantidade de pontos em x2 enquanto estiver nesse estado. Aumente a velocidade<br>das teclas em 25%.<br><br>Fervor Trauma: Aumenta a quantidade de pontos em x5. Aumenta a velocidade das notas 50%, errar causa<br>um dano forte direto a vida podendo ser LETAL (-50❤️).",
           cor: "yellow"
         }
       ]

@@ -31,7 +31,7 @@ function toggleRhythmGame(ativo) {
 // =====================
 function getNoteSpeed() {
   if (feverActive && feverMode === "tra") {
-    return 8;
+    return 6;
   } else if (feverActive && feverMode === "lar") {
     return 5;
   } else {
@@ -69,7 +69,7 @@ function toggleRhythmGame(ativo) {
 // =====================
 // FINALIZA PONTUAÇÃO
 function finalizarPontuacao(acao, tipo, divisor) {
-  let total = Math.max(0, pontuacao/divisor);
+  let total = Math.floor(Math.max(0, pontuacao / divisor));
   pontuacao = 0;
 
   if (tipo === "cura" || tipo === "def" || tipo === "energia") {
@@ -91,7 +91,7 @@ function finalizarPontuacao(acao, tipo, divisor) {
 function gerarNotas(qtd, modoFever, acao, tipo, divisor) {
   if (!feverActive) feverMode = modoFever;
 
-  qtd+=checkNotes();
+  qtd += checkNotes();
 
   agathaTeclado(true);
 
