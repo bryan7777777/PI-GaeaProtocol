@@ -1909,7 +1909,7 @@ color: rgb(227, 90, 255);
 
 #rhythmGame{
   right: 1px;
-  top: 9%;
+  top: 7.8%;
   width:100%;
   height:90%;
   position:absolute;
@@ -2050,14 +2050,14 @@ color: rgb(227, 90, 255);
 
 #ui{
   position:absolute;
-  top:12px;
-  left:12px;
+  top:80%;
+  left:37.5%;
   z-index:1;
 }
 
 #feverBar{
-  width:260px;
-  height:10px;
+  width:480px;
+  height:20px;
   background:rgba(255,255,255,0.08);
   border:1px solid rgba(180,0,255,0.3);
   border-radius:10px;
@@ -2066,7 +2066,7 @@ color: rgb(227, 90, 255);
 
 #feverFill{
   height:100%;
-  width:0%;
+  width:100%;
   background:linear-gradient(90deg,#7a00ff,#d100ff,#ff4dff);
   box-shadow:0 0 15px #b300ff;
   transition:.1s;
