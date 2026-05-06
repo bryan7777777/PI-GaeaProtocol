@@ -24,7 +24,7 @@ let targetSpeed = 4;
 
 let speedStart = 4;
 let speedStartTime = 0;
-let speedDuration = 10000;
+let speedDuration = 8000;
 
 // =====================
 function lerp(a, b, t) {
@@ -38,8 +38,8 @@ function easeOutCubic(t) {
 
 // =====================
 function getNoteSpeedTarget() {
-  if (feverActive && feverMode === "tra") return 8;
-  if (feverActive && feverMode === "lar") return 6;
+  if (feverActive && feverMode === "tra") return 6;
+  if (feverActive && feverMode === "lar") return 5;
   return 4;
 }
 
@@ -68,7 +68,7 @@ function toggleRhythmGame(ativo) {
 // =====================
 function getMultiplicador() {
   if (feverActive && feverMode === "lar") return 2;
-  if (feverActive && feverMode === "tra") return 5;
+  if (feverActive && feverMode === "tra") return 4;
   return 1;
 }
 
