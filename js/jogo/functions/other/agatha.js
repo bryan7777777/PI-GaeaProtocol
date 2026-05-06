@@ -18,25 +18,51 @@ window._rhythmContext = {};
 const targetX = [-140, -50, 50, 140];
 
 // =====================
+// 🔥 VELOCIDADE SUAVE
+let currentSpeed = 4;
+let targetSpeed = 4;
+
+let speedStart = 4;
+let speedStartTime = 0;
+let speedDuration = 10000;
+
+// =====================
 function lerp(a, b, t) {
   return a + (b - a) * t;
+}
+
+// easing (deixa mais natural)
+function easeOutCubic(t) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
+// =====================
+function getNoteSpeedTarget() {
+  if (feverActive && feverMode === "tra") return 8;
+  if (feverActive && feverMode === "lar") return 6;
+  return 4;
+}
+
+// =====================
+function updateSpeed() {
+  const newTarget = getNoteSpeedTarget();
+
+  if (newTarget !== targetSpeed) {
+    targetSpeed = newTarget;
+    speedStart = currentSpeed;
+    speedStartTime = performance.now();
+  }
+
+  const now = performance.now();
+  const t = Math.min((now - speedStartTime) / speedDuration, 1);
+
+  currentSpeed = lerp(speedStart, targetSpeed, easeOutCubic(t));
 }
 
 // =====================
 function toggleRhythmGame(ativo) {
   document.getElementById("rhythmGame").style.display =
     ativo ? "flex" : "none";
-}
-
-// =====================
-function getNoteSpeed() {
-  if (feverActive && feverMode === "tra") {
-    return 6;
-  } else if (feverActive && feverMode === "lar") {
-    return 5;
-  } else {
-    return 4;
-  }
 }
 
 // =====================
@@ -47,7 +73,6 @@ function getMultiplicador() {
 }
 
 // =====================
-// ATUALIZA VISUAL DAS NOTAS
 function updateNoteStyle() {
   for (let n of notes) {
     n.el.classList.remove("lar", "tra", "normal");
@@ -61,13 +86,6 @@ function updateNoteStyle() {
 }
 
 // =====================
-function toggleRhythmGame(ativo) {
-  document.getElementById("rhythmGame").style.display =
-    ativo ? "flex" : "none";
-}
-
-// =====================
-// FINALIZA PONTUAÇÃO
 function finalizarPontuacao(acao, tipo, divisor) {
   let total = Math.floor(Math.max(0, pontuacao / divisor));
   pontuacao = 0;
@@ -87,7 +105,6 @@ function finalizarPontuacao(acao, tipo, divisor) {
 }
 
 // =====================
-// GERAR NOTAS
 function gerarNotas(qtd, modoFever, acao, tipo, divisor) {
   if (!feverActive) feverMode = modoFever;
 
@@ -121,7 +138,6 @@ function gerarNotas(qtd, modoFever, acao, tipo, divisor) {
 }
 
 // =====================
-// CHECA FIM DA SESSÃO
 function checkFimSessao() {
   if (!sessionAtiva) return;
 
@@ -235,8 +251,9 @@ function updateFeverWave() {
 function loop() {
 
   updateFeverWave();
+  updateSpeed(); // 🔥 NOVO
 
-  const speed = getNoteSpeed();
+  const speed = currentSpeed;
 
   for (let i = notes.length - 1; i >= 0; i--) {
 
@@ -245,10 +262,6 @@ function loop() {
     n.y += speed;
 
     n.el.style.top = n.y + "px";
-
-    // =========================
-    // HIT LINE REAL
-    // =========================
 
     const lane =
       [...lanes].find(l => l.dataset.key === n.key);
@@ -266,16 +279,11 @@ function loop() {
     const hitY =
       hitRect.top + (hitRect.height / 2);
 
-    // posição real da nota
     const noteRect =
       n.el.getBoundingClientRect();
 
     const noteY =
       noteRect.top + (noteRect.height / 2);
-
-    // =========================
-    // MISS WINDOW
-    // =========================
 
     if (noteY > hitY + 30) {
       miss(i);
@@ -304,10 +312,6 @@ function hit(k) {
 
   flash(lane);
 
-  // =========================
-  // PEGA POSIÇÃO REAL DA HIT LINE
-  // =========================
-
   const hitLine =
     lane.querySelector(".hit-line");
 
@@ -316,11 +320,8 @@ function hit(k) {
   const hitRect =
     hitLine.getBoundingClientRect();
 
-  // centro vertical da linha
   const hitY =
     hitRect.top + (hitRect.height / 2);
-
-  // =========================
 
   for (let i = 0; i < notes.length; i++) {
 
@@ -328,28 +329,17 @@ function hit(k) {
 
     if (n.key !== k) continue;
 
-    // posição real da nota na tela
     const noteRect =
       n.el.getBoundingClientRect();
 
     const noteY =
       noteRect.top + (noteRect.height / 2);
 
-    // distância REAL entre nota e linha
     let d =
       Math.abs(noteY - hitY);
 
-    // =========================
-    // HIT WINDOWS
-    // =========================
-
-    if (d < 20) {
-      return perfect(i);
-    }
-
-    if (d < 55) {
-      return good(i);
-    }
+    if (d < 20) return perfect(i);
+    if (d < 55) return good(i);
   }
 }
 
