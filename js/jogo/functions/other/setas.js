@@ -36,13 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
         nome: "CONSELHO DA GAEA",
         classe: "gaea",
         personagens: [
-          { id: "gaeaReen", img: "gaeaReen.gif" },
-          { id: "laranja", img: "gabriel.gif" },
-          { id: "amarelo", img: "bruno.gif" },
-          { id: "lucius", img: "lucius.gif" },
-          { id: "porto", img: "autoridadeDoPorto.gif" },
-          { id: "lilia", img: "lilia.gif" },
-          { id: "ferrus", img: "magnusFerrus.gif" },
+          { id: "gaeaReen", img: "gaeaReen.png" },
+          { id: "laranja", img: "gabriel.png" },
+          { id: "amarelo", img: "bruno.png" },
+          { id: "lucius", img: "lucius.png" },
+          { id: "porto", img: "autoridadeDoPorto.png" },
+          { id: "lilia", img: "lilia.png" },
+          { id: "ferrus", img: "magnusFerrus.png" },
           
         ]
       },
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nome: "CRIADORES",
         classe: "criadores",
         personagens: [
-          { id: "criadora", img: "criadora.gif" },
+          { id: "criadora", img: "criadora.png" },
           { id: "cleopatra", img: "cleopatra.png" },
           { id: "agatha", img: "agatha.png" },
         ]

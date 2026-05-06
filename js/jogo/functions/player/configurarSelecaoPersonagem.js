@@ -55,7 +55,7 @@ function configurarSelecaoPersonagem() {
       energia: 4,
       escudo: 0,
       mao: 6,
-      img: "./../img/jogo/player/gaeaReen.gif",
+      img: "./../img/jogo/player/animado/gaeaReen/statico/gaeaReen1.png",
       lor: "[...]",
       extras: [
         {
@@ -89,7 +89,7 @@ function configurarSelecaoPersonagem() {
       energia: 3,
       escudo: 0,
       mao: 5,
-      img: "./../img/jogo/player/bruno.gif",
+      img: "./../img/jogo/player/animado/bruno/statico/bruno1.png",
       lor: "Líder do GLEBA PROTOCOL, um ex-membro do GAEA, decidiu continuar cuidando do meio ambiente, então decidiu ir para o GLEBA e rapidamente se tornou o líder[...]",
       extras: [
         {
@@ -111,7 +111,7 @@ function configurarSelecaoPersonagem() {
       energia: 3,
       escudo: 5,
       mao: 5,
-      img: "./../img/jogo/player/autoridadeDoPorto.gif",
+      img: "./../img/jogo/player/animado/porto/statico/porto1.png",
       lor: "Assim como seu pai ela assumiu o manto de autoridade do porto, aprendeu bem com seu velho estratégias muito boas de ataque a distância, mas ela se apaixonou pelo mar assim como sua mãe. [...]",
       extras: [
         {
@@ -133,7 +133,7 @@ function configurarSelecaoPersonagem() {
       energia: 3,
       escudo: 0,
       mao: 6,
-      img: "./../img/jogo/player/gabriel.gif",
+      img: "./../img/jogo/player/animado/gabriel/statico/gabriel1.png",
       lor: "Salva animais com velocidade e precisão de situações inesperadas, combate à caça e ao tráfico animal.",
       extras: [
         {
@@ -177,7 +177,7 @@ function configurarSelecaoPersonagem() {
       energia: 3,
       escudo: 0,
       mao: 5,
-      img: "./../img/jogo/player/lucius.gif",
+      img: "./../img/jogo/player/animado/lucius/statico/lucius1.png",
       lor: "Ninguém sabe onde ele vive, por onde anda, ele vai trabalhar quando ele quer, pelo tempo que ele quer e até hoje se perguntam como ele não foi demitido. Se não fosse pelos seus feitos lendários ele provavelmente não estaria aqui, mas ninguém sabe se são verdade, mas tambem não discordam, afinal nenhum deles tem provas, mas seu irmão Jão é o único quem sabe a verdade e sabe por onde ele anda.",
       extras: [
         {
@@ -199,7 +199,7 @@ function configurarSelecaoPersonagem() {
       energia: "2",
       escudo: "0",
       mao: "4",
-      img: "./../img/jogo/player/lilia.gif",
+      img: "./../img/jogo/player/animado/lilia/statico/lilia1.png",
       lor: "Líder do GLACIAL PROTOCOL (GLA.P), dona de muitas lendas, ao mesmo tempo que sabem muito sobre ela também sabem tão pouco, há muitos rumores e histórias lendárias dela, uma grande estrategista, dizem que ela já foi capaz de apenas com mais 3 soldados do GLA.P derrubar um imenso batalhão de mais de 100mil robos corrompidos e destruir uma das principais bases da IA, também falam que ela sozinha já bateu de frente contra multiplos exercitos para salvar seu povo, verdade ou não, esse mitos ecoam por todos do GLA.P e até outros protocols já ouviram dela, ela é muito respeitada por todos, até Magnolia a lider do G.P a respeita muito[...], \"Será que é verdade que ela não precisa de um mecha?\"",
       extras: [
         {
@@ -261,7 +261,7 @@ function configurarSelecaoPersonagem() {
       energia: 3,
       escudo: 17,
       mao: 5,
-      img: "./../img/jogo/player/sal2.gif",
+      img: "./../img/jogo/player/animado/ferrus/statico/ferrus1.png",
       lor: "\"Em desenvolvimento\"[...]",
       extras: [
         {
@@ -295,7 +295,7 @@ function configurarSelecaoPersonagem() {
       energia: 5,
       escudo: 0,
       mao: 6,
-      img: "./../img/jogo/player/criadora.gif",
+      img: "./../img/jogo/player/animado/criadora/statico/criadora1.png",
       lor: "Mayumi era uma artista extraordinária. Suas obras eram conhecidas por uma beleza quase sobrenatural, descritas por outros como repletas de cores vibrantes que encantavam todos que as contemplavam.<br><br>Mas havia uma verdade silenciosa — invisível para o mundo.<br><br>Mayumi era portadora de acromatopsia.<br><br>Ela nunca havia visto uma única cor em toda a sua vida.<br><br>Para ela, o mundo sempre existiu apenas em tons de cinza — sombras, luz e contraste. Nada além disso.<br><br>E ainda assim... ela pintava cores que nunca viu.<br><br>Desde jovem, serviu como artista e arqueira de elite para um governante regional de renome, guiando-se não por cor, mas por forma, movimento e intenção. Sua fama se espalhou, e ela era respeitada tanto pelo talento artístico quanto pela precisão mortal em combate.<br><br>Em busca de aperfeiçoamento, partiu em uma jornada que mudaria sua vida. Durante o caminho, encontrou um grupo budista devoto das cores e da percepção do mundo, permanecendo com eles por muitos anos, aprendendo, evoluindo... tentando compreender algo que, para ela, não existia.<br><br>Foi então que a verdade se tornou impossível de ignorar.<br><br>Enquanto falavam de vermelho, azul e dourado... Mayumi percebeu que nunca havia entendido o que essas palavras realmente significavam.<br><br>Não era falta de conhecimento.<br><br>Era ausência de experiência.<br><br>Mesmo assim, ela continuou criando. Continuou sonhando.<br><br>Certo dia, ouviu rumores sobre um elixir milagroso, capaz de conceder, ainda que por breves instantes, a visão das cores verdadeiras — algo impossível para alguém como ela.<br><br>Aquilo deixou de ser apenas um desejo.<br><br>Tornou-se obsessão.<br><br>Sua missão. Seu propósito. Sua fé.<br><br>Atravessou vales, sobreviveu a guerras, enfrentou a própria exaustão... mas nunca caiu.<br><br>Até que chegou a um majestoso palácio de luz, onde encontrou o Deus do Sol. Diante dele, fez seu pedido: desejava o elixir.<br><br>Desejava, ao menos uma vez na vida, ver aquilo que sempre pintou sem jamais conhecer.<br><br>O deus respondeu com desprezo. Disse possuir o elixir, mas jamais o entregaria a uma mortal tão determinada e “miserável”.<br><br>Sem hesitar, Mayumi o desafiou.<br><br>O duelo foi breve... e brutal. Em poucos minutos, seu corpo já não respondia, e a morte parecia inevitável. Ainda assim, com o último fio de voz, declarou:<br><br>“Se me deixar viver... eu viverei para te derrotar.”<br><br>Intrigado — talvez até entediado pela eternidade solitária — o Deus do Sol decidiu poupá-la.<br><br>E assim começou um ciclo.<br><br>Todos os meses, sem falhar, Mayumi retornava. Contava suas batalhas, suas derrotas, suas evoluções. E, a cada encontro, estava mais forte. Mais rápida. Mais determinada.<br><br>Até que, finalmente, a superou.<br><br>Diante dela, derrotado, o Deus do Sol sorriu e disse:<br><br>“Eu não poderia desejar uma oponente melhor.”<br><br>Então, finalmente, entregou-lhe o elixir. Mas havia um preço: seu efeito duraria apenas por instantes... e qualquer ferimento encerraria sua magia imediatamente.<br><br>Além disso, concedeu a ela uma dádiva — ou talvez uma maldição: imortalidade temporária. Mayumi não envelheceria, mas ainda poderia morrer em batalha. E quando reunisse todas as cores do mundo e consumisse o elixir... tudo chegaria ao fim.<br><br>Sem hesitar, ela aceitou.<br><br>Seu novo objetivo era claro: reunir todas as cores existentes — mesmo sem jamais tê-las visto.<br><br>Ela vagou por anos... décadas... até que o mundo começou a mudar.<br><br>Ao despertar de um longo sono, encontrou um futuro distópico, um mundo apagado. As cores estavam desaparecendo.<br><br>Foi então que descobriu a existência de uma IA, uma entidade que, pouco a pouco, estava drenando todas as cores do mundo — destruindo aquilo que ela passou a vida inteira tentando compreender.<br><br>Diante disso, Mayumi fez seu último juramento:<br><br>Ela destruiria a IA.<br><br>E, finalmente... veria as cores.",
       extras: [
         {
