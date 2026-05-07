@@ -364,7 +364,150 @@ function configurarSelecaoPersonagem() {
       escudo: 0,
       mao: 8,
       img: "./../img/jogo/player/animado/agatha/agathaDefalt.png",
-      lor: "[...]",
+      lor: `Agatha, quando era mais nova, era uma garota cheia de vida. Seu sorriso parecia aquecer qualquer ambiente, e seus olhos brilhavam sempre que falava sobre música.<br><br>
+Nascida no Japão, ela cresceu sonhando em se tornar cantora. Passava horas ouvindo canções antigas, imaginando-se em um palco iluminado enquanto o mundo inteiro escutava sua voz.<br><br>
+Mas seus pais nunca enxergaram aquilo como um sonho.<br><br>
+Sua mãe era uma renomada advogada.<br>
+Seu pai, um neurocirurgião respeitado internacionalmente.<br><br>
+Para eles, música era apenas uma fantasia infantil, algo incapaz de sustentar um futuro.<br><br>
+— Nós sabemos o que é melhor para você.<br><br>
+Essa frase acompanhou Agatha durante anos.<br><br>
+No começo, ela tentou resistir. Discutiu, chorou, implorou. Mas, pouco a pouco, sua voz foi se apagando dentro da própria casa. No fim, cedeu.<br><br>
+Entrou para a faculdade de medicina.<br><br>
+Mesmo sem amar aquilo, era brilhante.<br>
+Uma aluna impecável.<br>
+Fria, precisa e absurdamente inteligente.<br><br>
+Enquanto seus colegas comemoravam festas, paixões e sonhos, Agatha apenas observava. Invejava a liberdade deles. Invejava pessoas que podiam seguir o próprio coração sem culpa.<br><br>
+Tentou desabafar algumas vezes, mas nunca era compreendida.<br><br>
+— Por que você está reclamando?<br>
+— Você tem tudo.<br>
+— Seus pais são influentes.<br>
+— Seu futuro já está garantido.<br><br>
+Então ela começou a se perguntar se talvez estivesse errada.<br><br>
+“Será que eu sou ingrata?”<br>
+“Será que meus sonhos realmente não têm valor?”<br>
+“Talvez felicidade seja apenas um luxo para algumas pessoas...”<br><br>
+Depois de anos refletindo, Agatha matou seus próprios sonhos.<br><br>
+E foi naquele momento que algo dentro dela morreu também.<br><br>
+O sorriso caloroso desapareceu.<br>
+Seu olhar tornou-se distante.<br>
+Vazio.<br><br>
+Os pais perceberam a mudança, mas acreditavam que era apenas cansaço pelos estudos.<br><br>
+Eles nunca perceberam que a filha alegre que conheciam havia desaparecido havia muito tempo.<br><br>
+Agatha viveu durante anos como a sombra de alguém que nunca quis ser.<br><br>
+Formou-se em medicina.<br>
+Não apenas isso.<br><br>
+Tornou-se a melhor médica de sua área.<br><br>
+Pessoas influentes, milionários e até líderes políticos viajavam quilômetros apenas para serem tratados por ela. Seu nome começou a circular pelo mundo como uma lenda.<br><br>
+Ela realizou mais de vinte cirurgias impossíveis.<br>
+Todas terminaram com os pacientes vivos.<br><br>
+Casos que até médicos experientes desistiam de operar eram entregues às mãos dela.<br><br>
+Quando Agatha entrava em uma sala cirúrgica, era como se a própria morte recuasse alguns passos.<br><br>
+Foi então que começaram a chamá-la de:<br><br>
+“O Anjo da Medicina.”<br><br>
+Até seu pai, um homem incapaz de demonstrar sentimentos facilmente, admitiu:<br><br>
+— Você é a melhor médica que já conheci.<br>
+— Tenho orgulho de você.<br><br>
+Mas aquelas palavras chegaram tarde demais.<br><br>
+Para Agatha, soavam ocas.<br>
+Sem peso.<br>
+Sem calor.<br><br>
+Como aplausos em um teatro vazio.<br><br>
+Certo dia, ela viajou para o Brasil, terra natal de sua mãe.<br><br>
+Um dos homens mais ricos e influentes do país precisava urgentemente de uma cirurgia extremamente arriscada: um aneurisma cerebral múltiplo de ruptura iminente, combinado com uma hemorragia profunda no tronco encefálico.<br><br>
+As chances de sobrevivência eram inferiores a 3%.<br><br>
+Muitos médicos consideravam a operação impossível.<br>
+Outros sequer aceitavam tentar.<br><br>
+O homem já havia aceitado a morte... até ouvir falar do “Anjo da Medicina”.<br><br>
+Naquele instante, algo dentro dele reacendeu.<br><br>
+— Se alguém pode me salvar... é ela.<br><br>
+Seu estado era tão grave que uma viagem até o Japão poderia matá-lo no caminho. Então enviaram um pedido urgente para Agatha.<br><br>
+— Não importa quanto custe.<br>
+— Quero que seja ela.<br><br>
+A notícia se espalhou rapidamente pelo hospital onde Agatha trabalhava. Corredores inteiros foram tomados por sussurros.<br><br>
+“Dessa vez ela não consegue.”<br>
+“Nem ela pode fazer milagres.”<br><br>
+Mas aqueles que já haviam trabalhado ao lado dela apenas permaneceram em silêncio.<br><br>
+Eles sabiam.<br><br>
+Agatha não aceitava perder pacientes.<br><br>
+Com o peso de seu juramento nos ombros, ela partiu para o Brasil no jatinho pessoal do homem.<br><br>
+Foi recebida calorosamente pelos funcionários da mansão e, logo depois, levada ao hospital.<br><br>
+Ao entrar no quarto, encontrou um homem extremamente debilitado, respirando com dificuldade, já convencido de que morreria.<br><br>
+Médicos renomados observavam Agatha com descrença.<br><br>
+Então ela disse, com uma calma assustadora:<br><br>
+— Eu posso salvá-lo.<br>
+— E eu vou salvá-lo.<br><br>
+A cirurgia começou.<br><br>
+Horas se passaram.<br>
+Depois mais horas.<br><br>
+Do lado de fora, familiares, empresários e especialistas aguardavam em absoluto nervosismo.<br><br>
+Cada minuto aumentava a sensação de fracasso iminente.<br><br>
+Até que, no meio dos sussurros, a porta da sala cirúrgica se abriu.<br><br>
+Agatha surgiu coberta pelo cansaço.<br>
+Seu olhar parecia frio o suficiente para congelar o ambiente inteiro.<br><br>
+Então disse:<br><br>
+— Em uma sala de cirurgia, falhar é o mesmo que assassinar alguém.<br>
+— E eu não sou uma assassina.<br><br>
+O homem estava vivo.<br><br>
+Fraco.<br>
+Quase irreconhecível.<br>
+Mas vivo.<br><br>
+Meses depois, ele recebeu alta completamente recuperado.<br><br>
+Os médicos ficaram chocados ao ver alguém que estava à beira da morte voltar a caminhar normalmente.<br><br>
+Em homenagem àquela conquista impossível, foi organizada uma festa luxuosa, repleta de pessoas influentes, artistas, empresários e figuras importantes.<br><br>
+A convidada principal era Agatha.<br><br>
+Mas, no meio da celebração, ela simplesmente saiu.<br><br>
+Sozinha.<br><br>
+Debaixo da chuva.<br><br>
+Ficou parada em silêncio enquanto a água escorria pelo rosto como lágrimas que ela já não conseguia esconder.<br><br>
+Então olhou para o céu e pensou:<br><br>
+“Era isso?”<br>
+“Era esse o melhor futuro para mim?”<br><br>
+Porque, no fundo, seus sonhos nunca desapareceram.<br><br>
+Eles apenas continuavam vivos em algum lugar doloroso dentro dela.<br><br>
+Enquanto caminhava sem direção pelas ruas molhadas, Agatha avistou uma pequena escola de música iluminada no meio da noite.<br><br>
+Ela hesitou por apenas um segundo.<br><br>
+E entrou.<br><br>
+Lá dentro, encontrou um velho senhor ensinando sua sobrinha a cantar.<br><br>
+Agatha ficou parada observando em silêncio.<br><br>
+As lágrimas escorriam sem que ela percebesse.<br><br>
+O homem então olhou para ela e perguntou suavemente:<br><br>
+— O que a traz aqui tão tarde?<br><br>
+— E-eu... não sei...<br>
+— Talvez meu coração...<br><br>
+O velho sorriu de forma serena.<br><br>
+— Seu coração sabe mais sobre você do que você mesma.<br><br>
+— Isso faz sentido?<br><br>
+— Sim, querida.<br>
+— O coração entende aquilo que nos faz viver.<br>
+— Nem sempre o que parece certo é aquilo que nos salva.<br>
+— De que adianta existir sem felicidade?<br>
+— Isso não é viver.<br><br>
+— O senhor é professor de música?<br><br>
+— Já fui.<br>
+— Hoje sou apenas um velho apaixonado por canções.<br><br>
+Agatha abaixou o olhar antes de perguntar:<br><br>
+— Poderia me ensinar a cantar...?<br>
+— Nem que seja só um pouco...<br>
+— Eu posso pagar.<br><br>
+O homem apenas riu baixinho.<br><br>
+— Não precisa.<br>
+— Apenas tire essa roupa molhada antes de ficar doente.<br><br>
+E naquela pequena sala simples, longe dos hospitais luxuosos e dos aplausos vazios, Agatha viveu o momento mais feliz de toda sua vida.<br><br>
+Foram apenas algumas horas.<br><br>
+Mas, pela primeira vez em muitos anos, ela voltou a sorrir de verdade.<br><br>
+Ao sair da escola de música, olhou para o céu escuro enquanto a chuva diminuía lentamente.<br><br>
+Então pensou:<br><br>
+“Não existe sentido em possuir tudo... se você nunca puder descobrir até onde o céu alcança.”<br><br>
+Agatha não abandonou a medicina.<br><br>
+Não porque amasse aquilo.<br><br>
+Mas porque entendia o significado que seu nome carregava para outras pessoas.<br><br>
+Esperança.<br><br>
+Então decidiu unir as duas coisas.<br><br>
+Música e medicina.<br><br>
+Ela começou a estudar novamente.<br><br>
+Mas, dessa vez...<br><br>
+Com um sorriso verdadeiro no rosto.`,
       extras: [
         {
           img: "./../img/jogo/passivas/fervor.png",
