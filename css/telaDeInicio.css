@@ -181,11 +181,12 @@ body {
   position: absolute;
   width: 20%;
   height: 70vh;
+  min-height: 650px;
 
-  margin-top: 15vh;
+  margin-top: 14vh;
   margin-left: 1vw;
 
-  background-image: url("./../img/jogo/background/quiz1.png");
+  background-image: url("./../img/jogo/background/quest1.png");
   background-size: cover;
   background-position: center;
 
@@ -207,25 +208,6 @@ body {
   padding: 14px;
 }
 
-.front:hover,
-.back:hover,
-.historia:hover {
-  background: linear-gradient(to bottom, #001f07 0%, #004d12 50%, #006f16 100%);
-  padding: 12px;
-  border-radius: 0 20px 0 20px;
-  border: solid rgb(30, 205, 30) 2px;
-}
-
-.back:hover {
-  background: linear-gradient(to bottom, #1a0303 0%, #4d0a0a 50%, #8f1d1d 100%);
-  border: solid rgb(220, 60, 60) 2px;
-}
-
-.historia:hover {
-  background: linear-gradient(to bottom, #061a2e 0%, #0b3c6d 50%, #0f5fa8 100%);
-  border: solid rgb(80, 180, 255) 2px;
-}
-
 /* =================== CORES =================== */
 
 .gren {
@@ -238,6 +220,14 @@ body {
 
 .blue {
   color: #147cdd;
+}
+
+.yellow {
+  color: #ccdd14;
+}
+
+.purple {
+  color: #a114dd;
 }
 
 /* =================== ANIMAÇÕES =================== */
@@ -269,6 +259,197 @@ body {
 
   75% {
     transform: translate(1px, 1px);
+  }
+}
+
+.popup-creditos{
+  position: fixed;
+  inset: 0;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  z-index: 999999;
+
+  overflow: hidden;
+
+  /* FUNDO */
+  background: url("../img/jogo/background/quiz1.png");
+
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  backdrop-filter: blur(6px);
+}
+
+.popup-content{
+  width: 90vw;
+  max-height: 85vh;
+
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  gap:60px;
+
+  background: linear-gradient(
+      rgba(0,0,0,0.22),
+      rgba(0,0,0,0.28)
+    ),
+    url("../img/jogo/background/quest1.png");
+
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  border: 3px solid #d7ff75;
+
+  border-radius: 18px;
+
+  padding: 45px;
+
+  position: relative;
+
+  text-align: center;
+
+  box-shadow:
+    0 0 25px #d7ff75,
+    0 0 60px rgba(215,255,117,.25),
+    inset 0 0 30px rgba(215,255,117,.06);
+
+  animation: popupEntrada .35s ease;
+}
+
+/* TITULOS */
+.popup-content h1{
+  font-size: 30px;
+
+  margin-top: 35px;
+  margin-bottom: 20px;
+
+  letter-spacing: 3px;
+
+  text-shadow:
+    0 0 10px currentColor,
+    0 0 20px currentColor;
+}
+
+/* NOMES */
+.popup-content p{
+  font-size: 20px;
+
+  margin-bottom: 16px;
+
+  transition: .25s;
+
+  cursor: pointer;
+
+  font-family: "Press Start 2P", cursive;
+
+  line-height: 1.8;
+}
+
+.popup-content p:hover{
+  transform: scale(1.05);
+
+  text-shadow:
+    0 0 10px currentColor,
+    0 0 25px currentColor;
+}
+
+/* LINKS */
+.popup-content a{
+  text-decoration: none;
+}
+
+.geral-color{
+  color: #baffc9;
+}
+
+/* BOTAO FECHAR */
+.fechar-popup{
+  position: absolute;
+
+  top: 15px;
+  right: 18px;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 12px;
+
+  border: 2px solid #75ff75;
+
+  background: rgb(3, 37, 5);
+
+  color: #75ff77;
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+  transition: .25s;
+
+  box-shadow:
+    0 0 10px rgba(215,255,117,.3);
+}
+
+.fechar-popup:hover{
+  transform: scale(1.08);
+
+  background: #75ff7e;
+
+  color: #111;
+
+  box-shadow:
+    0 0 20px #75ff75,
+    0 0 40px #81ff75;
+}
+
+/* SCROLL */
+.popup-content::-webkit-scrollbar{
+  width: 10px;
+}
+
+.popup-content::-webkit-scrollbar-thumb{
+  background: #d7ff75;
+
+  border-radius: 10px;
+}
+
+.credito-box{
+  background-color: #111111d5;
+  border-radius: 25px;
+  padding: 25px;
+  min-height: 250px;
+  border: #00c728 solid 2px;
+  margin-top: 50px;
+  max-width: 25%;
+}
+
+.credito-box_main{
+  display: flex;
+  flex-direction: column;
+}
+
+.credito-box_main .credito-box{
+  min-width: 90%;
+}
+
+/* ANIMAÇÃO */
+@keyframes popupEntrada{
+  from{
+    opacity: 0;
+    transform: scale(.85) translateY(20px);
+  }
+
+  to{
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 

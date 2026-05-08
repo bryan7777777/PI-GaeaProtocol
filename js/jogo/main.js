@@ -664,7 +664,7 @@ function checkEnemies() {
             // Registrar vitória
             // registrarPartida('Vitória');
             feverActive = false;
-            disableFever();
+            if (personagemSelecionado==="agatha") disableFever();
             const overlay = document.getElementById("overlay");
             overlay.style.display = "block";
             overlay.classList.add("popup-opacity");
