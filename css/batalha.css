@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 html,
 body {
   overflow-x: hidden;
@@ -688,7 +690,7 @@ color: rgb(227, 90, 255);
   }
 }
 
-.attack, .defense, .heal, .reciclagem,.lixo,.cintilante,.frost,.fire,.terra,.agua,.cria,.desert,.music {
+.attack, .defense, .heal, .reciclagem,.lixo,.cintilante,.frost,.fire,.terra,.agua,.cria,.desert,.music,.salaCirurgia {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -703,13 +705,14 @@ color: rgb(227, 90, 255);
 .cria {background-image: url("../img/jogo/cards/cria.png");}
 .desert {background-image: url("../img/jogo/cards/desert.png");}
 .music {background-image: url("../img/jogo/cards/music.png");}
+.salaCirurgia {background-image: url("../img/jogo/cards/salaCirurgia.png");}
 
 .terra{background-image: url("../img/jogo/cards/terra.png");}
 .fire {background-image: url("../img/jogo/cards/fire.png");}
 .agua{background-image: url("../img/jogo/cards/agua.png");}
 .frost{background-image: url("../img/jogo/cards/frost.png");}
 
-.agua .desc, .fire .desc, .frost .desc, .defense .desc, .attack .desc, .cintilante .desc, .desert .desc, .cria .desc, .reciclagem .desc, .heal .desc, .music .desc{background-color: #20202079; border-radius: 15px;}
+.agua .desc, .fire .desc, .frost .desc, .defense .desc, .attack .desc, .cintilante .desc, .desert .desc, .cria .desc, .reciclagem .desc, .heal .desc, .music .desc, .salaCirurgia .desc{background-color: #20202079; border-radius: 15px;}
 .agua .titulo, .fire .titulo, .frost .titulo{color: aqua; text-shadow: 0 0 4px #000000;}
 .legend:hover .desc {background-color: #00000000;}
 
@@ -776,7 +779,7 @@ color: rgb(227, 90, 255);
 }
 
 /* Faixa de luz com bordas embaçadas */
-.common::before {
+.common::before, .salaCirurgia::before {
   content: "";
   position: absolute;
   top: 0;
@@ -798,13 +801,13 @@ color: rgb(227, 90, 255);
 }
 
 /* efeito de escala e brilho */
-.common:hover {
+.common:hover, .salaCirurgia:hover {
   transform: scale(1.03);
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
 }
 
 /* animação de uma única passada */
-.common:hover::before, .rare:hover::before{
+.common:hover::before, .rare:hover::before, .salaCirurgia:hover::before{
   animation: shineOneWay 0.5s forwards ease-out;
   opacity: 1;
 }
@@ -1295,6 +1298,15 @@ color: rgb(227, 90, 255);
   border: 3px solid rgb(169, 98, 255);
 }
 
+.salaCirurgia {
+  box-shadow: 0 0 30px rgb(255, 255, 255);
+  border: 3px solid rgb(158, 156, 159);
+}
+
+.salaCirurgia img {
+  border: 3px solid rgb(255, 255, 255);
+}
+
 /* efeito de giro do arco-íris */
 .card.cintilante, .card.cria, .card.desert, .card.music {
   position: relative;
@@ -1327,7 +1339,7 @@ color: rgb(227, 90, 255);
 }
 
 /* Ao passar o mouse na card, o ::before aparece */
-.card.cintilante:hover::before, .card.cria:hover::before, .card.desert:hover::before, .card.music:hover::before {
+.card.cintilante:hover::before, .card.cria:hover::before, .card.desert:hover::before, .card.music:hover::before{
   opacity: 1;
 }
 
@@ -1997,6 +2009,7 @@ color: rgb(227, 90, 255);
   left:10%;
   border-radius:12px;
   transition:0.2s;
+  will-change: transform;
 }
 
 /* ========================= */
@@ -2250,6 +2263,189 @@ color: rgb(227, 90, 255);
     );
 
   pointer-events: none;
+}
+
+#animacaoTra{
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  z-index: 9999;
+
+  background: rgba(0,0,0,0.45);
+}
+
+/* ========================= */
+/* FUNDO */
+/* ========================= */
+
+.tra-fundo{
+  position: absolute;
+
+  left: 50%;
+  top: -110%;
+
+  transform: translateX(-50%);
+
+  width: 100vw;
+  height: 100vh;
+
+  object-fit: cover;
+}
+
+/* ENTRADA */
+.fundo-enter{
+  animation: fundoEnter 1.2s forwards;
+}
+
+/* SAÍDA */
+.fundo-exit{
+  animation: fundoExit 1s forwards;
+}
+
+@keyframes fundoEnter{
+
+  0%{
+    top: -110%;
+    animation-timing-function: linear;
+  }
+
+  80%{
+    top: -8%;
+    animation-timing-function: ease-out;
+  }
+
+  100%{
+    top: 0%;
+  }
+
+}
+
+@keyframes fundoExit{
+
+  0%{
+    top: 0%;
+  }
+
+  100%{
+    top: 110%;
+  }
+
+}
+
+/* ========================= */
+/* GIF */
+/* ========================= */
+
+.tra-gif{
+  position: absolute;
+
+  left: 100%;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 500px;
+}
+
+/* ENTRADA */
+.gif-enter{
+  animation: gifEnter 1.2s forwards;
+}
+
+/* SAÍDA */
+.gif-exit{
+  animation: gifExit 1s forwards;
+}
+
+@keyframes gifEnter{
+
+  0%{
+    left: 100%;
+    animation-timing-function: linear;
+  }
+
+  80%{
+    left: 8%;
+    animation-timing-function: ease-out;
+  }
+
+  100%{
+    left: 0%;
+  }
+
+}
+
+@keyframes gifExit{
+
+  0%{
+    left: 0%;
+    opacity: 1;
+  }
+
+  100%{
+    left: -60%;
+    opacity: 0;
+  }
+
+}
+
+/* ========================= */
+/* TEXTO */
+/* ========================= */
+
+.tra-texto{
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 70vw;        
+  max-width: 1000px;
+
+  transform: translate(-50%, -50%) scale(0.7);
+
+  font-family: 'Press Start 2P', cursive;
+
+  font-size: 42px;
+
+  color: white;
+  background-color: #000000d5;
+  border-radius: 25px;
+  padding: 30px;
+
+  opacity: 0;
+
+  z-index: 10000;
+
+  line-height: 1.6;
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 35px #fff;
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+/* APARECER */
+.texto-show{
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* SUMIR */
+.texto-hide{
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.2);
 }
 /* =================== TABLET =================== */
 @media (max-width: 1024px) {

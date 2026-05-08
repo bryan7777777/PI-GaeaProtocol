@@ -1810,6 +1810,14 @@ function drawCards() {
           }
         }
         //  🎵🎵🎵🎵🎵 MUSIC 🎵🎵🎵🎵🎵
+        else if (card.name === "Levante Os Caidos") {
+          playerHP = 1;
+          feverActive = false;
+          feverMode = "tra";
+          startFever()
+          animacaoTra();
+        }
+        //🎵
         else if (card.name === "Clave De Sol") {
          gerarNotas(card.power, "tra",false, "unico", 1);
         }
@@ -8168,6 +8176,7 @@ const characterDecks = {
     cardsMusic.find(c => c.name === "Fusa"),
     cardsMusic.find(c => c.name === "Seminima"),
     cardsMusic.find(c => c.name === "Semifusa"),
+    cardsMusic.find(c => c.name === "Levante Os Caidos"),
   ],
   // gaeaReen: [
   //   allCards.find(c => c.name === "Chuva de Laminas"),
@@ -8920,6 +8929,59 @@ function animarEspelhoFerrus(tipo, frames, opcoes = {}) {
       espelho.style.zIndex = "0";
     }, delay * 3);
   }
+}
+async function animacaoTra() {
+
+  enginePaused = true; // 🔥 PAUSA JOGO
+
+  const container = document.createElement("div");
+  container.id = "animacaoTra";
+
+  const fundo = document.createElement("img");
+  fundo.src = "../img/jogo/player/animado/agatha/ultimoSuspiro.png";
+  fundo.className = "tra-fundo";
+
+  const gif = document.createElement("img");
+  gif.src = "../img/jogo/player/animado/agatha/agatha3.gif";
+  gif.className = "tra-gif";
+
+  const texto = document.createElement("div");
+  texto.className = "tra-texto";
+  texto.innerText =
+    "“Levante-se. O seu quadro ainda não é definitivo. Enquanto há resposta, há chance de recuperação.”";
+
+  container.appendChild(fundo);
+  container.appendChild(gif);
+  container.appendChild(texto);
+
+  document.body.appendChild(container);
+
+  void container.offsetWidth;
+
+  fundo.classList.add("fundo-enter");
+  gif.classList.add("gif-enter");
+
+  await new Promise(r => setTimeout(r, 900));
+  texto.classList.add("texto-show");
+
+  await new Promise(r => setTimeout(r, 5000));
+
+  texto.classList.remove("texto-show");
+  texto.classList.add("texto-hide");
+
+  fundo.classList.add("fundo-exit");
+  gif.classList.add("gif-exit");
+
+  await new Promise(r => setTimeout(r, 1200));
+
+  container.remove();
+
+  enginePaused = false; // 🔥 DESPAUSA JOGO
+
+  gerarNotas(100, "tra", false, "area", 1);
+}
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 //ENEMYS

@@ -25,6 +25,7 @@ let targetSpeed = 4;
 let speedStart = 4;
 let speedStartTime = 0;
 let speedDuration = 8000;
+let enginePaused = false;
 
 // =====================
 function lerp(a, b, t) {
@@ -249,6 +250,10 @@ function updateFeverWave() {
 
 // =====================
 function loop() {
+  if (enginePaused) {
+    requestAnimationFrame(loop);
+    return;
+  }
 
   updateFeverWave();
   updateSpeed(); // 🔥 NOVO

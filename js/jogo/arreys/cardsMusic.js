@@ -1,5 +1,17 @@
 const cardsMusic = [
   {
+    name: "Levante Os Caidos",
+    cost: 0,
+    basePower: 100,
+    rarity: "salaCirurgia",
+    img: "../img/jogo/cards/music/levanteOsCaidos.png",
+    desc: "Abre um Palco de Trauma (100🎶). Seta sua vida para 1. Cause dano em area e cure baseado na pontuação do palco.",
+    type: "salaCirurgia"
+  },
+
+
+
+  {
     name: "Clave De Sol",
     cost: 1,
     basePower: 10,
@@ -26,6 +38,7 @@ const cardsMusic = [
     desc: "<strong class='criaDestaque'>(Fervor Trauma)</strong> Abre o Palco (30🎶). Ganhe cura baseado em 20% na pontuação do palco.",
     type: "music"
   },
+
 
 
   {

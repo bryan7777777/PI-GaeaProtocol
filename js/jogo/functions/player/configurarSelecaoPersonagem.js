@@ -320,7 +320,7 @@ function configurarSelecaoPersonagem() {
     },
     cleopatra: {
       nome: "☀️Cleopatra VIII, A Criadora Incompreendida☀️",
-      dificuldade: "☀️NÍVEL DE DIFICULDADE: ☠️☠️☠️☠️☠️☀️",
+      dificuldade: "☀️NÍVEL DE DIFICULDADE: ☠️☠️☀️",
       cor: "rgb(141, 7, 231)",
       descricao: "Seu nome original era Aparna, mas após um ocorrido que ela diz ser a \"escolhida\", ela se auto intitulou Cleopatra VIII, e recebe ajuda dos deuses antigos do egito para ajudar ela em sua jornada, sendo capaz de os invocar e até entrar em estado divino para lutar.",
       cardFoco: "Deck focado em spawn de aliados, buff de aliados e geração de cargas.",
