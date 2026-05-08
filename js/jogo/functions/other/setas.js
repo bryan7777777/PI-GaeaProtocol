@@ -33,6 +33,16 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     faccoes = [
       {
+        nome: "GAEA PROTOCOL",
+        classe: "gaea conselho",
+        personagens: [
+          { id: "verde", img: "capaceteverde.png" },
+          { id: "wallace", img: "espectroDaFloresta.jpeg" },
+          { id: "malaquias", img: "malaquias.jpg" },
+          { id: "x", img: "gemea.jpeg" },
+        ]
+      },
+      {
         nome: "CONSELHO DA GAEA",
         classe: "gaea",
         personagens: [
@@ -44,16 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
           { id: "lilia", img: "lilia.png" },
           { id: "ferrus", img: "magnusFerrus.png" },
           
-        ]
-      },
-      {
-        nome: "GAEA PROTOCOL",
-        classe: "gaea conselho",
-        personagens: [
-          { id: "verde", img: "capaceteverde.png" },
-          { id: "wallace", img: "espectroDaFloresta.jpeg" },
-          { id: "malaquias", img: "malaquias.jpg" },
-          { id: "x", img: "gemea.jpeg" },
         ]
       },
       // {

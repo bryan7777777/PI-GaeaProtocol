@@ -111,7 +111,7 @@ function configurarSelecaoPersonagem() {
       energia: 3,
       escudo: 5,
       mao: 5,
-      img: "./../img/jogo/player/animado/porto/statico/porto1.png",
+      img: "./../img/jogo/player/autoridadeDoPorto.png",
       lor: "Assim como seu pai ela assumiu o manto de autoridade do porto, aprendeu bem com seu velho estratégias muito boas de ataque a distância, mas ela se apaixonou pelo mar assim como sua mãe. [...]",
       extras: [
         {
@@ -199,7 +199,7 @@ function configurarSelecaoPersonagem() {
       energia: "2",
       escudo: "0",
       mao: "4",
-      img: "./../img/jogo/player/animado/lilia/statico/lilia1.png",
+      img: "./../img/jogo/player/lilia.png",
       lor: "Líder do GLACIAL PROTOCOL (GLA.P), dona de muitas lendas, ao mesmo tempo que sabem muito sobre ela também sabem tão pouco, há muitos rumores e histórias lendárias dela, uma grande estrategista, dizem que ela já foi capaz de apenas com mais 3 soldados do GLA.P derrubar um imenso batalhão de mais de 100mil robos corrompidos e destruir uma das principais bases da IA, também falam que ela sozinha já bateu de frente contra multiplos exercitos para salvar seu povo, verdade ou não, esse mitos ecoam por todos do GLA.P e até outros protocols já ouviram dela, ela é muito respeitada por todos, até Magnolia a lider do G.P a respeita muito[...], \"Será que é verdade que ela não precisa de um mecha?\"",
       extras: [
         {
