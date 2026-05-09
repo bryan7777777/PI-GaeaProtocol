@@ -1,11 +1,11 @@
 const cardsMusic = [
   {
     name: "Levante Os Caidos",
-    cost: 0,
+    cost: 7,
     basePower: 100,
     rarity: "salaCirurgia",
     img: "../img/jogo/cards/music/levanteOsCaidos.png",
-    desc: "Abre um Palco de Trauma (100🎶). Seta sua vida para 1. Cause dano em area e cure baseado na pontuação do palco.",
+    desc: "Abre um Palco de Trauma (100🎶). Seta sua vida para 1. Cause dano em area, cure e ganha escudo baseado na pontuação do palco. Da Erro na mão inteira.",
     type: "salaCirurgia"
   },
 
@@ -32,10 +32,10 @@ const cardsMusic = [
   {
     name: "Clave De Fá",
     cost: 1,
-    basePower: 30,
+    basePower: 40,
     rarity: "music",
     img: "../img/jogo/cards/music/claveDeFa.png",
-    desc: "<strong class='criaDestaque'>(Fervor Trauma)</strong> Abre o Palco (30🎶). Ganhe cura baseado em 20% na pontuação do palco.",
+    desc: "<strong class='criaDestaque'>(Fervor Trauma)</strong> Abre o Palco (40🎶). Ganhe cura baseado em 20% na pontuação do palco.",
     type: "music"
   },
 
@@ -93,6 +93,36 @@ const cardsMusic = [
     rarity: "music",
     img: "../img/jogo/cards/music/semifusa.png",
     desc: "Ganhe 16🎶 notas extras para o seu próximo Palco",
+    type: "music"
+  },
+
+
+
+  {
+    name: "Nota Agressiva",
+    cost: 1,
+    basePower: 5,
+    rarity: "music",
+    img: "../img/jogo/cards/music/ataque.png",
+    desc: "<strong class='criaDestaque'>(Fervor Lar)</strong> Abre o Palco (5🎶). Cause dano baseado na pontuação do palco.",
+    type: "music"
+  },
+  {
+    name: "Nota Defensiva",
+    cost: 1,
+    basePower: 10,
+    rarity: "music",
+    img: "../img/jogo/cards/music/def.png",
+    desc: "<strong class='criaDestaque'>(Fervor Lar)</strong> Abre o Palco (10🎶). Ganhe escudo baseado em 50% na pontuação do palco.",
+    type: "music"
+  },
+  {
+    name: "Monitorando A Vida",
+    cost: 2,
+    basePower: 20,
+    rarity: "music",
+    img: "../img/jogo/cards/music/cura.png",
+    desc: "<strong class='criaDestaque'>(Fervor Lar)</strong> Abre o Palco (20🎶). Ganhe cura baseado em 25% na pontuação do palco.",
     type: "music"
   },
 ];

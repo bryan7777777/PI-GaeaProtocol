@@ -510,6 +510,12 @@ Mas, dessa vez...<br><br>
 Com um sorriso verdadeiro no rosto.`,
       extras: [
         {
+          img: "../img/jogo/passivas/ultimoSuspiro.png",
+          titulo: "Triunfo",
+          desc: "Agatha é a única personagem atualmente que possui uma carta de \"Triunfo\".<br> Esse tipo de carta é um ataque especial e exclusivo de cada personagem.<br> Esse ataque possui uma animação especial que varia entre os personagens.",
+          cor: "lime"
+        },
+        {
           img: "./../img/jogo/passivas/fervor.png",
           titulo: "Fervor",
           desc: "A barra de Fervor quando cheia coloca a personagem em estado de Fervor (Lar/Trauma).<br>Errar as notas tira pontos de Fervor, zerar a barra remove o Fervor.<br><br>Esse estado se mantem até o proximo \"Palco\" independente de qual seja.<br>Caso desativado e reativado no mesmo \"Palco\" ele volta para o Fervor que estava e não o novo,<br> só entre em um novo Fervor caso o personagem sai do \"Palco\" sem nenhum Fervor ativo.",

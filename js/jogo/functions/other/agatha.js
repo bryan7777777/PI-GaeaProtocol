@@ -87,7 +87,7 @@ function updateNoteStyle() {
 }
 
 // =====================
-function finalizarPontuacao(acao, tipo, divisor) {
+function finalizarPontuacao(acao, tipo, divisor, especial) {
   let total = Math.floor(Math.max(0, pontuacao / divisor));
   pontuacao = 0;
 
@@ -103,10 +103,17 @@ function finalizarPontuacao(acao, tipo, divisor) {
     updateEnemyBars();
     checkEnemies();
   }
+
+  if (especial) {
+    allBuffs(total, "cura", acao);
+    allBuffs(total, "def", acao);
+    updateHUD();
+    updateEnemyBars();
+  }
 }
 
 // =====================
-function gerarNotas(qtd, modoFever, acao, tipo, divisor) {
+function gerarNotas(qtd, modoFever, acao, tipo, divisor, especial=false) {
   if (!feverActive) feverMode = modoFever;
 
   qtd += checkNotes();
@@ -135,7 +142,7 @@ function gerarNotas(qtd, modoFever, acao, tipo, divisor) {
 
   updateNoteStyle();
 
-  window._rhythmContext = { acao, tipo, divisor };
+  window._rhythmContext = { acao, tipo, divisor, especial };
 }
 
 // =====================
@@ -147,7 +154,7 @@ function checkFimSessao() {
 
     const ctx = window._rhythmContext || {};
 
-    finalizarPontuacao(ctx.acao, ctx.tipo, ctx.divisor);
+    finalizarPontuacao(ctx.acao, ctx.tipo, ctx.divisor, ctx.especial);
 
     toggleRhythmGame(false);
     agathaTeclado(false);
@@ -256,7 +263,7 @@ function loop() {
   }
 
   updateFeverWave();
-  updateSpeed(); // 🔥 NOVO
+  updateSpeed();
 
   const speed = currentSpeed;
 

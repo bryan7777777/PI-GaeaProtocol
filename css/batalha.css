@@ -690,7 +690,7 @@ color: rgb(227, 90, 255);
   }
 }
 
-.attack, .defense, .heal, .reciclagem,.lixo,.cintilante,.frost,.fire,.terra,.agua,.cria,.desert,.music,.salaCirurgia {
+.attack, .defense, .heal, .reciclagem,.lixo,.cintilante,.frost,.fire,.terra,.agua,.cria,.desert,.music,.salaCirurgia, .erro {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -706,6 +706,7 @@ color: rgb(227, 90, 255);
 .desert {background-image: url("../img/jogo/cards/desert.png");}
 .music {background-image: url("../img/jogo/cards/music.png");}
 .salaCirurgia {background-image: url("../img/jogo/cards/salaCirurgia.png");}
+.erro {background-image: url("../img/jogo/cards/erro.png");}
 
 .terra{background-image: url("../img/jogo/cards/terra.png");}
 .fire {background-image: url("../img/jogo/cards/fire.png");}

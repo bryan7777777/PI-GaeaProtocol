@@ -952,11 +952,15 @@ function drawCards() {
         div.classList.add("from-right");
       }
 
-      div.innerHTML = `
+      if (card.name === "Erro") {
+        
+      } else {
+        div.innerHTML = `
           <img src="${card.img}" alt="${card.name}">
           <div class="energia"><strong>${card.cost}</strong></div>
           <div class="desc"><strong>${card.name}</strong><br><em>${card.desc}</em></div>
         `;
+      }
       div.onclick = () => {
         if (bloqueioCliqueCartas) return;
         bloqueioCliqueCartas = true;
@@ -1811,6 +1815,14 @@ function drawCards() {
         }
         //  🎵🎵🎵🎵🎵 MUSIC 🎵🎵🎵🎵🎵
         else if (card.name === "Levante Os Caidos") {
+          setTimeout(() => {
+            deck.length = 0;
+            const qtdCompra = 11;
+
+            for (let i = 0; i < qtdCompra; i++) {
+              deck.push({ ...cardsUnicas.find(c => c.name === "Erro"), power: 0 });
+            }
+          }, 300);
           playerHP = 1;
           feverActive = false;
           feverMode = "tra";
@@ -1822,12 +1834,20 @@ function drawCards() {
          gerarNotas(card.power, "tra",false, "unico", 1);
         }
         //🎵
-        else if (card.name === "Clave De Dó") {
+        else if (card.name === "Clave De Dó" || card.name === "Nota Defensiva") {
          gerarNotas(card.power, "lar", false, "def", 2);
         }
         //🎵
         else if (card.name === "Clave De Fá") {
-         gerarNotas(card.power, "tra", false, "cura", 2);
+         gerarNotas(card.power, "tra", false, "cura", 5);
+        }
+        //🎵
+        else if (card.name === "Nota Agressiva") {
+         gerarNotas(card.power, "lar", false, "unico", 1);
+        }
+        //🎵
+        else if (card.name === "Monitorando A Vida") {
+         gerarNotas(card.power, "lar", false, "cura", 4);
         }
         //🎵
         else if (card.name === "Partitura"||card.name === "Semibreve"||card.name === "Colcheias"||card.name === "Fusa"||card.name === "Seminima"||card.name === "Semifusa") {
@@ -2680,7 +2700,7 @@ function drawCards() {
           floatText(document.getElementById("player"), `+${"0"}🛡️`, "cyan");
         }
         //🗑️
-        else if (card.name === "Cura Quebrada") {
+        else if (card.name === "Cura Quebrada"|| card.name === "Erro") {
           floatText(document.getElementById("player"), `+${"0"}💚`, "lime");
         }
         //🗑️
@@ -8932,7 +8952,7 @@ function animarEspelhoFerrus(tipo, frames, opcoes = {}) {
 }
 async function animacaoTra() {
 
-  enginePaused = true; // 🔥 PAUSA JOGO
+  enginePaused = true; 
 
   const container = document.createElement("div");
   container.id = "animacaoTra";
@@ -8964,7 +8984,7 @@ async function animacaoTra() {
   await new Promise(r => setTimeout(r, 900));
   texto.classList.add("texto-show");
 
-  await new Promise(r => setTimeout(r, 5000));
+  await new Promise(r => setTimeout(r, 3000));
 
   texto.classList.remove("texto-show");
   texto.classList.add("texto-hide");
@@ -8976,9 +8996,9 @@ async function animacaoTra() {
 
   container.remove();
 
-  enginePaused = false; // 🔥 DESPAUSA JOGO
+  enginePaused = false;
 
-  gerarNotas(100, "tra", false, "area", 1);
+  gerarNotas(100, "tra", true, "area", 1, true);
 }
 function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
