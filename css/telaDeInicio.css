@@ -180,18 +180,21 @@ body {
 .fita {
   position: absolute;
   width: 20%;
-  height: 70vh;
+  height: 100vh;
   min-height: 650px;
 
-  margin-top: 14vh;
-  margin-left: 1vw;
-
-  background-image: url("./../img/jogo/background/quest1.png");
+  background: linear-gradient(
+    to right,
+    #002b09 0%,
+    #13210f 30%,
+    #4a3316 65%,
+    #8b5a1e 85%,
+    #d8842b 100%
+);
   background-size: cover;
   background-position: center;
 
-  border-radius: 0 70px 0 70px;
-  border: 2px solid rgb(161, 89, 6);
+  border-radius: 0 70px 70px 0px;
 
   display: flex;
   flex-direction: column;
@@ -295,11 +298,14 @@ body {
   flex-direction: row;
   gap:60px;
 
-  background: linear-gradient(
-      rgba(0,0,0,0.22),
-      rgba(0,0,0,0.28)
-    ),
-    url("../img/jogo/background/quest1.png");
+  background: radial-gradient(
+    circle,
+    rgb(216, 155, 43, 0.7) 0%,
+    rgb(139, 90, 30, 0.7) 25%,
+    rgb(74, 51, 22, 0.7) 50%,
+    rgb(19, 33, 15, 0.7) 75%,
+    rgb(0, 43, 9, 0.7) 100%
+);
 
   background-position: center center;
   background-size: cover;
