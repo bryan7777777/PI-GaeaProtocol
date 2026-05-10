@@ -1830,6 +1830,10 @@ function drawCards() {
           animacaoTra();
         }
         //🎵
+        else if (card.name === "Cirurgia Forçada") {
+         gerarNotas(card.power, "tra",false, "area", 2);
+        }
+        //🎵
         else if (card.name === "Clave De Sol") {
          gerarNotas(card.power, "tra",false, "unico", 1);
         }
@@ -1846,8 +1850,19 @@ function drawCards() {
          gerarNotas(card.power, "lar", false, "unico", 1);
         }
         //🎵
+        else if (card.name === "Sakura Distante") {
+         gerarNotas(card.power, "lar", false, "ultimo", 1.3);
+        }
+        else if (card.name === "Show Revigorante") {
+         gerarNotas(card.power, "lar", true, "none", 1.3, true);
+        }
+        //🎵
         else if (card.name === "Monitorando A Vida") {
          gerarNotas(card.power, "lar", false, "cura", 4);
+        }
+        //🎵
+        else if (card.name === "Lar") {
+         gerarNotas(card.power, "lar", false, "cura", 2);
         }
         //🎵
         else if (card.name === "Partitura"||card.name === "Semibreve"||card.name === "Colcheias"||card.name === "Fusa"||card.name === "Seminima"||card.name === "Semifusa") {
@@ -6875,6 +6890,18 @@ function abrirLoja() {
         opcoes.push(carta);
       }
     }
+  } else if (personagemSelecionado === "agatha") {
+    opcoes = [];
+
+    while (opcoes.length < 14 && opcoes.length < cardsMusic.length) {
+      const carta = cardsMusic[Math.floor(Math.random() * cardsMusic.length)];
+
+      if (!carta) continue;
+
+      if (!opcoes.some(c => c.name === carta.name)) {
+        opcoes.push(carta);
+      }
+    }
   } else {
     opcoes = gerarPoolRecompensa14();
   }
@@ -7299,6 +7326,28 @@ function abrirMedico() {
 
     while (escolhidas.length < max) {
       const carta = cardsDesert[Math.floor(Math.random() * cardsDesert.length)];
+      if (carta) escolhidas.push(carta);
+    }
+  } else if (personagemSelecionado === "agatha") {
+    const max = Math.min(6, cardsMusic.length);
+    let tentativas = 0;
+
+    while (escolhidas.length < max && tentativas < 50) {
+      const carta = cardsMusic[Math.floor(Math.random() * cardsMusic.length)];
+
+      if (!carta) {
+        tentativas++;
+        continue;
+      }
+
+      if (!escolhidas.some(c => c.name === carta.name)) {
+        escolhidas.push(carta);
+      }
+      tentativas++;
+    }
+
+    while (escolhidas.length < max) {
+      const carta = cardsMusic[Math.floor(Math.random() * cardsMusic.length)];
       if (carta) escolhidas.push(carta);
     }
   } else {
@@ -8184,19 +8233,18 @@ const characterDecks = {
     cardsDesert.find(c => c.name === "Descanço"),
   ],
   agatha: [
-    cardsMusic.find(c => c.name === "Clave De Dó"),
-    cardsMusic.find(c => c.name === "Clave De Dó"),
-    cardsMusic.find(c => c.name === "Clave De Fá"),
-    cardsMusic.find(c => c.name === "Clave De Fá"),
-    cardsMusic.find(c => c.name === "Clave De Sol"),
-    cardsMusic.find(c => c.name === "Clave De Sol"),
-    cardsMusic.find(c => c.name === "Partitura"),
+    cardsUnicas.find(c => c.name === "Levante Os Caidos"),
+    cardsMusic.find(c => c.name === "Nota Agressiva"),
+    cardsMusic.find(c => c.name === "Nota Agressiva"),
+    cardsMusic.find(c => c.name === "Nota Agressiva"),
+    cardsMusic.find(c => c.name === "Nota Defensiva"),
+    cardsMusic.find(c => c.name === "Nota Defensiva"),
+    cardsMusic.find(c => c.name === "Nota Defensiva"),
+    cardsMusic.find(c => c.name === "Monitorando A Vida"),
     cardsMusic.find(c => c.name === "Semibreve"),
-    cardsMusic.find(c => c.name === "Colcheias"),
-    cardsMusic.find(c => c.name === "Fusa"),
+    cardsMusic.find(c => c.name === "Semibreve"),
     cardsMusic.find(c => c.name === "Seminima"),
-    cardsMusic.find(c => c.name === "Semifusa"),
-    cardsMusic.find(c => c.name === "Levante Os Caidos"),
+    cardsMusic.find(c => c.name === "Seminima"),
   ],
   // gaeaReen: [
   //   allCards.find(c => c.name === "Chuva de Laminas"),

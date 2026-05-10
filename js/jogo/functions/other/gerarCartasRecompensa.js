@@ -31,6 +31,9 @@ console.log("deckCria:", deckCria);
   } else if(personagemSelecionado === "cleopatra"){
     if (!cardsDesert || cardsDesert.length === 0) return null;
     return cardsDesert[Math.floor(Math.random() * cardsDesert.length)];
+  } else if(personagemSelecionado === "agatha"){
+    if (!cardsMusic || cardsMusic.length === 0) return null;
+    return cardsMusic[Math.floor(Math.random() * cardsMusic.length)];
   }
   
   let tentativas = 0;
