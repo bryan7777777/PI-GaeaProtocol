@@ -1,188 +1,68 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="theme-color" content="#1e3a28">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>GÆA PROTOCOL</title>
 
-    <title>Gaea Protocol</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/telaDeInicio.css">
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/home.css">
-    <!-- ✅ NOVO: CSS das melhorias (toasts, sidebar fix, resultado da run) -->
-    <link rel="stylesheet" href="css/gameEnhancements.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Megrim&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
-    <script src="js/script.js" defer></script>
-    <!-- ✅ NOVO: Script das melhorias (deve vir antes do main do jogo) -->
-    <script src="js/gameEnhancements.js" defer></script>
+  <link rel="shortcut icon" href="img/site/logo/logo2.png" type="image/x-icon">
+  <script src="js/jogo/functions/other/telaDeInicioJogo.js" defer></script>
 </head>
+ 
+<body>
 
-<!-- ✅ data-authenticated é preenchido pelo PHP via sessão -->
-<body data-authenticated="<?php echo !empty($_SESSION['user']) ? 'true' : 'false'; ?>">
+  <!-- AVISO FULLSCREEN (MOBILE / TABLET) -->
+  <div class="screen-warning">
+    <div class="warning-box">
+      <h1>⚠️ Acesso restrito ⚠️</h1>
+      <p>Esta página é acessível apenas em computadores ou notebooks (resolução minima: 1825px). O jogo pode apresentar desalinhamente, desproporção e até bugs se acessado por uma resolução muito inferior</p>
+      <p>Por favor, acesse por uma tela maior.</p>
+    </div>
+  </div>
 
-    <div class="background-system">
-        <div class="background-base"></div>
-        <div class="circuit-grid"></div>
-        <div class="energy-lines" id="energyLinesContainer"></div>
-        <div class="particles-container" id="particlesContainer"></div>
-        <div class="scanner-effect"></div>
-        <div class="distortion-layer"></div>
+  <!-- CONTEÚDO DESKTOP -->
+  <div class="desktop-content">
+
+    <div class="container">
+      <h1 id="title" class="glitch" data-text="GÆA PROTOCOL">GÆA PROTOCOL</h1>
+
+      <div id="menu" class="menu">
+        <a href="pages/tutorial.html">
+          <button class="glitch-btn">Tutorial</button>
+        </a>
+        <a href="pages/selecaoMapa.html">
+          <button class="glitch-btn">Novo Jogo</button>
+        </a>
+      </div>
     </div>
 
-    <!-- ✅ O overlay agora é posição fixed e não empurra conteúdo -->
-    <div class="overlay" id="overlay"></div>
 
-    <!-- NAVEGAÇÃO PRINCIPAL -->
-    <nav>
-        <div class="nav-content">
-            <div class="logo-text" onclick="showHome()">GAEA PROTOCOL</div>
 
-            <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+    
+  </div>
+</div>
 
-            <ul class="nav-links" id="navLinks">
-                <li><a onclick="openPanel('sobre')">Sobre</a></li>
-                <li><a onclick="openPanel('historia')">História</a></li>
-                <li><a onclick="openPanel('personagens')">Personagens</a></li>
-            </ul>
+   
 
-            <div class="auth-section">
-                <div id="authGuest" class="auth-guest">
-                    <a href="php/login.php" class="login-btn">
-                        <i class="fas fa-user"></i>
-                        <span>Login</span>
-                    </a>
-                </div>
-                <div id="authUser" class="auth-user" style="display: none;">
-                    <div class="user-menu-trigger">
-                        <span id="userName" class="user-name">Usuário</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="user-dropdown" id="userDropdown">
-                        <a href="php/User/dashboard.php" class="dropdown-item">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
-                        </a>
-                        <a href="php/User/dashboard.php#perfil" class="dropdown-item">
-                            <i class="fas fa-user-edit"></i> Perfil
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="php/User/logout.php" class="dropdown-item logout">
-                            <i class="fas fa-sign-out-alt"></i> Sair
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <div class="fita">
+      <h1 class="euOdeioMinhaVida">⚠️Atenção⚠️</h1>
+      <p class="euOdeioMinhaVida">Esta página é acessível apenas em computadores ou notebooks (resolução minima: 1825px). O jogo pode apresentar desalinhamente, desproporção e até bugs se acessado por uma resolução muito inferior</p>
+      <p class="euOdeioMinhaVida">O jogo pode demorar para carregar algumas imagens</p><br><br>
+     
+    </div>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main class="main-content" data-page="home">
-        <div class="page-content active" id="home">
-            <header class="hero">
-                <div class="hero-image">
-                    <img src="img/site/amigos/gaia.png" alt="Gaia">
-                </div>
-                <div class="hero-content">
-                    <h1>GAEA PROTOCOL</h1>
-                    <p class="subtitle">Deckbuilder Roguelike Tático</p>
-                    <p class="lead">Assuma o controle de pilotos e mechas projetados para restaurar um planeta à beira do colapso.</p>
-                    <div class="cta-buttons">
-                        <a href="pages/telaDeInicioJogo.html">
-                            <button class="cta-button play-game">Jogue Agora</button>
-                        </a>
-                    </div>
-                </div>
-            </header>
-        </div>
-    </main>
+    <div id="versao"><p>0.29.32</p></div>
+  </div>
 
-    <!-- ✅ PAINEL LATERAL — agora fixed, não abaixa a página -->
-    <aside class="side-panel" id="sidePanel">
-        <button class="side-panel-close" onclick="closePanel()">×</button>
-        <div class="side-panel-content" id="panelContent"></div>
-    </aside>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>GAEA PROTOCOL</h3>
-                <p>Um deckbuilder roguelike tático onde suas decisões moldam o destino do planeta.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-steam"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h4>Links Rápidos</h4>
-                <ul>
-                    <li><a onclick="showHome()">Home</a></li>
-                    <li><a onclick="openPanel('sobre')">Sobre</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Recursos</h4>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Suporte</a></li>
-                    <li><a href="#">Política de Privacidade</a></li>
-                    <li><a href="#">Termos de Serviço</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="contributors-footer">
-            <div class="contributors-content">
-                <h4>Equipe de Desenvolvimento</h4>
-                <div class="contributors-grid">
-                    <div class="contributor">
-                        <div class="contributor-name">Bryan Nagano</div>
-                        <a href="https://github.com/bryan7777777" class="contributor-git" target="_blank">
-                            <i class="fab fa-github"></i> @bryan7777777
-                        </a>
-                    </div>
-                    <div class="contributor">
-                        <div class="contributor-name">Vinícius Gameleira</div>
-                        <a href="https://github.com/VGameleira" class="contributor-git" target="_blank">
-                            <i class="fab fa-github"></i> @VGameleira.Dev
-                        </a>
-                    </div>
-                    <div class="contributor">
-                        <div class="contributor-name">James Tertoliano</div>
-                        <a href="https://github.com/Jakosjimn" class="contributor-git" target="_blank">
-                            <i class="fab fa-github"></i> @Jakosjimn M/D
-                        </a>
-                    </div>
-                    <div class="contributor">
-                        <div class="contributor-name">Isaac Tomaz</div>
-                        <a href="https://github.com/tomaz0000" class="contributor-git" target="_blank">
-                            <i class="fab fa-github"></i> @tomaz0000
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="senac-credit">
-            Projeto acadêmico desenvolvido para o <strong>SENAC</strong> - 2024
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2024 Gaea Protocol. Todos os direitos reservados.</p>
-        </div>
-    </footer>
 
 </body>
+
 </html>
