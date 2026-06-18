@@ -1,0 +1,8 @@
+GIF{
+    EDITOR{
+        https://flixier.com/pt/tools/editor-de-gif
+    }
+    REMOVE BACKGROUND{
+        https://onlinegiftools.com/remove-gif-background
+    }
+}

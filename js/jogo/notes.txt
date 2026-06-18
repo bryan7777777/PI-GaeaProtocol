@@ -1,0 +1,212 @@
+GUA DAS PASTAS DENTRO DO ./JS/JOGO/
+
+JOGO{PASTA DE ARREYS, PASTA DA BIBLIOTECA DE FUNCTIONS, MAIN ONDE REUNE TUDO, VARJOGO ONDE ESTÁ DECLARADO AS VAR GLOBAIS E ARRAYS VAZIOS}
+
+ARREYS{ARREY DAS CARTAS GERAL, ITENS GERAL, BLOCO DOS INIMIGOS NORMAIS/ELITE/BOSS}
+
+FUNCTIONS {
+    DIVSTRANSITION{
+        TRANSIÇÃO ENTRE AS DIVS
+    }
+    ENEMYS{
+        ALL{CONF GERAL DOS INIMIGOS}
+        IA{CONF DO BOSS IA}
+        NEMORA{CONF DO BOSS NEMORA}
+    }
+    OTHER{
+        OUTRAS FUNCTION, LOJA, ATT UID, ATT HEADER PLAYER, POPUP, SELÇÃO PLAYER UNICO, CHECK PLAYER ITEM, CHECK GAME OVER
+    }
+    PLAYER{
+        CONF QUE DIZ RESPEITO AO PLAYER, SELECT PERSO, DESENHAR CARDS NA MÃO, EFECTS, UPDATE UID PLAYER
+    }
+}
+
+STATS ENEMYS
+
+🌵 reflete 5 de dano ao sofrer dano
+💞 inicio da batalha aumenta a vida maxima dos aliados adjacentes em 15 (dura até apos a morte)
+💤 eu disperto e revivo mais forte
+⚔️/❄️ atk normal
+🔱 ignora armadura
+🩸 Eu morro após atacar 3 vezes
+⁉️ Ação ocultada pelo inimigo
+(⚔️)⚜️ Aumento meu atk permanentemente (apenas ações dentro do parenteses)
+(⚔️)🌟 critico garantido (apenas ações dentro do parenteses)
+💚 prioriza curar aliados
+💊 auto cura
+🪬 quando todos que tem esse status morrem, geram um novo inimigo
+🧿 imune a marcação de vida e ataque
+♟️ invoco um aliado
+(⚔️)💥 chance de (30%) crit X2 (apenas ações dentro do parenteses)
+(⚔️)🧨 chance de (15%) crit X4 (apenas ações dentro do parenteses)
+(⚔️)💣 chance de (10%) crit X5 (apenas ações dentro do parenteses)
+⚔️🎭💚 se não puder executar a primeira ação executa a segunda
+⚔️❓💚 pode executar 2 ações, ou uma ou outra que esta adjacente (50% de chance)
+⚔️❔💚 pode executar 2 ações, ou uma ou outra que esta adjacente, porém uma possui mais chance que a outra
+💫✨🤢🥶💀👾☠️👻🌟⚡♟️🪙♻️🪸 n criado
+
+NOTAS {
+    ✅-ADD + CARDS ELEMENTAIS
+
+    ✅-TRMNR DE CRR AS CARDS Q EU N TRMNI
+
+    ✅-CTR O BGL DO CARDS
+
+    ✅-OTMZ O BGL DO CARDS FUNC
+
+    ✅-OTMZ O BGL DO CARDS ITNS
+
+    ✅-CTR O BUG DO 2CLICK
+
+    ✅-CRR ANÇ PR MÃ IND/VND
+
+    ❌-AJST DLGS DS BOSSES PR BTR CM A HSTRA 
+
+    ✅-PXR AS PRT DO FRRIO E MDC ANTG ANTS D ATT O GIT D PC D SENAC (C EU TO LND ISS AGR E N TRI AS PRT... PRNGT C ALG TM O COD ANTG)
+
+    ❌-+MAPS ALTRS
+
+    ❌-+EVNTS
+
+    ✅-RRDD AGR É EFCS EM RND
+}
+
+PALTAS{
+    POO - citar a nova organização para contornar usar type="module" e evitar redefinir o cod inteiro
+    ==========
+    ITENS - citar a criação de itens e oq fazem
+    ==========
+    NIMAÇÃO - citar sobre as animações e a vida que deu para o jogo e possiveis ajustes no futuro
+    ==========
+    TUTORIAL - citar a criação de um tutorial simples
+    ==========
+    FILTRO DALTONICO - citar a descoberta da falta de suporte para daltonicos descoberta com o tutorial
+    ==========
+    AJUSTES PARA DALTONICOS - citar como foi resolvido o problema para daltonicos
+    ==========
+    DIALOGO - citar reutilização do cod do tutorial para criar dialogo entre o personagem e o boss, cd boss tem alguem com uma fala especial
+    ==========
+    EVENTOS ALTERADOS - citar o reworck nos eventos para n dxa eles inferiores aos itens
+    ==========
+    BALANCEAMENTO - citar o nerf nas cartas de reciclagem, buff nas elementais e buff boss final para tornar o jogo mais balanceado
+    ==========
+    BOSS SECRETO - citar sobre como acessar o boss secreto
+    ==========
+    BOSS REWORCK - citar a possibiidade de um reworck nos boss, devido a seus modelos antigos, está muito dif criar uma animação para eles
+    ==========
+    PRIORIDADE DE TAREFAS - citar qual como e pq priorizei tal coisa
+    ==========
+    BUGS - citar correção de bugs d forma sutil
+    ==========
+    OTIMIZAÇÃO FORÇADA - citar otimização de cod graças a gamb
+    ==========
+    POSIBILIDADES DE ANIMAÇÃO PLAYER - citar a possibiidade de criar animação para o player
+    ==========
+    RE-IMG - citar futura nessecidade de att e padronizar as img
+    ==========
+    HISTORICO D PROGREÇO - citar como estou slv o progreço das att do jogo
+    ==========
+    1.0.0 - (G-ATT/P-ATT/BUG-FIX)
+    ==========
+}
+
+conquistas {
+
+1-  -CAÇADOR-             boss alfa
+2-  -PESCANDO-            boss kraken
+3-  -HEREGE-              boss paladium
+4-  -OBSOLETO-            boss valk
+5-  -UM SEGREDO-          boss solice
+6-  -REI MAGO-            boss ayla
+7-  -SALVADOR ECO-        boss IA
+8-  -LIMPANDO A POEIRA-   boss Nemora
+9-  -HORA DO TRUCO-       boss Svetlana
+10- -CORROMPIDO-          boss Pedro
+11- -CHESS-               boss belinda
+12- -DESCANSO HEROICO-    boss Guinevere
+13- -TRATANDO O MAR-      boss isla
+
+===========================================
+
+14- -REFOÇADO-    Na mesma partida consiga 200 de escudo.
+15- -BRILHANTE-   Na mesma partida consiga 400 de escudo.
+
+
+16- -VITALICIO-   Na mesma partida consiga ter mais de 300 de vida.
+17- -GIGANTE-     Na mesma partida consiga ter mais de 400 de vida.
+18- -IMORTAL-     Na mesma partida consiga ter mais de 500 de vida.
+
+
+19- -O COMEÇO-               Na mesma partida consiga recicle um total de 150 lixos.
+20- -LIMPANDO O MUNDO-       Na mesma partida consiga recicle um total de 250 lixos.
+21- -TRATAMENTO DA TERRA-    Na mesma partida consiga recicle um total de 350 lixos.
+22- -GRANDE ATITUDE-         Na mesma partida consiga recicle um total de 450 lixos.
+23- -RECICLANDO O FUTURO-    Na mesma partida consiga recicle um total de 600 lixos.
+
+===========================================
+
+24- -SINERGIA ELEMENTAL-     Tenha 10 ou mais cartas de qualquer tipo ELEMENTAL no mesmo deck.
+25- -MAQUINA DE RECICLAGEM-  Tenha 8 ou mais cartas do tipo RECICLAGEM/AMARELO no mesmo deck.
+26- -GERADOR AMBULANTE-      Na mesma partida consiga 10 ou mais de energia.
+27- -AMIGAVEL-               Desbloqueie todos os personagens.
+}
+
+pp{
+    cuidando da interface do user
+}
+
+vini{
+    cuidando do site front
+}
+
+isac{
+    [...]
+}
+
+james{
+    cuidando da interface do user
+}
+
+dados{
+    usuario{
+        id
+        nome usuario
+        email
+        senha
+        dataNascimento
+        data criado
+        qtd de run (AUTO INCREMENTO)
+        qtd de vitorias
+    }
+    conquistas{
+        id
+        nome 
+        desbloqueio OQ DESBLOQUEIA ELA
+        premio QM OU OQ GANHOU
+        concluido BOLEAN
+    }
+    scor{
+        id
+        id user
+        qtd de lixo recilcado por run
+        qtd d lixo reciclado total
+    }
+    scor geral total{
+        id player1
+        id player2
+        id player3
+        id player4
+        id player5
+        id player6
+        ... 10
+    }
+    scor geral run{
+        id player1
+        id player2
+        id player3
+        id player4
+        id player5
+        id player6
+        ... 10
+    }
+}

@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Metadados -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personagens - Gaea Protocol</title>
+
+    <!-- Estilos - Sistema CSS Organizado -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Megrim&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Sistema CSS Modular -->
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/pages/personagens.css">
+</head>
+
+<body>
+    <!-- Container de partículas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Overlay interativo -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content" data-page="personagens">
+        <!-- Página PERSONAGENS -->
+        <div class="page-content active" id="personagens-page">
+            <!-- Botão para voltar -->
+            <button class="back-button" onclick="showHome()">← Voltar</button>
+            <h1>Personagens</h1>
+
+            <section>
+                <!-- Introdução aos personagens -->
+                <p>Escolha entre 28 pilotos únicos, distribuídos em 7 Protocolos distintos. Cada personagem oferece um
+                    estilo de jogo específico, com habilidades e estratégias particulares.</p>
+
+                <!-- Navegação entre protocolos -->
+                <div class="protocol-navigation" id="protocolNav">
+                    <button class="protocol-nav-btn active" data-protocol="gaea">GAEA PROTOCOOL</button>
+                    <button class="protocol-nav-btn" data-protocol="gleba">GLEBA PROTOCOOL</button>
+                    <button class="protocol-nav-btn" data-protocol="oceano">OCEAN PROTOCOOL</button>
+                    <button class="protocol-nav-btn" data-protocol="fauna">FAUNA PROTOCOOL</button>
+                    <button class="protocol-nav-btn" data-protocol="wind">WIND PROTOCOOL</button>
+                    <button class="protocol-nav-btn" data-protocol="glacial">GLACIAL PROTOCOOL</button>
+                    <button class="protocol-nav-btn" data-protocol="solitarios">SOLITÁRIOS</button>
+                </div>
+
+                <!-- ========================= GAEA PROTOCOOL ========================= -->
+                <div class="protocol-section" id="gaea-protocol">
+                    <h2 class="protocol-title">GAEA PROTOCOOL</h2>
+                    <p class="protocol-subtitle">"O equilíbrio perfeito entre natureza e tecnologia"</p>
+
+                    <div class="character-grid">
+                        <!-- Personagem 1: JÃO -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/capaceteverde.png" alt="JÃO" class="character-image">
+                            <h3 class="character-name">JÃO</h3>
+                            <p class="character-role">O Veterano do Vazio</p>
+                            <p class="character-description">Engenheiro civil que se tornou piloto 30 anos atrás, acreditando poder consertar o que havia quebrado. Hoje, só continua porque parar é morrer.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">100/100</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">2</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">6</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 2: Magnolia -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/magnolia.jpg" alt="Magnolia" class="character-image">
+                            <h3 class="character-name">Magnolia</h3>
+                            <p class="character-role">A Jovem Idealista</p>
+                            <p class="character-description">Nasceu após o colapso em uma comunidade agrícola isolada. Alistou-se acreditando que poderia fazer diferença. A realidade a transformou em guerreira pragmática.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">120/120</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">6</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">4</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Wallace -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/espectroDaFloresta.jpeg" alt="Espectro da Floresta"
+                                class="character-image">
+                            <h3 class="character-name">Wallace</h3>
+                            <p class="character-role">O Tático Cansado</p>
+                            <p class="character-description">Soldado que conhecia estratégia, táticas e mobilização. Experimentou pela primeira vez derrota completa contra a IA. Pilota agora como forma de equilibrar uma culpa impossível.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">100/100</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">4</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: Elize -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/gaeaReen.png" alt="Elize" class="character-image">
+                            <h3 class="character-name">Elize</h3>
+                            <p class="character-role">A Bióloga Convertida</p>
+                            <p class="character-description">Bióloga especialista em restauração. Viu seu laboratório destruído por Abaddon. Agora pilota máquinas de destruição. Ironia que a atormenta.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">120/120</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">6</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">4</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div> 
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ========================= GLEBA PROTOCOOL ========================= -->
+                <div class="protocol-section hidden" id="gleba-protocol">
+                    <h2 class="protocol-title">GLEBA PROTOCOOL</h2>
+                    <p class="protocol-subtitle">"Da terra virá o renascimento"</p>
+
+                    <div class="character-grid">
+                        <!-- Personagem 1: Bruno -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/capaceteamarelo.png" alt="Bruno" class="character-image">
+                            <h3 class="character-name">Bruno</h3>
+                            <p class="character-role">O Fazendeiro Mecânico</p>
+                            <p class="character-description">Fazendeiro que conseguiu prosperar isoladamente. Forçado a pilotar por dependência econômica. Cada vitória traduz-se em alimentos para sua família.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">100/100</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 2: Felipe -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/felipe.jpg" alt="Felipe" class="character-image">
+                            <h3 class="character-name">Felipe</h3>
+                            <p class="character-role">Protetor de Comunidades</p>
+                            <p class="character-description">Protetor natural de sua comunidade. Construiu defesas por 15 anos. Um ataque de Abaddon destruiu tudo. Agora pilota um tanque para proteger o que resta.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">130/130</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Celso -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/celso.jpg" alt="Celso" class="character-image">
+                            <h3 class="character-name">Celso</h3>
+                            <p class="character-role">O Engenheiro Eficiente</p>
+                            <p class="character-description">Engenheiro de fábrica obsessivo com eficiência. Promovido a piloto forçadamente. Pilota com determinação: talvez sua fábrica retorne à restauração.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">75/75</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">4</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: Maria -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/maria.jpg" alt="Maria" class="character-image">
+                            <h3 class="character-name">Maria</h3>
+                            <p class="character-role">A Orquestradora de Sinergias</p>
+                            <p class="character-description">Professora de economia circular que construiu redes prósperas. Abaddon as destruiu. Pilota para proteger as rotas de comércio e comunicação.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">110/110</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">7</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ========================= OCEANO PROTOCOOL ========================= -->
+                <div class="protocol-section hidden" id="oceano-protocol">
+                    <h2 class="protocol-title">OCEANO PROTOCOOL</h2>
+                    <p class="protocol-subtitle">"Das profundezas virá a renovação"</p>
+
+                    <div class="character-grid">
+                        <!-- Personagem 1: Clarice -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/autoridadeDoPorto.jpg" alt="Clarice"
+                                class="character-image">
+                            <h3 class="character-name">Clarice</h3>
+                            <p class="character-role">Guardiã dos Profundos</p>
+                            <p class="character-description">Oceanógrafa que dedicou 20 anos à restauração de recifes. Abaddon destruiu seus sistemas costeiros e sua mãe. Pilota para proteger o que ainda pode ser salvo.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">110/110</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 2: Azul -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/capaceteazul.png" alt="Azul" class="character-image">
+                            <h3 class="character-name">Reinor</h3>
+                            <p class="character-role">O Defensor Oceânico</p>
+                            <p class="character-description">Antigo navegador que conhecia cada corrente do oceano. Viu rotas de migração de espécies serem destruídas. Agora pilota para reestabelecê-las antes do colapso total.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">130/130</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Fergus -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/fergus.jpg" alt="Fergus" class="character-image">
+                            <h3 class="character-name">Fergus</h3>
+                            <p class="character-role">O Titã das Águas</p>
+                            <p class="character-description">Pescador bruto que liderava frotas de pesca sustentável. Perdeu sua frota em ataques de Abaddon. Pilota com fúria contida, buscando vingança através de proteção.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">145/145</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: Mercuri -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/mercuri.jpg" alt="Mercuri" class="character-image">
+                            <h3 class="character-name">Mercuri</h3>
+                            <p class="character-role">A Corredora Rápida</p>
+                            <p class="character-description">Atleta que se tornou mensageira aquática entre comunidades costeiras. Velocidade era sua identidade. Pilota para manter rotas de comunicação literalmente abertas.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">100/100</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ========================= FAUNA PROTOCOOL ========================= -->
+                <div class="protocol-section hidden" id="fauna-protocol">
+                    <h2 class="protocol-title">FAUNA PROTOCOOL</h2>
+                    <p class="protocol-subtitle">"Na diversidade está a força"</p>
+
+                    <div class="character-grid">
+                        <!-- Personagem 1: Laranja -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/capacetelaranja.png" alt="Laranja" class="character-image">
+                            <h3 class="character-name">Gabriel</h3>
+                            <p class="character-role">O Observador da Fauna</p>
+                            <p class="character-description">Zoólogo que rastreou padrões de migração animal por 15 anos. Viu as espécies desaparecerem em progressão geométrica. Pilota para restaurar o mapa ecológico que conhece.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">70/70</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">6</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 2: Cleber -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/cleber.jpg" alt="Cleber" class="character-image">
+                            <h3 class="character-name">Cleber</h3>
+                            <p class="character-role">O Criador de Habitats</p>
+                            <p class="character-description">Veterinário que trabalhou em reservas de conservação. Criou ambientes estáveis para espécies ameaçadas. Pilota porque acredita que pode restaurar habitat em escala de mecha.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">160/160</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Malaquias -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/malaquias.jpg" alt="Malaquias" class="character-image">
+                            <h3 class="character-name">Malaquias</h3>
+                            <p class="character-role">O Mago da Energia</p>
+                            <p class="character-description">Pesquisador de energias alternativas que dominava reações em cascata. Recrutado forçadamente após descoberta de poder destrutivo. Pilota para provar que ciência restaura.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">78/78</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">6</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: Renata -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/renata.jpg" alt="Renata" class="character-image">
+                            <h3 class="character-name">Renata</h3>
+                            <p class="character-role">A Atiradora de Precisão</p>
+                            <p class="character-description">Caçadora de vida selvagem que se tornou defensora delas. Escolhe alvos com precisão cirúrgica. Pilota para eliminar as ameaças específicas que conhece por nome.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">50/50</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">6</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ========================= EÓLICO PROTOCOOL ========================= -->
+                <div class="protocol-section hidden" id="wind-protocol">
+                    <h2 class="protocol-title">EÓLICO PROTOCOOL</h2>
+                    <p class="protocol-subtitle">"No vento está a liberdade"</p>
+
+                    <div class="character-grid">
+                        <!-- Personagem 1: Marcos -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/marcos.jpg" alt="Marcos" class="character-image">
+                            <h3 class="character-name">Marcos</h3>
+                            <p class="character-role">O Visionário do Vento</p>
+                            <p class="character-description">Engenheiro de parques eólicos que sonhava com energia infinita. Seus projetos foram destruídos por Abaddon. Pilota para reconstruir sua visão de liberdade energética.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">120/120</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 2: Cleide -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/cleide.jpg" alt="Cleide" class="character-image">
+                            <h3 class="character-name">Cleide</h3>
+                            <p class="character-role">A Veterana do Protocolo</p>
+                            <p class="character-description">Pilota desde os primeiros dias de GAEA. Conhece cada corrente de ar pela intuição. Mais rápida que qualquer processador. Pilota porque já não sabe viver sem o vento.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">100/100</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">7</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Magna -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/magna.jpg" alt="Magna" class="character-image">
+                            <h3 class="character-name">Magna</h3>
+                            <p class="character-role">A Impaciente</p>
+                            <p class="character-description">Ativista jovem que acreditava em ação direta. Impaciente com política. Pilota porque lidar com burocracia de GAEA é mais rápido que esperar por mudanças.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">128/128</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">4</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: Lucius -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/lucius.jpg" alt="Lucius" class="character-image">
+                            <h3 class="character-name">Lucius</h3>
+                            <p class="character-role">O Estrategista Silencioso</p>
+                            <p class="character-description">Militar que ensinou nas academias de voo. Estratégico mas reservado. Pilota porque seus alunos ainda vivos precisam de um mentor que sobreviva.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">100/100</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ========================= GLACIAL PROTOCOOL ========================= -->
+                <div class="protocol-section hidden" id="glacial-protocol">
+                    <h2 class="protocol-title">GLACIAL PROTOCOOL</h2>
+                    <p class="protocol-subtitle">"No gelo está a preservação"</p>
+
+                    <div class="character-grid">
+                        <!-- Personagem 1: Lilia -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/lilia.png" alt="Lilia" class="character-image">
+                            <h3 class="character-name">Lilia</h3>
+                            <p class="character-role">Líder do Protocolo Glacial</p>
+                            <p class="character-description">Gelo vivente - assim a chamam. Cresceu em regiões glaciais extremas. Liderança natural que mantém protocolo unido através de frieza calculada e propósito implacável.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">60/60</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">4</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">2</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 2: Glacia -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/glacia.jpg" alt="Glacia" class="character-image">
+                            <h3 class="character-name">Glacia</h3>
+                            <p class="character-role">Vice Líder Pesquisadora</p>
+                            <p class="character-description">Geofísica que estuda mudanças glaciais. Descobriu padrões que predizem catástrofes. Pilota compartilhando dados em tempo real com Lilia para sincronizar estratégias.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">80/80</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">8</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">4</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Olaf -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/olaf.jpg" alt="Olaf" class="character-image">
+                            <h3 class="character-name">Olaf</h3>
+                            <p class="character-role">O Guardião Gelido</p>
+                            <p class="character-description">Protetor dos refúgios glaciais. Corpo transformado por exposição extrema. Pilota para defender as áreas que ainda não foram corompidas pelo calor de Abaddon.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">150/150</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: Olga -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/olga.jpg" alt="Olga" class="character-image">
+                            <h3 class="character-name">Olga</h3>
+                            <p class="character-role">Prodígio da Pesquisa</p>
+                            <p class="character-description">Prodígio adolescente recrutada à força pelos superiores. Cálculos sobre probabilidades a tornam piloto ciente de cada risco. Pilota porque é mais seguro a obedecer.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">90/90</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">6</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ========================= SOLITÁRIOS ========================= -->
+                <div class="protocol-section hidden" id="solitarios-protocol">
+                    <h2 class="protocol-title">SOLITÁRIOS</h2>
+                    <p class="protocol-subtitle">"Cada um por seu caminho"</p>
+
+                    <div class="character-grid">
+                        <!-- Personagem 1: X -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/gemea.jpeg" alt="Gêmea" class="character-image">
+                            <h3 class="character-name">A Esquecida</h3>
+                            <p class="character-role">A Ninguém</p>
+                            <p class="character-description">Seu nome foi apagado dos registros. Sua irmã gêmea é oficialmente a única. Pilota sob identidade falsa, buscando se lembrar de quem era antes do apagamento.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">100/200</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">2</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">4</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 2: Tomoeh -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/sombraDaMorte.jpeg" alt="Sombra da Morte"
+                                class="character-image">
+                            <h3 class="character-name">Tomoeh</h3>
+                            <p class="character-role">A Sombra da Morte</p>
+                            <p class="character-description">Assassino que serviu ambos os lados. Ninguém sabe seu rosto real. Pilota porque matar por lucro é legítimo demais - prefere matar por ideologia que o escapa.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">30/30</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">9</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">4</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 3: Ferrus -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/magnusFerrus.png" alt="Magnus Ferrus"
+                                class="character-image">
+                            <h3 class="character-name">Magnus Ferrus</h3>
+                            <p class="character-role">O Prodígio Instável</p>
+                            <p class="character-description">Gênio da engenharia que enlouqueceu após descoberta própria. Seus próprios projetos o atacam. Pilota porque a mecha é lugar único onde seu cérebro pode estar em paz constante.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">80/160</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">3</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+
+                        <!-- Personagem 4: VINICIUS -->
+                        <article class="character-card">
+                            <img src="../img/jogo/pilotos/capaceteroxo.png" alt="Roxo" class="character-image">
+                            <h3 class="character-name">Vinicius</h3>
+                            <p class="character-role">A Interface Caótica</p>
+                            <p class="character-description">Hacker que invadiu sistema de Abaddon por intenção, fugiu com mecha por acidente. Agora não sabe se pilota para GAEA ou contra ela. Navegação é arte filosófica.</p>
+
+                            <div class="character-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">HP</div>
+                                    <div class="stat-value">60/60</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Escudo</div>
+                                    <div class="stat-value">0</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Mão</div>
+                                    <div class="stat-value">7</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Energia</div>
+                                    <div class="stat-value">5</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Dificuldade</div>
+                                    <div class="stat-value">💀💀</div>
+                                </div>
+                            </div>
+
+                            <div class="character-abilities">
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                                <span class="ability-tag"></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- RODAPÉ padronizado -->
+    <footer class="site-footer show">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Gaea Protocol</h3>
+                <p>Um jogo indie brasileiro de estratégia e deckbuilding.</p>
+                <div class="social-links">
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="#" title="Steam"><i class="fab fa-steam"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="jogabilidade.html">Como Jogar</a></li>
+                    <li><a href="personagens.html">Personagens</a></li>
+                    <li><a href="telaDeInicioJogo.html">Jogar</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p>contato@gaeaprotocol.com</p>
+                <p>Desenvolvido por Studio Gaea</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gaea Protocol. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
